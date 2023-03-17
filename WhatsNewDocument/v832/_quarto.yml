@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: docs
+  output-dir: ../../docs
 
 book:
   title: "What's New? - Version 8.3.2"
