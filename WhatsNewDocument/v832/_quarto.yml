@@ -29,5 +29,9 @@ format:
   pdf:
     documentclass: scrreprt
 
+project:
+  type: book
+  output-dir: docs
+
 
 
