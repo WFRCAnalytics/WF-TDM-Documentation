@@ -7,6 +7,13 @@
     "text": "Documentation\nThis website documents the progress of the travel demand model for the Wasatch region."
   },
   {
+    "objectID": "v832-whats-new/1-20220204-update.html",
+    "href": "v832-whats-new/1-20220204-update.html",
+    "title": "Documentation :: {title}",
+    "section": "",
+    "text": "This first part of this document contains a quick comparison between the 2022-02-04 version of the model and the 2021-11-10 version of the model.\n\n\nThe following changes were made the Distribution and Final Assignment scripts of the model\n\nChanged truck penalty from speed factor to a speed reduction penalty\n\nUpdated toll calculations:\nUpdate COST function\n\nUpdate TC function\nGeneral model cleanup\n\nAdditionally the Scenario Folder was updated with updated default ControlCenter.block files, a rolled date of model version, Fixed Cluster START & STARTHIDE typo, and added ‘blank folder setup’ folder.\n\n\n\nFigure 1 and Figure 2 contain a daily total volume comparison and a daily truck volume comparison. Daily total volumes are very similar between the two models. There is a slight shift of volume off of I-15 and onto parallel corridors. The largest volume shifts in 2050 are between I-215 and Bangerter Highway. Figure 1 shows one-way volumes.\n\n\n\nFigure 1: Daily Total Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10.\n\n\nDaily truck volumes show more differences with volumes dropping between the two models. The drop in volumes is less than a 1,500 trucks per day on freeways but is widespread throughout the region. Figure 2 shows one-way volumes.\n\n\n\nFigure 2: Daily Truck Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10."
+  },
+  {
     "objectID": "v832-whats-new/1-genparams.html",
     "href": "v832-whats-new/1-genparams.html",
     "title": "Documentation :: {title}",

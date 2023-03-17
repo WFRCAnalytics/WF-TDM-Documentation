@@ -30,7 +30,7 @@ website:
         - text: "Preface"
           href: v832-whats-new/index.qmd
         - text: "2022-02-04 UPDATE"
-          href: v832-whats-new/_20220204-update.qmd
+          href: v832-whats-new/1-20220204-update.qmd
         - text: "1 General Parameters"
           href: v832-whats-new/1-genparams.qmd
         - text: "2 Input Data"
