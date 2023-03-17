@@ -1,17 +1,10 @@
 [
   {
-    "objectID": "3-inputprocessing.html#inboundoutbound-and-hov-capacity",
-    "href": "3-inputprocessing.html#inboundoutbound-and-hov-capacity",
-    "title": "3  Input Processing",
-    "section": "3.1 Inbound/Outbound and HOV Capacity",
-    "text": "3.1 Inbound/Outbound and HOV Capacity\nA couple bugs were corrected in the input processing script:\n\nCorrected inbound/outbound designations for EB/WB links.\nRemoved FT=37-38 as a condition for populating link additional HOV capacity (AdHOVCap1H) values since related HOV fields are populated on GP links not HOV links. Also, corrected capacity lookup to be for FT=37 and not FT of link."
-  },
-  {
-    "objectID": "3-inputprocessing.html#walk-buffer-modifications",
-    "href": "3-inputprocessing.html#walk-buffer-modifications",
-    "title": "3  Input Processing",
-    "section": "3.2 Walk Buffer Modifications",
-    "text": "3.2 Walk Buffer Modifications\nThe walk buffer script was improved with a couple simple modifications to the routes and stops that are included in walk buffer creation: - Removed local bus route buffers along expressways and freeways (anything with FT>=12). Only local bus routes along arterials or collectors are now included in route buffers. - Removed buffers that were calculated from local bus stops, which were redundant with local bus route buffers. - The remaining combined walk buffer areas are shown in green. The ’_WalkBuffer_ArcMap103.mxd’ file was updated to version 10.3 of ArcMap, and the scripts were modified to copy the walk buffer mxd to scenario folders.\n\n\n\nFigure 3.1: Walk Buffer Modifications."
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "What’s New? - Version 8.3.2",
+    "section": "",
+    "text": "Preface\nThis is a the What’s New Document for the Wasatch Front Regional Council (WFRC) Travel Demand Model (TDM) version 8.3.2.\nFor access to this version of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v8.3.2."
   },
   {
     "objectID": "_20220204-update.html#changes",
@@ -60,7 +53,21 @@
     "href": "2-inputdata.html#other-changes",
     "title": "2  Input Data",
     "section": "2.4 Other Changes",
-    "text": "2.4 Other Changes\nThe following were additional changes made to the model:\n\nAn additional districting grouping (‘DISTSUPER’ and ‘DSUP_NAME’) was added to the TAZ shapefile using definitions from UDOT’s recent work on the long distance model.\nThe toll zone shapefile was also modified to correct a few instances where the HOT lane links were crossing into the opposing direction HOT zone.\nThe ‘1_Inputs\\0_GlobalData’ folder name was changed to ’1_Inputs\\0_GlobalData_mxd. The ’_Urbanization_ArcMap103.mxd’ file was saved as ArcMap version 10.3 and the ArcMap version was added to the filename\nThe TDM script ’_CreateOutputFolders.s’ in ‘3_CreateScenarios’ folder was modified to account for the changed folder and file names for the urbanization.mxd."
+    "text": "2.4 Other Changes\nThe following were additional changes made to the model:\n\nAn additional districting grouping (‘DISTSUPER’ and ‘DSUP_NAME’) was added to the TAZ shapefile using definitions from UDOT’s recent work on the long distance model.\nThe toll zone shapefile was also modified to correct a few instances where the HOT lane links were crossing into the opposing direction HOT zone.\nThe ‘1_Inputs\\0_GlobalData\\UbanizationMap’ folder name was changed to ‘1_Inputs\\0_GlobalData\\ArcMap_mxd. The’_Urbanization_ArcMap103.mxd’ file was saved as ArcMap version 10.3 and the ArcMap version was added to the filename\nThe TDM script ’_CreateOutputFolders.s’ in ‘3_CreateScenarios’ folder was modified to account for the changed folder and file names for the urbanization.mxd."
+  },
+  {
+    "objectID": "3-inputprocessing.html#inboundoutbound-and-hov-capacity",
+    "href": "3-inputprocessing.html#inboundoutbound-and-hov-capacity",
+    "title": "3  Input Processing",
+    "section": "3.1 Inbound/Outbound and HOV Capacity",
+    "text": "3.1 Inbound/Outbound and HOV Capacity\nA couple bugs were corrected in the input processing script:\n\nCorrected inbound/outbound designations for EB/WB links.\nRemoved FT=37-38 as a condition for populating link additional HOV capacity (AdHOVCap1H) values since related HOV fields are populated on GP links not HOV links. Also, corrected capacity lookup to be for FT=37 and not FT of link."
+  },
+  {
+    "objectID": "3-inputprocessing.html#walk-buffer-modifications",
+    "href": "3-inputprocessing.html#walk-buffer-modifications",
+    "title": "3  Input Processing",
+    "section": "3.2 Walk Buffer Modifications",
+    "text": "3.2 Walk Buffer Modifications\nThe walk buffer script was improved with a couple simple modifications to the routes and stops that are included in walk buffer creation: - Removed local bus route buffers along expressways and freeways (anything with FT>=12). Only local bus routes along arterials or collectors are now included in route buffers. - Removed buffers that were calculated from local bus stops, which were redundant with local bus route buffers. - The remaining combined walk buffer areas are shown in green. The ’_WalkBuffer_ArcMap103.mxd’ file was updated to version 10.3 of ArcMap, and the scripts were modified to copy the walk buffer mxd to scenario folders.\n\n\n\nFigure 3.1: Walk Buffer Modifications."
   },
   {
     "objectID": "4-hhdisag.html",
