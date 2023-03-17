@@ -1,4 +1,4 @@
-# 2022-02-04 UPDATE {.unnumbered}
+# 2022-02-04 UPDATE
 
 This first part of this document contains a quick comparison between the 2022-02-04 version of the model and the 2021-11-10 version of the model.
 

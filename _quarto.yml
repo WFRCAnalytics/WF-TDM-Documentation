@@ -1,31 +1,68 @@
 project:
-  type: book
+  type: website
   output-dir: docs
 
-book:
-  title: "What's New? - Version 8.3.2"
-  author: "Wasatch Front Regional Council"
-  date: "2/4/22"
-  chapters:
-    - index.qmd
-    - _20220204-update.qmd
-    - 1-genparams.qmd
-    - 2-inputdata.qmd
-    - 3-inputprocessing.qmd
-    - 4-hhdisag.qmd
-    - 5-tripgen.qmd
-    - 6-distribution.qmd
-    - 7-mc.qmd
-    - 8-assign.qmd
-    - 9-pp.qmd
-    - 10-modelresults.qmd
-
-bibliography: references.bib
+website:
+  title: "Documentation :: {title}"
+  page-footer:
+    right: "Built using [Quarto](https://quarto.org)"
+    left: "An online documentation for WFRC's Travel Demand Model"
+  navbar:
+    background: light
+    title: false
+    collapse-below: lg
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "What's New?"
+        menu:
+        - text: "Version 8.3.2"
+          href: v832-whats-new/index.qmd
+          id: v832-index
+        - text: "Version 9" 
+          href: v9-whats-new/index.qmd
+          id: v9-index
+          
+  sidebar:
+    - id: v832-index
+      title: "What's New? - Version 8.3.2"
+      contents:
+        - text: "Preface"
+          href: v832-whats-new/index.qmd
+        - text: "2022-02-04 UPDATE"
+          href: v832-whats-new/_20220204-update.qmd
+        - text: "1 General Parameters"
+          href: v832-whats-new/1-genparams.qmd
+        - text: "2 Input Data"
+          href: v832-whats-new/2-inputdata.qmd
+        - text: "3 Input Processing"
+          href: v832-whats-new/3-inputprocessing.qmd
+        - text: "4 Household Disaggregation and Auto Ownership"
+          href: v832-whats-new/4-hhdisag.qmd
+        - text: "5 Trip Generation"
+          href: v832-whats-new/5-tripgen.qmd
+        - text: "6 Distribution"
+          href: v832-whats-new/6-distribution.qmd
+        - text: "7 Mode Choice"
+          href: v832-whats-new/7-mc.qmd
+        - text: "8 Highway Assignment"
+          href: v832-whats-new/8-assign.qmd
+        - text: "9 Post Processing"
+          href: v832-whats-new/9-pp.qmd
+        - text: "10 Model Results - Comparison with v8.3.1"
+          href: v832-whats-new/10-modelresults.qmd
+    - id: v9-index
+      title: "What's New? - Version 9"
+      contents:
+        - text: "Preface"
+          href: v9-whats-new/index.qmd
 
 format:
   html:
-    theme: cosmo
-    cover-image: _pictures/cover.png
+    toc: true
+    theme:
+      - cosmo
+      - custom.scss
     code-fold: true
   pdf:
     documentclass: scrreprt

@@ -1,5 +1,8 @@
-# Preface {.unnumbered}
+---
+title:  "WFRC's Travel Demand Model Documentation"
+date: "2/4/22"
+---
 
-This is a the *What's New Document* for the Wasatch Front Regional Council (WFRC) Travel Demand Model (TDM) version 8.3.2.
+# Documentation {.unnumbered}
 
-For access to this version of the TDM visit <https://github.com/WFRCAnalytics/WF-TDM-v8.3.2>.
+This website documents the progress of the travel demand model for the Wasatch region.

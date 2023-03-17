@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2022-02-04">
 
-<title>Documentation :: {title} - WFRC’s Travel Demand Model Documentation</title>
+<title>Documentation :: {title} – hhdisag</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -63,7 +62,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -75,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link" href="../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -84,11 +83,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-whats-new">    
         <li>
-    <a class="dropdown-item" href="./v832-whats-new/index.html">
+    <a class="dropdown-item" href="../v832-whats-new/index.html">
  <span class="dropdown-text">Version 8.3.2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./v9-whats-new/index.html">
+    <a class="dropdown-item" href="../v9-whats-new/index.html">
  <span class="dropdown-text">Version 9</span></a>
   </li>  
     </ul>
@@ -98,49 +97,110 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/_20220204-update.qmd" class="sidebar-item-text sidebar-link">2022-02-04 UPDATE</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/1-genparams.html" class="sidebar-item-text sidebar-link">1 General Parameters</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/2-inputdata.html" class="sidebar-item-text sidebar-link">2 Input Data</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/3-inputprocessing.html" class="sidebar-item-text sidebar-link">3 Input Processing</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/4-hhdisag.html" class="sidebar-item-text sidebar-link active">4 Household Disaggregation and Auto Ownership</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/5-tripgen.html" class="sidebar-item-text sidebar-link">5 Trip Generation</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/6-distribution.html" class="sidebar-item-text sidebar-link">6 Distribution</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/7-mc.html" class="sidebar-item-text sidebar-link">7 Mode Choice</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/8-assign.html" class="sidebar-item-text sidebar-link">8 Highway Assignment</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/9-pp.html" class="sidebar-item-text sidebar-link">9 Post Processing</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../v832-whats-new/10-modelresults.html" class="sidebar-item-text sidebar-link">10 Model Results - Comparison with v8.3.1</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#documentation" id="toc-documentation" class="nav-link active" data-scroll-target="#documentation">Documentation</a></li>
+  <li><a href="#household-disaggregation-and-auto-ownership" id="toc-household-disaggregation-and-auto-ownership" class="nav-link active" data-scroll-target="#household-disaggregation-and-auto-ownership">Household Disaggregation and Auto Ownership</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">WFRC’s Travel Demand Model Documentation</h1>
-</div>
 
 
-
-<div class="quarto-title-meta">
-
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 4, 2022</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-</header>
-
-<section id="documentation" class="level1 unnumbered">
-<h1 class="unnumbered">Documentation</h1>
-<p>This website documents the progress of the travel demand model for the Wasatch region.</p>
+<section id="household-disaggregation-and-auto-ownership" class="level1">
+<h1>Household Disaggregation and Auto Ownership</h1>
+<p>Several changes were made to clean up and fix minor errors in the household disaggregation and auto ownership scripts:</p>
+<ul>
+<li>Added Box Elder Vehicles to the totals calculated for the ‘VO_Tmp_CountyVehicleTotal.txt’ file in the ‘3_AutoOwnership.s’ file.</li>
+<li>Corrected VO_DebugUtility.csv header row in ‘3_AutoOwnership.s’ to keep it from repeating. Commented out debug csv creation.</li>
+<li>Corrected AVGINCOME in ‘Tmp_Marginal_Income_beforeIPF.dbf’.</li>
+<li>Commented out ‘test.csv’ creation in ‘2_ModelScripts\1_HHDisag_AutoOwn\1_LifeCycle.s’.</li>
+<li>Corrected CO_TAZID in ‘LifeCycle_Households_Population.dbf’ in ‘2_ModelScripts\1_HHDisag_AutoOwn\1_LifeCycle.s’.</li>
+<li>Updated ‘Lookup - BYTAZAgePct - AllCo.csv’ and source materials (’_TAZ_AgePct_Lookup_Source - 2020-06-23.xlsb’) in ‘1_Inputs\0_GlobalData\1_HHDisag_AutoOwn’. This update reflects the updated source materials structure in the statewide spreadsheet and updated data for Summit/Wasatch counties and UDOT area. The Wasatch Front area data did not change.</li>
+</ul>
 
 
 </section>
