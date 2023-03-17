@@ -17,7 +17,7 @@ book:
     - 7-mc.qmd
     - 8-assign.qmd
     - 9-pp.qmd
-    - references.qmd
+    - 10-modelresults.qmd
 
 bibliography: references.bib
 

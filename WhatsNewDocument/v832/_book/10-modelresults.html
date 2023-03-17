@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Wasatch Front Regional Council">
-<meta name="dcterms.date" content="2022-02-04">
 
-<title>What’s New? - Version 8.3.2</title>
+<title>What’s New? - Version 8.3.2 - 10&nbsp; Model Results - Comparison with v8.3.1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./_20220204-update.html" rel="next">
+<link href="./9-pp.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -71,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">What’s New? - Version 8.3.2</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Results - Comparison with v8.3.1</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -96,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -151,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./10-modelresults.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Results - Comparison with v8.3.1</span></a>
+  <a href="./10-modelresults.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Results - Comparison with v8.3.1</span></a>
   </div>
 </li>
     </ul>
@@ -159,39 +157,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">What’s New? - Version 8.3.2</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Model Results - Comparison with v8.3.1</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Wasatch Front Regional Council </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 4, 2022</p>
-    </div>
-  </div>
   
     
   </div>
@@ -199,14 +179,81 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p><a href="#fig-vol-comp">Figure&nbsp;<span>10.1</span></a> shows a comparison of daily roadway volume in the v8.3.2 model compared to the v8.3.1 model. Roadway links in red demonstrate an increase in traffic and green show a decrease in traffic between the new and the old model. The thicker the line and darker the color, the greater the magnitude of change. At the region level, the changes show that v.8.3.2 includes greater county-to-county flows as demonstrated in the 2019 base year with volume between Salt Lake County and both Davis and Utah Counties increasing while roadways such as I-80, I-215, and SR-201 showing decreasing traffic. This pattern is continued in the 2050 model with the intensity of change increasing on north/south freeways and arterials.</p>
+<div id="fig-vol-comp" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/daily_vol_comp.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.1: Model Daily Volumes Comparison (v8.3.2 vs v8.3.1).</figcaption><p></p>
+</figure>
+</div>
+<p>Comparison of the highway volume validations of the v8.3.2 and v8.3.1 models are shown in <a href="#fig-high-valid">Figure&nbsp;<span>10.2</span></a>. There are separate charts by facility type and by county, as well as vehicle type. Medium and heavy truck trip generations and trip-length-frequencies were adjusted in the calibration process to bring model truck volumes closer in line with observed. Overall, for all vehicles the v8.3.2 model is closer to observed with all facility types within 4% of observed. Utah County improves significantly to only 1% low while Box Elder, Weber, and Davis counties are a couple percent lower than v8.3.1. When looked at by facility type, medium and heavy trucks see major improvements with minor arterials and major collectors and are much closer to observed by significant margins, but overall are slightly lower than observed as compared to v8.3.1.</p>
+<div id="fig-high-valid" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/highway-vol-valid.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.2: Highway Volumes Validation (v8.3.2 and v8.3.1).</figcaption><p></p>
+</figure>
+</div>
+<p><a href="#fig-all-vol">Figure&nbsp;<span>10.3</span></a>, <a href="#fig-md-vol">Figure&nbsp;<span>10.4</span></a>, and <a href="#fig-hv-vol">Figure&nbsp;<span>10.5</span></a> show a comparison between daily model volumes by vehicle type with observed traffic volumes. There are slight changes in the All Vehicles figures between v8.3.2 and v8.3.1. Greater improvements are seen in the Medium and Heavy Truck figures, especially in the Box Elder and the Mountain View Corridor areas.</p>
+<div id="fig-all-vol" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/all-vol-comp.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.3: All Vehicles Daily Volumes Comparison (Model vs Observed).</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-md-vol" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/md-vol-comp.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.4: Medium Trucks Daily Volumes Comparison (Model vs Observed).</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-hv-vol" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/hv-vol-comp.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.5: Heavy Trucks Daily Volumes Comparison (Model vs Observed)</figcaption><p></p>
+</figure>
+</div>
+<p>Transit ridership between v8.3.1 and v8.3.1 were compared at the trips, boardings, and mode share levels. <a href="#fig-dy-riders">Figure&nbsp;<span>10.6</span></a> and <a href="#fig-dy-boardings">Figure&nbsp;<span>10.7</span></a> show a comparison of daily transit ridership and boardings for both the v8.3.2 and the v8.3.1 models. The v8.3.1 and v8.3.2 model transit was calibrated to the UTA On-Board Survey for 2015 and 2019, respectively, so the ridership for each of those models falls right on the OBS target. The boardings for the model are estimated but are close to average annual boardings as reported by UTA. Boardings between 2015 and 2019 have been relatively flat. The increase to 2050 is based on increased transit attractiveness and more supportive land use as built into the model.</p>
+<div id="fig-dy-riders" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/dy-transit-ridership.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.6: Daily Transit Ridership - All Modes.</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-dy-boardings" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/dy-boardings.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.7: Daily Boardings - All Modes.</figcaption><p></p>
+</figure>
+</div>
+<p>Share by transit mode is shown in <a href="#fig-832-share">Figure&nbsp;<span>10.8</span></a> and <a href="#fig-831-share">Figure&nbsp;<span>10.9</span></a> for v8.3.2 and v8.3.1, respectively. In v8.3.2, Core Bus routes (Mode 5) show a greater portion of trips in v8.3.2 than in v8.3.1. These additional trips come mostly from Light Rail, which actually sees a decrease in mode share in 2030. Commuter Rail shares remain relatively consistent, as well as BRT.</p>
+<div id="fig-832-share" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/832-transit-share.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.8: Share by Transit Mode – v8.3.2.</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-831-share" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/831-transit-share.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.9: Share by Transit Mode – v8.3.1.</figcaption><p></p>
+</figure>
+</div>
+<p>Even though the transit ridership forecasts are lower by 23% in v8.3.2 compared to v8.3.1, the 2019 to 2050 ratios for each model are similar with 2.0 in v8.3.2 and 2.2 in v8.3.1.</p>
+<div id="fig-ratios" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/ratios.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.10: Comparison of 2019 and 2050 ratios.</figcaption><p></p>
+</figure>
+</div>
+<p>As mentioned in a previous section, county-level adjustments were made in Davis and Utah counties to help better align station boardings in the model with observed. The comparison of the models with observed is shown in <a href="#fig-fr">Figure&nbsp;<span>10.11</span></a>. Due to these adjustments, there is a slight increase in Utah County boardings. However, Provo Station decreased slightly to just over half of what is observed. Davis County boardings proved to be more sensitive to the adjustment and a significant decrease is shown but still higher than observed boardings.</p>
+<div id="fig-fr" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/fr-boardings.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;10.11: 2019 Daily FrontRunner Boardings by Station Compared to Observed.</figcaption><p></p>
+</figure>
+</div>
 
-<section id="preface" class="level1 unnumbered">
-<p><img src="_pictures/cover.png" title="What's New? - Version 8.3.2" class="quarto-cover-image img-fluid"></p><h1 class="unnumbered">Preface</h1>
-<p>This is a the <em>What’s New Document</em> for the Wasatch Front Regional Council (WFRC) Travel Demand Model (TDM) version 8.3.2.</p>
-<p>For access to this version of the TDM visit <a href="https://github.com/WFRCAnalytics/WF-TDM-v8.3.2" class="uri">https://github.com/WFRCAnalytics/WF-TDM-v8.3.2</a>.</p>
 
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -344,11 +391,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./9-pp.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Post Processing</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./_20220204-update.html" class="pagination-link">
-        <span class="nav-page-text">2022-02-04 UPDATE</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
