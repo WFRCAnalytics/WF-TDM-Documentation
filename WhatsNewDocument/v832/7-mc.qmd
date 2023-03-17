@@ -1,0 +1,17 @@
+# Mode Choice
+
+Mode choice was recalibrated to match target values from UTA 2019 On-Board Survey.
+
+The following changes were made in the transit .FAC files in PT_Parameter Folder and associated voyager script in mode choice: 
+
+- Decreased WAITFACTOR to 2.0 (previously 3.0).
+- Changed mode-specific weight applied to transit in-vehicle times and non-transit leg times (Relative mode factor to the skimmed specific mode) for express bus to 3.50.
+- Changed the following to fine-tune boardings by mode (to increase for LCL, and decrease for other modes).
+- Added initial boarding penalty for local bus of 5 minutes.
+- Increased transit transfer boarding penalty to 12 minutes for all modes but walk to local which was set at 6 minutes (previously 10 minutes for all modes).
+
+Additional changes were made to mode choice:
+
+- Combined Mode Choice scripts 11 and 12 into '11_12_MC_HBW_HBO_NHB_HBC.s' to allow simultaneous running on eight cores.
+- BRT Mode 9 constants were calibrated independently of LRT. However, BRT Mode 5 continues to use a multiplier of the LRT constant and was increased to 0.40 from 0.33.
+- Adjustments were made to FrontRunner to bring station boardings closer to observed. Davis County boardings were significantly higher than observed, while Utah County boardings were significantly lower. A +15 multiplier of initial in-vehicle time penalty was added to all stations in Davis County, while -15 multiplier of in-vehicle time was added to all stations in Utah County. This brought boardings closer to observed, but there is still significant difference in boardings that should be accounted for when using the model for any station-level forecasts. A comparison of station model and observed volumes is found in the final section of this document comparing v8.3.2 to v8.3.1.
