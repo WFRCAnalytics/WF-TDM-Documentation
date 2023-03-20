@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Documentation :: {title}"
+  title: "Documentation"
   page-footer:
     right: "Built using [Quarto](https://quarto.org)"
     left: "An online documentation for WFRC's Travel Demand Model"
