@@ -1,0 +1,640 @@
+{
+    "id": "5322070516fada05",
+    "slug": "five-minute-introduction",
+    "trashed": false,
+    "description": "",
+    "likes": 263,
+    "publish_level": "live_unlisted",
+    "forks": 68,
+    "fork_of": null,
+    "has_importers": true,
+    "update_time": "2022-03-12T00:27:34.656Z",
+    "first_public_version": 426,
+    "paused_version": null,
+    "publish_time": "2022-12-15T17:31:07.842Z",
+    "publish_version": 426,
+    "latest_version": 426,
+    "thumbnail": "9c4975bf28df38f7088f1af89a53650337989c085116a20a2342058c6ebffee9",
+    "default_thumbnail": "2e7d2cb5c140f9292883809f3110278fe006558a6606c3a67c961906fb4bd332",
+    "roles": [],
+    "sharing": null,
+    "tags": [],
+    "owner": {
+        "id": "f35c755083683fe5",
+        "avatar_url": "https://avatars.observableusercontent.com/avatar/5a51c3b908225a581d20577e488e2aba8cbc9541c52982c638638c370c3e5e8e",
+        "login": "observablehq",
+        "name": "Observable",
+        "bio": "Use data to think, together.",
+        "home_url": "https://observablehq.com",
+        "type": "team",
+        "tier": "pro_enterprise",
+        "following_count": 0,
+        "followers_count": 332,
+        "following": false
+    },
+    "creator": {
+        "id": "074c414ad1d825f5",
+        "github_login": "mbostock",
+        "avatar_url": "https://avatars.observableusercontent.com/avatar/82811927da99f8938001b2ef1f552ad2c47083e46ebc55a3a146a5a5848c4519",
+        "login": "mbostock",
+        "name": "Mike Bostock",
+        "bio": "Building a better computational medium. Founder @observablehq. Creator @d3. Former @nytgraphics. Pronounced BOSS-tock.",
+        "home_url": "https://bost.ocks.org/mike/",
+        "tier": "pro",
+        "following_count": 17,
+        "followers_count": 151,
+        "following": false
+    },
+    "authors": [],
+    "collections": [],
+    "files": [],
+    "comments": [
+        {
+            "id": "b16b6de9f74ebcb3",
+            "content": "hello",
+            "node_id": 5,
+            "create_time": "2020-08-27T10:47:25.221Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "282c6db1fed9f106",
+                "github_login": "qiujiahong",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/8b404900a4a63953df24690fb00a07c771079dcbce801c1bfd1acc9b7d6ac3b7",
+                "login": "qiujiahong",
+                "name": "Nick Qiu",
+                "bio": "",
+                "home_url": "",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "bfbbeed1c30a29ae",
+            "content": "👋🏼",
+            "node_id": 5,
+            "create_time": "2020-08-27T16:36:28.070Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "dbf69c13a14d2f62",
+                "github_login": "visnup",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/b847c4c49993b1df7599d355f47dc0ad9c2dcf43439ce9e8f3410e6368b3aac9",
+                "login": "visnup",
+                "name": "Visnu Pitiyanuvath",
+                "bio": "",
+                "home_url": "https://twitter.com/visnup",
+                "tier": "pro",
+                "following_count": 2,
+                "followers_count": 19,
+                "following": false
+            }
+        },
+        {
+            "id": "5892a3ba90e47eea",
+            "content": "Testing",
+            "node_id": 5,
+            "create_time": "2020-09-11T14:53:48.430Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "2d99d9fe9917c378",
+                "github_login": "FSkateP",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/e9e8dfa896945e8791c7bf1efb5f2260f7e5e9366aee32f771d408ded15a2af6",
+                "login": "fskatep",
+                "name": "Nobuhle Mazibuko",
+                "bio": "",
+                "home_url": "http://www.nobztech.co.za",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "65bb2cc078efc03a",
+            "content": "Test",
+            "node_id": 5,
+            "create_time": "2020-10-13T20:12:08.077Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "68b5f9ff663b7dbb",
+                "github_login": null,
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/3c90533f3341e8941aec62f06e34ee5f253398f3d59c9ce68bc13c7357a67fbf",
+                "login": "vghaderi",
+                "name": "Vahid Ghaderi",
+                "bio": "",
+                "home_url": "",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "7bce6b211579d699",
+            "content": "test",
+            "node_id": 5,
+            "create_time": "2020-10-27T02:42:35.558Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "c70f9b20103e4b8c",
+                "github_login": "nico1988",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/0cbf12be952e427ef02d1e322c775fd0d89295e58922eaf6eee06f46279746ff",
+                "login": "nico1988",
+                "name": "nico",
+                "bio": "everything is always impossible until someone does it",
+                "home_url": "http://ccsunny.cn",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "afa75bf2a748aad4",
+            "content": "cool",
+            "node_id": 5,
+            "create_time": "2020-10-30T21:51:26.826Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "107125a3cc3157e9",
+                "github_login": "bagaski",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/61c0fd4190ca328f841434ef0de0f283fd2aa6e4923682cc8e02969bfa32fbe5",
+                "login": "bagaski",
+                "name": "Bagaski",
+                "bio": "design ** front-end development ** creative coding ** sound **",
+                "home_url": "",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "a37a3f3d0a91c1d2",
+            "content": "good",
+            "node_id": 5,
+            "create_time": "2021-05-13T07:09:21.358Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "bc29f9d8f3a1340c",
+                "github_login": "ankush462",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/e7d4b6236abfab6c4af35116f89ef99d1e153f823863a9b3322314ac9789642e",
+                "login": "ankush462",
+                "name": "",
+                "bio": "",
+                "home_url": "",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "8af33fa03940218a",
+            "content": "Hello test",
+            "node_id": 5,
+            "create_time": "2021-06-07T15:29:03.856Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "ce41b70cad70a493",
+                "github_login": "liseyPanda",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/d35a85e9410f1c4748acd796649cb7e94fab615b965b9ac09b3b213d6a10622a",
+                "login": "liseypanda",
+                "name": "",
+                "bio": "",
+                "home_url": "",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "d3c148918fd9aa4e",
+            "content": "fresh bird",
+            "node_id": 5,
+            "create_time": "2021-07-14T07:21:43.894Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "28f8f231ede25732",
+                "github_login": "lxmbetterman",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/042345866d436c1ab48da0b745483aab0283df5fb5bfc0924b63064e051e48de",
+                "login": "lxmbetterman",
+                "name": "帅的流油的赖帅",
+                "bio": "世上无难事，只怕有心人",
+                "home_url": "",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "793036d05dfab59d",
+            "content": "j",
+            "node_id": 15,
+            "create_time": "2020-10-23T00:22:25.998Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "966176ba672cb8e8",
+                "github_login": "LucianoTrujillo",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/615711dace1c53215f11bb19f43a909a58d099087c5bd3fb04ef82432a788277",
+                "login": "lucianotrujillo",
+                "name": "",
+                "bio": "Let's code baby",
+                "home_url": "",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "6b40d7a509ffaa88",
+            "content": "Loving it so far!",
+            "node_id": 31,
+            "create_time": "2021-03-06T06:36:02.989Z",
+            "update_time": null,
+            "resolved": true,
+            "user": {
+                "id": "9bae6f76f3660752",
+                "github_login": "jessebrack",
+                "avatar_url": "https://avatars.githubusercontent.com/u/1017909?v=4",
+                "login": "jessebrack",
+                "name": "Jesse Brack",
+                "bio": "",
+                "home_url": "http://www.jessebrack.dev/",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "5045478c4feb32de",
+            "content": "Is this ok?",
+            "node_id": 248,
+            "create_time": "2022-03-12T14:54:35.225Z",
+            "update_time": null,
+            "resolved": false,
+            "user": {
+                "id": "c454621e13d910d3",
+                "github_login": "dvd101x",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/665b28399b8c69493837e25bfd6b1e60e5c83f5f646e274cf39b5146449e30c6",
+                "login": "dvd101x",
+                "name": "David",
+                "bio": "I'm a Mechanical Engineer.\r\nI do Mechanical Design, Simulation, 3D Printing, Teaching and numerical programming in GNU Octave, Python and JavaScript.",
+                "home_url": "",
+                "tier": "public",
+                "following_count": 0,
+                "followers_count": 0,
+                "following": false
+            }
+        },
+        {
+            "id": "b3aabd795be88198",
+            "content": "Hm, it's probably not clear, but the intention is for readers to create a rectangular selection in the scatter plot above and see the cars array here update. Is that what you mean?",
+            "node_id": 248,
+            "create_time": "2022-08-24T19:22:53.152Z",
+            "update_time": null,
+            "resolved": false,
+            "user": {
+                "id": "dbf69c13a14d2f62",
+                "github_login": "visnup",
+                "avatar_url": "https://avatars.observableusercontent.com/avatar/b847c4c49993b1df7599d355f47dc0ad9c2dcf43439ce9e8f3410e6368b3aac9",
+                "login": "visnup",
+                "name": "Visnu Pitiyanuvath",
+                "bio": "",
+                "home_url": "https://twitter.com/visnup",
+                "tier": "pro",
+                "following_count": 2,
+                "followers_count": 19,
+                "following": false
+            }
+        }
+    ],
+    "commenting_lock": null,
+    "suggestion_from": null,
+    "suggestions_to": [],
+    "version": 426,
+    "title": "Five-Minute Introduction",
+    "license": null,
+    "copyright": "",
+    "nodes": [
+        {
+            "id": 410,
+            "value": "# Five-Minute Introduction",
+            "pinned": false,
+            "mode": "md",
+            "data": null,
+            "name": ""
+        },
+        {
+            "id": 417,
+            "value": "md `\n<p style=\"background: #fffced; box-sizing: border-box; padding: 10px 20px;\">***Update, March 2022:*** [A Taste of Observable](https://observablehq.com/@observablehq/a-taste-of-observable?collection=@observablehq/overview) is the most recently updated and best introduction to the Observable platform. This notebook will remain for history, but please check out A Taste of Observable!</p>\n`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 0,
+            "value": "md `\nWelcome! This notebook gives a quick overview of Observable. For a more technical introduction, see [Observable’s not JavaScript](/@observablehq/observables-not-javascript). For hands-on, see our [introductory tutorial series](https://observablehq.com/tutorials). To watch rather than read, see our [short introductory video](https://www.youtube.com/watch?v=igsyGfQ5yZ4)!\n\nAn Observable notebook consists of cells. Each cell is a snippet of JavaScript. You can see (and edit!) the code for any cell by clicking the menu <svg viewBox=\"0 0 8 14\" fill=\"currentColor\" stroke=\"none\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" width=\"8\" height=\"14\"><circle r=\"1.5\" cx=\"4\" cy=\"2\"></circle><circle r=\"1.5\" cx=\"4\" cy=\"7\"></circle><circle r=\"1.5\" cx=\"4\" cy=\"12\"></circle></svg> in the left margin.`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 5,
+            "value": "2 * 3 * 7",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 15,
+            "value": "{\n  let sum = 0;\n  for (let i = 0; i <= 100; ++i) {\n    sum += i;\n  }\n  return sum;\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 31,
+            "value": "md`Cells can have names. This allows a cell’s value to be referenced by other cells.`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 44,
+            "value": "color = \"red\"",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 47,
+            "value": "`My favorite color is ${color}.`",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 54,
+            "value": "md`A cell referencing another cell is re-evaluated automatically when the referenced value changes. Try editing the definition of *color* above and shift-return to re-evaluate.\n\nCells can generate DOM (HTML, SVG, Canvas, WebGL, *etc.*). You can use the standard DOM API like *document*.createElement, or use the built-in *html* tagged template literal:`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 67,
+            "value": "html`<span style=\"background:yellow;\">\n  My favorite language is <i>HTML</i>.\n</span>`",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 73,
+            "value": "md`There’s a Markdown tagged template literal, too. (This notebook is written in Markdown.)`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 77,
+            "value": "md`My favorite language is *Markdown*.`",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 81,
+            "value": "md`DOM can be made reactive simply by referring to other cells. The next cell refers to *color*. (Try editing the definition of *color* above.)`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 83,
+            "value": "html`My favorite color is <i style=\"background:${color};\">${color}</i>.`",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 93,
+            "value": "md`Sometimes you need to load data from a remote server, or compute something expensive in a web worker. For that, cells can be defined asynchronously using [promises](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises):`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 109,
+            "value": "status = new Promise(resolve => {\n  setTimeout(() => {\n    resolve({resolved: new Date});\n  }, 2000);\n})",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 117,
+            "value": "md`A cell that refers to a promise cell sees the value when it is resolved; this implicit await means that referencing cells don’t care whether the value is synchronous or not. Edit the *status* cell above to see the cell below update after two seconds.`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 112,
+            "value": "status",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 124,
+            "value": "md`Promises are also useful for loading libraries from npm. Below, \\`require\\` returns a promise that resolves to the d3-fetch library:`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 126,
+            "value": "d3 = require(\"d3-fetch@1\")",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 102,
+            "value": "md`If you prefer, you can use async and await explicitly:`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 104,
+            "value": "countries = (await d3.tsv(\"https://cdn.jsdelivr.net/npm/world-atlas@1/world/110m.tsv\"))\n    .sort((a, b) => b.pop_est - a.pop_est) // Sort by descending estimated population.\n    .slice(0, 10) // Take the top ten.",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 140,
+            "value": "md`Cells can be defined as [generators](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Iterators_and_Generators#Generators); a value is yielded up to sixty times a second.`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 147,
+            "value": "i = {\n  let i = 0;\n  while (true) {\n    yield ++i;\n  }\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 158,
+            "value": "`The current value of i is ${i}.`",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 151,
+            "value": "md`Any cell that refers to a generator cell sees its current value; the referencing cell is re-evaluated whenever the generator yields a new value. As you might guess, a generator can yield promises for [async iteration](https://github.com/tc39/proposal-async-iteration); referencing cells see the current resolved value.`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 168,
+            "value": "date = {\n  while (true) {\n    yield new Promise(resolve => {\n      setTimeout(() => resolve(new Date), 1000);\n    });\n  }\n}",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 176,
+            "value": "md`Combining these primitives—promises, generators and DOM—you can build custom user interfaces. Here’s a slider and a generator that yields the slider’s value:`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 181,
+            "value": "slider = html`<input type=range>`",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 185,
+            "value": "sliderValue = Generators.input(slider)",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 197,
+            "value": "md`Generators.input returns a generator that yields promises. The promise resolves whenever the associated input element emits an input event. You don’t need to implement that generator by hand, though. There’s a builtin viewof operator which exposes the current value of a given input element:`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 200,
+            "value": "viewof value = html`<input type=range>`",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 203,
+            "value": "value",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 252,
+            "value": "md`You can import cells from other notebooks. To demonstrate how custom user interfaces can expose arbitrary values to other cells, here’s a brushable scatterplot of cars showing the inverse relationship between horsepower and fuel efficiency.`",
+            "pinned": false,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 242,
+            "value": "import {viewof selection as cars} from \"@d3/brushable-scatterplot\"",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 244,
+            "value": "viewof cars",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 248,
+            "value": "cars",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        },
+        {
+            "id": 264,
+            "value": "md`${Array.from(new Set(cars.map(c => c.name)))\n    .sort()\n    .map(c => `* <a target=\"_blank\" href=\"https://google.com/search?tbm=isch&q=${escape(c)}\">${c}</a>`)\n    .join(\"\\n\")}`",
+            "pinned": true,
+            "mode": "js",
+            "data": null,
+            "name": null
+        }
+    ],
+    "resolutions": []
+}
