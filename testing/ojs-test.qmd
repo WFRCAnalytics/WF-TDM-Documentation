@@ -6,10 +6,12 @@ format: html
 For more examples on how to use Observable JS with Quarto, use this site: <https://quarto.org/docs/interactive/ojs/>
 
 ```{ojs}
+//| echo: false
 data = FileAttachment("palmer-penguins.csv").csv({ typed: true })
 ```
 
 ```{ojs}
+//| echo: false
 viewof bill_length_min = Inputs.range(
   [32, 50], 
   {value: 35, step: 1, label: "Bill length (min):"}
@@ -23,13 +25,19 @@ viewof islands = Inputs.checkbox(
 ```
 
 ```{ojs}
+//| echo: false
 filtered = data.filter(function(penguin) {
   return bill_length_min < penguin.bill_length_mm &&
          islands.includes(penguin.island);
 })
 ```
 
+::: {.panel-tabset}
+
+## Plot
+
 ```{ojs}
+//| echo: false
 Plot.rectY(filtered, 
   Plot.binX(
     {y: "count"}, 
@@ -49,3 +57,11 @@ Plot.rectY(filtered,
 )
 ```
 
+## Data
+
+```{ojs}
+//| echo: false
+Inputs.table(data)
+```
+
+:::

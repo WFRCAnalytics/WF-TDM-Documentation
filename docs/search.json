@@ -18,7 +18,7 @@
     "href": "v9-whats-new/index.html",
     "title": "What’s New? - Version 9",
     "section": "",
-    "text": "Preface\nThis is a the What’s New Document for the Wasatch Front Regional Council (WFRC) Travel Demand Model (TDM) version 9.\nFor access to this version of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v9."
+    "text": "Preface\nThis is a the What’s New Document for the Wasatch Front Regional Council (WFRC) Travel Demand Model (TDM) version 9.\nFor access to this version of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v9.0."
   },
   {
     "objectID": "v9-whats-new/example-plots.html",
@@ -39,7 +39,7 @@
     "href": "testing/ojs-test.html",
     "title": "Observable JS",
     "section": "",
-    "text": "For more examples on how to use Observable JS with Quarto, use this site: https://quarto.org/docs/interactive/ojs/\n\n\nCode\ndata = FileAttachment(\"palmer-penguins.csv\").csv({ typed: true })\n\n\n\n\n\n\n\n\n\nCode\nviewof bill_length_min = Inputs.range(\n  [32, 50], \n  {value: 35, step: 1, label: \"Bill length (min):\"}\n)\nviewof islands = Inputs.checkbox(\n  [\"Torgersen\", \"Biscoe\", \"Dream\"], \n  { value: [\"Torgersen\", \"Biscoe\"], \n    label: \"Islands:\"\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfiltered = data.filter(function(penguin) {\n  return bill_length_min < penguin.bill_length_mm &&\n         islands.includes(penguin.island);\n})\n\n\n\n\n\n\n\n\n\nCode\nPlot.rectY(filtered, \n  Plot.binX(\n    {y: \"count\"}, \n    {x: \"body_mass_g\", fill: \"species\", thresholds: 20}\n  ))\n  .plot({\n    facet: {\n      data: filtered,\n      x: \"sex\",\n      y: \"species\",\n      marginRight: 80\n    },\n    marks: [\n      Plot.frame(),\n    ]\n  }\n)"
+    "text": "For more examples on how to use Observable JS with Quarto, use this site: https://quarto.org/docs/interactive/ojs/\n\n\nCode\ndata = FileAttachment(\"palmer-penguins.csv\").csv({ typed: true })\n\n\n\n\n\n\n\n\n\nCode\nviewof bill_length_min = Inputs.range(\n  [32, 50], \n  {value: 35, step: 1, label: \"Bill length (min):\"}\n)\nviewof islands = Inputs.checkbox(\n  [\"Torgersen\", \"Biscoe\", \"Dream\"], \n  { value: [\"Torgersen\", \"Biscoe\"], \n    label: \"Islands:\"\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfiltered = data.filter(function(penguin) {\n  return bill_length_min < penguin.bill_length_mm &&\n         islands.includes(penguin.island);\n})\n\n\n\n\n\n\n\n\nPlotData\n\n\n\n\nCode\nPlot.rectY(filtered, \n  Plot.binX(\n    {y: \"count\"}, \n    {x: \"body_mass_g\", fill: \"species\", thresholds: 20}\n  ))\n  .plot({\n    facet: {\n      data: filtered,\n      x: \"sex\",\n      y: \"species\",\n      marginRight: 80\n    },\n    marks: [\n      Plot.frame(),\n    ]\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\nCode\nInputs.table(data)"
   },
   {
     "objectID": "testing/jupyter-widgets.html",
@@ -47,5 +47,19 @@
     "title": "Jupyter Widgets",
     "section": "",
     "text": "Code\nimport plotly.express as px\nimport plotly.io as pio\npio.renderers.default = \"notebook\"\ndf = px.data.iris()\nfig = px.scatter(df, x=\"sepal_width\", y=\"sepal_length\", \n                 color=\"species\", \n                 marginal_y=\"violin\", marginal_x=\"box\", \n                 trendline=\"ols\", template=\"simple_white\")\nfig.show()\n\n\n\n                                                \n\n\n\n\nCode\nfrom ipyleaflet import Map, Marker, basemaps, basemap_to_tiles\nm = Map(\n  basemap=basemap_to_tiles(\n    basemaps.NASAGIBS.ModisTerraTrueColorCR, \"2017-04-08\"\n  ),\n  center=(52.204793, 360.121558),\n  zoom=4\n)\nm.add_layer(Marker(location=(52.204793, 360.121558)))\nm"
+  },
+  {
+    "objectID": "testing/ojs-test.html#plot",
+    "href": "testing/ojs-test.html#plot",
+    "title": "Observable JS",
+    "section": "Plot",
+    "text": "Plot\n\n\nCode\nPlot.rectY(filtered, \n  Plot.binX(\n    {y: \"count\"}, \n    {x: \"body_mass_g\", fill: \"species\", thresholds: 20}\n  ))\n  .plot({\n    facet: {\n      data: filtered,\n      x: \"sex\",\n      y: \"species\",\n      marginRight: 80\n    },\n    marks: [\n      Plot.frame(),\n    ]\n  }\n)"
+  },
+  {
+    "objectID": "testing/ojs-test.html#data",
+    "href": "testing/ojs-test.html#data",
+    "title": "Observable JS",
+    "section": "Data",
+    "text": "Data\n\n\nCode\nInputs.table(data)"
   }
 ]
