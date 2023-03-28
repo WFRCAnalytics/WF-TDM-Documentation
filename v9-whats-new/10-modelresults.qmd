@@ -1,9 +1,35 @@
 ---
 execute:
     echo: false
+    message: false
+    warning: false
+engine: knitr
+prefer-html: true
 ---
 
+# Test Map
+```{r}
+library(reticulate)
+library(tidyverse)
+library(sf)
+library(leaflet)
+```
+
+```{r}
+segs <- st_read("A:/1 - TDM/1 - Input Dev/6 - Segment/0 - Segment Shapefile/Master_Segs_withFactors_20220915/Master_Segs_withFactors_20220915shp.shp") %>%
+  st_transform(4326)
+```
+
+```{r}
+leaflet() %>%
+  addTiles() %>%
+  addPolylines(data=segs$geometry,
+               weight = segs$AADT2019 / 10000
+  )
+```
+
 # Model Results - Comparison with v8.3.2
+
 
 ```{python}
 import pandas as pd
@@ -152,18 +178,17 @@ def update_plot(tdmVersionsWithDate, scenarioGroups, modeGroups, trippurps, peri
             range=(2018,2051)
         ),
         width=800,
-        height=450
+        height=450,
+        legend=dict(
+            yanchor="top",
+            y=0.99,
+            xanchor="left",
+            x=0.01
+        )
     )
     
     fig = go.Figure(data=data, layout=layout)
-    fig.update_layout(legend=dict(
-        yanchor="top",
-        y=0.99,
-        xanchor="left",
-        x=0.01
-    ))
-    py.offline.iplot(fig)
-py.offline.init_notebook_mode(connected=True)
+    return fig
 ```
 
 ```{python}
@@ -232,8 +257,7 @@ def update_plot_stackedarea(tdmVersionWithDate, scenarioGroup, modeGroups, tripp
     )
     
     fig2 = go.Figure(data=data, layout=layout)
-    py.offline.iplot(fig2)
-py.offline.init_notebook_mode(connected=True)
+    return fig2
 ```
 
 ```{python}
@@ -297,9 +321,8 @@ def update_plot_stackedarea_boardings(tdmVersionWithDate, scenarioGroup):
         height=400
     )
     
-    fig2 = go.Figure(data=data, layout=layout)
-    py.offline.iplot(fig2)
-py.offline.init_notebook_mode(connected=True)
+    fig3 = go.Figure(data=data, layout=layout)
+    return (fig3)
 ```
 ## Transit Comparisons
 
@@ -309,14 +332,21 @@ py.offline.init_notebook_mode(connected=True)
 #| fig-cap: "Daily transit ridership - All Modes"
 #| cap-location: margin
 #| column: screen-inset-right
+#| message: false
 
-update_plot(
+updatefig1 = update_plot(
     ['WF TDM v8.3.2 - 2022-02-04a','WF TDM v9.0 - 2022-12-19'], 
     ['RTP'], 
     ['4: Transit'], 
     ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
     ['Pk','Ok']
 )
+py.offline.init_notebook_mode(connected=True)
+py.offline.plot(updatefig1, filename="plot1.html", auto_open = False)
+```
+
+```{r, echo=FALSE}
+htmltools::includeHTML("plot1.html")
 ```
 
 ```{python}
@@ -325,13 +355,18 @@ update_plot(
 #| cap-location: margin
 #| column: screen-inset-right
 
-update_plot(
+updatefig2 = update_plot(
     ['WF TDM v8.3.2 - 2022-02-04a','WF TDM v9.0 - 2022-12-19'], 
     ['RTP'], 
     ['4: Transit'], 
     ['HBC'], 
     ['Pk','Ok']
 )
+py.offline.plot(updatefig2, filename="plot2.html", auto_open = False)
+```
+
+```{r, echo=FALSE}
+htmltools::includeHTML("plot2.html")
 ```
 
 ### Transit Share
@@ -342,13 +377,18 @@ update_plot(
 #| cap-location: margin
 #| column: screen-inset-right
 
-update_plot_stackedarea(
+updatefig3 = update_plot_stackedarea(
     'WF TDM v8.3.2 - 2022-02-04a', 
     'RTP', 
     ['4a: Local Bus','4b: Core Bus','4c: Express Bus','4d: Bus-Rapid Transit','4e: Light-Rail Transit','4f: Commuter-Rail Transit'], 
     ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
     ['Pk','Ok']
 )
+py.offline.plot(updatefig3, filename="plot3.html", auto_open = False)
+```
+
+```{r, echo=FALSE}
+htmltools::includeHTML("plot3.html")
 ```
 
 ```{python}
@@ -357,13 +397,18 @@ update_plot_stackedarea(
 #| cap-location: margin
 #| column: screen-inset-right
 
-update_plot_stackedarea(
+updatefig4 = update_plot_stackedarea(
     'WF TDM v9.0 - 2022-12-19', 
     'RTP', 
     ['4a: Local Bus','4b: Core Bus','4c: Express Bus','4d: Bus-Rapid Transit','4e: Light-Rail Transit','4f: Commuter-Rail Transit'], 
     ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
     ['Pk','Ok']
 )
+py.offline.plot(updatefig4, filename="plot4.html", auto_open = False)
+```
+
+```{r, echo=FALSE}
+htmltools::includeHTML("plot4.html")
 ```
 
 ### Transit Boardings
@@ -375,9 +420,13 @@ update_plot_stackedarea(
 #| cap-location: margin
 #| column: screen-inset-right
 
-update_plot_stackedarea_boardings('WF TDM v8.3.2 - 2022-02-04a', 'RTP')
+updatefig5 = update_plot_stackedarea_boardings('WF TDM v8.3.2 - 2022-02-04a', 'RTP')
+py.offline.plot(updatefig5, filename="plot5.html", auto_open = False)
 ```
 
+```{r, echo=FALSE}
+htmltools::includeHTML("plot5.html")
+```
 
 ```{python}
 #| label: fig-brd-9
@@ -385,27 +434,10 @@ update_plot_stackedarea_boardings('WF TDM v8.3.2 - 2022-02-04a', 'RTP')
 #| cap-location: margin
 #| column: screen-inset-right
 
-update_plot_stackedarea_boardings('WF TDM v9.0 - 2022-12-19', 'RTP')
+updatefig6 = update_plot_stackedarea_boardings('WF TDM v9.0 - 2022-12-19', 'RTP')
+py.offline.plot(updatefig6, filename="plot6.html", auto_open = False)
 ```
 
-
-```{python}
-#| label: fig-fr-brd
-#| fig-cap: "Daily FrontRunner boardings by station compared to observed."
-#| cap-location: margin
-#| column: screen-inset-right
-
-boardings_barchart = pd.read_csv(r'D:\GitHub\TDM-Documentation\v9-whats-new\data\frontrunner-summary-comparison-v832-v9.csv')
-import plotly.express as px
-df = px.data.tips()
-fig = px.histogram(boardings_barchart, x="Stop_Name", y="Boardings", text_auto='.2s',
-             color='Model_Name', barmode='group',
-             height=400)
-fig.update_layout(
-    xaxis_title="Station Name",
-    yaxis_title="Average Boardings",
-    legend_title="Model Version"
-)
-#fig.update_xaxes(tickangle=90)
-fig.show()
+```{r, echo=FALSE}
+htmltools::includeHTML("plot6.html")
 ```
