@@ -102,6 +102,13 @@
     "href": "v9-whats-new/10-modelresults.html",
     "title": "Documentation",
     "section": "",
-    "text": "Figure 1: Daily transit ridership - All Modes\n\n\n\n\n\n\n\n                                                \nFigure 2: Daily transit ridership - HBC\n\n\n\n\n\n\n\n\n\n\n                                                \nFigure 3: Transit ridership share by transit mode - v8.3.2\n\n\n\n\n\n\n\n                                                \nFigure 4: Transit ridership share by transit mode - v9.0\n\n\n\n\n\n\n\n\n\n\n                                                \nFigure 5: Transit boardings share by transit mode - v8.3.2\n\n\n\n\n\n\n\n                                                \nFigure 6: Transit boardings share by transit mode - v9.0\n\n\n\n\n\n\n\n                                                \nFigure 7: Daily FrontRunner boardings by station compared to observed."
+    "text": "(a) 2019\n\n\n\n\n\n\n\n(b) 2050\n\n\n\n\n\n\n\nFigure 1: Model Daily Volumes Comparison (v9.0 vs v8.3.2)\n\n\n\n\n\n\n\n\n\n\n\n                                                \nFigure 2: Daily transit ridership - All Modes\n\n\n\n\n\n\n\n                                                \nFigure 3: Daily transit ridership - HBC\n\n\n\n\n\n\n\n\n\n\n                                                \nFigure 4: Transit ridership share by transit mode - v8.3.2\n\n\n\n\n\n\n\n                                                \nFigure 5: Transit ridership share by transit mode - v9.0\n\n\n\n\n\n\n\n\n\n\n                                                \nFigure 6: Transit boardings share by transit mode - v8.3.2\n\n\n\n\n\n\n\n                                                \nFigure 7: Transit boardings share by transit mode - v9.0\n\n\n\n\n\n\n\n                                                \nFigure 8: Daily FrontRunner boardings by station compared to observed."
+  },
+  {
+    "objectID": "v9-whats-new/data/crop-volume-pngs.html",
+    "href": "v9-whats-new/data/crop-volume-pngs.html",
+    "title": "Documentation",
+    "section": "",
+    "text": "Code\nfrom PIL import Image\n\n\n\n\nCode\n# 150%, Home button, zoom out once, F11 --- Windows+Shift+S click upright screen\nim = Image.open('map_pngs/vol19.png')\nim_crop = im.crop((400, 400, 800, 1600))\nim_crop.save('map_pngs/vol19-cropped.png', quality=1000)\n\n\n\n\nCode\ndef cropImage(pngName):\n    im = Image.open('map_pngs/' + pngName + '.png')\n    im_crop = im.crop((400, 400, 800, 1600))\n    im_crop.save('map_pngs/' + pngName + '-cropped.png', quality=1000)\n\n\n\n\nCode\ncropImage('vol19')"
   }
 ]

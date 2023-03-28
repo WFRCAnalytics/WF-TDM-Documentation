@@ -5,6 +5,19 @@ execute:
 
 # Model Results - Comparison with v8.3.2
 
+## Road Volume
+
+::: {#fig-volume-comparison layout-ncol=3 .column-screen-inset-right}
+
+![2019](data/map_pngs/vol19-cropped.png){#fig-vol19}
+
+![2050](data/map_pngs/vol50-cropped.png){#fig-vol50}
+
+![](data/map_pngs/vol-legend.png)
+
+Model Daily Volumes Comparison (v9.0 vs v8.3.2)
+:::
+
 ```{python}
 import pandas as pd
 import plotly as py
