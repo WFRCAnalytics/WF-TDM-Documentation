@@ -1,0 +1,80 @@
+      
+      _Vo = LI.2.@Observed1WyVol@
+      _Vb = LI.2.@BaseYearModelVol@
+      _Vf = LI.1.@FutrYearModelVol@
+      _Cb = (LI.2.cap1hr1ln * LI.2.lanes)
+      _Cf = (LI.1.cap1hr1ln * LI.1.lanes)
+      _Cn = _Cf - _Cb
+      
+      _a  = LI.2.A
+      _b  = LI.2.B
+      if (_a = 0) _a  = LI.1.A
+      if (_b = 0) _b  = LI.1.B
+      
+      if (_Vo = 0)  
+        _Vo = _Vb
+        _Fg = 1  ;flag
+        if (_Vb < 1000)  ;The VfVbR(atio) can really high when Vo or Vb is "32 cars", so define that no link is ever "observed" under 1000.
+          _Vb = 1000
+          _Vo = _Vb
+          _Fg = 3  ;flag
+        endif
+      else
+        _Fg = 0
+      endif
+      
+      if (_Vb < 1000)  
+        _Vb = 1000
+        _Fg = 4  ;flag
+      endif
+      
+      if (_Vf < 1000)  
+        _Vf = 1000
+        _Fg = 5  ;flag
+      endif
+      
+   
+    
+    if ((LI.1.@ScrnLineField@ > LI.2.@ScrnLineField@)& LI.2.FT<>1)
+      _index = LI.2.@ScrnLineField@ 
+      if (_index = 0) _index = LI.1.@ScrnLineField@ 
+      VALID[_index] = _index
+      _n  = _n + 1 
+      _Fg = 2  ;flag links where new construction occurs (There was no base to adjust)
+
+      _Vo    = 0
+      _Vop   = 0
+      _Vb    = 0
+      _Vbp   = 0
+      _VbD   = 0
+      _Vfp   = 0
+      _VfD   = 0
+      _VfVbR = 0
+      _VfTVbTR = 0
+      _ModScrn = 0
+      _ModScrnScale = 0
+      _Cb    = 0
+ 
+      if (_blockflag = 1)
+        if (VbTot[_index] <= 0)
+          _VfTVbTR = 0
+          _VfVbR   = 0
+        else
+          _VfTVbTR = VfTot[_index] / VbTot[_index]
+          _VfVbR   = _VfTVbTR  ;assume the link grows at same rate as overall screenline
+        endif
+      endif
+     
+      
+      Vfin = LI.1.@FutrYearModelVol@
+  ;    PRINT FORM=12.0 FILE=miketmp1.txt  APPEND=F  LIST= LI.1.@ScrnLineField@, LI.2.@ScrnLineField@, 
+  ;      LI.1.A, LI.1.B, _index, _n, _fg, _vb, VbTot[_index], _vf, Vfin
+        
+    elseif ((LI.1.@ScrnLineField@ <> 0 & LI.1.FT<>1) || (LI.2.@ScrnLineField@ <> 0 & LI.2.FT<>1)); Excluding the Centroid Connectors (FT=1)  
+      _index = LI.2.@ScrnLineField@ 
+      if (_index = 0) _index = LI.1.@ScrnLineField@ 
+      VALID[_index] = _index
+      _n  = _n + 1 
+
+      
+      

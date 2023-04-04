@@ -1,0 +1,118 @@
+;Each block should sum to 1.0 (since breaking "peak" into AM,PM; PA direction vs. AP direction)
+if (@vehclass@ = 1-2)
+  HBW_AM_PA = 0.5450
+  HBW_AM_AP = 0.0371
+  HBW_PM_PA = 0.0293
+  HBW_PM_AP = 0.3886
+else
+  HBW_AM_PA = .37
+  HBW_AM_AP = .03
+  HBW_PM_PA = .04
+  HBW_PM_AP = .56
+endif
+
+;HBC is a daily table (see below)
+HBO_AM_PA = 0.2913
+HBO_AM_AP = 0.0344
+HBO_PM_PA = 0.2782
+HBO_PM_AP = 0.3961
+
+NHB_AM_PA = 0.1364
+NHB_AM_AP = 0.1364
+NHB_PM_PA = 0.3636
+NHB_PM_AP = 0.3636
+
+;Each block should sum to 1.0 (since breaking "off peak" into MD,EV; PA direction vs. AP direction)
+HBW_MD_PA = 0.1979
+HBW_MD_AP = 0.2137
+HBW_EV_PA = 0.1708
+HBW_EV_AP = 0.4176
+
+;HBC is a daily table (see below)
+HBO_MD_PA = 0.2558
+HBO_MD_AP = 0.2454
+HBO_EV_PA = 0.2009
+HBO_EV_AP = 0.2979
+
+NHB_MD_PA = 0.3339
+NHB_MD_AP = 0.3339
+NHB_EV_PA = 0.1661
+NHB_EV_AP = 0.1661
+
+;Each block of 8 should sum to 1.0 (since breaking "daily" into 4 periods; PA direction vs. AP direction)
+HBC_AM_PA = 0.3481
+HBC_AM_AP = 0.0237
+HBC_MD_PA = 0.0715
+HBC_MD_AP = 0.0772
+HBC_PM_PA = 0.0187
+HBC_PM_AP = 0.2482
+HBC_EV_PA = 0.0617
+HBC_EV_AP = 0.1509
+
+IX_AM_PA  = 0.0700
+IX_AM_AP  = 0.0994
+IX_MD_PA  = 0.1956
+IX_MD_AP  = 0.1974
+IX_PM_PA  = 0.1241
+IX_PM_AP  = 0.1023
+IX_EV_PA  = 0.1103
+IX_EV_AP  = 0.1009
+
+XI_AM_PA  = 0.0994
+XI_AM_AP  = 0.0700
+XI_MD_PA  = 0.1974
+XI_MD_AP  = 0.1956
+XI_PM_PA  = 0.1023
+XI_PM_AP  = 0.1241
+XI_EV_PA  = 0.1009
+XI_EV_AP  = 0.1103
+
+COM_AM_PA  = 0.0900
+COM_AM_AP  = 0.0900
+COM_MD_PA  = 0.2000
+COM_MD_AP  = 0.2000
+COM_PM_PA  = 0.0950
+COM_PM_AP  = 0.0950
+COM_EV_PA  = 0.1150
+COM_EV_AP  = 0.1150
+
+XX_AM_PA  = 0.0847
+XX_AM_AP  = 0.0847
+XX_MD_PA  = 0.1964
+XX_MD_AP  = 0.1964
+XX_PM_PA  = 0.1132
+XX_PM_AP  = 0.1132
+XX_EV_PA  = 0.1057
+XX_EV_AP  = 0.1057
+
+
+;********************** Convert P/A matrices to O-D matrices for four time periods
+;The percentages shown below were derived from the 93 household survey
+;IXXI note:  The HIS suggests that the %IXXI by period is somewhere between
+;the HBW and the HBO.  Therefore, the %'s shown are about 1/2 way between
+;HBW and HBO (based on SL range).  This is to get the directional split of each more correct.
+
+/* for reference
+;final assignment O-D will refer to either peak or offpeak matrices coming from mode choice
+;the percentages are recalculated to be relative to either peak or offpeak
+AM Peak (% out of peak)
+  mw[221]=(mw[51]*.536 + mw[61]*.037)  ;HBW  
+  mw[223]=(mw[53]*.337 + mw[63]*.042)  ;HBO
+  mw[224]=(mw[54]*.100 + mw[64]*.100)  ;NHB
+  
+PM Peak (% out of peak)
+  mw[241]=(mw[51]*.030 + mw[61]*.397)  ;HBW
+  mw[243]=(mw[53]*.247 + mw[63]*.374)  ;HBO
+  mw[244]=(mw[54]*.400 + mw[64]*.400)  ;NHB
+  
+ 
+Midday (out of off-peak)
+  mw[231]=(mw[201]*.232 + mw[211]*.252)  ;HBW
+  mw[233]=(mw[203]*.235 + mw[213]*.240)  ;HBO
+  mw[234]=(mw[204]*.379 + mw[214]*.379)  ;NHB
+  
+Evening (out of off-peak)  
+  mw[251]=(mw[201]*.149 + mw[211]*.367)  ;HBW
+  mw[253]=(mw[203]*.204 + mw[213]*.321)  ;HBO
+  mw[254]=(mw[204]*.121 + mw[214]*.121)  ;NHB    
+*/
