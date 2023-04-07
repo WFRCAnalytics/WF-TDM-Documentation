@@ -1,18 +1,23 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: _site
 
 website:
   title: "Documentation"
+  favicon: _pictures/favicon.ico
   page-footer:
     right: "Built using [Quarto](https://quarto.org)"
     left: "An online documentation for WFRC's Travel Demand Model"
   navbar:
     background: light
+    logo: _pictures/WFRCDieCutLogo.png
+    tools:
+      - icon: github
+        href: https://github.com/WFRCAnalytics/TDM-Documentation
     title: false
     collapse-below: lg
     left:
-      - text: "Home"
+      - text: "Overview"
         href: index.qmd
       - text: "What's New?"
         menu:

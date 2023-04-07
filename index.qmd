@@ -1,8 +1,7 @@
 ---
-title:  "WFRC's Travel Demand Model Documentation"
-date: "2/4/22"
+title:  "Travel Demand Model Documentation"
+author: Wasatch Front Regional Council
+date-modified: last-modified
 ---
-
-# Documentation {.unnumbered}
 
 This website documents the progress of the travel demand model for the Wasatch region.
