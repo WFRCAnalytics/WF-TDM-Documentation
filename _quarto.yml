@@ -13,6 +13,7 @@ website:
   navbar:
     background: primary
     logo: _pictures/WFRCDieCutLogo.png
+    logo-href: https://wfrc.org
     tools:
       - icon: github
         href: https://github.com/WFRCAnalytics/TDM-Documentation

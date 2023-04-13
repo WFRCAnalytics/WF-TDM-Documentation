@@ -1,0 +1,23 @@
+name: Copy folder to FileZilla
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  copy-folder-to-filezilla:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install ncftp
+        run: sudo apt-get update && sudo apt-get install -y ncftp
+      - name: Copy folder to FileZilla
+        run: |
+          ncftpput -R -v -u ${{ secrets.FILEZILLA_USERNAME }} -p ${{ secrets.FILEZILLA_PASSWORD }} -P ${{ secrets.FILEZILLA_PORT }} ${{ secrets.FILEZILLA_HOSTNAME }} ${{ secrets.FILEZILLA_PATH }} /public_html/tdm-docs
+        env:
+          FILEZILLA_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FILEZILLA_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FILEZILLA_HOSTNAME: ${{ secrets.FTP_HOSTNAME }}
+          FILEZILLA_PORT: 
+          FILEZILLA_PATH: /public_html/tdm-docs
