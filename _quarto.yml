@@ -1,15 +1,17 @@
 project:
   type: website
   output-dir: _site
-
+plugins:
+    - last_modified
 website:
   title: "Documentation"
   favicon: _pictures/favicon.ico
   page-footer:
     right: "Built using [Quarto](https://quarto.org)"
-    left: "An online documentation for WFRC's Travel Demand Model"
+    left: "Dcumentation for WFRC's Travel Demand Model"
+    #center: "Last updated: $(last_modified_date)"
   navbar:
-    background: light
+    background: primary
     logo: _pictures/WFRCDieCutLogo.png
     tools:
       - icon: github
@@ -80,7 +82,7 @@ format:
   html:
     toc: true
     theme:
-      - cosmo
+      - sandstone
       - custom.css
     code-fold: true
   pdf:

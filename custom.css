@@ -44,3 +44,7 @@ div.blockquotes-block {
     border-radius: .5rem;
     padding: 0.5rem;
 }
+
+.navbar-brand > img {
+  max-height: 44px;
+}
