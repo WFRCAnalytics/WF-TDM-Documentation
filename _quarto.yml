@@ -8,7 +8,7 @@ website:
   favicon: _pictures/favicon.ico
   page-footer:
     right: "Built using [Quarto](https://quarto.org)"
-    left: "Dcumentation for WFRC's Travel Demand Model"
+    left: "Documentation for WFRC's Travel Demand Model"
     #center: "Last updated: $(last_modified_date)"
   navbar:
     background: primary
