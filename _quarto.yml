@@ -69,7 +69,9 @@ website:
       contents:
         - text: "Preface"
           href: v9-whats-new/index.qmd
-        - text: "10 Model Results - Comparison with v9.0"
+        - text: "1 General Parameters - Comparison with v8.3.2"
+          href: v9-whats-new/1-genparams.qmd  
+        - text: "10 Model Results - Comparison with v8.3.2"
           href: v9-whats-new/10-modelresults.qmd  
     - id: testing-index
       title: "Testing Environment"

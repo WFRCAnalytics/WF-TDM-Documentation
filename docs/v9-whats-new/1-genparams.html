@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentation – inputprocessing</title>
+<title>Documentation – genparams</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../v832-whats-new/3-inputprocessing.html">3 Input Processing</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../v9-whats-new/1-genparams.html">1 General Parameters - Comparison with v8.3.2</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -129,74 +129,20 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../v9-whats-new/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/1-20220204-update.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2022-02-04 UPDATE</span></a>
+  <a href="../v9-whats-new/1-genparams.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">1 General Parameters - Comparison with v8.3.2</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/1-genparams.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1 General Parameters</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/2-inputdata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2 Input Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/3-inputprocessing.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">3 Input Processing</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/4-hhdisag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4 Household Disaggregation and Auto Ownership</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/5-tripgen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5 Trip Generation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/6-distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6 Distribution</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/7-mc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7 Mode Choice</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/8-assign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8 Highway Assignment</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/9-pp.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9 Post Processing</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../v832-whats-new/10-modelresults.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10 Model Results - Comparison with v8.3.1</span></a>
+  <a href="../v9-whats-new/10-modelresults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10 Model Results - Comparison with v8.3.2</span></a>
   </div>
 </li>
     </ul>
@@ -209,38 +155,36 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#input-processing" id="toc-input-processing" class="nav-link active" data-scroll-target="#input-processing">Input Processing</a>
+  <li><a href="#general-parameters" id="toc-general-parameters" class="nav-link active" data-scroll-target="#general-parameters">General Parameters</a>
   <ul class="collapse">
-  <li><a href="#inboundoutbound-and-hov-capacity" id="toc-inboundoutbound-and-hov-capacity" class="nav-link" data-scroll-target="#inboundoutbound-and-hov-capacity">Inbound/Outbound and HOV Capacity</a></li>
-  <li><a href="#walk-buffer-modifications" id="toc-walk-buffer-modifications" class="nav-link" data-scroll-target="#walk-buffer-modifications">Walk Buffer Modifications</a></li>
+  <li><a href="#zone-parameters" id="toc-zone-parameters" class="nav-link" data-scroll-target="#zone-parameters">Zone Parameters</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="3-inputprocessing.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="1-genparams.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
-<section id="input-processing" class="level1">
-<h1>Input Processing</h1>
-<section id="inboundoutbound-and-hov-capacity" class="level2">
-<h2 class="anchored" data-anchor-id="inboundoutbound-and-hov-capacity">Inbound/Outbound and HOV Capacity</h2>
-<p>A couple bugs were corrected in the input processing script:</p>
-<ul>
-<li>Corrected inbound/outbound designations for EB/WB links.</li>
-<li>Removed FT=37-38 as a condition for populating link additional HOV capacity (AdHOVCap1H) values since related HOV fields are populated on GP links not HOV links. Also, corrected capacity lookup to be for FT=37 and not FT of link.</li>
-</ul>
-</section>
-<section id="walk-buffer-modifications" class="level2">
-<h2 class="anchored" data-anchor-id="walk-buffer-modifications">Walk Buffer Modifications</h2>
-<p>The walk buffer script was improved with a couple simple modifications to the routes and stops that are included in walk buffer creation: - Removed local bus route buffers along expressways and freeways (anything with FT&gt;=12). Only local bus routes along arterials or collectors are now included in route buffers. - Removed buffers that were calculated from local bus stops, which were redundant with local bus route buffers. - The remaining combined walk buffer areas are shown in green. The ’_WalkBuffer_ArcMap103.mxd’ file was updated to version 10.3 of ArcMap, and the scripts were modified to copy the walk buffer mxd to scenario folders.</p>
-<div id="fig-walk-buffers" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="_pictures/walk-buffers.png" class="quarto-discovered-preview-image img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Walk Buffer Modifications.</figcaption><p></p>
-</figure>
-</div>
+<section id="general-parameters" class="level1">
+<h1>General Parameters</h1>
+<section id="zone-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="zone-parameters">Zone Parameters</h2>
+<p>• Updated following TAZ &amp; highway node references: o UsedZones = 3629 o BoxElderRange = ‘1-153’ o WeberRange = ‘154-581’ o DavisRange = ‘582-905’ o SLRange = ‘906-2216’ o UtahRange = ‘2217-3546’ o Dummyzones = ‘3547-3600’ o Externalzones = ‘3601-3629’ o NorthBC = ‘3604,3605,3606’ o HwyNodes = ‘10000-99999’</p>
+<p>• Updated colleges/universities node references: o Colleges = ‘437,521, 693, 959,979,1007,1029,1051,1085,1231,1263,1491,1525,1580,1776,1886,2031, 2606,2809,2848,2882,2939,3336’ o LDSBC = 1029 o WESTMIN = 1263 o UOFU_Main = 1051 o UOFU_Med = 1007 o WSU_OGDEN = 437 o WSU_DAVIS = 693 o WSU_WEST = 521 o SLCC_TL = 1580 o SLCC_SC = 1231 o SLCC_JD = 1776 o SLCC_Mead = 1491 o SLCC_ML = 1886 o SLCC_LB = 1085 o SLCC_HL = 1525 o SLCC_Airp = 979 o SLCC_West = 959 o SLCC_HM = 2031 o BYU = 2939 o UVU_MAIN = 2848 o UVU_GENEVA = 2882 o UVU_THANKP = 2606 o UVU_VINE = 2809 o UVU_PAYSON = 3336</p>
+<p>o Lagoon = 781 o Airport = 965 o TempleSquare = 1035 o SLC_Library = 1147</p>
+<p>• Removed following variables: o RegionRange o WFRCRange o MAGRange</p>
+<p>County Identification • Removed this entire section containing the following variables: o CountyRange o CountyName1 o CountyName2 o CountyName3 o CountyName4 o CountyName5 o CO_Name1 o CO_Name2 o CO_Name3 o CO_Name4 o CO_Name5</p>
+<p>AQ conformity reports are broken down by each county and 3 cities • Removed this entire section containing the following variables: o RE_ID o WE_ID o DA_ID o SL_ID o UT_ID o BE_ID o OC_ID o SC_ID o PC_ID</p>
+<p>Special Trip Table Script Parameters • Updated income break points to 2019 ACS data o Income_Lo = 45000 o Income_Md = 75000 o Income_Hi = 125000</p>
+<p>Household Disaggregation Information • Updated regional median income: o Reg_Median_Inc = 74946 o from 2019 5-year ACS, in 2019 dollars o represents average for just WF region</p>
+<p>Distribution, Mode Choice &amp; Assignment Parameters Auto Occupancy • Renamed the following variables (scripts were also udpated) and updated values: Previous Name New Name New Value VEH_OCCUPANCY_HBW VehOcc_HBW 1.10 VEH_OCCUPANCY_HBSHP VehOcc_HBShp 1.63 VEH_OCCUPANCY_HBOTH VehOcc_HBOth 1.68 VEH_OCCUPANCY_HBSCH VehOcc_HBSch 1.76 VEH_OCCUPANCY_HBC VehOcc_HBC 1.12 VEH_OCCUPANCY_NHBW VehOcc_NHBW 1.21 VEH_OCCUPANCY_NHBNW VehOcc_NHBNW 1.76 NA VehOcc_Rec 1.68 VEH_OCCUPANCY_HBO VehOcc_HBO 1.67 VEH_OCCUPANCY_NHB VehOcc_NHB 1.54 NA VehOcc_ExtWrk 1.16 NA VehOcc_ExtHBO 1.82 NA VehOcc_ExtNHB 1.73 NA VehOcc_ExtRec 1.73 VEH_OCC_3P_HBW VehOcc_3p_HBW 3.53 NA VehOcc_3p_HBShp 3.49 NA VehOcc_3p_HBOth 3.73 NA VehOcc_3p_HBSch 3.88 VEH_OCC_3P_HBC VehOcc_3p_HBC 3.24 NA VehOcc_3p_NHBW 3.71 NA VehOcc_3p_NHBNW 3.71 NA VehOcc_3p_Rec 3.73 VEH_OCC_3P_HBO VehOcc_3p_HBO 3.68 VEH_OCC_3P_NHB VehOcc_3p_NHB 3.71</p>
+<p>• Auto occupancy parameters were updated based on 2012 Household Travel Survey (reprocessed) • Values represent average persons per vehicle for just the Wasatch Front model space • External trips (Ext) are average for IX + XI, all other parameters are averages for II trips</p>
+<p>Value of Time • Updated value of time (VOT): o VOT_Auto_Wrk = 22 o VOT_Auto_Per = 17 o VOT_Auto_Ext = 20 o VOT_LT = 37 o VOT_MD = 50 o VOT_HV = 63 o VOT_Toll = 63 o VOT_HOT_DA = 63 • Added following variables: o VOT_Auto_Wrk_Lo = 9 o VOT_Auto_Wrk_Hi = 24 o VOT_Auto_Per_Lo = 7 o VOT_Auto_Per_Hi = 19</p>
+<p>Auto Operating Costs • Updated auto operating cost (AOC) based on 2019 fuel cost &amp; economy and vehicle maintenance • AOC_Auto = 21.7 • AOC_LT = 27.3 • AOC_MD = 55.5 • AOC_HV = 74.3</p>
+<p>Toll and HOT Costs • Updated toll (FT=40) cost (cent/mile) parameter to reflect a toll of approximately $5.00 for a 10.25 mi trip (average work distance) or $3.00 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars o Cost_Toll_Pk = 48 o Cost_Toll_Ok = 48 • Updated HOT (FT=38) cost (cent/mile) parameter to reflect a toll of approximately $3.50 for a 10.25 mi trip (average work distance) or $2.20 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars o Cost_HOT_Pk = 34 o Cost_HOT_Ok = 17</p>
+<p>Prefix for Transit Skims • Replaced all transit skim prefix global variable tokens with values in scripts • Removed transit skim prefix variables from 0GeneralParameters.block file</p>
 
 
 </section>
