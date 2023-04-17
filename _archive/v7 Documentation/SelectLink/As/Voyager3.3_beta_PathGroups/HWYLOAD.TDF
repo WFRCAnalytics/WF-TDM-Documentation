@@ -1,0 +1,646 @@
+*PGM HWYLOAD
+ (X=nnn) means this and lower levels are not allowed in :
+    0 - HWYLOAD
+    1 - HWYPATH
+    2 - special
+
+HWYLOAD.tdf
+==========================================================================
+; CTL  name   alt_name   switches   level   min_level
+  switches   String to set switches  (use a . if no switches).
+  level      Level of this control statement.
+  min_level  Minimum level allowed after this statement is encountered.
+             Subsequent CTL's can not lower min_level
+
+PGM    HWYLOAD
+
+CTL    FUNC FUNC .9
+ KEY   ?    ?     CNMmnLs
+
+CTL     ABORT      ABORT            I.  9
+ KEY     MSG        MSG             N
+
+CTL     ARRAY      ARRAY            . 9
+ KEY     ?          ?               Sn
+; KEY     ?          ?               In 0 1
+
+CTL     BREAK      BREAK            IO.  9 0 0 4
+
+CTL     COMP        COMP            IS. 9 0 0 8
+ KEY     ?           ?              NKLMn 5000 0 0 5000
+ KEY     MW          MW             NKLMn 999  0 0 3000
+ KEY     VOL         VOL            NKLMn 20   0 0
+ KEY     INCLUDE     INCLUDE        IVPa 1000 1
+ KEY     EXCLUDE     EXCLUDE        IVPa 1000 1
+
+CTL     CONTINUE   CONTINUE         IO.  9 0 0 4
+
+CTL     :           :               O. 9
+
+CTL     ENDPROCESS  ENDPHASE        . 9
+CTL     EXIT        EXIT            I. 9
+
+CTL     FILEI       FILEI           . 9
+ KEY    NETI        NETI            KF
+ KEY    MATI        MATI            KFV 20       (X=1)
+ KEY    TURNPENI    TURNPENI        KFk
+ (       MISSINGLINK MISSINGLINK    I  0 0 2
+ (       LIST        LIST           ?
+ KEY    ZDATI       ZDATI           KFV 10
+ (      Z           Z               SVPn 2
+ (      ?           ?               SVPn 50
+ ((     DEFAULT     DEFAULT         R
+ (      SELECT      SELECT          SP   3
+ (      FIRST       FIRST           S( 1000
+ (      LAST        LAST            S( 1000
+ (      AVE         AVE             S( 1000
+ (      SUM         SUM             S( 1000
+ (      MAX         MAX             S( 1000
+ (      MIN         MIN             S( 1000
+ (      CNT         CNT             S( 1000
+ (      AVEX0       AVEX0           S( 1000
+ KEY    SUBAREANETI SUBAREANETI     KFk
+ KEY    JUNCTIONI    JUNCTIONI      KFk          (X=2)
+ (       N           N              IPa 1000 1
+ (       SET         SET            I  0 0 8
+ (       PERIOD      PERIOD         I  0 1 1440
+ KEY    LOOKUPI     LOOKUPI         KF  999
+
+CTL     FILEO       FILEO           . 9 0 0 0 0 0
+ KEY    NETO        NETO            KFkc         (X=1)
+ (       INCLUDE     INCLUDE        S  100
+ (       EXCLUDE     EXCLUDE        S  100
+ (       APPEND      APPEND         Ic  0 1 99
+ (       DEC         DEC            Ic  0 0 5
+ KEY    MATO        MATO            KFV 20
+ (       TYPE        FORMAT         S
+ (       MO          MO             I(Pa 999 1 999
+ (       NAME        NAME           S   255
+ (       DEC         DEC            S*  255
+ (       COMBINE     COMBINE        ?
+ KEY    TURNVOLO    TURNVOLO        KF 5           (X=1)
+ (       FORMAT      FORMAT         S   ;DBF, TXT, BIN
+ (       DELIMITER   DELIMITER      S
+ (       INCLUDE0    INCLUDE0       ?
+ (       DEC         DEC            I 0 0 5;
+ (       VARS        VARS           SL 25
+ (       NAMES       NAMES          S  25
+ KEY    JUNCTIONO    JUNCTIONO      KFk          (X=2)
+ KEY    PRINTO      PRINTO          KF 999
+ (       APPEND      APPEND         ?
+ KEY    SUBAREAMATO  SUBAREAMATO    KF
+ (       TYPE        FORMAT         S
+ (       NAME        NAME           S   255
+ (       DEC         DEC            S*  255
+ (       COMBINE     COMBINE        ?
+ KEY    PATHO       PATHO           KF  10       (X=2)
+ (       COSTDEC     COSTDEC        I   0 0 5
+ (       ITERS       ITERS          I   0 0 3
+ KEY    ESTMDATO     ESTMDATO       KFk
+ (       NAME         NAME          S  9999
+ KEY    ESTMICPO     ESTMICPO       KFk
+ (       VAR         VAR            S
+ (       SCREENLINE   SCREENLINE    S
+ (       SORTMEM      SORTMEM       I   0 -50 250
+ (       TRACE        TRACE         I
+ KEY    TURNPENO     TURNPENO       KFc
+
+CTL     FILET       FILET           . 9
+ KEY     PATH        PATH           S  2
+
+CTL     FUNCTION    FUNCTION        . 9
+ KEY     TC          TC             KN 1000   (X=1)
+ KEY     COST        COST           N  1000   (X=1)
+ KEY     V           V              KN        (X=1)
+
+CTL     GOTO        GOTO            IL. 9
+
+CTL     IF          IF              S. 3 3 0 0 0 0
+CTL     ELSE        ELSE            S. 3 3 0 0 0 0
+CTL     ELSEIF      ELSEIF          S. 3 3 0 0 0 0
+CTL     ENDIF       ENDIF           S. 3 0 0 0 0 0
+
+CTL     JLOOP       JLOOP           . 9 0 0 16
+ KEY     J           J               NVn 3
+ KEY     INCLUDE     INCLUDE         IVPa 1000 1
+ KEY     EXCLUDE     EXCLUDE         IVPa 1000 1
+CTL     ENDJLOOP   ENDJLOOP         O. 9 0 0 16
+
+CTL     LINKLOOP   LINKLOOP         . 9 0 0 8
+CTL     ENDLINKLOOP ENDLINKLOOP     . 9 0 0 8
+
+CTL     LINKVAR     LINKVAR         I. 9
+ KEY     ?           ?              CLMn ; NLMn 5000 0 0 5000
+
+CTL     LOOP       LOOP             . 9 0 0 4
+ KEY     ?          ?               NVn 3
+CTL     ENDLOOP    ENDLOOP          O. 9 0 0 4
+
+CTL     NODEVAR    NODEVAR          I. 9
+ KEY     ?           ?              CLMn ; NLMn 5000 0 0 5000
+
+CTL     PATHLOAD   PATHLOAD         I. 9 0 0 4
+ KEY     INCLUDEJ   INCLUDEJ        IVPac 1000 1
+ KEY     EXCLUDEJ   EXCLUDEJ        IVPac 1000 1
+ KEY     VOL        VOL             Nn    20       (X=1)
+ (       ?          ?               RPamn 2 0
+ KEY     PATH       PATH            SK
+ KEY     TRACE      TRACE           s
+ (       FORM        F              S
+ (       CFORM       CF             S
+ (       LIST        LIST           KSL 500
+ (       CSV         CSV            ?
+ (       FILE        FILE           Fc
+ ((       PRINT       PRINT         ?
+ ((       APPEND      APPEND        ?
+ ((       REWIND      REWIND        ?
+ (       PRINTO      PRINTO         I 0 1 999
+ ((       REWIND      REWIND        ?
+ ((       PRINT       PRINT         ?
+ KEY     EXCLUDEGRP  EXCLUDEGROUP   IP 100 1 32
+ KEY     PENI       PENI            IPac 20 1 8
+(        PENIFACTOR PENIFACTOR      Rc  0 0.0001
+ KEY     THRUNODE   THRUNODE        I 0 1
+ KEY     MW          MW             Nn 999
+ (        SELECTLINK  SELECTLINK    s 200
+ (        SELECTGROUP SELECTGROUP   IPa 20 1 32
+ (        SELECTLINKGROUP SELECTLINKGROUP   s 200
+ (        NOACCESS    NOACCESS      R
+ KEY     SUBAREAMAT  SUBAREAMAT     NMn 255
+ (        MAXMSG      MAXMSG        I   2 0
+ KEY     DEC         DEC            C
+ (        MAXVALUE    MAXVALUE      R 0 1 1000000
+ KEY     SEQUENCE    SEQUENCE       ?
+ KEY     ESTMO       ESTMO          ?c
+ (        ALLJ        ALLJ          ?c
+ KEY     PATHO       PATHO          Ic ;          (X=2)
+ (        NAME        NAME          Sc
+ (        INCLUDECOST INCLUDECOSTS  ?c
+ (        ALLJ        ALLJ          ?c
+ (        PATHOGROUP  PATHOGROUP    IP 100 1 32
+ ((       FULLPATH    FULLPATH      ?
+ KEY     LINKIDARRAY  LINKIDARRAY   S
+ (        LINKIDCNTMW   LINKIDCNTMW I 0 1 999
+ (        LINKIDMW      LINKIDMW    IP 100 1 999
+ (        LINKIDLASTUSE LINKIDLASTUSE I 0 1 999
+ (        LINKID#MW     LINKID#MW   IP 100 1 999
+
+
+CTL     PARAMETERS  PAR             . 9 0 0 0 0 0
+ KEY     ZONES       ZONES          KI  0 1 32700
+ KEY     MAXSTRING   MaxString      KI  0 1 100
+ KEY     MAXITERS    MAXITERS       KI  0 1 999       (X=1)
+ KEY     SEQSIZE     SEQSIZE        KI  0 1000      ; Sequence size in bytes
+ KEY     USESPEED    UseSpeed       K?
+ KEY     CAPACITYFAC CapFac         KR  0 0
+ KEY     MATOADJUST  MATOADJUST     KI  0 1 99       (X=1) ; mato adjustment interval
+ KEY     LAMBDA      LAMBDA         KR  0 0          (X=1) ; 1 keep in this order
+ KEY     GAP         GAP            KR  0 0          (X=1) ; 2
+ KEY     AAD         AAD            KR  0 0          (X=1) ; 3
+ KEY     RAAD        RAAD           KR  0 0          (X=1) ; 4
+ KEY     PDIFF       PDIFF          KR  0 0          (X=1) ; 5
+ KEY     RMSE        RMSE           KR  0 0          (X=1) ; 6
+ KEY     PDIFFVALUE  PDIFFVALUE     KR  0 0          (X=1) ; 7
+ KEY     TURNGAPWT   TURNGAPWT      KR  0 0          (X=1)
+ KEY     TURNAADWT   TURNSSDWT      KR  0 0          (X=1)
+ KEY     TURNRAADWT  TURNRADDWT     KR  0 0          (X=1)
+ KEY     TURNPDIFFWT TURNPDIFFWT    KR  0 0          (X=1)
+ KEY     TURNRMSEWT  TURNRMSEWT     KR  0 0          (X=1)
+ KEY     TURNCOSTFAC TURNCOSTFAC    KR  0 0          (X=1)
+ KEY     EQUITURNCOSTFAC EQUITURNCOSTFAC  KR  0 0    (X=1)
+ KEY     COMBINE     COMBINE        KS               (X=1) ; EQUI,AVE,WTD,ITER,SUM
+ (       WEIGHTS     WEIGHTS        R*  100 0        (X=1)
+ (       FRACTIONS   FRACTIONS      R*  100 0        (X=1)
+ (       MINIMIZE    MINIMIZE       S                (X=1)
+ KEY     MAXPATH     MAXPATH        KR  0  1 10E36
+ KEY     MAXPATHLINK MAXPATHLINK    KR  0  1 10E35
+ KEY     MAXPATHLOSS MAXPATHLOSS    KI  0  0
+ KEY     ZONEMSG     ZONEMSG        KI  0  0 999999
+ KEY     SUBAREARAM  SUBAREARAM     KI  0  4 1000
+ KEY     MAXMW       MAXMW          KI  0  20 500
+ KEY     NOPATHMSGS  NOPATHMSGS     KI  2  0
+ KEY     NOPATHERRS  NOPATHERRS     KI  2  0
+
+CTL     PRINTROW     PRINTROW        I. 9
+ KEY     FORM         FORM           S
+ KEY     MW           MW             IVPa 100 1 999
+ KEY     J            J              IVPa 100 1
+ KEY     TITLE        TITLE          S
+ KEY     MAXPERLINE   MAXPERLINE     I 0 1
+ KEY     BASE1        BASE1          ?
+
+CTL     PROCESS     PROCESS         . 9 0 0 4
+ KEY     PHASE       PHASE          KS
+
+CTL     RAM         RAM             . 1              ; dynamic RAM areas required
+; KEY     STACK       STACK          IK 10000         ; initial I/P stack size
+ KEY     VARS        VARS           KI 10000 5000 65500  ; def, min, max byte allocations
+
+CTL     REPORT      REPORT          . 9
+ KEY     ZDAT        ZDAT           ?
+ (       DEC         DEC            I
+ KEY     TRACE       TRACE          K?
+ KEY     PENI        PENI           ?
+ KEY     CAPACITY    CAP            ?
+ KEY     SPEED       SPD            ?
+ KEY     VDTSPD      VDTSPD         ?
+ (       RANGES      RANGE          RVPDA 1000 0 999
+ (       I           I              IPa 1000 1
+ (       J           J              IPa 1000 1
+ (       vOL         vOL            IPa 40 1 20
+ (       FORM        F              S
+ (       FILE        FILE           F
+ (       TITLE       TITLE          S
+ (       OPTION      OPTION         ? 8
+ KEY     TURNDELAY   TURNDELAY      ? 2
+
+CTL     SET         SET             I. 9
+ KEY     VAL         VAL            R
+ KEY     VARS        VARS           SV 100
+ KEY     ARRAY       ARRAY          S
+ (        DATA        DATA          R*(p 1000
+ KEY     ?           ?              R*(pn 1000
+
+CTL     SETGROUP    SETGROUP        I. 9
+ KEY     GROUPON     ADDTOGROUP      KIPa 100 1 32
+ KEY     GROUPOFF    RemovefromGROUP KIPa 100 1 32
+
+CTL     SPDCAP      SPDCAP          . 9 0 0 0 0 0
+ KEY     LANES       LANES          IVPa 10 1 9
+ KEY     CAPACITY    CAPACITY       RV* 99 0  9999 ;9 LANES, 99 VALUES
+ KEY     SPEED       SPEED          RV* 99 0 99999 ;9 LANES, 99 VALUES
+
+CTL     SORT        SORT            I. 9
+ KEY     ARRAY       ARRAY          Sc 10
+ KEY     NUMRECS     NUMRECS        Sc
+
+CTL     TURNS       TURNS           . 9       (X=1)
+ KEY     N           N              IPa 1000 1
+ KEY     T           T              Nk
+
+CTL     JUNCTION         JUNCTION           . 9    (X=12)
+ KEY     NODE             N                 Ic 0 1
+ KEY     TYPE             TYPE              Sc
+ KEY     ENABLE           ENABLE            ?c
+ KEY     DELAYEQUATION    DELAYEQUATION     Sc           nul nul nul nul 2064
+ KEY     LANEADJUST       LANEADJUST        ?c           nul nul nul nul 2064
+ KEY     CBD              CENTRALBUSINESS   ?c           nul nul nul nul 2064
+ KEY     GAPACCEPTANCE    GAPACCEPTANCE     ?c           nul nul nul nul 3
+ KEY     GEOMETRIC        GEOMETRIC         ?c           nul nul nul nul 96
+ KEY     CYCLETIME        CYCLETIME         Rc 0 0               nul nul 3092
+ (        MINIMUM          MINIMUM          R  0 0               nul nul 20
+ (        MAXIMUM          MAXIMUM          R  0 0               nul nul 20
+ KEY     PHASE            PHASE             I  0 1 8                 nul 3092
+ (        ACTUALGREEN      ACTUALGREEN      R  0 0               nul nul 3092
+ ((        MINIMUM          MINIMUM         R  0 0               nul nul 20
+ ((        MAXIMUM          MAXIMUM         R  0 0               nul nul 20
+ KEY     MAJORROADWIDTH   MAJORROADWIDTH    Rc 0 0               nul nul 32
+ KEY     CENTRALRESERVAT  CENTRALRESERVAT   Rc 0 0               nul nul 32
+ KEY     STORAGESPACE     STORAGESPACE      Ic 0 0 32766             nul 8
+ KEY     FOURLANEMAJOR    FOURLANEMAJOR     ?c           nul nul nul nul 8
+ KEY     APPROACH1        APPROACH1         Ic 0 1               nul nul
+ KEY     APPROACH         APPROACH          I  10 1              nul nul
+ (        CRITICALGAP      CRITICALGAP      R  0 0               nul nul 2
+ (        FOLLOWUPTIME     FOLLOWUPTIME     R  0 0               nul nul 2
+ (        AVERAGELANEWIDT  AVELANEWIDTH     R  0 2.4 15.75           nul 2072
+ (        GRADE            GRADE            R  0 -31 31              nul 2072
+ (        TURNCHANNELIZED  TURNCHANNELIZED  ?            nul nul nul nul 8
+ (        SINGLELANE       SINGLELANE       ?            nul nul nul nul 3452
+ (        EXITONLY         EXITONLY         ?            nul nul nul nul 3455
+ (        EXITLANES        EXITLANES        I            nul nul nul nul 2064
+ (        CAPACITYSLOPE    CAPACITYSLOPE    R  0 0               nul nul 1
+ (        CAPACITYINTERCE  CAPACITYINTERCE  R  0 0               nul nul 1
+ (        ENTRYWIDTH       ENTRYWIDTH       R  0 0               nul nul 1
+ (        APPROACHWIDTH    APPROACHWIDTH    R  0 0               nul nul 1
+ (        FLARELENGTH      FLARELENGTH      R  0 0               nul nul 1
+ (        INSCRIBEDDIAMET  INSCRIBEDDIAMET  R  0 0               nul nul 1
+ (        ENTRYRADIUS      ENTRYRADIUS      R  0 0               nul nul 1
+ (        ENTRYANGLE       ENTRYANGLE       R  0 1               nul nul 1
+ (        MINIMUMCAPACITY  MINIMUMCAPACITY  R  0 1               nul nul 0
+ (        RANDOMNESS       RANDOMNESS       R  0 1e-36  1            nul 3455
+ (        PARKINGMANEUVER  PARKINGMANEUVER  R  2 0               nul nul 2064
+ (        BUSBLOCKAGE      BUSBLOCKAGE      R  2 0 250               nul 2064
+ (        NUMBEROFLANES    NUMBEROFLANES    I  0 1 3                 nul 256
+ (        UNITEXTENSION    UNITEXTENSION    R  0 0               nul nul 2064
+ (        CONFLICTINGBIKE  CONFLICTINGBIKE  R  0 0 1900              nul 2064
+ (        PEDESTRIANFLOW   PEDESTRIANFLOW   R  0 0 5000              nul 2072
+ (        PEDESTRIANPHASE   PEDESTRIANPHASE I  0 1 88                nul 2064
+ (        PEDESTRIANSPEED   PEDESTRIANSPEED R  0 0.1             nul nul 8
+ (        FLARESTORAGE     FLARESTORAGE     I  0 0 32767             nul 8
+ (        MOVEMENT         MOVEMENT         S            nul nul nul nul
+ ((        ESTIMATEDDELAY   ESTIMATEDDELAY  R  0 0               nul nul 3455
+ ((        INITIALQUEUE     INITIALQUEUE    R  0 0               nul nul 3455
+ ((        SATFLOWPERLANE   SATFLOWPERLANE  R  0 1               nul nul 1092
+ ((        EXCLUSIVELANES   EXCLUSIVELANES  I  0 0 8191              nul 3412
+ ((        CANSHARELEFT     CANSHARELEFT    ?            nul nul nul nul 3412
+ ((        CANSHARERIGHT    CANSHARERIGHT   ?            nul nul nul nul 3412
+ ((        BANTURN          BANTURN         ?            nul nul nul nul 3452
+ ((        PHASES           PHASES          I  0 1 88                nul 3092
+ ((        WIDTH            WIDTH           R  0 0               nul nul 32
+ ((        VISIBILITY       VISIBILITY      R  0 0               nul nul 32
+ ((        CRITICALGAP      CRITICALGAP     R  0 0               nul nul 8
+ ((        FOLLOWUPTIME     FOLLOWUPTIME    R  0 0               nul nul 8
+
+CTL     JTMPLATE          JTMPLATE          . 9    (X=12)
+ KEY     NAME             LENGTH            Sc
+ KEY     TYPE             TYPE              Sc
+ KEY     DELAYEQUATION    DELAYEQUATION     Sc           nul nul nul nul 2064
+ KEY     LANEADJUST       LANEADJUST        ?c           nul nul nul nul 2064
+ KEY     CBD              CENTRALBUSINESS   ?c           nul nul nul nul 2064
+ KEY     GAPACCEPTANCE    GAPACCEPTANCE     ?c           nul nul nul nul 3
+ KEY     GEOMETRIC        GEOMETRIC         ?c           nul nul nul nul 96
+ KEY     CYCLETIME        CYCLETIME         Rc 0 0               nul nul 3092
+ (        MINIMUM          MINIMUM          R  0 0               nul nul 20
+ (        MAXIMUM          MAXIMUM          R  0 0               nul nul 20
+ KEY     PHASE            PHASE             I  0 1 8                 nul 3092
+ (        ACTUALGREEN      ACTUALGREEN      R  0 0               nul nul 3092
+ ((        MINIMUM          MINIMUM         R  0 0               nul nul 20
+ ((        MAXIMUM          MAXIMUM         R  0 0               nul nul 20
+ KEY     MAJORROADWIDTH   MAJORROADWIDTH    Rc 0 0               nul nul 32
+ KEY     CENTRALRESERVAT  CENTRALRESERVAT   Rc 0 0               nul nul 32
+ KEY     STORAGESPACE     STORAGESPACE      Ic 0 0 32766             nul 8
+ KEY     FOURLANEMAJOR    FOURLANEMAJOR     ?c           nul nul nul nul 8
+ KEY     APPROACH1        APPROACH1         Ic 0 1               nul nul
+ KEY     APPROACH         APPROACH          I  10 1              nul nul
+ (        CRITICALGAP      CRITICALGAP      R  0 0               nul nul 2
+ (        FOLLOWUPTIME     FOLLOWUPTIME     R  0 0               nul nul 2
+ (        AVERAGELANEWIDT  AVELANEWIDTH     R  0 2.4 15.75           nul 2072
+ (        GRADE            GRADE            R  0 -31 31              nul 2072
+ (        TURNCHANNELIZED  TURNCHANNELIZED  ?            nul nul nul nul 8
+ (        SINGLELANE       SINGLELANE       ?            nul nul nul nul 3452
+ (        ENTRYONLY        ENTRYONLY        ?            nul nul nul nul 3455
+ (        EXITONLY         EXITONLY         ?            nul nul nul nul 3455
+ (        EXITLANES        EXITLANES        I            nul nul nul nul 2064
+ (        CAPACITYSLOPE    CAPACITYSLOPE    R  0 0               nul nul 1
+ (        CAPACITYINTERCE  CAPACITYINTERCE  R  0 0               nul nul 1
+ (        ENTRYWIDTH       ENTRYWIDTH       R  0 0               nul nul 1
+ (        APPROACHWIDTH    APPROACHWIDTH    R  0 0               nul nul 1
+ (        FLARELENGTH      FLARELENGTH      R  0 0               nul nul 1
+ (        INSCRIBEDDIAMET  INSCRIBEDDIAMET  R  0 0               nul nul 1
+ (        ENTRYRADIUS      ENTRYRADIUS      R  0 0               nul nul 1
+ (        ENTRYANGLE       ENTRYANGLE       R  0 1               nul nul 1
+ (        MINIMUMCAPACITY  MINIMUMCAPACITY  R  0 1               nul nul 0
+ (        RANDOMNESS       RANDOMNESS       R  0 1e-36  1            nul 3455
+ (        PARKINGMANEUVER  PARKINGMANEUVER  R  2 0               nul nul 2064
+ (        BUSBLOCKAGE      BUSBLOCKAGE      R  2 0 250               nul 2064
+ (        NUMBEROFLANES    NUMBEROFLANES    I  0 1 3                 nul 256
+ (        UNITEXTENSION    UNITEXTENSION    R  0 0               nul nul 2064
+ (        CONFLICTINGBIKE  CONFLICTINGBIKE  R  0 0 1900              nul 2064
+ (        PEDESTRIANFLOW   PEDESTRIANFLOW   R  0 0 5000              nul 2072
+ (        PEDESTRIANPHASE   PEDESTRIANPHASE I  0 1 88                nul 2064
+ (        PEDESTRIANSPEED   PEDESTRIANSPEED R  0 0.1             nul nul 8
+ (        FLARESTORAGE     FLARESTORAGE     I  0 0 32767             nul 8
+ (        MOVEMENT         MOVEMENT         S            nul nul nul nul
+ ((        ESTIMATEDDELAY   ESTIMATEDDELAY  R  0 0               nul nul 3455
+ ((        INITIALQUEUE     INITIALQUEUE    R  0 0               nul nul 3455
+ ((        SATFLOWPERLANE   SATFLOWPERLANE  R  0 1               nul nul 1092
+ ((        EXCLUSIVELANES   EXCLUSIVELANES  I  0 0 8191              nul 3412
+ ((        CANSHARELEFT     CANSHARELEFT    ?            nul nul nul nul 3412
+ ((        CANSHARERIGHT    CANSHARERIGHT   ?            nul nul nul nul 3412
+ ((        BANTURN          BANTURN         ?            nul nul nul nul 3452
+ ((        PHASES           PHASES          I  0 1 88                nul 3092
+ ((        WIDTH            WIDTH           R  0 0               nul nul 32
+ ((        VISIBILITY       VISIBILITY      R  0 0               nul nul 32
+ ((        CRITICALGAP      CRITICALGAP     R  0 0               nul nul 8
+ ((        FOLLOWUPTIME     FOLLOWUPTIME    R  0 0               nul nul 8
+
+CTL     JLIBSETTINGS     JLIBSETTINGS       U. 9    (X=12)
+ KEY      LHRULE          LHRULE          ?c
+
+CTL       UNITS          UNITS            U. 9    (X=12)
+ KEY      LENGTH          LENGTH          Sc
+
+CTL    '=CLEV'  ' '      . 0 0 500;
+TXT  500 A ZoneMsg=1;
+
+TXT -601 A Error finding CTL type %s in TDF;   shouldn't happen
+TXT -602 A %s %s[%i]=%s does not appear to be a valid %s.;                                 varset
+TXT -603 A %s has meaningless values following it.;                     fiset,moset
+TXT -604 A %s missing: %s, %s, %s, or %s,  or both %s and %s defined.;  fiset
+TXT  605 A Variables from %s[%i] DBF %s:;                               fimi1
+TXT  606 A Zones=%-4i  %2i Matrices;                                    fimi1
+TXT -607 A %s may not be saved in %s;                                  varset
+TXT -608 A Result(%c) and Expression(%c) are not same mode.;            varset
+;TXT -609 A %s %s[%i] %s specified more than once.;               varset,fiset,hl_peni
+
+TXT -610 A %s Field types not consistent.;                              fiset
+TXT -611 A %s %s or %s not monotonic, beginning at 1.;                  fiset
+TXT -612 A %s %s previously defined.;                                   varset
+TXT -613 A %s %s = %s not found.;                                       fiset
+TXT -614 A %s %s = %s has invalid definitions.;                         fiset
+TXT -615 A %s %s %s problem: (wrong mode or protected).;       var_set
+TXT -616 A %s[%i] not found.; PENI
+TXT -617 A Ambigious Penalty definitions for: %i-%i-%i;
+TXT -618 A %s[%i] error @fld %i: %s;   PENI[] error: record.....
+TXT -619 A Duplicate %s %s[%i]=;  FUNCTION TC[i] or FILEO PATHO[i]
+TXT -620 A Duplicate %s %s=;  FUNCTION V= or FUNCTION C=
+TXT -621 A %s does not have matching %s.;     LOOP/ENDLOOP
+TXT -622 A %s (#%i) overlaps %s block.;   LOOP IF
+TXT -623 A %s (#%i) missing %s=beg [,end [,inc]].;  LOOP
+TXT -624 A %s label :%s not found.;              GOTO ____
+TXT -625 A :%s is defined more than one time.
+TXT -626 A %s %s has no %s= , or invalid variables:; REPORT MarginRec
+TXT -627 A %s (#%i) overlaps %s, or contains another %s.;  JLOOP LOOP JLOOP
+TXT -628 A Listing of expressions with errors during final compilation.;   comp
+TXT -629 A Listing of statements with errors during initial analysis.;  varset
+TXT -630 A %s (#%i) has undefined LIST fields which will be printed as ?:; PRINT
+TXT  631 A while processing linkno %i.;
+TXT -632 A %s %s[%i] %s= has invalid or inconsistent field definitions.;  zdatai
+TXT -633 A Variable %s not satisfied.; zdatai
+TXT -634 A %s not allowed within %s block.;  JLOOP check -- pedit
+TXT -635 A %s[%i] rec %i:%s;  mi_read
+TXT -636 A %s (#%i) %s has invalid index #%i.; comp
+TXT -637 A Invalid [][] for I=%i: %s=%s;  run comp failure
+TXT -638 A %s J=%s evaluates to invalid values: %i %i %i.; run  JLOOP
+TXT -639 A Error computing expression: %s %s=%s for link %i-%i.;
+TXT  641 A Totals after Iteration %i I loop:;
+TXT  642 A Variable Values at end of Iteration %i I loop:;
+TXT -643 A %s is invalid during %s.;  hl_run_i
+TXT -644 A No %s[]= specified.; PATH
+TXT -645 A %s %s will not be processed within %s(#%i).;  COMP FILTER JLOOP#
+TXT -646 A %s: I=%i J=%i Error (%s) in:\n        %s = %s; exper
+TXT -647 A Too many math errors.; run
+TXT -648 A Invalid argument to PathTrace(%s) for I-J: %i-%i.; hl_path_trace
+TXT -649 A Inappropriate call to PathTrace().;
+TXT -650 A Err in default %s: %s = %s;
+TXT -652 A %s %s has invalid, or missing value.;  moset
+TXT -653 A Sequence table overflow @ I=%i Path[%s]: will try to expand to %i bytes;
+TXT -654 A Resize Failed;
+TXT -656 A Link %i-%i Error (%s) in %s %s[%i];  A B err FUNCTION name hl_adjust
+TXT -657 A %s %s missing.; FILEO NETO
+TXT -658 A Invalid %s %s designation: valid names are: %s %s %s %s %s.; hl_params
+TXT -659 A Invalid %s %s %s.; PARAMETERS COMBINE WEIGHTS
+TXT -660 A Terminating due to fatal F(...) messages.;
+TXT -661 A %s Terminated by user.; run
+TXT -662 A Convergence achieved by:; hl_adjust
+TXT -663 A %s %s %s total = %0.2f; params != 1.00
+TXT -664 A %s not allowed within %s.; LINKLOOP LINKLOOP
+TXT  665 A %s[%i] %s %s Opened;  fimni
+TXT  666 A (%s=%s).; PHASE= ;var_set
+TXT -667 A Misplaced %s.;  ENDPHASE
+TXT -668 A %s=%s is invalid designation.;  PHASE=....
+TXT -669 A %s overlaps a phase.;  IF
+TXT -670 A There is no %s=%s.; Phase=ILOOP
+TXT -671 A %s=%s is defined more than one time.; PHASE=....
+TXT -672 A Invalid %s specifications on %s %s[%i].; zdati  SELECT FILEI ZDAT
+;TXT -673 A %s= missing.;                             LOAD VOL[i] PATH // FILEO NETO
+;TXT -674 A %s=%i requested, but there is no %s[%i].; LOAD VOL[i] PATH .. PATH
+;TXT -675 A %s=%i may not have %s.;                   LOAD VOL[i] PATH .. PENI
+
+;TXT -677 A %s: only one %s allowed.;                 LOAD VOL[i] PATH .. LINKVAR
+;TXT -678 A %s: %s is not a %s.;                      LOAD VOL[i] PATH v  LINKVAR
+;TXT  679 A V=Loaded Volumes, E=Equilibrium (or Combined) Volumes, [i]=Iteration.;
+
+TXT -680 A %s invalid in %s expressions.; hl_comp
+TXT -681 A No path for %i-%i, %s trips unassigned.;
+TXT -682 A Too many I-J's with No Path, terminated at %i-%i.;
+TXT -683 A PATHLOAD #%i has PATHO=%i, but there is no FILEO PATHO[%i].; hl_patho
+TXT -684 A PATHLOAD #%i PATHO=%i missing NAME=.;
+
+TXT  699 A Phase                    Seconds       Count;  Timing headers (keep spacing)
+TXT -700 A %s %s=%s is invalid.;  TURNVOLO FORMAT=value.  hl_turn()
+TXT -701 A FILEI TURNPENI messages  :
+TXT -702 A FILEI TURNPENI records   :     A      B      C   Set   Cap  Penalty
+TXT -703 A Function does not compile:
+TXT -704 A Improper data record     :
+TXT -705 A Link not found in network:
+TXT -707 A Duplicate turn & set     :
+TXT -708 A Function solution error  :
+TXT -709 A Duplicate/Function error :
+TXT  710 A "                                 :"
+TXT -711 A "     A      B      C   Set    Pen[%i]    Pen[%i]";
+TXT  712 A JUNCTION penalties to be applied in Iteration %i:;
+
+TXT -714 A %s %s in invalid, must begin with LW. or be one of:;
+TXT -715 A %s=%s is invalid, must be LW.name or:; PATH= ..
+TXT -716 A Both %s %s= and %s %s= must be specified.; FILEO/NETO PATHLOAD/VOL
+TXT -717 A %s %s[%i]=%s requires a %s=.;                    PATHLOAD/VOL= PATH=
+TXT -718 A Only one %s= may follow %s %s[%i]=%s.;  linkvar= PATHLOAD VOL=
+TXT -719 A Corrupt expression;
+TXT -720 A Subscript error;
+TXT -721 A Variables beginning with %c%c%c (%s) may not be stored into.;
+TXT -722 A Not valid to use %s in %s.; var_set
+TXT -723 A Not valid to store into %s in %s.; var_set
+TXT -724 A The NETI variables can not provide %s directly, PHASE=LINKREAD is required.; neti
+TXT -725 A COMBINE=EQUI MINIMIZE=BPR could be valid for this setup.;
+TXT -726 A COMBINE=EQUI MINIMIZE=BPR is probably not correct for this setup.;
+TXT -727 A %6i links for which default value for %s was provided.; neti
+TXT  729 A Selected,@J=I,NoAccess,Assigned;  titles for vol summaries
+TXT -730 A DEC= ignored with MATO FORMAT=MINUTP.;
+TXT -731 A %s does not have both SUB_TYPE and OLD_NODE.;   hl_subarea
+TXT -732 A %s Node %i has invalid OLD_NODE(%i) or SUB_TYPE(%i).;
+TXT -733 A %s specified, but not both %s and %s.;   hl_subarea
+TXT  734 A Total for %s_M%i: %s;
+TXT  735 A SUBAREA factor for Iteration %i = %8.5f;
+TXT -736 A VehTime does not include any turning penalty time.;
+TXT  737 A %i %s %s records written to %s; turn
+TXT -738 A A %s %s %s has missing or too many dashes "-" near value %s.; REPORT VMTSPD RANGE value
+TXT -739 A I/O Error saving %s records.;   vmtspd
+TXT -740 A %s File used %i bytes (%i path bytes).; vmtspd
+TXT -741 A %s %s %s values with > 1 decimal place rounded to .x.; REPORT VMTSPD RANGES
+TXT -742 A Integer Path Overflow for I=%i: link %i-%i.; hl_path
+TXT -743 A At I=%i, %i PATH=%s (DEC=%i) values were truncated.;
+TXT -744 A %s %s[%i] has invalid VAR (%s) or form specified.; hl_patho FILEO PATHO
+TXT -745 A %s=%i has no corresponding %s %s[%i]=.; hl_patho PATHLOAD PATHO FILEO PATHO[]
+TXT -746 A %s_%s has no corresponding %s %s=, %s=, or %s=.; hl_estms PATHLOAD ESTMO FILEO ESTMDATO ESTICPO VAR
+TXT -747 A Problems sorting estmo data at I=%i (ErrCode=%i).;
+TXT -748 A Opt-Tech Sort has not been installed, revertimng to limited ESTMO sort.;
+TXT -749 A %i links where %s has a value.;  hl_estmo
+TXT -750 A %i links wo a value in %s.;
+TXT -751 A Path %*i-%*i (%c-%c) crosses cordon %i times: SubAreaMat[%i]: %s trips;
+TXT -752 A %s %s SL-I-J records processed.; hl_esmts
+TXT -753 A %s %s %s=%s is invalid.; FILEO TURNVOLO VARS ...  hl_turn.
+TXT -754 A %s must have %s= specified.;  JUNCTIONI SET=
+TXT -755 A Can not locate %s (%s).; JUNCTION.DLL entry
+TXT -756 A Problems with %s processing (Err=%i).; JUNCTION
+TXT -757 A %s %s specified, but no MW[]=expressions processed.;
+TXT -758 A %s %s is restricted to VOYAGER.;
+TXT -759 A TurnPeni or Junction_Set %i never used in a PATHLOAD PENI.
+TXT -760 A PATHLOAD PENI=%i used, but not found in TurnPeni or Junction_Set.
+TXT  761 A Lines with Iter number are link summaries\nLines with "Trn" are for turning movements\nGap based upon sum of %s costs
+TXT -762 A Bad header recovering ESTM data at I=%i Iteration=%i.;
+TXT -763 A %i ESTM Screenlines.;
+TXT -764 A Can not allocate %s bytes for ESTM InRam sorting.;
+TXT -765 A %s more %ss than %ss.; MATO[] FORMs MOs  moset
+TXT -766 A Terminating within ILOOP at I=%i.;
+TXT -767 A %s %s\n        LW. or LI. not within %s must have subscript.;
+TXT -768 A %s %s=%s has conflicting MWs: ; PATHLOAD LINKIDARRAY=name
+
+TXT -770 A %s specified, but not in NETI;
+TXT -771 A ZONES reset from %i to %i;
+
+TXT -800 A Error opening temporary file;
+TXT -801 A Error opening file %s for append;
+TXT -802 A Ambiguous leg order near links to %i and %i from node %i;
+TXT -803 A Insufficient memory;
+TXT -804 A Unrecognized junction type: %s;
+TXT -805 A Attempt to redefine junction model at node %i;
+TXT -806 A Node %i not found in the network;
+TXT -807 A Unable to model a %i-leg intersection;
+TXT -808 A No node specified for intersection model;
+TXT -809 A No type specified for intersection model;
+TXT -810 A Approach1 not specified for intersection model;
+TXT -811 A Error writing to temporary file;
+TXT -812 A Node %i is not a neighbor of node %i;
+TXT -813 A Error writing to turn penalty file %s;
+TXT -814 A Incomplete junction description (missing approach %i);
+TXT -815 A Delay equation, %s, not recognised as HCM or Catling at node %i;
+TXT -816 A Key %s expected but not found for approach %i;
+TXT -817 A Entry width, %f, must not be less than approach half width, %f, for approach %i;
+TXT -818 A Unexpected key %s found for approach %i;
+TXT -819 A Duplicate key %s found for approach %i;
+TXT -820 A Key %s=%f exceeds advisory maximum %f;
+TXT -821 A Key %s=%f is outside calibrated range %f to %f;
+TXT -822 A Key %s=%f is below advisory minimum %f;
+TXT -823 A Unrecognized movement %s;
+TXT -824 A No %s movement from approach %i;
+TXT -825 A Duplicate %s movement from approach %i;
+TXT -826 A Duplicate approach %i at node %i;
+TXT -827 A Unexpected key %s found for %s movement at approach %i;
+TXT -828 A Duplicate key %s found for %s movement at approach %i;
+TXT -829 A Key %s expected but not found;
+TXT -830 A Key %s expected but not found for %s movement at approach %i;
+TXT -831 A Duplicate key %s found for phase %i;
+TXT -832 A Duplicate phase %i at node %i;
+TXT -833 A Invalid phase encoding, %i, for %s %s at approach %i;
+TXT -834 A Incomplete junction description (missing move %s at approach %i);
+TXT -835 A All phases red for %s movement at approach %i;
+TXT -836 A Inconsistent sharing between %s and %s movements at approach %i;
+TXT -837 A %s movement can share %s but is %smost movement at approach %i;
+TXT -838 A Phase %i is an all red phase;
+TXT -839 A Actual cycle time, %g, is not greater than total green time, %g;
+TXT -840 A %s irrelevant for major road %i to %i;
+TXT  841 A %s;
+TXT -842 A %s %s\n        MW not within %s must have 2nd subscript: MW[..][..].; IF (...) JLOOP hn_comp;
+TXT -843 A %s %s\n        MI. not within %s must have subscript: MI.#.name[..].; IF (...) JLOOP;
+TXT -844 A Unexpected index for APPROACH %i;
+TXT -845 A Gap acceptance and empirical roundabout modelling may not be mixed at node %i;
+TXT -846 A %s = %f is inappropriate for a single lane roundabout entry in the US (HCM range %f to %f);
+TXT -847 A Specify gap acceptance parameters by approach, not movement, at a roundabout, at node %i;
+TXT -848 A Turn ban ignored at roundabout;
+TXT -849 A Grade (= %f%%) outside typical range -%d%% to %d%% indicate extreme condition (eg San Francisco);
+TXT -850 A Non adjacent phases %d and %d at for %s %s at approach %i to HCM style signals %i;
+TXT -851 A Duplicate key %s at node %i;
+TXT -852 A %c lane widths expected for %s lane minor road %d to %d but %hd found;
+TXT -853 A %s and %s movements on link %d to %d can share but they have different phases;
+TXT -854 A Explicit sharing and/or exclusive lanes overridden by single lane keyword;
+TXT -855 A Second and subsequent MEASUREMENT statements ignored;
+TXT -856 A UNIT unrecognised: "%s" is neither "FEET" nor "METRES";
+TXT -857 A Incompatible versions of HWYLOAD.DLL and JUNCTION.DLL\n\tPlease re-install VOYAGER;
+TXT -858 A Maxima and Minima ignored at fixed time signals (node %i);
+TXT -859 A Minimum, %g, must be less than, or equal to, corresponding actual %s, %g, at node %i;
+TXT -860 A Maximum, %g, must be greater than, or equal to, corresponding actual %s, %g, at node %i;
+TXT -861 A Minimum cycle increased to %g seconds (sum of minimum greens and lost);
+TXT -862 A Maximum cycle decreased to %g seconds (sum of maximum greens and lost);
+TXT -863 A No lanes found on approach %d to %d;
+TXT -864 A Specify lane markings or total lanes, but not both, at all-way stop;
+TXT -865 A Implied number of lanes at all-way stop must be in range 1-3;
+TXT -866 A Exit lanes specified for entry only link %i to %i;
+TXT -867 A Contradiction: %s but %s = %i at approach %i;
+TXT -868 A Warning: %s ignored at banned turn;
+TXT -869 A Warning: New highest phase, %i, set by keyword %s;
+TXT -870 A Warning: Exit lanes should be specified where pedestrians cross;
+TXT -872 A Warning: Pedestrians may block node %i;
+TXT -873 A Crossing length is required when pedestrian flow is non-zero;
+;    TXT -874 A Movement %i to %i to %i has no red time;
+TXT -874 A Conflicting movements on green in phase %i;

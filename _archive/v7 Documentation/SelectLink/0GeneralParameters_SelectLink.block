@@ -1,0 +1,611 @@
+;****************************************************************************************
+;
+;                                    General Parameters
+;
+;****************************************************************************************
+
+
+;Directory structure
+	;Inputs Folder
+	InputDir = '..\_Inputs\'
+		TAZInputDir     = '1_TAZ\'
+		SEInputDir      = '2_SEData\'
+		NetInputDir     = '3_Highway\'
+		TransitInputDir = '4_Transit\'
+		ExternalDir     = '5_External\'
+		StaticDir       = '6_Static\'
+			Static_Network   = '0_Network\'
+			Static_TripTable = '0_TripTables\'
+			Static_AutoOwn   = '1_AutoOwn\'
+			Static_TripGen   = '2_TripGen\'
+			Static_Distrib   = '3_Distribute\'
+			Static_MChoice   = '4_ModeChoice\'
+	
+	;Input Processing Folders
+	IDir = '0_InputProcessing\'
+		SetupDir     = 'a_Setup\'
+		SEDir        = 'b_SEProcessing\'
+		NetDir       = 'c_NetworkProcessing\'
+		TripTableDir = 'd_TripTable\'
+		Io           = 'Io\'
+		
+	;Auto Ownership Folders
+	VDir = '1_AutoOwn\'
+		Vo = 'Vo\'
+		Vs = 'Vs\'
+	
+	;Trip Generation Folders
+	TDir = '2_Tripgen\'
+		Ts = 'Ts\'
+		To = 'To\'
+	
+	;Distribution Folders
+	DDir = '3_Distribute\'
+		Ds = 'Ds\'
+		Do = 'Do\'
+			DDistSum = 'DistrictSummary\'
+			DTLF     = 'TLF\'
+	
+	;Mode Choice
+	MDir = '4_ModeChoice\'
+		Ms    = 'Ms\'
+		Mo    = 'Mo\'
+			Mboard   = 'Boardings\'
+			MDistSum = 'DistrictSummary\'
+			Mshare   = 'Shares\'
+			Mpnr     = 'Mo\Pnr\'
+			Msup     = 'Mo\Sup\'
+			MTLF     = 'TLF\'
+	
+	;Assignment
+	ADir       = '5_AssignHwy\'
+	As         = 'As\'
+	Ao         = 'Ao\'
+		Ao_Skim     = '1Skims\'
+		Ao_Observed = 'AdjustedByObserved\'
+		Ao_Purp     = 'ByPurp\'
+		Ao_Transit  = 'TransitOnHwy\'
+		AO_HwySum   = 'HwySummary\'
+	
+	;Post Processing Folder
+	UDir = '6_Urbansim\'
+		Ui    = 'Ui\'
+		Us    = 'Us\'
+		Uo    = 'Uo\'
+	
+	;Post Processing Folder
+	PostProcDir = '7_PostProcessing\'
+		a_Hwy      = 'a_AnalysisHwy\'
+		b_Tran     = 'b_AnalysisTran\'
+		c_Dist     = 'c_AnalysisDistrict\'
+		z_Cleanup  = 'z_Cleanup\'
+		
+	;Temp Folder
+	TempDir  = 'Temp\'
+		ITmp  = '0_TmpInputProcess\'
+		VTmp  = '1_TmpAutoOwn\'
+		TTmp  = '2_TmpTripgen\'
+		DTmp  = '3_TmpDistrib\'
+			;DTmp has one subfolder: A
+		MTmp  = '4_TmpMC\'
+			;MTmp has three subfolders: A, B, & C
+		ATmp  = '5_TmpAssign\'
+		PPTmp = '7_TmpPostProc\'
+		SuTmp = '8_TmpSummit\'
+
+
+;Zone parameters
+	UsedZones       = 2250    ;highest value of any used zone or external
+	externalzones   = '279-283,1626-1632,2243-2250'
+	majorexternals  = '279,283,1626,1627,1629,2245,2247,2249'  ;In order: I-15 Box Elder, I-84, I-80 Tooele, SR-201 Tooele, I-80 East, Provo Canyon, SF Canyon, I-15 Juab
+	
+	dummyzones      = '2251-3400'
+	
+	;Ranges need not be consecutive
+	RegionRange     = '1-2250'
+	WeberRange      = '1-283'     ;includes externals
+	DavisRange      = '284-502'
+	SLRange         = '503-1632'  ;includes externals
+	UtahRange       = '1633-2250' ;includes externals
+	WFRCRange       = '1-1632'
+	MAGRange        = '1633-2250'
+	
+	;Special generators with off-line trip tables (colleges, airport, Lagoon)
+	colleges        = '241,744,921,922,796,972,996,1338,1559,1924,1925,1959'
+	WeberState      = 241
+	SLCCRedwood     = 744
+	UofUMain        = 921
+	UofUMed         = 922
+	LDSBC           = 796
+	SLCCSouthCity   = 972
+	Westminster     = 996
+	SLCCJordan      = 1338
+	SLCCSandy       = 1559
+	UVUmain         = 1924
+	UVUwest         = 1925
+	BYUmain         = 1959
+	
+	Lagoon          = 411
+	Airport         = 589
+	
+	;special generators without off-line trip table
+	TempleSquare    = 812
+	SLC_Library     = 861
+	
+	;Ecopass zones
+	EcoPassZones              = '812,921,922,1925,1924'  ;Church office bld, UofU, Med Center,UVSC.  Used in 'FreeFareZones.block'
+	FreeFarePre2010           = '812-828,797,811,799,800'
+	FreeFarePost2010Additions = '454,455,482,483,493,494,497,500'
+
+
+;College FTE to person trip factor
+	CollegeFTETripRate = 1.5
+
+	
+;County idendification
+	;Counties included in the model area
+	CountyRange = '1-4'
+	
+	;County names
+	CountyName1 = 'Weber'
+	CountyName2 = 'Davis'
+	CountyName3 = 'SaltLake'
+	CountyName4 = 'Utah'
+		
+	;County name abreviated
+	CO_Name1 = 'WE'
+	CO_Name2 = 'DA'
+	CO_Name3 = 'SL'
+	CO_Name4 = 'UT'
+
+;AQ conformity reports are broken down by each county and 3 cities.
+	;The county and city ID's are noted in the network, and in Ni\0CityEquivalencies.txt */
+	RE_ID = 0   ;Entire region
+	WE_ID = 1   ;Weber
+	DA_ID = 2   ;Davis
+	SL_ID = 3   ;Salt Lake
+	UT_ID = 4   ;Utah
+	
+	OC_ID = 55980 ;Ogden
+	SC_ID = 67000 ;Salt Lake City
+	PC_ID = 62470 ;Provo
+
+
+;Work zone or incident efficiency factors
+;This feature can be a simple sketch planning way to see the magnitude of diversions that
+;occurs when a corridor's capacity is reduced for some reason.  These factors are applied
+;if network link field: CONSTRUCTION=1.
+;
+;Research suggests that freeways that maintain 2+ lanes per direction will operate between 1800-2050 vphpl),
+;So see what NetProcessor is computing for Cap1hr1ln normally, then set the factor to whatever you need
+;to in order to get a new capacity (or efficiency) for the work zone.  Default is .90 - a 10% loss.
+;Same is true for Speed.  If the normal is 67 mph, and the work zone is expected to flow 5 mph slower, then
+;SPDCAP is 62/67=.92.  If throughput is reduced to just 60%, put .60.  To represent complete shutdown
+;make CAPFAC = .01 (not zero).  For incidents, set SPDFAC to 1.0 (lost capacity will 
+;force speeds lower on its own).  
+	SPDFAC_Construction = .90  
+	CAPFAC_Construction = .90
+
+
+;Msc parameters
+	;Message display rate in Matrix
+	ZoneMsgRate = 50
+	
+	;Preclude insertion of page headers
+	GLOBAL PAGEHEIGHT=32767 
+	
+	;Formatting parameters???
+	niw   = 6      ;node id column width
+	liw   = 12     ;link_id width
+	prw   = 12     ;problem width
+	vlw   = 8      ;value width
+	vlw1  = 8.1    ;value width, + 1 decimal
+	vlw2  = 8.2    ;value width, + 2 decimal
+	vlw3  = 8.3    ;value width, + 3 decimal
+	rgw   = 12     ;valid range column width
+	lcolw = 18     ;width of first column in the log file
+
+
+;Semi-fixed trip distribution and destination choice parameters
+	debug           = 1     ;set to 1 if you want to debug or 0 if not
+	debug_p         = 526   ;production zone to use in debugging
+	debug_a         = 470   ;attraction zone to use in debugging
+	
+	WFRC_MAG_KFAC = .85	;calibration adjustment factor to reduce non-work trips between SL and UT county
+	
+	;trip length frequency controls
+	dc_MAX_time = 90   	; Maximum travel time you're concerned about including in trip length freq
+	dc_MAX_dist = 50   	; Maximum travel distance you're concerned about including in trip length freq
+	dc_SHIFT_lgsm = 20  	; Mimimum mode choice logsum, used for shifting the distribution to fit into TP+ arrays
+	dc_MAX_lgsm = 10   	; Maximum mode choice logsum you're concerned about including in trip length freq
+	
+	dc_bin_time = 1  	; size of time bins in minutes (i.e. 1 for 1 minute)
+	dc_bin_dist = 1  	; size of distance bins in miles (i.e. 1 for 1 mile)
+	dc_bin_lgsm = 0.25  	; size of logsum bins
+	
+	GenerateAM3hrDoTurnvolo = ';' 		; ' ' means yes, ';' means no.  Puts 'Do_AMturnvol.Bin' into Do, which Cube can plot as turn diagram
+	GeneratePM3hrDoTurnvolo = ';' 		; ' ' means yes, ';' means no.  Puts 'Do_PMturnvol.Bin' into Do, which Cube can plot as turn diagram
+	TurnIntersectionsDo = 'N = 4545'   ;if "yes", then this is where you list which intersections will have TURNVOLO recorded (ex: N='4545, 3567, etc.)
+	;see Ao also for final assignment turnvolo's
+
+
+;Semi-fixed mode-choice parameters
+	;auto_cost = 10 ;auto operating cost (10 cents per mile)
+	auto_cost = 13 	;As of version 6, the model is now calibrated with a 13 cent/mile auto operating cost
+	
+	;TOLL COSTS PER MILE 
+	;toll costs can be set differently for tollways (ft 40) vs. HOT (ft 39)
+	;toll costs can be set differently for peak and off-peak
+	
+	;toll costs for 2030 are recommended to be approximately 
+	;	20 cents/mile in peak
+	;	10 cents/mile in offpeak
+	
+	;toll costs for 2005 are recommended to be approximately 
+	;	10 cents/mile in peak
+	;	5 cents/mile in offpeak
+	
+	
+	;more recent work may have changed these recommendations
+
+	;FFspeed and capacity of all FT 40 toll-way links
+	FT40_cap1hr1ln = 1800		
+	FT40_FFspeed = 77.5
+	
+	;peak period cost in (cents/mile) for using FT 40 toll-way links
+	;same toll cost for all users of tollway
+	FT40_cost_Pk = 24		
+	FT40_cost_Ok = 24
+	
+	;peak period cost in (cents/mile) for using FT 39 HOT links
+	;toll costs can be set differently for SOV, HOV2, HOV3+
+	;Drive alone HOT costs
+	FT39_cost_Pk = 10
+	FT39_cost_Ok = 5
+	
+	;Shared Ride 2 HOT costs
+	FT39_cost_Pk2 = 0
+	FT39_cost_Ok2 = 0
+	
+	;Shared Ride 3+ HOT costs
+	FT39_cost_Pk3 = 0
+	FT39_cost_Ok3 = 0
+	
+	
+	;Enter only as multiples of 5.
+	;these are approximate out-of-pocket fares, taking into account employer-provided passes, discount passes, and full fares
+	;in 2010 UTA reported that they roughly receive half the full fare per passenger (conversation with Mick Crandall)
+	;these fares are in 2000 dollars
+	Fare4LCL  = 100     ;Local bus fare 
+	Fare5BRT  = 100     ;BRT fare
+	Fare6EXP  = 200    ;Express bus fare
+	Fare7LRT  = 100     ;Light rail fare
+	Fare8CRT  = 100     ;Commuter rail base fare (there is additional distance-based component as well in the mode choice working matrices block files)
+	
+	;compute transit transfer fares
+	FareLCL2EXP = Fare6EXP - Fare4LCL
+	FareBRT2EXP = Fare6EXP - Fare5BRT
+	FareLCL2CRT = Fare8CRT - Fare4LCL
+	FareEXP2CRT = Fare8CRT - Fare6EXP
+	FareBRT2CRT = Fare8CRT - Fare5BRT
+	FareLRT2CRT = Fare8CRT - Fare7LRT + 1 ;mark rail-rail as detectable with % (mod) 5=1
+
+
+
+
+/* *******************************************************************************************
+ Settings necessary to obtain assignment path files and/or select link analysis; other semi-fixed
+ assignment parameters.
+ ********************************************************************************************* */
+
+AssignType = 'managed'  ;Options: 'managed' or 'bypurp', depending on whether you're assigning to managed lanes (HOV/HOT), or assigning by purpose (HBW, etc.). Default is 'managed'
+RunFinalAssignFromPM = 0   ;If you want to create a PM path file, or otherwise work with a new PM without overwriting an existing AM & MD, turn this on.
+
+runselectlink=1 ; set this as yes or no, after you set this as yes, please set selectlinkarguement parameter
+;runselectlink=0
+SelectLinkArguement  = 'L=7978-4998*'  ;Normal construction: 'L=1000-1001*' 
+                                      ;(* means both directions, i.e. 1001-1000 also).  
+                                      ;There are many constructions available.  See rules in manual for more (~pg 110).
+SelLinkReduceToDistricts = 1          ;Reduce the matrices to districts or not?
+
+HwyAssignRMSEconverge = 100  /* ;100=tight convergence; 200=medium; 300=loose (350 was typical of model 3.2).  Tight is important for scenario comparisons, but it runs more iterations
+                                ;for convergence, and results in a much larger path file for select link displays.  It also makes
+                                ;CityX run longer than you may want.  Setting it to 150-200 is still a pretty tight convergence,
+                                ;and probably cuts AM/PM iterations almost in half. */
+                                
+/* ;Cube/Voyager can save paths for on-screen select link displays.  The files are quite large, so it is 
+;defaulted to off.  (Off also for those who don't own Cube/Voyager)
+;NOTE:  THE PRE-RELEASE SOFTWARE IS AVAILABLE IN: 4AssignHwy\As\Voyager3.3_beta_PathGroups.  Rename original files in case you need to go back.
+
+;to save paths with Cube/Voyager using the PATHO command, put ' ' in front of *Y, and ';' with *N
+;NOTE: AM is fewer iterations than PM, so the AM path file will be smaller and easier to work with. */
+
+PathsAM = 0  ;0 if not using Voyager, or do not want a path file.  1 otherwise
+PathsPM = 0  ;0 if not using Voyager, or do not want a path file.  1 otherwise
+
+PathsGroupField        = 'PATHGRP'   ;Cube 3.3: Network field that identifies where selected links will come from (county, study area, etc).  May need to UserDefinedLinkAttIncludes
+PathsGroupFieldValues  = '1'          ;Cube 3.3: Values from the above field that should be included (county code, study area code, etc)
+PathsFull    = 'T'  ;If using PathsGroupField for a study area, paths are by default truncated outside the area.  To change, make 'PathsFull=T' instead of F
+PathsCost    = 'T'  ;T or F. Cost is so you can display the time for L trips, or the "cost" (X*time + Y*Dist) for S trips
+PathsCostDec = 1    ;1 or 2, not 0: Decimal points on the cost (1 reduces file size)
+PathsIters   = 0    ;0=save paths from all iters, 1=save paths from 1st (free flow) iter only, 2=last iter only
+
+HOVmaxCarsPerHour        = 1680   ;LOS C = around 1680 pcphpl, LOS D = 2000, LOS E = 2400
+
+GenerateAM3hrAoTurnvolo =  ';' 		; ' ' means yes, ';' means no.  Puts 'Ao_AMturnvol.Bin' into Ao, which Cube can plot as turn diagram
+GeneratePM3hrAoTurnvolo =  ';' 		; ' ' means yes, ';' means no.  Puts 'Ao_PMturnvol.Bin' into Ao, which Cube can plot as turn diagram
+TurnIntersectionsAo = 'N = 4545'   ;if "yes", then this is where you list which intersections will have TURNVOLO recorded (ex: N='4545, 3567, etc.)
+
+
+/* ********************************************************************************************
+   REVERSIBLE LANES
+   If this scenario includes a reversible lane - either freeway or center turn lane - turn this 
+   to 1 and do thefollowing:  
+    1)Create "ReverseAM and ReversePM" in the master net, 
+    2)Enter 1 in the link data on the AM direction, and 1 for the PM direction. A 2-way link will
+      look like this: A-B am=1 pm=0    B-A am=0, pm=1.  Except for freeways, links do not have a 
+      particular direction, so view each link and determine whether the A-B or B-A is AM.
+    3)Add ReverseAM(PM) to the "UserDefinedLinkAttIncludes#" fields above.
+   NOTE: you can have reversible lanes ID'd in the network and ignore them for scenarios that don't
+   consider them by simply setting the above "test" flag to 0.
+
+   How it works: If the test flag is on, when assigning traffic to the AM period it will look for any 
+   links where the ReverseAM field is not zero.  It will then "bump up" the capacity by the number in
+   the field (usually 1).  Thus the total lanes will look the same in the network, but the capacity
+   will have changed in just that period.  It works in both distribution & final assignment.
+ ******************************************************************************************** */
+ 
+TestReversibleLane = 0  
+
+
+/* ********************************************************************************************
+ Lane Optimizer instructions and controls:
+ 
+;Purpose:  Determine how many lanes are necessary to achieve a particular VC ratio.  Results
+;in "lane fractions" ranging from a minimum of 0.5 to unlimited.x lanes.  The result can be compared
+;to a baseline (like the 2030 LRP) using the "Compare2Assignments" routine, to map where
+;you need more capacity than planned (reds) and less than planned (greens).  Look for patterns of links
+;rather than individual links.  A solid area of red says "you are generally under planned in this area".
+;If this algorithm creates arterial links that exceed 4 lanes per direction, consider the following:
+;1) Maybe the network is under-represented (i.e. is significant road spacing greater than 1-mile?  Is this
+;reasonable? Does the city have more collectors that you're not accounting for? 2)Maybe you could add
+;specific intersection improvements or "spot interchanges/bridges" to the LRP. 3)Maybe you could 
+;consider adding major transit, or changing the roadway grade (from minor to principal, or principal to freeway).
+
+;DANGER!!! This control will automatically change the lanes field.
+;DO NOT DO THIS UNLESS YOU ARE SPECIFICALLY ATTEMPTING TO DETERMINE WHAT IT WOULD TAKE TO
+;"BUILD YOUR WAY OUT OF CONGESTION" 
+ ******************************************************************************************** */
+                      
+OptimizeLanes_Distrib  = 0  ;Adds/removes lane fractions in distribution step. Takes advantage of feedback to redistribute based on new capacity.
+OptimizeLanes_Final    = 0  ;Adds/removes lane fractions in final assignment.  Probably don't need to do this if already done in distribution. 
+                            ;If not done in distribution, it is like saying "given this fixed demand, how many lanes will fill it?"  The only
+                            ;trouble is demand is not fixed, as demonstrated by the feedback loop (theoretical flaw to assume demand is fixed).  Typical application is therefore 
+                            ;distrib=1, and final = 1 or 0, but not distrib=0, final=1.
+                           
+OptimizeLanes_TargetVC  = 1.0    ;Attempts to force the AM or PM VC ratio (whichever is greater) to equal this 
+                                ;value by adding or subtracting lane fractions.  
+                                ;VC=1.0~=LOS E for 3 hours (F), VC=0.9 ~= LOS E for 1 hour, VC=0.8~=LOS D for 1 hour
+OptimizeLanes_Iters     = 4     ;How many times to change lanes then feedback to distrib?  The more iters, the more 
+                                ;likely all links will hit the target.  3 is a good min, 6 is a good max.
+OptimizeLanes_GradeSeparate = 0  
+/* ;Any roads computed to need more than 4 lanes per direction will be changed to freeways (higher speeds 
+;in distribution, more capacity per lane). Leaving off will demonstrate how many regular lanes of the preset FT 
+;are needed.  On will show how many freeway lanes would be needed.  If you use this, be sure to show "FT >=31"
+;in Cube/Viper, because lanes only is deceptive. */
+
+
+/* ////////////////////////////////////// END SECTION 2 //////////////////////////////////////// 
+
+
+
+  AT THIS POINT, YOU CAN MOST LIKELY STOP EDITING THIS FILE. IF YOU FEEL YOU NEED TO CONTINUE 
+  EDITING, PLEASE CONSULT WITH MIKE OR JOHN @ WFRC.
+
+////////////////////////////////////// BEGIN SECTION 3 /////////////////////////////////////
+************************ FILENAMES & INFO THAT SHOULD NOT BE MODIFIED *********************** */
+
+/* ********************************************************************************************
+ Section 2, GeneralParameters: Parameters used in various places throughout the modeling process
+ ******************************************************************************************** */
+
+AveNum3PlusCars = 3.5   ;Of those who have more than 3 cars, what is the average number of cars? (Auto ownership prediction)
+
+VEH_OCCUPANCY_HBW  = 1.16    ;HBW trips
+VEH_OCCUPANCY_HBC  = 1.46    ;HBC trips
+VEH_OCCUPANCY_HBO  = 1.63    ;HBO trips
+VEH_OCCUPANCY_NHB  = 1.45    ;NHB trips
+
+
+;********* 2005 HPMS Factors (AQ script): 
+HPMSF_WE =   0.9961
+HPMSA_WE =   1.0663
+HPMSL_WE =   2.6451
+
+HPMSF_DA =   1.0188
+HPMSA_DA =   0.9866
+HPMSL_DA =   2.6818
+
+HPMSF_SL =   0.8993
+HPMSA_SL =   0.9877
+HPMSL_SL =   2.3944
+
+HPMSF_UT =   1.0118
+HPMSA_UT =   0.9946
+HPMSL_UT =   2.5758
+
+HPMSF_OC =   0.9988
+HPMSA_OC =   0.9026
+HPMSL_OC =   3.1308
+
+HPMSF_SC =   0.6661
+HPMSA_SC =   0.9565
+HPMSL_SC =   2.4667
+
+HPMSF_PC =   0.9159
+HPMSA_PC =   0.9342
+HPMSL_PC =   2.7151
+
+
+
+/* ********************************************************************************************
+ Section 2, Urbansim - controls necessary for calculating travel model inputs from urbansim output.
+ ******************************************************************************************** */
+
+;NEW CONTROL
+;*****OUTPUT FROM TRAVEL MODEL TO URBANSIM (do not change)
+logsums = 'AccessLogsum.tab'
+highwaytimes = 'HighwayTimes.tab'
+
+
+/* ********************************************************************************************
+ Section 2, Step 2: Trip Generation - controls necessary for executing trip generation
+ ******************************************************************************************** */
+
+;******INPUTS
+HH6plusSize = 6.8    ; avg. size of 6p households (from 93 HIS)
+;******OUTPUTS 
+pafile      = 'pa.dbf'       ;# of productions/attractions, by purpose. 
+
+/* ********************************************************************************************
+ Section 2, Step 3: Distribution - controls necessary for executing the distribution feedback loop.
+ ******************************************************************************************** */
+
+;******INPUTS 
+;destination choice model coefficients
+dc_coefficients    = 'coefficients_cal8.block' ;modify filename if a new coefficients file is developed
+
+/* ********************************************************************************************
+ Section 2, Step 4: Mode Choice - controls necessary for executing mode choice.
+ ******************************************************************************************** */
+
+/* ;******INPUTS (make sure the following files exist in the appropriate directory)
+;chances are you won't modify these things
+
+;Prefix for transit skims. 
+;Note: Once generated they can be copied to the InputProcessing/Ifixed/static directory
+;and renamed to "skm_w4pk_2030.mtx" (_@demographicyear@).  The model needs these skims
+;to determine employment within 30 minutes of transit for the Auto Ownership model.  */
+W_LCL_skims = 'skm_w4'   ;walk-to-local skims
+D_LCL_skims = 'skm_d4'   ;drive-to-local skims
+W_BRT_skims = 'skm_w5'    ;walk-to-BRT skims
+D_BRT_skims = 'skm_d5'    ;drive-to-BRT skims
+W_EXP_skims = 'skm_w6'    ;walk-to-express bus skims
+D_EXP_skims = 'skm_d6'    ;drive-to-express bus skims
+W_LRT_skims = 'skm_w7'    ;walk-to-light rail skims
+D_LRT_skims = 'skm_d7'    ;drive-to-light rail skims
+W_CRT_skims = 'skm_w8'    ;walk-to-commuter rail skims
+D_CRT_skims = 'skm_d8'    ;drive-to-commuter rail skims
+
+walkspeed = 2.5  ;miles per hour
+bikespeed = 10   ;miles per hour
+
+
+
+/* ;managed lane disutility function parameters (constant and slope)
+;function based on distance in managed lane
+;as distance increases, utility increases (due to slope)
+;IVT coefficient for HB is around -.02
+;therefore .1 utils is equivalent to 5 minutes; 1 util to 50 minutes
+;be careful when adjusting these values */
+hbw_hbo_disutility_constant = -1
+hbw_hbo_disutility_slope = .5
+nhb_hbc_disutility_constant = -1
+nhb_hbc_disutility_slope = .5
+
+calib = 0        ;Calibration Flag - 1 if you want to calibrate, 0 if not
+/* ******************* */
+;for transit path-builder
+
+RAIL2BRT_MULTIPLIER = .5   ;compute BRT constant bias (relative to bus), from rail bias
+RAIL2MODE9_MULTIPLIER = .5
+
+W_mode9_skims = 'skm_w9'
+D_mode9_skims = 'skm_d9'
+
+
+am_spd = 'AM_SPD'		; MODIFY: name of auto speed variable to pivot off of
+
+; bus speed to auto speed ratios
+ratio_fway = .95		;bus speed to auto speed - freeways
+ratio_ramp = .75		;bus speed to auto speed - freeway ramps
+ratio_part = .6			;bus speed to auto speed - principal arterials
+ratio_mart_urbcbd = .55		;bus speed to auto speed - minor arterials, urban/cbd
+ratio_mart_subrur = .65		;bus speed to auto speed - minor arterials, suburban/rural
+ratio_collector = .6		;bus speed to auto speed - collectors
+
+; BRT speed to auto speed ratios
+ratio_BRT_fway = .95		;BRT speed to auto speed - freeways
+ratio_BRT_ramp = .75		;BRT speed to auto speed - freeway ramps
+ratio_BRT_part = .8		;BRT speed to auto speed - principal arterials
+ratio_BRT_mart_urbcbd = .8	;BRT speed to auto speed - minor arterials, urban/cbd
+ratio_BRT_mart_subrur = .8	;BRT speed to auto speed - minor arterials, suburban/rural
+ratio_BRT_collector = .8	;BRT speed to auto speed - collectors
+
+readlines   = '3readlines.txt'    ; ..\3ModeChoice\3lin:  names & paths of all transit line files
+
+;*********
+;the following values are for toll vs. non-toll highway path building and skimming in distribution and assignment
+;ALL paths are now found using a generalized time - weighting time, distance and cost
+;values of time are set to be roughly equivalent to the values in the mode choice model
+;values of time are in (cents/min) 
+;there are values of time for peak and off-peak
+;these values equate to approx. $10/hour
+
+Auto_value_Pk = 16
+Auto_value_Ok = 16
+
+;the following values are for toll vs. non-toll highway path building in mode choice
+;toll paths are found using a generalized cost, weighting time and cost
+;values of time are set at high values, to not exclude paths that are reasonable for some people
+;values of time are in (cents/min) 
+;there are values of time for peak and off-peak, and for tollways and HOTs
+;these values equate to approx. $30/hour
+
+FT40_value_Pk = 50	;all vehicles on tollway
+FT40_value_Ok = 50
+
+FT39_value_Pk = 50	;drive alone on HOT
+FT39_value_Ok = 50
+
+FT39_value_Pk2 = 50	;shared ride 2 on HOT
+FT39_value_Ok2 = 50
+
+FT39_value_Pk3 = 50	;shared ride 3+ on HOT
+FT39_value_Ok3 = 50
+
+
+/* ********************************************************************************************
+ Section 2, Step 5: Highway Assignment - controls necessary for executing the 4 period assignment process.
+ ******************************************************************************************** */
+
+;AsnValOfTime            = 4.00  ;Assume additional travel time  is  valued at $4.00/hour
+;AsnValOfMiles           = 0.10  ;Assume additional travel miles are valued at $0.10/mile
+
+ShortTripTimeShare      = .33
+ShortTripDistShare      = .67
+LongTripBreakPt         = 10  ;Driving more than this many miles is a long trip (100% time based path cost).
+
+VDF_Fwy_coef          = 0.5   ;BPR assignment parameters
+VDF_Fwy_exp           = 9.0
+
+VDF_Bng_coef          = 0.7   ;BPR assignment parameters
+VDF_Bng_exp           = 6.0
+
+VDF_Art_coef          = 0.6   ;BPR assignment parameters
+VDF_Art_exp           = 4.0
+
+VDF_Col_coef          = 0.2   ;BPR assignment parameters
+VDF_Col_exp           = 5.0
+
+VDF_Rmp_coef          = 2.0   ;BPR assignment parameters
+VDF_Rmp_exp           = 2.0
+
+maxfwyVCforVDF      = 1.50    ;maximum V/C ratios (to prevent speeds from getting unrealistically low during assignment)
+maxrmpVCforVDF      = 1.30    ;maximum V/C ratios (to prevent speeds from getting unrealistically low during assignment)
+maxartVCforVDF      = 2.70
+
+HWYLOAD_CONVERGENCE_GAP  = .005  ;highway assignment convergence criterion: maximum change in system cost between iterations
+HWYLOAD_MAXITERS    = 50  ;(50 normal) maximum # of iterations until assignment process will be considered to have converged
+
+/* ///////////////////////////////////// END SECTION 3 ///////////////////////////////////////

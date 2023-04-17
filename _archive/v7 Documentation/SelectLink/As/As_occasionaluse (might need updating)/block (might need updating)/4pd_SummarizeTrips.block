@@ -1,0 +1,314 @@
+;4pd_SummarizeTrips.block  
+;******************* Summarize Purposes by the amount of trips and miles they contribute to the period.
+ mw[60] = mw[12] * MI.8.distance ;AM HBW miles
+ mw[61] = mw[13] * MI.8.distance
+ mw[62] = mw[14] * MI.8.distance
+ mw[63] = mw[15] * MI.8.distance
+ mw[64] = mw[16] * MI.8.distance
+ mw[65] = mw[17] * MI.8.distance
+ mw[66] = mw[18] * MI.8.distance
+ mw[67] = mw[19] * MI.8.distance
+ 
+ mw[70] = mw[30] * MI.8.distance ;MD HBW miles
+ mw[71] = mw[31] * MI.8.distance
+ mw[72] = mw[32] * MI.8.distance
+ mw[73] = mw[33] * MI.8.distance
+ mw[74] = mw[34] * MI.8.distance
+ mw[75] = mw[35] * MI.8.distance
+ mw[76] = mw[36] * MI.8.distance
+ mw[77] = mw[37] * MI.8.distance
+ 
+ mw[80] = mw[20] * MI.8.distance ;PM HBW miles
+ mw[81] = mw[21] * MI.8.distance
+ mw[82] = mw[22] * MI.8.distance
+ mw[83] = mw[23] * MI.8.distance
+ mw[84] = mw[24] * MI.8.distance
+ mw[85] = mw[25] * MI.8.distance
+ mw[86] = mw[26] * MI.8.distance
+ mw[87] = mw[27] * MI.8.distance
+ 
+ mw[90] = mw[40] * MI.8.distance ;EV HBW miles
+ mw[91] = mw[41] * MI.8.distance
+ mw[92] = mw[42] * MI.8.distance
+ mw[93] = mw[43] * MI.8.distance
+ mw[94] = mw[44] * MI.8.distance
+ mw[95] = mw[45] * MI.8.distance
+ mw[96] = mw[46] * MI.8.distance
+ mw[97] = mw[47] * MI.8.distance 
+ 
+  mw[101]=mw[60]+mw[61]+mw[62]+mw[63]+mw[64]+mw[65]+mw[66]+mw[67]  ;Tot AM vehicle miles
+  mw[102]=mw[70]+mw[71]+mw[72]+mw[73]+mw[74]+mw[75]+mw[76]+mw[77]  ;Tot MD vehicle miles
+  mw[103]=mw[80]+mw[81]+mw[82]+mw[83]+mw[84]+mw[85]+mw[86]+mw[87]  ;Tot PM vehicle miles
+  mw[104]=mw[90]+mw[91]+mw[92]+mw[93]+mw[94]+mw[95]+mw[96]+mw[97]  ;Tot EV vehicle miles
+
+  
+  TotAMHBWm = TotAMHBWm + rowsum(60)
+  TotAMHBCm = TotAMHBCm + rowsum(61)
+  TotAMHBOm = TotAMHBOm + rowsum(62)
+  TotAMNHBm = TotAMNHBm + rowsum(63)
+  TotAMIXm  = TotAMIXm  + rowsum(64)
+  TotAMXIm  = TotAMXIm  + rowsum(65)
+  TotAMCOMMm= TotAMCOMMm+ rowsum(66)
+  TotAMXXm  = TotAMXXm  + rowsum(67)
+
+  TotMDHBWm = TotMDHBWm + rowsum(70)
+  TotMDHBCm = TotMDHBCm + rowsum(71)
+  TotMDHBOm = TotMDHBOm + rowsum(72)
+  TotMDNHBm = TotMDNHBm + rowsum(73)
+  TotMDIXm  = TotMDIXm  + rowsum(74)
+  TotMDXIm  = TotMDXIm  + rowsum(75)
+  TotMDCOMMm= TotMDCOMMm+ rowsum(76)
+  TotMDXXm  = TotMDXXm  + rowsum(77)    
+    
+  TotPMHBWm = TotPMHBWm + rowsum(80)
+  TotPMHBCm = TotPMHBCm + rowsum(81)
+  TotPMHBOm = TotPMHBOm + rowsum(82)
+  TotPMNHBm = TotPMNHBm + rowsum(83)
+  TotPMIXm  = TotPMIXm  + rowsum(84)
+  TotPMXIm  = TotPMXIm  + rowsum(85)
+  TotPMCOMMm= TotPMCOMMm+ rowsum(86)
+  TotPMXXm  = TotPMXXm  + rowsum(87)   
+    
+  TotEVHBWm = TotEVHBWm + rowsum(90)
+  TotEVHBCm = TotEVHBCm + rowsum(91)
+  TotEVHBOm = TotEVHBOm + rowsum(92)
+  TotEVNHBm = TotEVNHBm + rowsum(93)
+  TotEVIXm  = TotEVIXm  + rowsum(94)
+  TotEVXIm  = TotEVXIm  + rowsum(95)
+  TotEVCOMMm= TotEVCOMMm+ rowsum(96)
+  TotEVXXm  = TotEVXXm  + rowsum(97)  
+  
+  TotAMm    = TotAMm    + rowsum(101)
+  TotMDm    = TotMDm    + rowsum(102)
+  TotPMm    = TotPMm    + rowsum(103)
+  TotEVm    = TotEVm    + rowsum(104)
+   
+      
+  TotAMHBWt = TotAMHBWt + rowsum(12)
+  TotAMHBCt = TotAMHBCt + rowsum(13)
+  TotAMHBOt = TotAMHBOt + rowsum(14)
+  TotAMNHBt = TotAMNHBt + rowsum(15)
+  TotAMIXt  = TotAMIXt  + rowsum(16)
+  TotAMXIt  = TotAMXIt  + rowsum(17)
+  TotAMCOMMt= TotAMCOMMt+ rowsum(18)
+  TotAMXXt  = TotAMXXt  + rowsum(19)
+
+  TotMDHBWt = TotMDHBWt + rowsum(30)
+  TotMDHBCt = TotMDHBCt + rowsum(31)
+  TotMDHBOt = TotMDHBOt + rowsum(32)
+  TotMDNHBt = TotMDNHBt + rowsum(33)
+  TotMDIXt  = TotMDIXt  + rowsum(34)
+  TotMDXIt  = TotMDXIt  + rowsum(35)
+  TotMDCOMMt= TotMDCOMMt+ rowsum(36)
+  TotMDXXt  = TotMDXXt  + rowsum(37)    
+    
+  TotPMHBWt = TotPMHBWt + rowsum(20)
+  TotPMHBCt = TotPMHBCt + rowsum(21)
+  TotPMHBOt = TotPMHBOt + rowsum(22)
+  TotPMNHBt = TotPMNHBt + rowsum(23)
+  TotPMIXt  = TotPMIXt  + rowsum(24)
+  TotPMXIt  = TotPMXIt  + rowsum(25)
+  TotPMCOMMt= TotPMCOMMt+ rowsum(26)
+  TotPMXXt  = TotPMXXt  + rowsum(27)   
+    
+  TotEVHBWt = TotEVHBWt + rowsum(40)
+  TotEVHBCt = TotEVHBCt + rowsum(41)
+  TotEVHBOt = TotEVHBOt + rowsum(42)
+  TotEVNHBt = TotEVNHBt + rowsum(43)
+  TotEVIXt  = TotEVIXt  + rowsum(44)
+  TotEVXIt  = TotEVXIt  + rowsum(45)
+  TotEVCOMMt= TotEVCOMMt+ rowsum(46)
+  TotEVXXt  = TotEVXXt  + rowsum(47)   
+  
+  TotAMt    = TotAMt    + rowsum(51)
+  TotMDt    = TotMDt    + rowsum(52)
+  TotPMt    = TotPMt    + rowsum(53)
+  TotEVt    = TotEVt    + rowsum(54)
+  
+;**************** Summarize and output trips by purpose and period  
+if (i==@Usedzones@) 
+  TotDYm    = TotAMm + TotMDm + TotPMm + TotEVm
+  TotDYt    = TotAMt + TotMDt + TotPMt + TotEVt
+
+  TotDYHBWm = TotAMHBWm + TotMDHBWm + TotPMHBWm + TotEVHBWm
+  TotDYHBCm = TotAMHBCm + TotMDHBCm + TotPMHBCm + TotEVHBCm
+  TotDYHBOm = TotAMHBOm + TotMDHBOm + TotPMHBOm + TotEVHBOm
+  TotDYNHBm = TotAMNHBm + TotMDNHBm + TotPMNHBm + TotEVNHBm
+  TotDYIXm  = TotAMIXm  + TotMDIXm  + TotPMIXm  + TotEVIXm 
+  TotDYXIm  = TotAMXIm  + TotMDXIm  + TotPMXIm  + TotEVXIm 
+  TotDYCOMMm= TotAMCOMMm+ TotMDCOMMm+ TotPMCOMMm+ TotEVCOMMm
+  TotDYXXm  = TotAMXXm  + TotMDXXm  + TotPMXXm  + TotEVXXm
+    
+  TotDYHBWt = TotAMHBWt + TotMDHBWt + TotPMHBWt + TotEVHBWt
+  TotDYHBCt = TotAMHBCt + TotMDHBCt + TotPMHBCt + TotEVHBCt
+  TotDYHBOt = TotAMHBOt + TotMDHBOt + TotPMHBOt + TotEVHBOt
+  TotDYNHBt = TotAMNHBt + TotMDNHBt + TotPMNHBt + TotEVNHBt
+  TotDYIXt  = TotAMIXt  + TotMDIXt  + TotPMIXt  + TotEVIXt 
+  TotDYXIt  = TotAMXIt  + TotMDXIt  + TotPMXIt  + TotEVXIt 
+  TotDYCOMMt= TotAMCOMMt+ TotMDCOMMt+ TotPMCOMMt+ TotEVCOMMt
+  TotDYXXt  = TotAMXXt  + TotMDXXt  + TotPMXXt  + TotEVXXt
+
+
+  AMHBWmpct = (TotAMHBWm / TotAMm) * 100  ;% of AM traffic that is HBW
+  AMHBCmpct = (TotAMHBCm / TotAMm) * 100
+  AMHBOmpct = (TotAMHBOm / TotAMm) * 100
+  AMNHBmpct = (TotAMNHBm / TotAMm) * 100  
+  AMIXmpct  = (TotAMIXm  / TotAMm) * 100  
+  AMXImpct  = (TotAMXIm  / TotAMm) * 100  
+  AMCOMMmpct= (TotAMCOMMm/ TotAMm) * 100  
+  AMXXmpct  = (TotAMXXm  / TotAMm) * 100  
+
+  MDHBWmpct = (TotMDHBWm / TotMDm) * 100 
+  MDHBCmpct = (TotMDHBCm / TotMDm) * 100
+  MDHBOmpct = (TotMDHBOm / TotMDm) * 100
+  MDNHBmpct = (TotMDNHBm / TotMDm) * 100  
+  MDIXmpct  = (TotMDIXm  / TotMDm) * 100  
+  MDXImpct  = (TotMDXIm  / TotMDm) * 100  
+  MDCOMMmpct= (TotMDCOMMm/ TotMDm) * 100  
+  MDXXmpct  = (TotMDXXm  / TotMDm) * 100   
+   
+  PMHBWmpct = (TotPMHBWm / TotPMm) * 100 
+  PMHBCmpct = (TotPMHBCm / TotPMm) * 100
+  PMHBOmpct = (TotPMHBOm / TotPMm) * 100
+  PMNHBmpct = (TotPMNHBm / TotPMm) * 100  
+  PMIXmpct  = (TotPMIXm  / TotPMm) * 100  
+  PMXImpct  = (TotPMXIm  / TotPMm) * 100  
+  PMCOMMmpct= (TotPMCOMMm/ TotPMm) * 100  
+  PMXXmpct  = (TotPMXXm  / TotPMm) * 100  
+    
+  EVHBWmpct = (TotEVHBWm / TotEVm) * 100  
+  EVHBCmpct = (TotEVHBCm / TotEVm) * 100
+  EVHBOmpct = (TotEVHBOm / TotEVm) * 100
+  EVNHBmpct = (TotEVNHBm / TotEVm) * 100  
+  EVIXmpct  = (TotEVIXm  / TotEVm) * 100  
+  EVXImpct  = (TotEVXIm  / TotEVm) * 100  
+  EVCOMMmpct= (TotEVCOMMm/ TotEVm) * 100  
+  EVXXmpct  = (TotEVXXm  / TotEVm) * 100  
+    
+  DYHBWmpct = (TotDYHBWm / TotDYm) * 100  
+  DYHBCmpct = (TotDYHBCm / TotDYm) * 100
+  DYHBOmpct = (TotDYHBOm / TotDYm) * 100
+  DYNHBmpct = (TotDYNHBm / TotDYm) * 100  
+  DYIXmpct  = (TotDYIXm  / TotDYm) * 100  
+  DYXImpct  = (TotDYXIm  / TotDYm) * 100  
+  DYCOMMmpct= (TotDYCOMMm/ TotDYm) * 100  
+  DYXXmpct  = (TotDYXXm  / TotDYm) * 100    
+  
+  
+  AMHBWtpct = (TotAMHBWt / TotAMt) * 100  ;% of AM traffic that is HBW
+  AMHBCtpct = (TotAMHBCt / TotAMt) * 100
+  AMHBOtpct = (TotAMHBOt / TotAMt) * 100
+  AMNHBtpct = (TotAMNHBt / TotAMt) * 100  
+  AMIXtpct  = (TotAMIXt  / TotAMt) * 100  
+  AMXItpct  = (TotAMXIt  / TotAMt) * 100  
+  AMCOMMtpct= (TotAMCOMMt/ TotAMt) * 100  
+  AMXXtpct  = (TotAMXXt  / TotAMt) * 100  
+
+  MDHBWtpct = (TotMDHBWt / TotMDt) * 100 
+  MDHBCtpct = (TotMDHBCt / TotMDt) * 100
+  MDHBOtpct = (TotMDHBOt / TotMDt) * 100
+  MDNHBtpct = (TotMDNHBt / TotMDt) * 100  
+  MDIXtpct  = (TotMDIXt  / TotMDt) * 100  
+  MDXItpct  = (TotMDXIt  / TotMDt) * 100  
+  MDCOMMtpct= (TotMDCOMMt/ TotMDt) * 100  
+  MDXXtpct  = (TotMDXXt  / TotMDt) * 100   
+   
+  PMHBWtpct = (TotPMHBWt / TotPMt) * 100 
+  PMHBCtpct = (TotPMHBCt / TotPMt) * 100
+  PMHBOtpct = (TotPMHBOt / TotPMt) * 100
+  PMNHBtpct = (TotPMNHBt / TotPMt) * 100  
+  PMIXtpct  = (TotPMIXt  / TotPMt) * 100  
+  PMXItpct  = (TotPMXIt  / TotPMt) * 100  
+  PMCOMMtpct= (TotPMCOMMt/ TotPMt) * 100  
+  PMXXtpct  = (TotPMXXt  / TotPMt) * 100  
+    
+  EVHBWtpct = (TotEVHBWt / TotEVt) * 100  
+  EVHBCtpct = (TotEVHBCt / TotEVt) * 100
+  EVHBOtpct = (TotEVHBOt / TotEVt) * 100
+  EVNHBtpct = (TotEVNHBt / TotEVt) * 100  
+  EVIXtpct  = (TotEVIXt  / TotEVt) * 100  
+  EVXItpct  = (TotEVXIt  / TotEVt) * 100  
+  EVCOMMtpct= (TotEVCOMMt/ TotEVt) * 100  
+  EVXXtpct  = (TotEVXXt  / TotEVt) * 100  
+    
+  DYHBWtpct = (TotDYHBWt / TotDYt) * 100  
+  DYHBCtpct = (TotDYHBCt / TotDYt) * 100
+  DYHBOtpct = (TotDYHBOt / TotDYt) * 100
+  DYNHBtpct = (TotDYNHBt / TotDYt) * 100  
+  DYIXtpct  = (TotDYIXt  / TotDYt) * 100  
+  DYXItpct  = (TotDYXIt  / TotDYt) * 100  
+  DYCOMMtpct= (TotDYCOMMt/ TotDYt) * 100  
+  DYXXtpct  = (TotDYXXt  / TotDYt) * 100   
+    
+  TotAMmpct = AMHBWmpct + AMHBCmpct + AMHBOmpct + AMNHBmpct + AMIXmpct + AMXImpct + AMCOMMmpct + AMXXmpct
+  TotAMtpct = AMHBWtpct + AMHBCtpct + AMHBOtpct + AMNHBtpct + AMIXtpct + AMXItpct + AMCOMMtpct + AMXXtpct  
+  TotMDmpct = MDHBWmpct + MDHBCmpct + MDHBOmpct + MDNHBmpct + MDIXmpct + MDXImpct + MDCOMMmpct + MDXXmpct
+  TotMDtpct = MDHBWtpct + MDHBCtpct + MDHBOtpct + MDNHBtpct + MDIXtpct + MDXItpct + MDCOMMtpct + MDXXtpct  
+  TotPMmpct = PMHBWmpct + PMHBCmpct + PMHBOmpct + PMNHBmpct + PMIXmpct + PMXImpct + PMCOMMmpct + PMXXmpct
+  TotPMtpct = PMHBWtpct + PMHBCtpct + PMHBOtpct + PMNHBtpct + PMIXtpct + PMXItpct + PMCOMMtpct + PMXXtpct  
+  TotEVmpct = EVHBWmpct + EVHBCmpct + EVHBOmpct + EVNHBmpct + EVIXmpct + EVXImpct + EVCOMMmpct + EVXXmpct
+  TotEVtpct = EVHBWtpct + EVHBCtpct + EVHBOtpct + EVNHBtpct + EVIXtpct + EVXItpct + EVCOMMtpct + EVXXtpct
+  TotDYmpct = DYHBWmpct + DYHBCmpct + DYHBOmpct + DYNHBmpct + DYIXmpct + DYXImpct + DYCOMMmpct + DYXXmpct
+  TotDYtpct = DYHBWtpct + DYHBCtpct + DYHBOtpct + DYNHBtpct + DYIXtpct + DYXItpct + DYCOMMtpct + DYXXtpct
+
+  
+  PRINT FORM=12.0C FILE=@ParentDir@@ADir@@Ao@VolOfPurposeInPeriod2.txt LIST=
+      'AM(6-9) ', '   Veh Trips',  ' %Tot', '   Veh Miles',  ' %Tot', '  Mi/Trip', '    Cars/day\n',
+      '   HBW: ', TotAMHBWt, AMHBWtpct(5.0), TotAMHBWm, AMHBWmpct(5.0), (TotAMHBWm /TotAMHBWt)(9.0), (TotAMHBWm/@MilesPerCar@), '\n', 
+      '   HBC: ', TotAMHBCt, AMHBCtpct(5.0), TotAMHBCm, AMHBCmpct(5.0), (TotAMHBCm /TotAMHBCt)(9.0), (TotAMHBCm/@MilesPerCar@), '\n', 
+      '   HBO: ', TotAMHBOt, AMHBOtpct(5.0), TotAMHBOm, AMHBOmpct(5.0), (TotAMHBOm /TotAMHBOt)(9.0), (TotAMHBOm/@MilesPerCar@), '\n', 
+      '   NHB: ', TotAMNHBt, AMNHBtpct(5.0), TotAMNHBm, AMNHBmpct(5.0), (TotAMNHBm /TotAMNHBt)(9.0), (TotAMNHBm/@MilesPerCar@), '\n', 
+      '    IX: ', TotAMIXt,  AMIXtpct(5.0),  TotAMIXm,  AMIXmpct(5.0),  (TotAMIXm  /TotAMIXt )(9.0), (TotAMIXm /@MilesPerCar@), '\n', 
+      '    XI: ', TotAMXIt,  AMXItpct(5.0),  TotAMXIm,  AMXImpct(5.0),  (TotAMXIm  /TotAMXIt )(9.0), (TotAMXIm /@MilesPerCar@), '\n', 
+      '   COM: ', TotAMCOMMt,AMCOMMtpct(5.0),TotAMCOMMm,AMCOMMmpct(5.0),(TotAMCOMMm/TotAMCOMMt)(9.0),(TotAMCOMMm/@MilesPerCar@), '\n', 
+      '    XX: ', TotAMXXt,  AMXXtpct(5.0),  TotAMXXm,  AMXXmpct(5.0),  (TotAMXXm  /TotAMXXt )(9.0), (TotAMXXm /@MilesPerCar@), '\n',
+      'AM TOT: ', TotAMt,    TotAMtpct(5.0), TotAMm,    TotAMmpct(5.0), (TotAMm    /TotAMt   )(9.0), (TotAMm   /@MilesPerCar@), '\n'
+  
+  PRINT FORM=12.0C FILE=@ParentDir@@ADir@@Ao@VolOfPurposeInPeriod2.txt LIST=
+      'MD(9-3) \n',
+      '   HBW: ', TotMDHBWt, MDHBWtpct(5.0), TotMDHBWm, MDHBWmpct(5.0), (TotMDHBWm /TotMDHBWt)(9.0), (TotMDHBWm/@MilesPerCar@), '\n', 
+      '   HBC: ', TotMDHBCt, MDHBCtpct(5.0), TotMDHBCm, MDHBCmpct(5.0), (TotMDHBCm /TotMDHBCt)(9.0), (TotMDHBCm/@MilesPerCar@), '\n', 
+      '   HBO: ', TotMDHBOt, MDHBOtpct(5.0), TotMDHBOm, MDHBOmpct(5.0), (TotMDHBOm /TotMDHBOt)(9.0), (TotMDHBOm/@MilesPerCar@), '\n', 
+      '   NHB: ', TotMDNHBt, MDNHBtpct(5.0), TotMDNHBm, MDNHBmpct(5.0), (TotMDNHBm /TotMDNHBt)(9.0), (TotMDNHBm/@MilesPerCar@), '\n', 
+      '    IX: ', TotMDIXt,  MDIXtpct(5.0),  TotMDIXm,  MDIXmpct(5.0),  (TotMDIXm  /TotMDIXt )(9.0), (TotMDIXm /@MilesPerCar@), '\n', 
+      '    XI: ', TotMDXIt,  MDXItpct(5.0),  TotMDXIm,  MDXImpct(5.0),  (TotMDXIm  /TotMDXIt )(9.0), (TotMDXIm /@MilesPerCar@), '\n', 
+      '   COM: ', TotMDCOMMt,MDCOMMtpct(5.0),TotMDCOMMm,MDCOMMmpct(5.0),(TotMDCOMMm/TotMDCOMMt)(9.0),(TotMDCOMMm/@MilesPerCar@), '\n', 
+      '    XX: ', TotMDXXt,  MDXXtpct(5.0),  TotMDXXm,  MDXXmpct(5.0),  (TotMDXXm  /TotMDXXt )(9.0), (TotMDXXm /@MilesPerCar@), '\n',
+      'MD TOT: ', TotMDt,    TotMDtpct(5.0), TotMDm,    TotMDmpct(5.0), (TotMDm    /TotMDt   )(9.0), (TotMDm   /@MilesPerCar@), '\n'
+  
+  PRINT FORM=12.0C FILE=@ParentDir@@ADir@@Ao@VolOfPurposeInPeriod2.txt LIST=
+      'PM(3-6) \n',
+      '   HBW: ', TotPMHBWt, PMHBWtpct(5.0), TotPMHBWm, PMHBWmpct(5.0), (TotPMHBWm /TotPMHBWt)(9.0), (TotPMHBWm/@MilesPerCar@), '\n', 
+      '   HBC: ', TotPMHBCt, PMHBCtpct(5.0), TotPMHBCm, PMHBCmpct(5.0), (TotPMHBCm /TotPMHBCt)(9.0), (TotPMHBCm/@MilesPerCar@), '\n', 
+      '   HBO: ', TotPMHBOt, PMHBOtpct(5.0), TotPMHBOm, PMHBOmpct(5.0), (TotPMHBOm /TotPMHBOt)(9.0), (TotPMHBOm/@MilesPerCar@), '\n', 
+      '   NHB: ', TotPMNHBt, PMNHBtpct(5.0), TotPMNHBm, PMNHBmpct(5.0), (TotPMNHBm /TotPMNHBt)(9.0), (TotPMNHBm/@MilesPerCar@), '\n', 
+      '    IX: ', TotPMIXt,  PMIXtpct(5.0),  TotPMIXm,  PMIXmpct(5.0),  (TotPMIXm  /TotPMIXt )(9.0), (TotPMIXm /@MilesPerCar@), '\n', 
+      '    XI: ', TotPMXIt,  PMXItpct(5.0),  TotPMXIm,  PMXImpct(5.0),  (TotPMXIm  /TotPMXIt )(9.0), (TotPMXIm /@MilesPerCar@), '\n', 
+      '   COM: ', TotPMCOMMt,PMCOMMtpct(5.0),TotPMCOMMm,PMCOMMmpct(5.0),(TotPMCOMMm/TotPMCOMMt)(9.0),(TotPMCOMMm/@MilesPerCar@), '\n', 
+      '    XX: ', TotPMXXt,  PMXXtpct(5.0),  TotPMXXm,  PMXXmpct(5.0),  (TotPMXXm  /TotPMXXt )(9.0), (TotPMXXm /@MilesPerCar@), '\n',
+      'PM TOT: ', TotPMt,    TotPMtpct(5.0), TotPMm,    TotPMmpct(5.0), (TotPMm    /TotPMt   )(9.0), (TotPMm   /@MilesPerCar@), '\n'
+  
+  PRINT FORM=12.0C FILE=@ParentDir@@ADir@@Ao@VolOfPurposeInPeriod2.txt LIST=
+      'EV(6-6) \n',
+      '   HBW: ', TotEVHBWt, EVHBWtpct(5.0), TotEVHBWm, EVHBWmpct(5.0), (TotEVHBWm /TotEVHBWt)(9.0), (TotEVHBWm/@MilesPerCar@), '\n', 
+      '   HBC: ', TotEVHBCt, EVHBCtpct(5.0), TotEVHBCm, EVHBCmpct(5.0), (TotEVHBCm /TotEVHBCt)(9.0), (TotEVHBCm/@MilesPerCar@), '\n', 
+      '   HBO: ', TotEVHBOt, EVHBOtpct(5.0), TotEVHBOm, EVHBOmpct(5.0), (TotEVHBOm /TotEVHBOt)(9.0), (TotEVHBOm/@MilesPerCar@), '\n', 
+      '   NHB: ', TotEVNHBt, EVNHBtpct(5.0), TotEVNHBm, EVNHBmpct(5.0), (TotEVNHBm /TotEVNHBt)(9.0), (TotEVNHBm/@MilesPerCar@), '\n', 
+      '    IX: ', TotEVIXt,  EVIXtpct(5.0),  TotEVIXm,  EVIXmpct(5.0),  (TotEVIXm  /TotEVIXt )(9.0), (TotEVIXm /@MilesPerCar@), '\n', 
+      '    XI: ', TotEVXIt,  EVXItpct(5.0),  TotEVXIm,  EVXImpct(5.0),  (TotEVXIm  /TotEVXIt )(9.0), (TotEVXIm /@MilesPerCar@), '\n', 
+      '   COM: ', TotEVCOMMt,EVCOMMtpct(5.0),TotEVCOMMm,EVCOMMmpct(5.0),(TotEVCOMMm/TotEVCOMMt)(9.0),(TotEVCOMMm/@MilesPerCar@), '\n', 
+      '    XX: ', TotEVXXt,  EVXXtpct(5.0),  TotEVXXm,  EVXXmpct(5.0),  (TotEVXXm  /TotEVXXt )(9.0), (TotEVXXm /@MilesPerCar@), '\n',
+      'EV TOT: ', TotEVt,    TotEVtpct(5.0), TotEVm,    TotEVmpct(5.0), (TotEVm    /TotEVt   )(9.0), (TotEVm   /@MilesPerCar@), '\n'
+  
+  PRINT FORM=12.0C FILE=@ParentDir@@ADir@@Ao@VolOfPurposeInPeriod2.txt LIST=
+      '   HBW: ', TotDYHBWt, DYHBWtpct(5.0), TotDYHBWm, DYHBWmpct(5.0), (TotDYHBWm /TotDYHBWt)(9.0), (TotDYHBWm/@MilesPerCar@), '\n', 
+      '   HBC: ', TotDYHBCt, DYHBCtpct(5.0), TotDYHBCm, DYHBCmpct(5.0), (TotDYHBCm /TotDYHBCt)(9.0), (TotDYHBCm/@MilesPerCar@), '\n', 
+      '   HBO: ', TotDYHBOt, DYHBOtpct(5.0), TotDYHBOm, DYHBOmpct(5.0), (TotDYHBOm /TotDYHBOt)(9.0), (TotDYHBOm/@MilesPerCar@), '\n', 
+      '   NHB: ', TotDYNHBt, DYNHBtpct(5.0), TotDYNHBm, DYNHBmpct(5.0), (TotDYNHBm /TotDYNHBt)(9.0), (TotDYNHBm/@MilesPerCar@), '\n', 
+      '    IX: ', TotDYIXt,  DYIXtpct(5.0),  TotDYIXm,  DYIXmpct(5.0),  (TotDYIXm  /TotDYIXt )(9.0), (TotDYIXm /@MilesPerCar@), '\n', 
+      '    XI: ', TotDYXIt,  DYXItpct(5.0),  TotDYXIm,  DYXImpct(5.0),  (TotDYXIm  /TotDYXIt )(9.0), (TotDYXIm /@MilesPerCar@), '\n', 
+      '   COM: ', TotDYCOMMt,DYCOMMtpct(5.0),TotDYCOMMm,DYCOMMmpct(5.0),(TotDYCOMMm/TotDYCOMMt)(9.0),(TotDYCOMMm/@MilesPerCar@), '\n', 
+      '    XX: ', TotDYXXt,  DYXXtpct(5.0),  TotDYXXm,  DYXXmpct(5.0),  (TotDYXXm  /TotDYXXt )(9.0), (TotDYXXm /@MilesPerCar@), '\n',
+      'DY TOT: ', TotDYt,    TotDYtpct(5.0), TotDYm,    TotDYmpct(5.0), (TotDYm    /TotDYt   )(9.0), (TotDYm   /@MilesPerCar@), '\n'
+  
+endif
