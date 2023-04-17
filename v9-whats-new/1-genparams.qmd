@@ -1,160 +1,178 @@
 # General Parameters
 
 ## Zone Parameters
-•	Updated following TAZ & highway node references:
-o	UsedZones 	= 3629
-o	BoxElderRange 	= '1-153'
-o	WeberRange	= '154-581'
-o	DavisRange	= '582-905'
-o	SLRange	= '906-2216'
-o	UtahRange	= '2217-3546'
-o	Dummyzones	= '3547-3600'
-o	Externalzones	= '3601-3629'
-o	NorthBC	= '3604,3605,3606'
-o	HwyNodes 	= '10000-99999'
+ - Updated following TAZ & highway node references:
+ 	- UsedZones 	= 3629
+ 	- BoxElderRange 	= '1-153'
+ 	- WeberRange	= '154-581'
+ 	- DavisRange	= '582-905'
+ 	- SLRange	= '906-2216'
+ 	- UtahRange	= '2217-3546'
+ 	- Dummyzones	= '3547-3600'
+ 	- Externalzones	= '3601-3629'
+ 	- NorthBC	= '3604,3605,3606'
+ 	- HwyNodes 	= '10000-99999'
 
-•	Updated colleges/universities node references:
-o	Colleges	= '437,521, 693, 959,979,1007,1029,1051,1085,1231,1263,1491,1525,1580,1776,1886,2031,
-	    2606,2809,2848,2882,2939,3336'
-o	LDSBC	= 1029
-o	WESTMIN	= 1263
-o	UOFU_Main	= 1051
-o	UOFU_Med	= 1007
-o	WSU_OGDEN	=  437
-o	WSU_DAVIS	=  693
-o	WSU_WEST	=  521
-o	SLCC_TL	= 1580
-o	SLCC_SC	= 1231
-o	SLCC_JD	= 1776
-o	SLCC_Mead	= 1491
-o	SLCC_ML	= 1886
-o	SLCC_LB	= 1085
-o	SLCC_HL	= 1525
-o	SLCC_Airp	=  979
-o	SLCC_West	=  959
-o	SLCC_HM	= 2031
-o	BYU	= 2939
-o	UVU_MAIN	= 2848
-o	UVU_GENEVA	= 2882
-o	UVU_THANKP	= 2606
-o	UVU_VINE	= 2809
-o	UVU_PAYSON	= 3336
+ - Updated colleges/universities node references:
+ 	- Colleges	= '437, 521, 693, 959, 979, 1007, 1029, 1051, 1085, 1231, 1263, 1491, 1525, 1580, 1776, 1886, 2031, 2606, 2809, 2848, 2882, 2939, 3336'
+	- LDSBC	= 1029
+	- WESTMIN	= 1263
+	- UOFU_Main	= 1051
+	- UOFU_Med	= 1007
+	- WSU_OGDEN	=  437
+	- WSU_DAVIS	=  693
+	- WSU_WEST	=  521
+	- SLCC_TL	= 1580
+	- SLCC_SC	= 1231
+	- SLCC_JD	= 1776
+	- SLCC_Mead	= 1491
+	- SLCC_ML	= 1886
+	- SLCC_LB	= 1085
+	- SLCC_HL	= 1525
+	- SLCC_Airp	=  979
+	- SLCC_West	=  959
+	- SLCC_HM	= 2031
+	- BYU	= 2939
+	- UVU_MAIN	= 2848
+	- UVU_GENEVA	= 2882
+	- UVU_THANKP	= 2606
+	- UVU_VINE	= 2809
+	- UVU_PAYSON	= 3336
+	<p></p>
+	- Lagoon	=  781
+	- Airport	=  965
+	- TempleSquare	= 1035
+	- SLC_Library	= 1147
 
-o	Lagoon	=  781
-o	Airport	=  965
-o	TempleSquare	= 1035
-o	SLC_Library	= 1147
-
-•	Removed following variables:
-o	RegionRange
-o	WFRCRange
-o	MAGRange
+ - Removed following variables:
+	- RegionRange
+	- WFRCRange
+	- MAGRange
 
 County Identification
-•	Removed this entire section containing the following variables:
-o	CountyRange
-o	CountyName1
-o	CountyName2
-o	CountyName3
-o	CountyName4
-o	CountyName5
-o	CO_Name1
-o	CO_Name2
-o	CO_Name3
-o	CO_Name4
-o	CO_Name5
+
+ - Removed this entire section containing the following variables:
+	- CountyRange
+	- CountyName1
+	- CountyName2
+	- CountyName3
+	- CountyName4
+	- CountyName5
+	- CO_Name1
+	- CO_Name2
+	- CO_Name3
+	- CO_Name4
+	- CO_Name5
 
 AQ conformity reports are broken down by each county and 3 cities
-•	Removed this entire section containing the following variables:
-o	RE_ID
-o	WE_ID
-o	DA_ID
-o	SL_ID
-o	UT_ID
-o	BE_ID
-o	OC_ID
-o	SC_ID
-o	PC_ID
+
+ - Removed this entire section containing the following variables:
+	- RE_ID
+	- WE_ID
+	- DA_ID
+	- SL_ID
+	- UT_ID
+	- BE_ID
+	- OC_ID
+	- SC_ID
+	- PC_ID
 
 Special Trip Table Script Parameters
-•	Updated income break points to 2019 ACS data
-o	Income_Lo	= 45000
-o	Income_Md	= 75000
-o	Income_Hi	= 125000
+
+ - Updated income break points to 2019 ACS data
+	- Income_Lo	= 45000
+	- Income_Md	= 75000
+	- Income_Hi	= 125000
 
 Household Disaggregation Information
-•	Updated regional median income:
-o	Reg_Median_Inc = 74946
-o	from 2019 5-year ACS, in 2019 dollars
-o	represents average for just WF region
+
+ - Updated regional median income:
+	- Reg_Median_Inc = 74946
+	- from 2019 5-year ACS, in 2019 dollars
+	- represents average for just WF region
 
 Distribution, Mode Choice & Assignment Parameters
-Auto Occupancy
-•	Renamed the following variables (scripts were also udpated) and updated values:
-Previous Name	New Name	New Value
-VEH_OCCUPANCY_HBW	VehOcc_HBW	1.10
-VEH_OCCUPANCY_HBSHP	VehOcc_HBShp	1.63
-VEH_OCCUPANCY_HBOTH	VehOcc_HBOth	1.68
-VEH_OCCUPANCY_HBSCH	VehOcc_HBSch	1.76
-VEH_OCCUPANCY_HBC	VehOcc_HBC	1.12
-VEH_OCCUPANCY_NHBW	VehOcc_NHBW	1.21
-VEH_OCCUPANCY_NHBNW	VehOcc_NHBNW	1.76
-NA	VehOcc_Rec	1.68
-VEH_OCCUPANCY_HBO	VehOcc_HBO	1.67
-VEH_OCCUPANCY_NHB	VehOcc_NHB	1.54
-NA	VehOcc_ExtWrk	1.16
-NA	VehOcc_ExtHBO	1.82
-NA	VehOcc_ExtNHB	1.73
-NA	VehOcc_ExtRec	1.73
-VEH_OCC_3P_HBW	VehOcc_3p_HBW	3.53
-NA	VehOcc_3p_HBShp	3.49
-NA	VehOcc_3p_HBOth	3.73
-NA	VehOcc_3p_HBSch	3.88
-VEH_OCC_3P_HBC	VehOcc_3p_HBC	3.24
-NA	VehOcc_3p_NHBW	3.71
-NA	VehOcc_3p_NHBNW	3.71
-NA	VehOcc_3p_Rec	3.73
-VEH_OCC_3P_HBO	VehOcc_3p_HBO	3.68
-VEH_OCC_3P_NHB	VehOcc_3p_NHB	3.71
 
-•	Auto occupancy parameters were updated based on 2012 Household Travel Survey (reprocessed)
-•	Values represent average persons per vehicle for just the Wasatch Front model space
-•	External trips (Ext) are average for IX + XI, all other parameters are averages for II trips
+Auto Occupancy
+
+ - Renamed the following variables (scripts were also udpated) and updated values:
+ 
+```{python}
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [["VEH_OCCUPANCY_HBW"     , 'VehOcc_HBW'     , '1.10'],
+         ["VEH_OCCUPANCY_HBSHP"   , 'VehOcc_HBShp'   , '1.63'],
+         ["VEH_OCCUPANCY_HBOTH"   , 'VehOcc_HBOth'   , '1.68'],
+         ["VEH_OCCUPANCY_HBSCH"   , 'VehOcc_HBSch'   , '1.76'],
+		 ["VEH_OCCUPANCY_HBC"     , 'VehOcc_HBC'     , '1.12'],
+         ["VEH_OCCUPANCY_NHBW"    , 'VehOcc_NHBW'    , '1.21'],
+         ["VEH_OCCUPANCY_NHBNW"   , 'VehOcc_NHBNW'   , '1.76'],
+         ["NA"    				  , 'VehOcc_Rec'     , '1.68'],
+		 ["VEH_OCCUPANCY_HBO"     , 'VehOcc_HBO	'    , '1.67'],
+         ["VEH_OCCUPANCY_NHB"     , 'VehOcc_NHB	'    , '1.54'],
+         ["NA"                    , 'VehOcc_ExtWrk'  , '1.16'],
+         ["NA"                    , 'VehOcc_ExtHBO'  , '1.82'],
+		 ["NA"                    , 'VehOcc_ExtNHB'  , '1.73'],
+         ["NA"                    , 'VehOcc_ExtRec'  , '1.73'],
+		 ['VEH_OCC_3P_HBW'        , 'VehOcc_3p_HBW'  , '3.53'],
+		 ['NA'					  , 'VehOcc_3p_HBShp', '3.49'],
+		 ['NA'					  , 'VehOcc_3p_HBOth', '3.73'],
+		 ['NA'					  , 'VehOcc_3p_HBSch', '3.88'],
+		 ['VEH_OCC_3P_HBC'        , 'VehOcc_3p_HBC'  , '3.24'],
+		 ['NA'					  , 'VehOcc_3p_NHBW' , '3.71'],
+		 ['NA'					  , 'VehOcc_3p_NHBNW', '3.71'],
+		 ['NA'					  , 'VehOcc_3p_Rec'  , '3.73'],
+		 ['VEH_OCC_3P_HBO'        , 'VehOcc_3p_HBO'  , '3.68'],
+		 ['VEH_OCC_3P_NHB'        , 'VehOcc_3p_NHB'  , '3.71']]
+Markdown(tabulate(
+  table, 
+  headers=["Previous Name","New Name", "New Value"]
+))
+```
+
+ - Auto occupancy parameters were updated based on 2012 Household Travel Survey (reprocessed)
+ - Values represent average persons per vehicle for just the Wasatch Front model space
+ - External trips (Ext) are average for IX + XI, all other parameters are averages for II trips
 
 Value of Time
-•	Updated value of time (VOT):
-o	VOT_Auto_Wrk	= 22
-o	VOT_Auto_Per	= 17
-o	VOT_Auto_Ext	= 20
-o	VOT_LT	= 37
-o	VOT_MD	= 50
-o	VOT_HV	= 63
-o	VOT_Toll	= 63
-o	VOT_HOT_DA	= 63
-•	Added following variables:
-o	VOT_Auto_Wrk_Lo	= 9 
-o	VOT_Auto_Wrk_Hi	= 24
-o	VOT_Auto_Per_Lo	= 7 
-o	VOT_Auto_Per_Hi	= 19
+
+ - Updated value of time (VOT):
+	- VOT_Auto_Wrk	= 22
+	- VOT_Auto_Per	= 17
+	- VOT_Auto_Ext	= 20
+	- VOT_LT	= 37
+	- VOT_MD	= 50
+	- VOT_HV	= 63
+	- VOT_Toll	= 63
+	- VOT_HOT_DA	= 63
+ - Added following variables:
+	- VOT_Auto_Wrk_Lo	= 9 
+	- VOT_Auto_Wrk_Hi	= 24
+	- VOT_Auto_Per_Lo	= 7 
+	- VOT_Auto_Per_Hi	= 19
 
 Auto Operating Costs
-•	Updated auto operating cost (AOC) based on 2019 fuel cost & economy and vehicle maintenance
-•	AOC_Auto	= 21.7
-•	AOC_LT	= 27.3
-•	AOC_MD	= 55.5
-•	AOC_HV	= 74.3
+
+ - Updated auto operating cost (AOC) based on 2019 fuel cost & economy and vehicle maintenance
+	- AOC_Auto	= 21.7
+	- AOC_LT	= 27.3
+	- AOC_MD	= 55.5
+	- AOC_HV	= 74.3
 
 Toll and HOT Costs
-•	Updated toll (FT=40) cost (cent/mile) parameter to reflect a toll of approximately $5.00 for a 10.25 mi trip (average work distance) or $3.00 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars
-o	Cost_Toll_Pk	= 48
-o	Cost_Toll_Ok	= 48
-•	Updated HOT (FT=38) cost (cent/mile) parameter to reflect a toll of approximately $3.50 for a 10.25 mi trip (average work distance) or $2.20 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars
-o	Cost_HOT_Pk	= 34
-o	Cost_HOT_Ok	= 17
+
+ - Updated toll (FT=40) cost (cent/mile) parameter to reflect a toll of approximately $5.00 for a 10.25 mi trip (average work distance) or $3.00 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars
+	- Cost_Toll_Pk	= 48
+	- Cost_Toll_Ok	= 48
+
+ - Updated HOT (FT=38) cost (cent/mile) parameter to reflect a toll of approximately $3.50 for a 10.25 mi trip (average work distance) or $2.20 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars
+	- Cost_HOT_Pk	= 34
+	- Cost_HOT_Ok	= 17
 
 Prefix for Transit Skims
-•	Replaced all transit skim prefix global variable tokens with values in scripts
-•	Removed transit skim prefix variables from 0GeneralParameters.block file
+
+ - Replaced all transit skim prefix global variable tokens with values in scripts
+ - Removed transit skim prefix variables from 0GeneralParameters.block file
 
 
 
