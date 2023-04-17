@@ -4,4 +4,4 @@ author: Wasatch Front Regional Council
 date-modified: last-modified
 ---
 
-This website documents the progress of the travel demand model for the Wasatch region. (test2)
+This website documents the progress of the travel demand model for the Wasatch region. 
