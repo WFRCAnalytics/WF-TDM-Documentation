@@ -20,69 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -204,6 +141,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../v9-whats-new/2-inputdata.html" class="sidebar-item-text sidebar-link">2 Input Data</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../v9-whats-new/10-modelresults.html" class="sidebar-item-text sidebar-link">10 Model Results - Comparison with v8.3.2</a>
   </div>
 </li>
@@ -218,7 +160,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#general-parameters" id="toc-general-parameters" class="nav-link active" data-scroll-target="#general-parameters">General Parameters</a>
   <ul class="collapse">
+  <li><a href="#k-factors" id="toc-k-factors" class="nav-link" data-scroll-target="#k-factors">K-Factors</a></li>
   <li><a href="#zone-parameters" id="toc-zone-parameters" class="nav-link" data-scroll-target="#zone-parameters">Zone Parameters</a></li>
+  <li><a href="#county-identification" id="toc-county-identification" class="nav-link" data-scroll-target="#county-identification">County Identification</a></li>
+  <li><a href="#aq-conformity-reports-are-broken-down-by-each-county-and-3-cities" id="toc-aq-conformity-reports-are-broken-down-by-each-county-and-3-cities" class="nav-link" data-scroll-target="#aq-conformity-reports-are-broken-down-by-each-county-and-3-cities">AQ conformity reports are broken down by each county and 3 cities</a></li>
+  <li><a href="#special-trip-table-script-parameters" id="toc-special-trip-table-script-parameters" class="nav-link" data-scroll-target="#special-trip-table-script-parameters">Special Trip Table Script Parameters</a></li>
+  <li><a href="#household-disaggregation-information" id="toc-household-disaggregation-information" class="nav-link" data-scroll-target="#household-disaggregation-information">Household Disaggregation Information</a></li>
+  <li><a href="#distribution-mode-choice-assignment-parameters" id="toc-distribution-mode-choice-assignment-parameters" class="nav-link" data-scroll-target="#distribution-mode-choice-assignment-parameters">Distribution, Mode Choice &amp; Assignment Parameters</a></li>
+  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other">Other</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -230,6 +179,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="general-parameters" class="level1">
 <h1>General Parameters</h1>
+<section id="k-factors" class="level2">
+<h2 class="anchored" data-anchor-id="k-factors">K-Factors</h2>
+<p>The following K factors were adjusted as calibration adjustment factors to reduce non-work trips:</p>
+<p><strong>Between Salt Lake and Utah counties</strong> - SL_UT_KFAC_Wrk = 1.00 - SL_UT_KFAC_Oth = 1.00 - SL_UT_KFAC_Trk = 1.00 - SL_UT_KFAC_Ext = 1.00</p>
+<p><strong>Between Salt Lake and Davis counties</strong> - SL_DA_KFAC_Wrk = 1.00 - SL_DA_KFAC_Oth = 1.00 - SL_DA_KFAC_Trk = 1.00 - SL_DA_KFAC_Ext = 1.00</p>
+<p><strong>Between Box Elder and Weber counties</strong> - WE_BE_KFAC_Wrk = 1.00 - WE_BE_KFAC_Oth = 1.00 - WE_BE_KFAC_Trk = 1.00 - WE_BE_KFAC_Ext = 1.00</p>
+</section>
 <section id="zone-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="zone-parameters">Zone Parameters</h2>
 <ul>
@@ -286,7 +242,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>MAGRange</li>
 </ul></li>
 </ul>
-<p>County Identification</p>
+</section>
+<section id="county-identification" class="level2">
+<h2 class="anchored" data-anchor-id="county-identification">County Identification</h2>
 <ul>
 <li>Removed this entire section containing the following variables:
 <ul>
@@ -303,7 +261,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>CO_Name5</li>
 </ul></li>
 </ul>
-<p>AQ conformity reports are broken down by each county and 3 cities</p>
+</section>
+<section id="aq-conformity-reports-are-broken-down-by-each-county-and-3-cities" class="level2">
+<h2 class="anchored" data-anchor-id="aq-conformity-reports-are-broken-down-by-each-county-and-3-cities">AQ conformity reports are broken down by each county and 3 cities</h2>
 <ul>
 <li>Removed this entire section containing the following variables:
 <ul>
@@ -318,7 +278,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>PC_ID</li>
 </ul></li>
 </ul>
-<p>Special Trip Table Script Parameters</p>
+</section>
+<section id="special-trip-table-script-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="special-trip-table-script-parameters">Special Trip Table Script Parameters</h2>
 <ul>
 <li>Updated income break points to 2019 ACS data
 <ul>
@@ -327,7 +289,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Income_Hi = 125000</li>
 </ul></li>
 </ul>
-<p>Household Disaggregation Information</p>
+</section>
+<section id="household-disaggregation-information" class="level2">
+<h2 class="anchored" data-anchor-id="household-disaggregation-information">Household Disaggregation Information</h2>
 <ul>
 <li>Updated regional median income:
 <ul>
@@ -336,47 +300,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>represents average for just WF region</li>
 </ul></li>
 </ul>
-<p>Distribution, Mode Choice &amp; Assignment Parameters</p>
-<p>Auto Occupancy</p>
+</section>
+<section id="distribution-mode-choice-assignment-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="distribution-mode-choice-assignment-parameters">Distribution, Mode Choice &amp; Assignment Parameters</h2>
+<p><strong>Auto Occupancy</strong></p>
 <ul>
 <li>Renamed the following variables (scripts were also udpated) and updated values:</li>
 </ul>
 <div class="cell" data-execution_count="1">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> [[<span class="st">"VEH_OCCUPANCY_HBW"</span>     , <span class="st">'VehOcc_HBW'</span>     , <span class="st">'1.10'</span>],</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"VEH_OCCUPANCY_HBSHP"</span>   , <span class="st">'VehOcc_HBShp'</span>   , <span class="st">'1.63'</span>],</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"VEH_OCCUPANCY_HBOTH"</span>   , <span class="st">'VehOcc_HBOth'</span>   , <span class="st">'1.68'</span>],</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"VEH_OCCUPANCY_HBSCH"</span>   , <span class="st">'VehOcc_HBSch'</span>   , <span class="st">'1.76'</span>],</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"VEH_OCCUPANCY_HBC"</span>     , <span class="st">'VehOcc_HBC'</span>     , <span class="st">'1.12'</span>],</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"VEH_OCCUPANCY_NHBW"</span>    , <span class="st">'VehOcc_NHBW'</span>    , <span class="st">'1.21'</span>],</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"VEH_OCCUPANCY_NHBNW"</span>   , <span class="st">'VehOcc_NHBNW'</span>   , <span class="st">'1.76'</span>],</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"NA"</span>                    , <span class="st">'VehOcc_Rec'</span>     , <span class="st">'1.68'</span>],</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"VEH_OCCUPANCY_HBO"</span>     , <span class="st">'VehOcc_HBO '</span>    , <span class="st">'1.67'</span>],</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"VEH_OCCUPANCY_NHB"</span>     , <span class="st">'VehOcc_NHB '</span>    , <span class="st">'1.54'</span>],</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"NA"</span>                    , <span class="st">'VehOcc_ExtWrk'</span>  , <span class="st">'1.16'</span>],</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"NA"</span>                    , <span class="st">'VehOcc_ExtHBO'</span>  , <span class="st">'1.82'</span>],</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"NA"</span>                    , <span class="st">'VehOcc_ExtNHB'</span>  , <span class="st">'1.73'</span>],</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>         [<span class="st">"NA"</span>                    , <span class="st">'VehOcc_ExtRec'</span>  , <span class="st">'1.73'</span>],</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'VEH_OCC_3P_HBW'</span>        , <span class="st">'VehOcc_3p_HBW'</span>  , <span class="st">'3.53'</span>],</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'NA'</span>                    , <span class="st">'VehOcc_3p_HBShp'</span>, <span class="st">'3.49'</span>],</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'NA'</span>                    , <span class="st">'VehOcc_3p_HBOth'</span>, <span class="st">'3.73'</span>],</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'NA'</span>                    , <span class="st">'VehOcc_3p_HBSch'</span>, <span class="st">'3.88'</span>],</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'VEH_OCC_3P_HBC'</span>        , <span class="st">'VehOcc_3p_HBC'</span>  , <span class="st">'3.24'</span>],</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'NA'</span>                    , <span class="st">'VehOcc_3p_NHBW'</span> , <span class="st">'3.71'</span>],</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'NA'</span>                    , <span class="st">'VehOcc_3p_NHBNW'</span>, <span class="st">'3.71'</span>],</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'NA'</span>                    , <span class="st">'VehOcc_3p_Rec'</span>  , <span class="st">'3.73'</span>],</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'VEH_OCC_3P_HBO'</span>        , <span class="st">'VehOcc_3p_HBO'</span>  , <span class="st">'3.68'</span>],</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>         [<span class="st">'VEH_OCC_3P_NHB'</span>        , <span class="st">'VehOcc_3p_NHB'</span>  , <span class="st">'3.71'</span>]]</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  table, </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  headers<span class="op">=</span>[<span class="st">"Previous Name"</span>,<span class="st">"New Name"</span>, <span class="st">"New Value"</span>]</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display" data-execution_count="1">
+<div id="tbl-ao-rename" class="anchored">
 <table class="table table-sm table-striped">
+<caption>Table&nbsp;1: Renamed Auto-Occupancy Variables</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Previous Name</th>
@@ -421,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: right;">1.76</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_Rec</td>
 <td style="text-align: right;">1.68</td>
 </tr>
@@ -436,22 +371,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: right;">1.54</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_ExtWrk</td>
 <td style="text-align: right;">1.16</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_ExtHBO</td>
 <td style="text-align: right;">1.82</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_ExtNHB</td>
 <td style="text-align: right;">1.73</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_ExtRec</td>
 <td style="text-align: right;">1.73</td>
 </tr>
@@ -461,17 +396,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: right;">3.53</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_3p_HBShp</td>
 <td style="text-align: right;">3.49</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_3p_HBOth</td>
 <td style="text-align: right;">3.73</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_3p_HBSch</td>
 <td style="text-align: right;">3.88</td>
 </tr>
@@ -481,17 +416,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td style="text-align: right;">3.24</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_3p_NHBW</td>
 <td style="text-align: right;">3.71</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_3p_NHBNW</td>
 <td style="text-align: right;">3.71</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;"></td>
 <td style="text-align: left;">VehOcc_3p_Rec</td>
 <td style="text-align: right;">3.73</td>
 </tr>
@@ -509,12 +444,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 </div>
+</div>
 <ul>
 <li>Auto occupancy parameters were updated based on 2012 Household Travel Survey (reprocessed)</li>
 <li>Values represent average persons per vehicle for just the Wasatch Front model space</li>
 <li>External trips (Ext) are average for IX + XI, all other parameters are averages for II trips</li>
 </ul>
-<p>Value of Time</p>
+<p><strong>Value of Time</strong></p>
 <ul>
 <li>Updated value of time (VOT):
 <ul>
@@ -535,7 +471,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>VOT_Auto_Per_Hi = 19</li>
 </ul></li>
 </ul>
-<p>Auto Operating Costs</p>
+<p><strong>Auto Operating Costs</strong></p>
 <ul>
 <li>Updated auto operating cost (AOC) based on 2019 fuel cost &amp; economy and vehicle maintenance
 <ul>
@@ -545,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>AOC_HV = 74.3</li>
 </ul></li>
 </ul>
-<p>Toll and HOT Costs</p>
+<p><strong>Toll and HOT Costs</strong></p>
 <ul>
 <li>Updated toll (FT=40) cost (cent/mile) parameter to reflect a toll of approximately $5.00 for a 10.25 mi trip (average work distance) or $3.00 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars
 <ul>
@@ -558,10 +494,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Cost_HOT_Ok = 17</li>
 </ul></li>
 </ul>
-<p>Prefix for Transit Skims</p>
+<p><strong>Prefix for Transit Skims</strong></p>
 <ul>
 <li>Replaced all transit skim prefix global variable tokens with values in scripts</li>
 <li>Removed transit skim prefix variables from 0GeneralParameters.block file</li>
+</ul>
+</section>
+<section id="other" class="level2">
+<h2 class="anchored" data-anchor-id="other">Other</h2>
+<ul>
+<li>Updated comments and cleaned up formatting</li>
+<li>Change RAIL2COR_MULTIPLIER from 0.40 to 0.33</li>
 </ul>
 
 

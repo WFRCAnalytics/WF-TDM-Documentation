@@ -1,0 +1,386 @@
+# Input Data
+
+## Global Data
+### Trip Tables
+ - Updated '_Source - CollegeBaseDistribution - 2022-08-30.xlsx' & 'BaseDistribution.csv' TAZID to v9 TAZ
+    - Centroid of v832 TAZ was used to identify the new v9 TAZ
+
+### Household Disaggregation and Auto Ownership
+ - Updated '_Source - TAZ_AgePct_Lookup - 2022-06-07.xlsb' & 'Lookup - BYTAZAgePct - AllCo.csv' to v9 TAZ & 2019 base year
+    - Parameters was developed statewide based on 2020 Census block, 2020 ACS block group data & 2019 population by age group data
+
+### Mode Choice
+ - Added input files regarding new bus speed ratios
+    - Added 'bus_speed_ratios.csv' -- file containing the bus speed factors read in by the model
+    - Added '_source - bus_speed_ratios.xlsx' -- source file for bus speed ratios csv
+
+### Assignment
+ - Added lookup table & source file for diurnal and PA parameters (corresponding factors were removed from the ‘0GeneralParameters.block’ file)
+    - 'Diurnal & PA factors.csv'
+    - _source - Diurnal & PA factors.xlsx'
+ - The 'Diurnal & PA factors.csv' was updated
+
+## TAZ
+### TAZ Splits
+ - Added new v9 TAZ shapefile
+ - New TAZID range:
+```{python}
+#| label: tbl-ao-rename
+#| tbl-cap: Renamed Auto-Occupancy Variables
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [["3"  , 'Box Elder', '1-153'    ],
+         ["57" , 'Weber'    , '154-581'  ],
+         ["11" , 'Davis'    , '582-905'  ],
+         ["35" , 'Salt Lake', '906-2216' ],
+		 ["49" , 'Utah'     , '2217-3546']]
+Markdown(tabulate(
+  table, 
+  headers=["CO_FIPS","CO_NAME", "TAZ Range"]
+))
+```
+
+### Attributes
+ - Added field to indicate which TAZ are in the REMM model space
+ - Updated ‘PRKCSTPERM’ & ‘PRKCSTTEMP’ fields
+    - Updated permanent and temporary parking cost fields based on 2022 parking rates obtained from SLC & web searches
+    - Downtown & University data was developed for HBW, HBC, HBO & NHB trip purposes & stored in a source polygon shapefile so the travel model could be updated to use a more refined method for addressing parking costs
+        - For now, HBW was used for ‘PRKCSTPERM’ & HBO was used for ‘PRKCSTTEMP’
+    - The parking cost polygon source file did not include values for Airport and Lagoon because the new method would treat these areas differently.  In the short term and to be consistent with v832 and earlier methodology the following values were used for Airport & Lagoon parking costs:
+        - Lagoon
+            - 'PRKCSTPERM'=0
+            - 'PRKCSTTEMP'Lagoon = $6.00
+            - The 2022 cost is $18 per day
+            - At an estimated average occupancy of 3 people per vehicle, that would equal $6
+            - Previous PRKCSTTEMP value was $5 in 2010 dollars representing a $1 increase in 2019 dollars (20 percent) over 9 years (seems reasonable)
+        - Airport
+            - 'PRKCSTPERM'=0
+            - 'PRKCSTTEMP'Lagoon = $1.25
+            - The 2022 the cost is $5 per hour for short term garage, $2 per hour for short term economy and $0 for drop offs
+            - At the occupancy of 2 people per vehicle (just a guess), that would equal $2.50, $1.00, and $0.00, respectively. The average of the three is $1.75. Given the unknown distribution of travelers, but assuming more drop-offs than parking, a lower value than $1.75 should be expected. The 2019 cost was chosen to be $1.25.
+            - Previous PRKCSTTEMP value was $1 in 2010 dollars representing a $1 increase in 2019 dollars (25 percent) over 9 years. This growth seems reasonable, especially given the recent improvements to the airport. (Additionally, the CPI adjustment of the 2010 $1 value to a 2019 value is $1.18 (https://www.bls.gov/data/inflation_calculator.html).)
+ - Updated Small District definition & name
+    - Small Districts now nest within Medium Districts
+    - 'DISTSML' index is sequential with 129 total districts
+    - 'DSML_NAME' includes a prefix of Medium District index followed by Small District count (e.g. 15:1)
+    - Small Districts are set up to work with Street Light data processing
+
+### Districts
+ - Added to District Folder:
+    - 'WF_Subarea.shp'
+    - 'Dist_REMM_Area.shp'
+ - Updated:
+    - 'Dist_Small.shp'
+
+### Source Folder
+ - Added '_Source' folder with following shapefile data sets:
+    - Cities
+    - County
+    - Districts
+    - EnvConstraints
+ - Added '__ViewTAZDistricts' folder with ArcGIS Pro project & mapping files
+
+## SE Data
+### Forecasts
+ - '1_BoxElder'
+    - Updated with UDOT SE Forecasts from June 8, 2022
+ - '2_WFRC'
+    - Updated with draft 'REMM - 2022-10-11' results
+        - Used draft 2023 fiscally constrained plan for WFRC
+        - Used 2019 fiscally constrained plan for MAG
+        - Averaged 8 REMM runs
+            - New random seed from Monti Carlo process
+            - Ran TDM for first run, then used the updated skim for subsequent runs
+ - '3_MAG'
+    - Deleted previous data
+ - 'REMM'
+    - Deleted previous data
+
+
+### Control Totals
+ - Updated ‘_ControlTotals’ folder
+    - Added
+        - _Source - ControlTotal_SE - 2022-08-31.xlsx
+        - ControlTotal_SE_AllCounties.csv
+        - ControlTotal_WorkAtHome.csv
+    - Removed:
+        - _ControlTotal_SE - Source - 2018-03-30a.xlsb 
+        - ControlTotal_SE_WF.csv
+        - _ControlTotal_Age - Source - 2018-04-11a.xlsx
+        - ControlTotal_Age.csv
+        - REMM - employment_controls.csv
+        - REMM - household_controls.csv
+        - REMM - population_controls.csv
+
+
+### Source Files
+ - Renamed ‘_ Income & K-12 Source’ folder & contents with _ source - HBSch Enroll & Med Inc’ folder & added the following data sets:
+    - 'K-12 Enrollment'
+        - K12_Enrollment_byTAZ.csv' – statewide HBSch enrollment database updated with 2019 data
+        - k12_schools_enrollment' – point shapefile that can be used to update ‘K12_Enrollment_byTAZ.csv’ 
+    - Median Income & VOT (updated with 2019 data), includes:
+       - '_Source - Med Income & Value of Time - 2022-07-16.xlsb'
+           - TAZ Median Income Export (for SE input file)
+           - Regional (model space) Median Income (for General Parameters file)
+           - Value of Time parameters (for General Parameters file)
+       - for SE file -- 'TAZ Median Income - 2022-03-17.csv'
+
+## Highway Network
+### Dated Updates
+
+**MergedMasterNet - 2023-02-02**
+
+ - Updated SEGID to create transit segments
+ - Updated Links & Nodes to account for transit segmentation
+
+**MasterNet_v9 – 2023-01-26**
+
+ - Added rail segids to various links as well as split a few links to accommodate rail segid additions
+ - Rail segid additions were made to allow for easier transit result visualization
+
+**MergedMasterNet - 2022-10-11**
+
+ - Phase change for Managed Motorways in WFRC area
+ - A couple of phasing updates from the WFRC RTP project list
+ - Cleaned up GIS23_32 & GIS23_42 fields
+ - Differentiated what projects will be built by 2028 from what will be built by 2023
+
+**MergedMasterNet - 2022-10-05**
+
+ - Includes most recently updated MAG merged master network
+    - Updated 2032, 2042 & 2050 Needs fields
+    - Modified link/nodes to update/maintain roadway network
+ - Snapped updated MAG network with ‘MasterNet - 2022-09-08.net’ that included WFRC’s latest changes
+ - Exported to v832 & v9 Master Networks
+
+**MergedMasterNet - 2022-09-19a**
+
+ - Network Updates
+    - Updated CRT Fare Zone
+        - Fixed Vineyard & Orem stations so have same fare zone (similar to North Temple & Central)
+        - Updated and fixed fare zone definitions in WFRC area
+    - Fixed small network error in Box Elder (local road was drawn to the centroid of TAZ 53 (v832))
+    - A few edits to WFRC draft RTP project list
+    - Updated SEGID
+        - Checked if the previous Master Network SEGID's were consistent with the latest Segment Shapefile
+        - Updated segments to account for recent network changes & add segment definitions to account for rail transit
+    - Added SEGEX_RTP & SEGEX_NEED as text fields (to be populated later when script/processing updated)
+ - Added 'MergedMasterNet - 2022-09-19a' folder
+    - Workspace for editing and updating Merged Master Network and for exporting to v832 & v9 Master Networks
+    - Includes update and export script
+ - Added '_Node Definition - v832 & v9.xlsx' reference file
+
+### Highway Nodes
+ - Network changes:
+    - All v832 highway & transit nodes are used by v9
+        - Additionally, v9 network covers expanded WFRC/MAG geography (donut area)
+    - Link & Node fields:
+        - Naming convention set to 2023 RTP
+        - 2019 RTP fields are also in the highway network for reference and will be dropped before model release
+        - 2023 RTP fields were initially populated with 2019 RTP values & are being updated to reflect draft 2023 RTP
+    - V9 & v832 use the following new node numbering schema:
+        - TAZ
+
+```{python}
+#| label: tbl-taz
+#| tbl-cap: New Node Numbering Schema (TAZ)
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Internal', 'Internal Used Zones'  , '1-3546'   , '1-2873'                                ],
+         ['Internal', 'Internal Unused Zones', '3547-3600', '0'                                     ],
+         ['Internal', 'External Nodes'       , '3601-3629', '136-140, 421-423, 1782-1788, 2874-2881']]
+Markdown(tabulate(
+  table, 
+  headers=["Type","Description", "v9", 'v8.3.2']
+))
+```
+
+```{python}
+#| label: tbl-taz-detail
+#| tbl-cap: New Node Numbering Schema (TAZ - Detailed)
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Internal', 'Box Elder', '1-153'    , '1-135'    ],
+         ['Internal', 'Weber'    , '154-581'  , '141-420'  ],
+         ['Internal', 'Davis'    , '582-905'  , '424-654'  ],
+         ['Internal', 'Salt Lake', '906-2216' , '655-1781' ],
+         ['Internal', 'Utah'     , '2217-3546', '1789-2873'],
+         ['External', 'Box Elder', '3601-3606', '136-140'  ],
+         ['External', 'Weber'    , '3607-3609', '421-423'  ],
+         ['External', 'Davis'    , '0-0'      , '0-0'      ],
+         ['External', 'Salt Lake', '3610-3615', '1782-1788'],
+         ['External', 'Utah'     , '3616-3629', '2874-2881'],
+         ]
+Markdown(tabulate(
+  table, 
+  headers=["Type","Description", "v9", 'v8.3.2']
+))
+```
+
+
+        - Highway Nodes
+
+
+```{python}
+#| label: tbl-hway-nodes
+#| tbl-cap: New Node Numbering Schema (Highway Nodes)
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Transit'   , 'WFRC Transit Nodes', '10,000 - 19,999'],
+         ['Highway'   , 'WFRC Highway Nodes', '20,000 - 49,999'],
+         ['Transit'   , 'MAG Transit Nodes' , '50,000 - 59,999'],
+         ['Highway'   , 'MAG Highway Nodes' , '60,000 - 89,999'],
+         ['Donut Area', 'WFRC Highway Nodes', '90,000 - 94,999'],
+         ['Donut Area', 'MAG Highway Nodes' , '95,000 - 99,999']]
+Markdown(tabulate(
+  table, 
+  headers=["Type","Description", "both v9 & v8.3.2"]
+))
+```
+
+```{python}
+#| label: tbl-hway-count
+#| tbl-cap: New Node Numbering Schema (Highway Nodes Count)
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Internal Used Zones'  , '3546' , '2858', '688'],
+         ['External Count'       , '29'   , '23'  , '6'  ],
+         ['All New Used Zones'   , '3575' , '2881', '694'],
+         ['Internal Unused Zones', '54'   , '0'   , ''   ],
+         ['Max Used Zone'        , '3629' , '2881', ''   ]]
+Markdown(tabulate(
+  table, 
+  headers=["","v9", "v8.3.2","New"]
+))
+```
+
+
+## Transit Network
+### Transit Line Files
+ - 2023 RTP Edits
+    - 2019 was thoroughly vetted to represent Aug 2019 change day
+    - 2023 – updated route alignment, headways & stops based on Aug 2022 change day (WFRC & MAG)
+    - 2028 – updated route alignment, headways & stops based on UTA 5-Year Service Plan (WFRC & MAG)
+    - RTP 2032, 2042 & 2050 – rolled 2028 changes forward into plan phased years & updated based on 2023 draft plan
+    - Needs 2032, 2042 & 2050 – rolled 2028 changes forward into plan phased years & updated based on 2023 draft plan
+ - Renumbered transit LIN files according to new highway node numbering schema
+    - Lin_2019
+    - Lin_2023
+    - Lin_2032
+    - Lin_2032_Needs
+    - Lin_2042
+    - Lin_2042_Needs
+    - Lin_2050_Needs_5yrSP
+ - Updated ‘ReadLines.block’ formatting for 2019, 2023 & 2028 Line files
+    - Took out tabs
+    - Lined up comments
+ - Edited route 'S902' in 'wfrc_sl_exp_xxxx.lin' file so route no longer goes to Parleys Canyon external node
+ - Updated SEGID to create transit segments (all years)
+ - Updated Express Bus between Salt Lake and Ogden for:
+    - 2023
+    - 2028
+    - 2032 (RTP & Needs)
+    - 2042 (RTP & Needs)
+    - 2050 (RTP & Needs)
+
+### PT Folder
+
+**Factor Files**
+
+ - Updated FAC files to account for new highway node numbering
+    - IWAITCURVE=1,  NODES=20000-49999,60000-89999  ;all but rail nodes WFRC:20000-49999, MAG:60000-89999
+    - IWAITCURVE=2,  NODES=10000-19999,50000-59999  ;rail nodes         WFRC:10000-19999, MAG:50000-59999
+    - XWAITCURVE=3,  NODES=10000-89999              ;all nodes
+    - XWAITCURVE=4,  NODES=15127,10046,10019,50024  ;seamless transfer nodes
+    - WAITFACTOR = 2.0,  NODES=10000-89999       ;all nodes
+**Fare**
+
+ - Updated 'GENERAL_Fare.FAR' file with 2019 fare data:
+    - Created 2 sets of fare files:
+        - Full Fare – actual fares reported by UTA
+            - 'GENERAL_Fare - 2019.FAR'
+            - 'GENERAL_Fare - 2020+.FAR' – includes fare reduction in premium (express bus) fare
+        - Discounted Fare – fares reduced by 46% (previous model assumption) to account for monthly pass, ed/eco pass, fare pay, senior, employer paid, and other discounts. To be consistent with v832 and earlier methodology, the discounted fare input files are being used for now.
+            - 'GENERAL_Fare - Discounted - 2019.FAR'
+            - 'GENERAL_Fare - Discounted - 2020+.FAR' – includes fare reduction in premium (express bus) fare
+
+### General Hand-Coded Support Links
+ - Updated ‘General_hand_coded_walk_links.NTL’ to account for new highway node numbering and TAZ splits
+
+### Transit Route Tester
+ - Added ‘_chk Transit Compile on Net’ folder
+    - Includes the following scripts:
+        - '_TransitRouteTester - 1 - BY_2019.s'
+        - '_TransitRouteTester - 1 - BY_2023.s'
+        - '_TransitRouteTester - 2 – TIP_2028.s'
+        - '_TransitRouteTester - 3 - RTP_2032.s'
+        - '_TransitRouteTester - 3 - RTP_2042.s'
+        - '_TransitRouteTester - 3 - RTP_2050.s'
+        - '_TransitRouteTester - 4 - Needs_2032.s'
+        - '_TransitRouteTester - 4 - Needs_2042.s'
+        - '_TransitRouteTester - 4 - Needs_2050.s'
+    - Each script checks to see if transit line files for the respective scenario compile on the scenario highway network
+    - The scripts create scenario networks in the ‘_temp - Scenario Net’ folder
+    - A VPR file has been set up with the scenario’s transit lines pre-loaded onto the network for transit line edits
+    - The scripts create error reports (e.g. ‘check - 1 - BY_2023.txt’) that contain any issues if the transit network fails to compile on the highway network. Opening this file and searching for 'F(' will indicate any inconsistencies.
+
+
+## Externals
+### Location
+ - Updated to new Eternal Node locations and numbering scheme:
+
+
+
+### Forecast
+ - Updated 'Ext_Vol_Control'
+    - Added '_Source_ExternalTAZ_HistoricalAADT v9 - 2022-04-04a.xlsx'
+        - Added 8 new externals, removed 2 v832 externals
+        - Updated External Node numbers
+    - Updated 2010-2060 volume forecasts using 2019 historic data
+    - Updated ‘external_year_vol.csv’
+
+
+### Subarea Extraction Matrices
+ - Updated 'WF_External'
+    - Created placeholder 'WF_ExtTripTable_DY.mtx'
+    - Modified matrix to work with new external numbers & added 6 new TAZ
+    - Copied placeholder matrix into all years & deleted v832 data
+    - Added 2028
+    - Renamed 2024 to 2023, 2030 to 2032, & 2040 to 2042
+
+### External Matrices from USTM
+The external matrices from USTM were updated:
+
+ - Replaced AM, MD, PM, EV & DY external matrices from USTM’s subarea extraction process for the following years:
+    - 2015 – copied DY matrix from 2019
+    - 2019
+    - 2023 – copied DY matrix from 2019
+    - 2028 – copied DY matrix from 2032
+    - 2032
+    - 2042
+    - 2050
+ - USTM version used: 'USTM_v3.0 - 2022-09-15' which included TAZ, MasterNet, SE & loaded nets from 'WF TDM v9.0 - 2022-10-05'
+
+ ### Other
+  - The 'WF_DY_PA_VehicleTrips.mtx' and 'WF_DY_PA_ExtTripEnds.csv' were updated in '1_Inputs\\5_External\\WF_External\\2019'
+
+## Segment
+**Master_Segs_withFactors_20220915shp.shp**
+
+ - Updated segments to align with 2023 RTP network changes
+ - Added segments to account for rail transit corridors
+
+**Stamping_Polygons\ SegmentPolygon_forTDM_20220915.shp**
+
+ - Updated polygon stamping shapefile to coincide with Segment Shapefile and Master Network edits
+
+
+## Other Changes
+ - The '_CreateOutputFolders.s' script was moved to the 'Scenarios\\_default' folder. The script was also updated to reflect changes in '2_ModelScripts\\0_InputProcessing\\a_Setup\\'0_FolderSetup.s’
+ - Updated '2_External_TripTable.s'
+
