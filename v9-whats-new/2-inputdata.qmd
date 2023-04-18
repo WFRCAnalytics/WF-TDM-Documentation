@@ -115,10 +115,10 @@ Markdown(tabulate(
 
 
 ### Source Files
- - Renamed ‘_ Income & K-12 Source’ folder & contents with _ source - HBSch Enroll & Med Inc’ folder & added the following data sets:
+ - Renamed '_ Income & K-12 Source’ folder & contents with _ source - HBSch Enroll & Med Inc' folder & added the following data sets:
     - 'K-12 Enrollment'
         - K12_Enrollment_byTAZ.csv' – statewide HBSch enrollment database updated with 2019 data
-        - k12_schools_enrollment' – point shapefile that can be used to update ‘K12_Enrollment_byTAZ.csv’ 
+        - k12_schools_enrollment' – point shapefile that can be used to update 'K12_Enrollment_byTAZ.csv' 
     - Median Income & VOT (updated with 2019 data), includes:
        - '_Source - Med Income & Value of Time - 2022-07-16.xlsb'
            - TAZ Median Income Export (for SE input file)
@@ -334,6 +334,23 @@ Markdown(tabulate(
 ### Location
  - Updated to new Eternal Node locations and numbering scheme:
 
+::: {.column-screen-inset-right}
+
+![v9 External Description.](_pictures/ex_descrip1.png){#fig-descrip1}
+
+![v8.3.2 External Description.](_pictures/ex_descrip2.png){#fig-descrip2}
+
+![v9 & v8.3.2 External Description.](_pictures/ex_descrip3.png){#fig-descrip3}
+
+![Box Elder County Externals.](_pictures/ex_boxelder.png){#fig-ex-boxelder}
+
+![Weber County Externals.](_pictures/ex_weber.png){#fig-ex-weber}
+
+![Salt Lake County Externals.](_pictures/ex_saltlake.png){#fig-ex-saltlake}
+
+![Utah County Externals.](_pictures/ex_utah.png){#fig-ex-utah}
+
+:::
 
 
 ### Forecast
