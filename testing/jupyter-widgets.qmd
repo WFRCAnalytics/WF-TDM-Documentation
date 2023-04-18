@@ -3,13 +3,6 @@ title: "Jupyter Widgets"
 jupyter: python3
 ---
 
----
-execute:
-    enabled: true
-    daemon: true
-jupyter: python3
----
-
 
 ```{python}
 import plotly.express as px
