@@ -4,7 +4,7 @@ name: Copy _site to filezilla
 on:
   push:
     branches:
-      - gh-pages
+      - gh-pages-2
 
 jobs:
   run-script:
