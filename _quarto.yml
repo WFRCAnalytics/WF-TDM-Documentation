@@ -47,7 +47,7 @@ website:
           href: 3-calib-valid/v831-calib-valid/index.qmd
           id: v831-cv-index
       - text: "Resources"
-        href: other.qmd
+        href: 4-other/other.qmd
       - text: "Testing"
         menu:
         - text: "Visualization"
