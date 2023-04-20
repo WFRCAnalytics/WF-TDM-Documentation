@@ -24,22 +24,31 @@
 ### TAZ Splits
  - Added new v9 TAZ shapefile
  - New TAZID range:
+
+:::{.center}
+
 ```{python}
 #| label: tbl-ao-rename
 #| tbl-cap: Renamed Auto-Occupancy Variables
 #| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
+import pandas as pd
 table = [["3"  , 'Box Elder', '1-153'    ],
          ["57" , 'Weber'    , '154-581'  ],
          ["11" , 'Davis'    , '582-905'  ],
          ["35" , 'Salt Lake', '906-2216' ],
 		 ["49" , 'Utah'     , '2217-3546']]
+df = pd.DataFrame(table, columns = ["CO_FIPS","CO_NAME", "TAZ Range"])
 Markdown(tabulate(
   table, 
-  headers=["CO_FIPS","CO_NAME", "TAZ Range"]
+  headers=["CO_FIPS","CO_NAME", "TAZ Range"],
+  tablefmt="pipe", 
+  colalign=("left",)*3
 ))
 ```
+
+:::
 
 ### Attributes
  - Added field to indicate which TAZ are in the REMM model space
@@ -255,7 +264,9 @@ table = [['Internal Used Zones'  , '3546' , '2858', '688'],
          ['Max Used Zone'        , '3629' , '2881', ''   ]]
 Markdown(tabulate(
   table, 
-  headers=["","v9", "v8.3.2","New"]
+  headers=["","v9", "v8.3.2","New"],
+  tablefmt="pipe", 
+  colalign=("left",)*4
 ))
 ```
 

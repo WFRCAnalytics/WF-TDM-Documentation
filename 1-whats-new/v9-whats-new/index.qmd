@@ -8,4 +8,4 @@ author: "Wasatch Front Regional Council"
 
 This is the *What's New Document* for the Wasatch Front Regional Council (WFRC) Travel Demand Model (TDM) version 9.
 
-For access to this version of the TDM visit <https://github.com/WFRCAnalytics/WF-TDM-v9.0>.pi
+For access to this version of the TDM visit <https://github.com/WFRCAnalytics/WF-TDM-v9.0>.

@@ -91,6 +91,8 @@ website:
           href: 1-whats-new/v9-whats-new/1-genparams.qmd  
         - text: "2 Input Data"
           href: 1-whats-new/v9-whats-new/2-inputdata.qmd
+        - text: "3 Input Processing"
+          href: 1-whats-new/v9-whats-new/3-inputprocessing.qmd
         - text: "10 Model Results - Comparison with v8.3.2"
           href: 1-whats-new/v9-whats-new/10-modelresults.qmd  
     - id: v831-wn-index
