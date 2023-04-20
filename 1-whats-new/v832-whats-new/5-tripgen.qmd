@@ -1,0 +1,9 @@
+# Trip Generation
+
+Several changes were made in the trip generation scripts:
+
+- Added factors to reduce special generation attractiveness to Temple Square, SLC Library, and many colleges.
+- Added Large District calibration factors.
+- Adjusted short-haul truck light/medium/heavy trip production rates.
+- Updated county-level adjustments to short-haul truck medium/heavy productions and attractions.
+- Truck speed factors are now applied to all facility types, previously they applied only to freeway.

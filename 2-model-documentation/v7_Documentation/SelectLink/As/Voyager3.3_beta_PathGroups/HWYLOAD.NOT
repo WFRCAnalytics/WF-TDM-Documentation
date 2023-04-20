@@ -1,0 +1,305 @@
+
+02/19/96 13:05:25 Victor & I had long phone conversation referencing addresses
+         in functions; i.e; PATHSKIM(#,cost)
+         Decision:  Store the array pointer in the 0th element.
+                    Function can check if the address matches the array
+                    This is not foolproof, but should be adequate
+         Victor will research USHORT on arrays.
+04/21/98 Mod:  TURNS control replaced with:
+               TURN   N=    , T=expression
+04/29/98 Mod: FILEO TURNVOLO= added
+05/18/98 Mod: FILEO TURNPENI= added
+06/02/98 Mod/Fix: Cost = Time is now automatically computed in NETSET
+              User coded DISTANCE= in LINKREAD is no longer overridden
+              in ADJUST.
+              Print run-together in Iteration statistics is now
+              reformatted wo commas.
+06/02/98 Fix: Corrected problem when highest Node number exceeded the
+              number of links.
+07/07/98 Fix: SPEED and CAPACITY tables now read in correctly fron NETI.
+              RAM allocation of MI Buffers corrected link table overruns.
+              Online message corrected to not leave part of last iteration.
+08/05/98 Fix: Corrected error when NETI had string variables that exceeded
+              8 bytes in length.
+08/11/98 Fix: Removed debug statement (biggie) introduced in 08/05 Fix.
+         Rev: Changed EQUI processing:
+                Lambda searched until Sum area under Cost vs V is minimized
+                User can optionally specify:
+                    COMBINE=EQUI MINIMIZE=SYSTEM to minimize on Total System Cost
+                    (Not to popular, but maybe someone wants to comapre)
+                    COMBINE=EQUI MINIMIZE=BPR to minimize on BPR Time curve only
+                    (Faster method; integrates T0(1+0.15*V/C^4 for all links)
+08/18/98 Rev: Wrote new path builder.  It is faster in some networks, but
+              slower in others.  Speed does not depend upon the mix of link
+              costs as much as the prior pathbuilder.  Excessive link times
+              does not affect running time.
+08/18/98 Fix: Corrected problem of short reading zdati with fixed fields.
+         Fix: Corrected problem of not finding ZI. vars for PRINT
+08/24/98 Rev: Refined COMBINE=EQUI process to better estimate curve areas
+         Rev: PHASE=LINKREAD may only have scaler names on left side of =
+              except for DISTANCE= may be coded to set Distance for link
+              PHASE=NETSET may only have LINKVARs on left side of =, and temp
+              scaler variables (names begin with _)
+              All PATH=values and PATHTRACE(values) must be LINKVAR names.
+08/29/98 Rev: Deleted PATH and LOAD control statements.
+              Added PATHLOAD control statement.
+08/30/98 Fix: Revise to allow > 100 FUNCTIONs.
+09/09/98 Rev: More explanatory message on failed IF statements.
+09/20/98 Rev: Increased stack size, but compiled code still limited to 128K.
+09/30/98 Fix: Exception on Arrays > 32K.
+10/14/98 Fix: SelectLink was miscalculated for SELECTGROUP=.  Corrected
+10/31/98 Fix: MW[][]= 2nd Index (if variable) corrected to agree with 9/20/update
+12/11/98 Fix: PENI problems corrected: RAM errors, path errors, etc. introduced 8/18/98.
+01/23/99 Rev: Msg 724 reworded, Msg 727 added.  Re: essential NETI variables
+01/27/99 Fix: Problem with empty text variables being filled in with prior link value.
+         Fix: Error when MATO_MO did not begin with 1 and/or was not monotonic
+         Fix: MATO weighting should now function properly for all COMBINES
+02/19/99 Fix: Long string Variables no longer mess up NETI variables
+03/10/99 Rev: NoAccess set to 0 for SelectLink processes on PATHLOAD
+         Rev: Msg 727 revised from W(727) to M(727)
+03/12/99 Fix: ROWFIX - w 2 args, start is now at arg instead of arg+1
+              ROWFIX - added 3rd arg:  rounding factor.  Individual cells
+              are accumulative rounded (as in TRANPLAN) instead of bucket
+              integerization.
+03/12/99 Rev: PATHLOAD_PATH_MW_NOACCESS now applied only for PATHTRACE function
+03/15/99 Rev: Allow PRINT in LINKREAD after Iteration 1
+         Rev: Added Variable Tp (TimePrior)
+03/16/99 Fix: Error reading link records > 127 bytes.
+04/01/99 Fix: Turn Volumes now combined properly on multiple iterations
+05/19/99 Fix: PATHTRACE(name): name may now contain '_'
+04/20/99 Fix: Problem deleting temp file for deadlink report
+05/21/99 Fix: (TPPDLINX.DLL) FILEI's with ? in name now properly processed.
+06/08/99 Fix: LOWEST function when all lowest are negative
+06/08/99 Fix: TIME and COST disabled in FUNCTION TC and COST
+06/09/99 Fix: Termination problem when same PHASE multiple defined.
+06/09/99 Fix: COMBINE FRACTIONS check for total = 1.
+06/24/99 Fix: PATH MW=SUMCOST now functioning as designed.
+06/25/99 Rev: Added ROWADD()  ROWMPY() and ROWDIV() capabilities
+07/08/99 Fix: 06/08 mod for TC and COST corrected
+08/17/99 Fix: Error reporting of COMP and FUNCTION compilations
+         Fix: Problem with diagnosing FUNCTIONs within PHASEs
+08/30/99 Fix: Problem with pathbuilder for certain grid network situations
+              Problem was actual failure of comparison of double costs
+              with float costs,
+09/02/99 Rev: Added VOL summary for assigned values
+09/03/99 Fix: Error in COMP Exclude acting like am Include
+09/04/99 Fix: Report of MW[1] total and Inta values following Last Iteration
+              This was zeroed out on multiple Iterations with MATO's.
+10/01/99 Rev: Many tests to try to improve the speed of pathbuilding when
+              costs range for small to really big.
+10/06/99 Fix: ROWFIX problem when many negative numbers in row.
+10/27/99 Fix: PathBuilder errors introduced with the 10/01/99 revision.
+11/10/99 Fix: TurnPenalty Hangup related to sorting links.
+11/16/99 Fix: MATO FORMAT=MINUTP corrected for Combining
+         Rev: DEC= ignored for MATO MINUTP (Msg 730).
+11/17/99 Fix: ReEnabled SELECTLINKGRP on PATHLOAD MW...
+11/19/99 Fix: MATO FORMAT=MINUTP problem overlooked in 11/16 Fix.
+11/22/99 Fix: LOG file truncation
+11/23/99 Rev: PDIFF re-enabled
+12/10/99 Add: SUBAREA processing;
+12/20/99 Fix: Final VehCost, VehDist VehTime reports revised
+              Prior version had a random error in reporting these statistics,
+              usually not noticeable in larger areas.
+12/21/99 Rev: COMBINE=SUM Fractions revised to more precision (did have up to
+              .02 gain/loss when factoring a cell with value of 1000000.)
+12/28/99 Fix: TrunPenalty missing for highest link connection.
+01/04/00 Fix: PATHLOAD PATH and (MW= or SUBAREAMAT=) wo [] err fixed.
+01/05/00 Fix: TurnVolo volumes corrected for various Combine scenarios.
+01/14/00 Rev: PDIFFVALUE defaulted to 0.0, to preclude use unless user specifies
+01/19/00 Rev: PDIFF defaulted to 1.0,to preclude use unless user specifies
+01/22/00 Fix: PATHLOAD SUBAREAMAT to process pathtrace
+         Rev: Added F(723) about storing into TIME in LinkRead
+01/25/00 Rev: TIME is now fully protected -- it may not be on the left side of
+              an equals sign anywhere.
+01/27/00 Fix: TurnPenalty processing corrected.
+              TURNVOLO INCLUDE0 now defaults to True (as per Manual)
+02/07/00 Rev: Pathbuilding accumulations done in double precision
+02/11/00 Rev: Added VT (non-directional volumes to NETO)
+02/11/00 Fix: NETO EXCLUDE -# corrected, =T_ added
+02/16/00 Rev: Increased number of Nodes to unlimited
+              Some cosmetic changes in TURNVOLO reporting
+              Add PATHLOAD ThruNode=
+02/26/00 Rev: Added VT (non-directional volumes to NETO)
+02/29/00 Rev: Added statistic selection to ZDATI
+              Added REPORT ZDAT=true, DEC= to allow setting dec pt
+03/13/00 Rev: Added Matrix license check
+03/31/00 Rev: Removed the exclusion of loading any paths from an I zone when the
+              pathbuilder detected any loss of precision or where any link use
+              caused an overflow.
+05/20/00 Add: REPORT VDTSPD capabilities.
+         Rev: DIST is now an automatic link array that is obtained from DISTANCE
+05/23/00 Rev: TURNPENI MISSINGLINK now defaults to 1 (Warning)
+              Trun Penalty report now prints SET properly.
+06/27/00 Fix: PATHLOAD ... EXCLUDEJ= noe enabled.
+06/30/00 Rev: All LW. and LI. variables converted to double precision.
+07/05/00 Rev: Replaced pathbuild routine with hpathbuild -- should be no difference
+07/07/00 Rev: Revised VDTSPD reporting process.
+08/07/00 Fix: Wrong diagnostic message on IF and COMP statements for invalid variables.
+08/18/00 Rev: Rename all VMTSPD processes to VDTSPD
+08/28/00 Rev: Added capability to read a neti as a zdati.
+09/20/00 Fix: RAM allocation if PRINT, but no other COMP statements
+10/27/00 Rev: Trap invalid exp(), **, and pow() errors to extent possible
+10/27/00 Rev: Preclude working volume from going negative (very small) due to
+              decrement during integration.
+11/06/00 Rev: Preclude any PATHLOAD VOL[]=value from being negative.
+         Fix: Re-enabled linknum() function to obatin a specific link number.
+11/08/00 Fix: BREAK out of JLOOP problem that had left jloop indicator on.
+12/13/00 Fix: BREAK and CONTINUE processing from loops and jloops.
+12/15/00 Rev: TDF updated to allow up to 1000 numbers in INCLUDE/EXCLUDE
+
+01/22/01 Rev: Added optional faster integer path builder (triggered by DEC=)
+              DEC may be 0,1,2,3,F, applies only to prior PATH=
+              PATH... MW=PATHCOST revised so that no access is proper.
+              3 path builder routines available:
+              hpathbuildi  -- triggered by DEC= , integer processing
+              hpathbuild   -- triggered by SEQUENCE=t, uses doulbe sequence table
+              hpathbuildil -- default, uses sorted double list process
+01/30/01 Fix: BREAK and CONTINUE from within LINKLOOPs
+02/08/01 Add: FILEO PATHO in conjunciton with PATHLOAD PATHO=
+              only FORMAT=TXT functions at current time
+02/15/01 Add  FILEO_ESTMO w PATHLOAD_ESTMO capabilities
+04/10/01 Rev: FILEO_ESTMO to do all processing wo ScreenLines
+         Fix: Recognition of TRIPS matrix file.
+05/04/01 Rev: Add parameter ZoneMsg
+05/05/01 Fix: RAM allocation problem in Subareamato extraction.
+         Rev: Add PARAMETERS SUBAREARAM=
+05/17/01 Rev: Remove ARRAY names from summary report.
+         Rev: ESTMO ICP file revised.
+05/24/01 Rev: Add message 751 to list improper subarea cordon crossings.
+         Fix: Possible of X-i-X Cordon crossing (i= 1 single internal node)
+         Rev: Add PATHLOAD SUBAREAMAT MAXMSG
+05/31/01 Rev: ESTM DAT file changes
+06/06/01 Rev: Set PARAMETERS MATOADJUST=1 and disable the parameter
+06/16/01 Rev: Restrict to PATHLOAD_VOL[] to fixed constant index.
+06/26/01 Fix: 05/24/01 message 751
+06/27/01 Rev: Replace FILEO ESTMO by ESTMICPO and ESTMDATO
+         Add: Internal sort for ESTMO processing
+              If FILEO ESTMICPO SORTMEM specified, force internal sort
+              else if sort dll not found, sort internal sort
+              else must have sort dll
+              SORTMEM is the minimum RAM for internal sort (expanded as needed)
+07/01/01 Add: ESTMO process to deal with top end SLs with no useage.
+07/09/01 Rev: ESTMO process to deal with SLs wo counts.
+07/10/01 Add: FILEO ESTMDATO NAME[]=
+              Allow LI.vars for FILEO ESTMICPO VAR=, SCREENLINE=
+08/08/01 Add: \n \t \f all valid on PRINT LIST literals
+              PRINT FILE APPEND capability
+08/12/01 Add: FILEO TURNVOLO VARS=  NAMES=
+08/13/01 Fix: Error in matrix combining if no MW[1] allocated
+08/14/01 Rev: Printed totals for MATO files restricted to last iteration.
+02/02/01 Fix: Problem when specifying more than 100 MW's
+03/15/02 Rev: Array size increased to any reasonable size.
+              Add SORT statement
+              Enabled CONSOLE MESSAGE='string'
+04/09/02 Fix: Array[]= now allowed anywhere and with expression within []
+04/11/02 Rev: slight adjustment to 4/09/02 fix re array alters
+04/17/02 Rev: User can address NI.X[] and NI.Y[]
+05/21/02 Rev: Allow VOL[] to be in Time and Cost functions in Equilibrium
+              Added FILEO NETO DECS= to specify number of dec.pl. in V's(0-5)
+07/16/02 Fix: Expanded the file name buffer for any PRINT files from 80 to 255.
+09/06/02 Fix: Error when Assignment requested MATO, but no MW's were computed.
+11/02/02 Rev: IF (MW wo [][]) set to fatal unless within JLOOP
+11/07/02 Rev: LeftHandRule picked from NETI and passed to junction model
+              NETO PAR section copied directly from NETI
+11/13/02 Add: Translate INTRAZONAL MW[]= into MW[][i]=
+12/03/02 Rev: Voyager name=HIGHWAY
+12/17/02 Fix: Junction process initialization error return.
+12/18/02 Fix: JunctionO name processing
+01/20/03 Fix: Junction initialization error processing
+03/26/03 Fix: COMP ARRAY[1]=expression error in storing answer
+03/27/03 Fix: Ram corruption error when a NETI var > 56 chars
+         Rev: Optimized RAM setting for MI. variables
+03/29/03 Rev: Incorporated Junction TransScribe process
+         Fix  RAM allocation when both JUNCTION and TURNS in effect
+04/04/03 Fix: Corrected external name for XS_JunctionTranScribe (see 3/29)
+04/21/03 Fix: Intermix of HWYLOAD/HIGHWAY labels on Neto.
+04/23/03 Fix: Superflous Junction calls when junction errors.
+04/30/03 Rev: Added cross check between PENI and Penalty/Junction Sets
+         Rev: Added PATHLOAD PENI PENIFACTOR
+05/12/03 Rev: Removed a debug statement from hl_turn.
+              Corrected bug (crept in 4/30) in process when NO turns involved
+05/16/03 Fix: Problem with neti string vars with length > 56
+05/17/03 Fix: Temporary disable of estm compressing routine
+05/20/03 Fix: Improved the 05/16 Fix
+05/22/03 Rev: JUNCTIONI PERIOD is required (and as Integer)
+05/24/03 Rev: Removed teh 5/17 Fix, and replaced process with improved
+              compression routine.  Made SL testing code inline instead of
+              using the library bit testing process. Added some code to try
+              to detect empty SL rows to try to speed up estm processing.
+06/28/03 Rev: Wrote new ME preparation routine. Do NOT use SORTMEM
+06/30/03 Rev\Fix: ME preparation corrected and partially rewritten for
+              faster operation. (about 2 x Faster).===== Ver 3.2 ==============================================================
+07/28/03 Fix: Protect SUBAREAMAT as a variable. More checking for x[]=
+08/04/03 Rev: FILEO PATHO to write special PTH file.
+08/14/03 Rev: Added Factors to summary report for ITER,AVE,WTD
+08/17/03 Rev: Addd PRINT PRINTO, FILEI LOOKUPI, and LOOKUP LOOKUPI
+08/18/03 Fix: EQUI Summary report mixed up by 08/14/03 Rev;
+              Make FILEO PATHO ITERS=2 operational
+08/20/03 Fix: PRINT PRINTO initialization moved to work in all phases
+08/21/03 Rev: Add TYPE to PATHO header
+08/27/03 Fix: SubAreaMatrix Extraction for COMBINE=AVE
+08/27/03 Fix: Problem in VolAdjust caused by random OS error naming
+              temporary files.
+09/03/03 Fix: Patho with sections > 4 Gb
+09/09/03 Fix: Check for valid ESTMS files before processing.
+09/10/03 Fix: Crash from referencing an unused VOL[#];
+         Rev: Allow access to VOL's not in PATHLOAD statements;
+              process somewhat differen than in v.3.1.2
+09/15/03 Fix: Patho section hdr update when header is within current buffer
+              and a previous buffer has already been written.
+09/16/03 Add: PATHLOAD ESTMO ALLJ=T|F  default = false
+09/18/03 Rev: PATHLOAD PATHO file cost values capped out at UINT_MAX
+09/23/03 Fix: MATO MINUTP header PGM name
+09/24/03 Rev: Removed Msg 609, replaced with dlibx routine FileDupCheck()
+09/27/03 Fix: SubArea matrix extraction of direct X-I connectio
+09/29/03 Fix: PATHO header update when header falls exactly on cache beginning
+09/30/03 Rev: Rewrote hl_patho O/P process.
+10/18/03 Fix: Detect error trying to store string into LW.var
+10/21/03 Fix: Length of last J record in PTHIO
+10/22/03 Rev: Allow peni=1-8 in Pathtrace()
+              Issue Msg 759 only if crucial to Junction processing
+11/06/03 Fix: Allow LI.vars in comp expressions in Iloop
+11/10/03 Rev: Fatal error if LW. or LI. wo [], except in LINKLOOP
+11/11/03 Fix: Carry length of Neti strign variables to Neto
+11/18/03 Fix: Problem not setting some LI./LW.varaibles as link arrays
+12/30/03 Fix: Problem with subarea cordon crossing when int zone is gateway link
+01/04/03 Fix: Problem of referencing LI.string variables
+         Rev: Disable PATHO TRACE when no access from I
+01/07/03 Rev: Add JUNCTIONO as stand alone option for Turns.
+         Rev: better test on LW.|LI. vars without []
+         Fix: ??? Problem with Turns when turn not in network.
+         Fix: Random COMP error due to improper initialization of mode
+01/08/04 Fix: JUNCTION processing interfaces.
+01/09/04 Fix: test on LW.|LI. vars without [] in IF statements
+01/10/04 Rev: Turn Problem process when missing link.
+01/26/04 Fix: COMP string lengths
+01/27/04 Fix: Buffrer Overflow on ZDATI when rec>255 and no variable above
+              255 is used.
+02/05/04 Rev: Add JUNCTION_ENABLE
+02/13/04 Rev: msg to indicate trns not included in EQUI
+         Add: FILEO TURNPENO
+         Add: REPORT PENI=T|F (def=F) to control listing of dynamic penalties
+02/17/04 Fix: Problem with PATHLOAD ESTM using VOL[>1]
+         Rev: Many changes re EQUI with Junction
+02/18/04 Rev: More EQUI with junction changes
+02/19/04 Add: PARAMETERS EQUITURNCOSTFAC
+03/09/04 Fix: Detection of LI.vars when only use is in an IF expression
+03/11/04 Rev: turn processing re banned turns in juncitons
+03/12/04 Rev: Make PATHO Voyager only
+04/13/04 Rev: hl_adjust: put V=sum(VOLS) prior to LinkRead, then recompute after
+04/15/04 Rev: Default MAXSTRING = 100 (106)
+06/17/04 Fix: Close output binary junction file containing only turns.
+06/26/04 Fix: Do not let Zones > Nodes (hl_param.c)
+06/28/04 Rev: Add PATHLOAD_TRACE_LIST...
+06/28/04 Fix: Allow LI.vars to be treated as vectors when in PRINT/TRACE LISTs
+08/04/04 Fix: hl_pthio.c code clean up for WindowsAPI
+06/30/04 Rev: NETO DECS= --> DEC=  (hl_netos)
+09/17/04 Rev: Add PATHLOAD ... PATHO=..., PATHOGROUP=list
+09/27/04 Fix: PATHLOAD PATHO problem not getting prior link to selected link
+09/30/04 Fix: Crash w SubAreaMato in certain zone sizes. (hl_subar.c)
+10/01/04 Fix: Crash when subarea zone > SUBAREANETI_zones
+         Rev: Highest matching SUB_TYPE# and OLD_NODE# now used for recodes.
+10/06/04 Rev: move messages 870-871 to 770-771 (leaves gap for Junction)
+         Add: PATHLOAD LINKID... processing
+10/07/04 Fix: hl_moset to properly handle MATO MO=lo-hi,lo-hi,etc.
+10/08/04 Fix: hl_subar correction made (from ST) for getrecode

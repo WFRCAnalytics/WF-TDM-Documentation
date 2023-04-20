@@ -11,7 +11,7 @@ website:
     left: "Documentation for WFRC's Travel Demand Model"
     #center: "Last updated: $(last_modified_date)"
   navbar:
-    background: primary
+    background: info
     logo: _pictures/WFRCDieCutLogo.png
     logo-href: https://wfrc.org
     tools:
@@ -25,69 +25,81 @@ website:
       - text: "What's New?"
         menu:
         - text: "Version 8.3.2"
-          href: v832-whats-new/index.qmd
-          id: v832-index
+          href: 1-whats-new/v832-whats-new/index.qmd
+          id: v832-wn-index
         - text: "Version 9" 
-          href: v9-whats-new/index.qmd
-          id: v9-index
+          href: 1-whats-new/v9-whats-new/index.qmd
+          id: v9-wn-index
+      - text: "Model Documentation"
+        menu:
+        - text: "Version 6"
+          href: 2-model-documentation/v6_Documentation/index.qmd
+          id: v6-index
+        - text: "Version 7"
+          href: 2-model-documentation/v7_Documentation/index.qmd
+          id: v7-index
       - text: "Testing"
         menu:
         - text: "Visualization"
-          href: testing/jupyter-widgets.qmd
+          href: 4-testing/jupyter-widgets.qmd
           id: testing-index
           
   sidebar:
-    - id: v832-index
+    - id: v832-wn-index
       title: "What's New? - Version 8.3.2"
       contents:
         - text: "Preface"
-          href: v832-whats-new/index.qmd
+          href: 1-whats-new/v832-whats-new/index.qmd
         - text: "2022-02-04 UPDATE"
-          href: v832-whats-new/1-20220204-update.qmd
+          href: 1-whats-new/v832-whats-new/1-20220204-update.qmd
         - text: "1 General Parameters"
-          href: v832-whats-new/1-genparams.qmd
+          href: 1-whats-new/v832-whats-new/1-genparams.qmd
         - text: "2 Input Data"
-          href: v832-whats-new/2-inputdata.qmd
+          href: 1-whats-new/v832-whats-new/2-inputdata.qmd
         - text: "3 Input Processing"
-          href: v832-whats-new/3-inputprocessing.qmd
+          href: 1-whats-new/v832-whats-new/3-inputprocessing.qmd
         - text: "4 Household Disaggregation and Auto Ownership"
-          href: v832-whats-new/4-hhdisag.qmd
+          href: 1-whats-new/v832-whats-new/4-hhdisag.qmd
         - text: "5 Trip Generation"
-          href: v832-whats-new/5-tripgen.qmd
+          href: 1-whats-new/v832-whats-new/5-tripgen.qmd
         - text: "6 Distribution"
-          href: v832-whats-new/6-distribution.qmd
+          href: 1-whats-new/v832-whats-new/6-distribution.qmd
         - text: "7 Mode Choice"
-          href: v832-whats-new/7-mc.qmd
+          href: 1-whats-new/v832-whats-new/7-mc.qmd
         - text: "8 Highway Assignment"
-          href: v832-whats-new/8-assign.qmd
+          href: 1-whats-new/v832-whats-new/8-assign.qmd
         - text: "9 Post Processing"
-          href: v832-whats-new/9-pp.qmd
+          href: 1-whats-new/v832-whats-new/9-pp.qmd
         - text: "10 Model Results - Comparison with v8.3.1"
-          href: v832-whats-new/10-modelresults.qmd
-    - id: v9-index
+          href: 1-whats-new/v832-whats-new/10-modelresults.qmd
+    - id: v9-wn-index
       title: "What's New? - Version 9"
       contents:
         - text: "Preface"
-          href: v9-whats-new/index.qmd
+          href: 1-whats-new/v9-whats-new/index.qmd
         - text: "1 General Parameters - Comparison with v8.3.2"
-          href: v9-whats-new/1-genparams.qmd  
+          href: 1-whats-new/v9-whats-new/1-genparams.qmd  
         - text: "2 Input Data"
-          href: v9-whats-new/2-inputdata.qmd
+          href: 1-whats-new/v9-whats-new/2-inputdata.qmd
         - text: "10 Model Results - Comparison with v8.3.2"
-          href: v9-whats-new/10-modelresults.qmd  
+          href: 1-whats-new/v9-whats-new/10-modelresults.qmd  
+    - id: v6-index
+      title: "Complete Model Documentation - Version 6"
+    - id: v7-index
+      title: "Complete Model Documentation - Version 7"
     - id: testing-index
       title: "Testing Environment"
       contents:
         - text: "Jupyter Widgets"
-          href: testing/jupyter-widgets.qmd
+          href: 4-testing/jupyter-widgets.qmd
         - text: "Example OJS"
-          href: testing/ojs-test.qmd
+          href: 4-testing/ojs-test.qmd
 
 format:
   html:
     toc: true
     theme:
-      - sandstone
+      - cerulean
       - custom.css
     code-fold: true
   pdf:

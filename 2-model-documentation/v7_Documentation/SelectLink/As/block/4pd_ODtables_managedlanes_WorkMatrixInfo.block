@@ -1,0 +1,99 @@
+/* information: packaged as .block to ensure it gets carried along and occasionally noticed
+
+;working matrices in managed lane assignment
+
+;*********** BEGIN O-D MATRICES THAT GET ASSIGNED ***********
+; NOTE: depends on where you are in the script loop
+21 - AM total vehicle trips (O-D) by vehicle type
+22 - MD total vehicle trips (O-D) by vehicle type
+23 - PM total vehicle trips (O-D) by vehicle type
+24 - EV total vehicle trips (O-D) by vehicle type
+;*********** END O-D MATRICES THAT GET ASSIGNED ***********
+
+;************ BEGIN ASSIGNMENT INPUT (P-A MATRICES) ************
+51 - peak (am+pm) HBW vehicle trips (P-A)
+52 - peak (am+pm) HBC vehicle trips (P-A)
+53 - peak (am+pm) HBO vehicle trips (P-A)
+54 - peak (am+pm) NHB vehicle trips (P-A)
+
+61 - transpose 51
+62 - transpose 52
+63 - transpose 53
+64 - transpose 54
+
+71 - offpeak (midday+evening) HBW vehicle trips (P-A)
+72 - offpeak (midday+evening) HBC vehicle trips (P-A)
+73 - offpeak (midday+evening) HBO vehicle trips (P-A)
+74 - offpeak (midday+evening) NHB vehicle trips (P-A)
+
+81 - transpose 71
+82 - transpose 72
+83 - transpose 73
+84 - transpose 74
+
+
+205 - daily IX vehicle trips (P-A)
+206 - daily XI vehicle trips (P-A)
+207 - daily COMM vehicle trips (P-A)
+208 - daily XX vehicle trips (P-A)
+
+215 - transpose 205
+216 - transpose 206
+217 - transpose 207
+218 - transpose 208
+;************ END ASSIGNMENT INPUT (P-A MATRICES) ************
+
+
+;************ BEGIN PERIOD SPECIFIC O-D MATRICES BY PURPOSE **********
+221 - AM Peak HBW vehicle trips (O-D)
+222 - AM Peak HBC vehicle trips (O-D)
+223 - AM Peak HBO vehicle trips (O-D)
+224 - AM Peak NHB vehicle trips (O-D)
+225 - AM Peak IX vehicle trips (O-D)
+226 - AM Peak XI vehicle trips (O-D)
+227 - AM Peak COMM vehicle trips (O-D)
+228 - AM Peak XX vehicle trips (O-D)
+
+231 - Midday HBW vehicle trips (O-D)
+232 - Midday HBC vehicle trips (O-D)
+233 - Midday HBO vehicle trips (O-D)
+234 - Midday NHB vehicle trips (O-D)
+235 - Midday IX vehicle trips (O-D)
+236 - Midday XI vehicle trips (O-D)
+237 - Midday COMM vehicle trips (O-D)
+238 - Midday XX vehicle trips (O-D)
+
+241 - PM Peak HBW vehicle trips (O-D)
+242 - PM Peak HBC vehicle trips (O-D)
+243 - PM Peak HBO vehicle trips (O-D)
+244 - PM Peak NHB vehicle trips (O-D)
+245 - PM Peak IX vehicle trips (O-D)
+246 - PM Peak XI vehicle trips (O-D)
+247 - PM Peak COMM vehicle trips (O-D)
+248 - PM Peak XX vehicle trips (O-D)
+
+251 - Evening HBW vehicle trips (O-D)
+252 - Evening HBC vehicle trips (O-D)
+253 - Evening HBO vehicle trips (O-D)
+254 - Evening NHB vehicle trips (O-D)
+255 - Evening IX vehicle trips (O-D)
+256 - Evening XI vehicle trips (O-D)
+257 - Evening COMM vehicle trips (O-D)
+258 - Evening XX vehicle trips (O-D)
+;************ END PERIOD SPECIFC O-D MATRICES BY PURPOSE **********
+
+
+;************ BEGIN DAILY O-D MATRICES BY PURPOSE (For reporting) *******
+111 - daily HBW vehicle trips (O-D)
+112 - daily HBC vehicle trips (O-D)
+113 - daily HBO vehicle trips (O-D)
+114 - daily NHB vehicle trips (O-D)
+115 - daily IX vehicle trips (O-D)
+116 - daily XI vehicle trips (O-D)
+117 - daily COMM vehicle trips (O-D)
+118 - daily XX vehicle trips (O-D)
+119 - daily TOTAL vehicle trips (O-D)
+;************ END DAILY O-D MATRICES BY PURPOSE (For reporting) *******
+
+
+*/
