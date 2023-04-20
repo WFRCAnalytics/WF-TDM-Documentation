@@ -1,0 +1,61 @@
+# Mode Choice
+
+**'04_Create_drive_access_links.s'**
+
+ - Updated script to read ‘ControlTotal_SE_AllCounties.csv’
+    - Updated ‘FILEI LOOKUPI[1]’ reference
+    - Updated ‘PopByAgeConTot’ lookup function indices
+ - Updated control total lookup index calculation and added the following note:
+    - ::: {.callout-note collapse="true"}
+      ;note: Weber Co control total uses the following CO_FIPS convention:
+
+      ;      57 = all county   (CO_FIPS)
+
+      ;    9057 = WFRC portion (90 prefix + CO_FIPS - 9=sub-county total, 0=UDOT  SubareaID)
+
+      ;    9157 = WFRC portion (91 prefix + CO_FIPS - 9=sub-county total, 1=UDOT SubareaID)
+
+      if (Co_index=57)  lu_index = 9157 * 10000 + @DemographicYear@
+      :::
+
+**'05_Skim_Tran.s'**
+
+ - Added lookup FILEI reference to new '1_Inputs\\0_GlobalData\\4_ModeChoice\\bus_speed_ratios.csv' input file
+ - Defined new 'Bus_Speed_Ratio' lookup function & indices
+   - Function index (columns in lookup table) based on Period & Area Type
+      - Peak        = Area Type ID
+      - Off-Peak = Area Type ID + 5
+   - Lookup index (rows in lookup table) based on updated Functional Class groups
+ - Updated Functional Class groups:
+
+```{python}
+#| label: tbl-hway-count
+#| tbl-cap: Updated Functional Class Groups
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['1', 'Collectors & Locals', '1, 4-10'],
+         ['2', 'Minor Arterials'    , '3'      ],
+         ['3', 'Principal Arterials', '2'      ],
+         ['4', 'Expressways'        , '11-19'  ],
+         ['5', 'Freeways & Ramps'   , '20-49'  ]]
+Markdown(tabulate(
+  table, 
+  headers=["FC ID", "Functional Class","FT"],
+  tablefmt="pipe", 
+  colalign=("left",)*3
+))
+```
+
+ - Area Type ID
+   - 1 – Rural
+   - 2 – Transition
+   - 3 – Suburban
+   - 4 – Urban
+   - 5 – CBD-Like
+ - Updated bus speed calculations
+
+
+**'18_SumToDistricts_FinalTripTables.s'**
+
+ - Changed 'COUNTY' field references to 'CO_FIPS' for county summaries to account for removal of field from TAZ shapefile

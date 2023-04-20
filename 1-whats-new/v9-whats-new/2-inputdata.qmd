@@ -14,6 +14,13 @@
     - Added 'bus_speed_ratios.csv' -- file containing the bus speed factors read in by the model
     - Added '_source - bus_speed_ratios.xlsx' -- source file for bus speed ratios csv
 
+#### Update Transit Speed Factors
+The factors to calculate bus speeds from congested auto speeds from the distribution loaded network were re-estimated based on Aug-Nov 2019 GTFS data from UTA. The functional groups were redefined and expanded to include area type as well as peak and off-peak. @fig-old-bus shows the previous bus speed factors and @fig-new-bus shows the new bus speed factors used in this model version.
+
+![Previous Bus Speed Factors.](_pictures/old_bus_speeds.png){#fig-old-bus}
+
+![New Bus Speed Factors.](_pictures/new_bus_speeds.png){#fig-new-bus}
+
 ### Assignment
  - Added lookup table & source file for diurnal and PA parameters (corresponding factors were removed from the ‘0GeneralParameters.block’ file)
     - 'Diurnal & PA factors.csv'
