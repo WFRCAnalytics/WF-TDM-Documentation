@@ -24,24 +24,34 @@ website:
         href: index.qmd
       - text: "What's New?"
         menu:
-        - text: "Version 8.3.2"
-          href: 1-whats-new/v832-whats-new/index.qmd
-          id: v832-wn-index
         - text: "Version 9" 
           href: 1-whats-new/v9-whats-new/index.qmd
           id: v9-wn-index
+        - text: "Version 8.3.2"
+          href: 1-whats-new/v832-whats-new/index.qmd
+          id: v832-wn-index
+        - text: "Version 8.3.1"
+          href: 1-whats-new/v831-whats-new/index.qmd
+          id: v831-wn-index
       - text: "Model Documentation"
         menu:
-        - text: "Version 6"
-          href: 2-model-documentation/v6_Documentation/index.qmd
-          id: v6-index
         - text: "Version 7"
           href: 2-model-documentation/v7_Documentation/index.qmd
           id: v7-index
+        - text: "Version 6"
+          href: 2-model-documentation/v6_Documentation/index.qmd
+          id: v6-index
+      - text: "Calibration/Validation"
+        menu:
+        - text: "Version 8.3.1"
+          href: 3-calib-valid/v831-calib-valid/index.qmd
+          id: v831-cv-index
+      - text: "Resources"
+        href: other.qmd
       - text: "Testing"
         menu:
         - text: "Visualization"
-          href: 4-testing/jupyter-widgets.qmd
+          href: 5-testing/jupyter-widgets.qmd
           id: testing-index
           
   sidebar:
@@ -83,6 +93,10 @@ website:
           href: 1-whats-new/v9-whats-new/2-inputdata.qmd
         - text: "10 Model Results - Comparison with v8.3.2"
           href: 1-whats-new/v9-whats-new/10-modelresults.qmd  
+    - id: v831-wn-index
+      title: "What's New? - Version 8.3.1"
+    - id: v831-cv-index
+      title: "Calibration/Validation - Version 8.3.1"
     - id: v6-index
       title: "Complete Model Documentation - Version 6"
     - id: v7-index
@@ -91,9 +105,9 @@ website:
       title: "Testing Environment"
       contents:
         - text: "Jupyter Widgets"
-          href: 4-testing/jupyter-widgets.qmd
+          href: 5-testing/jupyter-widgets.qmd
         - text: "Example OJS"
-          href: 4-testing/ojs-test.qmd
+          href: 5-testing/ojs-test.qmd
 
 format:
   html:

@@ -179,7 +179,7 @@
     "href": "2-model-documentation/v6_Documentation/index.html",
     "title": "Complete Model Documentation - Version 6",
     "section": "",
-    "text": "v6 Documentation  – Version 6 Complete Model Documentation"
+    "text": "Since the completion of Version 6 dates back to 2007, the documentation is only available as a pdf. Below we provide a download link.\n\n v6 Documentation"
   },
   {
     "objectID": "1-whats-new/v9-whats-new/10-modelresults.html",
@@ -207,14 +207,14 @@
     "href": "1-whats-new/v9-whats-new/index.html",
     "title": "What’s New? - Version 9",
     "section": "",
-    "text": "Preface\nThis is a the What’s New Document for the Wasatch Front Regional Council (WFRC) Travel Demand Model (TDM) version 9.\nFor access to this version of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v9.0.pi"
+    "text": "Preface\nThis is the What’s New Document for the Wasatch Front Regional Council (WFRC) Travel Demand Model (TDM) version 9.\nFor access to this version of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v9.0.pi"
   },
   {
     "objectID": "2-model-documentation/v7_Documentation/index.html",
     "href": "2-model-documentation/v7_Documentation/index.html",
     "title": "Complete Model Documentation - Version 7",
     "section": "",
-    "text": "v7 Documentation  – Version 7 Complete Model Documentation"
+    "text": "Since the completion of Version 7 dates back to 2011, the documentation is only available as a pdf. Below we provide a download link.\n\n v7 Documentation"
   },
   {
     "objectID": "4-testing/jupyter-widgets.html",
@@ -236,5 +236,40 @@
     "title": "What’s New? - Version 8.3.2",
     "section": "",
     "text": "Preface\nThis is a the What’s New Document for the Wasatch Front Regional Council (WFRC) Travel Demand Model (TDM) version 8.3.2.\nFor access to this version of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v8.3.2."
+  },
+  {
+    "objectID": "1-whats-new/v831-whats-new/index.html",
+    "href": "1-whats-new/v831-whats-new/index.html",
+    "title": "What’s New? - Version 8.3.1",
+    "section": "",
+    "text": "The what’s New document for version 8.3.1 can be found as a Word document. In addition, we provide the inputs document as well for version 8.3.1. Below we provide download links\n\n v8.3.1 Whats New \n v8.3.1 Inputs"
+  },
+  {
+    "objectID": "3-calib-valid/v831-calib-valid/index.html",
+    "href": "3-calib-valid/v831-calib-valid/index.html",
+    "title": "Calibration/Validation - Version 8.3.1",
+    "section": "",
+    "text": "The calibration/validation documents for version 8.3.1 can be found as Word documents.\n\n WF TDM v8.3.1 - 2-Validation Report - 2020-10-23 \n WFRC-MAG V81 Model Development - Validation Report"
+  },
+  {
+    "objectID": "other.html",
+    "href": "other.html",
+    "title": "Resources",
+    "section": "",
+    "text": "Besides the What’s New Document, Complete Model Documentation, and Calibration/Validation Report, additional Travel Demand Model documentation exists. This page stores a comprehensive list of additional documentation as downloadable files. Since versioning isn’t always important, many files do not have a version associated with it.\n\n HOT Lane Validation \n Notes on Updating Model Inputs \n Reliability Lane Doc \n REMM Documentation Version 1.0 (April 2019) \n REMM Peer Review Report - Aug 29-30 2019 - Final \n WF Model- 2019 Transit Input Validation Report - 2020-09-28 \n WFCCS - BTI - 2017-02-08 \n WFCCS - Managed Motorways - 2017-02-08 \n WFCCS - Reliability Lanes - 2017-02-08"
+  },
+  {
+    "objectID": "5-testing/jupyter-widgets.html",
+    "href": "5-testing/jupyter-widgets.html",
+    "title": "Jupyter Widgets",
+    "section": "",
+    "text": "Code\nimport plotly.express as px\nimport plotly.io as pio\npio.renderers.default = \"notebook\"\ndf = px.data.iris()\nfig = px.scatter(df, x=\"sepal_width\", y=\"sepal_length\", \n                 color=\"species\", \n                 marginal_y=\"violin\", marginal_x=\"box\", \n                 trendline=\"ols\", template=\"simple_white\")\nfig.show()\n\n\n\n                                                \n\n\n\n\nCode\nfrom ipyleaflet import Map, Marker, basemaps, basemap_to_tiles\nm = Map(\n  basemap=basemap_to_tiles(\n    basemaps.NASAGIBS.ModisTerraTrueColorCR, \"2017-04-08\"\n  ),\n  center=(52.204793, 360.121558),\n  zoom=4\n)\nm.add_layer(Marker(location=(52.204793, 360.121558)))\nm"
+  },
+  {
+    "objectID": "5-testing/ojs-test.html",
+    "href": "5-testing/ojs-test.html",
+    "title": "Observable JS",
+    "section": "",
+    "text": "For more examples on how to use Observable JS with Quarto, use this site: https://quarto.org/docs/interactive/ojs/\n\n\nCode\ndata = FileAttachment(\"palmer-penguins.csv\").csv({ typed: true })\n\n\n\n\n\n\n\n\n\nCode\nviewof bill_length_min = Inputs.range(\n  [32, 50], \n  {value: 35, step: 1, label: \"Bill length (min):\"}\n)\nviewof islands = Inputs.checkbox(\n  [\"Torgersen\", \"Biscoe\", \"Dream\"], \n  { value: [\"Torgersen\", \"Biscoe\"], \n    label: \"Islands:\"\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfiltered = data.filter(function(penguin) {\n  return bill_length_min < penguin.bill_length_mm &&\n         islands.includes(penguin.island);\n})\n\n\n\n\n\n\n\n\nPlotData\n\n\n\n\nCode\nPlot.rectY(filtered, \n  Plot.binX(\n    {y: \"count\"}, \n    {x: \"body_mass_g\", fill: \"species\", thresholds: 20}\n  ))\n  .plot({\n    facet: {\n      data: filtered,\n      x: \"sex\",\n      y: \"species\",\n      marginRight: 80\n    },\n    marks: [\n      Plot.frame(),\n    ]\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\nCode\nInputs.table(data)"
   }
 ]

@@ -4,5 +4,9 @@ date-modified: last-modified
 author: "Wasatch Front Regional Council"
 ---
 
-{{< downloadthis WFRC_MAG_TravelModel_Documentation.pdf
-label="v6 Documentation" dname=v6-model-documentation id=download-btn >}} -- Version 6 Complete Model Documentation
+## Download Link
+
+Since the completion of Version 6 dates back to 2007, the documentation is only available as a pdf. Below we provide a download link.
+
+ - {{< downloadthis WFRC_MAG_TravelModel_Documentation.pdf
+label="v6 Documentation" dname=v6-model-documentation id=download-btn >}}

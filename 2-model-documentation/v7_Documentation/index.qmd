@@ -4,5 +4,9 @@ date-modified: last-modified
 author: "Wasatch Front Regional Council"
 ---
 
-{{< downloadthis 'ModelDocumentation/V7/Model v7 Documentation_05112011.pdf'
-label="v7 Documentation" dname=v7-model-documentation id=download-btn >}} -- Version 7 Complete Model Documentation
+## Download Link
+
+Since the completion of Version 7 dates back to 2011, the documentation is only available as a pdf. Below we provide a download link.
+
+ - {{< downloadthis 'ModelDocumentation/V7/Model v7 Documentation_05112011_CP.pdf'
+label="v7 Documentation" dname=v7-model-documentation id=download-btn >}}
