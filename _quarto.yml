@@ -60,49 +60,71 @@ website:
       contents:
         - text: "Preface"
           href: 1-whats-new/v832-whats-new/index.qmd
-        - text: "2022-02-04 UPDATE"
-          href: 1-whats-new/v832-whats-new/1-20220204-update.qmd
-        - text: "1 General Parameters"
-          href: 1-whats-new/v832-whats-new/1-genparams.qmd
-        - text: "2 Input Data"
-          href: 1-whats-new/v832-whats-new/2-inputdata.qmd
-        - text: "3 Input Processing"
-          href: 1-whats-new/v832-whats-new/3-inputprocessing.qmd
-        - text: "4 Household Disaggregation and Auto Ownership"
-          href: 1-whats-new/v832-whats-new/4-hhdisag.qmd
-        - text: "5 Trip Generation"
-          href: 1-whats-new/v832-whats-new/5-tripgen.qmd
-        - text: "6 Distribution"
-          href: 1-whats-new/v832-whats-new/6-distribution.qmd
-        - text: "7 Mode Choice"
-          href: 1-whats-new/v832-whats-new/7-mc.qmd
-        - text: "8 Highway Assignment"
-          href: 1-whats-new/v832-whats-new/8-assign.qmd
-        - text: "9 Post Processing"
-          href: 1-whats-new/v832-whats-new/9-pp.qmd
-        - text: "10 Model Results - Comparison with v8.3.1"
-          href: 1-whats-new/v832-whats-new/10-modelresults.qmd
+        - section: '2022-02-04'
+          contents:
+          - text: "2022-02-04 UPDATE"
+            href: 1-whats-new/v832-whats-new/1-20220204-update.qmd
+          - text: "1 General Parameters"
+            href: 1-whats-new/v832-whats-new/1-genparams.qmd
+          - text: "2 Input Data"
+            href: 1-whats-new/v832-whats-new/2-inputdata.qmd
+          - text: "3 Input Processing"
+            href: 1-whats-new/v832-whats-new/3-inputprocessing.qmd
+          - text: "4 Household Disaggregation and Auto Ownership"
+            href: 1-whats-new/v832-whats-new/4-hhdisag.qmd
+          - text: "5 Trip Generation"
+            href: 1-whats-new/v832-whats-new/5-tripgen.qmd
+          - text: "6 Distribution"
+            href: 1-whats-new/v832-whats-new/6-distribution.qmd
+          - text: "7 Mode Choice"
+            href: 1-whats-new/v832-whats-new/7-mc.qmd
+          - text: "8 Highway Assignment"
+            href: 1-whats-new/v832-whats-new/8-assign.qmd
+          - text: "9 Post Processing"
+            href: 1-whats-new/v832-whats-new/9-pp.qmd
+          - text: "10 Model Results - Comparison with v8.3.1"
+            href: 1-whats-new/v832-whats-new/10-modelresults.qmd
     - id: v9-wn-index
       title: "What's New? - Version 9"
       contents:
         - text: "Preface"
           href: 1-whats-new/v9-whats-new/index.qmd
-        - text: "1 General Parameters - Comparison with v8.3.2"
-          href: 1-whats-new/v9-whats-new/1-genparams.qmd  
-        - text: "2 Input Data"
-          href: 1-whats-new/v9-whats-new/2-inputdata.qmd
-        - text: "3 Input Processing"
-          href: 1-whats-new/v9-whats-new/3-inputprocessing.qmd
-        - text: "4 Household Disaggregation and Auto Ownership"
-          href: 1-whats-new/v9-whats-new/4-hhdisag.qmd
-        - text: "6 Distribution"
-          href: 1-whats-new/v9-whats-new/6-distribution.qmd
-        - text: "7 Mode Choice"
-          href: 1-whats-new/v9-whats-new/7-mc.qmd
-        - text: "8 Highway Assignment"
-          href: 1-whats-new/v9-whats-new/8-assign.qmd
-        - text: "10 Model Results - Comparison with v8.3.2"
-          href: 1-whats-new/v9-whats-new/10-modelresults.qmd  
+        - section: '2022-12-19'
+          contents: 
+            - text: "1 General Parameters - Comparison with v8.3.2"
+              href: 1-whats-new/v9-whats-new/2022-12-19/1-genparams.qmd  
+            - text: "2 Input Data"
+              href: 1-whats-new/v9-whats-new/2022-12-19/2-inputdata.qmd
+            - text: "3 Input Processing"
+              href: 1-whats-new/v9-whats-new/2022-12-19/3-inputprocessing.qmd
+            - text: "6 Distribution"
+              href: 1-whats-new/v9-whats-new/2022-12-19/6-distribution.qmd
+        - section: '2022-11-01'
+          contents:
+            - text: "1 General Parameters - Comparison with v8.3.2"
+              href: 1-whats-new/v9-whats-new/2022-11-01/1-genparams.qmd  
+            - text: "2 Input Data"
+              href: 1-whats-new/v9-whats-new/2022-11-01/2-inputdata.qmd
+            - text: "3 Input Processing"
+              href: 1-whats-new/v9-whats-new/2022-11-01/3-inputprocessing.qmd
+            - text: "7 Mode Choice"
+              href: 1-whats-new/v9-whats-new/2022-11-01/7-mc.qmd
+        - section: '2022-10-05'
+          contents:
+            - text: "1 General Parameters - Comparison with v8.3.2"
+              href: 1-whats-new/v9-whats-new/2022-10-05/1-genparams.qmd  
+            - text: "2 Input Data"
+              href: 1-whats-new/v9-whats-new/2022-10-05/2-inputdata.qmd
+            - text: "3 Input Processing"
+              href: 1-whats-new/v9-whats-new/2022-10-05/3-inputprocessing.qmd
+            - text: "4 Household Disaggregation and Auto Ownership"
+              href: 1-whats-new/v9-whats-new/2022-10-05/4-hhdisag.qmd
+            - text: "7 Mode Choice"
+              href: 1-whats-new/v9-whats-new/2022-10-05/7-mc.qmd
+            - text: "8 Highway Assignment"
+              href: 1-whats-new/v9-whats-new/2022-10-05/8-assign.qmd
+            - text: "10 Model Results - Comparison with v8.3.2"
+              href: 1-whats-new/v9-whats-new/2022-10-05/10-modelresults.qmd  
     - id: v831-wn-index
       title: "What's New? - Version 8.3.1"
     - id: v831-cv-index

@@ -1,0 +1,30 @@
+# General Parameters
+
+## K-Factors
+
+The following K factors were adjusted as calibration adjustment factors to reduce non-work trips: 
+
+**Between Salt Lake and Utah counties**
+ - SL_UT_KFAC_Wrk  = 1.00
+ - SL_UT_KFAC_Oth  = 1.00
+ - SL_UT_KFAC_Trk  = 1.00
+ - SL_UT_KFAC_Ext  = 1.00
+    
+**Between Salt Lake and Davis counties**
+ - SL_DA_KFAC_Wrk  = 1.00
+ - SL_DA_KFAC_Oth  = 1.00
+ - SL_DA_KFAC_Trk  = 1.00
+ - SL_DA_KFAC_Ext  = 1.00
+    
+**Between Box Elder and Weber counties**
+ - WE_BE_KFAC_Wrk  = 1.00
+ - WE_BE_KFAC_Oth  = 1.00
+ - WE_BE_KFAC_Trk  = 1.00
+ - WE_BE_KFAC_Ext  = 1.00
+
+## Other
+
+ - Removed % Period and PA factors
+
+
+

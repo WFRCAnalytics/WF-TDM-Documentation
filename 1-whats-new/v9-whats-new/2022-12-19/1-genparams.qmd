@@ -1,0 +1,9 @@
+# General Parameters
+
+## Other
+
+ - Change RAIL2COR_MULTIPLIER from 0.40 to 0.33
+
+
+
+

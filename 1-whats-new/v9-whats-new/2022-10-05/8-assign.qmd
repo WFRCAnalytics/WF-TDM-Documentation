@@ -1,0 +1,5 @@
+# Highway Assignment
+
+**'4_SummarizeLoadedNetworks.s'**
+
+ - Pointed GEOMI reference to '0_InputProcessing\\UpdatedMasterNet\\GIS\\@MasterPrefix@ - Link.shp' instead of '1_Inputs\\3_Highway' folder

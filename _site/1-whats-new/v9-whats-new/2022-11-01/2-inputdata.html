@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Documentation – inputdata</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../_pictures/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://wfrc.org" class="navbar-brand navbar-brand-logo">
+    <img src="../../../_pictures/WFRCDieCutLogo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-whats-new" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">What’s New?</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-whats-new">    
+        <li>
+    <a class="dropdown-item" href="../../../1-whats-new/v9-whats-new/index.html">
+ <span class="dropdown-text">Version 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../1-whats-new/v832-whats-new/index.html">
+ <span class="dropdown-text">Version 8.3.2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../1-whats-new/v831-whats-new/index.html">
+ <span class="dropdown-text">Version 8.3.1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-model-documentation" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Model Documentation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-model-documentation">    
+        <li>
+    <a class="dropdown-item" href="../../../2-model-documentation/v7_Documentation/index.html">
+ <span class="dropdown-text">Version 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../2-model-documentation/v6_Documentation/index.html">
+ <span class="dropdown-text">Version 6</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-calibrationvalidation" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Calibration/Validation</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-calibrationvalidation">    
+        <li>
+    <a class="dropdown-item" href="../../../3-calib-valid/v831-calib-valid/index.html">
+ <span class="dropdown-text">Version 8.3.1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../4-other/other.html">
+ <span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-testing" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Testing</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-testing">    
+        <li>
+    <a class="dropdown-item" href="../../../5-testing/jupyter-widgets.html">
+ <span class="dropdown-text">Visualization</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">2022-12-19</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-12-19/1-genparams.html" class="sidebar-item-text sidebar-link">1 General Parameters - Comparison with v8.3.2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-12-19/2-inputdata.html" class="sidebar-item-text sidebar-link">2 Input Data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-12-19/3-inputprocessing.html" class="sidebar-item-text sidebar-link">3 Input Processing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-12-19/6-distribution.html" class="sidebar-item-text sidebar-link">6 Distribution</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">2022-11-01</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-11-01/1-genparams.html" class="sidebar-item-text sidebar-link">1 General Parameters - Comparison with v8.3.2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-11-01/2-inputdata.html" class="sidebar-item-text sidebar-link active">2 Input Data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-11-01/3-inputprocessing.html" class="sidebar-item-text sidebar-link">3 Input Processing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-11-01/7-mc.html" class="sidebar-item-text sidebar-link">7 Mode Choice</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">2022-10-05</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-10-05/1-genparams.html" class="sidebar-item-text sidebar-link">1 General Parameters - Comparison with v8.3.2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-10-05/2-inputdata.html" class="sidebar-item-text sidebar-link">2 Input Data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-10-05/3-inputprocessing.html" class="sidebar-item-text sidebar-link">3 Input Processing</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-10-05/4-hhdisag.html" class="sidebar-item-text sidebar-link">4 Household Disaggregation and Auto Ownership</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-10-05/7-mc.html" class="sidebar-item-text sidebar-link">7 Mode Choice</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-10-05/8-assign.html" class="sidebar-item-text sidebar-link">8 Highway Assignment</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../1-whats-new/v9-whats-new/2022-10-05/10-modelresults.html" class="sidebar-item-text sidebar-link">10 Model Results - Comparison with v8.3.2</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#input-data" id="toc-input-data" class="nav-link active" data-scroll-target="#input-data">Input Data</a>
+  <ul class="collapse">
+  <li><a href="#global-data" id="toc-global-data" class="nav-link" data-scroll-target="#global-data">Global Data</a>
+  <ul class="collapse">
+  <li><a href="#mode-choice" id="toc-mode-choice" class="nav-link" data-scroll-target="#mode-choice">Mode Choice</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  </ul></li>
+  <li><a href="#highway-network" id="toc-highway-network" class="nav-link" data-scroll-target="#highway-network">Highway Network</a>
+  <ul class="collapse">
+  <li><a href="#dated-updates" id="toc-dated-updates" class="nav-link" data-scroll-target="#dated-updates">Dated Updates</a></li>
+  </ul></li>
+  <li><a href="#externals" id="toc-externals" class="nav-link" data-scroll-target="#externals">Externals</a>
+  <ul class="collapse">
+  <li><a href="#external-matrices-from-ustm" id="toc-external-matrices-from-ustm" class="nav-link" data-scroll-target="#external-matrices-from-ustm">External Matrices from USTM</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="input-data" class="level1">
+<h1>Input Data</h1>
+<section id="global-data" class="level2">
+<h2 class="anchored" data-anchor-id="global-data">Global Data</h2>
+<section id="mode-choice" class="level3">
+<h3 class="anchored" data-anchor-id="mode-choice">Mode Choice</h3>
+<ul>
+<li>Added input files regarding new bus speed ratios
+<ul>
+<li>Added ‘bus_speed_ratios.csv’ – file containing the bus speed factors read in by the model</li>
+<li>Added ’_source - bus_speed_ratios.xlsx’ – source file for bus speed ratios csv</li>
+</ul></li>
+</ul>
+<section id="update-transit-speed-factors" class="level4">
+<h4 class="anchored" data-anchor-id="update-transit-speed-factors">Update Transit Speed Factors</h4>
+<p>The factors to calculate bus speeds from congested auto speeds from the distribution loaded network were re-estimated based on Aug-Nov 2019 GTFS data from UTA. The functional groups were redefined and expanded to include area type as well as peak and off-peak. <a href="#fig-old-bus">Figure&nbsp;1</a> shows the previous bus speed factors and <a href="#fig-new-bus">Figure&nbsp;2</a> shows the new bus speed factors used in this model version.</p>
+<div id="fig-old-bus" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../_pictures/old_bus_speeds.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Previous Bus Speed Factors.</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-new-bus" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../_pictures/new_bus_speeds.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: New Bus Speed Factors.</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="assignment" class="level3">
+<h3 class="anchored" data-anchor-id="assignment">Assignment</h3>
+<ul>
+<li>Added lookup table &amp; source file for diurnal and PA parameters (corresponding factors were removed from the ‘0GeneralParameters.block’ file)
+<ul>
+<li>‘Diurnal &amp; PA factors.csv’</li>
+<li>_source - Diurnal &amp; PA factors.xlsx’</li>
+</ul></li>
+<li>The ‘Diurnal &amp; PA factors.csv’ was updated</li>
+</ul>
+</section>
+</section>
+<section id="highway-network" class="level2">
+<h2 class="anchored" data-anchor-id="highway-network">Highway Network</h2>
+<section id="dated-updates" class="level3">
+<h3 class="anchored" data-anchor-id="dated-updates">Dated Updates</h3>
+<p><strong>MergedMasterNet - 2022-10-11</strong></p>
+<ul>
+<li>Phase change for Managed Motorways in WFRC area</li>
+<li>A couple of phasing updates from the WFRC RTP project list</li>
+<li>Cleaned up GIS23_32 &amp; GIS23_42 fields</li>
+<li>Differentiated what projects will be built by 2028 from what will be built by 2023</li>
+</ul>
+</section>
+</section>
+<section id="externals" class="level2">
+<h2 class="anchored" data-anchor-id="externals">Externals</h2>
+<section id="external-matrices-from-ustm" class="level3">
+<h3 class="anchored" data-anchor-id="external-matrices-from-ustm">External Matrices from USTM</h3>
+<p>The external matrices from USTM were updated:</p>
+<ul>
+<li>Replaced AM, MD, PM, EV &amp; DY external matrices from USTM’s subarea extraction process for the following years:
+<ul>
+<li>2015 – copied DY matrix from 2019</li>
+<li>2019</li>
+<li>2023 – copied DY matrix from 2019</li>
+<li>2028 – copied DY matrix from 2032</li>
+<li>2032</li>
+<li>2042</li>
+<li>2050</li>
+</ul></li>
+<li>USTM version used: ‘USTM_v3.0 - 2022-09-15’ which included TAZ, MasterNet, SE &amp; loaded nets from ‘WF TDM v9.0 - 2022-10-05’</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Documentation for WFRC’s Travel Demand Model</div>   
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
