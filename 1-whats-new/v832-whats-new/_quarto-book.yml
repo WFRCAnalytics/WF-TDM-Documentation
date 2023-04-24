@@ -4,7 +4,7 @@ project:
 
 book:
   title: "What's New? - Version 8.3.2"
-  author: "Wasatch Front Regional Council"
+  author: "WFRC / MAG"
   date: "2/4/22"
   chapters:
     - index.qmd
