@@ -1,0 +1,13 @@
+---
+title:  "Download Links"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The *What's New Document* for version 8.3.1 can be found as a Word document. In addition, we provide the inputs document as well for version 8.3.1. Below we provide download links
+
+ - {{< downloadthis "WF TDM v8.3.1 - 0_Whats New - 2020-08-17.docx"
+label="v8.3.1 Whats New" dname=v8.3.1-whats-new id=download-btn >}}
+
+ - {{< downloadthis 'WF TDM v8.3.1 - 1_Inputs - 2020-05-08.docx'
+label="v8.3.1 Inputs" dname=v8.3.1-inputs id=download-btn >}}
