@@ -8,15 +8,16 @@ website:
   favicon: _pictures/favicon.ico
   page-footer:
     right: "Built using [Quarto](https://quarto.org)"
-    left: In collaboration with [![](_pictures/mag-logo.png){fig-alt='MAG' width=65px}](https://mountainland.org/)
-    #center: "Last updated: $(last_modified_date)"
+    left: |
+      In collaboration with 
+      [![](https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg){fig-alt='MAG' width=65px}](https://mountainland.org/)
   navbar:
     background: info
     logo: _pictures/WFRCDieCutLogo.png
     logo-href: https://wfrc.org
     tools:
       - icon: github
-        href: https://github.com/WFRCAnalytics/TDM-Documentation
+        href: https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages
     title: false
     collapse-below: lg
     left:
