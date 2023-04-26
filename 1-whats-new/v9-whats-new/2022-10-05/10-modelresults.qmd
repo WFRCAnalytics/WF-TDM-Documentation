@@ -27,7 +27,7 @@ import ipywidgets as widgets
 import numpy as np
 from scipy import special
 import time
-import math as ms
+import math as msi
 import sys
 
 sys.path.insert(0, '..\..\..\..\Resources\Python-Functions')

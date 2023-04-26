@@ -106,6 +106,8 @@ website:
     - id: v8-wn-index
       title: "What's New? - Version 8"
       contents:
+        - text: "Downloads"
+          href: 1-whats-new/v8-whats-new/downloads.qmd
         - text: "Preface"
           href: 1-whats-new/v8-whats-new/index.qmd
         - section: 'v8.3.2'
@@ -138,8 +140,11 @@ website:
           contents:
           - section: '2020-08-17'
             contents:
-            - text: 'Download Links'
-              href: 1-whats-new/v8-whats-new/v831/index.qmd
+            
+          - section: '2020-05-08'
+            contents:
+          
+
     - id: v831-cv-index
       title: "Calibration/Validation - Version 8.3.1"
     - id: v6-index

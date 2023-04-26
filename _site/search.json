@@ -607,5 +607,19 @@
     "title": "Wasatch Front Travel Demand Model Documentation",
     "section": "Points of Contact",
     "text": "Points of Contact\nWith questions regarding the development of the model, reach out to the following persons:\n\nMatt DeLora (MAG): mdelora@magutah.org\nSuzie Swim (WFRC): sswim@wfrc.org"
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/downloads.html",
+    "href": "1-whats-new/v8-whats-new/downloads.html",
+    "title": "Downloads",
+    "section": "",
+    "text": "The What’s New Documents for the various iterations of version 8 can also be downloaded as complete word documents or pdf documents. These complete downloads are provided below:\n\nVersion 8.3.2\n\n v8.3.2 2022-02-04 Whats New \n v8.3.2 2021-11-10 Whats New \n\n\n\nVersion 8.3.1\n\n v8.3.1 2020-08-17 Whats New \n v8.3.1 2020-05-08 Whats New \n\n\n\nVersion 8.3\n\n[Still Need to Find it]"
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/index.html",
+    "href": "1-whats-new/v8-whats-new/index.html",
+    "title": "What’s New? - Version 8",
+    "section": "",
+    "text": "These are the What’s New Documents for the Wasatch Front Travel Demand Model (TDM) that were released during various iterations of version 8.\nFor access to v8.3.2 of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v8.3.2.\nFor access to the v8.3.1, v8.3, and other iterations of version 8, please email Chad Worthen at cworthen@wfrc.org."
   }
 ]
