@@ -68,39 +68,39 @@ website:
           contents:
           - section: '2022-12-19'
             contents: 
-              - text: "1 General Parameters - Comparison with v8.3.2"
+              - text: "General Parameters - Comparison with v8.3.2"
                 href: 1-whats-new/v9-whats-new/2022-12-19/1-genparams.qmd  
-              - text: "2 Input Data"
+              - text: "Input Data"
                 href: 1-whats-new/v9-whats-new/2022-12-19/2-inputdata.qmd
-              - text: "3 Input Processing"
+              - text: "Input Processing"
                 href: 1-whats-new/v9-whats-new/2022-12-19/3-inputprocessing.qmd
-              - text: "6 Distribution"
+              - text: "Distribution"
                 href: 1-whats-new/v9-whats-new/2022-12-19/6-distribution.qmd
           - section: '2022-11-01'
             contents:
-              - text: "1 General Parameters - Comparison with v8.3.2"
+              - text: "General Parameters - Comparison with v8.3.2"
                 href: 1-whats-new/v9-whats-new/2022-11-01/1-genparams.qmd  
-              - text: "2 Input Data"
+              - text: "Input Data"
                 href: 1-whats-new/v9-whats-new/2022-11-01/2-inputdata.qmd
-              - text: "3 Input Processing"
+              - text: "Input Processing"
                 href: 1-whats-new/v9-whats-new/2022-11-01/3-inputprocessing.qmd
-              - text: "7 Mode Choice"
+              - text: "Mode Choice"
                 href: 1-whats-new/v9-whats-new/2022-11-01/7-mc.qmd
           - section: '2022-10-05'
             contents:
-              - text: "1 General Parameters - Comparison with v8.3.2"
+              - text: "General Parameters - Comparison with v8.3.2"
                 href: 1-whats-new/v9-whats-new/2022-10-05/1-genparams.qmd  
-              - text: "2 Input Data"
+              - text: "Input Data"
                 href: 1-whats-new/v9-whats-new/2022-10-05/2-inputdata.qmd
-              - text: "3 Input Processing"
+              - text: "Input Processing"
                 href: 1-whats-new/v9-whats-new/2022-10-05/3-inputprocessing.qmd
-              - text: "4 Household Disaggregation and Auto Ownership"
+              - text: "Household Disaggregation and Auto Ownership"
                 href: 1-whats-new/v9-whats-new/2022-10-05/4-hhdisag.qmd
-              - text: "7 Mode Choice"
+              - text: "Mode Choice"
                 href: 1-whats-new/v9-whats-new/2022-10-05/7-mc.qmd
-              - text: "8 Highway Assignment"
+              - text: "Highway Assignment"
                 href: 1-whats-new/v9-whats-new/2022-10-05/8-assign.qmd
-              - text: "10 Model Results - Comparison with v8.3.2"
+              - text: "Model Results - Comparison with v8.3.2"
                 href: 1-whats-new/v9-whats-new/2022-10-05/10-modelresults.qmd  
 
     - id: v8-wn-index
@@ -114,35 +114,50 @@ website:
           contents:
           - section: '2022-02-04'
             contents:
-            - text: "2022-02-04 UPDATE"
-              href: 1-whats-new/v8-whats-new/v832/1-20220204-update.qmd
-            - text: "1 General Parameters"
-              href: 1-whats-new/v8-whats-new/v832/1-genparams.qmd
-            - text: "2 Input Data"
-              href: 1-whats-new/v8-whats-new/v832/2-inputdata.qmd
-            - text: "3 Input Processing"
-              href: 1-whats-new/v8-whats-new/v832/3-inputprocessing.qmd
-            - text: "4 Household Disaggregation and Auto Ownership"
-              href: 1-whats-new/v8-whats-new/v832/4-hhdisag.qmd
-            - text: "5 Trip Generation"
-              href: 1-whats-new/v8-whats-new/v832/5-tripgen.qmd
-            - text: "6 Distribution"
-              href: 1-whats-new/v8-whats-new/v832/6-distribution.qmd
-            - text: "7 Mode Choice"
-              href: 1-whats-new/v8-whats-new/v832/7-mc.qmd
-            - text: "8 Highway Assignment"
-              href: 1-whats-new/v8-whats-new/v832/8-assign.qmd
-            - text: "9 Post Processing"
-              href: 1-whats-new/v8-whats-new/v832/9-pp.qmd
-            - text: "10 Model Results - Comparison with v8.3.1"
-              href: 1-whats-new/v8-whats-new/v832/10-modelresults.qmd
+            - text: "2022-02-04 Update"
+              href: 1-whats-new/v8-whats-new/v832/2022-02-04/1-20220204-update.qmd
+          - section: '2021-11-10'
+            contents:
+            - text: "General Parameters"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/1-genparams.qmd
+            - text: "Input Data"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.qmd
+            - text: "Input Processing"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/3-inputprocessing.qmd
+            - text: "Household Disaggregation and Auto Ownership"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/4-hhdisag.qmd
+            - text: "Trip Generation"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/5-tripgen.qmd
+            - text: "Distribution"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/6-distribution.qmd
+            - text: "Mode Choice"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/7-mc.qmd
+            - text: "Highway Assignment"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/8-assign.qmd
+            - text: "Post Processing"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/9-pp.qmd
+            - text: "Model Results - Comparison with v8.3.1"
+              href: 1-whats-new/v8-whats-new/v832/2021-11-10/10-modelresults.qmd
         - section: 'v8.3.1'
           contents:
           - section: '2020-08-17'
             contents:
-            
+            - text: '2020-08-17 Update'
+              href: 1-whats-new/v8-whats-new/v831/2020-08-17/1-20200817-update.qmd
           - section: '2020-05-08'
             contents:
+            - text: 'Input Data'
+              href: 1-whats-new/v8-whats-new/v831/2020-05-08/1-inputdata.qmd
+            - text: 'Update for Cube 6.4.5'
+              href: 1-whats-new/v8-whats-new/v831/2020-05-08/2-cube-update.qmd
+            - text: 'Segment Summary'
+              href: 1-whats-new/v8-whats-new/v831/2020-05-08/3-segsum.qmd
+            - text: 'Assignment Output Folder'
+              href: 1-whats-new/v8-whats-new/v831/2020-05-08/4-assign.qmd
+            - text: 'Access to Opportunity'
+              href: 1-whats-new/v8-whats-new/v831/2020-05-08/5-ato.qmd
+            - text: 'Miscellaneous Changes'
+              href: 1-whats-new/v8-whats-new/v831/2020-05-08/6-misc.qmd
           
 
     - id: v831-cv-index

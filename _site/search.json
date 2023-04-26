@@ -1,157 +1,220 @@
 [
   {
-    "objectID": "1-whats-new/v8-whats-new/v831/index.html",
-    "href": "1-whats-new/v8-whats-new/v831/index.html",
-    "title": "Download Links",
+    "objectID": "1-whats-new/v8-whats-new/downloads.html",
+    "href": "1-whats-new/v8-whats-new/downloads.html",
+    "title": "Downloads",
     "section": "",
-    "text": "The What’s New Document for version 8.3.1 can be found as a Word document. In addition, we provide the inputs document as well for version 8.3.1. Below we provide download links\n\n v8.3.1 Whats New \n v8.3.1 Inputs"
+    "text": "The What’s New Documents for the various iterations of version 8 can also be downloaded as complete word documents or pdf documents. These complete downloads are provided below:\n\nVersion 8.3.2\n\n v8.3.2 2022-02-04 Whats New \n v8.3.2 2021-11-10 Whats New \n\n\n\nVersion 8.3.1\n\n v8.3.1 2020-08-17 Whats New \n v8.3.1 2020-05-08 Whats New \n\n\n\nVersion 8.3\n\n[Still Need to Find it]"
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/1-20220204-update.html",
-    "href": "1-whats-new/v8-whats-new/v832/1-20220204-update.html",
-    "title": "2022-02-04 UPDATE",
+    "objectID": "1-whats-new/v8-whats-new/index.html",
+    "href": "1-whats-new/v8-whats-new/index.html",
+    "title": "What’s New? - Version 8",
     "section": "",
-    "text": "This first part of this document contains a quick comparison between the 2022-02-04 version of the model and the 2021-11-10 version of the model.\n\n\nThe following changes were made the Distribution and Final Assignment scripts of the model\n\nChanged truck penalty from speed factor to a speed reduction penalty\n\nUpdated toll calculations:\nUpdate COST function\n\nUpdate TC function\nGeneral model cleanup\n\nAdditionally the Scenario Folder was updated with updated default ControlCenter.block files, a rolled date of model version, Fixed Cluster START & STARTHIDE typo, and added ‘blank folder setup’ folder.\n\n\n\nFigure 1 and Figure 2 contain a daily total volume comparison and a daily truck volume comparison. Daily total volumes are very similar between the two models. There is a slight shift of volume off of I-15 and onto parallel corridors. The largest volume shifts in 2050 are between I-215 and Bangerter Highway. Figure 1 shows one-way volumes.\n\n\n\nFigure 1: Daily Total Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10.\n\n\nDaily truck volumes show more differences with volumes dropping between the two models. The drop in volumes is less than a 1,500 trucks per day on freeways but is widespread throughout the region. Figure 2 shows one-way volumes.\n\n\n\nFigure 2: Daily Truck Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10."
+    "text": "These are the What’s New Documents for the Wasatch Front Travel Demand Model (TDM) that were released during various iterations of version 8.\nFor access to v8.3.2 of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v8.3.2.\nFor access to the v8.3.1, v8.3, and other iterations of version 8, please email Chad Worthen at cworthen@wfrc.org."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/1-20220204-update.html#changes",
-    "href": "1-whats-new/v8-whats-new/v832/1-20220204-update.html#changes",
-    "title": "2022-02-04 UPDATE",
+    "objectID": "1-whats-new/v8-whats-new/v831/2020-05-08/1-inputdata.html",
+    "href": "1-whats-new/v8-whats-new/v831/2020-05-08/1-inputdata.html",
+    "title": "Input Data",
     "section": "",
-    "text": "The following changes were made the Distribution and Final Assignment scripts of the model\n\nChanged truck penalty from speed factor to a speed reduction penalty\n\nUpdated toll calculations:\nUpdate COST function\n\nUpdate TC function\nGeneral model cleanup\n\nAdditionally the Scenario Folder was updated with updated default ControlCenter.block files, a rolled date of model version, Fixed Cluster START & STARTHIDE typo, and added ‘blank folder setup’ folder."
+    "text": "A very minor change was made to the socioeconomic data in Utah County. A few households had been located in the Utah Lake TAZ. These were removed and relocated into nearby TAZ. This change would have very little affect to model results.\n\n\n\nThe highway network was updated in the MAG and WFRC areas to reflect the first round of Regional Transportation Plan (RTP) amendments. Additional edits were made in the MAG area to conform with more recent project clarification. The changes to the input highway network are significant, particularly in Utah County, and would most likely affect the travel model’s output. Projects in and around areas of high change may want to do sensitivity tests to better understand the impact that these input network changes may have had on project-level decisions. Figure 1 shows where lanes were added (green) or were taken away (orange) between versions 8.3 and 8.3.1 highway networks.\n\n\n\nFigure 1: Added lanes between version 8.3 and 8.3.1."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/1-20220204-update.html#model-results",
-    "href": "1-whats-new/v8-whats-new/v832/1-20220204-update.html#model-results",
-    "title": "2022-02-04 UPDATE",
+    "objectID": "1-whats-new/v8-whats-new/v831/2020-05-08/1-inputdata.html#socioeconomic-data",
+    "href": "1-whats-new/v8-whats-new/v831/2020-05-08/1-inputdata.html#socioeconomic-data",
+    "title": "Input Data",
     "section": "",
-    "text": "Figure 1 and Figure 2 contain a daily total volume comparison and a daily truck volume comparison. Daily total volumes are very similar between the two models. There is a slight shift of volume off of I-15 and onto parallel corridors. The largest volume shifts in 2050 are between I-215 and Bangerter Highway. Figure 1 shows one-way volumes.\n\n\n\nFigure 1: Daily Total Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10.\n\n\nDaily truck volumes show more differences with volumes dropping between the two models. The drop in volumes is less than a 1,500 trucks per day on freeways but is widespread throughout the region. Figure 2 shows one-way volumes.\n\n\n\nFigure 2: Daily Truck Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10."
+    "text": "A very minor change was made to the socioeconomic data in Utah County. A few households had been located in the Utah Lake TAZ. These were removed and relocated into nearby TAZ. This change would have very little affect to model results."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/1-genparams.html",
-    "href": "1-whats-new/v8-whats-new/v832/1-genparams.html",
+    "objectID": "1-whats-new/v8-whats-new/v831/2020-05-08/1-inputdata.html#plan-amendment",
+    "href": "1-whats-new/v8-whats-new/v831/2020-05-08/1-inputdata.html#plan-amendment",
+    "title": "Input Data",
+    "section": "",
+    "text": "The highway network was updated in the MAG and WFRC areas to reflect the first round of Regional Transportation Plan (RTP) amendments. Additional edits were made in the MAG area to conform with more recent project clarification. The changes to the input highway network are significant, particularly in Utah County, and would most likely affect the travel model’s output. Projects in and around areas of high change may want to do sensitivity tests to better understand the impact that these input network changes may have had on project-level decisions. Figure 1 shows where lanes were added (green) or were taken away (orange) between versions 8.3 and 8.3.1 highway networks.\n\n\n\nFigure 1: Added lanes between version 8.3 and 8.3.1."
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v831/2020-05-08/2-cube-update.html",
+    "href": "1-whats-new/v8-whats-new/v831/2020-05-08/2-cube-update.html",
+    "title": "Update For CUBE 6.4.5",
+    "section": "",
+    "text": "Update For CUBE 6.4.5\nCube 6.4.5 required that all ZDATI input files be placed before any MATI input files. This requirement was not in previous versions of Cube. The scripts were update to comply with this new requirement so the travel model will run on Cube 6.4.5 without crashing. That said, it is possible that future versions of Cube will address this issue.\nIn addition, Cube 6.4.5 was improved to allow for faster assignment processing in. According to Cube’s 6.4.5 release notes:\n\n\n\n\n\n\nNote\n\n\n\n\n\n“New option F2 for PATHLOAD DEC keyword. Improves run time performance in path building.\nNew keyword MUTITHREAD to distribute Adjust phase across multiple processing cores. Includes sub keyword MEMORY, which is a Boolean option to set the temp files in memory or disk, when using MULTITHREAD. Only applies to COMBINE=EQUI.”\n\n\n\nThe command ‘DEC=F2’ was put into the PATHLOAD control statement and ‘MULTITHREAD=@CoresAvailable@, MEMORY=T’ in the assignment ‘block’ files to improve model runtime. These changes, however, resulted in only minor runtime improvements. These improvements were left in the model scripts but were commented out so users of Cube prior to the 6.4.5 release can still use the model. For those wishing to use this enhancement and have Cube 6.4.5, they will need to uncomment these items.\nThe following files were updated as part of the Cube 6.4.5 work:\n\nDistribution\n\n1_Distribution.s\n4pd_mainbody_distribution.block\n3_SumToDistricts_GRAVITY.s\n\nMode Choice\n\n03_Skim_auto.s\n06_HBW_logsums.s\n07_HBW_dest_choice.s\n11_Mc_HBW_HBO.s,12_Mc_NHB_HBC.s\n14_AsnTran.s\n18_SumToDistricts_FinalTripTables.s\n\nFinal Assignment\n\n4pd_mainbody_managedlanes.block\n4pd_mainbody_managedlanes_SelectLink.block"
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v831/2020-05-08/3-segsum.html",
+    "href": "1-whats-new/v8-whats-new/v831/2020-05-08/3-segsum.html",
+    "title": "Segment Summary",
+    "section": "",
+    "text": "Segment Summary\nSeveral changes were made to the model’s inputs and code to allow for segment level processing of the model results.\nIn the ‘1_Inputs\\6_Segment’ folder, an updated master segment shapefile has been provided. This shapefile contains the segment geography used to summarize and report model data. The shapefile also contains historic UDOT observed volumes (AADT), medium and heavy truck factors, day-of-week and average weekday and weekend factors, and monthly and seasonal factors. Each segment in the segment shapefile has a unique SEGID which has been stamped onto appropriate links on the master highway network. Given the complex geometry in certain areas in the highway network, such as those found near freeway system-to-system interchanges, a polygon shapefile located in the ‘Stamping_Polygons’ folder was created to aid in the SEGID transfer from the segment shapefile onto the highway network links. Note in many cases not all model links in a segment currently receive a SEGID; rather, a sufficient number of links have been identified to represent the segment for data averaging.\nThe ‘1_Inputs\\6_Segment’ folder also contains a polygon shapefile located in the ‘SeasFac_Geog’ folder that contains geographic information that can be spatially joined onto the model highway links so that seasonal factors can be calculated for every link. This data is used by the air quality TDM2MOVES script located in the ‘2_ModelScripts\\7_PostProcessing\\1_TDM_2_MOVES\\1_TDM_2_MOVES - v1’ folder.\nA segment post processing script, ‘06_SegmentSummary.s’ located in the ‘2_ModelScripts\\5_AssignHwy’ folder, has been added to the model’s ’_HailMary.s’ batch script. This script summarizes the final assigned highway network data for the segments in the segment shapefile based on the SEGID on the highway network links. The script produces two summary reports, ‘v83_SE15_Net15_Summary_SEGID.dbf’ and ‘v83_SE15_Net15_Summary_SEGID_Detailed.dbf’ found in the output scenario’s ‘5_AssignHwy\\4_Summaries’ folder. The two files are identical except that the ‘Detailed’ report includes data summaries for all functional groups separately in addition to the total for all functional groups. The reports are generated automatically with every model run. The reports provide data summaries for each direction (direction 1=positive or eastbound/northbound direction, direction 2=negative or westbound/southbound direction) and for the total of both directions and include the following information:\n\nIdentifying fields:\n\nSEGID, functional group, SUBAREAID, county FIPS, and area type\n\nFields for each direction & total:\n\nNumber of Links\nOneway Distance\nNumber of Lanes\nFunctional Type Number and corresponding functional group\nAverage 1-hour, 1-lane capacity\nAverage volume by period (AM, MD, PM, EV & DY) and average daily truck volume (LT, MD, HV)\nAverage speed by period (free flow, AM, MD, PM, EV, DY)"
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v831/2020-05-08/4-assign.html",
+    "href": "1-whats-new/v8-whats-new/v831/2020-05-08/4-assign.html",
+    "title": "Assignment Output Folder",
+    "section": "",
+    "text": "Assignment Output Folder\nSubfolders were added to the final assignment folder, ‘5_AssignHwy’, in the scenario output folder to keep assignment output more organized. The new folders are shown in Figure 1.\n\n\n\nFigure 1: New assignment folder structure.\n\n\nThe ‘0_ConvergeReports’ folder contain the highway assignment convergence reports. These reports were previously written to the assignment temp folder. The ‘1_ODTables’ contain the output of the ‘01_Convert_PA_to_OD.s’ script. The binary ‘.NET’, loaded network files are found in ‘2a_Networks’ and their shapefile equivalents are found in ‘2b_Shapefiles’. The network and matrix output from select link analyses are found in ‘3_SelectLink’. Segment summaries from the new segment processing script are found in ‘4_Summaries’. The period skims produced form the final loaded network travel times are found in ‘5_FinalNetSkims’."
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v831/2020-05-08/5-ato.html",
+    "href": "1-whats-new/v8-whats-new/v831/2020-05-08/5-ato.html",
+    "title": "Access to Opportunity",
+    "section": "",
+    "text": "Access to Opportunity\nAccess to opportunities, also referred to as accessibility or ATO, is a way to measure how well people can connect to jobs, or vice versa. ATO metrics quantify how well the current and future transportation system work with land use. Both shorter travel times and an increased presence of employment and other opportunities result in higher accessibility scores.\nA script to calculate ATO metrics, ‘1_Access_to_Opportunity.s’ located in the ‘2_ModelScripts\\7_PostProcessing’ folder, has been added to the model’s ’_HailMary.s’ batch script and runs automatically with every model run. The script sums the number of jobs and households that are within a typical commute travel shed (in minutes) by auto and transit. The typical commute travel shed is defined using a distance decay curve estimated from the 2012 household travel survey. Metrics that combine the jobs and households are also calculated.\nResults from the ATO script are output into ‘7_PostProcessing\\Access_to_Opportunity_@DemographicYear@.dbf’. Results can be joined with the TAZ shapefile to visualize the data, such as Figure 1\n\n\n\nFigure 1: Example report from the WFRC website displaying results at the TAZ level."
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v831/2020-05-08/6-misc.html",
+    "href": "1-whats-new/v8-whats-new/v831/2020-05-08/6-misc.html",
+    "title": "Miscellaneous Changes",
+    "section": "",
+    "text": "Miscellaneous Changes\nA small bug was fixed in the ‘1_TripTable.s’ script in the ‘2_ModelScripts\\0_InputProcessing\\d_TripTable’ folder. The control totals for the Salt Lake International Airport and Lagoon zones were being assigned to the other location’s output. This fix will cause a localized change to the volumes near the airport and Lagoon.\nA small bug fix was made to the ‘1_NetProcessor.s’ script in the ‘2_ModelScripts\\0_InputProcessing\\ c_NetworkProcessing’ folder. When socioeconomic data is loaded on to the TAZ centroids, home-based job employment had supplanted the construction job variable. This fix only affects labeling of socioeconomic data on the highway network in Cube and does not affect any travel model results.\nTIME fields on the network were edited to have four decimal places of precision instead of two (added to improve speed calculations). Subfolder structure was removed for ‘0_DeleteTempFiles.s’ script in ‘2_ModelScripts\\7_PostProcessing’ folder and corresponding edits were made in the ’_HailMary.s’ batch script.\n’_HailMary.s’ was updated to include more detail in the email functions. The ‘Compare2Assignments.s’ script in the ‘2_ModelScripts\\7_PostProcessing\\2_Compare2Nets’ folder was updated to include SEGID, correct field names for free flow speed, and add Area Type comparison. The associated DEFAULT.VPR file was also cleaned up. A script to compare two master networks, ‘Compare_MasterNet.s’, was also added to the ‘2_ModelScripts\\7_PostProcessing\\2_Compare2Nets’ folder."
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v831/2020-08-17/1-20200817-update.html",
+    "href": "1-whats-new/v8-whats-new/v831/2020-08-17/1-20200817-update.html",
+    "title": "Updated Networks – Aug 17, 2020",
+    "section": "",
+    "text": "Updated Networks – Aug 17, 2020\nThe ‘WF TDM v8.3.1 - 2020-05-08’ model version included most but not all of the highway and transit network changes that were part of MAG’s RTP amendment. Because the networks reflect the “official” MAG amended plan, the travel model was reissued with a new date stamp. However, since there were no changes to the model itself or the other modeling inputs, the version number of the travel model remained the same.\nFigure 1 shows where lanes were added (green) or were taken away (orange) between ‘WF TDM v8.3.1 - 2020-05-08’ and ‘WF TDM v8.3.1 - 2020-08-17’ highway networks. Express bus routes were also removed from the MAG line files in the 2030, 2040 & 2050 Funded & Needed Transit folders .\n\n\n\nFigure 1: Added lanes between v8.3.1 2020-05-08 and v8.3.1 2020-08-17"
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/1-genparams.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/1-genparams.html",
     "title": "General Parameters",
     "section": "",
     "text": "General Parameters\nFor highway calibration purposes, KFACs were defined for the following county-to-county trips:\n\nKFAC for Utah County to/from Salt Lake County trips is set to 0.85.\nKFAC for Davis County to/from Salt Lake County trips is set to 0.95.\n\nFor transit calibration purposes, the BRT Mode 5 multiplier was set to 0.40. The Mode 9 multiplier was removed, since BRT Mode 9 was calibrated independently of LRT for v8.3.2."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/10-modelresults.html",
-    "href": "1-whats-new/v8-whats-new/v832/10-modelresults.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/10-modelresults.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/10-modelresults.html",
     "title": "Model Results - Comparison with v8.3.1",
     "section": "",
     "text": "Model Results - Comparison with v8.3.1\nFigure 1 shows a comparison of daily roadway volume in the v8.3.2 model compared to the v8.3.1 model. Roadway links in red demonstrate an increase in traffic and green show a decrease in traffic between the new and the old model. The thicker the line and darker the color, the greater the magnitude of change. At the region level, the changes show that v.8.3.2 includes greater county-to-county flows as demonstrated in the 2019 base year with volume between Salt Lake County and both Davis and Utah Counties increasing while roadways such as I-80, I-215, and SR-201 showing decreasing traffic. This pattern is continued in the 2050 model with the intensity of change increasing on north/south freeways and arterials.\n\n\n\nFigure 1: Model Daily Volumes Comparison (v8.3.2 vs v8.3.1).\n\n\nComparison of the highway volume validations of the v8.3.2 and v8.3.1 models are shown in Figure 2. There are separate charts by facility type and by county, as well as vehicle type. Medium and heavy truck trip generations and trip-length-frequencies were adjusted in the calibration process to bring model truck volumes closer in line with observed. Overall, for all vehicles the v8.3.2 model is closer to observed with all facility types within 4% of observed. Utah County improves significantly to only 1% low while Box Elder, Weber, and Davis counties are a couple percent lower than v8.3.1. When looked at by facility type, medium and heavy trucks see major improvements with minor arterials and major collectors and are much closer to observed by significant margins, but overall are slightly lower than observed as compared to v8.3.1.\n\n\n\nFigure 2: Highway Volumes Validation (v8.3.2 and v8.3.1).\n\n\nFigure 3, Figure 4, and Figure 5 show a comparison between daily model volumes by vehicle type with observed traffic volumes. There are slight changes in the All Vehicles figures between v8.3.2 and v8.3.1. Greater improvements are seen in the Medium and Heavy Truck figures, especially in the Box Elder and the Mountain View Corridor areas.\n\n\n\nFigure 3: All Vehicles Daily Volumes Comparison (Model vs Observed).\n\n\n\n\n\nFigure 4: Medium Trucks Daily Volumes Comparison (Model vs Observed).\n\n\n\n\n\nFigure 5: Heavy Trucks Daily Volumes Comparison (Model vs Observed)\n\n\nTransit ridership between v8.3.1 and v8.3.1 were compared at the trips, boardings, and mode share levels. Figure 6 and Figure 7 show a comparison of daily transit ridership and boardings for both the v8.3.2 and the v8.3.1 models. The v8.3.1 and v8.3.2 model transit was calibrated to the UTA On-Board Survey for 2015 and 2019, respectively, so the ridership for each of those models falls right on the OBS target. The boardings for the model are estimated but are close to average annual boardings as reported by UTA. Boardings between 2015 and 2019 have been relatively flat. The increase to 2050 is based on increased transit attractiveness and more supportive land use as built into the model.\n\n\n\nFigure 6: Daily Transit Ridership - All Modes.\n\n\n\n\n\nFigure 7: Daily Boardings - All Modes.\n\n\nShare by transit mode is shown in Figure 8 and Figure 9 for v8.3.2 and v8.3.1, respectively. In v8.3.2, Core Bus routes (Mode 5) show a greater portion of trips in v8.3.2 than in v8.3.1. These additional trips come mostly from Light Rail, which actually sees a decrease in mode share in 2030. Commuter Rail shares remain relatively consistent, as well as BRT.\n\n\n\nFigure 8: Share by Transit Mode – v8.3.2.\n\n\n\n\n\nFigure 9: Share by Transit Mode – v8.3.1.\n\n\nEven though the transit ridership forecasts are lower by 23% in v8.3.2 compared to v8.3.1, the 2019 to 2050 ratios for each model are similar with 2.0 in v8.3.2 and 2.2 in v8.3.1.\n\n\n\nFigure 10: Comparison of 2019 and 2050 ratios.\n\n\nAs mentioned in a previous section, county-level adjustments were made in Davis and Utah counties to help better align station boardings in the model with observed. The comparison of the models with observed is shown in Figure 11. Due to these adjustments, there is a slight increase in Utah County boardings. However, Provo Station decreased slightly to just over half of what is observed. Davis County boardings proved to be more sensitive to the adjustment and a significant decrease is shown but still higher than observed boardings.\n\n\n\nFigure 11: 2019 Daily FrontRunner Boardings by Station Compared to Observed."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/2-inputdata.html",
-    "href": "1-whats-new/v8-whats-new/v832/2-inputdata.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html",
     "title": "Input Data",
     "section": "",
     "text": "Speed factor changes were made to the following locations:\n\nUS-89 North Davis County SFAC_BASE adjusted to 0.82\nLegacy Pkwy South of Parrish SFAC_BASE and SFAC_FUT set to 0.95\nUniversity Avenue from 300 South to 700 N SFAC_BASE and SFAC_FUT set to 0.85\nFreedom Boulevard from 300 South to 500 N SFAC_BASE and SFAC_FUT set to 0.85\nProvo Center Street from 500 West to University Ave SFAC_BASE and SFAC_FUT set to 0.60\n\nCapacity factors changes were made to the following locations:\n\nProvo Center Street from 500 West to University Ave CFAC_BASE and CFAC_FUT set to 0.85\n\n\n\nThe highway network was updated in the MAG and WFRC areas to reflect the third round of Regional Transportation Plan (RTP) amendments. Additional edits were made in the MAG area to conform with more recent project clarification. Figure 1 shows where lanes were added (green) or were taken away (orange) between versions 8.3 and 8.3.1 highway networks.\n\n\n\nFigure 1: Lane Change between 2019 and 2050 for Model v8.3.2 2022-02-04.\n\n\n\n\n\nThe speed of rail transit is coded onto rail-only links within the master highway network. Transit speed for LRT were updated to reflect 2019 operations. Most of the speed changes were less than 5 mph. Figure 2 shows where light rail speeds were changed.\n\n\n\nFigure 2: Change in Transit Speeds for LRT in Salt Lake County. Green: Increase in Speeds — Red: Decrease in Speeds.\n\n\ntbl-lrt-speed shows the resulting average speeds along entire light rail routes. The net effect of the update was generally lower speeds, with the TRAX-Blue line and the S-Line having the largest drops in speed with a drop of 8.2% and 14.5%, respectively.\n\n\nCode\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"TRAX-Blue\" ,'24.4','22.4','-2.0','-8.2% '],\n         [\"TRAX-Green\",'19.2','18.6','-0.6','-3.1% '],\n         [\"TRAX-Red\"  ,'24.4','23.6','-0.8','-3.3% '],\n         [\"S-Line\"    ,'13.8','11.8','-2.0','-14.5%']]\nMarkdown(tabulate(\n  table, \n  headers=[\"Route\",\"Before Updates\", \"After Updates\", \"Difference\", \"% Difference\"]\n))\n\n\n\n\nTable 1: Average Travel Speed (MPH) by Route for LRT\n\n\nRoute\nBefore Updates\nAfter Updates\nDifference\n% Difference\n\n\n\n\nTRAX-Blue\n24.4\n22.4\n-2\n-8.2%\n\n\nTRAX-Green\n19.2\n18.6\n-0.6\n-3.1%\n\n\nTRAX-Red\n24.4\n23.6\n-0.8\n-3.3%\n\n\nS-Line\n13.8\n11.8\n-2\n-14.5%\n\n\n\n\n\n\nAdditional changes include the following:\n\nFrontRunner speeds were adjusted to match the 2019 schedule\nSeveral SEGID changes to match UDOT 2019 Segment shapefile\nCorrected I-15 SB to include lane drop north of Lehi 2100 North interchange and lane add south of interchange to match constructefacility\nUpdated GIS link & node shapefiles"
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/2-inputdata.html#highway-network",
-    "href": "1-whats-new/v8-whats-new/v832/2-inputdata.html#highway-network",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html#highway-network",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html#highway-network",
     "title": "Input Data",
     "section": "",
     "text": "Speed factor changes were made to the following locations:\n\nUS-89 North Davis County SFAC_BASE adjusted to 0.82\nLegacy Pkwy South of Parrish SFAC_BASE and SFAC_FUT set to 0.95\nUniversity Avenue from 300 South to 700 N SFAC_BASE and SFAC_FUT set to 0.85\nFreedom Boulevard from 300 South to 500 N SFAC_BASE and SFAC_FUT set to 0.85\nProvo Center Street from 500 West to University Ave SFAC_BASE and SFAC_FUT set to 0.60\n\nCapacity factors changes were made to the following locations:\n\nProvo Center Street from 500 West to University Ave CFAC_BASE and CFAC_FUT set to 0.85\n\n\n\nThe highway network was updated in the MAG and WFRC areas to reflect the third round of Regional Transportation Plan (RTP) amendments. Additional edits were made in the MAG area to conform with more recent project clarification. Figure 1 shows where lanes were added (green) or were taken away (orange) between versions 8.3 and 8.3.1 highway networks.\n\n\n\nFigure 1: Lane Change between 2019 and 2050 for Model v8.3.2 2022-02-04.\n\n\n\n\n\nThe speed of rail transit is coded onto rail-only links within the master highway network. Transit speed for LRT were updated to reflect 2019 operations. Most of the speed changes were less than 5 mph. Figure 2 shows where light rail speeds were changed.\n\n\n\nFigure 2: Change in Transit Speeds for LRT in Salt Lake County. Green: Increase in Speeds — Red: Decrease in Speeds.\n\n\ntbl-lrt-speed shows the resulting average speeds along entire light rail routes. The net effect of the update was generally lower speeds, with the TRAX-Blue line and the S-Line having the largest drops in speed with a drop of 8.2% and 14.5%, respectively.\n\n\nCode\nfrom IPython.display import Markdown\nfrom tabulate import tabulate\ntable = [[\"TRAX-Blue\" ,'24.4','22.4','-2.0','-8.2% '],\n         [\"TRAX-Green\",'19.2','18.6','-0.6','-3.1% '],\n         [\"TRAX-Red\"  ,'24.4','23.6','-0.8','-3.3% '],\n         [\"S-Line\"    ,'13.8','11.8','-2.0','-14.5%']]\nMarkdown(tabulate(\n  table, \n  headers=[\"Route\",\"Before Updates\", \"After Updates\", \"Difference\", \"% Difference\"]\n))\n\n\n\n\nTable 1: Average Travel Speed (MPH) by Route for LRT\n\n\nRoute\nBefore Updates\nAfter Updates\nDifference\n% Difference\n\n\n\n\nTRAX-Blue\n24.4\n22.4\n-2\n-8.2%\n\n\nTRAX-Green\n19.2\n18.6\n-0.6\n-3.1%\n\n\nTRAX-Red\n24.4\n23.6\n-0.8\n-3.3%\n\n\nS-Line\n13.8\n11.8\n-2\n-14.5%\n\n\n\n\n\n\nAdditional changes include the following:\n\nFrontRunner speeds were adjusted to match the 2019 schedule\nSeveral SEGID changes to match UDOT 2019 Segment shapefile\nCorrected I-15 SB to include lane drop north of Lehi 2100 North interchange and lane add south of interchange to match constructefacility\nUpdated GIS link & node shapefiles"
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/2-inputdata.html#transit-network",
-    "href": "1-whats-new/v8-whats-new/v832/2-inputdata.html#transit-network",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html#transit-network",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html#transit-network",
     "title": "Input Data",
     "section": "Transit Network",
     "text": "Transit Network\n\nHand-Coded Walk-Access Links\nHand-coded walk-access links are an additional input for transit beyond the automatically generated walk-access links. Auto-generated walk-access links are created between zone centroids and transit stops within a certain distance as defined by area of the zone, as long as they do not cross barriers as defined by functional type. Hand-coded walk-access links are user-defined, supplemental walk access where an auto-generated link would not be created or where walk access is more attractive than the TAZ structure and auto-generated links would suggest.\nThe update process removed a majority of the general hand-coded walk access links, reducing the number from 234 to 31 links. Areas that retained or added hand-coded links include SLC International Airport, Hill Air Force Base, University of Utah, and Utah Valley University. Figure 3 shows hand-coded walk-access links before and after the updates.\n\n\n\nFigure 3: Hand-Coded Walk Access Links.\n\n\n\n\nPark-And-Ride\nPark-and-Ride lots are coded onto nodes within the master highway network and are defined by what transit mode they service. To be used by the travel model, park-and-ride nodes need to be coded at nodes that serve as rail or bus stops. Figure 4 (a) shows what changes were made to park-and-ride lots, which include 17 additional locations, 49 removed locations, and 14 locations that were modified by changing the mode they service. Most of the park-and-ride lots removals were due to redundancy on highway nodes adjacent to another park-and-ride lot at a rail node. The park-and-ride lots additions mostly included new lots along express bus routes. The resulting park-and-ride lot locations, including ones that were not edited, are shown in Figure 4 (b).\n\n\n\n\n\n\n\n(a) Park-And-Ride Lot Changes\n\n\n\n\n\n\n\n(b) Park-And-Ride Lots After Updates\n\n\n\n\nFigure 4: Park-And-Ride Lots. Red: Removed — Green: Added — Blue: Modified\n\n\n\n\nTransit Line Changes\nTransit line files were updated based on actual 2019 route configuration. Transit line files include route alignments, stop locations, and peak/off-peak headway designation. Additionally, 2024, 2030, 2040, 2050, 2030UF, 2040UF, 2050UF transit was updated to reflect 2019 input changes.\nA general edit that was made to all lines that connect directly to rail was the removal of bus stops on a roadway node directly adjacent to a stop at a rail node. Only the rail node stop remains. Due to the amount of lines affected by this change, they are not listed individually in the line details below. There were also a couple of highway network edits made in relation to transit line changes:\n\nAt the Blue Line end-of-line in Draper, the centroid connector for the rail station connection to the highway network moved offintersection of Pioneer Road / 1300 East intersection and connected directly to Pioneer Drive.\nA connection between 24th Street and Wall Avenue in Ogden was added to represent the existing connection on each side of theviaduct. The associated transit-only link was removed.\n\nThe line file changes are shown in the lists below, arranged by file and route name. Only lines that have changes, other than those listed above, are included.\nmag_brt_2019.lin\n\nBRT_ProOrm:\n\nstops removed:\n\n24779 - Geneva Road\n26400 - 900 E/Campus Ln\n26487 - 750 S/100 W\n\nStops moved:\n\n22881 to 26206 (from intersection of University Pkwy/900 E to the west)\n25972 to 23019 (moved further west to intersection of 400 E/700 N)\n23069 to 26203 (moved further north off of intersection of 200 N/Univ Ave)\n23066 to 26202 (moved further south off of intersection of 300 S/Univ Ave)\n26184 to 26192 (moved off University Ave and onto Town Centre Blvd)\n23160 to 24332 (moved west of intersection East Bay Blvd/1860 S)\n\nAlignment changed: Off of University Avenue between 920 S and Town Centre Drive and onto Town Centre Blvd\n\n\nmag_exp_2019.lin\n\nM807_NoCnty: Many stops removed. Realignment changed at each end of route. Reverse direction removed.\nM806_EglMtn: Headway changed from 30/0 to 45/0. Many stops removed. Realignment changed at Eagle Mtn end-of-line and to stay on freeway through American Fork. Reverse direction removed.\n\nmag_lcl_2019.lin\n\nM805_Santaquin: Headway 1/2 changed from 30/0 to 45/60. Stop added: 23552 (Santaquin end of line moved one node to west). Three stops removed in SF, only 25321 remains. Three stops removed in Provo: 26487, 26488, 23152.\nM809_AM-PG: Changed from two-way route to one-way route. Stops removed: 24769, 22358, 24162, 25729, 22389, 25727, 25513, 22514, 22390, 25726, 22392, 22394. Stops added: 24189, 22395.\nM821_Psn: Various stops removed.\nM822_Psn: Various stops removed.\nM831_WPr: Alignment changed around UVU. Various stops removed.\nM833_CntrPr: Various stops removals.\nM834_EstPr: Alignment changed at Univ Pkwy/2230 N. Various stops removed.\nM841_UVU: UVU main campus end-of-line moved one further node to 26601. Various stops removed.\nM850_StateStreet: Alignment Changed: Ashton Blvd & 2100 N, PG downtown, which required addition of reverse direction and change to one-way route due to one-way links. Various stops removals.\nM862_Orem: Alignment changed around UVU to use campus circulator roadway. Various stops removed.\nM864_Thanksgiving Point: Various stops removed.\nM871_SLtoUtahCnty: Northern end-of-line alignment changed to match updated highway network connection to Blue Line Draper Station.\n\nrail_2019.lin\n\nOGPNShuttle: Route removed, since service to Pleasant View discontinued in 2015.\n\nwfrc_og_lcl_2019.lin\n\nO601: Connection to Wall Avenue was removed from transit-only link and put on new highway network connection.\nO603: Southern end-of-line moved to McKay Dee Hospital.\nO606: Northern end-of-line moved from Harrison Blvd to Monroe Blvd.\nO608: Northern end-of-line moved from Harrison Blvd to Monroe Blvd.\nO628: Southern end-of-line extended to match southern circulation around Layton IHC.\nO630: Southern end-of-line moved from Weber State University to Ogden FrontRunner Station.\nO645: Northern end-of-line extended to US-89.\nOF618: Headway2 changed from 30 to 60.\nS470: Connection to Clearfield Station CRT added.\nS455: One stop removed in University of Utah area.\n\nwfrc_sl_exp_2019.lin\n\nS2X: Changed to two-way route. Two stops removed on 200 South near Gateway. Two stops added in University of Utah area.\nS307X: Headway 1 changed from 30 to 47.\nS313X: Alignment through Fort Union area changed.\nS354X: Extended north end-of-line to Red Line station.\nS451X: Reverse direction removed.\nS454: Stop added at Green Line airport stop. Some stops along Green Line and North Temple moved to rail stop locations.\nS456: Stop added at Farmington Station CRT. Some stops along Green Line and North Temple moved to rail stop locations.\nS471: Alignment through Bountiful modified.\nS473X: Extended southern end-of-line further to Research Park.\nS902: Headway changed from 15/0 to 60/90. Some stops added.\n\nwfrc_sl_lcl_2019.lin\n\nD461: Some stop in Woods Cross Station CRT area removed.\nS11: Eastern end-of-line shortened to stop at University of Utah Medical Center and not Red Line.\nS201: Southern end-of-line extended to South Jordan Station CRT.\nS217: Alignment changed near green line (N Temple), route removed from 2200 West.\nS218: S218 - changed ONEWAY=F to become two-way route\nS240: Alignment changed at Pieper Blvd.\nS41: West end-of-line extended one node down 5600 West.\nS463: Connection to Wood Cross Station CRT.\nS509: Alignment changed around SR-201.\nS519/520 - added ONEWAY=F to explicitly define two-way route\nS526: Headway changed from 40/40 to 60/0.\nS551: Headway 1 changed from 30 to 40. Some stops along Green Line and North Temple moved to rail stop locations.\nSF453: Eastern EOL brought to rail node 20053.\nSF514: Stop added at SoJo Station CRT.\nSF546: Connection added to Draper Town Center Station CRT.\nSF94: Eastern end-of-line extended one more node to east."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/2-inputdata.html#segments-and-factors",
-    "href": "1-whats-new/v8-whats-new/v832/2-inputdata.html#segments-and-factors",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html#segments-and-factors",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html#segments-and-factors",
     "title": "Input Data",
     "section": "Segments and Factors",
     "text": "Segments and Factors\nThe Master Segments shapefile was updated with the following changes:\n\nDay-of-week, season, and month factors were updated using 2015-2019 data from UDOT Continuous Count Stations (CCS). To be consistent with the UDOT AADT process, any year of data without a full week of data from each month was excluded from the factor creation.\nCreated single grouping of CCS for all factors (previously weekday and month/season factors were based on separate groupings).\nChanged average weekday factor (FAC_WDAVG) to represent Tuesday through Thursday (previously Monday through Thursday).\nChanged average and max weekend factors (FAC_WEAVG, FAC_WEMAX) to represent Saturday and Sunday (previously Friday through Sunday)."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/2-inputdata.html#other-changes",
-    "href": "1-whats-new/v8-whats-new/v832/2-inputdata.html#other-changes",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html#other-changes",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/2-inputdata.html#other-changes",
     "title": "Input Data",
     "section": "Other Changes",
     "text": "Other Changes\nThe following were additional changes made to the model:\n\nAn additional districting grouping (‘DISTSUPER’ and ‘DSUP_NAME’) was added to the TAZ shapefile using definitions from UDOT’s recent work on the long distance model.\nThe toll zone shapefile was also modified to correct a few instances where the HOT lane links were crossing into the opposing direction HOT zone.\nThe ‘1_Inputs\\0_GlobalData\\UbanizationMap’ folder name was changed to ‘1_Inputs\\0_GlobalData\\ArcMap_mxd. The’_Urbanization_ArcMap103.mxd’ file was saved as ArcMap version 10.3 and the ArcMap version was added to the filename\nThe TDM script ’_CreateOutputFolders.s’ in ‘3_CreateScenarios’ folder was modified to account for the changed folder and file names for the urbanization.mxd."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/3-inputprocessing.html",
-    "href": "1-whats-new/v8-whats-new/v832/3-inputprocessing.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/3-inputprocessing.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/3-inputprocessing.html",
     "title": "Input Processing",
     "section": "",
     "text": "A couple bugs were corrected in the input processing script:\n\nCorrected inbound/outbound designations for EB/WB links.\nRemoved FT=37-38 as a condition for populating link additional HOV capacity (AdHOVCap1H) values since related HOV fields are populated on GP links not HOV links. Also, corrected capacity lookup to be for FT=37 and not FT of link.\n\n\n\n\nThe walk buffer script was improved with a couple simple modifications to the routes and stops that are included in walk buffer creation: - Removed local bus route buffers along expressways and freeways (anything with FT&gt;=12). Only local bus routes along arterials or collectors are now included in route buffers. - Removed buffers that were calculated from local bus stops, which were redundant with local bus route buffers. - The remaining combined walk buffer areas are shown in green. The ’_WalkBuffer_ArcMap103.mxd’ file was updated to version 10.3 of ArcMap, and the scripts were modified to copy the walk buffer mxd to scenario folders.\n\n\n\nFigure 1: Walk Buffer Modifications."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/3-inputprocessing.html#inboundoutbound-and-hov-capacity",
-    "href": "1-whats-new/v8-whats-new/v832/3-inputprocessing.html#inboundoutbound-and-hov-capacity",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/3-inputprocessing.html#inboundoutbound-and-hov-capacity",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/3-inputprocessing.html#inboundoutbound-and-hov-capacity",
     "title": "Input Processing",
     "section": "",
     "text": "A couple bugs were corrected in the input processing script:\n\nCorrected inbound/outbound designations for EB/WB links.\nRemoved FT=37-38 as a condition for populating link additional HOV capacity (AdHOVCap1H) values since related HOV fields are populated on GP links not HOV links. Also, corrected capacity lookup to be for FT=37 and not FT of link."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/3-inputprocessing.html#walk-buffer-modifications",
-    "href": "1-whats-new/v8-whats-new/v832/3-inputprocessing.html#walk-buffer-modifications",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/3-inputprocessing.html#walk-buffer-modifications",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/3-inputprocessing.html#walk-buffer-modifications",
     "title": "Input Processing",
     "section": "",
     "text": "The walk buffer script was improved with a couple simple modifications to the routes and stops that are included in walk buffer creation: - Removed local bus route buffers along expressways and freeways (anything with FT&gt;=12). Only local bus routes along arterials or collectors are now included in route buffers. - Removed buffers that were calculated from local bus stops, which were redundant with local bus route buffers. - The remaining combined walk buffer areas are shown in green. The ’_WalkBuffer_ArcMap103.mxd’ file was updated to version 10.3 of ArcMap, and the scripts were modified to copy the walk buffer mxd to scenario folders.\n\n\n\nFigure 1: Walk Buffer Modifications."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/4-hhdisag.html",
-    "href": "1-whats-new/v8-whats-new/v832/4-hhdisag.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/4-hhdisag.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/4-hhdisag.html",
     "title": "Household Disaggregation and Auto Ownership",
     "section": "",
     "text": "Household Disaggregation and Auto Ownership\nSeveral changes were made to clean up and fix minor errors in the household disaggregation and auto ownership scripts:\n\nAdded Box Elder Vehicles to the totals calculated for the ‘VO_Tmp_CountyVehicleTotal.txt’ file in the ‘3_AutoOwnership.s’ file.\nCorrected VO_DebugUtility.csv header row in ‘3_AutoOwnership.s’ to keep it from repeating. Commented out debug csv creation.\nCorrected AVGINCOME in ‘Tmp_Marginal_Income_beforeIPF.dbf’.\nCommented out ‘test.csv’ creation in ‘2_ModelScripts\\1_HHDisag_AutoOwn\\1_LifeCycle.s’.\nCorrected CO_TAZID in ‘LifeCycle_Households_Population.dbf’ in ‘2_ModelScripts\\1_HHDisag_AutoOwn\\1_LifeCycle.s’.\nUpdated ‘Lookup - BYTAZAgePct - AllCo.csv’ and source materials (’_TAZ_AgePct_Lookup_Source - 2020-06-23.xlsb’) in ‘1_Inputs\\0_GlobalData\\1_HHDisag_AutoOwn’. This update reflects the updated source materials structure in the statewide spreadsheet and updated data for Summit/Wasatch counties and UDOT area. The Wasatch Front area data did not change."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/5-tripgen.html",
-    "href": "1-whats-new/v8-whats-new/v832/5-tripgen.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/5-tripgen.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/5-tripgen.html",
     "title": "Trip Generation",
     "section": "",
     "text": "Trip Generation\nSeveral changes were made in the trip generation scripts:\n\nAdded factors to reduce special generation attractiveness to Temple Square, SLC Library, and many colleges.\nAdded Large District calibration factors.\nAdjusted short-haul truck light/medium/heavy trip production rates.\nUpdated county-level adjustments to short-haul truck medium/heavy productions and attractions.\nTruck speed factors are now applied to all facility types, previously they applied only to freeway."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/6-distribution.html",
-    "href": "1-whats-new/v8-whats-new/v832/6-distribution.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/6-distribution.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/6-distribution.html",
     "title": "Distribution",
     "section": "",
     "text": "Distribution\nThe following changes were made in the distribution scripts:\n\nFriction factors, which were previously calibrated to the county level, were recalibrated at the large district level.\nTruck speed factors are now applied to all facility types, where previously they applied only to freeway."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/7-mc.html",
-    "href": "1-whats-new/v8-whats-new/v832/7-mc.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/7-mc.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/7-mc.html",
     "title": "Mode Choice",
     "section": "",
     "text": "Mode Choice\nMode choice was recalibrated to match target values from UTA 2019 On-Board Survey.\nThe following changes were made in the transit .FAC files in PT_Parameter Folder and associated voyager script in mode choice:\n\nDecreased WAITFACTOR to 2.0 (previously 3.0).\nChanged mode-specific weight applied to transit in-vehicle times and non-transit leg times (Relative mode factor to the skimmed specific mode) for express bus to 3.50.\nChanged the following to fine-tune boardings by mode (to increase for LCL, and decrease for other modes).\nAdded initial boarding penalty for local bus of 5 minutes.\nIncreased transit transfer boarding penalty to 12 minutes for all modes but walk to local which was set at 6 minutes (previously 10 minutes for all modes).\n\nAdditional changes were made to mode choice:\n\nCombined Mode Choice scripts 11 and 12 into ‘11_12_MC_HBW_HBO_NHB_HBC.s’ to allow simultaneous running on eight cores.\nBRT Mode 9 constants were calibrated independently of LRT. However, BRT Mode 5 continues to use a multiplier of the LRT constant and was increased to 0.40 from 0.33.\nAdjustments were made to FrontRunner to bring station boardings closer to observed. Davis County boardings were significantly higher than observed, while Utah County boardings were significantly lower. A +15 multiplier of initial in-vehicle time penalty was added to all stations in Davis County, while -15 multiplier of in-vehicle time was added to all stations in Utah County. This brought boardings closer to observed, but there is still significant difference in boardings that should be accounted for when using the model for any station-level forecasts. A comparison of station model and observed volumes is found in the final section of this document comparing v8.3.2 to v8.3.1."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/8-assign.html",
-    "href": "1-whats-new/v8-whats-new/v832/8-assign.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/8-assign.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/8-assign.html",
     "title": "Highway Assignment",
     "section": "",
     "text": "Highway Assignment\nThe fowllowing changes were made in highway assignment scripts:\n\nSegment summary processing script was updated to include truck volumes in detailed output.\nIn harmony with the changes in distribution, truck speed factors are now applied to all facility types, were previously they applied only to freeway.\n\nAccess-to-Opportunity (ATO) scripts were moved to the Assignment folder. The following edits were made to the ATO script:\n\nMade output field names more descriptive.\nChanged output format from dbf to csv.\nAdded Free Flow auto time and straight-line time (based on auto free flow) ATO calculations/output\nUpdated script to get the ATO weights from empirical HBW distance decay curve from Household Travel Survey as a look up table rather than calculate from a step function."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/9-pp.html",
-    "href": "1-whats-new/v8-whats-new/v832/9-pp.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/9-pp.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/9-pp.html",
     "title": "Post Processing",
     "section": "",
     "text": "Post Processing\nThe TDM2MOVES folder was removed."
   },
   {
-    "objectID": "1-whats-new/v8-whats-new/v832/index.html",
-    "href": "1-whats-new/v8-whats-new/v832/index.html",
-    "title": "What’s New? - Version 8.3.2",
-    "section": "",
-    "text": "Preface\nThis is the What’s New Document for the Wasatch Front Travel Demand Model (TDM) version 8.3.2.\nFor access to this version of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v8.3.2."
-  },
-  {
-    "objectID": "1-whats-new/v8-whats-new/v832/references.html",
-    "href": "1-whats-new/v8-whats-new/v832/references.html",
+    "objectID": "1-whats-new/v8-whats-new/v832/2021-11-10/references.html",
+    "href": "1-whats-new/v8-whats-new/v832/2021-11-10/references.html",
     "title": "References",
     "section": "",
     "text": "References"
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v832/2022-02-04/1-20220204-update.html",
+    "href": "1-whats-new/v8-whats-new/v832/2022-02-04/1-20220204-update.html",
+    "title": "2022-02-04 Update",
+    "section": "",
+    "text": "This first part of this document contains a quick comparison between the 2022-02-04 version of the model and the 2021-11-10 version of the model.\n\n\nThe following changes were made the Distribution and Final Assignment scripts of the model\n\nChanged truck penalty from speed factor to a speed reduction penalty\n\nUpdated toll calculations:\nUpdate COST function\n\nUpdate TC function\nGeneral model cleanup\n\nAdditionally the Scenario Folder was updated with updated default ControlCenter.block files, a rolled date of model version, Fixed Cluster START & STARTHIDE typo, and added ‘blank folder setup’ folder.\n\n\n\nFigure 1 and Figure 2 contain a daily total volume comparison and a daily truck volume comparison. Daily total volumes are very similar between the two models. There is a slight shift of volume off of I-15 and onto parallel corridors. The largest volume shifts in 2050 are between I-215 and Bangerter Highway. Figure 1 shows one-way volumes.\n\n\n\nFigure 1: Daily Total Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10.\n\n\nDaily truck volumes show more differences with volumes dropping between the two models. The drop in volumes is less than a 1,500 trucks per day on freeways but is widespread throughout the region. Figure 2 shows one-way volumes.\n\n\n\nFigure 2: Daily Truck Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10."
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v832/2022-02-04/1-20220204-update.html#changes",
+    "href": "1-whats-new/v8-whats-new/v832/2022-02-04/1-20220204-update.html#changes",
+    "title": "2022-02-04 Update",
+    "section": "",
+    "text": "The following changes were made the Distribution and Final Assignment scripts of the model\n\nChanged truck penalty from speed factor to a speed reduction penalty\n\nUpdated toll calculations:\nUpdate COST function\n\nUpdate TC function\nGeneral model cleanup\n\nAdditionally the Scenario Folder was updated with updated default ControlCenter.block files, a rolled date of model version, Fixed Cluster START & STARTHIDE typo, and added ‘blank folder setup’ folder."
+  },
+  {
+    "objectID": "1-whats-new/v8-whats-new/v832/2022-02-04/1-20220204-update.html#model-results",
+    "href": "1-whats-new/v8-whats-new/v832/2022-02-04/1-20220204-update.html#model-results",
+    "title": "2022-02-04 Update",
+    "section": "",
+    "text": "Figure 1 and Figure 2 contain a daily total volume comparison and a daily truck volume comparison. Daily total volumes are very similar between the two models. There is a slight shift of volume off of I-15 and onto parallel corridors. The largest volume shifts in 2050 are between I-215 and Bangerter Highway. Figure 1 shows one-way volumes.\n\n\n\nFigure 1: Daily Total Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10.\n\n\nDaily truck volumes show more differences with volumes dropping between the two models. The drop in volumes is less than a 1,500 trucks per day on freeways but is widespread throughout the region. Figure 2 shows one-way volumes.\n\n\n\nFigure 2: Daily Truck Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10."
   },
   {
     "objectID": "1-whats-new/v9-whats-new/2022-10-05/1-genparams.html",
@@ -607,19 +670,5 @@
     "title": "Wasatch Front Travel Demand Model Documentation",
     "section": "Points of Contact",
     "text": "Points of Contact\nWith questions regarding the development of the model, reach out to the following persons:\n\nMatt DeLora (MAG): mdelora@magutah.org\nSuzie Swim (WFRC): sswim@wfrc.org"
-  },
-  {
-    "objectID": "1-whats-new/v8-whats-new/downloads.html",
-    "href": "1-whats-new/v8-whats-new/downloads.html",
-    "title": "Downloads",
-    "section": "",
-    "text": "The What’s New Documents for the various iterations of version 8 can also be downloaded as complete word documents or pdf documents. These complete downloads are provided below:\n\nVersion 8.3.2\n\n v8.3.2 2022-02-04 Whats New \n v8.3.2 2021-11-10 Whats New \n\n\n\nVersion 8.3.1\n\n v8.3.1 2020-08-17 Whats New \n v8.3.1 2020-05-08 Whats New \n\n\n\nVersion 8.3\n\n[Still Need to Find it]"
-  },
-  {
-    "objectID": "1-whats-new/v8-whats-new/index.html",
-    "href": "1-whats-new/v8-whats-new/index.html",
-    "title": "What’s New? - Version 8",
-    "section": "",
-    "text": "These are the What’s New Documents for the Wasatch Front Travel Demand Model (TDM) that were released during various iterations of version 8.\nFor access to v8.3.2 of the TDM visit https://github.com/WFRCAnalytics/WF-TDM-v8.3.2.\nFor access to the v8.3.1, v8.3, and other iterations of version 8, please email Chad Worthen at cworthen@wfrc.org."
   }
 ]
