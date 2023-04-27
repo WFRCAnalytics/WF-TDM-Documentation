@@ -1,0 +1,2 @@
+## Other Minor Modifications
+Two other minor modifications were made to the model. The '1DemographicsAnalysis.s' script was modified to improve the reporting of the city-level demographics. The '1NetProcessor.s' script was modified so that the name and values of the various districts are added to the network rather than the generic 'DISTLRG,' 'DISTMED,' and 'DISTSML' labels.

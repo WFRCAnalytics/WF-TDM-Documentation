@@ -33,6 +33,9 @@ website:
         - text: "Version 8"
           href: 1-whats-new/v8-whats-new/index.qmd
           id: v8-wn-index
+        - text: "Version 7"
+          href: 1-whats-new/v7-whats-new/index.qmd
+          id: v7-wn-index
 
       - text: "Model Documentation"
         menu:
@@ -158,7 +161,43 @@ website:
               href: 1-whats-new/v8-whats-new/v831/2020-05-08/5-ato.qmd
             - text: 'Miscellaneous Changes'
               href: 1-whats-new/v8-whats-new/v831/2020-05-08/6-misc.qmd
-          
+
+    - id: v7-wn-index
+      title: "What's New? - Version 7"     
+      contents:
+        - text: "Downloads"
+          href: 1-whats-new/v7-whats-new/downloads.qmd
+        - text: "Preface"
+          href: 1-whats-new/v7-whats-new/index.qmd
+        - section: 'v7.0.2'
+          contents:
+          - section: '2012-06'
+            contents:
+            - text: "2012-06 Update"
+              href: 1-whats-new/v7-whats-new/v702/1-201206-update.qmd 
+            - text: "BRT Modes"
+              href: 1-whats-new/v7-whats-new/v702/2-modes.qmd
+            - text: "Hand Coded Access Links"
+              href: 1-whats-new/v7-whats-new/v702/3-accesslinks.qmd
+            - text: "Other Modifications"
+              href: 1-whats-new/v7-whats-new/v702/4-other.qmd
+        - section: 'v7.0.1'
+          contents:
+          - section: '2012-05'
+            contents:
+            - text: "Hail Mary" 
+              href: 1-whats-new/v7-whats-new/v701/1-hailmary.qmd
+            - text: "Elapsed Time" 
+              href: 1-whats-new/v7-whats-new/v701/2-etime.qmd
+            - text: "Model Notification" 
+              href: 1-whats-new/v7-whats-new/v701/3-notification.qmd
+            - text: "Input/Output File Names" 
+              href: 1-whats-new/v7-whats-new/v701/4-inputoutput.qmd
+            - text: "Voyager Module References" 
+              href: 1-whats-new/v7-whats-new/v701/5-module.qmd
+            - text: "General Updates" 
+              href: 1-whats-new/v7-whats-new/v701/6-general.qmd
+
 
     - id: v831-cv-index
       title: "Calibration/Validation - Version 8.3.1"

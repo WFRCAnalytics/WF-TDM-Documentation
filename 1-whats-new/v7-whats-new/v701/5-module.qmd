@@ -1,0 +1,3 @@
+## Update to Voyager Module References
+Previous versions of the model continued to use the following legacy TP+ module calls: HWYNET, HWYLOAD and TRIPDIST. These have been updated to the following Voyager module calls: NETWORK, HIGHWAY and DISTRIBUTION. This should allow the model to take advantage of module updates as Citilabs is maintaining the Voyager modules but has not guaranteed to update the legacy TP+ modules. The only remaining TP+ module in the WF model is the TRNBUILD module which should be replaced in V71 of the model.
+
