@@ -1,5 +1,5 @@
 ---
-title:  "What's New? - Version 8"
+title:  "What's New? - Version 7"
 date-modified: last-modified
 author: "WFRC / MAG"
 ---
