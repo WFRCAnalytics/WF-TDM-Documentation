@@ -1,0 +1,20 @@
+## "What, When and Why" of Next Likely Improvements
+WFRC and MAG are satisfied that we have a solid, state-of-the-practice modeling system with many elements of best practice and advanced practice. We see our needs now as focusing our efforts instead on validating and documenting the system, and utilizing the tools as they are to assist development of the Regional Transportation Plan, and support project development. Thus significant model development will move to the back burner, but tools and process improvements that improve the utility of the models for applications will likely continue as needed. 
+
+## Short-Term (ideally prior to final conformity)
+### Use v5.0 beta and get comfortable with model calibration and forecasts; refine as necessary
+
+V5.0 beta is being used presently for the Mountain View Corridor study and will most likely be used for the I-15 Corridor study in Utah County. These efforts have and will contribute greatly to our knowledge of the modeling system and have and will result in minor refinements to model parameters as needed. As is the case with all complicated EISs, model testing and refinement is an important part of the process and in these cases every effort is being made to both make sensible tweaks and retain these improvements for further use.
+
+The goal is to have a model version finalized prior to draft RTP conformity modeling and ASAP. The model that is finalized will be very similar to what is available today, with minor parameter tweaking as needed based on extensive forecast review. The model is certainly useful in its current state, with the caveat that new modeling components will produce different results.
+
+## Long-term (after RTP adoption)
+### UrbanSim
+UrbanSim has been utilized for the Wasatch Choices 2040 visioning process and is being used as an input to WFRC’s long-range socio-economic forecasting process. Additional work in FY 06 will examine the reasonableness of the sensitivity of the modeling system to changes in the transportation system. Work also needs to be done to incorporate new 2004 base year data into the modeling system.
+
+### Survey Data
+Further substantive travel model development will require additional, up-to-date data. There is continued debate about what exactly is needed in this arena. The agencies share a goal to come up with a long-term data collection plan during FY 06.
+
+### Replace TRNBUILD with PUBLIC TRANSPORT
+The transit travel times and assignment utilize the Citilab’s TrnBuild module, which is a carry over from the Minutp platform. Citilabs ceased development on TrnBuild after acquiring the Public Transport (PT) module from a European firm that specialized in transit route choice and graphical display of results. As we learn more about PT, we will replace TrnBuild. We are unsure as to how much this will improve our accuracy of modeling transit, but it will certainly allow us access to better graphics and different analytical methods, which alone should highlight opportunities for improvement.
+

@@ -1,0 +1,36 @@
+---
+title:  "Downloads"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The *What's New Documents* for the various iterations of versions 3, 4, 5, and 6 can also be downloaded as complete word documents. These complete downloads are provided below:
+
+### Version 6
+
+ - {{< downloadthis "downloads/WF-TDM-v6.1-Whats-New.doc"
+label="v6.1 Whats New" dname=v6.1-whats-new id=download-btn >}}
+
+ - {{< downloadthis "downloads/WF-TDM-v6.0-Whats-New.doc"
+label="v6.0 Whats New" dname=v6.0-whats-new id=download-btn >}}
+
+### Version 5
+
+ - {{< downloadthis "downloads/WF-TDM-v5.0-Whats-New.doc"
+label="v5.0 Whats New" dname=v5.0-whats-new id=download-btn >}}
+
+### Version 4
+
+ - {{< downloadthis "downloads/WF-TDM-v4.3-Beta-Whats-New.doc"
+label="v4.3 Whats New" dname=v4.3-whats-new id=download-btn >}}
+
+ - {{< downloadthis "downloads/WF-TDM-v4.2-Whats-New.doc"
+label="v4.2 Whats New" dname=v4.2-whats-new id=download-btn >}}
+
+### Version 3
+
+ - {{< downloadthis "downloads/WF-TDM-v3.2-Whats-New.doc"
+label="v3.2 Whats New" dname=v3.2-whats-new id=download-btn >}}
+
+ - {{< downloadthis "downloads/WF-TDM-v3.1-Whats-New.doc"
+label="v3.1 Whats New" dname=v3.1-whats-new id=download-btn >}}

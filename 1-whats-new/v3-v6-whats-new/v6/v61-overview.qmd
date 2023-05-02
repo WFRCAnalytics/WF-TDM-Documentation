@@ -1,0 +1,44 @@
+## Front End
+
+**Review:**
+
+ - Directory Structure
+ - Control Center & General Parameters Files
+ - TAZ Shapefile & Equivalency File
+ - SE File Changes (No HH1-HH6, HHSize)
+ - Highway Network Link and Node Field Name Changes (street name, tazid seamless transfer)
+ - Transit Network Changes: Readlines.block, Sup, Walk Buffer, Coding Conventions (BRT n Rail Node Transfer)
+ - Control totals & base distribution for college, airport, Lagoon Trip Tables
+
+**To Do:**
+
+ - Walk Buffer Methodology
+ - College, Airport, Lagoon Trip Table methods
+ - Emp30MinTransit & Walk Access Links Moved Up Front
+ - HH Disaggregation Script
+ - Drive Access Link Calculation
+ - Combine Script
+ - Dihurnal Distribution (Peak Periods)
+
+**Sensitivity Tests:**
+
+ - CRT & BRT 2005 model run
+ - Peak Period 2005 model run
+ - Mode Choice Constants Calibration Model Runs
+
+**Data needs to be checked:**
+
+ - TAZ Constraints = Devpble Area
+ - Hand coded walk access links
+ - Rail & Bus Link files
+ - CBD, PermPrk/TempPark fields
+ - 2005 Employmnet
+ - (change PNR definition?)
+ - IXXI
+ - XX
+ - Airport, Lagoon CT & Base Year Dist; Geocode UofU & SLCC Redwood
+
+**Other:**
+
+ - Drive Access Link restricted by distance between stop & PNR?
+ - Change PNR Coding Methodology

@@ -1,0 +1,3 @@
+## Introduction
+process since the 2001 long-range plan conformity. The document is not intended to be comprehensive, that is it would not allow someone to build the travel modeling process from scratch, but it is targeted towards an audience familiar with travel modeling. WFRC is currently updating the comprehensive documentation in which there is or will be much more detail about the improvements discussed below (particularly for the new mode choice models). If you have questions, please contact Chad Worth from WFRC (cworthen@wfrc.org).
+

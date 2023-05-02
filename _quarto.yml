@@ -9,11 +9,11 @@ website:
   page-footer:
     right: "Built using [Quarto](https://quarto.org)"
     left: |
-      In collaboration with 
+      [![](https://wfrc.org/wp-content/uploads/2021/11/logo.jpg){fig-alt='WFRC' width=150px}](https://wfrc.org) 
       [![](https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg){fig-alt='MAG' width=65px}](https://mountainland.org/)
   navbar:
     background: info
-    logo: _pictures/WFRCDieCutLogo.png
+    logo: _pictures/wf-logo.png
     logo-href: https://wfrc.org
     tools:
       - icon: github
@@ -36,6 +36,9 @@ website:
         - text: "Version 7"
           href: 1-whats-new/v7-whats-new/index.qmd
           id: v7-wn-index
+        - text: "Previous Versions"
+          href: 1-whats-new/v3-v6-whats-new/index.qmd
+          id: v3-v6-wn-index
 
       - text: "Model Documentation"
         menu:
@@ -197,7 +200,121 @@ website:
               href: 1-whats-new/v7-whats-new/v701/5-module.qmd
             - text: "General Updates" 
               href: 1-whats-new/v7-whats-new/v701/6-general.qmd
-
+    - id: v3-v6-wn-index
+      title: "What's New? - Versions 3, 4, 5, & 6"
+      contents:
+        - text: "Downloads"
+          href: 1-whats-new/v3-v6-whats-new/downloads.qmd
+        - text: "Preface"
+          href: 1-whats-new/v3-v6-whats-new/index.qmd
+        - section: "Version 6"
+          contents: 
+          - section: "Version 6.1"
+            contents: 
+            - text: "Overview"
+              href: 1-whats-new/v3-v6-whats-new/v6/v61-overview.qmd
+          - section: "Version 6.0 - 12/12/2005"
+            contents: 
+            - text: "Introduction"
+              href: 1-whats-new/v3-v6-whats-new/v6/v6-intro.qmd
+            - text: "When to Use Improvements"
+              href: 1-whats-new/v3-v6-whats-new/v6/v6-when.qmd
+            - text: "What's New Summary"
+              href: 1-whats-new/v3-v6-whats-new/v6/v6-wn.qmd
+            - text: "Development Plans"
+              href: 1-whats-new/v3-v6-whats-new/v6/v6-improvements.qmd
+        - section: "Version 5"
+          contents:
+          - section: "Version 5.0 - 12/12/2005"
+            contents:
+            - text: "Introduction"
+              href: 1-whats-new/v3-v6-whats-new/v5/v5-intro.qmd
+            - text: "When to Use Improvements"
+              href: 1-whats-new/v3-v6-whats-new/v5/v5-when.qmd
+            - text: "What's New Summary"
+              href: 1-whats-new/v3-v6-whats-new/v5/v5-wn.qmd
+            - text: "Development Plans"
+              href: 1-whats-new/v3-v6-whats-new/v5/v5-improvements.qmd
+        - section: "Version 4"
+          contents:
+          - section: "Version 4.3 - 04/05/2005"
+            contents:
+            - text: "Introduction"
+              href: 1-whats-new/v3-v6-whats-new/v4/v43-intro.qmd
+            - text: "When to Use Improvements"
+              href: 1-whats-new/v3-v6-whats-new/v4/v43-when.qmd
+            - text: "What's New Summary"
+              href: 1-whats-new/v3-v6-whats-new/v4/v43-wn.qmd
+            - text: "Development Plans"
+              href: 1-whats-new/v3-v6-whats-new/v4/v43-improvements.qmd
+          - section: "Version 4.2 - 08/30/2004"
+            contents:
+            - text: "Introduction"
+              href: 1-whats-new/v3-v6-whats-new/v4/v42-intro.qmd
+            - text: "When to Use Improvements"
+              href: 1-whats-new/v3-v6-whats-new/v4/v42-when.qmd
+            - text: "Why v4.0 and v4.1 were Necessary"
+              href: 1-whats-new/v3-v6-whats-new/v4/v42-necessary.qmd 
+            - text: "What's New Summary"
+              href: 1-whats-new/v3-v6-whats-new/v4/v42-wn.qmd
+            - text: "New Features"
+              href: 1-whats-new/v3-v6-whats-new/v4/v42-new-features.qmd
+            - text: "Development Plans"
+              href: 1-whats-new/v3-v6-whats-new/v4/v42-improvements.qmd
+            - text: "Terms and Abbreviations"
+              href: 1-whats-new/v3-v6-whats-new/v4/v42-terms.qmd
+          - section: "Version 4.0 - 05/01/2004"
+            contents:
+            - text: "Overview"
+              href: 1-whats-new/v3-v6-whats-new/v4/v40-overview.qmd
+        - section: "Version 3"
+          contents:
+          - section: "Version 3.2 - 02/10/2004"
+            contents:
+            - text: "Introduction"
+              href: 1-whats-new/v3-v6-whats-new/v3/v32-intro.qmd
+            - text: "Why v3.2 was Necessary"
+              href: 1-whats-new/v3-v6-whats-new/v3/v32-necessary.qmd
+            - text: "Input Preparation"
+              href: 1-whats-new/v3-v6-whats-new/v3/v32-input-prep.qmd
+            - text: "Mode Choice"
+              href: 1-whats-new/v3-v6-whats-new/v3/v32-mode-choice.qmd
+            - text: "District Analysis Tool"
+              href: 1-whats-new/v3-v6-whats-new/v3/v32-district-analysis.qmd
+            - text: "Highway Analysis Tool"
+              href: 1-whats-new/v3-v6-whats-new/v3/v32-hway-analysis.qmd
+            - text: "Terms and Abbreviations"
+              href: 1-whats-new/v3-v6-whats-new/v3/v32-terms.qmd
+          - section: "Version 3.1"
+            contents:
+            - text: "Introduction - 07/23/2003"
+              href: 1-whats-new/v3-v6-whats-new/v3/v31-intro.qmd
+            - text: "Input Preparation"
+              href: 1-whats-new/v3-v6-whats-new/v3/v31-input-prep.qmd
+            - text: "Mode Choice"
+              href: 1-whats-new/v3-v6-whats-new/v3/v31-mode-choice.qmd
+          - section: "Version 3.0 - 06/25/2003"
+            contents:
+            - text: "Documentation & Source Files"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-doc.qmd
+            - text: "Input Preparation"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-input-prep.qmd
+            - text: "Modeling Process"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-modeling-process.qmd
+            - text: "Auto Ownership Model"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-auto-own.qmd
+            - text: "Trip Generation"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-trip-gen.qmd
+            - text: "Trip Distribution"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-distribution.qmd
+            - text: "Mode Choice"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-mode-choice.qmd
+            - text: "Highway Assignment"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-assign.qmd
+            - text: "Reports, Post Processors, Data Management"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-reports.qmd
+            - text: "Terms and Abbreviations"
+              href: 1-whats-new/v3-v6-whats-new/v3/v30-terms.qmd
 
     - id: v831-cv-index
       title: "Calibration/Validation - Version 8.3.1"

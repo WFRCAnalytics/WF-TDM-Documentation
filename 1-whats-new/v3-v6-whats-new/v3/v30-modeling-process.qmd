@@ -1,0 +1,7 @@
+## Modeling Process
+The regional travel modeling process is unchanged and is depicted in the figure below. The regional travel demand model used jointly by WFRC and MAG is a trip-based, 5-step model. Some important features of the model set include an auto ownership choice model with density and transit accessibility measures, a feedback loop between distribution and assignment, and nested logit mode choice models, including a non-motorized nests.
+
+The land-use projections fed into the travel model are fixed for a given year and are derived by growing current year socioeconomic data by factors that are based on density, controlling countywide totals to estimates derived from a macro-economic model. Local planners then review TAZ-level data and adjustments are made where reasonable. 
+
+![Modeling process.](_pictures/modeling-process.png){#fig-mp}
+

@@ -1,0 +1,22 @@
+## Mode Choice
+### Improved HBC calibration targets and distribution 
+Researching the details for Commuter Rail forecasting revealed the 3.1 model had an inordinately high share of Home-Based College trips on transit.  There were several contributing problems.   First, the Nov. 2002 on-board survey incorrectly categorized many trips.  15% of HBC trips were made by people over 30 years old.  We believe most of these were likely work trips attracted to a college; they were thus reclassified.  Another 10% were attracted to small colleges that we do not account for (cosmetology colleges, etc.).  These were reclassified as HBO.  New target values were computed from the changes.
+
+In addition, the total number of HBC trips was low.  Since the total light-rail trips to the U of U was known and calibrated to (by means of the light-rail alternative specific constant), but the total trips to the U of U was low, the result was an overly high share of HBC transit trips relative to auto trips.  Daily HBC productions per student was raised from 0.7 to 1.0 to help correct this.
+
+College distribution is based on the zipcode of the student’s reported address.  However, many students report their parent’s address for mailings.  Where the address is reasonably close to the college, the student probably lives at home; but where the address exceeds 30, 40, and even 50 miles; it becomes less likely that they actually live there, or that they make frequent trips to the college.  In the case of the U of U, 1.5% of the HBC trips supposedly came from Weber County, which ranges from 35-50 miles away.  To counter this, HBC productions were distributed on a distance gradient with 1.5 HBC productions/day for student addresses within 1 mile of campus, changing linearly to 0.1 HBC productions/day for student addresses exceeding 40 miles.  Future year distributions also have an adjustment for high-growth zones that are within range of the college.
+
+### Improved NHB calibration targets
+The Non-home-based purpose was also unusually high in the 2002 on-board survey.  Again, suspect surveys may be to blame.  NHB trips exceeding 10 miles were excluded from the survey.  NHB trips that involved driving were excluded unless the CBD was a trip-end.
+
+### Improved Transit Walk/Drive Access/Egress algorithm
+Version 3.1 included a grid of walk access support links that were manually input for the SL CBD.  This grid made it possible for many “transit trips” to walk along the grid without actually taking transit.  The result was an under-estimate of the number of CBD circulation trips taken by transit.  The manual links were removed, and improved logic was added to the auto-generation of these support links.
+
+The on-board survey was also assigned to the transit network at FTA’s recommendation to reveal surveyed trips that could not be assigned to the correct path type.  The result lead to increasing the park-n-ride travel sheds, adding new PNR lots, and adjusting the path favoring weights.
+
+### Defined a method for modeling BRT
+We have wrestled for a means of defining a Bus Rapid-Transit line for modeling purposes.  BRT is a broad category that could range from little more than a bus with limited stops all the way up to a light-rail-like alignment with full stations.  There is no observed “BRT mode” from which to select an alternative specific constant, so we developed a checklist to help reveal the most appropriate modeling definition.  Basically, if the proposal appears to be very light-rail-like, we are recommending it be coded as a slower-than-normal LRT (mode 7).  If it shares more traits with a bus, a faster-than-normal bus (mode 4) seems appropriate.  If it is a hybrid, model it both ways and assume ridership in the middle.  A “how-to” memo defines the presently supported method.
+
+### Revised the background transit network for South Davis County
+Before BRT was proposed in South Davis, we assumed a simple increase in the frequency of existing South Davis buses to obtain a future network.  After BRT was adopted in the LRP, we neglected to review the whole system for redundancy.  We now have only the BRT, and Commuter Rail (CRT) serving SL CBD from South Davis, with supporting feeder routes.  Before we had all of these and a host of high-frequency local buses, which was inordinately high service relative to the rest of the region.  BRT is defined at 15,15 headways and CRT is 20,60.  This should provide a good base from which to compare and develop alternatives for the South Davis transit study.
+

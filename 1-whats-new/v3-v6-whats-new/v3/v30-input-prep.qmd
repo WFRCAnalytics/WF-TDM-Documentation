@@ -1,0 +1,22 @@
+## Input Preparation
+### Extensive revision of demographic projections
+The 2000 Census provided a good base and motive to forecast future population and employment anew.  The method employed by both WFRC and MAG for forecasting population and employment was also thoroughly reviewed, and revised to better incorporate GIS data of land use plans and existing development.  At the time of Version 3.0’s release (June 16, 2003), MAG’s new projections were not yet available, so their previous projections were used in their stead.  3.1 is expected to include MAG’s new projections, and some minor revisions to WFRC’s projections.  
+
+Population and Employment density are now calculated using developable land by land-use category, as specified in city master plans. Further refinements to the projections process include “seeding” undeveloped zones with pop/emp to allow for automated growth allocation, and an extensive review of the region looking for neighborhoods that are not expected to change significantly in the coming years (primarily, the highest-end residential zones that are built out).  See documentation on demographics forecasting for further details.  
+
+### Expansion of household categories based on 2000 Census
+The 2000 Census provided an opportunity to classify households by size (people in the household), income quartile, and workers per household.  An off-model C++ program was written to apply Census curves to basic zonal information such as the total households, average household size, and average zonal income, to estimate the total number of households in combinations of these categories: into 6 HH size categories (1 person to 6+ person), 4 worker categories (0 to 3+), and 4 income quartile categories.  This then becomes basic input to Auto Ownership, Trip Generation, and Mode Choice, allowing for market segmentation to be used throughout the modeling process.
+
+### Dynamic identification of area type
+A key variable in determining average free flow speeds on the highway network and terminal times within each zone is the intensity and type of land use surrounding a highway link.  A process was inserted into the model stream that considers the population and employment density of a zone and its four nearest neighbors to estimate the likely area type of that zone.  Any links that pass through that zone are then automatically flagged with that type, and a free flow speed is assigned that in part relies on this area type.  Thus, for example, for any scenarios that test “future CBD level densities” in an existing Greenfield area, arterial street speeds will respond downward accordingly because of the higher density surrounding the street.  Area types are, in order of density:  1) Rural, 2) Transition, 3) Suburban, 4) Urban, 5) CBD.
+
+### Improved free flow speed and capacity methodology
+To improve free flow speed and capacity estimates, methodologies in NCHRP 357 and HCM 2001 were applied.  Speeds are now determined by applying an unsignalized speed stratified by functional type and area type, which is then factored by number of stops/mile and the delay/stop for the functional type and area type.  Speeds are further adjusted based on whether the link is part of a high priority or low priority corridor. Higher priority corridors are more likely to have higher green times, better signal coordination, and less on-street parking, thus higher free-flow speeds. Free flow speeds were compared against GPS speed data to adjust NCHRP 387 default values.  GPS speed data was used to validate both these free flow speeds and congested speeds. 
+
+Capacities are determined by factoring a saturation flow rate by the percentages of heavy vehicles, bus blockages, lane utilization, and green time.  Specific links known to have unusually high or low “friction” are flagged and adjusted accordingly.
+
+### Updated highway and transit networks
+Numerous automated tools have been developed and applied to help highlight network deficiencies, and facilitate network maintenance.  Highway networks are now far more robust than they have ever been.  The networks have further been updated with recently constructed roadways as well as the most current UTA operational plans.  Future years are consistent with the most recent long-range transportation plans and programmed improvements.  Future year transit networks reflect the latest thinking from EISs and New Starts submittals.  
+
+
+

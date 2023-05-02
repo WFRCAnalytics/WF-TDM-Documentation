@@ -1,0 +1,15 @@
+## Trip Generation
+### Production / Attraction rate consolidation
+Version 2.1 combined what were 3 separate travel models for Ogden, Salt Lake, and Provo into a single model.  However, the production and attraction equations from those separate models were retained for each area.  Further, production equations were based strictly on observed data, and were not smoothed by logical reasoning.  For example, the data may have suggested a zero-car household with 3 people would take more shopping trips/day than a zero-car household with 6 people.  This cannot logically be explained other than by a small sampling.  Rates have now been consolidated to regional averages, and smoothed as recommended by an in-house peer review in January 2002.
+
+![Trip production rates for home based trips.](_pictures/tp-rates.png){#fig-tp}
+
+![Trip attraction equations.](_pictures/tattraction-eq.png){#fig-ta-eq}
+
+### Regional balancing of HBO trips
+HBO trips produced in an urban area and attracted to that same urban area were significantly out of balance.  For example, the Utah County area was found to produce about 10% more HBO trips than it attracted, where the 1993 household survey shows it at 2%.  Since HBO trips are heavily weighted toward short, neighborhood trips, they were balanced by urban area to help address this.
+
+### NHB attractions to SL CBD increased by 10%.
+Trips to SL CBD (Large District 9) were compared against the 1993 Home Interview Survey, and it was found that the percentage of SL CBD trips that were non-home based was about 10% lower in the model than it was in the survey.  Thus NHB attractions to the CBD were factored up to account for this.
+
+

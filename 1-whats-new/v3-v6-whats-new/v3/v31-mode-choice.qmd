@@ -1,0 +1,4 @@
+## Mode Choice
+### Improved calibration
+Mode choice has been more thoroughly reviewed since Version 3.0 was released, and the calibration of the model has been improved to better replicate observed data. Minor errors in the computer code have been fixed. 
+

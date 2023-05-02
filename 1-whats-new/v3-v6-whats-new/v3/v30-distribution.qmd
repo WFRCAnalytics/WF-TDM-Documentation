@@ -1,0 +1,29 @@
+## Trip Distribution
+The form of the trip distribution model hasn’t changed – we still use a non-parametric gravity model. The friction factors were re-calibrated.  Minor changes have been made to accommodate the off-model trip tables mentioned below, IXXI distribution noted below, and highway assignment improvements (see Highway Assignment).  College, airport, and Lagoon trip tables were distributed off-model, then summed in with totals.  Some enhancements to data management and reporting were also made.
+
+### New IXXI distribution process
+A significant imbalance in IXXI trips between Utah County and Salt Lake County was discovered in V 2.1.  Before the three models were merged into one, district level factors were used to determine how much of a zone’s trips should be IXXI.  In Utah County, a much higher percentage of the total trips were IXXI, because Salt Lake was once an external station for them.  Further, all IXXI trips had an average trip time of over 40 minutes within the region.  1993 HIS data suggests these trips should be closer to 25 minutes within the region (and an unknown time outside the region). 
+
+In Version 3.0, the method for determining IXXI trips has been completely re-engineered.  XI trips are distributed by travel time from the external station weighted by the zonal employment.  XI productions represent 75% of the total of IXXI.  IX productions are distributed by travel time, but weighted by zonal population. They represent 25% of the total.  The 75-25 split assumes that on an average weekday there are more people coming from outside the region to attractions within the region than there are people going from the region to attractions outside the region.  IXXI friction factors were also adjusted to better target a 25-minute average.  Finally, each external is influenced by the number of people living “just outside” the external.  For example, the Tooele, Park City, and Brigham City/Logan externals have far more “commuter interaction” with the region than the Nephi and Price externals.  To account for this, productions and attractions are weighted by their district’s proximity to larger satellite cities outside the region.  
+
+### New friction factors
+Version 3.0 includes a process to speedily estimate and calibrate the correct shape of these curves directly from the 1993 HIS data.  
+
+The friction factor curve for each trip purpose was calibrated through an iterative process such that the observed and estimated trip length frequency distributions would reasonably match. The friction factor curves are shown in @fig-ff. In addition, attention was given to trip distributions across specific screenlines. Comparisons between observed and estimated trip length frequency distributions are presented in @fig-tlf-hbw, @fig-tlf-hbo, and @fig-tlf-nhb. In general, the calibrated trip distribution model is able to replicate the observed trip length frequency closely.
+
+![Friction Factor Curves (scaled).](_pictures/ff-curves.png){#fig-ff}
+
+In distributing each of the trip purposes, the impedance measure that is input to the gravity model is inter-zonal auto travel times. Auto times are used because nearly all of the trips are made by automobile. The zone-to-zone auto travel times are “skimmed” from a loaded travel network, which is an output from a four-period travel assignment. All trips are distributed with skims derived from the AM peak travel assignment.
+
+### Unique trip tables for colleges, airport, and Lagoon.
+Many transit proposals currently under review would serve major generators that have a distribution pattern that a gravity model would not adequately determine on its own.  Home addresses of college students were obtained from each major college, which allowed creation of a distribution pattern for that college.  An airport survey was also available that allowed distribution of airport patrons across the region, where the gravity model had previously allocated trips almost exclusively to neighborhoods nearest the airport.  The Lagoon amusement park is another isolated zone for which total trips were available. The HBO purpose to Lagoon had an average trip length of slightly more than 10 minutes.  This was thought unreasonable since this is the only major amusement park in Utah.  HBO trips were thus extended further to draw from the whole region, but with emphasis on nearest zones. 
+
+![HBW Trip Length Frequency Comparison (Model vs. Observed).](_pictures/tlf-hbw.png){#fig-tlf-hbw}
+
+![HBO Trip Length Frequency Comparison (Model vs. Observed).](_pictures/tlf-hbo.png){#fig-tlf-hbo}
+
+![NHB Trip Length Frequency Comparison (Model vs. Observed).](_pictures/tlf-nhb.png){#fig-tlf-nhb}
+
+
+
+

@@ -1,0 +1,35 @@
+## Reports, Post Processors, Data Management
+### Model Log
+Version 3.0 includes a model log that tracks significant values as they are computed in order to facilitate comparison of values.
+
+### Demographics
+The model includes a utility that loads the 2001, 2030, and “Current Scenario” population and employment onto the highway network zones.  This is useful for model stream reports and for simple displays and comparisons in Viper or GIS.
+
+The travel model also reports demographic statistics by county and large district.  It includes script utilities to report the same statistics for any aggregation of TAZs (such as a study area).
+
+### Special Generators
+The model stream reports calculations relevant to special generators to aid in understanding the modeling of these sites.
+
+### Network Display Maps
+Numerous predefined Viper maps are included in the model.  
+
+### Highway Statistics
+The highway statistics report (formerly known as the “Air Quality” report) has been modified to provide statistics on both the intermediate assignment (Distribution), and the final assignment.  
+
+Version 2.1 produced the report for just counties and select cities.  Version 3.0 has also been modified to easily produce the report for any geography the user specifies (such as a study area).  
+
+New statistics include the percentage of links in each category that have a PM V/C ratio exceeding 1.0, and 1.2.
+
+It also includes a new “Trips Report” that determines the total number of vehicle trips made on non-local streets within a geography.
+
+### Calibration Statistics
+A job script is available that quickly produces statistics relevant to the calibration and validation of the travel model.  Output is only meaningful when produced for the base year (2001).  Output includes comparisons and RMSE of modeled volumes with UDOT counts on each facility type and for each county.  It also produces similar statistics between modeled speeds and observed GPS speeds.
+
+### Mode Split Shares
+The shares report has been updated in accordance with the expanded mode choice model.  It has also been modified to make it easier to generate the report on any geography.
+
+### Station Activity/ Track Activity
+The transit station and track activity template has been improved to make it simpler to understand model output for stations and track segments.  An SPSS script must be run to as a step in producing this report. 
+
+### Managing large run sizes
+Model runs will range from ½ Gigabyte per run to as much as 15 Gigabytes per run.  Most of this data is intermediate files that are stored in the “9Tmp” directory.  To facilitate storage of model runs, the 9Tmp directory can be moved or deleted in order to write a CD.  Non of the files necessary to reproduce the model run are included in the 9Tmp directory.

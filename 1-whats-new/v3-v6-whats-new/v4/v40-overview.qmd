@@ -1,0 +1,23 @@
+## Scedule
+The 4.0 model will begin “beta testing” in about 2 weeks (May 20-ish) in preparation for the commuter rail new starts submittal that will follow about 1-1.5 months after that.  FTA required that we implement a series of improvements before they will entertain a new starts submittal.  
+
+## What should it be used for?
+This “beta version” may also include a few other improvements that tend to affect highway forecasts more than transit forecasts, but which will not have been thoroughly tested, so we are recommending that anyone investigating highway proposals stick with the 3.2 model for at least a few more months after July, then make a decision as to when or if to use the 4.0 model for on-going work.  We expect relative nature of results expected from 4.0 to be very similar to those from 3.2.  The 4.0 model is also not expected to change the magnitude of results significantly.  The only projects likely to benefit from the beta version are Commuter Rail, West-side light rail, South Davis BRT, and Provo/Orem BRT.
+
+## Features implemented at request of / benefit to FTA
+
+1. **MC model:** Re-estimation of the Mode Choice model using local data rather than the previous synthetically derived estimation.
+
+2. **Period modeling:** Specific modeling of peak and off-peak periods rather than the previous daily model.
+
+3. **Home based college, Non-home based:** A number of deficiencies in the prediction of HBC/NHB trips were identified as a result of FTA inquiries into the 3.1 model.  Most were corrected in the 3.2 model, but a few additional steps are taken in the 4.0 model.
+
+4. **Zero-car distribution:** Specific distribution of zero-car households along more probable paths (typically paths easily served by transit).
+
+5. **New Park-n-Ride method:** Though not requested or identified by FTA as a deficiency, we overhauled the algorithm for drive access to transit.  Previously, the model inadvertently allowed people to drive quite long distances to take short transit trips (i.e. Many would skip a close PNR lot in favor of a far lot because they could minimize their travel time.  However, this defeats the purpose of taking transit).  The new method is directly linked to PNR lots noted on the highway network, and better ensures that the trip will select the most logical access point.  Further, a drive/transit in-vehicle ratio in the MC model is used to hinder the probability of selecting a path with a high ratio.  The affect is more on where you board the system rather than whether you board the system.  
+
+## Other coming features
+
+1. **Highway path choice:** In 3.2, the attractiveness of a particular path between I-J was based 40% on time savings and 60% on distance savings.  In the new method, longer distance trips will be based 100% on time savings, and shorter trips will have some fraction of both time and distance.  We believe this better reflects the true nature of trips; namely that shorter trips are more inclined to just go straight between their origin and destination, while on longer trips one is far more in tune with choosing only the path that saves the most time.  The shares and settings will be determined as part of calibration.
+
+2. **Destination Choice Logit model:** This has been delayed, but may make it back in during the months following July.
