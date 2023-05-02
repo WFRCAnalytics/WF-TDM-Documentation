@@ -4,7 +4,7 @@ date-modified: last-modified
 author: "WFRC / MAG"
 ---
 
-The *What's New Documents* for the various iterations of version 8 can also be downloaded as complete word documents or pdf documents. These complete downloads are provided below:
+The *What's New Documents* for the various iterations of version 7 can also be downloaded as complete word documents or pdf documents. These complete downloads are provided below:
 
 ### Version 7.0.2
 
