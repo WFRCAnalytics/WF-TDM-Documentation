@@ -1,0 +1,12 @@
+## Complete Model Documentation
+
+### Version 7
+
+ - {{< downloadthis "model-documentation/v7_Documentation/ModelDocumentation/Model-v7-Documentation_05112011.docx"
+label="v7 Model Documentation" dname=v7-model-documentation id=download-btn >}}
+
+### Version 6
+
+ - {{< downloadthis "model-documentation/v6_Documentation/WFRC_MAG_TravelModel_Documentation.pdf"
+label="v6 Model Documentation" dname=v6-model-documentation id=download-btn >}}
+

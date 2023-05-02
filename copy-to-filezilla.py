@@ -41,7 +41,7 @@ for root, dirs, files in os.walk(local_dir):
         else:
             sub_dir = ''
 
-        ftp_path = f'/public_html/tdm-docs/{sub_dir}'.replace('\\', '/')
+        ftp_path = f'/public_html/wftdm-docs/{sub_dir}'.replace('\\', '/')
         print('ftp is' + ftp_path)
         try:
             ftp.cwd(ftp_path)

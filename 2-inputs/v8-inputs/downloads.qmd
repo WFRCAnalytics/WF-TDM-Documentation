@@ -1,0 +1,22 @@
+---
+title:  "Downloads"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The *Inputs Documents* for the various iterations of version 8 can be downloaded as complete word documents. These complete downloads are provided below:
+
+### Version 8.3.2
+
+ - {{< downloadthis "downloads/WF-TDM-v8.3.2-1_Inputs-2022-02-04.docx"
+label="v8.3.2 2022-02-04 Inputs" dname=v832-2022-02-04-inputs id=download-btn >}}
+
+### Version 8.3.1
+
+ - {{< downloadthis "downloads/WF-TDM-v8.3.1-1_Inputs-2020-05-08.docx"
+label="v8.3.1 2020-05-08 Inputs" dname=v831-2020-05-08-inputs id=download-btn >}}
+
+### Version 8.3
+
+ - {{< downloadthis "downloads/WF-TDM-Model-Doc-v8.3-2019-06-18-2SEd.docx"
+label="v8.3 2019-06-18 Inputs" dname=v83-2019-06-18-inputs id=download-btn >}}

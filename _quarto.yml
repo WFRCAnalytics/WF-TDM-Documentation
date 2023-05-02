@@ -13,7 +13,7 @@ website:
       [![](https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg){fig-alt='MAG' width=65px}](https://mountainland.org/)
   navbar:
     background: info
-    logo: _pictures/wf-logo.png
+    logo: _pictures/wf-logo-new-white-t.png
     logo-href: https://wfrc.org
     tools:
       - icon: github
@@ -40,23 +40,21 @@ website:
           href: 1-whats-new/v3-v6-whats-new/index.qmd
           id: v3-v6-wn-index
 
-      - text: "Model Documentation"
+      - text: "Inputs"
         menu:
-        - text: "Version 7"
-          href: 2-model-documentation/v7_Documentation/index.qmd
-          id: v7-index
-        - text: "Version 6"
-          href: 2-model-documentation/v6_Documentation/index.qmd
-          id: v6-index
+        - text: "Version 8"
+          href: 2-inputs/v8-inputs/index.qmd
+          id: v8-in-index
 
       - text: "Calibration/Validation"
         menu:
-        - text: "Version 8.3.1"
-          href: 3-calib-valid/v831-calib-valid/index.qmd
-          id: v831-cv-index
+        - text: "Version 8"
+          href: 3-calib-valid/v8-calib-valid/index.qmd
+          id: v8-cv-index
 
-      - text: "Resources"
-        href: 4-other/other.qmd
+      - text: "Other"
+        href: 4-other/intro.qmd
+        id: other-index
 
       - text: "Testing"
         menu:
@@ -316,12 +314,34 @@ website:
             - text: "Terms and Abbreviations"
               href: 1-whats-new/v3-v6-whats-new/v3/v30-terms.qmd
 
-    - id: v831-cv-index
-      title: "Calibration/Validation - Version 8.3.1"
-    - id: v6-index
-      title: "Complete Model Documentation - Version 6"
-    - id: v7-index
-      title: "Complete Model Documentation - Version 7"
+    - id: v8-in-index
+      title: "Inputs - Version 8"
+      contents:
+        - text: "Downloads"
+          href: 2-inputs/v8-inputs/downloads.qmd
+        - text: "Preface"
+          href: 2-inputs/v8-inputs/index.qmd
+
+    - id: v8-cv-index
+      title: "Inputs - Version 8"
+      contents:
+        - text: "Downloads"
+          href: 3-calib-valid/v8-calib-valid/downloads.qmd
+        - text: "Preface"
+          href: 3-calib-valid/v8-calib-valid/index.qmd
+    
+    - id: other-index
+      title: "Other Documentation"
+      contents:
+        - text: "Preface"
+          href: 4-other/intro.qmd
+        - text: "Model Documentation"
+          href: 4-other/model-doc.qmd
+        - text: "User Guides"
+          href: 4-other/user-guides.qmd
+        - text: "Other Documentation"
+          href: 4-other/other.qmd
+
     - id: testing-index
       title: "Testing Environment"
       contents:

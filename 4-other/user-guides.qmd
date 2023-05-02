@@ -1,0 +1,19 @@
+## User Guides
+### Version 6.0
+
+ - {{< downloadthis "user-guides/WF-TDM-v6.0-Users-Guide.doc"
+label="v6 Users Guide" dname=v6-users-guide id=download-btn >}}
+
+### Version 5.0
+
+ - {{< downloadthis "user-guides/WF-TDM-v5.0-Users-Guide.doc"
+label="v5 Users Guide" dname=v5-users-guide id=download-btn >}}
+
+### Version 2.1
+
+ - {{< downloadthis "user-guides/WF-TDM-v2.1-Users-Guide.doc"
+label="v2.1 Users Guide" dname=v21-users-guide id=download-btn >}}
+
+
+
+

@@ -1,13 +1,4 @@
----
-title:  "Resources"
-date-modified: last-modified
-author: "WFRC / MAG"
----
-
-## Additional Download Links
-
-Besides the *What's New Document*, *Complete Model Documentation*, and *Calibration/Validation Report*, additional Travel Demand Model documentation exists. This page stores a comprehensive list of additional documentation as downloadable files. Since versioning isn't always important, many files do not have a version associated with it. 
-
+## Other Documentation
  - {{< downloadthis "HOT Lane Validation.docx"
 label="HOT Lane Validation" dname=hot-lane-validation id=download-btn >}}
 
