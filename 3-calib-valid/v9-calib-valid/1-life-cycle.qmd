@@ -1,1 +1,56 @@
 # Life Cycle
+
+The Life Cycle model determines the how much of the TAZ population and households from the processed socioeconomic input file will be in one of three life cycle categories:
+
+ - Life Cycle 1 – households with no children and no seniors
+ - Life Cycle 2 – households with children and no seniors
+ - Life Cycle 3 – households with seniors (may have children)
+
+The Life Cycle model does its calculations in three phases:
+
+ - Determine the TAZ population that is in three age groups
+ - Determine each age group population that is in the three life cycle categories
+ - Determine the number of households in each life cycle category
+
+## Population by Age Group
+ The Life Cycle model first estimates how much of the TAZ population falls into one of three Age Group categories:
+
+ - Age Group 1 – 0 to 17 years old
+ - Age Group 2 – 18 to 64 years old
+ - Age Group 3 – 65+ years old
+
+The initial share of the TAZ population in each Age Group is determined by multiplying the TAZ household population by the TAZ-level Age Group percentages in the Lookup - BYTAZAgePct - AllCo.csv file located in the 1_Inputs\\0_GlobalData\\1_HHDisag_AutoOwn directory.  These initial TAZ-level Age Group percentages were calculated from 2020 Census block summarized at the TAZ level.  
+
+The Census data was also summarized at the medium district level.  If the Census TAZ data had fewer than 50 people, the percentages from medium districts were used.  The medium district distribution of 2020 Census Age Group percentages for the Wasatch Front can be seen in the following Figure.  The share of population in each of the Age Groups varies significantly by geography.  Urban areas tend to have the highest share of population 18-64 years old and the fewest children and seniors.  Suburban and rural areas tend to have the highest share of children.
+
+```{python}
+#| echo: False
+import pandas as pd
+mdist_age = pd.read_csv(r'data/MEDDIST-AgePct-WF-Lookup.csv')
+mdist_age['MediumDistrict'] = mdist_age['MEDDIST'].astype(str).str.cat(mdist_age['MEDDIST2'], sep="-")
+mdist_age_sum = mdist_age.groupby(['MediumDistrict','MEDDIST']).sum().reset_index()
+mdist_age_sum['Total'] = mdist_age_sum['TotPop_0-17'] + mdist_age_sum['TotPop_18-64'] + mdist_age_sum['TotPop_65Plus']
+mdist_age_sum['Percent_0-17'] = mdist_age_sum['TotPop_0-17'] / mdist_age_sum['Total']
+mdist_age_sum['Percent_18-64'] = mdist_age_sum['TotPop_18-64'] / mdist_age_sum['Total']
+mdist_age_sum['Percent_65Plus'] = mdist_age_sum['TotPop_65Plus'] / mdist_age_sum['Total']
+mdist_age_sum = mdist_age_sum.fillna(0)
+mdist_age_sum = mdist_age_sum.sort_values(by='MEDDIST')
+```
+
+```{python}
+#| echo: False
+mdist_age_long = mdist_age_sum.melt(id_vars=['MediumDistrict'], value_vars=['Percent_0-17', 'Percent_18-64', 'Percent_65Plus'], var_name='AgeGroup', value_name='Percent')
+```
+
+```{python}
+#| echo: false
+# FIX THIS SO THAT THERE IS A FIGURE LABEL!!!
+import plotly.express as px
+import plotly.io as pio
+pio.renderers.default = "notebook"
+morder = mdist_age_long['MediumDistrict'].to_list()
+fig = px.scatter(mdist_age_long, x="Percent", y="MediumDistrict", color="AgeGroup", category_orders={'MediumDistrict':morder}, height = 1800, title = "2020 Census % Population by Age Group by Medium District")
+fig.show()
+```
+
+The initial TAZ-based population by Age Group is then factored to reflect the year being modeled.  This is done using the county population by Age Group forecasts found in ControlTotal_Age.csv located in 1_Inputs\\2_SEData\\_ControlTotals directory.  The Age Group county-level percentages are calculated from county-level population projections from the Kem C. Gardner Policy Institute (GPI), 2015-2065 State and County Total Population by Sex and Single-Year of Age.  The GPI projections show a trend in all counties in the Wasatch Front model space toward a more senior population and fewer children.  Adult population in the age range of 18-64 also saw a slight decrease in population share.
