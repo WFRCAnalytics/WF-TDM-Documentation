@@ -48,6 +48,9 @@ website:
 
       - text: "Calibration/Validation"
         menu:
+        - text: "Version 9"
+          href: 3-calib-valid/v9-calib-valid/index.qmd
+          id: v9-cv-index
         - text: "Version 8"
           href: 3-calib-valid/v8-calib-valid/index.qmd
           id: v8-cv-index
@@ -322,8 +325,29 @@ website:
         - text: "Preface"
           href: 2-inputs/v8-inputs/index.qmd
 
+    - id: v9-cv-index
+      title: "Calibration/Validation - Version 9"
+      contents:
+        - text: "Preface"
+          href: 3-calib-valid/v9-calib-valid/index.qmd
+        - text: "Life Cycle"
+          href: 3-calib-valid/v9-calib-valid/1-life-cycle.qmd
+        - text: "Household Disaggregation"
+          href: 3-calib-valid/v9-calib-valid/2-hh-disagg.qmd
+        - text: "Auto Ownership"
+          href: 3-calib-valid/v9-calib-valid/3-auto-own.qmd
+        - text: "Trip Generation"
+          href: 3-calib-valid/v9-calib-valid/4-trip-gen.qmd
+        - text: "Trip Distribution"
+          href: 3-calib-valid/v9-calib-valid/5-distribution.qmd
+        - text: "Mode Choice"
+          href: 3-calib-valid/v9-calib-valid/6-mc.qmd
+        - text: "Highway Assignment"
+          href: 3-calib-valid/v9-calib-valid/7-assign.qmd
+        - text: "Sensitivity Tests"
+          href: 3-calib-valid/v9-calib-valid/8-sensitivity.qmd
     - id: v8-cv-index
-      title: "Inputs - Version 8"
+      title: "Calibration/Validation - Version 8"
       contents:
         - text: "Downloads"
           href: 3-calib-valid/v8-calib-valid/downloads.qmd
