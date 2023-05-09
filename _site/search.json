@@ -1470,6 +1470,76 @@
     "text": "These are the Calibration/Validation Reports for the Wasatch Front Travel Demand Model (TDM) that were released during various iterations of version 8."
   },
   {
+    "objectID": "3-calib-valid/v9-calib-valid/1-life-cycle.html",
+    "href": "3-calib-valid/v9-calib-valid/1-life-cycle.html",
+    "title": "Life Cycle",
+    "section": "",
+    "text": "The Life Cycle model determines the how much of the TAZ population and households from the processed socioeconomic input file will be in one of three life cycle categories:\nThe Life Cycle model does its calculations in three phases:"
+  },
+  {
+    "objectID": "3-calib-valid/v9-calib-valid/1-life-cycle.html#population-by-age-group",
+    "href": "3-calib-valid/v9-calib-valid/1-life-cycle.html#population-by-age-group",
+    "title": "Life Cycle",
+    "section": "Population by Age Group",
+    "text": "Population by Age Group\nThe Life Cycle model first estimates how much of the TAZ population falls into one of three Age Group categories:\n\nAge Group 1 – 0 to 17 years old\nAge Group 2 – 18 to 64 years old\nAge Group 3 – 65+ years old\n\nThe initial share of the TAZ population in each Age Group is determined by multiplying the TAZ household population by the TAZ-level Age Group percentages in the Lookup - BYTAZAgePct - AllCo.csv file located in the 1_Inputs\\0_GlobalData\\1_HHDisag_AutoOwn directory. These initial TAZ-level Age Group percentages were calculated from 2020 Census block and 2020 ACS block group data summarized at the TAZ level.\nThe Census data was also summarized at the medium district level. If the Census TAZ data had fewer than 50 people, the percentages from medium districts were used. The medium district distribution of 2020 Census Age Group percentages for the Wasatch Front can be seen in the following Figure. The share of population in each of the Age Groups varies significantly by geography. Urban areas tend to have the highest share of population 18-64 years old and the fewest children and seniors. Suburban and rural areas tend to have the highest share of children.\n\n\n\n                                                \n\n\nThe initial TAZ-based population by Age Group is then factored to reflect the year being modeled. This is done using the county population by Age Group forecasts found in ControlTotal_Age.csv located in 1_Inputs\\2_SEData\\_ControlTotals directory. The Age Group county-level percentages are calculated from county-level population projections from the Kem C. Gardner Policy Institute (GPI), 2015-2065 State and County Total Population by Sex and Single-Year of Age. The GPI projections show a trend in all counties in the Wasatch Front model space toward a more senior population and fewer children. Adult population in the age range of 18-64 also saw a slight decrease in population share."
+  },
+  {
+    "objectID": "3-calib-valid/v9-calib-valid/2-hh-disagg.html",
+    "href": "3-calib-valid/v9-calib-valid/2-hh-disagg.html",
+    "title": "Household Disaggregation",
+    "section": "",
+    "text": "Household Disaggregation"
+  },
+  {
+    "objectID": "3-calib-valid/v9-calib-valid/3-auto-own.html",
+    "href": "3-calib-valid/v9-calib-valid/3-auto-own.html",
+    "title": "Auto Ownership",
+    "section": "",
+    "text": "Auto Ownership"
+  },
+  {
+    "objectID": "3-calib-valid/v9-calib-valid/4-trip-gen.html",
+    "href": "3-calib-valid/v9-calib-valid/4-trip-gen.html",
+    "title": "Trip Generation",
+    "section": "",
+    "text": "Trip Generation"
+  },
+  {
+    "objectID": "3-calib-valid/v9-calib-valid/5-distribution.html",
+    "href": "3-calib-valid/v9-calib-valid/5-distribution.html",
+    "title": "Trip Distribution",
+    "section": "",
+    "text": "Trip Distribution"
+  },
+  {
+    "objectID": "3-calib-valid/v9-calib-valid/6-mc.html",
+    "href": "3-calib-valid/v9-calib-valid/6-mc.html",
+    "title": "Mode Choice",
+    "section": "",
+    "text": "Mode Choice"
+  },
+  {
+    "objectID": "3-calib-valid/v9-calib-valid/7-assign.html",
+    "href": "3-calib-valid/v9-calib-valid/7-assign.html",
+    "title": "Highway Assignment",
+    "section": "",
+    "text": "Highway Assignment"
+  },
+  {
+    "objectID": "3-calib-valid/v9-calib-valid/8-sensitivity.html",
+    "href": "3-calib-valid/v9-calib-valid/8-sensitivity.html",
+    "title": "Sensitivity Tests",
+    "section": "",
+    "text": "Sensitivity Tests"
+  },
+  {
+    "objectID": "3-calib-valid/v9-calib-valid/index.html",
+    "href": "3-calib-valid/v9-calib-valid/index.html",
+    "title": "Calibration & Validation - Version 9",
+    "section": "",
+    "text": "This is the Calibration/Validation Report for the Wasatch Front Travel Demand Model (TDM) for version 9."
+  },
+  {
     "objectID": "4-other/intro.html",
     "href": "4-other/intro.html",
     "title": "Other Documentation",
@@ -1489,34 +1559,6 @@
     "title": "Documentation",
     "section": "",
     "text": "v7 Model Documentation \n\n\n\n\n\n v6 Model Documentation"
-  },
-  {
-    "objectID": "4-other/model-documentation/v6_Documentation/index.html",
-    "href": "4-other/model-documentation/v6_Documentation/index.html",
-    "title": "Complete Model Documentation - Version 6",
-    "section": "",
-    "text": "Since the completion of Version 6 dates back to 2007, the documentation is only available as a pdf. Below we provide a download link.\n\n v6 Documentation"
-  },
-  {
-    "objectID": "4-other/model-documentation/v6_Documentation/index.html#download-link",
-    "href": "4-other/model-documentation/v6_Documentation/index.html#download-link",
-    "title": "Complete Model Documentation - Version 6",
-    "section": "",
-    "text": "Since the completion of Version 6 dates back to 2007, the documentation is only available as a pdf. Below we provide a download link.\n\n v6 Documentation"
-  },
-  {
-    "objectID": "4-other/model-documentation/v7_Documentation/index.html",
-    "href": "4-other/model-documentation/v7_Documentation/index.html",
-    "title": "Complete Model Documentation - Version 7",
-    "section": "",
-    "text": "Since the completion of Version 7 dates back to 2011, the documentation is only available as a pdf. Below we provide a download link."
-  },
-  {
-    "objectID": "4-other/model-documentation/v7_Documentation/index.html#download-link",
-    "href": "4-other/model-documentation/v7_Documentation/index.html#download-link",
-    "title": "Complete Model Documentation - Version 7",
-    "section": "",
-    "text": "Since the completion of Version 7 dates back to 2011, the documentation is only available as a pdf. Below we provide a download link."
   },
   {
     "objectID": "4-other/other.html",
@@ -1601,75 +1643,5 @@
     "title": "Wasatch Front Travel Demand Model Documentation",
     "section": "Points of Contact",
     "text": "Points of Contact\nWith questions regarding the development of the model, reach out to the following persons:\n\nMatt DeLora (MAG): mdelora@magutah.org\nSuzie Swim (WFRC): sswim@wfrc.org"
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/index.html",
-    "href": "3-calib-valid/v9-calib-valid/index.html",
-    "title": "Calibration & Validation - Version 9",
-    "section": "",
-    "text": "This is the Calibration/Validation Report for the Wasatch Front Travel Demand Model (TDM) for version 9."
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/5-distribution.html",
-    "href": "3-calib-valid/v9-calib-valid/5-distribution.html",
-    "title": "Trip Distribution",
-    "section": "",
-    "text": "Trip Distribution"
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/1-life-cycle.html",
-    "href": "3-calib-valid/v9-calib-valid/1-life-cycle.html",
-    "title": "Life Cycle",
-    "section": "",
-    "text": "The Life Cycle model determines the how much of the TAZ population and households from the processed socioeconomic input file will be in one of three life cycle categories:\nThe Life Cycle model does its calculations in three phases:"
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/2-hh-disagg.html",
-    "href": "3-calib-valid/v9-calib-valid/2-hh-disagg.html",
-    "title": "Household Disaggregation",
-    "section": "",
-    "text": "Household Disaggregation"
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/3-auto-own.html",
-    "href": "3-calib-valid/v9-calib-valid/3-auto-own.html",
-    "title": "Auto Ownership",
-    "section": "",
-    "text": "Auto Ownership"
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/4-trip-gen.html",
-    "href": "3-calib-valid/v9-calib-valid/4-trip-gen.html",
-    "title": "Trip Generation",
-    "section": "",
-    "text": "Trip Generation"
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/6-mc.html",
-    "href": "3-calib-valid/v9-calib-valid/6-mc.html",
-    "title": "Mode Choice",
-    "section": "",
-    "text": "Mode Choice"
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/7-assign.html",
-    "href": "3-calib-valid/v9-calib-valid/7-assign.html",
-    "title": "Highway Assignment",
-    "section": "",
-    "text": "Highway Assignment"
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/8-sensitivity.html",
-    "href": "3-calib-valid/v9-calib-valid/8-sensitivity.html",
-    "title": "Sensitivity Tests",
-    "section": "",
-    "text": "Sensitivity Tests"
-  },
-  {
-    "objectID": "3-calib-valid/v9-calib-valid/1-life-cycle.html#population-by-age-group",
-    "href": "3-calib-valid/v9-calib-valid/1-life-cycle.html#population-by-age-group",
-    "title": "Life Cycle",
-    "section": "Population by Age Group",
-    "text": "Population by Age Group\nThe Life Cycle model first estimates how much of the TAZ population falls into one of three Age Group categories:\n\nAge Group 1 – 0 to 17 years old\nAge Group 2 – 18 to 64 years old\nAge Group 3 – 65+ years old\n\nThe initial share of the TAZ population in each Age Group is determined by multiplying the TAZ household population by the TAZ-level Age Group percentages in the Lookup - BYTAZAgePct - AllCo.csv file located in the 1_Inputs\\0_GlobalData\\1_HHDisag_AutoOwn directory. These initial TAZ-level Age Group percentages were calculated from 2020 Census block summarized at the TAZ level.\nThe Census data was also summarized at the medium district level. If the Census TAZ data had fewer than 50 people, the percentages from medium districts were used. The medium district distribution of 2020 Census Age Group percentages for the Wasatch Front can be seen in the following Figure. The share of population in each of the Age Groups varies significantly by geography. Urban areas tend to have the highest share of population 18-64 years old and the fewest children and seniors. Suburban and rural areas tend to have the highest share of children.\n\n\n\n                                                \n\n\nThe initial TAZ-based population by Age Group is then factored to reflect the year being modeled. This is done using the county population by Age Group forecasts found in ControlTotal_Age.csv located in 1_Inputs\\2_SEData\\_ControlTotals directory. The Age Group county-level percentages are calculated from county-level population projections from the Kem C. Gardner Policy Institute (GPI), 2015-2065 State and County Total Population by Sex and Single-Year of Age. The GPI projections show a trend in all counties in the Wasatch Front model space toward a more senior population and fewer children. Adult population in the age range of 18-64 also saw a slight decrease in population share."
   }
 ]

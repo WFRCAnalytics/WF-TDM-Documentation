@@ -19,7 +19,7 @@ The Life Cycle model does its calculations in three phases:
  - Age Group 2 – 18 to 64 years old
  - Age Group 3 – 65+ years old
 
-The initial share of the TAZ population in each Age Group is determined by multiplying the TAZ household population by the TAZ-level Age Group percentages in the Lookup - BYTAZAgePct - AllCo.csv file located in the 1_Inputs\\0_GlobalData\\1_HHDisag_AutoOwn directory.  These initial TAZ-level Age Group percentages were calculated from 2020 Census block summarized at the TAZ level.  
+The initial share of the TAZ population in each Age Group is determined by multiplying the TAZ household population by the TAZ-level Age Group percentages in the Lookup - BYTAZAgePct - AllCo.csv file located in the 1_Inputs\\0_GlobalData\\1_HHDisag_AutoOwn directory.  These initial TAZ-level Age Group percentages were calculated from 2020 Census block and 2020 ACS block group data summarized at the TAZ level.  
 
 The Census data was also summarized at the medium district level.  If the Census TAZ data had fewer than 50 people, the percentages from medium districts were used.  The medium district distribution of 2020 Census Age Group percentages for the Wasatch Front can be seen in the following Figure.  The share of population in each of the Age Groups varies significantly by geography.  Urban areas tend to have the highest share of population 18-64 years old and the fewest children and seniors.  Suburban and rural areas tend to have the highest share of children.
 
