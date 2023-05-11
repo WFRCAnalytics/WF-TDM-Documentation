@@ -1,3 +1,8 @@
+---
+execute:
+    echo: false
+---
+
 # Life Cycle
 
 The Life Cycle model determines the how much of the TAZ population and households from the processed socioeconomic input file will be in one of three life cycle categories:
@@ -44,13 +49,352 @@ mdist_age_long = mdist_age_sum.melt(id_vars=['MediumDistrict'], value_vars=['Per
 
 ```{python}
 #| echo: false
-# FIX THIS SO THAT THERE IS A FIGURE LABEL!!!
+#| include: false
 import plotly.express as px
-import plotly.io as pio
-pio.renderers.default = "notebook"
 morder = mdist_age_long['MediumDistrict'].to_list()
-fig = px.scatter(mdist_age_long, x="Percent", y="MediumDistrict", color="AgeGroup", category_orders={'MediumDistrict':morder}, height = 1800, title = "2020 Census % Population by Age Group by Medium District")
+fig = px.scatter(mdist_age_long, x="Percent", y="MediumDistrict", color="AgeGroup", category_orders={'MediumDistrict':morder}, height = 1800)
+```
+
+```{python}
+#| label: DOESN'T WORK
+#| fig-cap: "2020 Census % Population by Age Group by Medium District."
+#| cap-location: margin
 fig.show()
 ```
 
-The initial TAZ-based population by Age Group is then factored to reflect the year being modeled.  This is done using the county population by Age Group forecasts found in ControlTotal_Age.csv located in 1_Inputs\\2_SEData\\_ControlTotals directory.  The Age Group county-level percentages are calculated from county-level population projections from the Kem C. Gardner Policy Institute (GPI), 2015-2065 State and County Total Population by Sex and Single-Year of Age.  The GPI projections show a trend in all counties in the Wasatch Front model space toward a more senior population and fewer children.  Adult population in the age range of 18-64 also saw a slight decrease in population share.
+The initial TAZ-based population by Age Group is then factored to reflect the year being modeled.  This is done using the county population by Age Group forecasts found in ControlTotal_Age.csv located in 1_Inputs\\2_SEData\\_ControlTotals directory.  The Age Group county-level percentages are calculated from county-level population projections from the Kem C. Gardner Policy Institute (GPI), 2020-2060 State and County Total Population by Sex and Single-Year of Age.  The GPI projections show a trend in all counties in the Wasatch Front model space toward a more senior population and fewer children.  Adult population in the age range of 18-64 also saw a slight increase in population share.
+
+
+```{python}
+gpi_age = pd.read_csv(r'data/chk_Age_ControlTotal_SE_2022_08_31.csv')
+gpi_age_long = gpi_age.melt(id_vars=['AgeGroup','Region'], value_vars=['1990','2000','2010','2020','2030','2040','2050','2060'], var_name='Year',value_name='Percent')
+gpi_age_long['Percent'] = gpi_age_long['Percent']
+```
+
+```{python}
+#| include: False
+colors = {'Age 0 - 17': 'steelblue', 'Age 18 - 64': 'peru', 'Age 65+': 'darkgrey'}
+fig2 = px.bar(gpi_age_long, x = "Year", y = "Percent", color = "AgeGroup", facet_row = "Region", height = 1000, color_discrete_map=colors,
+text=[f'{val:.00%}' for val in gpi_age_long['Percent']], 
+             template='simple_white')
+fig2.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
+fig2.update_traces(textposition='inside', textangle = 0, textfont=dict(color='white'))
+```
+
+```{python}
+#| label: fig-gpi-age
+#| fig-cap: "GPI County Population Projections by Age Group for Wasatch Front Counties."
+#| cap-location: margin
+fig2.show()
+```
+
+The 2020 model base year population by county and Age Group was compared to the 2020 GPI county-level population by Age Group, shown in the following charts.  The model’s estimate of the population in each Age Group mirrors the GPI county-level projections.
+
+
+```{python}
+co_age_sum = mdist_age.groupby(['CountyID']).sum().reset_index()
+```
+
+
+```{python}
+co_age_sum['Total'] = co_age_sum['TotPop_0-17'] + co_age_sum['TotPop_18-64'] + co_age_sum['TotPop_65Plus']
+co_age_sum['Percent_0-17'] = co_age_sum['TotPop_0-17'] / co_age_sum['Total']
+co_age_sum['Percent_18-64'] = co_age_sum['TotPop_18-64'] / co_age_sum['Total']
+co_age_sum['Percent_65Plus'] = co_age_sum['TotPop_65Plus'] / co_age_sum['Total']
+co_age_sum = co_age_sum.fillna(0)
+```
+
+
+```{python}
+county_map = {3: 'Box Elder', 11: 'Davis', 35: 'Salt Lake', 49: 'Utah', 57: 'Weber'}
+def get_county_name(county_id):
+    return county_map[county_id]
+co_age_sum['Region'] = co_age_sum['CountyID'].apply(get_county_name)
+
+co_age_long = co_age_sum.melt(id_vars=['Region'], value_vars=['Percent_0-17','Percent_18-64','Percent_65Plus'], var_name='AgeGroup', value_name='Percent')
+```
+
+
+```{python}
+import numpy as np
+conditions = [
+    (co_age_long['AgeGroup'] == 'Percent_0-17'),
+    (co_age_long['AgeGroup'] == 'Percent_18-64'),
+    (co_age_long['AgeGroup'] == 'Percent_65Plus')
+]
+values = ['Age 0 - 17', 'Age 18 - 64', 'Age 65+']
+co_age_long['AgeGroup'] = np.select(conditions,values)
+co_age_long['Year'] = 2020
+```
+
+
+```{python}
+gpi_age_long_c = gpi_age_long
+gpi_age_long_c['Source'] = 'Observed'
+gpi_age_long_c = gpi_age_long_c[gpi_age_long_c['Year']=='2020']
+co_age_long_c = co_age_long
+co_age_long_c['Source'] = 'Modeled'
+life_compare = pd.concat([gpi_age_long_c, co_age_long_c], axis=0)
+life_compare = life_compare[life_compare['Region'].isin(['Utah','Weber','Salt Lake','Davis'])]
+```
+
+
+```{python}
+#| include: False
+colors2 = {'Observed':'steelblue','Modeled':'forestgreen'}
+fig3 = px.bar(life_compare, 
+    x="Region", 
+    y="Percent",
+    text_auto='.2s',    
+    color='Source', 
+    barmode='group', 
+    height=800, 
+    facet_row = 'AgeGroup',
+    color_discrete_map=colors2, 
+    text=[f'{round(val2*100,1)}' for val2 in life_compare['Percent']], template='simple_white')
+fig3.update_yaxes(title='Percent')
+fig3.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
+fig3.update_traces(textposition='inside', textangle = 0, texttemplate='%{text}%', textfont=dict(color='white'))
+```
+
+```{python}
+#| label: fig-age-comp
+#| fig-cap: "2020 Model vs. 2020 GPI – % Population by Age Group and County."
+#| cap-location: margin
+fig3.show()
+```
+
+## Population by Life Cycle
+The Life Cycle model uses parameters estimated from the 2012 Household Survey to convert population in Age Groups to population in a Life Cycle category.  Unique parameters were estimated for each county and are found in @tbl-life-factors.  
+
+```{python}
+#| label: tbl-life-factors
+#| tbl-cap: "Percent of Age Group Population in Life Cycle 2 by County"
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Box Elder', '.993' , '.664'],
+         ['Weber'    , '.982' , '.606'],
+         ['Davis'    , '.974' , '.711'],
+         ['Salt Lake', '.961' , '.525'],
+         ['Utah'     , '.981' , '.659']]
+Markdown(tabulate(
+  table, 
+  headers=["County","0-17 Population Age Group (LC2 Fac 0-17)", "18-64 Population Age Group (LC2 Fac 18-64)"],
+  tablefmt="pipe", 
+  colalign=("left",)*3
+))
+```
+
+Only factors for Life Cycle 2 were estimated.  Life Cycle 1 has no children leaving the 0-17 population to be divided between Life Cycles 2 and 3.  Life Cycle 3 has no adults age 18-64 leaving the 18-64 population to be divided between Life Cycles 1 and 2.  All of 65+ population lies completely within Life Cycle 3.  @tbl-life-eqs contains the equations used to calculate Life Cycle population.
+
+```{python}
+#| label: tbl-life-eqs
+#| tbl-cap: "Equations to Calculate Age Group Population in Each Life Cycle Category"
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['0-17' , '0'                  , 'LC2 Fac 0-17' ,'1 – (LC2 Fac 0-17)'],
+         ['18-64', '1 – (LC2 Fac 18-64)', 'LC2 Fac 18-64','0'                 ],
+         ['65+'  , '0'                  , '0'            ,'1'                 ]]
+Markdown(tabulate(
+  table, 
+  headers=["Age Group","Life Cycle 1", "Life Cycle 2", "Life Cycle 3"],
+  tablefmt="pipe", 
+  colalign=("left",)*4
+))
+```
+
+Almost all of the child-aged population is contained within Life Cycle 2, ranging between 96.1% in Salt Lake County and 99.3% in Box Elder County.  The remaining child population is in Life Cycle 3.  The majority of the adult-not-a-senior population is contained in Life Cycle category 2, ranging between 52.5% in Salt Lake County and 71.1% in Davis County, with the remainder falling into Life Cycle 1.  
+
+The shares of the modeled 2019 base year population by Life Cycle were compared to the 2012 Household Survey at the county level.  The model’s estimate of population by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 4% of the observed data.
+
+```{python}
+#| include: False
+hhts = pd.read_csv(r'data/2012_HHSurvey-HHData_2022-09-29.csv')[['record_ID','h_CO_FIPS_v30','h_CO_NAME_v30','weight','hhsize','life_cycle']]
+hhts_lf_pop = hhts
+hhts_lf_pop['number'] = hhts_lf_pop['weight'] * hhts_lf_pop['hhsize']
+hhts_lf_pop = (hhts_lf_pop
+    .drop(columns={'record_ID','weight','hhsize'})
+    .groupby(['h_CO_FIPS_v30','h_CO_NAME_v30','life_cycle'])
+    .sum()
+    .reset_index())
+hhts_lf_pop = hhts_lf_pop[hhts_lf_pop['h_CO_FIPS_v30'].isin([3,11,35,49,57])]
+hhts_lf_pop = hhts_lf_pop.rename(columns={'h_CO_FIPS_v30':'CO_FIPS','h_CO_NAME_v30':'Region','life_cycle':"LifeCycle"})
+hhts_lf_pop_tot = hhts_lf_pop.groupby(['CO_FIPS','Region']).sum().reset_index().drop(columns={'LifeCycle'}).rename(columns={'number':'total'})
+
+hhts_lf_pop_full = pd.merge(hhts_lf_pop, hhts_lf_pop_tot,how = 'left', on = ('CO_FIPS','Region'))
+hhts_lf_pop_full['Percent'] = hhts_lf_pop_full['number'] / hhts_lf_pop_full['total']
+
+lf_control_pop = hhts_lf_pop_full[['Region','LifeCycle','Percent']]
+lf_control_pop['Source'] = 'Observed'
+```
+
+```{python}
+#| include: False
+from dbfread import DBF
+lc_dbf = pd.DataFrame(DBF(r'data/LifeCycle_Households_Population_v9.0-2023-04-28-BY_2019.dbf', load=True))
+lc_dbf = lc_dbf[lc_dbf['CO_FIPS'].isin([3,11,35,49,57])]
+lc_dbf['Region'] = lc_dbf['CO_FIPS'].apply(get_county_name).str.upper()
+lc_wf = lc_dbf[['Region','POP_LC1','POP_LC2','POP_LC3']]
+
+lc_model_pop = lc_wf.melt(id_vars=['Region'], value_vars=['POP_LC1','POP_LC2','POP_LC3'], var_name='LifeCycle',value_name='number')
+conditions2 = [
+    (lc_model_pop['LifeCycle'] == 'POP_LC1'),
+    (lc_model_pop['LifeCycle'] == 'POP_LC2'),
+    (lc_model_pop['LifeCycle'] == 'POP_LC3')
+]
+values2 = [1, 2, 3]
+lc_model_pop['LifeCycle'] = np.select(conditions2,values2)
+
+lf_model_group = lc_model_pop.groupby(['Region','LifeCycle']).sum().reset_index()
+lf_model_total = lc_model_pop.groupby(['Region']).sum().reset_index().rename(columns={'number':'total'}).drop(columns={'LifeCycle'})
+lf_model_groupsum = pd.merge(lf_model_group,lf_model_total,how='left', on = ('Region'))
+
+lf_model_groupsum['Percent'] = lf_model_groupsum['number'] / lf_model_groupsum['total']
+lf_model_pop = lf_model_groupsum[['Region','LifeCycle','Percent']]
+lf_model_pop['Source'] = 'Modeled'
+```
+
+
+```{python}
+#| include: False
+lf_pop_both = pd.concat([lf_control_pop,lf_model_pop],axis=0)
+```
+
+
+```{python}
+#| include: False
+fig4 = px.bar(lf_pop_both, 
+    x="Region", 
+    y="Percent",
+    text_auto='.2s',    
+    color='Source', 
+    barmode='group', 
+    height=800, 
+    facet_row = 'LifeCycle',
+    color_discrete_map=colors2, 
+    text=[f'{round(val2*100,1)}' for val2 in lf_pop_both['Percent']], template='simple_white')
+fig4.update_yaxes(title='Percent')
+fig4.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
+fig4.update_traces(textposition='inside', textangle = 0, texttemplate='%{text}%', textfont=dict(color='white'))
+```
+
+```{python}
+#| label: fig-lc-pop
+#| fig-cap: "2019 Model vs. 2012 Household Survey – % Population by Life Cycle and County."
+#| cap-location: margin
+fig4.show()
+```
+
+## Households by Life Cycle
+The Life Cycle model calculates households by Life Cycle using the average household size for each Life Cycle category.  Unique average household sizes were estimated for each county and Life Cycle from the 2012 Household Survey.
+
+```{python}
+#| label: tbl-lc-avehh
+#| tbl-cap: "Average Household Size by Life Cycle and County"
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Box Elder', '1.86' , '4.21', '2.41'],
+         ['Weber'    , '1.88' , '4.53', '1.81'],
+         ['Davis'    , '2.14' , '4.68', '2.33'],
+         ['Salt Lake', '1.86' , '4.44', '1.81'],
+         ['Utah'     , '2.11' , '4.75', '2.21']]
+Markdown(tabulate(
+  table, 
+  headers=["County","Household Size for Life Cycle 1", "Household Size for Life Cycle 2", 'Household Size for Life Cycle 3'],
+  tablefmt="pipe", 
+  colalign=("left",)*4
+))
+```
+
+The TAZ-level population by Life Cycle category are divided by the average household size factors to generate an estimate of the share of TAZ-level households in each Life Cycle category.  The share of households in each Life Cycle category is then multiplied by the total households in the TAZ to get the adjusted number of households per Life Cycle category.  
+
+A final check is made to avoid unrealistic household sizes for zones with smaller populations.  The number of households for a given Life Cycle category are capped at the minimum and maximum household sizes found in @tbl-lc-maxhh.  
+
+
+```{python}
+#| label: tbl-lc-maxhh
+#| tbl-cap: "Allowed Minimum and Maximum Average Household Size by Life Cycle"
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['1', '1.0' , '4.0'],
+         ['2', '2.0' , '8.0'],
+         ['3', '1.0' , '4.0']]
+Markdown(tabulate(
+  table, 
+  headers=["Life Cycle Category","Minimum Household Size", "Maximum Household Size"],
+  tablefmt="pipe", 
+  colalign=("left",)*3
+))
+```
+
+The shares of the modeled 2019 base year households by Life Cycle were compared to the 2012 Household Survey at the county level.  The model’s estimate of households by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 1,5% of the observed data.
+
+```{python}
+#| include: False
+hhts = pd.read_csv(r'data/2012_HHSurvey-HHData_2022-09-29.csv')[['record_ID','h_CO_FIPS_v30','h_CO_NAME_v30','weight','hhsize','life_cycle']]
+hhts_lf_hh = hhts
+hhts_lf_hh['number'] = hhts_lf_hh['weight']
+hhts_lf_hh = (hhts_lf_hh
+    .drop(columns={'record_ID','weight','hhsize'})
+    .groupby(['h_CO_FIPS_v30','h_CO_NAME_v30','life_cycle'])
+    .sum()
+    .reset_index())
+hhts_lf_hh = hhts_lf_hh[hhts_lf_hh['h_CO_FIPS_v30'].isin([3,11,35,49,57])]
+hhts_lf_hh = hhts_lf_hh.rename(columns={'h_CO_FIPS_v30':'CO_FIPS','h_CO_NAME_v30':'Region','life_cycle':"LifeCycle"})
+hhts_lf_hh_tot = hhts_lf_hh.groupby(['CO_FIPS','Region']).sum().reset_index().drop(columns={'LifeCycle'}).rename(columns={'number':'total'})
+
+hhts_lf_hh_full = pd.merge(hhts_lf_hh, hhts_lf_hh_tot,how = 'left', on = ('CO_FIPS','Region'))
+hhts_lf_hh_full['Percent'] = hhts_lf_hh_full['number'] / hhts_lf_hh_full['total']
+
+lf_control_hh = hhts_lf_hh_full[['Region','LifeCycle','Percent']]
+lf_control_hh['Source'] = 'Observed'
+display(lf_control_hh)
+```
+
+```{python}
+#| include: False
+lc_wf_hh = lc_dbf[['Region','HH_LC1','HH_LC2','HH_LC3']]
+
+lc_model_hh = lc_wf_hh.melt(id_vars=['Region'], value_vars=['HH_LC1','HH_LC2','HH_LC3'], var_name='LifeCycle',value_name='number')
+conditions3 = [
+    (lc_model_hh['LifeCycle'] == 'HH_LC1'),
+    (lc_model_hh['LifeCycle'] == 'HH_LC2'),
+    (lc_model_hh['LifeCycle'] == 'HH_LC3')
+]
+values3 = [1, 2, 3]
+lc_model_hh['LifeCycle'] = np.select(conditions3,values3)
+
+lf_model_group_hh = lc_model_hh.groupby(['Region','LifeCycle']).sum().reset_index()
+lf_model_total_hh = lc_model_hh.groupby(['Region']).sum().reset_index().rename(columns={'number':'total'}).drop(columns={'LifeCycle'})
+lf_model_groupsum_hh = pd.merge(lf_model_group_hh,lf_model_total_hh,how='left', on = ('Region'))
+
+lf_model_groupsum_hh['Percent'] = lf_model_groupsum_hh['number'] / lf_model_groupsum_hh['total']
+lf_model_hh = lf_model_groupsum_hh[['Region','LifeCycle','Percent']]
+lf_model_hh['Source'] = 'Modeled'
+lf_hh_both = pd.concat([lf_control_hh,lf_model_hh],axis=0)
+display(lf_hh_both)
+```
+
+```{python}
+#| include: False
+fig5 = px.bar(lf_hh_both, 
+    x="Region", 
+    y="Percent",
+    text_auto='.2s',    
+    color='Source', 
+    barmode='group', 
+    height=800, 
+    facet_row = 'LifeCycle',
+    color_discrete_map=colors2, 
+    text=[f'{round(val2*100,1)}' for val2 in lf_hh_both['Percent']], template='simple_white')
+fig5.update_yaxes(title='Percent')
+fig5.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
+fig5.update_traces(textposition='inside', textangle = 0, texttemplate='%{text}%', textfont=dict(color='white'))
+```
+
+```{python}
+#| label: fig-lc-hh
+#| fig-cap: "2019 Model vs. 2012 Household Survey – % Households by Life Cycle and County"
+#| cap-location: margin
+fig5.show()
+```
