@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="WFRC / MAG">
+
+<title>Documentation - Version 9.0.0 - What’s New?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../_pictures/favicon.ico" rel="icon">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://wfrc.org" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../_pictures/wf-logo-new-white-t.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../index.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9.x</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9.x">    
+        <li>
+    <a class="dropdown-item" href="../../../../v9x/v900/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-8.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 8.x</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-8.x">    
+        <li>
+    <a class="dropdown-item" href="../../../../v8x/v832/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v8x/v831/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v8x/v830/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v8x/v810/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.1.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
+        <li>
+    <a class="dropdown-item" href="../../../../v7x/v702/index.html" rel="" target="">
+ <span class="dropdown-text">Version 7.0.2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v7x/v701/index.html" rel="" target="">
+ <span class="dropdown-text">Version 7.0.1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v7x/v700/index.html" rel="" target="">
+ <span class="dropdown-text">Version 7.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v6x/v610/index.html" rel="" target="">
+ <span class="dropdown-text">Version 6.1.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v6x/v600/index.html" rel="" target="">
+ <span class="dropdown-text">Version 6.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v5x/v500/index.html" rel="" target="">
+ <span class="dropdown-text">Version 5.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v4x/v430/index.html" rel="" target="">
+ <span class="dropdown-text">Version 4.3.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v4x/v420/index.html" rel="" target="">
+ <span class="dropdown-text">Version 4.2.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v4x/v400/index.html" rel="" target="">
+ <span class="dropdown-text">Version 4.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v3x/v320/index.html" rel="" target="">
+ <span class="dropdown-text">Version 3.2.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v3x/v310/index.html" rel="" target="">
+ <span class="dropdown-text">Version 3.1.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v3x/v300/index.html" rel="" target="">
+ <span class="dropdown-text">Version 3.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../../v2x/v210/index.html" rel="" target="">
+ <span class="dropdown-text">Version 2.1.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-testing" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Testing</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-testing">    
+        <li>
+    <a class="dropdown-item" href="../../../../testing/jupyter-widgets.html" rel="" target="">
+ <span class="dropdown-text">Visualization</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Whats New?</li><li class="breadcrumb-item"><a href="../../../../v9x/v900/whats-new/2022-10-05/1-genparams.html">2022-10-05</a></li><li class="breadcrumb-item"><a href="../../../../v9x/v900/whats-new/2022-10-05/2-inputdata.html">Input Data</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/downloads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Downloads</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Whats New?</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">2022-12-19</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-12-19/1-genparams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Parameters - Comparison with v8.3.2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-12-19/2-inputdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Input Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-12-19/3-inputprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Input Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-12-19/6-distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distribution</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">2022-11-01</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-11-01/1-genparams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Parameters - Comparison with v8.3.2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-11-01/2-inputdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Input Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-11-01/3-inputprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Input Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-11-01/7-mc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mode Choice</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">2022-10-05</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-10-05/1-genparams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Parameters - Comparison with v8.3.2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-10-05/2-inputdata.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Input Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-10-05/3-inputprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Input Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-10-05/4-hhdisag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Household Disaggregation and Auto Ownership</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-10-05/7-mc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mode Choice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-10-05/8-assign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Highway Assignment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/whats-new/2022-10-05/10-modelresults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Results - Comparison with v8.3.2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Calibration/Validation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+ <span class="menu-text">2022-12-19</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/calib-valid/1-life-cycle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Life Cycle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/calib-valid/2-hh-disagg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Household Disaggregation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/calib-valid/3-auto-own.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Auto Ownership</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/calib-valid/4-trip-gen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Trip Generation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/calib-valid/5-distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Trip Distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/calib-valid/6-mc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mode Choice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/calib-valid/7-assign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Highway Assignment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../v9x/v900/calib-valid/8-sensitivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sensitivity Tests</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#input-data" id="toc-input-data" class="nav-link active" data-scroll-target="#input-data">Input Data</a>
+  <ul class="collapse">
+  <li><a href="#global-data" id="toc-global-data" class="nav-link" data-scroll-target="#global-data">Global Data</a>
+  <ul class="collapse">
+  <li><a href="#trip-tables" id="toc-trip-tables" class="nav-link" data-scroll-target="#trip-tables">Trip Tables</a></li>
+  <li><a href="#household-disaggregation-and-auto-ownership" id="toc-household-disaggregation-and-auto-ownership" class="nav-link" data-scroll-target="#household-disaggregation-and-auto-ownership">Household Disaggregation and Auto Ownership</a></li>
+  </ul></li>
+  <li><a href="#taz" id="toc-taz" class="nav-link" data-scroll-target="#taz">TAZ</a>
+  <ul class="collapse">
+  <li><a href="#taz-splits" id="toc-taz-splits" class="nav-link" data-scroll-target="#taz-splits">TAZ Splits</a></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a></li>
+  <li><a href="#districts" id="toc-districts" class="nav-link" data-scroll-target="#districts">Districts</a></li>
+  <li><a href="#source-folder" id="toc-source-folder" class="nav-link" data-scroll-target="#source-folder">Source Folder</a></li>
+  </ul></li>
+  <li><a href="#se-data" id="toc-se-data" class="nav-link" data-scroll-target="#se-data">SE Data</a>
+  <ul class="collapse">
+  <li><a href="#forecasts" id="toc-forecasts" class="nav-link" data-scroll-target="#forecasts">Forecasts</a></li>
+  <li><a href="#control-totals" id="toc-control-totals" class="nav-link" data-scroll-target="#control-totals">Control Totals</a></li>
+  <li><a href="#source-files" id="toc-source-files" class="nav-link" data-scroll-target="#source-files">Source Files</a></li>
+  </ul></li>
+  <li><a href="#highway-network" id="toc-highway-network" class="nav-link" data-scroll-target="#highway-network">Highway Network</a>
+  <ul class="collapse">
+  <li><a href="#dated-updates" id="toc-dated-updates" class="nav-link" data-scroll-target="#dated-updates">Dated Updates</a></li>
+  <li><a href="#highway-nodes" id="toc-highway-nodes" class="nav-link" data-scroll-target="#highway-nodes">Highway Nodes</a></li>
+  </ul></li>
+  <li><a href="#transit-network" id="toc-transit-network" class="nav-link" data-scroll-target="#transit-network">Transit Network</a>
+  <ul class="collapse">
+  <li><a href="#transit-line-files" id="toc-transit-line-files" class="nav-link" data-scroll-target="#transit-line-files">Transit Line Files</a></li>
+  <li><a href="#pt-folder" id="toc-pt-folder" class="nav-link" data-scroll-target="#pt-folder">PT Folder</a></li>
+  <li><a href="#general-hand-coded-support-links" id="toc-general-hand-coded-support-links" class="nav-link" data-scroll-target="#general-hand-coded-support-links">General Hand-Coded Support Links</a></li>
+  <li><a href="#transit-route-tester" id="toc-transit-route-tester" class="nav-link" data-scroll-target="#transit-route-tester">Transit Route Tester</a></li>
+  </ul></li>
+  <li><a href="#externals" id="toc-externals" class="nav-link" data-scroll-target="#externals">Externals</a>
+  <ul class="collapse">
+  <li><a href="#location" id="toc-location" class="nav-link" data-scroll-target="#location">Location</a></li>
+  <li><a href="#forecast" id="toc-forecast" class="nav-link" data-scroll-target="#forecast">Forecast</a></li>
+  <li><a href="#subarea-extraction-matrices" id="toc-subarea-extraction-matrices" class="nav-link" data-scroll-target="#subarea-extraction-matrices">Subarea Extraction Matrices</a></li>
+  </ul></li>
+  <li><a href="#segment" id="toc-segment" class="nav-link" data-scroll-target="#segment">Segment</a></li>
+  <li><a href="#other-changes" id="toc-other-changes" class="nav-link" data-scroll-target="#other-changes">Other Changes</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="2-inputdata.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Version 9.0.0 - What’s New?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>WFRC / MAG </p>
+          </div>
+  </div>
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 15, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="input-data" class="level1">
+<h1>Input Data</h1>
+<section id="global-data" class="level2">
+<h2 class="anchored" data-anchor-id="global-data">Global Data</h2>
+<section id="trip-tables" class="level3">
+<h3 class="anchored" data-anchor-id="trip-tables">Trip Tables</h3>
+<ul>
+<li>Updated ’_Source - CollegeBaseDistribution - 2022-08-30.xlsx’ &amp; ‘BaseDistribution.csv’ TAZID to v9 TAZ
+<ul>
+<li>Centroid of v832 TAZ was used to identify the new v9 TAZ</li>
+</ul></li>
+</ul>
+</section>
+<section id="household-disaggregation-and-auto-ownership" class="level3">
+<h3 class="anchored" data-anchor-id="household-disaggregation-and-auto-ownership">Household Disaggregation and Auto Ownership</h3>
+<ul>
+<li>Updated ’_Source - TAZ_AgePct_Lookup - 2022-06-07.xlsb’ &amp; ‘Lookup - BYTAZAgePct - AllCo.csv’ to v9 TAZ &amp; 2019 base year
+<ul>
+<li>Parameters was developed statewide based on 2020 Census block, 2020 ACS block group data &amp; 2019 population by age group data</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="taz" class="level2">
+<h2 class="anchored" data-anchor-id="taz">TAZ</h2>
+<section id="taz-splits" class="level3">
+<h3 class="anchored" data-anchor-id="taz-splits">TAZ Splits</h3>
+<ul>
+<li>Added new v9 TAZ shapefile</li>
+<li>New TAZID range:</li>
+</ul>
+<div class="center">
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="tbl-ao-rename" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Renamed Auto-Occupancy Variables</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">CO_FIPS</th>
+<th style="text-align: left;">CO_NAME</th>
+<th style="text-align: left;">TAZ Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">1-153</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">57</td>
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">154-581</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">582-905</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">906-2216</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">49</td>
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">2217-3546</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="attributes" class="level3">
+<h3 class="anchored" data-anchor-id="attributes">Attributes</h3>
+<ul>
+<li>Added field to indicate which TAZ are in the REMM model space</li>
+<li>Updated ‘PRKCSTPERM’ &amp; ‘PRKCSTTEMP’ fields
+<ul>
+<li>Updated permanent and temporary parking cost fields based on 2022 parking rates obtained from SLC &amp; web searches</li>
+<li>Downtown &amp; University data was developed for HBW, HBC, HBO &amp; NHB trip purposes &amp; stored in a source polygon shapefile so the travel model could be updated to use a more refined method for addressing parking costs
+<ul>
+<li>For now, HBW was used for ‘PRKCSTPERM’ &amp; HBO was used for ‘PRKCSTTEMP’</li>
+</ul></li>
+<li>The parking cost polygon source file did not include values for Airport and Lagoon because the new method would treat these areas differently. In the short term and to be consistent with v832 and earlier methodology the following values were used for Airport &amp; Lagoon parking costs:
+<ul>
+<li>Lagoon
+<ul>
+<li>‘PRKCSTPERM’=0</li>
+<li>’PRKCSTTEMP’Lagoon = $6.00</li>
+<li>The 2022 cost is $18 per day</li>
+<li>At an estimated average occupancy of 3 people per vehicle, that would equal $6</li>
+<li>Previous PRKCSTTEMP value was $5 in 2010 dollars representing a $1 increase in 2019 dollars (20 percent) over 9 years (seems reasonable)</li>
+</ul></li>
+<li>Airport
+<ul>
+<li>‘PRKCSTPERM’=0</li>
+<li>’PRKCSTTEMP’Lagoon = $1.25</li>
+<li>The 2022 the cost is $5 per hour for short term garage, $2 per hour for short term economy and $0 for drop offs</li>
+<li>At the occupancy of 2 people per vehicle (just a guess), that would equal $2.50, $1.00, and $0.00, respectively. The average of the three is $1.75. Given the unknown distribution of travelers, but assuming more drop-offs than parking, a lower value than $1.75 should be expected. The 2019 cost was chosen to be $1.25.</li>
+<li>Previous PRKCSTTEMP value was $1 in 2010 dollars representing a $1 increase in 2019 dollars (25 percent) over 9 years. This growth seems reasonable, especially given the recent improvements to the airport. (Additionally, the CPI adjustment of the 2010 $1 value to a 2019 value is $1.18 (https://www.bls.gov/data/inflation_calculator.html).)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Updated Small District definition &amp; name
+<ul>
+<li>Small Districts now nest within Medium Districts</li>
+<li>‘DISTSML’ index is sequential with 129 total districts</li>
+<li>‘DSML_NAME’ includes a prefix of Medium District index followed by Small District count (e.g.&nbsp;15:1)</li>
+<li>Small Districts are set up to work with Street Light data processing</li>
+</ul></li>
+</ul>
+</section>
+<section id="districts" class="level3">
+<h3 class="anchored" data-anchor-id="districts">Districts</h3>
+<ul>
+<li>Added to District Folder:
+<ul>
+<li>‘WF_Subarea.shp’</li>
+<li>‘Dist_REMM_Area.shp’</li>
+</ul></li>
+<li>Updated:
+<ul>
+<li>‘Dist_Small.shp’</li>
+</ul></li>
+</ul>
+</section>
+<section id="source-folder" class="level3">
+<h3 class="anchored" data-anchor-id="source-folder">Source Folder</h3>
+<ul>
+<li>Added ’_Source’ folder with following shapefile data sets:
+<ul>
+<li>Cities</li>
+<li>County</li>
+<li>Districts</li>
+<li>EnvConstraints</li>
+</ul></li>
+<li>Added ’__ViewTAZDistricts’ folder with ArcGIS Pro project &amp; mapping files</li>
+</ul>
+</section>
+</section>
+<section id="se-data" class="level2">
+<h2 class="anchored" data-anchor-id="se-data">SE Data</h2>
+<section id="forecasts" class="level3">
+<h3 class="anchored" data-anchor-id="forecasts">Forecasts</h3>
+<ul>
+<li>‘1_BoxElder’
+<ul>
+<li>Updated with UDOT SE Forecasts from June 8, 2022</li>
+</ul></li>
+<li>‘2_WFRC’
+<ul>
+<li>Updated with draft ‘REMM - 2022-10-11’ results
+<ul>
+<li>Used draft 2023 fiscally constrained plan for WFRC</li>
+<li>Used 2019 fiscally constrained plan for MAG</li>
+<li>Averaged 8 REMM runs
+<ul>
+<li>New random seed from Monti Carlo process</li>
+<li>Ran TDM for first run, then used the updated skim for subsequent runs</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>‘3_MAG’
+<ul>
+<li>Deleted previous data</li>
+</ul></li>
+<li>‘REMM’
+<ul>
+<li>Deleted previous data</li>
+</ul></li>
+</ul>
+</section>
+<section id="control-totals" class="level3">
+<h3 class="anchored" data-anchor-id="control-totals">Control Totals</h3>
+<ul>
+<li>Updated ’_ControlTotals’ folder
+<ul>
+<li>Added
+<ul>
+<li>_Source - ControlTotal_SE - 2022-08-31.xlsx</li>
+<li>ControlTotal_SE_AllCounties.csv</li>
+<li>ControlTotal_WorkAtHome.csv</li>
+</ul></li>
+<li>Removed:
+<ul>
+<li>_ControlTotal_SE - Source - 2018-03-30a.xlsb</li>
+<li>ControlTotal_SE_WF.csv</li>
+<li>_ControlTotal_Age - Source - 2018-04-11a.xlsx</li>
+<li>ControlTotal_Age.csv</li>
+<li>REMM - employment_controls.csv</li>
+<li>REMM - household_controls.csv</li>
+<li>REMM - population_controls.csv</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="source-files" class="level3">
+<h3 class="anchored" data-anchor-id="source-files">Source Files</h3>
+<ul>
+<li>Renamed ‘_ Income &amp; K-12 Source’ folder &amp; contents with _ source - HBSch Enroll &amp; Med Inc’ folder &amp; added the following data sets:
+<ul>
+<li>‘K-12 Enrollment’
+<ul>
+<li>K12_Enrollment_byTAZ.csv’ – statewide HBSch enrollment database updated with 2019 data</li>
+<li>k12_schools_enrollment’ – point shapefile that can be used to update ‘K12_Enrollment_byTAZ.csv’</li>
+</ul></li>
+<li>Median Income &amp; VOT (updated with 2019 data), includes:
+<ul>
+<li>’_Source - Med Income &amp; Value of Time - 2022-07-16.xlsb’
+<ul>
+<li>TAZ Median Income Export (for SE input file)</li>
+<li>Regional (model space) Median Income (for General Parameters file)</li>
+<li>Value of Time parameters (for General Parameters file)</li>
+</ul></li>
+<li>for SE file – ‘TAZ Median Income - 2022-03-17.csv’</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="highway-network" class="level2">
+<h2 class="anchored" data-anchor-id="highway-network">Highway Network</h2>
+<section id="dated-updates" class="level3">
+<h3 class="anchored" data-anchor-id="dated-updates">Dated Updates</h3>
+<p><strong>MergedMasterNet - 2022-10-05</strong></p>
+<ul>
+<li>Includes most recently updated MAG merged master network
+<ul>
+<li>Updated 2032, 2042 &amp; 2050 Needs fields</li>
+<li>Modified link/nodes to update/maintain roadway network</li>
+</ul></li>
+<li>Snapped updated MAG network with ‘MasterNet - 2022-09-08.net’ that included WFRC’s latest changes</li>
+<li>Exported to v832 &amp; v9 Master Networks</li>
+</ul>
+<p><strong>MergedMasterNet - 2022-09-19a</strong></p>
+<ul>
+<li>Network Updates
+<ul>
+<li>Updated CRT Fare Zone
+<ul>
+<li>Fixed Vineyard &amp; Orem stations so have same fare zone (similar to North Temple &amp; Central)</li>
+<li>Updated and fixed fare zone definitions in WFRC area</li>
+</ul></li>
+<li>Fixed small network error in Box Elder (local road was drawn to the centroid of TAZ 53 (v832))</li>
+<li>A few edits to WFRC draft RTP project list</li>
+<li>Updated SEGID
+<ul>
+<li>Checked if the previous Master Network SEGID’s were consistent with the latest Segment Shapefile</li>
+<li>Updated segments to account for recent network changes &amp; add segment definitions to account for rail transit</li>
+</ul></li>
+<li>Added SEGEX_RTP &amp; SEGEX_NEED as text fields (to be populated later when script/processing updated)</li>
+</ul></li>
+<li>Added ‘MergedMasterNet - 2022-09-19a’ folder
+<ul>
+<li>Workspace for editing and updating Merged Master Network and for exporting to v832 &amp; v9 Master Networks</li>
+<li>Includes update and export script</li>
+</ul></li>
+<li>Added ’_Node Definition - v832 &amp; v9.xlsx’ reference file</li>
+</ul>
+</section>
+<section id="highway-nodes" class="level3">
+<h3 class="anchored" data-anchor-id="highway-nodes">Highway Nodes</h3>
+<ul>
+<li>Network changes:
+<ul>
+<li>All v832 highway &amp; transit nodes are used by v9
+<ul>
+<li>Additionally, v9 network covers expanded WFRC/MAG geography (donut area)</li>
+</ul></li>
+<li>Link &amp; Node fields:
+<ul>
+<li>Naming convention set to 2023 RTP</li>
+<li>2019 RTP fields are also in the highway network for reference and will be dropped before model release</li>
+<li>2023 RTP fields were initially populated with 2019 RTP values &amp; are being updated to reflect draft 2023 RTP</li>
+</ul></li>
+<li>V9 &amp; v832 use the following new node numbering schema:
+<ul>
+<li>TAZ</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div id="tbl-taz" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: New Node Numbering Schema (TAZ)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">v9</th>
+<th style="text-align: left;">v8.3.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Internal</td>
+<td style="text-align: left;">Internal Used Zones</td>
+<td style="text-align: left;">1-3546</td>
+<td style="text-align: left;">1-2873</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Internal</td>
+<td style="text-align: left;">Internal Unused Zones</td>
+<td style="text-align: left;">3547-3600</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Internal</td>
+<td style="text-align: left;">External Nodes</td>
+<td style="text-align: left;">3601-3629</td>
+<td style="text-align: left;">136-140, 421-423, 1782-1788, 2874-2881</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div id="tbl-taz-detail" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;3: New Node Numbering Schema (TAZ - Detailed)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">v9</th>
+<th style="text-align: left;">v8.3.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Internal</td>
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">1-153</td>
+<td style="text-align: left;">1-135</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Internal</td>
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">154-581</td>
+<td style="text-align: left;">141-420</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Internal</td>
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">582-905</td>
+<td style="text-align: left;">424-654</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Internal</td>
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">906-2216</td>
+<td style="text-align: left;">655-1781</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Internal</td>
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">2217-3546</td>
+<td style="text-align: left;">1789-2873</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">External</td>
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">3601-3606</td>
+<td style="text-align: left;">136-140</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">External</td>
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">3607-3609</td>
+<td style="text-align: left;">421-423</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">External</td>
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">0-0</td>
+<td style="text-align: left;">0-0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">External</td>
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">3610-3615</td>
+<td style="text-align: left;">1782-1788</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">External</td>
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">3616-3629</td>
+<td style="text-align: left;">2874-2881</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<pre><code>    - Highway Nodes</code></pre>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div id="tbl-hway-nodes" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;4: New Node Numbering Schema (Highway Nodes)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">both v9 &amp; v8.3.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Transit</td>
+<td style="text-align: left;">WFRC Transit Nodes</td>
+<td style="text-align: left;">10,000 - 19,999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Highway</td>
+<td style="text-align: left;">WFRC Highway Nodes</td>
+<td style="text-align: left;">20,000 - 49,999</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Transit</td>
+<td style="text-align: left;">MAG Transit Nodes</td>
+<td style="text-align: left;">50,000 - 59,999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Highway</td>
+<td style="text-align: left;">MAG Highway Nodes</td>
+<td style="text-align: left;">60,000 - 89,999</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Donut Area</td>
+<td style="text-align: left;">WFRC Highway Nodes</td>
+<td style="text-align: left;">90,000 - 94,999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Donut Area</td>
+<td style="text-align: left;">MAG Highway Nodes</td>
+<td style="text-align: left;">95,000 - 99,999</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div id="tbl-hway-count" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;5: New Node Numbering Schema (Highway Nodes Count)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">v9</th>
+<th style="text-align: left;">v8.3.2</th>
+<th style="text-align: left;">New</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Internal Used Zones</td>
+<td style="text-align: left;">3546</td>
+<td style="text-align: left;">2858</td>
+<td style="text-align: left;">688</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">External Count</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All New Used Zones</td>
+<td style="text-align: left;">3575</td>
+<td style="text-align: left;">2881</td>
+<td style="text-align: left;">694</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Internal Unused Zones</td>
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Max Used Zone</td>
+<td style="text-align: left;">3629</td>
+<td style="text-align: left;">2881</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="transit-network" class="level2">
+<h2 class="anchored" data-anchor-id="transit-network">Transit Network</h2>
+<section id="transit-line-files" class="level3">
+<h3 class="anchored" data-anchor-id="transit-line-files">Transit Line Files</h3>
+<ul>
+<li>2023 RTP Edits
+<ul>
+<li>2019 was thoroughly vetted to represent Aug 2019 change day</li>
+<li>2023 – updated route alignment, headways &amp; stops based on Aug 2022 change day (WFRC &amp; MAG)</li>
+<li>2028 – updated route alignment, headways &amp; stops based on UTA 5-Year Service Plan (WFRC &amp; MAG)</li>
+<li>RTP 2032, 2042 &amp; 2050 – rolled 2028 changes forward into plan phased years &amp; updated based on 2023 draft plan</li>
+<li>Needs 2032, 2042 &amp; 2050 – rolled 2028 changes forward into plan phased years &amp; updated based on 2023 draft plan</li>
+</ul></li>
+<li>Renumbered transit LIN files according to new highway node numbering schema
+<ul>
+<li>Lin_2019</li>
+<li>Lin_2023</li>
+<li>Lin_2032</li>
+<li>Lin_2032_Needs</li>
+<li>Lin_2042</li>
+<li>Lin_2042_Needs</li>
+<li>Lin_2050_Needs_5yrSP</li>
+</ul></li>
+<li>Updated ‘ReadLines.block’ formatting for 2019, 2023 &amp; 2028 Line files
+<ul>
+<li>Took out tabs</li>
+<li>Lined up comments</li>
+</ul></li>
+<li>Edited route ‘S902’ in ‘wfrc_sl_exp_xxxx.lin’ file so route no longer goes to Parleys Canyon external node</li>
+</ul>
+</section>
+<section id="pt-folder" class="level3">
+<h3 class="anchored" data-anchor-id="pt-folder">PT Folder</h3>
+<p><strong>Factor Files</strong></p>
+<ul>
+<li>Updated FAC files to account for new highway node numbering
+<ul>
+<li>IWAITCURVE=1, NODES=20000-49999,60000-89999 ;all but rail nodes WFRC:20000-49999, MAG:60000-89999</li>
+<li>IWAITCURVE=2, NODES=10000-19999,50000-59999 ;rail nodes WFRC:10000-19999, MAG:50000-59999</li>
+<li>XWAITCURVE=3, NODES=10000-89999 ;all nodes</li>
+<li>XWAITCURVE=4, NODES=15127,10046,10019,50024 ;seamless transfer nodes</li>
+<li>WAITFACTOR = 2.0, NODES=10000-89999 ;all nodes <strong>Fare</strong></li>
+</ul></li>
+<li>Updated ‘GENERAL_Fare.FAR’ file with 2019 fare data:
+<ul>
+<li>Created 2 sets of fare files:
+<ul>
+<li>Full Fare – actual fares reported by UTA
+<ul>
+<li>‘GENERAL_Fare - 2019.FAR’</li>
+<li>‘GENERAL_Fare - 2020+.FAR’ – includes fare reduction in premium (express bus) fare</li>
+</ul></li>
+<li>Discounted Fare – fares reduced by 46% (previous model assumption) to account for monthly pass, ed/eco pass, fare pay, senior, employer paid, and other discounts. To be consistent with v832 and earlier methodology, the discounted fare input files are being used for now.
+<ul>
+<li>‘GENERAL_Fare - Discounted - 2019.FAR’</li>
+<li>‘GENERAL_Fare - Discounted - 2020+.FAR’ – includes fare reduction in premium (express bus) fare</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="general-hand-coded-support-links" class="level3">
+<h3 class="anchored" data-anchor-id="general-hand-coded-support-links">General Hand-Coded Support Links</h3>
+<ul>
+<li>Updated ‘General_hand_coded_walk_links.NTL’ to account for new highway node numbering and TAZ splits</li>
+</ul>
+</section>
+<section id="transit-route-tester" class="level3">
+<h3 class="anchored" data-anchor-id="transit-route-tester">Transit Route Tester</h3>
+<ul>
+<li>Added ’_chk Transit Compile on Net’ folder
+<ul>
+<li>Includes the following scripts:
+<ul>
+<li>’_TransitRouteTester - 1 - BY_2019.s’</li>
+<li>’_TransitRouteTester - 1 - BY_2023.s’</li>
+<li>’_TransitRouteTester - 2 – TIP_2028.s’</li>
+<li>’_TransitRouteTester - 3 - RTP_2032.s’</li>
+<li>’_TransitRouteTester - 3 - RTP_2042.s’</li>
+<li>’_TransitRouteTester - 3 - RTP_2050.s’</li>
+<li>’_TransitRouteTester - 4 - Needs_2032.s’</li>
+<li>’_TransitRouteTester - 4 - Needs_2042.s’</li>
+<li>’_TransitRouteTester - 4 - Needs_2050.s’</li>
+</ul></li>
+<li>Each script checks to see if transit line files for the respective scenario compile on the scenario highway network</li>
+<li>The scripts create scenario networks in the ’_temp - Scenario Net’ folder</li>
+<li>A VPR file has been set up with the scenario’s transit lines pre-loaded onto the network for transit line edits</li>
+<li>The scripts create error reports (e.g.&nbsp;‘check - 1 - BY_2023.txt’) that contain any issues if the transit network fails to compile on the highway network. Opening this file and searching for ‘F(’ will indicate any inconsistencies.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="externals" class="level2">
+<h2 class="anchored" data-anchor-id="externals">Externals</h2>
+<section id="location" class="level3">
+<h3 class="anchored" data-anchor-id="location">Location</h3>
+<ul>
+<li>Updated to new Eternal Node locations and numbering scheme:</li>
+</ul>
+<div id="fig-descrip1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../_pictures/ex_descrip1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: v9 External Description.</figcaption>
+</figure>
+</div>
+<div id="fig-descrip2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../_pictures/ex_descrip2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: v8.3.2 External Description.</figcaption>
+</figure>
+</div>
+<div id="fig-descrip3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../_pictures/ex_descrip3.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: v9 &amp; v8.3.2 External Description.</figcaption>
+</figure>
+</div>
+<div id="fig-ex-boxelder" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../_pictures/ex_boxelder.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: Box Elder County Externals.</figcaption>
+</figure>
+</div>
+<div id="fig-ex-weber" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../_pictures/ex_weber.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: Weber County Externals.</figcaption>
+</figure>
+</div>
+<div id="fig-ex-saltlake" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../_pictures/ex_saltlake.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;6: Salt Lake County Externals.</figcaption>
+</figure>
+</div>
+<div id="fig-ex-utah" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../_pictures/ex_utah.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;7: Utah County Externals.</figcaption>
+</figure>
+</div>
+</section>
+<section id="forecast" class="level3">
+<h3 class="anchored" data-anchor-id="forecast">Forecast</h3>
+<ul>
+<li>Updated ‘Ext_Vol_Control’
+<ul>
+<li>Added ’_Source_ExternalTAZ_HistoricalAADT v9 - 2022-04-04a.xlsx’
+<ul>
+<li>Added 8 new externals, removed 2 v832 externals</li>
+<li>Updated External Node numbers</li>
+</ul></li>
+<li>Updated 2010-2060 volume forecasts using 2019 historic data</li>
+<li>Updated ‘external_year_vol.csv’</li>
+</ul></li>
+</ul>
+</section>
+<section id="subarea-extraction-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="subarea-extraction-matrices">Subarea Extraction Matrices</h3>
+<ul>
+<li>Updated ‘WF_External’
+<ul>
+<li>Created placeholder ‘WF_ExtTripTable_DY.mtx’</li>
+<li>Modified matrix to work with new external numbers &amp; added 6 new TAZ</li>
+<li>Copied placeholder matrix into all years &amp; deleted v832 data</li>
+<li>Added 2028</li>
+<li>Renamed 2024 to 2023, 2030 to 2032, &amp; 2040 to 2042</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="segment" class="level2">
+<h2 class="anchored" data-anchor-id="segment">Segment</h2>
+<p><strong>Master_Segs_withFactors_20220915shp.shp</strong></p>
+<ul>
+<li>Updated segments to align with 2023 RTP network changes</li>
+<li>Added segments to account for rail transit corridors</li>
+</ul>
+<p><strong>Stamping_Polygons&nbsp;SegmentPolygon_forTDM_20220915.shp</strong></p>
+<ul>
+<li>Updated polygon stamping shapefile to coincide with Segment Shapefile and Master Network edits</li>
+</ul>
+</section>
+<section id="other-changes" class="level2">
+<h2 class="anchored" data-anchor-id="other-changes">Other Changes</h2>
+<ul>
+<li>Updated ‘2_External_TripTable.s’</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://wfrc.org"><img src="https://wfrc.org/wp-content/uploads/2021/11/logo.jpg" class="img-fluid" alt="WFRC" width="150"></a> <a href="https://mountainland.org/"><img src="https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg" class="img-fluid" alt="MAG" width="65"></a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,9 @@
+---
+title:  "Version 7.0.1 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+## Input/Output File Path Names in Quotes
+
+The file path names in the model are now encapsulated in quote marks. This allows the path to include special characters, such as spaces, dashes and andpersands without crashing the model. This allows the user greater flexibility in file and folder name construction as well as greater freedom in placing the model root directory.

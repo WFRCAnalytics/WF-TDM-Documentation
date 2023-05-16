@@ -1,3 +1,0 @@
-## Documentation & Source Files
-Improvements in storage mediums has allowed documentation, relevant GIS layers, and many input source files and creation processes to be packaged with each model run to provide easier access to useful information.
-

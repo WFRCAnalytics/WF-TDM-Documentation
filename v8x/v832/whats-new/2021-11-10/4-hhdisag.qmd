@@ -1,0 +1,16 @@
+---
+title:  "Version 8.3.2 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Household Disaggregation and Auto Ownership
+
+Several changes were made to clean up and fix minor errors in the household disaggregation and auto ownership scripts: 
+
+- Added Box Elder Vehicles to the totals calculated for the 'VO_Tmp_CountyVehicleTotal.txt' file in the '3_AutoOwnership.s' file.
+- Corrected VO_DebugUtility.csv header row in '3_AutoOwnership.s' to keep it from repeating. Commented out debug csv creation.
+- Corrected AVGINCOME in 'Tmp_Marginal_Income_beforeIPF.dbf'.
+- Commented out 'test.csv' creation in '2_ModelScripts\\1_HHDisag_AutoOwn\\1_LifeCycle.s'.
+- Corrected CO_TAZID in 'LifeCycle_Households_Population.dbf' in '2_ModelScripts\\1_HHDisag_AutoOwn\\1_LifeCycle.s'.
+- Updated 'Lookup - BYTAZAgePct - AllCo.csv' and source materials ('_TAZ_AgePct_Lookup_Source - 2020-06-23.xlsb') in '1_Inputs\\0_GlobalData\\1_HHDisag_AutoOwn'. This update reflects the updated source materials structure in the statewide spreadsheet and updated data for Summit/Wasatch counties and UDOT area.  The Wasatch Front area data did not change.

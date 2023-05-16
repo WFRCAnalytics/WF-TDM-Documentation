@@ -1,0 +1,24 @@
+---
+title:  "Version 6.0.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+## "What, When and Why" of Next Likely Improvements
+WFRC and MAG are satisfied that we have a solid, state-of-the-practice modeling system with many elements of best practice and advanced practice. We see our needs now as focusing our efforts instead on validating and documenting the system, and utilizing the tools as they are to assist development of the Regional Transportation Plan, and support project development. Thus significant model development will move to the back burner, but tools and process improvements that improve the utility of the models for applications will likely continue as needed. 
+
+The MPOs do not anticipate a new model version for a couple of years, but model development will continue along the following lines.
+
+## Short-Term (starting July 2007)
+### Efficiency improvements
+The model has undergone substantial improvements over the last several years, sometimes at the risk of usability or efficiency. With the completion of version 6 and the MPO LRPs, the time is right to turn our attention to scripting modifications that speed up the execution of the model, or that reduce file storage requirements, without changing the results.
+
+### TAZ splits
+Prior to the 2010 Census, the MPOs will be asked to provide input into new Census geographies, including TAZs. This input is required during the summer of 2008, and ultimately will result in a revised TAZ structure and network. The model results will change in a minor way with more detail added to the network.
+
+### UrbanSim testing
+UrbanSim has proven to be useful in the Wasatch Choices 2040 process and in development of long-range projections. Continued testing and refinement will be undertaken to improve and maintain the model system and to better understand it. 
+
+### Peak Period Data Gathering
+Recent observed peak period traffic counts and speeds will be compiled so that in the future the model can be calibrated more finely in the peak periods.
+

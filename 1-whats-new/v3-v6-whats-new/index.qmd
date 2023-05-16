@@ -1,9 +1,0 @@
----
-title:  "What's New? - Versions 3, 4, 5, & 6"
-date-modified: last-modified
-author: "WFRC / MAG"
----
-
-These are the *What's New Documents* for the Wasatch Front Travel Demand Model (TDM) that were released during various iterations of version 3, 4, 5, and 6.
-
-For access to these versions please email Chad Worthen at cworthen@wfrc.org.

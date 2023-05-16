@@ -1,6 +1,0 @@
-## Input Preparation
-### Extensive revision of demographic projections
-Since Version 3.0 was released in June, MAG has produced new demographic projections by the method noted briefly in the Version 3.0 discussion below.  These are now incorporated.  WFRC has also made minor adjustments based on more thorough review of specific locations of interest.  Demographic projections have been reviewed by cities and stakeholders, and have been incorporated in the model.
-
-
-

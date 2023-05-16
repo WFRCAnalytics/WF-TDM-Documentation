@@ -1,9 +1,0 @@
-# Updated Networks – Aug 17, 2020
-
-The 'WF TDM v8.3.1 - 2020-05-08' model version included most but not all of the highway and transit network changes that were part of MAG's RTP amendment.  Because the networks reflect the "official" MAG amended plan, the travel model was reissued with a new date stamp.  However, since there were no changes to the model itself or the other modeling inputs, the version number of the travel model remained the same.  
-
-@fig-0-lanes shows where lanes were added (green) or were taken away (orange) between 'WF TDM v8.3.1 - 2020-05-08' and 'WF TDM v8.3.1 - 2020-08-17' highway networks.  Express bus routes were also removed from the MAG line files in the 2030, 2040 & 2050 Funded & Needed Transit folders .
-
-![Added lanes between v8.3.1 2020-05-08 and v8.3.1 2020-08-17](../2020-05-08/_pictures/0-update.png){#fig-0-lanes}
-
-

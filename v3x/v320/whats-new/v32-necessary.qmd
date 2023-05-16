@@ -1,0 +1,22 @@
+---
+title:  "Version 3.2.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+## Why was Version 3.2 necessary? How long will it last?
+Frequent model upgrades can be painful for projects presently in some stage of demand analysis.  It always raises questions such as “Would the changes significantly affect the absolute forecasts for or relative differences between my alternatives?”  Our intent here is to explain what we did, why we did it when we did, and offer some insight to the magnitude of the changes to allow projects that have significant investments in a prior model version to determine whether the affects to their projects are “in the noise” or whether there is a compelling reason to utilize the improved model set.
+
+We recognize the value of a stable, unchanging model set as a necessary part of allowing on-going projects to progress through analysis without being accused at every turn of not having “the latest and greatest model”.  We also desire to provide new endeavors with solid footing by addressing their specific needs within their time-frame.  Further, we are sometimes required to implement changes or provide analytical features to advance transit or multi-modal projects.  Thus we try to make small, incremental improvements to data sets and analysis available on an as-needed basis (quarterly to semi-annually), and we’ve traditionally introduced more significant work on an annual to bi-annual basis provide stability, but also to help us remain at state-of-the-practice (not to mention it’s too difficult to do the work more frequently than that anyway). 
+
+## Why was 3.2 necessary?
+The Mountain View Corridor Phase 1 screening was scheduled to begin in February 2004.  We had a number of new “post-process” utilities we wanted to make available for that project.  We had identified a number of relatively minor issues that we were saving to roll into a Version 4.0 model for late spring/early summer.  Our intent was to make 3.2 available as just the post-processor improvements, but other on-going projects had reason to square their footing, so we did an interim calibration with the minor improvements noted below as a step toward the 4.0 model.
+
+## How long will 3.2 last?
+FTA has noted a series of model improvements that need to be addressed before they can support a Full-Funding Grant Agreement for the Ogden-SLC Commuter Rail line.  UTA hopes to submit paperwork for the agreement very soon, and their schedule requires FTA’s list of improvements be implemented by mid-spring, then a month for scenario development and troubleshooting.   We plan to make these improvements available to other projects outside Commuter Rail once the improvements are demonstrated to function correctly.
+
+## What will 4.0 include?
+The scope of work that will result in a 4.0 model is still being hashed out.  Likely elements include modeling the peak and off-peak periods for transit independently, as opposed to the present daily model.  The Mode-Choice variable coefficients will be re-estimated using local surveys (as opposed to the “synthetic” model parameters that are presently borrowed from other areas).  Something will be done to better distribute zero-car households.  At a minimum this would be expressly distributing this market with a gravity model, but we’re hoping to find a way to abandon the HBW gravity model altogether in favor of a destination-choice model.  This may be too much to handle within the time-frame.  We’ll know more about this in the coming weeks.
+
+
+

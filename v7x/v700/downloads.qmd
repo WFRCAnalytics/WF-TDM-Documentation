@@ -1,0 +1,12 @@
+---
+title:  "Version 7.0.0 - Downloads"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The downloads for the Version 7.0.0 documentation is shown below by category.
+
+### Model Documentation
+
+ - {{< downloadthis "downloads/Model-v7-Documentation_05112011.docx"
+label="v7 Model Documentation" dname=v7-model-documentation id=download-btn >}}

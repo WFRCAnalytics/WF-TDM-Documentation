@@ -1,7 +1,0 @@
----
-title:  "Calibration & Validation - Version 9"
-date-modified: last-modified
-author: "WFRC / MAG"
----
-
-This is the *Calibration/Validation Report* for the Wasatch Front Travel Demand Model (TDM) for version 9.

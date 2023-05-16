@@ -1,0 +1,58 @@
+---
+title:  "Version 9.0.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Distribution
+
+**'1_Distribution.s'**
+
+ - General script clean up
+ - Removed initializing and logging of trip, VMT, and VHT variables printed to LOG
+ - Updated trip table convergence criteria:
+    - Change % change convergence threshold from 10% to 7.5%
+    - Only process cells where current iter trips>0 (cells with trips>0 are counted as significant trips and form the denominator in the % converged calculation; cells with trips=0 are counted as not significant)
+    - Converged trip table matrix cell:
+        - % change from previous iteration is within % change convergence threshold
+        - If current iter trips>0 & previous iter trips=0, then cell is not converged
+        - If current iter trips<1, then cell is converged
+ - Updated link convergence criteria:
+    - Change % change convergence threshold from 5% to 7.5%
+    - Only process highway links (FT>1)
+    - Converged link
+        - % change from previous iteration is within % change convergence threshold
+        - If current iter vol=0 & previous iter vol>0 OR current iter vol>0 & previous iter vol=0, then link is not converged
+        - If current iter vol=0 & previous iter vol=0, then link is converged
+ - Updated convergence check criteria and removed minimum of 5 iterations requirement
+ - Updated assignment
+    - Moved RGAP parameter passthrough variable from block file to main script just before each assignment call
+    - Set EV RGAP parameter to value in ‘0GeneralParameters.block’ / 10
+ - Updated trip table and link convergence reports in LOG
+ - Added new reports (csv files) to better track convergence in 
+    - '_Stats - Distrib Assign - @RID@.csv'
+    - '_Stats - Distrib Loaded Net - @RID@.csv'
+    - '_Stats - Distrib Trip Table - @RID@.csv'
+ - Added ‘@unloadednetprefix@_@n@_convg.net' to ‘Temp\3_Distribute’ folder which includes following fields (net1= current iteration, net2=previous iteration):
+    - AM_Cur = li.1.AM_VOL
+    - MD_Cur = li.1.MD_VOL
+    - PM_Cur = li.1.PM_VOL
+    - EV_Cur = li.1.EV_VOL
+    - DY_Cur = li.1.DY_VOL
+    - AM_Pre = li.2.AM_VOL
+    - MD_Pre = li.2.MD_VOL
+    - PM_Pre = li.2.PM_VOL
+    - EV_Pre = li.2.EV_VOL
+    - DY_Pre = li.2.DY_VOL
+    - AM_Diff = AM_Cur - AM_Pre
+    - MD_Diff = MD_Cur - MD_Pre
+    - PM_Diff = PM_Cur - PM_Pre
+    - EV_Diff = EV_Cur - EV_Pre
+    - DY_Diff = DY_Cur - DY_Pre
+    - AM_PctDiff = ABS(AM_Diff) / AM_Pre
+    - MD_PctDiff = ABS(MD_Diff) / MD_Pre
+    - PM_PctDiff = ABS(PM_Diff) / PM_Pre
+    - EV_PctDiff = ABS(EV_Diff) / EV_Pre
+    - DY_PctDiff = ABS(DY_Diff) / DY_Pre
+    - CONVLINK (if (DY_PctDiff<=_ConvThreshold)  CONVLINK = 1)
+ - & '4pd_mainbody_distribution.block'

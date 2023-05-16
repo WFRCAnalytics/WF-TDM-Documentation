@@ -1,9 +1,0 @@
-# Input Processing
-
-## Setup
-**'0_FolderSetup.s'**
-
- - Updated to copy:
-    - Convg VPR files from '2_ModelScripts\\_CopyToFolders\\Distrib_ConvVPR' to 'Temp\3_Distribute'
-    - '_Urbanization.mxd' & '_WalkBuffer.mxd' from '2_ModelScripts\\_CopyToFolders\\ArcMap_mxd' to '0_InputProcessing'
-

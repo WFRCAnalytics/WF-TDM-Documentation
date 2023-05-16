@@ -1,0 +1,26 @@
+---
+title:  "Version 8.3.1 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Segment Summary
+
+Several changes were made to the model’s inputs and code to allow for segment level processing of the model results.  
+
+In the '1_Inputs\\6_Segment' folder, an updated master segment shapefile has been provided.  This shapefile contains the segment geography used to summarize and report model data.  The shapefile also contains historic UDOT observed volumes (AADT), medium and heavy truck factors, day-of-week and average weekday and weekend factors, and monthly and seasonal factors.  Each segment in the segment shapefile has a unique SEGID which has been stamped onto appropriate links on the master highway network.  Given the complex geometry in certain areas in the highway network, such as those found near freeway system-to-system interchanges, a polygon shapefile located in the ‘Stamping_Polygons’ folder was created to aid in the SEGID transfer from the segment shapefile onto the highway network links.  Note in many cases not all model links in a segment currently receive a SEGID; rather, a sufficient number of links have been identified to represent the segment for data averaging.  
+
+The '1_Inputs\\6_Segment' folder also contains a polygon shapefile located in the ‘SeasFac_Geog’ folder that contains geographic information that can be spatially joined onto the model highway links so that seasonal factors can be calculated for every link.  This data is used by the air quality TDM2MOVES script located in the '2_ModelScripts\\7_PostProcessing\\1_TDM_2_MOVES\\1_TDM_2_MOVES - v1' folder.
+
+A segment post processing script, '06_SegmentSummary.s' located in the '2_ModelScripts\\5_AssignHwy' folder, has been added to the model’s '_HailMary.s' batch script.  This script summarizes the final assigned highway network data for the segments in the segment shapefile based on the SEGID on the highway network links.  The script produces two summary reports, 'v83_SE15_Net15_Summary_SEGID.dbf' and 'v83_SE15_Net15_Summary_SEGID_Detailed.dbf' found in the output scenario’s '5_AssignHwy\\4_Summaries' folder.  The two files are identical except that the ‘Detailed’ report includes data summaries for all functional groups separately in addition to the total for all functional groups.  The reports are generated automatically with every model run.  The reports provide data summaries for each direction (direction 1=positive or eastbound/northbound direction, direction 2=negative or westbound/southbound direction) and for the total of both directions and include the following information:
+
+ - Identifying fields: 
+    - SEGID, functional group, SUBAREAID, county FIPS, and area type
+ - Fields for each direction & total:
+    - Number of Links
+    - Oneway Distance
+    - Number of Lanes
+    - Functional Type Number and corresponding functional group
+    - Average 1-hour, 1-lane capacity
+    - Average volume by period (AM, MD, PM, EV & DY) and average daily truck volume (LT, MD, HV)
+    - Average speed by period (free flow, AM, MD, PM, EV, DY)

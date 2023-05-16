@@ -1,9 +1,0 @@
-# Access to Opportunity
-
-Access to opportunities, also referred to as accessibility or ATO, is a way to measure how well people can connect to jobs, or vice versa.  ATO metrics quantify how well the current and future transportation system work with land use.  Both shorter travel times and an increased presence of employment and other opportunities result in higher accessibility scores.  
-
-A script to calculate ATO metrics, '1_Access_to_Opportunity.s' located in the '2_ModelScripts\\7_PostProcessing' folder, has been added to the model’s '_HailMary.s' batch script and runs automatically with every model run.  The script sums the number of jobs and households that are within a typical commute travel shed (in minutes) by auto and transit.  The typical commute travel shed is defined using a distance decay curve estimated from the 2012 household travel survey.  Metrics that combine the jobs and households are also calculated.  
-
-Results from the ATO script are output into '7_PostProcessing\\Access_to_Opportunity_@DemographicYear@.dbf'.  Results can be joined with the TAZ shapefile to visualize the data, such as @fig-5-webex
-
-![Example report from the WFRC website displaying results at the TAZ level.](_pictures/5-webex.png){#fig-5-webex}

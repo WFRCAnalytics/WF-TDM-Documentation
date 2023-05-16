@@ -1,0 +1,24 @@
+---
+title:  "Version 6.0.0 - Downloads"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The downloads for the Version 6.0.0 documentation is shown below by category.
+
+### What's New Document
+
+ - {{< downloadthis "downloads/WF-TDM-v6.0-Whats-New.doc"
+label="v6.0 Whats New" dname=v6.0-whats-new id=download-btn >}}
+
+### Model Documentation
+
+ - {{< downloadthis "downloads/WFRC_MAG_TravelModel_Documentation.pdf"
+label="v6 Model Documentation" dname=v6-model-documentation id=download-btn >}}
+
+### Users Guide
+
+- {{< downloadthis "downloads/WF-TDM-v6.0-Users-Guide.doc" 
+label="v6.0 Users Guide" dname=v6.0-users-guide id=download-btn >}}
+
+

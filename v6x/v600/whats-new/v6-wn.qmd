@@ -1,0 +1,19 @@
+---
+title:  "Version 6.0.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+## Revised Long Range Population and Employment Projections
+In parallel with revised GOPB county-level growth estimates, and the Wasatch Choices 2040 Visioning effort, the MPOs have developed a new set of population and employment projections for use in the model. 
+
+## Revised Networks
+The MPOs are finishing up a new Long-Range Transportation Plan, and with this comes new future roadway and transit networks.
+
+## Trip Distribution Improvements
+The modeled trip length frequencies have been calibrated to more closely match the trip length frequencies in the Census Journey-to-Work and National household Travel Survey datasets. A script was written that automates the calibration of new gravity model friction factors, based on input trip length distributions.
+
+A minor bug in the destination choice model was fixed so that both the singly-constrained and doubly-constrained distribution from the destination choice model would closely match the observed work trip length frequency in the base year. The version 5 destination choice model was calibrated only so that the doubly-constrained base year result matched the observed trip length frequency. While this may sound like the result that one wants to achieve, it was clear that the process of doubly-constraining P’s and A’s was increasing trip lengths in the base year significantly. Now the raw model forecast, prior to doubly-constraining the matrix to match trip generation productions and attractions, more closely matches the observed trip length frequency, as does the final doubly-constrained output.
+
+## Mode Choice Improvements
+A system-wide transit on-board survey was conducted in 2006, and these current data on transit riders has been incorporated in a recalibrated mode choice model. Due to large increases in rail ridership from 2002 to 2006, typically speaking, rail forecasts will be higher with version 6 than with older versions of the model. Along with that, the assumptions used for transit path skimming have been revised and fine-tuned based on observed transit paths from the survey. 

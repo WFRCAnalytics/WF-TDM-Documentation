@@ -1,0 +1,44 @@
+---
+title:  "Version 7.0.2 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Version 7.0.2
+Changes in this version of the model primarily affect the modeling of modes 5 and 9, which have been modified to reflect BRT-Light (e.g. BRT I) and BRT-Heavy (e.g. BRT III), respectively.
+
+## Modes 5 and 9
+For the UTA Network Study there was a desire by the study team to better differentiate between classes of BRT using the travel model. The decision was made to revise the model so that mode 5 would represent a lower class of BRT, similar to BRT I, which is generally characterized by improved passenger stations, off-board fare payment, and transit signal priority. Mode 9 was modified to represent a higher class of BRT, similar to BRT III, which includes all of the features of the lower class of BRT, but also includes substantial route segments with exclusive bus lanes.
+
+### BRT Speeds
+The biggest difference from prior model versions is how the speed of BRT routes is coded. Previously, the model assumed that BRT would operate at 80% of the vehicle speed. Now it is up to the user to specify the desired operating speed. If the user neglects to specify the speed of the BRT route it will operate at the same speed as the local bus (approximately 60% of the vehicle speed, depending on the facility type of the road). 
+
+The user specifies the speed of the BRT route in the transit line file and should typically be via using the ‘TF’ function (see figure). The ‘TF’ function is a time factor that adjusts the transit travel time to the nodes following the ‘TF.’ A time factor less than 1.0 will increase the transit speed, while a factor greater than 1.0 will decrease the speed. As a general rule, it is recommended that the following time factors be used for modes 5 and 9.
+
+![TF function for adjusting BRT speed.](_pictures/3-transit-route.png){#fig-3-tf}
+
+```{python}
+#| label: tbl-tf
+#| tbl-cap: Time Factors for Mode 5 and Mode 9
+#| echo: false
+
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [["BRT Light (Mode 5)", "0.85"],
+         ["BRT Heavy (Mode 9)", "0.75"]]
+Markdown(tabulate(
+  table, 
+  headers=["Mode", "Time Factor"],
+  tablefmt="pipe", 
+  colalign=("left",)*2
+))
+```
+
+These factors will result in BRT-Light speeds that are approximately 70% of the vehicle speed and BRT-Heavy speeds that are approximately 80% of the vehicle speed.
+
+This approach to BRT speeds allows maximum flexibility in setting the speeds, which can vary by segment. For example, if a route is coded as BRT Heavy because it is expected to be predominantly exclusive bus lanes, but with short segment of shared lanes with no other improvements, it is possible to vary the speeds by segment by coding the exclusive lane segments with a ‘TF’ of 0.75 and the shared lane segment with a 1.0. 
+
+The user may also use the ‘SPEED’ control in the line file to set the speed for the exclusive lane segments. ‘SPEED’ sets the link speed to a fixed value allowing the BRT line to run independent of adjacent roadway congestion. When the exclusive lane segment ends, a ‘TF’ control can be used to reset the BRT speed to once again be subject to roadway congestion. 
+
+### Mode Specific Constants
+The mode specific constant refers to the general attractiveness of each mode. Rail modes have the highest values while local bus has the lowest. Previously modes 5 and 9 had a constant that was halfway between local bus and light rail. These constants were modified so that mode 5 now has a constant of 33% of the difference between local bus and light rail and mode 9 has a constant of 67% of the difference.

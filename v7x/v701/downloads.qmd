@@ -1,0 +1,12 @@
+---
+title:  "Version 7.0.1 - Downloads"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The downloads for the Version 7.0.2 documentation is shown below by category.
+
+### What's New Document
+
+ - {{< downloadthis "downloads/WF-TDM-v7.0.1-Whats-New.docx"
+label="v7.0.1 2012-05 Whats New" dname=v7.0.1-2012-05-whats-new id=download-btn >}}

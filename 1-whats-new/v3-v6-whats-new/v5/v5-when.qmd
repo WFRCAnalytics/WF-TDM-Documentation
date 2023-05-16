@@ -1,9 +1,0 @@
-## When to use model improvements
-Our intent in “What’s New” documents is to explain what we did, why we did it when we did, and offer some insight as to the magnitude of the changes to allow projects that have significant investments in a prior model version to determine whether the affects to their projects are “in the noise” or whether there is a compelling reason to utilize the improved model set.
-
-We recognize the value of a stable, unchanging model set in allowing on-going projects to progress through analysis with “the latest and greatest model”. However, we also desire to provide upcoming or new projects with solid footing by addressing specific needs within their time-frame. Further, we are sometimes required to implement changes or provide new analytical features to advance projects (e.g. commuter rail, MVC tolling study). 
-
-Small, incremental improvements to data sets, analysis methods, or other details that have small or localized affects are available on an as-needed basis and should not be considered a new “model version” that an ongoing project need take much note of. We’ve traditionally introduced more significant work on an annual basis, which seems frequent enough to remain at state-of-the-practice and provide new projects with attractive features, but also provides a measure of stability.
-
-When significant improvements are made, ongoing projects may want to consider whether the affected elements may be relevant to their work, and consider some sensitivity testing. If testing suggests the improvements may influence the outcome, more detailed analysis may be warranted. Further, when new features are available for testing, the model is labeled “beta” to allow a phase-in period in which users can test it and work out the bugs. Once the community of users is satisfied with the new version, the beta tag will be dropped.
-

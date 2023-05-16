@@ -1,7 +1,0 @@
-# Assignment Output Folder
-
-Subfolders were added to the final assignment folder, '5_AssignHwy', in the scenario output folder to keep assignment output more organized.  The new folders are shown in @fig-4-folders.
-
-![New assignment folder structure.](_pictures/4-folders.png){#fig-4-folders}
-
-The '0_ConvergeReports' folder contain the highway assignment convergence reports.  These reports were previously written to the assignment temp folder.  The '1_ODTables' contain the output of the '01_Convert_PA_to_OD.s' script.  The binary '.NET', loaded network files are found in '2a_Networks' and their shapefile equivalents are found in '2b_Shapefiles'.  The network and matrix output from select link analyses are found in '3_SelectLink'.  Segment summaries from the new segment processing script are found in '4_Summaries'.  The period skims produced form the final loaded network travel times are found in '5_FinalNetSkims'.

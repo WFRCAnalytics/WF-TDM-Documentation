@@ -1,0 +1,29 @@
+---
+title:  "Version 8.3.2 - Downloads"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The downloads for the Version 8.3.2 documentation is shown below by category.
+
+### What's New Document
+
+ - {{< downloadthis "downloads/WF-TDM-v8.3.2-0_Whats-New-2022-02-04.docx"
+label="v8.3.2 2022-02-04 Whats New" dname=v8.3.2-2022-02-04-whats-new id=download-btn >}}
+
+ - {{< downloadthis "downloads/WF-TDM-v8.3.2-0_Whats-New-2021-11-10-cw-edits.docx"
+label="v8.3.2 2021-11-10 Whats New" dname=v8.3.2-2021-11-10-whats-new id=download-btn >}}
+
+### Inputs
+
+ - {{< downloadthis "downloads/WF-TDM-v8.3.2-1_Inputs-2022-02-04.docx"
+label="v8.3.2 2022-02-04 Inputs" dname=v832-2022-02-04-inputs id=download-btn >}}
+
+### Calibration & Validation Report
+
+ - {{< downloadthis "downloads/WF-TDM-v8.3.2-2_Validation-Report-2022-02-04.docx"
+label="v8.3.2 2022-02-04 Calib Valid" dname=v832-2022-02-04-calib-valid id=download-btn >}}
+
+ - {{< downloadthis "downloads/WF-TDM-v8.3.2-2_Validation-Report-2021-10-17.docx"
+label="v8.3.2 2021-10-17 Calib Valid" dname=v832-2021-10-17-calib-valid id=download-btn >}}
+

@@ -1,0 +1,18 @@
+---
+title:  "Version 4.2.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+## Terms and Abbreviations
+**Trip purposes**
+
+ - HBW: Home-based work trip
+ - HBC: Home-based college trip
+ - HBO: Home-based other trip
+ - NHB: Non home-based trip
+ - Skims: Network links in a path are “skimmed” to determine total travel time
+ - Logit: A mathematical approach for expressing the factors involved in an individual’s choice between two alternatives.  One result may be the total number of individuals who choose automobiles vs. the total who choose transit, when considering the travel times and other competitive features of each.
+ - RMSE: Root Mean Square Error
+
+

@@ -1,0 +1,10 @@
+---
+title:  "Version 3.2.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+## Input Preparation
+### Minor modifications to demographic projections
+Projections were adjusted to account for recent developments such as the 2007 BYU extension in SL CBD.  A spreadsheet error in 3.1 demographic projections was discovered that resulted in a 3-5% loss in total households for both the base year and forecasts, but the total population and jobs were correct.  We were concerned that there might be a measurable affect to projections, but the affects of this error were not significant.  
+
