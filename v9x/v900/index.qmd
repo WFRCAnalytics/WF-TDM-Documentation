@@ -8,7 +8,7 @@ author: "WFRC / MAG"
 
 This is the documentation for the Wasatch Front Travel Demand Model for Version 9.0.0. The documentation includes:
 
- - What's New Document
- - Calibration & Validation Report
+ - [What's New Document](whats-new/2022-12-19/1-genparams.qmd)
+ - [Calibration & Validation Report](calib-valid/1-life-cycle.qmd)
 
 For access to this version of the TDM visit <https://github.com/WFRCAnalytics/WF-TDM-v9.0>.

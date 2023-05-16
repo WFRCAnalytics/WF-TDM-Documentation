@@ -6,6 +6,6 @@ author: "WFRC / MAG"
 
 This is the documentation for the Wasatch Front Travel Demand Model for Version 7.0.1. The documentation includes:
 
- - What's New Document
+ - [What's New Document](whats-new/1-hailmary.qmd)
 
 For access to this version of the TDM please email Chad Worthen at cworthen@wfrc.org.

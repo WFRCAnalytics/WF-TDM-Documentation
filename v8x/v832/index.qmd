@@ -6,8 +6,8 @@ author: "WFRC / MAG"
 
 This is the documentation for the Wasatch Front Travel Demand Model for Version 8.3.2. The documentation includes:
 
- - [What's New Document](whats-new/20220204/1-20220204-update.qmd)
- - Inputs Document
- - Calibration & Validation Report
+ - [What's New Document](whats-new/2022-02-04/1-20220204-update.qmd)
+ - [Inputs Document](downloads.qmd)
+ - [Calibration & Validation Report](downloads.qmd)
 
 For access to this version of the TDM visit <https://github.com/WFRCAnalytics/WF-TDM-v8.3.2>.

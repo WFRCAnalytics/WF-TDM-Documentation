@@ -6,8 +6,8 @@ author: "WFRC / MAG"
 
 This is the documentation for the Wasatch Front Travel Demand Model for Version 6.0.0. The documentation includes:
 
- - What's New Document
- - Model Documentation
- - Users Guide
+ - [What's New Document](whats-new/v6-intro.qmd)
+ - [Model Documentation](downloads.qmd)
+ - [Users Guide](downloads.qmd)
 
 For access to this version of the TDM please email Chad Worthen at cworthen@wfrc.org.
