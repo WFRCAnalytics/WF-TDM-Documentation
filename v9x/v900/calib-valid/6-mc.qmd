@@ -1,7 +1,656 @@
 ---
-title:  "Version 9.0.0 - Calibration/Validation"
+title: Version 9.0.0 - Calibration/Validation
 date-modified: last-modified
-author: "WFRC / MAG"
+author: WFRC / MAG
+echo: false
+jupyter: python3
+warning: false
+message: false
 ---
 
 # Mode Choice
+The validation results for the Mode Choice portion of the model are shown in this section. The observed data comes from the Utah Transit Authority 2019 On-Board Survey as well as the 2012 Household Travel Survey. 
+
+## Mode Choice Constants
+The  mode choice constants within the model used to estimate mode shares are shown below:
+
+**Table 1: Mode Choice Constants**
+
+```{python}
+#import libraries
+import pandas as pd
+import numpy as np
+import os
+from IPython.display import display, Markdown
+import re
+
+dirCalibConst = [r"data/calib_const/"]
+```
+
+```{python}
+#constant names listed in order you want to display
+dConstOrder = {
+     'ConstName'     : [
+                        'asc_motor',
+                        'asc_motor_0veh',
+                        'asc_motor_1veh',
+                        'asc_motor_2veh',
+                        'asc_motor_all',
+                        'asc_nonmotor',
+                        'asc_nonmotor_0veh',
+                        'asc_nonmotor_1veh',
+                        'asc_nonmotor_2veh',
+                        'asc_nonmotor_all',
+                        'asc_walk',
+                        'asc_walk_0veh',
+                        'asc_walk_1veh',
+                        'asc_walk_2veh',
+                        'asc_walk_all',
+                        'asc_bike',
+                        'asc_bike_0veh',
+                        'asc_bike_1veh',
+                        'asc_bike_2veh',
+                        'asc_bike_all',
+                        'asc_auto',
+                        'asc_auto_0veh',
+                        'asc_auto_1veh',
+                        'asc_auto_2veh',
+                        'asc_auto_all',
+                        'asc_alone',
+                        'asc_alone_0veh',
+                        'asc_alone_1veh',
+                        'asc_alone_2veh',
+                        'asc_alone_all',
+                        'asc_shared',
+                        'asc_shared_0veh',
+                        'asc_shared_1veh',
+                        'asc_shared_2veh',
+                        'asc_shared_all',
+                        'asc_sr2',
+                        'asc_sr2_0veh',
+                        'asc_sr2_1veh',
+                        'asc_sr2_2veh',
+                        'asc_sr2_all',
+                        'asc_sr3',
+                        'asc_sr3_0veh',
+                        'asc_sr3_1veh',
+                        'asc_sr3_2veh',
+                        'asc_sr3_all',
+                        'asc_hov',
+                        'asc_hov_0veh',
+                        'asc_hov_1veh',
+                        'asc_hov_2veh',
+                        'asc_hov_all',
+                        'asc_toll',
+                        'asc_toll_0veh',
+                        'asc_toll_1veh',
+                        'asc_toll_2veh',
+                        'asc_toll_all',
+                        'asc_transit',
+                        'asc_transit_0veh',
+                        'asc_transit_1veh',
+                        'asc_transit_2veh',
+                        'asc_transit_all',
+                        'asc_walkacc',
+                        'asc_walkacc_0veh',
+                        'asc_walkacc_1veh',
+                        'asc_walkacc_2veh',
+                        'asc_walkacc_all',
+                        'asc_driveacc',
+                        'asc_driveacc_0veh',
+                        'asc_driveacc_1veh',
+                        'asc_driveacc_2veh',
+                        'asc_driveacc_all',
+                        'asc_local',
+                        'asc_local_0veh',
+                        'asc_local_1veh',
+                        'asc_local_2veh',
+                        'asc_local_all',
+                        'asc_wlocal',
+                        'asc_wlocal_0veh',
+                        'asc_wlocal_1veh',
+                        'asc_wlocal_2veh',
+                        'asc_wlocal_all',
+                        'asc_dlocal',
+                        'asc_dlocal_0veh',
+                        'asc_dlocal_1veh',
+                        'asc_dlocal_2veh',
+                        'asc_dlocal_all',
+                        'asc_brt',
+                        'asc_brt_0veh',
+                        'asc_brt_1veh',
+                        'asc_brt_2veh',
+                        'asc_brt_all',
+                        'asc_wbrt',
+                        'asc_wbrt_0veh',
+                        'asc_wbrt_1veh',
+                        'asc_wbrt_2veh',
+                        'asc_wbrt_all',
+                        'asc_dbrt',
+                        'asc_dbrt_0veh',
+                        'asc_dbrt_1veh',
+                        'asc_dbrt_2veh',
+                        'asc_dbrt_all',
+                        'asc_mode9',
+                        'asc_mode9_0veh',
+                        'asc_mode9_1veh',
+                        'asc_mode9_2veh',
+                        'asc_mode9_all',
+                        'asc_wmode9',
+                        'asc_wmode9_0veh',
+                        'asc_wmode9_1veh',
+                        'asc_wmode9_2veh',
+                        'asc_wmode9_all',
+                        'asc_dmode9',
+                        'asc_dmode9_0veh',
+                        'asc_dmode9_1veh',
+                        'asc_dmode9_2veh',
+                        'asc_dmode9_all',
+                        'asc_lrt',
+                        'asc_lrt_0veh',
+                        'asc_lrt_1veh',
+                        'asc_lrt_2veh',
+                        'asc_lrt_all',
+                        'asc_wlrt',
+                        'asc_wlrt_0veh',
+                        'asc_wlrt_1veh',
+                        'asc_wlrt_2veh',
+                        'asc_wlrt_all',
+                        'asc_dlrt',
+                        'asc_dlrt_0veh',
+                        'asc_dlrt_1veh',
+                        'asc_dlrt_2veh',
+                        'asc_dlrt_all',
+                        'asc_express',
+                        'asc_express_0veh',
+                        'asc_express_1veh',
+                        'asc_express_2veh',
+                        'asc_express_all',
+                        'asc_wexpress',
+                        'asc_wexpress_0veh',
+                        'asc_wexpress_1veh',
+                        'asc_wexpress_2veh',
+                        'asc_wexpress_all',
+                        'asc_dexpress',
+                        'asc_dexpress_0veh',
+                        'asc_dexpress_1veh',
+                        'asc_dexpress_2veh',
+                        'asc_dexpress_all',
+                        'asc_crt',
+                        'asc_crt_0veh',
+                        'asc_crt_1veh',
+                        'asc_crt_2veh',
+                        'asc_crt_all',
+                        'asc_wcrt',
+                        'asc_wcrt_0veh',
+                        'asc_wcrt_1veh',
+                        'asc_wcrt_2veh',
+                        'asc_wcrt_all',
+                        'asc_dcrt',
+                        'asc_dcrt_0veh',
+                        'asc_dcrt_1veh',
+                        'asc_dcrt_2veh',
+                        'asc_dcrt_all'
+                        ]
+}
+df_ConstOrder = pd.DataFrame(dConstOrder)
+df_ConstOrder = df_ConstOrder.reset_index()
+df_ConstOrder = df_ConstOrder.rename(columns={"index": "SortOrder"})
+```
+
+```{python}
+#initialize
+df_Constants = pd.DataFrame()
+prevround = False
+
+
+for dCC in dirCalibConst:
+
+    #display("Reading Constants from " + dCC)
+    df_Constants_CurRound = pd.DataFrame()
+    
+    
+    df_Files = pd.DataFrame(os.listdir(dCC))
+    df_Files = df_Files[df_Files[0].str.contains('.txt')]
+    numFiles = df_Files.size
+    ctFiles = 0
+    
+    for filename in os.listdir(dCC):
+        if filename.endswith(".txt"):
+            ctFiles = ctFiles + 1
+            
+            filenamewpath = os.path.join(dCC, filename)
+
+            strPurp = filename[0 : 3]
+            strPkOk = filename[17:19]
+
+            #get characters between last underscore(_) and period(.)
+            strIter = int(re.search("[^._]+(?=[^_]*$)", filename).group(0))
+
+            #print(strPurp, strPkOk, strIter)
+            #print("\r                                                                            ", end="")
+            #print("\r" + strPurp, strPkOk, strIter, end="")
+            #print("\r" + str(ctFiles) + ' of ' + str(numFiles), strPurp, strPkOk, strIter, end="")
+            
+            file1 = open(filenamewpath) 
+            Lines = file1.readlines() 
+
+            count = 0
+            # Strips the newline character 
+            for line in Lines: 
+                strLine = str("Line{}: {}".format(count, line.strip()))
+                strLine = strLine[len('Line0:'):]
+                #print (strLine)
+                #print(type (strLine))
+                if "=" in strLine:
+                    strVariable = strLine.split('=')[0].strip()
+                    strValue    = strLine.split('=')[1].strip()
+                    
+                    df = pd.DataFrame([[strPurp,strPkOk,strIter,strVariable,strValue]],
+                              columns=(['Purp'   ,'PkOk'   ,'Iter'   ,'ConstName'  ,'ConstValue']))
+
+                    df_Constants_CurRound = pd.concat([df_Constants_CurRound, df],ignore_index=True)
+
+                    #print(strVariable, strValue)
+        else:
+            continue
+
+    df_Constants_CurRound['Iter']       = pd.to_numeric(df_Constants_CurRound['Iter']      , downcast='integer')
+    df_Constants_CurRound['ConstValue'] = pd.to_numeric(df_Constants_CurRound['ConstValue'], downcast='float'  )
+
+    if not df_Constants.empty:
+        df_Constants_max = df_Constants.groupby(['ConstName','PkOk','Purp'],as_index=False).agg(MAXITER=('Iter','max'))
+
+        df_Constants_CurRound_wMax = pd.DataFrame.merge(df_Constants_CurRound, df_Constants_max, on=('ConstName','PkOk','Purp'))
+
+        df_Constants_CurRound_wMax['Iter'] = df_Constants_CurRound_wMax['Iter'] + df_Constants_CurRound_wMax['MAXITER']
+
+        df_Constants_CurRound = df_Constants_CurRound_wMax.drop(columns=['MAXITER'])
+
+        #display(df_Constants_CurRound)
+        
+        df_Constants = pd.concat([df_Constants,df_Constants_CurRound], ignore_index=True)
+
+    else:
+        df_Constants = df_Constants_CurRound.copy()
+    
+
+
+df_Constants['ConstValueAbs'] = df_Constants['ConstValue'].abs()
+```
+
+```{python}
+# display last iteration constant value
+idx = df_Constants.groupby(['Purp','ConstName'])['Iter'].transform(max) == df_Constants['Iter']
+df_LastConstant = df_Constants[idx]
+#display(df_LastConstant)
+df_LastConstant_pivot = df_LastConstant.pivot(index=['ConstName'],columns=['Purp','PkOk'],values='ConstValue')
+#
+df_LastConstant_pivot.fillna(0,inplace=True)
+df_LastConstant_pivot = df_LastConstant_pivot.loc[~(df_LastConstant_pivot==0).all(axis=1)]
+df_LastConstant_pivot.reset_index(inplace=True)
+#
+df_LastConstant_pivot.columns = df_LastConstant_pivot.columns.map('_'.join)
+df_LastConstant_pivot = df_LastConstant_pivot.rename(columns={'ConstName_':'ConstName'})
+df_LastConstant_pivot['ConstName'] = df_LastConstant_pivot['ConstName'].apply(str.lower)
+#
+df_LastConstant_pivot_ConstOrder = pd.DataFrame.merge(df_LastConstant_pivot, df_ConstOrder, how='left',on='ConstName')
+df_LastConstant_pivot_ConstOrder = df_LastConstant_pivot_ConstOrder.sort_values(by=['SortOrder'])
+df_LastConstant_pivot_ConstOrder = df_LastConstant_pivot_ConstOrder.reset_index().drop(columns = {'SortOrder','index'})
+```
+
+
+```{python}
+ojs_define(constants = df_LastConstant_pivot_ConstOrder)
+```
+
+```{ojs}
+// label: fig-mc-consts
+// fig-cap: Mode Choice Constants
+// echo: false
+Inputs.table(transpose(constants))
+```
+
+```{python}
+#OBS define column names for grouping
+colIdOBS        = 'id'
+colPurpOBS      = 'Purp5_text'      #trip purpose
+colPeriodOBS    = 'PK_OK'           #period
+colVOwnOBS      = 'Veh_Cat3p'       #number of vehicles
+colModeAcOBS    = 'Ac_Mode_Model'   #access mode
+colModeTrOBS    = 'Linked_Mode_txt' #transit mode (highest in heirarchy)
+colModeBoardOBS = 'Surveyed_Mode'   #boarding mode (surveyed mode)
+colTripsOBS     = 'linked_weight'   #trip weight
+colBoardOBS     = 'unlinked_weight' #boarding weight
+
+nameIdOBS       = "ID_OBS"
+namePurp        = "Trip Purpose"
+namePeriod      = "Period"
+nameVOwn        = "Vehicle Ownership"
+nameModeAccess  = "Access Mode"
+nameModeTransit = "Transit Mode"
+nameModeBoard   = "Transit Mode - Surveyed"
+
+nameTripsOBS     = "Trips_OBS"
+nameBoardOBS     = "Boardings_OBS"
+nameShareOBS     = "Share_OBS"
+nameRecordsOBS   = "Records_OBS"
+
+nameTripsObs    = 'Trips-Observed'
+nameTripsMod    = 'Trips-Model'
+nameShareObs    = 'Share-Observed'
+nameShareMod    = 'Share-Model'
+nameShareDiff   = 'Share Diff'
+nameBoardObs    = 'Boardings-Observed'
+nameBoardMod    = 'Boardings-Model'
+nameTxRatioObs  = 'Transfer Ratio-Observed'
+nameTxRatioMod  = 'Transfer Ratio-Model'
+
+#HHS define column names for grouping
+colIDHHS     = 'password'
+colPurpHHS   = 'trip_purpose_text'          #trip purpose
+colPeriodHHS = 'depart_period'              #period
+colVOwnHHS   = 'num_vehicles_cat'           #number of vehicles
+colModeHHS   = 'main_mode_w_auto_occ_text'  #access mode
+colTripsHHS  = 'weight'                     #trip weight
+
+nameIDHHS    = "ID_HHS"
+namePurp     = "Trip Purpose"
+namePeriod   = "Period"
+nameVOwn     = "Vehicle Ownership"
+nameMode     = "Mode"
+nameTripsHHS = "Trips_HHS"
+
+nameModeMotor       = "Motorized / Non-Motorized"
+nameModeBikeWalk    = "Bike / Walk"
+nameModeDAShare     = "Drive Alone / Share Ride"
+nameModeShare23     = "Share 2 / Share 3+"
+nameModeAutoTransit = "Auto / Transit"
+
+nameShareHHS = "Share_HHS"
+nameRecordsHHS = "Records_HHS"
+
+#TDM define column names for grouping
+nameTripsTDM = 'Trips_TDM'
+nameShareTDM = 'Share_TDM'
+nameBoardTDM = "Boardings_TDM"
+```
+
+```{python}
+df_OBS = pd.read_csv(r'data/mc/2019 Final Weighted UTA OD Data - 2020-09-09_BH.csv')
+df_OBS = df_OBS[df_OBS.Use == 1]
+
+#create dataset with only desired columns
+df_OBS = df_OBS[[colIdOBS,colVOwnOBS,colPurpOBS,colModeAcOBS,colModeTrOBS,colModeBoardOBS,colPeriodOBS,colTripsOBS,colBoardOBS]]
+df_OBS.columns = (nameIdOBS,nameVOwn,namePurp,nameModeAccess,nameModeTransit,nameModeBoard,namePeriod,nameTripsOBS,nameBoardOBS)
+
+# storing dtype before converting 
+before = df_OBS[nameVOwn].dtypes 
+df_OBS[nameVOwn]= df_OBS[nameVOwn].astype(str) 
+after = df_OBS[nameVOwn].dtypes 
+```
+
+```{python}
+df_OBS_PrPuTrAc = df_OBS.groupby([namePeriod,namePurp,nameModeTransit,nameModeAccess], as_index=False).agg({nameTripsOBS: [np.sum]})
+df_OBS_PrPuTrAc.columns = df_OBS_PrPuTrAc.columns.droplevel(1)
+df_OBS_PrPuTrAc = df_OBS_PrPuTrAc.rename(columns={nameTripsOBS: nameTripsObs})
+
+df_OBS_PrPuTrAc[nameModeMotor]       =''
+df_OBS_PrPuTrAc[nameModeDAShare]     = ''
+df_OBS_PrPuTrAc[nameModeShare23]     = ''
+df_OBS_PrPuTrAc[nameModeAutoTransit] = ''
+```
+
+
+
+```{python}
+#Mode group definitions
+
+dHHSModes = {
+             nameMode: ['bike'         ,'walk'         ,'auto_sov'   ,'auto_occ2'    ,'auto_occ3p'    ,'transit'  ],
+        nameModeMotor: ['Non-Motorized','Non-Motorized','Motorized'  ,'Motorized'    ,'Motorized'     ,'Motorized'],
+     nameModeBikeWalk: ['Bike'         ,'Walk'         ,''           ,''             ,''              ,''         ],
+      nameModeDAShare: [''             ,''             ,'Drive Alone','Share Ride'   ,'Share Ride'    ,''         ],
+      nameModeShare23: [''             ,''             ,''           ,'Shared Ride 2','Shared Ride 3+',''         ],
+  nameModeAutoTransit: [''             ,''             ,'Auto'       ,'Auto'         ,'Auto'          ,'Transit'  ]
+}
+df_HHSModes = pd.DataFrame(data=dHHSModes)
+```
+
+```{python}
+df_HHS  = pd.read_csv(r'data\mc\TripData_June19_2013.csv')
+df_HHS = df_HHS[df_HHS.WF_IXXI_MS == 'II']
+df_HHS = df_HHS[df_HHS.main_mode_w_auto_occ_text != 'other']
+
+#create dataset with only desired columns
+df_HHS = df_HHS[[colIDHHS,colPeriodHHS,colPurpHHS,colVOwnHHS,colModeHHS,colTripsHHS]]
+df_HHS.columns = (nameIDHHS,namePeriod,namePurp,nameVOwn,nameMode,nameTripsHHS)
+
+# storing dtype before converting 
+before = df_HHS[[namePeriod,nameVOwn]].dtypes
+df_HHS[namePeriod]= df_HHS[namePeriod].astype(str)
+df_HHS[nameVOwn]= df_HHS[nameVOwn].astype(str)
+after = df_HHS[[namePeriod,nameVOwn]].dtypes
+
+#combine Trip Purpose categories to 5 only
+df_HHS.loc[(df_HHS[namePurp] == "HBShp") | (df_HHS[namePurp] == "HBO") | (df_HHS[namePurp] == "HBPb"), namePurp] = "HBO"
+df_HHS.loc[(df_HHS[namePurp] == "NHBW") | (df_HHS[namePurp] == "NHBNW"), namePurp]  = "NHB"
+
+#change period to PK/OK to be able to match to TDM
+df_HHS.loc[(df_HHS[namePeriod] == "1") | (df_HHS[namePeriod] == "3"), namePeriod] = "PK"
+df_HHS.loc[(df_HHS[namePeriod] == "2") | (df_HHS[namePeriod] == "4"), namePeriod] = "OK"
+
+df_HHS = pd.DataFrame.merge(df_HHS, df_HHSModes, on=nameMode, how="left")
+```
+
+```{python}
+df_HHS_PrPuTrAc = df_HHS.groupby([namePeriod,namePurp,nameModeMotor,nameModeDAShare,nameModeShare23,nameModeAutoTransit], as_index=False).agg({nameTripsHHS: [np.sum]})  
+df_HHS_PrPuTrAc.columns = df_HHS_PrPuTrAc.columns.droplevel(1)
+df_HHS_PrPuTrAc = df_HHS_PrPuTrAc.rename(columns={nameTripsHHS: nameTripsObs})
+
+df_HHS_PrPuTrAc[nameModeTransit] = ''
+df_HHS_PrPuTrAc[nameModeAccess]  = ''
+```
+
+```{python}
+# merge obs and hhs
+df_Observed_PrPuTrAc = pd.concat([df_OBS_PrPuTrAc, df_HHS_PrPuTrAc])
+```
+
+
+
+```{python}
+dTDMCatToModes = {
+       'TripCategory': ['2) Non-Motorized','4) Auto 1 pers','4) Auto 2 pers','4) Auto 3+pers','3) Transit','LCL Walk','LCL Drive','BRT Walk','BRT Drive','MODE9 Walk','MODE9 Drive','EXP Walk','EXP Drive','LRT Walk','LRT Drive','CRT Walk','CRT Drive'],
+             nameMode: ['bike/walk'       ,'auto_sov'      ,'auto_occ2'     ,'auto_occ3p'    ,'transit'   ,''        ,''         ,''        ,''         ,''          ,''           ,''        ,''         ,''        ,''         ,''        ,''         ],
+        nameModeMotor: ['Non-Motorized'   ,'Motorized'     ,'Motorized'     ,'Motorized'     ,'Motorized' ,''        ,''         ,''        ,''         ,''          ,''           ,''        ,''         ,''        ,''         ,''        ,''         ],
+     nameModeBikeWalk: [''                ,''              ,''              ,''              ,''          ,''        ,''         ,''        ,''         ,''          ,''           ,''        ,''         ,''        ,''         ,''        ,''         ],
+      nameModeDAShare: [''                ,'Drive Alone'   ,'Share Ride'    ,'Share Ride'    ,''          ,''        ,''         ,''        ,''         ,''          ,''           ,''        ,''         ,''        ,''         ,''        ,''         ],
+      nameModeShare23: [''                ,''              ,'Shared Ride 2' ,'Shared Ride 3+',''          ,''        ,''         ,''        ,''         ,''          ,''           ,''        ,''         ,''        ,''         ,''        ,''         ],
+  nameModeAutoTransit: [''                ,'Auto'          ,'Auto'          ,'Auto'          ,'Transit'   ,''        ,''         ,''        ,''         ,''          ,''           ,''        ,''         ,''        ,''         ,''        ,''         ],
+      nameModeTransit: [''                ,''              ,''              ,''              ,''          ,'LCL'     ,'LCL'      ,'BRT1'    ,'BRT1'     ,'BRT3'      ,'BRT3'       ,'EXP'     ,'EXP'      ,'LRT'     ,'LRT'      ,'CRT'     ,'CRT'      ],
+       nameModeAccess: [''                ,''              ,''              ,''              ,''          ,'Walk'    ,'Drive'    ,'Walk'    ,'Drive'    ,'Walk'      ,'Drive'      ,'Walk'    ,'Drive'    ,'Walk'    ,'Drive'    ,'Walk'    ,'Drive'    ]
+}
+df_TDMCatToModes = pd.DataFrame(dTDMCatToModes)
+```
+
+```{python}
+df_TDM_Pk  = pd.read_csv(r'data\mc\v832_SE19_Net19_RegionShares_Pk.csv')
+df_TDM_Ok  = pd.read_csv(r'data\mc\v832_SE19_Net19_RegionShares_Ok.csv')
+
+df_TDM_Pk['Period'] = 'PK'
+df_TDM_Ok['Period'] = 'OK'
+df_TDM_base = df_TDM_Pk.append(df_TDM_Ok)
+df_TDM_base = df_TDM_base[['Period','TripCategory','HBCtrip','HBOtrip','HBWtrip','NHBtrip']]
+
+df_TDM = pd.melt(df_TDM_base, id_vars=['Period','TripCategory'], value_vars=['HBCtrip','HBOtrip','HBWtrip','NHBtrip'])
+df_TDM.columns = (namePeriod,'TripCategory',namePurp,'Trips_TDM')
+
+df_TDM = df_TDM[df_TDM['TripCategory'].str.contains("Drive|Walk|Non-Motorized|pers|Transit")]
+df_TDM = df_TDM[df_TDM['TripCategory'].str.contains('Drive Self') == False]
+df_TDM[namePurp] = df_TDM[namePurp].str.replace("trip","")
+
+#trim white space
+df_TDM = df_TDM.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
+
+# storing dtype before converting 
+before = df_TDM[nameTripsTDM].dtypes 
+df_TDM[nameTripsTDM]= df_TDM[nameTripsTDM].astype(int) 
+after = df_TDM[nameTripsTDM].dtypes 
+```
+
+```{python}
+df_TDM = pd.DataFrame.merge(df_TDM, df_TDMCatToModes, on="TripCategory", how="left")
+df_TDM = df_TDM.drop(columns='TripCategory')
+df_TDM_PrPuTrAc = df_TDM.copy()
+df_TDM_PrPuTrAc = df_TDM_PrPuTrAc.rename(columns={nameTripsTDM: nameTripsMod})
+```
+
+
+
+```{python}
+df_COMP = pd.DataFrame.merge(df_TDM_PrPuTrAc,df_Observed_PrPuTrAc,on=(namePeriod,namePurp,nameModeTransit,nameModeAccess,nameModeMotor,nameModeDAShare,nameModeShare23,nameModeAutoTransit),how="outer")
+pd.set_option('display.max_rows', df_COMP.shape[0]+1)
+```
+
+```{python}
+def filter_columns(data, column, columns):
+    cols = columns + [column]
+    filtered_data = data[cols].dropna().replace('', pd.NA).dropna()
+    return filtered_data
+def get_dy(data,column):
+    dy_data = data.groupby(['Trip Purpose',column]).sum().reset_index()
+    dy_data['Period'] = 'DY'
+    return pd.concat([data,dy_data])
+def get_all(data,column):
+    all_data = data.groupby(['Period',column]).sum().reset_index()
+    all_data['Trip Purpose'] = 'All'
+    return pd.concat([data,all_data])
+
+def get_table(data, column, columns):
+    filtered = filter_columns(data, column, columns)
+    df_dy = get_dy(filtered, column)
+    df_all = get_all(df_dy, column)
+    df_all['Title'] = str(column)
+    df_all = df_all.rename(columns={column: 'Mode'})
+
+    dfp = df_all.groupby(['Period', 'Trip Purpose']).sum().reset_index()
+    dfp = dfp.rename(columns={'Trips-Model':'Trips-Model-Total','Trips-Observed':'Trips-Observed-Total'})
+    dfp = pd.merge(df_all,dfp, how='left', on=['Period','Trip Purpose'])
+    dfp['TripsModelP'] = dfp['Trips-Model'] / dfp['Trips-Model-Total']
+    dfp['TripsObservedP'] = dfp['Trips-Observed'] / dfp['Trips-Observed-Total']
+    dfp = dfp.rename(columns={'Trip Purpose':'TripPurpose'})
+
+    return dfp[['Period','TripPurpose','Title','Mode','TripsModelP','TripsObservedP']]
+```
+
+```{python}
+dfCOMPList = list()
+tlist = ['Period','Trip Purpose','Trips-Model','Trips-Observed']
+dfC_Mode        = get_table(df_COMP, 'Mode'                     , tlist)
+dfC_Motorized   = get_table(df_COMP, 'Motorized / Non-Motorized', tlist)
+#dfC_BikeWalk    = get_table(df_COMP, 'Bike / Walk'              , tlist)
+dfC_DAShr       = get_table(df_COMP, 'Drive Alone / Share Ride' , tlist)
+dfC_Shr         = get_table(df_COMP, 'Share 2 / Share 3+'       , tlist)
+dfC_AutoTransit = get_table(df_COMP, 'Auto / Transit'           , tlist)
+dfC_Transit     = get_table(df_COMP, 'Transit Mode'             , tlist)
+dfC_Access      = get_table(df_COMP, 'Access Mode'              , tlist)
+dfC_Long        = pd.concat([dfC_Mode, dfC_Motorized, dfC_DAShr, dfC_Shr, dfC_AutoTransit, dfC_Transit, dfC_Access]).reset_index().drop(columns={'index'})
+```
+
+```{python}
+dfC_Long_P = dfC_Long.rename(columns={'TripsModelP':'Model','TripsObservedP':'Observed'})
+dfC_Long_P = pd.melt(dfC_Long_P, 
+                     id_vars = ['Period', 'TripPurpose', 'Title', 'Mode'], 
+                     value_vars = ['Model','Observed'], 
+                     var_name = 'DataSource',
+                     value_name = 'Percent')
+```
+
+```{python}
+ojs_define(dataLong = dfC_Long_P)
+#dfC_Long.to_csv('data/mc/dfC_Long.csv')
+#dataLong2 = FileAttachment("data\\mc\\dfC_Long.csv").csv({ typed: true });
+#| echo: false
+#Inputs.table(filtered_data, {
+#  style: {
+#    fontSize: 16,
+#  },
+#  columns: [
+#    "Period",
+#    "TripPurpose",
+#    "Title",
+#    "Mode",
+#    "DataSource",
+#    "Percent"
+#  ],
+#  header: {
+#    Period: "Period",
+#    TripPurpose:"Trip Purpose",
+#    Title: "Title",
+#    Mode: "Mode",
+#    DataSource: "Data Source",
+#    Percent: "Percent"
+#  }})
+```
+
+## Mode Share
+
+The following figure provides and interactive view to understand the mode share by different modes, periods, and purposes between modeled and observed data. 
+
+**Figure 1: Mode share between model and observed by mode, period, and purpose.**
+
+```{ojs}
+viewof plotSelect = Inputs.select(new Map([['Mode','Mode'], ['Motorized / Non-Motorized', 'Motorized / Non-Motorized'], ['Drive Alone / Share Ride', 'Drive Alone / Share Ride'], ['Share 2 / Share 3+', 'Share 2 / Share 3+'], ['Auto / Transit', 'Auto / Transit'], ['Transit Mode', 'Transit Mode'], ['Access Mode', 'Access Mode']]), {value: 'Title', label: "Plot Type"})
+
+viewof periodSelect  = Inputs.select(new Map([['Peak', 'PK'], ['Off-Peak', 'OK'], ['Daily', 'DY']]), {value: 'Period', label: "Time Period:"});
+
+viewof purposeSelect  = Inputs.select(new Map([['Home-based Work', 'HBW'], ['Home-based College', 'HBC'], ['Home-based Other', 'HBO'], ['Non-home Based', 'NHB'], ['All Purposes', 'All']]), {value: 'TripPurpose', label: "Trip Purpose:"});
+```
+
+
+```{ojs}
+dataLT = transpose(dataLong)
+filtered_data = dataLT.filter(function(dataL) {
+    return plotSelect == dataL.Title &&
+           periodSelect == dataL.Period &&
+           purposeSelect == dataL.TripPurpose;
+})
+```
+
+
+```{ojs}
+import {GroupedBarChart} from "@d3/grouped-bar-chart"
+import {Legend, Swatches} from "@d3/color-legend"
+import {howto, altplot} from "@d3/example-components"
+```
+
+
+::: {.panel-tabset}
+
+### Plot
+```{ojs}
+chart = GroupedBarChart(filtered_data, {
+    x: d => d.Mode,
+    y: d => d.Percent,
+    z: d => d.DataSource,
+    yDomain: [0,1],
+    zDomain: ['Model','Observed'],
+    width,
+    height: 500,
+    colors: ["#376092", "#77933c"]
+})
+key = Legend(chart.scales.color, {title: "Data Source"})
+```
+
+
+### Table
+```{ojs}
+//| echo: false
+Inputs.table(filtered_data)
+```
+
+:::
+
+## Boardings
+
