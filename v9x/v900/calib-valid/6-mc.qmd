@@ -630,6 +630,7 @@ import {howto, altplot} from "@d3/example-components"
 
 ### Plot
 ```{ojs}
+//https://observablehq.com/@d3/grouped-bar-chart
 key = Legend(chart.scales.color, {title: "Data Source"})
 chart = GroupedBarChart(filtered_data, {
     x: d => d.Mode,
@@ -834,7 +835,8 @@ viewof bPlotSelect = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by L
 ```{ojs}
 dataBLT = transpose(boardLong)
 filtered_bData = dataBLT.filter(function(dataL) {
-    return bPlotSelect == dataL.Title;
+    return bPlotSelect == dataL.Title &&
+           "Value" == dataL.View;
 })
 ```
 
@@ -842,7 +844,7 @@ filtered_bData = dataBLT.filter(function(dataL) {
 
 ### Plot
 ```{ojs}
-key2 = Legend(chart.scales.color, {title: "Data Source"})
+key2 = Legend(chart2.scales.color, {title: "Data Source"})
 chart2 = GroupedBarChart(filtered_bData, {
     x: d => d.Mode,
     y: d => d.ViewValue,
@@ -864,14 +866,43 @@ Inputs.table(filtered_bData)
 
 :::
 
-**Figure 3: Transit boardings by absoluate and percent difference.**
+**Figure 3: Transit boardings -- absolute and relative difference between model and observed.**
 
 
 ```{ojs}
 viewof bPlotSelect2 = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: 'Title', label: "Plot Type"})
-viewof bViewSelect = Inputs.select(new Map([['Diff', 'Diff'], ['PercentDiff','PercentDiff']]), {value: 'View', label: "Display Value"})
 ```
 
+```{ojs}
+viewof metric = Inputs.radio(new Map([["Absolute", "Diff"], ["Relative", "PercentDiff"]]), {value: "View", label: "Change"})
+```
 
+```{ojs}
+filtered_bData2 = dataBLT.filter(function(dataL) {
+    return bPlotSelect2 == dataL.Title  &&
+           metric == dataL.View;
+})
+```
 
+::: {.panel-tabset}
+### Plot
+```{ojs}
+//https://observablehq.com/@d3/diverging-bar-chart
+import {DivergingBarChart} from "@d3/diverging-bar-chart"
+chart3 = DivergingBarChart(filtered_bData2, {
+    x: d => d.ViewValue,
+    y: d => d.Mode,
+    xFormat: metric === "Diff" ? "+,d" : "+%",
+    width,
+    height: 500,
+    colors: d3.schemeRdBu[3]
+})
+```
 
+### Table
+```{ojs}
+//| echo: false
+Inputs.table(filtered_bData2)
+```
+
+:::

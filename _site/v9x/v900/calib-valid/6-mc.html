@@ -647,18 +647,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="633" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 632;"><span id="cb5-633"><a href="#cb5-633" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="fu">Legend</span>(chart<span class="op">.</span><span class="at">scales</span><span class="op">.</span><span class="at">color</span><span class="op">,</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">"Data Source"</span>})</span>
-<span id="cb5-634"><a href="#cb5-634" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> <span class="fu">GroupedBarChart</span>(filtered_data<span class="op">,</span> {</span>
-<span id="cb5-635"><a href="#cb5-635" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Mode</span><span class="op">,</span></span>
-<span id="cb5-636"><a href="#cb5-636" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Percent</span><span class="op">,</span></span>
-<span id="cb5-637"><a href="#cb5-637" aria-hidden="true" tabindex="-1"></a>    <span class="dt">z</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">DataSource</span><span class="op">,</span></span>
-<span id="cb5-638"><a href="#cb5-638" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"Percent"</span><span class="op">,</span></span>
-<span id="cb5-639"><a href="#cb5-639" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yDomain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>]<span class="op">,</span></span>
-<span id="cb5-640"><a href="#cb5-640" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zDomain</span><span class="op">:</span> [<span class="st">'Model'</span><span class="op">,</span><span class="st">'Observed'</span>]<span class="op">,</span></span>
-<span id="cb5-641"><a href="#cb5-641" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
-<span id="cb5-642"><a href="#cb5-642" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
-<span id="cb5-643"><a href="#cb5-643" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colors</span><span class="op">:</span> [<span class="st">"#376092"</span><span class="op">,</span> <span class="st">"#77933c"</span>]</span>
-<span id="cb5-644"><a href="#cb5-644" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="634" data-source-offset="-49"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 633;"><span id="cb5-634"><a href="#cb5-634" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="fu">Legend</span>(chart<span class="op">.</span><span class="at">scales</span><span class="op">.</span><span class="at">color</span><span class="op">,</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">"Data Source"</span>})</span>
+<span id="cb5-635"><a href="#cb5-635" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> <span class="fu">GroupedBarChart</span>(filtered_data<span class="op">,</span> {</span>
+<span id="cb5-636"><a href="#cb5-636" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Mode</span><span class="op">,</span></span>
+<span id="cb5-637"><a href="#cb5-637" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Percent</span><span class="op">,</span></span>
+<span id="cb5-638"><a href="#cb5-638" aria-hidden="true" tabindex="-1"></a>    <span class="dt">z</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">DataSource</span><span class="op">,</span></span>
+<span id="cb5-639"><a href="#cb5-639" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"Percent"</span><span class="op">,</span></span>
+<span id="cb5-640"><a href="#cb5-640" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yDomain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>]<span class="op">,</span></span>
+<span id="cb5-641"><a href="#cb5-641" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zDomain</span><span class="op">:</span> [<span class="st">'Model'</span><span class="op">,</span><span class="st">'Observed'</span>]<span class="op">,</span></span>
+<span id="cb5-642"><a href="#cb5-642" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb5-643"><a href="#cb5-643" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb5-644"><a href="#cb5-644" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colors</span><span class="op">:</span> [<span class="st">"#376092"</span><span class="op">,</span> <span class="st">"#77933c"</span>]</span>
+<span id="cb5-645"><a href="#cb5-645" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -680,7 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="650" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 649;"><span id="cb6-650"><a href="#cb6-650" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(filtered_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="651" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 650;"><span id="cb6-651"><a href="#cb6-651" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(filtered_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-6" data-nodetype="expression">
@@ -704,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="830" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 829;"><span id="cb7-830"><a href="#cb7-830" aria-hidden="true" tabindex="-1"></a>viewof bPlotSelect <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Trips'</span><span class="op">,</span> <span class="st">'Trips'</span>]<span class="op">,</span> [<span class="st">'Boardings by Linked Trip'</span><span class="op">,</span> <span class="st">'Boardings by Linked Trip'</span>]<span class="op">,</span> [<span class="st">'Transfer Ratio'</span><span class="op">,</span><span class="st">'Transfer Ratio'</span>]<span class="op">,</span> [<span class="st">'Boardings by Mode Surveyed'</span><span class="op">,</span><span class="st">'Boardings by Mode Surveyed'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'Title'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Plot Type"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="831" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 830;"><span id="cb7-831"><a href="#cb7-831" aria-hidden="true" tabindex="-1"></a>viewof bPlotSelect <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Trips'</span><span class="op">,</span> <span class="st">'Trips'</span>]<span class="op">,</span> [<span class="st">'Boardings by Linked Trip'</span><span class="op">,</span> <span class="st">'Boardings by Linked Trip'</span>]<span class="op">,</span> [<span class="st">'Transfer Ratio'</span><span class="op">,</span><span class="st">'Transfer Ratio'</span>]<span class="op">,</span> [<span class="st">'Boardings by Mode Surveyed'</span><span class="op">,</span><span class="st">'Boardings by Mode Surveyed'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'Title'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Plot Type"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-7" data-nodetype="declaration">
@@ -715,10 +715,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="835" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 834;"><span id="cb8-835"><a href="#cb8-835" aria-hidden="true" tabindex="-1"></a>dataBLT <span class="op">=</span> <span class="fu">transpose</span>(boardLong)</span>
-<span id="cb8-836"><a href="#cb8-836" aria-hidden="true" tabindex="-1"></a>filtered_bData <span class="op">=</span> dataBLT<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataL) {</span>
-<span id="cb8-837"><a href="#cb8-837" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bPlotSelect <span class="op">==</span> dataL<span class="op">.</span><span class="at">Title</span><span class="op">;</span></span>
-<span id="cb8-838"><a href="#cb8-838" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="836" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 835;"><span id="cb8-836"><a href="#cb8-836" aria-hidden="true" tabindex="-1"></a>dataBLT <span class="op">=</span> <span class="fu">transpose</span>(boardLong)</span>
+<span id="cb8-837"><a href="#cb8-837" aria-hidden="true" tabindex="-1"></a>filtered_bData <span class="op">=</span> dataBLT<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataL) {</span>
+<span id="cb8-838"><a href="#cb8-838" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bPlotSelect <span class="op">==</span> dataL<span class="op">.</span><span class="at">Title</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb8-839"><a href="#cb8-839" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Value"</span> <span class="op">==</span> dataL<span class="op">.</span><span class="at">View</span><span class="op">;</span></span>
+<span id="cb8-840"><a href="#cb8-840" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -742,17 +743,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="845" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 844;"><span id="cb9-845"><a href="#cb9-845" aria-hidden="true" tabindex="-1"></a>key2 <span class="op">=</span> <span class="fu">Legend</span>(chart<span class="op">.</span><span class="at">scales</span><span class="op">.</span><span class="at">color</span><span class="op">,</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">"Data Source"</span>})</span>
-<span id="cb9-846"><a href="#cb9-846" aria-hidden="true" tabindex="-1"></a>chart2 <span class="op">=</span> <span class="fu">GroupedBarChart</span>(filtered_bData<span class="op">,</span> {</span>
-<span id="cb9-847"><a href="#cb9-847" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Mode</span><span class="op">,</span></span>
-<span id="cb9-848"><a href="#cb9-848" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">ViewValue</span><span class="op">,</span></span>
-<span id="cb9-849"><a href="#cb9-849" aria-hidden="true" tabindex="-1"></a>    <span class="dt">z</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">DataSource</span><span class="op">,</span></span>
-<span id="cb9-850"><a href="#cb9-850" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"Value"</span><span class="op">,</span></span>
-<span id="cb9-851"><a href="#cb9-851" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zDomain</span><span class="op">:</span> [<span class="st">'Model'</span><span class="op">,</span><span class="st">'Observed'</span>]<span class="op">,</span></span>
-<span id="cb9-852"><a href="#cb9-852" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
-<span id="cb9-853"><a href="#cb9-853" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
-<span id="cb9-854"><a href="#cb9-854" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colors</span><span class="op">:</span> [<span class="st">"#376092"</span><span class="op">,</span> <span class="st">"#77933c"</span>]</span>
-<span id="cb9-855"><a href="#cb9-855" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="847" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 846;"><span id="cb9-847"><a href="#cb9-847" aria-hidden="true" tabindex="-1"></a>key2 <span class="op">=</span> <span class="fu">Legend</span>(chart2<span class="op">.</span><span class="at">scales</span><span class="op">.</span><span class="at">color</span><span class="op">,</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">"Data Source"</span>})</span>
+<span id="cb9-848"><a href="#cb9-848" aria-hidden="true" tabindex="-1"></a>chart2 <span class="op">=</span> <span class="fu">GroupedBarChart</span>(filtered_bData<span class="op">,</span> {</span>
+<span id="cb9-849"><a href="#cb9-849" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Mode</span><span class="op">,</span></span>
+<span id="cb9-850"><a href="#cb9-850" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">ViewValue</span><span class="op">,</span></span>
+<span id="cb9-851"><a href="#cb9-851" aria-hidden="true" tabindex="-1"></a>    <span class="dt">z</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">DataSource</span><span class="op">,</span></span>
+<span id="cb9-852"><a href="#cb9-852" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"Value"</span><span class="op">,</span></span>
+<span id="cb9-853"><a href="#cb9-853" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zDomain</span><span class="op">:</span> [<span class="st">'Model'</span><span class="op">,</span><span class="st">'Observed'</span>]<span class="op">,</span></span>
+<span id="cb9-854"><a href="#cb9-854" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb9-855"><a href="#cb9-855" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb9-856"><a href="#cb9-856" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colors</span><span class="op">:</span> [<span class="st">"#376092"</span><span class="op">,</span> <span class="st">"#77933c"</span>]</span>
+<span id="cb9-857"><a href="#cb9-857" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -774,7 +775,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="861" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 860;"><span id="cb10-861"><a href="#cb10-861" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(filtered_bData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="863" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 862;"><span id="cb10-863"><a href="#cb10-863" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(filtered_bData)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-10" data-nodetype="expression">
@@ -785,24 +786,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p><strong>Figure 3: Transit boardings by absoluate and percent difference.</strong></p>
+<p><strong>Figure 3: Transit boardings – absolute and relative difference between model and observed.</strong></p>
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="871" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 870;"><span id="cb11-871"><a href="#cb11-871" aria-hidden="true" tabindex="-1"></a>viewof bPlotSelect2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Trips'</span><span class="op">,</span> <span class="st">'Trips'</span>]<span class="op">,</span> [<span class="st">'Boardings by Linked Trip'</span><span class="op">,</span> <span class="st">'Boardings by Linked Trip'</span>]<span class="op">,</span> [<span class="st">'Transfer Ratio'</span><span class="op">,</span><span class="st">'Transfer Ratio'</span>]<span class="op">,</span> [<span class="st">'Boardings by Mode Surveyed'</span><span class="op">,</span><span class="st">'Boardings by Mode Surveyed'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'Title'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Plot Type"</span>})</span>
-<span id="cb11-872"><a href="#cb11-872" aria-hidden="true" tabindex="-1"></a>viewof bViewSelect <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Diff'</span><span class="op">,</span> <span class="st">'Diff'</span>]<span class="op">,</span> [<span class="st">'PercentDiff'</span><span class="op">,</span><span class="st">'PercentDiff'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'View'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Display Value"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="872" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 871;"><span id="cb11-872"><a href="#cb11-872" aria-hidden="true" tabindex="-1"></a>viewof bPlotSelect2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Trips'</span><span class="op">,</span> <span class="st">'Trips'</span>]<span class="op">,</span> [<span class="st">'Boardings by Linked Trip'</span><span class="op">,</span> <span class="st">'Boardings by Linked Trip'</span>]<span class="op">,</span> [<span class="st">'Transfer Ratio'</span><span class="op">,</span><span class="st">'Transfer Ratio'</span>]<span class="op">,</span> [<span class="st">'Boardings by Mode Surveyed'</span><span class="op">,</span><span class="st">'Boardings by Mode Surveyed'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'Title'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Plot Type"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="876" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 875;"><span id="cb12-876"><a href="#cb12-876" aria-hidden="true" tabindex="-1"></a>viewof metric <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">"Absolute"</span><span class="op">,</span> <span class="st">"Diff"</span>]<span class="op">,</span> [<span class="st">"Relative"</span><span class="op">,</span> <span class="st">"PercentDiff"</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"View"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Change"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="880" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 879;"><span id="cb13-880"><a href="#cb13-880" aria-hidden="true" tabindex="-1"></a>filtered_bData2 <span class="op">=</span> dataBLT<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataL) {</span>
+<span id="cb13-881"><a href="#cb13-881" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bPlotSelect2 <span class="op">==</span> dataL<span class="op">.</span><span class="at">Title</span>  <span class="op">&amp;&amp;</span></span>
+<span id="cb13-882"><a href="#cb13-882" aria-hidden="true" tabindex="-1"></a>           metric <span class="op">==</span> dataL<span class="op">.</span><span class="at">View</span><span class="op">;</span></span>
+<span id="cb13-883"><a href="#cb13-883" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-13" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Table</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="891" data-source-offset="-51"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 890;"><span id="cb14-891"><a href="#cb14-891" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {DivergingBarChart} <span class="im">from</span> <span class="st">"@d3/diverging-bar-chart"</span></span>
+<span id="cb14-892"><a href="#cb14-892" aria-hidden="true" tabindex="-1"></a>chart3 <span class="op">=</span> <span class="fu">DivergingBarChart</span>(filtered_bData2<span class="op">,</span> {</span>
+<span id="cb14-893"><a href="#cb14-893" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">ViewValue</span><span class="op">,</span></span>
+<span id="cb14-894"><a href="#cb14-894" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Mode</span><span class="op">,</span></span>
+<span id="cb14-895"><a href="#cb14-895" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xFormat</span><span class="op">:</span> metric <span class="op">===</span> <span class="st">"Diff"</span> <span class="op">?</span> <span class="st">"+,d"</span> <span class="op">:</span> <span class="st">"+%"</span><span class="op">,</span></span>
+<span id="cb14-896"><a href="#cb14-896" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb14-897"><a href="#cb14-897" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb14-898"><a href="#cb14-898" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colors</span><span class="op">:</span> d3<span class="op">.</span><span class="at">schemeRdBu</span>[<span class="dv">3</span>]</span>
+<span id="cb14-899"><a href="#cb14-899" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-11-1" data-nodetype="declaration">
+<div id="ojs-cell-14-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-11-2" data-nodetype="declaration">
+<div id="ojs-cell-14-2" data-nodetype="declaration">
 
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb15" data-startfrom="904" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 903;"><span id="cb15-904"><a href="#cb15-904" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(filtered_bData2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-15" data-nodetype="expression">
+
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -815,7 +879,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </main> <!-- /main -->
 
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"// label: fig-mc-consts\n// fig-cap: Mode Choice Constants\n// echo: false\nInputs.table(transpose(constants))\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof plotSelect = Inputs.select(new Map([['Mode','Mode'], ['Motorized / Non-Motorized', 'Motorized / Non-Motorized'], ['Drive Alone / Share Ride', 'Drive Alone / Share Ride'], ['Share 2 / Share 3+', 'Share 2 / Share 3+'], ['Auto / Transit', 'Auto / Transit'], ['Transit Mode', 'Transit Mode'], ['Access Mode', 'Access Mode']]), {value: 'Title', label: \"Plot Type\"})\n\nviewof periodSelect  = Inputs.select(new Map([['Peak', 'PK'], ['Off-Peak', 'OK'], ['Daily', 'DY']]), {value: 'Period', label: \"Time Period:\"});\n\nviewof purposeSelect  = Inputs.select(new Map([['Home-based Work', 'HBW'], ['Home-based College', 'HBC'], ['Home-based Other', 'HBO'], ['Non-home Based', 'NHB'], ['All Purposes', 'All']]), {value: 'TripPurpose', label: \"Trip Purpose:\"});\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"dataLT = transpose(dataLong)\nfiltered_data = dataLT.filter(function(dataL) {\n    return plotSelect == dataL.Title &&\n           periodSelect == dataL.Period &&\n           purposeSelect == dataL.TripPurpose;\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"import {GroupedBarChart} from \"@d3/grouped-bar-chart\"\nimport {Legend, Swatches} from \"@d3/color-legend\"\nimport {howto, altplot} from \"@d3/example-components\"\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"key = Legend(chart.scales.color, {title: \"Data Source\"})\nchart = GroupedBarChart(filtered_data, {\n    x: d => d.Mode,\n    y: d => d.Percent,\n    z: d => d.DataSource,\n    yLabel: \"Percent\",\n    yDomain: [0,1],\n    zDomain: ['Model','Observed'],\n    width,\n    height: 500,\n    colors: [\"#376092\", \"#77933c\"]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"Inputs.table(filtered_data)\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"viewof bPlotSelect = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: 'Title', label: \"Plot Type\"})\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"dataBLT = transpose(boardLong)\nfiltered_bData = dataBLT.filter(function(dataL) {\n    return bPlotSelect == dataL.Title;\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"key2 = Legend(chart.scales.color, {title: \"Data Source\"})\nchart2 = GroupedBarChart(filtered_bData, {\n    x: d => d.Mode,\n    y: d => d.ViewValue,\n    z: d => d.DataSource,\n    yLabel: \"Value\",\n    zDomain: ['Model','Observed'],\n    width,\n    height: 500,\n    colors: [\"#376092\", \"#77933c\"]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-10","inline":false,"source":"Inputs.table(filtered_bData)\n"},{"methodName":"interpret","cellName":"ojs-cell-11","inline":false,"source":"viewof bPlotSelect2 = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: 'Title', label: \"Plot Type\"})\nviewof bViewSelect = Inputs.select(new Map([['Diff', 'Diff'], ['PercentDiff','PercentDiff']]), {value: 'View', label: \"Display Value\"})\n"},{"methodName":"interpretQuiet","source":"shinyInput('plotSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('periodSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('purposeSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('bPlotSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('bPlotSelect2')"},{"methodName":"interpretQuiet","source":"shinyInput('bViewSelect')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"// label: fig-mc-consts\n// fig-cap: Mode Choice Constants\n// echo: false\nInputs.table(transpose(constants))\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof plotSelect = Inputs.select(new Map([['Mode','Mode'], ['Motorized / Non-Motorized', 'Motorized / Non-Motorized'], ['Drive Alone / Share Ride', 'Drive Alone / Share Ride'], ['Share 2 / Share 3+', 'Share 2 / Share 3+'], ['Auto / Transit', 'Auto / Transit'], ['Transit Mode', 'Transit Mode'], ['Access Mode', 'Access Mode']]), {value: 'Title', label: \"Plot Type\"})\n\nviewof periodSelect  = Inputs.select(new Map([['Peak', 'PK'], ['Off-Peak', 'OK'], ['Daily', 'DY']]), {value: 'Period', label: \"Time Period:\"});\n\nviewof purposeSelect  = Inputs.select(new Map([['Home-based Work', 'HBW'], ['Home-based College', 'HBC'], ['Home-based Other', 'HBO'], ['Non-home Based', 'NHB'], ['All Purposes', 'All']]), {value: 'TripPurpose', label: \"Trip Purpose:\"});\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"dataLT = transpose(dataLong)\nfiltered_data = dataLT.filter(function(dataL) {\n    return plotSelect == dataL.Title &&\n           periodSelect == dataL.Period &&\n           purposeSelect == dataL.TripPurpose;\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"import {GroupedBarChart} from \"@d3/grouped-bar-chart\"\nimport {Legend, Swatches} from \"@d3/color-legend\"\nimport {howto, altplot} from \"@d3/example-components\"\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"//https://observablehq.com/@d3/grouped-bar-chart\nkey = Legend(chart.scales.color, {title: \"Data Source\"})\nchart = GroupedBarChart(filtered_data, {\n    x: d => d.Mode,\n    y: d => d.Percent,\n    z: d => d.DataSource,\n    yLabel: \"Percent\",\n    yDomain: [0,1],\n    zDomain: ['Model','Observed'],\n    width,\n    height: 500,\n    colors: [\"#376092\", \"#77933c\"]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"Inputs.table(filtered_data)\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"viewof bPlotSelect = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: 'Title', label: \"Plot Type\"})\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"dataBLT = transpose(boardLong)\nfiltered_bData = dataBLT.filter(function(dataL) {\n    return bPlotSelect == dataL.Title &&\n           \"Value\" == dataL.View;\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"key2 = Legend(chart2.scales.color, {title: \"Data Source\"})\nchart2 = GroupedBarChart(filtered_bData, {\n    x: d => d.Mode,\n    y: d => d.ViewValue,\n    z: d => d.DataSource,\n    yLabel: \"Value\",\n    zDomain: ['Model','Observed'],\n    width,\n    height: 500,\n    colors: [\"#376092\", \"#77933c\"]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-10","inline":false,"source":"Inputs.table(filtered_bData)\n"},{"methodName":"interpret","cellName":"ojs-cell-11","inline":false,"source":"viewof bPlotSelect2 = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: 'Title', label: \"Plot Type\"})\n"},{"methodName":"interpret","cellName":"ojs-cell-12","inline":false,"source":"viewof metric = Inputs.radio(new Map([[\"Absolute\", \"Diff\"], [\"Relative\", \"PercentDiff\"]]), {value: \"View\", label: \"Change\"})\n"},{"methodName":"interpret","cellName":"ojs-cell-13","inline":false,"source":"filtered_bData2 = dataBLT.filter(function(dataL) {\n    return bPlotSelect2 == dataL.Title  &&\n           metric == dataL.View;\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-14","inline":false,"source":"//https://observablehq.com/@d3/diverging-bar-chart\nimport {DivergingBarChart} from \"@d3/diverging-bar-chart\"\nchart3 = DivergingBarChart(filtered_bData2, {\n    x: d => d.ViewValue,\n    y: d => d.Mode,\n    xFormat: metric === \"Diff\" ? \"+,d\" : \"+%\",\n    width,\n    height: 500,\n    colors: d3.schemeRdBu[3]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-15","inline":false,"source":"Inputs.table(filtered_bData2)\n"},{"methodName":"interpretQuiet","source":"shinyInput('plotSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('periodSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('purposeSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('bPlotSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('bPlotSelect2')"},{"methodName":"interpretQuiet","source":"shinyInput('metric')"}]}
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
