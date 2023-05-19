@@ -630,17 +630,18 @@ import {howto, altplot} from "@d3/example-components"
 
 ### Plot
 ```{ojs}
+key = Legend(chart.scales.color, {title: "Data Source"})
 chart = GroupedBarChart(filtered_data, {
     x: d => d.Mode,
     y: d => d.Percent,
     z: d => d.DataSource,
+    yLabel: "Percent",
     yDomain: [0,1],
     zDomain: ['Model','Observed'],
     width,
     height: 500,
     colors: ["#376092", "#77933c"]
 })
-key = Legend(chart.scales.color, {title: "Data Source"})
 ```
 
 
@@ -653,4 +654,224 @@ Inputs.table(filtered_data)
 :::
 
 ## Boardings
+
+```{python}
+dModeTDM = {
+     'MODE_TDM': [4          ,5      ,6            ,7           ,8              ,9],
+     'MODECODE': ['LCL'      ,'BRT1' ,'EXP'        ,'LRT'       ,'CRT'          ,'BRT3']#,
+     #'MODENAME': ['Local BUS','BRT I','Express Bus','Light Rail','Commuter Rail','BRT III']
+}
+df_ModeTDM = pd.DataFrame(dModeTDM)
+```
+
+```{python}
+from dbfread import DBF
+dbf_TDM_PARoute=pd.DataFrame(DBF(r"data/mc/_v832_SE19_Net19_1_PA_Route.dbf", load=True))
+dbf_TDM_PARoute
+
+dbf_TDM_PARoute_LinkModebyBoardMode = pd.melt(dbf_TDM_PARoute, id_vars=['MODE','NAMEID','NAME'], value_vars=['DY_4_XITB','DY_5_XITB','DY_6_XITB','DY_7_XITB','DY_8_XITB','DY_9_XITB'])
+dbf_TDM_PARoute_LinkModebyBoardMode[nameModeTransit+'_modeTDM'] = pd.to_numeric(dbf_TDM_PARoute_LinkModebyBoardMode['variable'].str.get(3))
+```
+
+```{python}
+# TDM Boardings - BoardMode
+df_TDM_Boardings = dbf_TDM_PARoute_LinkModebyBoardMode.groupby(['MODE',nameModeTransit+'_modeTDM'],as_index=False).agg({'value': [np.sum]})
+df_TDM_Boardings.columns = ([nameModeBoard+'_modeTDM',nameModeTransit+'_modeTDM',nameBoardTDM])
+
+df_TDM_Boardings = pd.DataFrame.merge(df_ModeTDM, df_TDM_Boardings, left_on='MODE_TDM', right_on=nameModeBoard+'_modeTDM')
+df_TDM_Boardings = df_TDM_Boardings.drop(columns=['MODE_TDM',nameModeBoard+'_modeTDM'])
+df_TDM_Boardings = df_TDM_Boardings.rename(columns={'MODECODE':nameModeBoard})
+
+df_TDM_Boardings = pd.DataFrame.merge(df_ModeTDM, df_TDM_Boardings, left_on='MODE_TDM', right_on=nameModeTransit+'_modeTDM')
+df_TDM_Boardings = df_TDM_Boardings.drop(columns=['MODE_TDM',nameModeTransit+'_modeTDM'])
+df_TDM_Boardings = df_TDM_Boardings.rename(columns={'MODECODE':nameModeTransit})
+
+df_TDM_Boardings_BoardMode = df_TDM_Boardings.groupby([nameModeBoard], as_index=False).agg({nameBoardTDM: [np.sum]})
+df_TDM_Boardings_BoardMode.columns = df_TDM_Boardings_BoardMode.columns.droplevel(1)
+
+# TDM Boardings - TransitMode
+df_TDM_Boardings_TransitMode = df_TDM_Boardings.groupby([nameModeTransit], as_index=False).agg({nameBoardTDM: [np.sum]})
+df_TDM_Boardings_TransitMode.columns = df_TDM_Boardings_TransitMode.columns.droplevel(1)
+
+# Trips TDM
+df_TDM_Trips = df_TDM.groupby(nameModeTransit, as_index=False).agg({nameTripsTDM: [np.sum]})
+df_TDM_Trips = df_TDM_Trips[df_TDM_Trips[nameModeTransit] != '']
+df_TDM_Trips.columns = df_TDM_Trips.columns.droplevel(1)
+
+#OBS Trips
+df_OBS_Boardings_Trips = df_OBS.groupby(nameModeTransit, as_index=False).agg({nameBoardOBS: [np.sum], nameTripsOBS: [np.sum]})
+df_OBS_Boardings_Trips.columns = df_OBS_Boardings_Trips.columns.droplevel(1)
+
+# OBS Boardings
+df_OBS_Boardings_BoardMode = df_OBS.groupby(nameModeBoard, as_index=False).agg({nameBoardOBS: [np.sum]})
+df_OBS_Boardings_BoardMode.columns = df_OBS_Boardings_BoardMode.columns.droplevel(1)
+```
+
+
+```{python}
+# TDM v OBS Trip Comparison
+df_Trips = pd.DataFrame.merge(df_TDM_Trips, df_OBS_Boardings_Trips[[nameModeTransit,nameTripsOBS]], on=nameModeTransit, how='outer')
+df_Trips.columns = (nameModeTransit, nameTripsMod, nameTripsObs)
+df_Trips = df_Trips.set_index(nameModeTransit)
+
+#add total row
+df_Trips = df_Trips.append(df_Trips.sum(numeric_only=True).rename('Total'))
+
+#calculate difference
+df_Trips['Diff'] = df_Trips[nameTripsMod] - df_Trips[nameTripsObs]
+df_Trips['% Diff'] = df_Trips['Diff'] / df_Trips[nameTripsObs]
+```
+
+```{python}
+# Boardings by Linked Trips 
+df_Boardings_LinkedTrip = pd.DataFrame.merge(df_TDM_Boardings_TransitMode, df_OBS_Boardings_Trips[[nameModeTransit,nameBoardOBS]], on=nameModeTransit, how='outer')
+df_Boardings_LinkedTrip.columns = (nameModeTransit, nameBoardMod, nameBoardObs)
+
+df_Boardings_LinkedTrip = df_Boardings_LinkedTrip.set_index(nameModeTransit)
+
+#add total row
+df_Boardings_LinkedTrip = df_Boardings_LinkedTrip.append(df_Boardings_LinkedTrip.sum(numeric_only=True).rename('Total'))
+
+#calculate difference
+df_Boardings_LinkedTrip['Diff'] = df_Boardings_LinkedTrip[nameBoardMod] - df_Boardings_LinkedTrip[nameBoardObs]
+df_Boardings_LinkedTrip['% Diff'] = df_Boardings_LinkedTrip['Diff'] / df_Boardings_LinkedTrip[nameBoardObs]
+```
+
+```{python}
+# Transfer Ratio
+df_TxRatio = pd.DataFrame.merge(df_Trips[[nameTripsMod, nameTripsObs]], df_Boardings_LinkedTrip[[nameBoardMod, nameBoardObs]], on=nameModeTransit, how='outer')
+
+#calculate transfer ratio
+df_TxRatio[nameTxRatioMod] = df_TxRatio[nameBoardMod] / df_TxRatio[nameTripsMod]
+df_TxRatio[nameTxRatioObs] = df_TxRatio[nameBoardObs] / df_TxRatio[nameTripsObs]
+
+#calculate difference
+df_TxRatio['Diff'] = df_TxRatio[nameTxRatioMod] - df_TxRatio[nameTxRatioObs]
+df_TxRatio['% Diff'] = df_TxRatio['Diff'] / df_TxRatio[nameTxRatioObs]
+
+df_TxRatio = df_TxRatio[[nameTxRatioMod, nameTxRatioObs, 'Diff', '% Diff']]
+```
+
+```{python}
+# Boardings by Mode Surveyed
+df_Boardings_ModeSurveyed = pd.DataFrame.merge(df_TDM_Boardings_BoardMode, df_OBS_Boardings_BoardMode[[nameModeBoard,nameBoardOBS]], on=nameModeBoard, how='outer')
+df_Boardings_ModeSurveyed.columns = (nameModeBoard, nameBoardMod, nameBoardObs)
+
+df_Boardings_ModeSurveyed = df_Boardings_ModeSurveyed.set_index(nameModeBoard)
+
+#add total row
+df_Boardings_ModeSurveyed = df_Boardings_ModeSurveyed.append(df_Boardings_ModeSurveyed.sum(numeric_only=True).rename('Total'))
+
+#calculate difference
+df_Boardings_ModeSurveyed['Diff'] = df_Boardings_ModeSurveyed[nameBoardMod] - df_Boardings_ModeSurveyed[nameBoardObs]
+df_Boardings_ModeSurveyed['% Diff'] = df_Boardings_ModeSurveyed['Diff'] / df_Boardings_ModeSurveyed[nameBoardObs]
+```
+
+```{python}
+df1_Trips = (df_Trips
+    .reset_index()
+    .rename(columns={'Transit Mode': 'Mode', 'Trips-Model':'Model', 'Trips-Observed':'Observed', '% Diff': 'PercentDiff'}))
+df1_Trips['Title'] = 'Trips'
+df1_Trips_Melt = pd.melt(df1_Trips, 
+                         id_vars =['Mode', 'Diff', 'PercentDiff','Title'],
+                         value_vars = ['Model', 'Observed'],
+                         var_name = 'DataSource',
+                         value_name = 'Value')
+
+df1_Boardings_LinkedTrip = (df_Boardings_LinkedTrip
+    .reset_index()
+    .rename(columns={'Transit Mode': 'Mode', 'Boardings-Model':'Model', 'Boardings-Observed':'Observed', '% Diff': 'PercentDiff'}))
+df1_Boardings_LinkedTrip['Title'] = 'Boardings by Linked Trip'
+df1_Boardings_LinkedTrips_Melt = pd.melt(df1_Boardings_LinkedTrip, 
+                         id_vars =['Mode', 'Diff', 'PercentDiff','Title'],
+                         value_vars = ['Model', 'Observed'],
+                         var_name = 'DataSource',
+                         value_name = 'Value')
+
+df1_TxRatio = (df_TxRatio
+    .reset_index()
+    .rename(columns={'Transit Mode': 'Mode', 'Transfer Ratio-Model':'Model', 'Transfer Ratio-Observed':'Observed', '% Diff': 'PercentDiff'}))
+df1_TxRatio['Title'] = 'Transfer Ratio'
+df1_TxRatio_Melt = pd.melt(df1_TxRatio, 
+                         id_vars =['Mode', 'Diff', 'PercentDiff','Title'],
+                         value_vars = ['Model', 'Observed'],
+                         var_name = 'DataSource',
+                         value_name = 'Value')
+
+df1_Boardings_ModeSurveyed = (df_Boardings_ModeSurveyed
+    .reset_index()
+    .rename(columns={'Transit Mode - Surveyed': 'Mode', 'Boardings-Model':'Model', 'Boardings-Observed':'Observed', '% Diff': 'PercentDiff'}))
+df1_Boardings_ModeSurveyed['Title'] = 'Boardings by Mode Surveyed'
+df1_Boardings_ModeSurveyed_Melt = pd.melt(df1_Boardings_ModeSurveyed, 
+                         id_vars =['Mode', 'Diff', 'PercentDiff','Title'],
+                         value_vars = ['Model', 'Observed'],
+                         var_name = 'DataSource',
+                         value_name = 'Value')
+```
+
+```{python}
+df_boardings_obj = pd.concat([df1_Trips_Melt, df1_Boardings_LinkedTrips_Melt, df1_TxRatio_Melt, df1_Boardings_ModeSurveyed_Melt])
+
+df_boardings_obj_longer = pd.melt(df_boardings_obj,
+                                  id_vars =['Mode', 'DataSource','Title'],
+                                  value_vars = ['Value', 'Diff', 'PercentDiff'],
+                                  var_name = 'View',
+                                  value_name = 'ViewValue')             
+```
+
+```{python}
+ojs_define(boardLong = df_boardings_obj_longer)
+```
+
+The following figure provides and interactive view to understand the transit boarding trips, linked trips, transfer ratios, and mode surveyed between modeled and observed data. 
+
+**Figure 2: Transit boardings by trip, linked trip, transfer ratio, and mode surveyed.**
+
+```{ojs}
+viewof bPlotSelect = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: 'Title', label: "Plot Type"})
+```
+
+```{ojs}
+dataBLT = transpose(boardLong)
+filtered_bData = dataBLT.filter(function(dataL) {
+    return bPlotSelect == dataL.Title;
+})
+```
+
+::: {.panel-tabset}
+
+### Plot
+```{ojs}
+key2 = Legend(chart.scales.color, {title: "Data Source"})
+chart2 = GroupedBarChart(filtered_bData, {
+    x: d => d.Mode,
+    y: d => d.ViewValue,
+    z: d => d.DataSource,
+    yLabel: "Value",
+    zDomain: ['Model','Observed'],
+    width,
+    height: 500,
+    colors: ["#376092", "#77933c"]
+})
+```
+
+
+### Table
+```{ojs}
+//| echo: false
+Inputs.table(filtered_bData)
+```
+
+:::
+
+**Figure 3: Transit boardings by absoluate and percent difference.**
+
+
+```{ojs}
+viewof bPlotSelect2 = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: 'Title', label: "Plot Type"})
+viewof bViewSelect = Inputs.select(new Map([['Diff', 'Diff'], ['PercentDiff','PercentDiff']]), {value: 'View', label: "Display Value"})
+```
+
+
+
 
