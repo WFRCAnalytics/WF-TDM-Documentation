@@ -8,7 +8,7 @@ author: "WFRC / MAG"
 
 ## Other
 
- - Change RAIL2COR_MULTIPLIER from 0.40 to 0.33
+The rail to core bus route multiplier (RAIL2COR_MULTIPLIER) was changed from 0.40 to 0.33.
 
 
 
