@@ -15,9 +15,9 @@ With the update to the TAZ inputs, the TAZ references were made in various locat
 TAZ and highway node references were update with new zone numbers as shown in @tbl-taz-highway-renumber.
 
 ```{python}
-| label: tbl-taz-highway-renumber
-| tbl-cap: Renumbered Range and Highway TAZs
-| echo: False
+#| label: tbl-taz-highway-renumber
+#| tbl-cap: Renumbered Range and Highway TAZs
+#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [['Used Zones'            ,'UsedZones'    ,'3629'            ],
@@ -41,9 +41,9 @@ The following ranges were removed: RegionRange, WFRCRange, MAGRange.
 College and university were updated with new zone numbers. See @tbl-college-renumber. Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero. See ????INPUTS DOC REF ???? for more detail.
 
 ```{python}
-| label: tbl-college-renumber
-| tbl-cap: Renumbered College and University Zones
-| echo: False
+#| label: tbl-college-renumber
+#| tbl-cap: Renumbered College and University Zones
+#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [[ 'Ensign College'                , 'Main'      , '95 N 300 W<br>Salt Lake City, UT 84101'           , 'Ensign'        , 1029 , 'Existing'    ],
@@ -93,9 +93,9 @@ Markdown(tabulate(
 Special generators were updated with new zone numbers, as shown in @tbl-specgen-renumber.
 
 ```{python}
-| label: tbl-specgen-renumber
-| tbl-cap: Renumbered College and University Zones
-| echo: False
+#| label: tbl-specgen-renumber
+#| tbl-cap: Renumbered College and University Zones
+#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [[ 'Lagoon Amusement Park'               , 'Lagoon'      , 781 ],
@@ -114,9 +114,9 @@ Markdown(tabulate(
 The income break points for Salt Lake City International Airport were updated as shown in @tbl-airport-income.
 
 ```{python}
-| label: tbl-airport-income
-| tbl-cap: Airport Income Levels
-| echo: False
+#| label: tbl-airport-income
+#| tbl-cap: Airport Income Levels
+#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [['Low'   ,'Income_Lo', '$45,000'],
@@ -146,9 +146,9 @@ The updated regional median income was $74,946 from 2019 5-year ACS, in 2019 dol
 The vehicle occupancy rates were updated expanded to additional trips purposes. See @tbl-occupancy and @tbl-occupancy-3p. Variables were renamed where indicated. Auto occupancy parameters were updated based on 2012 Household Travel Survey (reprocessed). Values represent average persons per vehicle for just the Wasatch Front model space. External trips are average for IX + XI, all other parameters are averages for II trips.
  
 ```{python}
-| label: tbl-occupancy
-| tbl-cap: Average Auto-Occupancy Codes and Rates
-| echo: False
+#| label: tbl-occupancy
+#| tbl-cap: Average Auto-Occupancy Codes and Rates
+#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [['Home-Based Work'                , 'VehOcc_HBW'     , "VEH_OCCUPANCY_HBW"     , '1.10'],
@@ -172,9 +172,9 @@ Markdown(tabulate(
 ```
 
 ```{python}
-| label: tbl-occupancy-3p
-| tbl-cap: Average Auto-Occupancy Codes and Rates for Vehicles with 3+ Persons
-| echo: False
+#| label: tbl-occupancy-3p
+#| tbl-cap: Average Auto-Occupancy Codes and Rates for Vehicles with 3+ Persons
+#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [['Home-Based Work'                , 'VehOcc_3p_HBW'  , 'VEH_OCC_3P_HBW'        , '3.53'],
@@ -199,9 +199,9 @@ Markdown(tabulate(
 Value of time was updated for 2019 dollars, as shown in @tbl-vot.
 
 ```{python}
-| label: tbl-vot
-| tbl-cap: Value of Time
-| echo: False
+#| label: tbl-vot
+#| tbl-cap: Value of Time
+#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table =  [['Auto Work Trips'                   ,'VOT_Auto_Wrk'   , 22],
@@ -226,9 +226,9 @@ Markdown(tabulate(
 Auto operating cost (AOC) were updated based on 2019 fuel cost & economy and vehicle maintenance. See @tbl-aoc.
 
 ```{python}
-| label: tbl-aoc
-| tbl-cap: Auto Operating Costs
-| echo: False
+#| label: tbl-aoc
+#| tbl-cap: Auto Operating Costs
+#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table =  [['Personal Vehicle Auto'            ,'AOC_Auto', 21.7],
@@ -246,9 +246,9 @@ Markdown(tabulate(
 Toll and HOT Costs were updated as shown in @tbl-toll-hot-costs. Toll costs reflect a toll of approximately $5.00 for a 10.25 mi trip (average work distance) or $3.00 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars. The toll costs apply to links with a functional type of 40. HOT costs reflect a toll of approximately $3.50 for a 10.25 mi trip (average work distance) or $2.20 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars. HOT costs are applicable to links with a functional type of 38.
 
 ```{python}
-| label: tbl-toll-hot-costs
-| tbl-cap: Toll and High-Occupancy Toll Costs
-| echo: False
+#| label: tbl-toll-hot-costs
+#| tbl-cap: Toll and High-Occupancy Toll Costs
+#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [['Toll Peak Cost'                   ,'Cost_Toll_Pk', 48],
