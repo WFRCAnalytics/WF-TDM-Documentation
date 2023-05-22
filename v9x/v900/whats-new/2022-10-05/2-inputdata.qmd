@@ -7,13 +7,14 @@ author: "WFRC / MAG"
 # Input Data
 
 ## Global Data
+
 ### Trip Tables
- - Updated '_Source - CollegeBaseDistribution - 2022-08-30.xlsx' & 'BaseDistribution.csv' TAZID to v9 TAZ
-    - Centroid of v832 TAZ was used to identify the new v9 TAZ
+
+The college base distribution source (_Source - CollegeBaseDistribution - 2022-08-30.xlsx) and model lookup (BaseDistribution.csv) files were updated to the v9.0.0 TAZ structure using the centroids of the v8.3.2 TAZ to identify the new v9.0.0 TAZ.
 
 ### Household Disaggregation and Auto Ownership
- - Updated '_Source - TAZ_AgePct_Lookup - 2022-06-07.xlsb' & 'Lookup - BYTAZAgePct - AllCo.csv' to v9 TAZ & 2019 base year
-    - Parameters was developed statewide based on 2020 Census block, 2020 ACS block group data & 2019 population by age group data
+
+Using parameters developed statewide based on 2020 census block data, 2020 ACS block group data, and 2019 population by age group data, the age percent lookup files (*_Source - TAZ_AgePct_Lookup - 2022-06-07.xlsb* and *Lookup - BYTAZAgePct - AllCo.csv*) were updated to v9.0.0 TAZ & 2019 base year.
 
 ## TAZ
 ### TAZ Splits
