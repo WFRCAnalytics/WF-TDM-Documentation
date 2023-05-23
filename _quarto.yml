@@ -559,8 +559,6 @@ format:
       - cerulean
       - custom.css
     code-fold: true
-  pdf:
-    documentclass: scrreprt
 
 
 
