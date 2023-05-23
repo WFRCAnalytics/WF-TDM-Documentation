@@ -4,156 +4,407 @@ date-modified: last-modified
 author: "WFRC / MAG"
 ---
 
+```{python}
+#|echo: false
+# PREPROCESS GEOSPATIAL DATA
+import os
+import pandas as pd
+import geopandas as gpd
+import topojson as tp
+
+fnTaz832In    = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8.3.2\WF TDM v8.3.2 - 2023-02-28\1_Inputs\1_TAZ\TAZ.shp"
+fnTaz900In    = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-14\1_Inputs\1_TAZ\TAZ.shp"
+fnK12EnrollIn = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-28\1_Inputs\2_SEData\_ source - HBSch Enroll & Med Inc\K-12 Enrollment\k12_schools_enrollment\k12_schools_enrollment.shp"
+
+def writeGeoJson(in_path,out_path,fields):
+  if not os.path.isfile(out_path):
+    gdf = gpd.read_file(in_path)
+    gdf = gdf[fields]
+    gdf = gdf.to_crs({'init': 'epsg:4326'}) 
+    topo = tp.Topology(gdf, prequantize=False)
+    gdf_simplified = topo.toposimplify(.0001).to_gdf()
+    gdf_simplified.to_file(out_path, driver='GeoJSON')
+    return;
+
+writeGeoJson(fnTaz832In   , "data/taz832.geojson"   , ['TAZID','CO_TAZID','geometry'])
+writeGeoJson(fnTaz900In   , "data/taz900.geojson"   , ['TAZID','CO_TAZID','REMM','geometry'])
+writeGeoJson(fnK12EnrollIn, "data/k12enroll.geojson",['SchoolName','Enrol_Elem','Enrol_Midl','Enrol_High','PublicElem','PublicMidl','PublicHigh','PriChaElem','PriChaMidl','PriChaHigh','geometry'])
+
+# add median income to taz file
+
+if not os.path.isfile('data/tazmedincome.geojson'):
+  gdfTaz900 = gpd.read_file("data/taz900.geojson")
+  dfMedIncome = pd.read_csv(r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-28\1_Inputs\2_SEData\_ source - HBSch Enroll & Med Inc\Median Income & VOT\for SE file -- TAZ Median Income - 2022-03-17.csv")
+  gdfTazMedIncome = pd.DataFrame.merge(gdfTaz900,dfMedIncome,on='CO_TAZID',how='left')
+  gdfTazMedIncome.to_file('data/tazmedincome.geojson', driver='GeoJSON')
+
+```
+
+```{ojs}
+//|echo: false
+// setup mapping and layers
+L = require('leaflet@1.2.0')
+html`<link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' />`
+
+geojsonTaz832    = FileAttachment("data/taz832.geojson"   ).json()
+geojsonTaz900    = FileAttachment("data/taz900.geojson"   ).json()
+geojsonK12Enroll = FileAttachment("data/k12enroll.geojson").json()
+```
+
 # Input Data
+The changes in each *Input Data* subfolder are described in their respective sections.
 
 ## Global Data
+This section includes a discussion of any changes made within the *Global Data* subfolder in the model inputs.
 
 ### Trip Tables
 
-The college base distribution source (_Source - CollegeBaseDistribution - 2022-08-30.xlsx) and model lookup (BaseDistribution.csv) files were updated to the v9.0.0 TAZ structure using the centroids of the v8.3.2 TAZ to identify the new v9.0.0 TAZ.
+The college base distribution source file *\_Source - CollegeBaseDistribution - 2022-08-30.xlsx* and model lookup file *BaseDistribution.csv* were updated to the v9.0.0 Traffic Anlaysis Zone (TAZ) structure. The centroid of the v8.3.2 TAZ were spatially joined to the v9.0.0 TAZ to find their new TAZ designation.
 
 ### Household Disaggregation and Auto Ownership
 
-Using parameters developed statewide based on 2020 census block data, 2020 ACS block group data, and 2019 population by age group data, the age percent lookup files (*_Source - TAZ_AgePct_Lookup - 2022-06-07.xlsb* and *Lookup - BYTAZAgePct - AllCo.csv*) were updated to v9.0.0 TAZ & 2019 base year.
+Using parameters developed statewide based on 2020 census block data, 2020 ACS block group data, and 2019 population by age group data, the age percent lookup files *\_Source - TAZ_AgePct_Lookup - 2022-06-07.xlsb* and *Lookup - BYTAZAgePct - AllCo.csv* were updated to v9.0.0 TAZ & 2019 base year.
 
-## TAZ
-### TAZ Splits
- - Added new v9 TAZ shapefile
- - New TAZID range:
+## Traffic Analysis Zones (TAZ)
+The v9.0.0 TAZ zone set includes new geographies, new number numbering ranges, zone attributes, and districts, as well as a new subfolder called *\_Source*.
 
-:::{.center}
+### Geographies
+Changes in TAZ geographies include both expansion of the model area and spliting and/or changing zone boundariees. The expanded model area now includes TAZs in additional portions of Box Elder County, all of western Weber County, and the entirety of Davis, Salt Lake and Utah Counties. A comparison between v9.0.0 and v8.3.2 TAZs are shown in @fig-taz-compare-map.
+
+
+```{ojs}
+//|label: fig-taz-compare-map
+//|fig-cap: TAZ Geography Comparison Map
+//|echo: false
+
+mapTaz = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8);
+
+  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  let lcolors = ['#0000FF','#FFFF00']
+  let llabels = ['v8.3.2' ,'v9.0.0' ];
+
+  let lyrTAZ832 = L.geoJson(geojsonTaz832, { weight: 3.00, color: lcolors[0]}).addTo(map);
+  let lyrTAZ900 = L.geoJson(geojsonTaz900, { weight: 0.75, color: lcolors[1]}).addTo(map);
+
+  var legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'legend');
+      div.innerHTML = '';
+      for (var i = 0; i < llabels.length; i++) {
+        div.innerHTML += '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' + llabels[i] + '<br/>';
+      }
+
+      // Add CSS style for the background color
+      div.style.backgroundColor = 'lightgray';
+      div.style.padding = '10px';
+      
+      return div;
+    };
+    legend.addTo(map);
+}
+```
+
+### Number Ranges
+Internal and external ranges by for each county are shown in @tbl-new-taz-number-ranges, and counts are show in @tbl-new-taz-count.
+
 
 ```{python}
-#| label: tbl-ao-rename
-#| tbl-cap: Renamed Auto-Occupancy Variables
+#| label: tbl-new-taz-number-ranges
+#| tbl-cap: TAZID Number Ranges
 #| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
-import pandas as pd
-table = [["3"  , 'Box Elder', '1-153'    ],
-         ["57" , 'Weber'    , '154-581'  ],
-         ["11" , 'Davis'    , '582-905'  ],
-         ["35" , 'Salt Lake', '906-2216' ],
-		 ["49" , 'Utah'     , '2217-3546']]
-df = pd.DataFrame(table, columns = ["CO_FIPS","CO_NAME", "TAZ Range"])
+table = [  ['Box Elder County',          '1-153',       '3601-3606',          '1-135',         '136-140'],
+           ['Weber County'    ,        '154-581',       '3607-3609',        '141-420',         '421-423'],
+           ['Davis County'    ,        '582-905',             'N/A',        '424-654',             'N/A'],
+           ['Salt Lake County',       '906-2216',       '3610-3615',       '655-1781',       '1782-1788'],
+           ['Utah County'     ,      '2217-3546',       '3616-3629',      '1789-2873',       '2874-2881']
+        ]
 Markdown(tabulate(
   table, 
-  headers=["CO_FIPS","CO_NAME", "TAZ Range"],
-  tablefmt="pipe", 
-  colalign=("left",)*3
+  headers= ['County'          ,'v9.0.0 Internal', 'v9.0.0 External','v8.3.2 Internal','v8.3.2. External'],
+  colalign=('left'            ,'right'          ,'right'           ,'right'          ,'right'           )
 ))
 ```
 
-:::
+```{python}
+#| label: tbl-new-taz-count
+#| tbl-cap: Master Network Node Numbering Schema
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [  ['Internal Used Zones'  , '3,546', '2,858',        '688'],
+           ['External Count'       ,    '29',    '23',          '6'],
+           ['All New Used Zones'   , '3,575', '2,881',        '694'],
+           ['Internal Unused Zones',    '54',     '0',         '54'],
+           ['Max Used Zone'        , '3,629', '2,881',        '748']]
+Markdown(tabulate(
+  table, 
+  headers= ['Category'             ,'v9.0.0','v8.3.2', 'Difference'],
+  colalign=('left'                 ,'right' ,'right' , 'right'     )
+))
+```
 
 ### Attributes
- - Added field to indicate which TAZ are in the REMM model space
- - Updated ‘PRKCSTPERM’ & ‘PRKCSTTEMP’ fields
-    - Updated permanent and temporary parking cost fields based on 2022 parking rates obtained from SLC & web searches
-    - Downtown & University data was developed for HBW, HBC, HBO & NHB trip purposes & stored in a source polygon shapefile so the travel model could be updated to use a more refined method for addressing parking costs
-        - For now, HBW was used for ‘PRKCSTPERM’ & HBO was used for ‘PRKCSTTEMP’
-    - The parking cost polygon source file did not include values for Airport and Lagoon because the new method would treat these areas differently.  In the short term and to be consistent with v832 and earlier methodology the following values were used for Airport & Lagoon parking costs:
-        - Lagoon
-            - 'PRKCSTPERM'=0
-            - 'PRKCSTTEMP'Lagoon = $6.00
-            - The 2022 cost is $18 per day
-            - At an estimated average occupancy of 3 people per vehicle, that would equal $6
-            - Previous PRKCSTTEMP value was $5 in 2010 dollars representing a $1 increase in 2019 dollars (20 percent) over 9 years (seems reasonable)
-        - Airport
-            - 'PRKCSTPERM'=0
-            - 'PRKCSTTEMP'Lagoon = $1.25
-            - The 2022 the cost is $5 per hour for short term garage, $2 per hour for short term economy and $0 for drop offs
-            - At the occupancy of 2 people per vehicle (just a guess), that would equal $2.50, $1.00, and $0.00, respectively. The average of the three is $1.75. Given the unknown distribution of travelers, but assuming more drop-offs than parking, a lower value than $1.75 should be expected. The 2019 cost was chosen to be $1.25.
-            - Previous PRKCSTTEMP value was $1 in 2010 dollars representing a $1 increase in 2019 dollars (25 percent) over 9 years. This growth seems reasonable, especially given the recent improvements to the airport. (Additionally, the CPI adjustment of the 2010 $1 value to a 2019 value is $1.18 (https://www.bls.gov/data/inflation_calculator.html).)
- - Updated Small District definition & name
-    - Small Districts now nest within Medium Districts
-    - 'DISTSML' index is sequential with 129 total districts
-    - 'DSML_NAME' includes a prefix of Medium District index followed by Small District count (e.g. 15:1)
-    - Small Districts are set up to work with Street Light data processing
+This section describes the changes made to the attributes of the TAZ shapefile.
+
+#### REMM Space
+To indicate which TAZs are included in the Real Estate Market Model (REMM) space, the *REMM* field was added with a value of *1* indicating that it is part of REMM and *0* indicating it is not part of REMM, as shown in @fig-taz-remm-space.
+
+```{ojs}
+//|label: fig-taz-remm-space
+//|fig-cap: TAZ REMM Space
+//|echo: false
+
+mapTazRemmSpace = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8);
+
+  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  let lcolors = ['#00FF7F'   ,'#BD0026'       ]
+  let llabels = ['REMM Space','Non-REMM Space'];
+  
+  let lyrTAZ900 = L.geoJson(geojsonTaz900, {
+                            style: function(feature) {
+                              var d = feature.properties.REMM;
+                              return d==1 ? {color: lcolors[0], opacity:0.95} :
+                                     d==0 ? {color: lcolors[1], opacity:0.95} : 
+                                            {color:  '#000000', opacity:0.95};
+                            }
+  }).addTo(map);
+  
+  var legend = L.control({position: 'bottomleft'});
+  legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'legend');
+    div.innerHTML = '';
+    for (var i = 0; i < llabels.length; i++) {
+      div.innerHTML += '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' + llabels[i] + '<br/>';
+    }
+
+    // Add CSS style for the background color
+    div.style.backgroundColor = 'lightgray';
+    div.style.padding = '10px';
+    
+    return div;
+  };
+  legend.addTo(map);
+}
+```
+
+#### Parking Costs
+The values in the permanent parking cost field *PRKCSTPERM* and temporary parking cost field *PRKCSTTEMP* were updated based on 2022 parking rates obtained from Salt Lake City, web searches, and a few field visits.
+
+A new metholody for calculating parking cost was envisioned but not implemented for v9.0.0. Accordingly, updates to parking data were done in a way to facilitate the change to the new methodology in the future. These updates include a new polygon source file for downtown and university areas. However, since the envisioned methodology removes the use of parking cost fields for Lagoon and Salt Lake City International Airport, they were not included in this new shapefile.
+
+##### Downtown and University Areas
+
+Parking costs were developed for downtown areas for Ogden, Salt Lake City, and Provo, as well as major university areas along the Wasatch Front. A new source polygon shapefile was developed to hold rates for Home-Based Work (HBW), Home-Based College (HBC), Home-Based Other (HBO), and Non-Home-Based (NHB) trip purposes. While rates are included for these four purposes, the v9.0.0 model only utilizes HBW for permanent parking and HBO for temporary parking. The future methodology will incorporate all four purposes.
+
+???SHOW MAP OF NEW SHAPEFILE???
+
+##### Lagoon and Salt Lake City International Aiport
+The Airport & Lagoon parking costs were updated based on current parking rate information and the assumptions described in this section.
+
+The cost of permanent parking for the Lagoon TAZ was set to *$0* based on the assumption that workers at Lagoon do not pay for parking. The temporary parking was set to *$6* as calculated by dividing the 2022 advertised parking rate of $18 per day by an assumed average occupancy of 3 people per vehicle. The cost of temporary parking in previous models was $5 in 2010 dollars. The resulting $1 increase in 2019 dollars (20%) over 9 years seems reasonable.
+
+The cost of permanent parking at the Salt Lake City Internationl Airport was set to *$0* based on the assumption that workers at the airport do not pay for parking. The cost of temporary parking was set to $1.25 based on a weighted average of short-term premium and economy rates and drop offs and a assumed average vehicle occupancy rate.
+
+The 2022 the cost for the short-term premium parking in the gararge is $5.00 per hour. Short-term economy rate is $2.00 per hour. And for drop-offs there is no charge for parking. The asssumed occupancy rate of 2 people per vehicle would result in per-person rates of $2.50, $1.00, and $0.00, respectively. The average of the three per-person rates is $1.75. Given the unknown distribution of travelers, but assuming more drop-offs than parking, a lower value than $1.75 should be expected. The 2019 cost was chosen to be $1.25.
+
+Compared to the previous temporary parking values of $1 in 2010 dollars, the chosen cost represents a 25 cent increase in 2019 dollars (25%) over 9 years. This growth seems reasonable, especially given the recent improvements to the airport. Additional justification for the chosen increase is the [CPI adjustment](https://www.bls.gov/data/inflation_calculator.html), which for the 2010 value of $1.00 in results in a 2019 value of $1.18.
+
 
 ### Districts
- - Added to District Folder:
-    - 'WF_Subarea.shp'
-    - 'Dist_REMM_Area.shp'
- - Updated:
-    - 'Dist_Small.shp'
+Small District definitions and names were updated to include a larger number of TAZs than previous models' small districts. There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field *DSML_NAME' includes a prefix of Medium District index followed by a colon and then the sequaential small district count (e.g. 15:1). Small districts were modified in conjunction with origin-destination data from StreetLight.
 
-### Source Folder
- - Added '_Source' folder with following shapefile data sets:
-    - Cities
-    - County
-    - Districts
-    - EnvConstraints
- - Added '__ViewTAZDistricts' folder with ArcGIS Pro project & mapping files
+Two additional polygon shapefiles were added to the Districts subfolder:
+    - Wasatch Front Subarea *WF_Subarea.shp*
+    - REMM Distric Areas *Dist_REMM_Area.shp* ???WHAT IS THIS???
 
-## SE Data
-### Forecasts
- - '1_BoxElder'
-    - Updated with UDOT SE Forecasts from June 8, 2022
- - '2_WFRC'
-    - Updated with draft 'REMM - 2022-10-11' results
-        - Used draft 2023 fiscally constrained plan for WFRC
-        - Used 2019 fiscally constrained plan for MAG
-        - Averaged 8 REMM runs
-            - New random seed from Monti Carlo process
-            - Ran TDM for first run, then used the updated skim for subsequent runs
- - '3_MAG'
-    - Deleted previous data
- - 'REMM'
-    - Deleted previous data
+???EMBED MAPS!???
 
+### Source
+The *\_Source* subfolder was added and includes the following shapefile data sets: Cities, Counties, Districts, adn EnvConstraints. Additionally, a *\_\_ViewTAZDistricts* folder with ArcGIS Pro project & mapping files was added.
+
+???EMBED MAPS!???
+
+## Socioecononomic Data
+Changes to socioeconomic (SE) forecasts and control totals are described in this section.
+
+###  Forecasts
+The socioeconomic forecasts were updated for the WFRC areas. For Box Elder are, updates were taken from the UDOT SE Forecasts from June 8, 2022. The rest of the WFRC area was updated with draft *REMM - 2022-10-11* results using draft 2023 fiscally constrained plan.
+
+The MAG area continues to use the 2019 fiscally constrained plan.
 
 ### Control Totals
- - Updated ‘_ControlTotals’ folder
-    - Added
-        - _Source - ControlTotal_SE - 2022-08-31.xlsx
-        - ControlTotal_SE_AllCounties.csv
-        - ControlTotal_WorkAtHome.csv
-    - Removed:
-        - _ControlTotal_SE - Source - 2018-03-30a.xlsb 
-        - ControlTotal_SE_WF.csv
-        - _ControlTotal_Age - Source - 2018-04-11a.xlsx
-        - ControlTotal_Age.csv
-        - REMM - employment_controls.csv
-        - REMM - household_controls.csv
-        - REMM - population_controls.csv
+Control total updates were made to the *ControlTotal_SE_AllCounties.csv* and *ControlTotal_WorkAtHome.csv* files. The source worksheet for these input files are found in the *-\_Source - ControlTotal_SE - 2022-08-31.xlsx* file. Other files in this directory were removed.
+
+
+```{python}
+import pandas as pd
+
+fnConTot_v832 = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8.3.2\WF TDM v8.3.2 - 2023-02-28\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
+fnConTot_v900 = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-28\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
+
+
+dfConTotv832 = pd.read_csv(fnConTot_v832)
+dfConTotv832['modelVersion'] = 'v8.3.2'
+
+dfConTotv900 = pd.read_csv(fnConTot_v832)
+dfConTotv900['modelVersion'] = 'v9.0.0'
+
+dfConTot = pd.concat([dfConTotv832,dfConTotv900])
+display(dfConTot)
+
+```
 
 
 ### Source Files
- - Renamed '_ Income & K-12 Source’ folder & contents with _ source - HBSch Enroll & Med Inc' folder & added the following data sets:
-    - 'K-12 Enrollment'
-        - K12_Enrollment_byTAZ.csv' – statewide HBSch enrollment database updated with 2019 data
-        - k12_schools_enrollment' – point shapefile that can be used to update 'K12_Enrollment_byTAZ.csv' 
-    - Median Income & VOT (updated with 2019 data), includes:
-       - '_Source - Med Income & Value of Time - 2022-07-16.xlsb'
-           - TAZ Median Income Export (for SE input file)
-           - Regional (model space) Median Income (for General Parameters file)
-           - Value of Time parameters (for General Parameters file)
-       - for SE file -- 'TAZ Median Income - 2022-03-17.csv'
+The *\_Income & K-12 Source* folder was renamed as *\_ source - HBSch Enroll & Med Inc* folder. The Kindergarten through 12th grade (K-12) enrollment data was updated using the 2019 statewide school enrollment database. Additionally, a point shapefile dataset was included, as shown in @fig-school-locations.
+
+
+```{ojs}
+//|label: fig-school-locations
+//|fig-cap: K-12 School Locations
+//|echo: false
+
+mapK12Enroll = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8);
+
+  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  var cHigh = "#FF0000"
+  var cMidl = "#00FF00"
+  var cElem = "#0000FF"
+
+  var geojsonMarkerOptions_High = {
+      radius: 4,
+      fillColor: cHigh,
+      color: cHigh,
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 1.0,
+  };
+
+  var geojsonMarkerOptions_Midl = {
+      radius: 4,
+      fillColor: cMidl,
+      color: cMidl,
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 1.0,
+  };
+  var geojsonMarkerOptions_Elem = {
+      radius: 4,
+      fillColor: cElem,
+      color: cElem,
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 1.0,
+  };
+            
+  // function to use different icons based on number of stations
+  function markerByEnrollment(feature) {
+    if (feature.properties.Enrol_High >= 100) {
+      return geojsonMarkerOptions_High
+    } else if (feature.properties.Enrol_Midl >= 100){
+      return geojsonMarkerOptions_Midl;
+    } else{
+      return geojsonMarkerOptions_Elem;
+    }
+  };
+
+  function getColor(c) {
+    if (c=='High School') {
+      return cHigh;
+    } else if (c=='Middle School') {
+      return cMidl;
+    } else if (c=='Elementary School') {
+      return cElem;
+    }
+  };
+          
+  // create the GeoJSON layer and call the styling function with each marker
+  var metroLayer = L.geoJSON(geojsonK12Enroll,  {
+    pointToLayer: function (feature, latlng) {
+      var mypopup = L.popup().setContent("<b>" + feature.properties.SchoolName + " Enrollment</b>" +
+                    "<br><b>High School: </b>" + feature.properties.Enrol_High +
+                    "<br><b>Middle School: </b>" + feature.properties.Enrol_Midl +
+                    "<br><b>Elementary School: </b>" + feature.properties.Enrol_Elem);
+      var mymarker = L.circleMarker(latlng, markerByEnrollment(feature));
+      mymarker.bindPopup(mypopup);
+      return mymarker;
+    }
+  }).addTo(map);
+
+  var legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'info legend');
+      var labelsBill = []; // legend title
+      var lcategories = ['High School','Middle School','Elementary School'];
+
+      for (var i = 0; i < lcategories.length; i++) {
+        div.innerHTML += 
+          labelsBill.push(
+            '<i class="bi bi-circle-fill" style="color:' + getColor(lcategories[i]) + '"></i> ' +
+          (lcategories[i] ? lcategories[i] : '+'));
+      }
+      div.innerHTML = labelsBill.join('<br>');
+
+      // Add CSS style for the background color
+      div.style.backgroundColor = 'lightgray';
+      div.style.padding = '10px';
+      
+      return div;
+    };
+    legend.addTo(map);
+
+  //let lyrK12Enroll = L.geoJson(geojsonK12Enroll, { size: 5, color: '#FFFFFF'}).addTo(map);
+  
+}
+```
+
+In the *\_Source - Med Income & Value of Time - 2022-07-16.xlsb* file, the median income & value-of-time (VOT) inputs for the model were updated with 2019 data and used to update the TAZ Median Income in the TAZ file.
 
 ## Highway Network
+The highway network updates are listed by their file data. 
+
 ### Dated Updates
 
-**MergedMasterNet - 2022-10-05**
+The *MergedMasterNet - 2022-10-05* file includes most recently updated MAG merged master network with updated 2032, 2042 & 2050 Needs fields. Snapped updated MAG network with ‘MasterNet - 2022-09-08.net’ that included WFRC’s latest changes.
 
- - Includes most recently updated MAG merged master network
-    - Updated 2032, 2042 & 2050 Needs fields
-    - Modified link/nodes to update/maintain roadway network
- - Snapped updated MAG network with ‘MasterNet - 2022-09-08.net’ that included WFRC’s latest changes
- - Exported to v832 & v9 Master Networks
+???WHY IS 2022-09-08 MENTIONED BUT NOT LISTED BELOW??
 
-**MergedMasterNet - 2022-09-19a**
-
- - Network Updates
-    - Updated CRT Fare Zone
-        - Fixed Vineyard & Orem stations so have same fare zone (similar to North Temple & Central)
+The *MergedMasterNet - 2022-09-19a* file inlcudes the following changes:
+    - Updated Commuter-Rail Transit (CRT) Fare Zone
+        - Vineyard & Orem stations were modified to have the same fare zone (similar to North Temple & Central)
         - Updated and fixed fare zone definitions in WFRC area
-    - Fixed small network error in Box Elder (local road was drawn to the centroid of TAZ 53 (v832))
+    - Fixed small network error in Box Elder where a local road was drawn to the centroid of v8.3.2 TAZ 53
     - A few edits to WFRC draft RTP project list
-    - Updated SEGID
-        - Checked if the previous Master Network SEGID's were consistent with the latest Segment Shapefile
+    - Updated segment ids (SEGID)
+        - Made consistent with the latest segment shapefile
         - Updated segments to account for recent network changes & add segment definitions to account for rail transit
-    - Added SEGEX_RTP & SEGEX_NEED as text fields (to be populated later when script/processing updated)
+    - Added SEGEX_RTP & SEGEX_NEED as text fields (to be populated later when script/processing updated). These are segment ID exception fields where the future SEGIDs are different than existing SEGIDs.
  - Added 'MergedMasterNet - 2022-09-19a' folder
     - Workspace for editing and updating Merged Master Network and for exporting to v832 & v9 Master Networks
     - Includes update and export script
@@ -169,85 +420,26 @@ Markdown(tabulate(
         - 2023 RTP fields were initially populated with 2019 RTP values & are being updated to reflect draft 2023 RTP
     - V9 & v832 use the following new node numbering schema:
         - TAZ
-
-```{python}
-#| label: tbl-taz
-#| tbl-cap: New Node Numbering Schema (TAZ)
-#| echo: False
-from IPython.display import Markdown
-from tabulate import tabulate
-table = [['Internal', 'Internal Used Zones'  , '1-3546'   , '1-2873'                                ],
-         ['Internal', 'Internal Unused Zones', '3547-3600', '0'                                     ],
-         ['Internal', 'External Nodes'       , '3601-3629', '136-140, 421-423, 1782-1788, 2874-2881']]
-Markdown(tabulate(
-  table, 
-  headers=["Type","Description", "v9", 'v8.3.2']
-))
-```
-
-```{python}
-#| label: tbl-taz-detail
-#| tbl-cap: New Node Numbering Schema (TAZ - Detailed)
-#| echo: False
-from IPython.display import Markdown
-from tabulate import tabulate
-table = [['Internal', 'Box Elder', '1-153'    , '1-135'    ],
-         ['Internal', 'Weber'    , '154-581'  , '141-420'  ],
-         ['Internal', 'Davis'    , '582-905'  , '424-654'  ],
-         ['Internal', 'Salt Lake', '906-2216' , '655-1781' ],
-         ['Internal', 'Utah'     , '2217-3546', '1789-2873'],
-         ['External', 'Box Elder', '3601-3606', '136-140'  ],
-         ['External', 'Weber'    , '3607-3609', '421-423'  ],
-         ['External', 'Davis'    , '0-0'      , '0-0'      ],
-         ['External', 'Salt Lake', '3610-3615', '1782-1788'],
-         ['External', 'Utah'     , '3616-3629', '2874-2881'],
-         ]
-Markdown(tabulate(
-  table, 
-  headers=["Type","Description", "v9", 'v8.3.2']
-))
-```
-
-
         - Highway Nodes
+
 
 
 ```{python}
 #| label: tbl-hway-nodes
-#| tbl-cap: New Node Numbering Schema (Highway Nodes)
+#| tbl-cap: Master Network Node Numbering Schema
 #| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
-table = [['Transit'   , 'WFRC Transit Nodes', '10,000 - 19,999'],
-         ['Highway'   , 'WFRC Highway Nodes', '20,000 - 49,999'],
-         ['Transit'   , 'MAG Transit Nodes' , '50,000 - 59,999'],
-         ['Highway'   , 'MAG Highway Nodes' , '60,000 - 89,999'],
-         ['Donut Area', 'WFRC Highway Nodes', '90,000 - 94,999'],
-         ['Donut Area', 'MAG Highway Nodes' , '95,000 - 99,999']]
+table = [['WFRC'   , '10,000 - 19,999', '20,000 - 49,999', '90,000 - 94,999'],
+         ['MAG'    , '50,000 - 59,999', '60,000 - 89,999', '95,000 - 99,999']]
 Markdown(tabulate(
   table, 
-  headers=["Type","Description", "both v9 & v8.3.2"]
+  headers=["MPO","Transit Nodes", "Highway Nodes", "Donut Area Nodes*"]
 ))
 ```
+*Donut Area = ???
 
-```{python}
-#| label: tbl-hway-count
-#| tbl-cap: New Node Numbering Schema (Highway Nodes Count)
-#| echo: False
-from IPython.display import Markdown
-from tabulate import tabulate
-table = [['Internal Used Zones'  , '3546' , '2858', '688'],
-         ['External Count'       , '29'   , '23'  , '6'  ],
-         ['All New Used Zones'   , '3575' , '2881', '694'],
-         ['Internal Unused Zones', '54'   , '0'   , ''   ],
-         ['Max Used Zone'        , '3629' , '2881', ''   ]]
-Markdown(tabulate(
-  table, 
-  headers=["","v9", "v8.3.2","New"],
-  tablefmt="pipe", 
-  colalign=("left",)*4
-))
-```
+
 
 
 ## Transit Network
