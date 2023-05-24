@@ -144,7 +144,9 @@ The updated regional median income was $74,946 from 2019 5-year ACS, in 2019 dol
 ### Auto Occupancy
 
 The vehicle occupancy rates were updated expanded to additional trips purposes. See @tbl-occupancy and @tbl-occupancy-3p. Variables were renamed where indicated. Auto occupancy parameters were updated based on 2012 Household Travel Survey (reprocessed). Values represent average persons per vehicle for just the Wasatch Front model space. External trips are average for IX + XI, all other parameters are averages for II trips.
- 
+
+<mark>???SHOW PREVIOUS VALUES???</mark>
+
 ```{python}
 #| label: tbl-occupancy
 #| tbl-cap: Average Auto-Occupancy Codes and Rates
@@ -170,6 +172,8 @@ Markdown(tabulate(
   headers=["Trip Purpose","Code","Previous Code","Updated Value"],
   floatfmt=".2f"))
 ```
+
+<mark>???SHOW PREVIOUS VALUES???</mark>
 
 ```{python}
 #| label: tbl-occupancy-3p
