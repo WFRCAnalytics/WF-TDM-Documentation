@@ -6,15 +6,29 @@ author: "WFRC / MAG"
 
 ```{python}
 #|echo: false
+
+# model folder
+tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
+tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\_archive\WF TDM v9.0 - 2022-10-05"
+```
+
+```{python}
+#|echo: false
 # PREPROCESS GEOSPATIAL DATA
 import os
 import pandas as pd
 import geopandas as gpd
 import topojson as tp
 
-fnTaz832In    = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8.3.2\WF TDM v8.3.2 - 2023-02-28\1_Inputs\1_TAZ\TAZ.shp"
-fnTaz900In    = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-14\1_Inputs\1_TAZ\TAZ.shp"
-fnK12EnrollIn = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-28\1_Inputs\2_SEData\_ source - HBSch Enroll & Med Inc\K-12 Enrollment\k12_schools_enrollment\k12_schools_enrollment.shp"
+fnTazOldIn    = tdmOld + r"\1_Inputs\1_TAZ\TAZ.shp"
+fnTazNewIn    = tdmNew + r"\1_Inputs\1_TAZ\TAZ.shp"
+fnK12EnrollIn = tdmNew + r"\1_Inputs\2_SEData\_ source - HBSch Enroll & Med Inc\K-12 Enrollment\k12_schools_enrollment\k12_schools_enrollment.shp"
+fnCity        = tdmNew + r"\1_Inputs\1_TAZ\Districts\City_Name.dbf"
+fnSDst        = tdmNew + r"\1_Inputs\1_TAZ\Districts\Dist_Small.dbf"
+fnMDst        = tdmNew + r"\1_Inputs\1_TAZ\Districts\Dist_Medium.dbf"
+fnLDst        = tdmNew + r"\1_Inputs\1_TAZ\Districts\Dist_Large.dbf"
+
+fnDistrictsOld    = tdmNew + r"\1_Inputs\1_TAZ\TAZ.shp"
 
 def writeGeoJson(in_path,out_path,fields):
   if not os.path.isfile(out_path):
@@ -26,16 +40,20 @@ def writeGeoJson(in_path,out_path,fields):
     gdf_simplified.to_file(out_path, driver='GeoJSON')
     return;
 
-writeGeoJson(fnTaz832In   , "data/taz832.geojson"   , ['TAZID','CO_TAZID','geometry'])
-writeGeoJson(fnTaz900In   , "data/taz900.geojson"   , ['TAZID','CO_TAZID','REMM','geometry'])
-writeGeoJson(fnK12EnrollIn, "data/k12enroll.geojson",['SchoolName','Enrol_Elem','Enrol_Midl','Enrol_High','PublicElem','PublicMidl','PublicHigh','PriChaElem','PriChaMidl','PriChaHigh','geometry'])
+writeGeoJson(fnTazOldIn   , "data/tazOld.geojson"   , ['TAZID','CO_TAZID','geometry'])
+writeGeoJson(fnTazNewIn   , "data/tazNew.geojson"   , ['TAZID','CO_TAZID','REMM','geometry'])
+writeGeoJson(fnK12EnrollIn, "data/k12enroll.geojson", ['SchoolName','Enrol_Elem','Enrol_Midl','Enrol_High','PublicElem','PublicMidl','PublicHigh','PriChaElem','PriChaMidl','PriChaHigh','geometry'])
+writeGeoJson(fnCity       , "data/city.geojson"     , ['CITY_NAME','geometry'])
+writeGeoJson(fnSDst       , "data/sdst.geojson"     , ['DISTSML','DSML_NAME','geometry'])
+writeGeoJson(fnMDst       , "data/mdst.geojson"     , ['DISTMED','DMED_NAME','geometry'])
+writeGeoJson(fnLDst       , "data/ldst.geojson"     , ['DISTLRG','DLRG_NAME','geometry'])
 
 # add median income to taz file
 
 if not os.path.isfile('data/tazmedincome.geojson'):
-  gdfTaz900 = gpd.read_file("data/taz900.geojson")
-  dfMedIncome = pd.read_csv(r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-28\1_Inputs\2_SEData\_ source - HBSch Enroll & Med Inc\Median Income & VOT\for SE file -- TAZ Median Income - 2022-03-17.csv")
-  gdfTazMedIncome = pd.DataFrame.merge(gdfTaz900,dfMedIncome,on='CO_TAZID',how='left')
+  gdfTazNew = gpd.read_file("data/tazNew.geojson")
+  dfMedIncome = pd.read_csv(tdmNew + r"\1_Inputs\2_SEData\_ source - HBSch Enroll & Med Inc\Median Income & VOT\for SE file -- TAZ Median Income - 2022-03-17.csv")
+  gdfTazMedIncome = pd.DataFrame.merge(gdfTazNew,dfMedIncome,on='CO_TAZID',how='left')
   gdfTazMedIncome.to_file('data/tazmedincome.geojson', driver='GeoJSON')
 
 ```
@@ -46,9 +64,13 @@ if not os.path.isfile('data/tazmedincome.geojson'):
 L = require('leaflet@1.2.0')
 html`<link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' />`
 
-geojsonTaz832    = FileAttachment("data/taz832.geojson"   ).json()
-geojsonTaz900    = FileAttachment("data/taz900.geojson"   ).json()
+geojsonTazOld    = FileAttachment("data/tazOld.geojson"   ).json()
+geojsonTazNew    = FileAttachment("data/tazNew.geojson"   ).json()
 geojsonK12Enroll = FileAttachment("data/k12enroll.geojson").json()
+geojsonCity      = FileAttachment("data/city.geojson"     ).json()
+geojsonSDst      = FileAttachment("data/sdst.geojson"     ).json()
+geojsonMDst      = FileAttachment("data/mdst.geojson"     ).json()
+geojsonLDst      = FileAttachment("data/ldst.geojson"     ).json()
 ```
 
 # Input Data
@@ -82,7 +104,7 @@ mapTaz = {
   let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
   yield container;
   
-  let map = L.map(container).setView([40.7608, -111.8910], 8);
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
 
   let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -91,8 +113,8 @@ mapTaz = {
   let lcolors = ['#0000FF','#FFFF00']
   let llabels = ['v8.3.2' ,'v9.0.0' ];
 
-  let lyrTAZ832 = L.geoJson(geojsonTaz832, { weight: 3.00, color: lcolors[0]}).addTo(map);
-  let lyrTAZ900 = L.geoJson(geojsonTaz900, { weight: 0.75, color: lcolors[1]}).addTo(map);
+  let lyrTAZOld = L.geoJson(geojsonTazOld, { weight: 3.00, color: lcolors[0]}).addTo(map);
+  let lyrTAZNew = L.geoJson(geojsonTazNew, { weight: 0.75, color: lcolors[1]}).addTo(map);
 
   var legend = L.control({position: 'bottomleft'});
     legend.onAdd = function (map) {
@@ -169,21 +191,21 @@ mapTazRemmSpace = {
   let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
   yield container;
   
-  let map = L.map(container).setView([40.7608, -111.8910], 8);
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
 
   let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  let lcolors = ['#00FF7F'   ,'#BD0026'       ]
-  let llabels = ['REMM Space','Non-REMM Space'];
+  let remmColors = ['#00887F'   ,'#BD0026'       ]
+  let remmLabels = ['REMM Space','Non-REMM Space'];
   
-  let lyrTAZ900 = L.geoJson(geojsonTaz900, {
+  let lyrTAZNew = L.geoJson(geojsonTazNew, {
                             style: function(feature) {
                               var d = feature.properties.REMM;
-                              return d==1 ? {color: lcolors[0], opacity:0.95} :
-                                     d==0 ? {color: lcolors[1], opacity:0.95} : 
-                                            {color:  '#000000', opacity:0.95};
+                              return d==1 ? {color:remmColors[0], weight:1, opacity:0.95} :
+                                     d==0 ? {color:remmColors[1], weight:1, opacity:0.95} : 
+                                            {color:    '#000000', weight:1, opacity:0.95} ;
                             }
   }).addTo(map);
   
@@ -191,8 +213,8 @@ mapTazRemmSpace = {
   legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'legend');
     div.innerHTML = '';
-    for (var i = 0; i < llabels.length; i++) {
-      div.innerHTML += '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' + llabels[i] + '<br/>';
+    for (var i = 0; i < remmLabels.length; i++) {
+      div.innerHTML += '<i style="background:' + remmColors[i] + '">&nbsp;</i> ' + remmLabels[i] + '<br/>';
     }
 
     // Add CSS style for the background color
@@ -214,7 +236,7 @@ A new metholody for calculating parking cost was envisioned but not implemented 
 
 Parking costs were developed for downtown areas for Ogden, Salt Lake City, and Provo, as well as major university areas along the Wasatch Front. A new source polygon shapefile was developed to hold rates for Home-Based Work (HBW), Home-Based College (HBC), Home-Based Other (HBO), and Non-Home-Based (NHB) trip purposes. While rates are included for these four purposes, the v9.0.0 model only utilizes HBW for permanent parking and HBO for temporary parking. The future methodology will incorporate all four purposes.
 
-???SHOW MAP OF NEW SHAPEFILE???
+<mark>???WHERE IS NEW SHAPEFILE... SHOW MAP OF NEW SHAPEFILE???</mark>
 
 ##### Lagoon and Salt Lake City International Aiport
 The Airport & Lagoon parking costs were updated based on current parking rate information and the assumptions described in this section.
@@ -229,18 +251,68 @@ Compared to the previous temporary parking values of $1 in 2010 dollars, the cho
 
 
 ### Districts
-Small District definitions and names were updated to include a larger number of TAZs than previous models' small districts. There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field *DSML_NAME' includes a prefix of Medium District index followed by a colon and then the sequaential small district count (e.g. 15:1). Small districts were modified in conjunction with origin-destination data from StreetLight.
+Small District definitions and names were updated to include a larger number of TAZs than previous models' small districts. There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field *DSML_NAME' includes a prefix of Medium District index followed by a colon and then the sequaential small district count (e.g. 15:1). Small districts were modified in conjunction with origin-destination data from StreetLight. Districts are shown in @fig-districts.
+
+```{ojs}
+//|label: fig-districts
+//|fig-cap: Districts
+//|echo: false
+
+mapDistricts = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
+
+  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  let lcolors     = ['#FF0000'       ,'#00FF00'        ,'#0000FF'        ];
+  let llabels     = ['Small District','Medium District','Large District' ];
+
+  let lyrLDst = L.geoJson(geojsonLDst, { weight: 12.00, color: lcolors[2], fillOpacity: 0}).addTo(map);
+  let lyrMDst = L.geoJson(geojsonMDst, { weight:  6.00, color: lcolors[1], fillOpacity: 0}).addTo(map);
+  let lyrSDst = L.geoJson(geojsonSDst, { weight:  2.00, color: lcolors[0], fillOpacity: 0}).addTo(map);
+
+  lyrSDst.eachLayer(function(layer) {
+    var name = layer.feature.properties.DSML_NAME; // Assuming the attribute field is named "DSML_NAME"
+layer.bindTooltip(name); // Add tooltip
+    // OR
+    // layer.bindPopup(name); // Add popup
+  });
+
+  var legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'legend');
+      div.innerHTML = '';
+      for (var i = 0; i < llabels.length; i++) {
+        div.innerHTML += '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' + llabels[i] + '<br/>';
+      }
+
+      // Add CSS style for the background color
+      div.style.backgroundColor = 'lightgray';
+      div.style.padding = '10px';
+      
+      return div;
+    };
+    legend.addTo(map);
+}
+```
+
 
 Two additional polygon shapefiles were added to the Districts subfolder:
-    - Wasatch Front Subarea *WF_Subarea.shp*
-    - REMM Distric Areas *Dist_REMM_Area.shp* ???WHAT IS THIS???
 
-???EMBED MAPS!???
+* Wasatch Front Subarea *WF_Subarea.shp*  <mark>???WHAT IS THIS???</mark>
+* REMM Distric Areas *Dist_REMM_Area.shp* <mark>???WHAT IS THIS???</mark>
+
+<mark>???SHOW MAPS???</mark>
 
 ### Source
 The *\_Source* subfolder was added and includes the following shapefile data sets: Cities, Counties, Districts, adn EnvConstraints. Additionally, a *\_\_ViewTAZDistricts* folder with ArcGIS Pro project & mapping files was added.
 
-???EMBED MAPS!???
+<mark>???SHOW MAPS!???</mark>
 
 ## Socioecononomic Data
 Changes to socioeconomic (SE) forecasts and control totals are described in this section.
@@ -251,26 +323,102 @@ The socioeconomic forecasts were updated for the WFRC areas. For Box Elder are, 
 The MAG area continues to use the 2019 fiscally constrained plan.
 
 ### Control Totals
-Control total updates were made to the *ControlTotal_SE_AllCounties.csv* and *ControlTotal_WorkAtHome.csv* files. The source worksheet for these input files are found in the *-\_Source - ControlTotal_SE - 2022-08-31.xlsx* file. Other files in this directory were removed.
+Updates to the county control totals were made based on the projctions from the Gardner Policy Institute as found in the *ControlTotal_&shy;SE_AllCounties.csv* file. See @fig-county-control-totals-by-category for a comparison chart. The comparisons show that overall projections are lower . Also, the affect of home-based job employment from COVID-19 can be seen in the new v9.0.0 dataset.
 
+<mark>???NEED TO EXPLAIN WHY BASE YEAR IS SO DIFFERENT FOR HBJ???</mark>
 
 ```{python}
+#| echo: false
 import pandas as pd
 
-fnConTot_v832 = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8.3.2\WF TDM v8.3.2 - 2023-02-28\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
-fnConTot_v900 = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-28\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
+# County Control Totals
+fnConTotOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_WF.csv"
+fnConTotNew = tdmNew + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
 
+dfConTotOld = pd.read_csv(fnConTotOld)
+dfConTotOld = dfConTotOld.rename(columns={'CoName':'CO_NAME'})
+dfConTotOld['CO_NAME'] = dfConTotOld['CO_NAME'].str.replace(' County','')
+dfConTotOld['ModelVersion'] = 'v8.3.2'
 
-dfConTotv832 = pd.read_csv(fnConTot_v832)
-dfConTotv832['modelVersion'] = 'v8.3.2'
+dfConTotNew = pd.read_csv(fnConTotNew)
+dfConTotNew = dfConTotNew[dfConTotNew['Subarea']=='1 - Wasatch Front'] # only WF area
+dfConTotNew['ModelVersion'] = 'v9.0.0'
 
-dfConTotv900 = pd.read_csv(fnConTot_v832)
-dfConTotv900['modelVersion'] = 'v9.0.0'
+dfConTot = pd.concat([dfConTotOld,dfConTotNew])
 
-dfConTot = pd.concat([dfConTotv832,dfConTotv900])
-display(dfConTot)
+#display(dfConTot)
+dfConTot_melt = pd.melt(dfConTot, id_vars=('CO_NAME','YEAR','ModelVersion'), value_name='ControlTotal', var_name='Category', value_vars=('TOTPOP','GQ_Pop','HH_Pop','HH','HH_Size','POP_00_17','POP_18_64','POP_65P','ALLEMP','RETL','FOOD','MANU','WSLE','OFFI','GVED','HLTH','OTHR','AGRI','MING','CONS','HBJ','Job_HH','WrkPop_Job'))
+
+dfConTot_melt.to_csv('data/controltotal.csv',index=False)
+dfConTot_melt.groupby(['CO_NAME'],as_index=False).agg(COUNT=('YEAR','size')).to_csv('data/counties.csv',index=False)
 
 ```
+
+```{ojs}
+//|echo: false
+
+// read in CSVs
+faControlTotals = FileAttachment("data/controltotal.csv").csv({ typed: true });
+faCounties      = FileAttachment("data/counties.csv"    ).csv({ typed: true });
+
+viewof selectCounty   = Inputs.select(faCounties.map(function(d) {return d.CO_NAME}), {value: 'Salt Lake', label: 'County: '});
+viewof selectCategory = Inputs.select(new Map([['Total Population'               , 'TOTPOP'        ],
+                                               ['Group Quarter Population'       , 'GQ_Pop'        ],
+                                               ['Household Population'           , 'HH_Pop'        ],
+                                               ['Households'                     , 'HH'            ],
+                                               ['Household Size'                 , 'HH_Size'       ],
+                                               ['Population 0-17'                , 'POP_00_17'     ],
+                                               ['Population 18-64'               , 'POP_18_64'     ],
+                                               ['Population 65+'                 , 'POP_65P'       ],
+                                               ['All Employment'                 , 'ALLEMP'        ],
+                                               ['Retail Employment'              , 'RETL'          ],
+                                               ['Food Employment'                , 'FOOD'          ],
+                                               ['Manufacturing Employment'       , 'MANU'          ],
+                                               ['Wholesale Employment'           , 'WSLE'          ],
+                                               ['Office Employment'              , 'OFFI'          ],
+                                               ['Government/Education Employment', 'GVED'          ],
+                                               ['Health Employment'              , 'HLTH'          ],
+                                               ['Other Employment'               , 'OTHR'          ],
+                                               ['Agriculture Employment'         , 'AGRI'          ],
+                                               ['Mining Employment'              , 'MING'          ],
+                                               ['Construction Employment'        , 'CONS'          ],
+                                               ['Home-Based Job Employment'      , 'HBJ'           ],
+                                               ['Jobs per Household'             , 'Job_HH'        ],
+                                               ['Working Population per Job'     , 'WrkPop_Job'    ]]), {value: 'HH_Pop', label: 'Category: '});
+// FILTER DATA
+filteredControlTotals = faControlTotals.filter(function(ct) {
+  return selectCounty   == ct.CO_NAME &&
+         selectCategory == ct.Category;
+});
+
+maxY = Math.max(...filteredControlTotals.map(item => item.ControlTotal));
+```
+
+```{ojs}
+//|label: fig-county-control-totals-by-category
+//|fig-cap: County Control Totals by Category
+//|echo: false
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: {label: 'Year', tickFormat: d => d},
+  y: {label: 'Control Total', domain: [0, maxY]},
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 16 } },
+  marginLeft: 60,
+  style: {
+    fontSize: 12
+  },
+  marks: [
+    Plot.line(filteredControlTotals, {x: 'YEAR', y: 'ControlTotal', stroke: 'ModelVersion', strokeWidth: 3}),
+  ]
+})
+```
+
+
+<mark>???WORK AT HOME IS EXACLTY THE SAME BETWEEN VERSIONS???.</mark>
+
+The source worksheet for these input files are found in the *-\_Source - ControlTotal_SE - 2022-08-31.xlsx* file. Other files in this directory were removed.
 
 
 ### Source Files
@@ -287,7 +435,7 @@ mapK12Enroll = {
   let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
   yield container;
   
-  let map = L.map(container).setView([40.7608, -111.8910], 8);
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
 
   let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
