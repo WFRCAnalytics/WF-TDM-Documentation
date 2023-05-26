@@ -3,3 +3,5 @@ v832-whats-new/.quarto/
 v832-whats-new/._book/
 v9-whats-new/.quarto/
 copy-to-filezilla-test.ipynb
+.luarc.json
+_site/*
