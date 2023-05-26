@@ -693,7 +693,7 @@ With the change in model extents, a change in external locations was necessitate
 
 ### Location
 
-Updated to new Eternal Node locations and numbering scheme:
+Updated to new External Node locations and numbering scheme:
 
 
 ```{ojs}
@@ -779,7 +779,7 @@ mapExternals = {
   //let lyrNetwork = L.geoJson(geojsonMasterNetLink, { weight: 0.75, color: "#888888", fillOpacity: 0}).addTo(map);
 
   // create the GeoJSON layer and call the styling function with each marker
-  var lyrNetwork = L.geoJson(geojsonMasterNetLink,  { function (markerByNewNet(feature))}).addTo(map);
+//  var lyrNetwork = L.geoJson(geojsonMasterNetLink,  { function (markerByNewNet(feature))}).addTo(map);
 
   // create the GeoJSON layer and call the styling function with each marker
   var externalNewLayer = L.geoJSON(geojsonExternalNew, {
