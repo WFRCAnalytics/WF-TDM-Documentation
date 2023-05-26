@@ -8,17 +8,247 @@ author: "WFRC / MAG"
 
 ## Global Data
 
+The changes in this section were made in the Global Data section of the Inputs.
+
 ### Mode Choice
- - Added input files regarding new bus speed ratios
-    - Added 'bus_speed_ratios.csv' -- file containing the bus speed factors read in by the model
-    - Added '_source - bus_speed_ratios.xlsx' -- source file for bus speed ratios csv
 
-#### Update Transit Speed Factors
-The factors to calculate bus speeds from congested auto speeds from the distribution loaded network were re-estimated based on Aug-Nov 2019 GTFS data from UTA. The functional groups were redefined and expanded to include area type as well as peak and off-peak. @fig-old-bus shows the previous bus speed factors and @fig-new-bus shows the new bus speed factors used in this model version.
+Bus speed ratios were updated in the 'bus_speed_ratios.csv' file. A companion file showing additional calculations is included in the new '_source - bus_speed_ratios.xlsx' file.
 
-![Previous Bus Speed Factors.](../_pictures/old_bus_speeds.png){#fig-old-bus}
+The factors to calculate bus speeds from congested auto speeds from the distribution loaded network were re-estimated based on August through November 2019 General Transit Feed Specification (GTFS) data. The functional groups were redefined and expanded to include area type as well as peak and off-peak time periods. 
 
-![New Bus Speed Factors.](../_pictures/new_bus_speeds.png){#fig-new-bus}
+```{python}
+# Convert bus speeds input into long format
+import pandas as pd
+
+# add name data to expand model CSV
+dfAreaTypes = pd.DataFrame([
+  ['Rur','Rural'     ],
+  ['Trn','Transition'],
+  ['Sub','Suburban'  ],
+  ['Urb','Urban'     ],
+  ['CBD','CBD-Like'  ]
+], columns=('AreaType','AreaTypeName'))
+
+dfTimePeriods = pd.DataFrame([
+  ['Pk','Peak'    ],
+  ['Ok','Off-Peak'],
+  ['DY','Daily'   ]
+], columns=('TimePeriod','TimePeriodName'))
+
+dfFunctionalClasses = pd.DataFrame([
+  [1, 'Col', 'Collectors & Locals'],
+  [2, 'Min', 'Minor Arterials'    ],
+  [3, 'Maj', 'Major Arterials'    ],
+  [4, 'Exp', 'Expressways'        ],
+  [5, 'Fwy', 'Freeways & Ramps'   ]
+], columns=('FC','FunctionalClass','FunctionalClassName'))
+
+# read in bus speed ratios
+dfBusSpeedRatios = pd.read_csv("data\\bus_speed_ratios.csv").rename(columns={';FC':'FC'})
+
+# create a list of column names to use as variable names
+varCols = dfBusSpeedRatios.columns.to_list()
+
+# remove the ID columns from variable columns list
+varCols.remove('Functional Class')
+
+# melt table to get long format using FC and FC Name as ids
+dfBusSpeedRatios_long = pd.melt(dfBusSpeedRatios, id_vars=['FC'], value_vars=varCols, var_name='TimePeriod_AreaType', value_name='BusSpeedRatio')
+
+# get Time Period and Area Type from TimePeriod_AreaType field
+dfBusSpeedRatios_long['TimePeriod'] = dfBusSpeedRatios_long['TimePeriod_AreaType'].str.split('_').str[0]
+dfBusSpeedRatios_long['AreaType'  ] = dfBusSpeedRatios_long['TimePeriod_AreaType'].str.split('_').str[1]
+
+dfBusSpeedRatios_long = dfBusSpeedRatios_long.merge(dfFunctionalClasses,on='FC'        )
+dfBusSpeedRatios_long = dfBusSpeedRatios_long.merge(dfTimePeriods      ,on='TimePeriod')
+dfBusSpeedRatios_long = dfBusSpeedRatios_long.merge(dfAreaTypes        ,on='AreaType'  )
+
+# limit columns and export csv
+dfBusSpeedRatios_long = dfBusSpeedRatios_long[['FunctionalClass','FunctionalClassName','TimePeriod','TimePeriodName','AreaType','AreaTypeName','BusSpeedRatio']]
+
+## create objects for observable js
+#ojs_define(busdata = dfBusSpeedRatios_long, typed=True)
+#ojs_define(fcnames = dfBusSpeedRatios_long[['FunctionalClassName']].drop_duplicates())
+#ojs_define(tpnames = dfBusSpeedRatios_long[['TimePeriodName'     ]].drop_duplicates())
+#ojs_define(atnames = dfBusSpeedRatios_long[['AreaTypeName'       ]].drop_duplicates())
+
+dfBusSpeedRatios_long.to_csv(r'data\bus_speed_ratios_long.csv', index=False)
+
+# export function class list csv
+dfBusSpeedRatios_long[['FunctionalClass','FunctionalClassName']].drop_duplicates().to_csv('data\\functionalclass.csv', index=False)
+dfBusSpeedRatios_long[['TimePeriod'     ,'TimePeriodName'     ]].drop_duplicates().to_csv('data\\timeperiod.csv'     , index=False)
+dfBusSpeedRatios_long[['AreaType'       ,'AreaTypeName'       ]].drop_duplicates().to_csv('data\\areatype.csv'       , index=False)
+
+dfBusSpeedRatios_Previous = pd.DataFrame([
+   ['Collectors'                        , 0.60],
+   ['Minor Arterials\n(Urb/CBD)'        , 0.65],
+   ['Minor Arterials\n(Sub/Rur)'        , 0.65],
+   ['Principal Arterials\n& Expressways', 0.55],
+   ['Freeway Ramps'                     , 0.75],
+   ['Freeways'                          , 0.95]
+], columns=('FunctionalClass','BusSpeedRatio'))
+
+dfBusSpeedRatios_Previous.to_csv(r'data\bus_speed_ratios_previous.csv', index=False)
+
+
+```
+
+
+::: {.panel-tabset}
+
+
+#### Bus Speeds Plot
+
+
+```{ojs}
+//| echo: false
+
+// read in CSVs
+faDataBusSpeeds     = FileAttachment("data\\bus_speed_ratios_long.csv").csv({ typed: true });
+faFunctionalClasses = FileAttachment("data\\functionalclass.csv"      ).csv({ typed: true });
+faTimePeriods       = FileAttachment("data\\timeperiod.csv"           ).csv({ typed: true });
+faAreaTypes         = FileAttachment("data\\areatype.csv"             ).csv({ typed: true });
+
+viewof facetSelect  = Inputs.select(new Map([['Time Period', 'TimePeriodName'], ['Area Type', 'AreaTypeName'], ['Functional Class', 'FunctionalClassName']]), {value: 'TimePeriodName'     , label: "Columns:"});
+viewof domainSelect = Inputs.select(new Map([['Time Period', 'TimePeriodName'], ['Area Type', 'AreaTypeName'], ['Functional Class', 'FunctionalClassName']]), {value: 'AreaTypeName'       , label: "X-Axis:"});
+viewof strokeSelect = Inputs.select(new Map([['Time Period', 'TimePeriodName'], ['Area Type', 'AreaTypeName'], ['Functional Class', 'FunctionalClassName']]), {value: 'FunctionalClassName', label: "Series:"});
+
+// FILTER DATA
+//viewof functionalclasses_checked = Inputs.checkbox(faFunctionalClasses.map(function(d) {return d.FunctionalClassName}),
+//                                                   {value: faFunctionalClasses.map(function(d) {return d.FunctionalClassName}),
+//                                                    label: "Function Class"});
+//viewof timeperiods_checked       = Inputs.checkbox(faTimePeriods      .map(function(d) {return d.TimePeriodName     }),
+//                                                   {value: faTimePeriods      .map(function(d) {return d.TimePeriodName     }),
+//                                                    label: "Time Period"   });
+//filteredBusData = faDataBusSpeeds.filter(function(busspeed) {
+//  return functionalclasses_checked.includes(busspeed.FunctionalClassName) &&
+//         timeperiods_checked      .includes(busspeed.TimePeriodName     )// &&
+//         //areatypes        .includes(busspeed.AreaTypeName  );
+//});
+
+domainFromSelect = {
+  switch(domainSelect) {
+    case 'TimePeriodName'     : return faTimePeriods      .map(function(d) {return d.TimePeriod     }); break;
+    case 'AreaTypeName'       : return faAreaTypes        .map(function(d) {return d.AreaType       }); break;
+    case 'FunctionalClassName': return faFunctionalClasses.map(function(d) {return d.FunctionalClass}); break;
+    default                   : return                                                                       ;
+  }
+}
+
+xPlotDomainSelect = {
+  switch(domainSelect) {
+    case 'TimePeriodName'     : return "TimePeriod"     ; break;
+    case 'AreaTypeName'       : return "AreaType"       ; break;
+    case 'FunctionalClassName': return "FunctionalClass"; break;
+    default                   : return                         ;
+  }
+}
+
+xLabel = {
+  switch(domainSelect) {
+    case 'TimePeriodName'     : return "Time Period"     ;      break;
+    case 'AreaTypeName'       : return "Area Type"       ;      break;
+    case 'FunctionalClassName': return "Functional Class";      break;
+    default                   : return                               ;
+  }
+}
+
+domainFacetSelect = {
+  switch(facetSelect) {
+    case 'TimePeriodName'     : return faTimePeriods      .map(function(d) {return d.TimePeriodName     }); break;
+    case 'AreaTypeName'       : return faAreaTypes        .map(function(d) {return d.AreaTypeName       }); break;
+    case 'FunctionalClassName': return faFunctionalClasses.map(function(d) {return d.FunctionalClassName}); break;
+    default                   : return;  }
+}
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  facet: {data: faDataBusSpeeds, x: facetSelect, label: xLabel},
+  x: {label: xLabel, domain: domainFromSelect},
+  y: {label: "Bus Speed Ratio" , domain: [0, 1]},
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 16 } },
+  style: {
+    fontSize: 12
+  },
+  marks: [
+    Plot.frame(),
+    Plot.line(faDataBusSpeeds, {x: xPlotDomainSelect, y: "BusSpeedRatio", stroke: strokeSelect, strokeWidth: 2}),
+    Plot.dot (faDataBusSpeeds, {x: xPlotDomainSelect, y: "BusSpeedRatio", stroke: strokeSelect, r: 4, fill: strokeSelect})
+  ]
+})
+```
+
+### Bus Speeds Data
+
+```{ojs}
+//| echo: false
+Inputs.table(faDataBusSpeeds, {
+  style: {
+    fontSize: 16,
+  },
+  columns: [
+    "FunctionalClassName",
+    "TimePeriodName",
+    "AreaTypeName",
+    "BusSpeedRatio"
+  ],
+  header: {
+    FunctionalClassName: "Functional Class",
+    TimePeriodName: "Time Period",
+    AreaTypeName: "Area Type",
+    BusSpeedRatio: "Bus Speed Ratio"
+  }})
+```
+
+#### Previous Bus Speeds
+
+```{ojs}
+//| echo: false
+
+// read in CSVs
+faDataBusSpeeds_previous = FileAttachment("data\\bus_speed_ratios_previous.csv").csv({ typed: true });
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  style: {
+    fontSize: 16,
+  },
+  x: {label: "Functional Class", tickRotate: 90, domain: faDataBusSpeeds_previous.map(function(d) {return d.FunctionalClass})//,
+      //tickFormat: (d) => {
+//          const label = d.toString(); // Convert the tick value to a string
+//          const maxWidth = 15; // Specify the maximum width for each label
+//          const words = label.split(" "); // Split the label into words
+//
+//          let line = "";
+//          let lines = [];
+//
+//          words.forEach((word) => {
+//            if (line.length + word.length > maxWidth) {
+//              lines.push(line);
+//              line = "";
+//            }
+//            line += word + " ";
+//          });
+//
+//          lines.push(line);
+//
+//          return lines;
+//      }
+    },
+  y: {label: "Bus Speed Ratio" , domain: [0, 1]},
+  color: { type: "categorical", legend: true },
+  marks: [
+    Plot.frame(),
+    Plot.barY(faDataBusSpeeds_previous, {x: "FunctionalClass", y: "BusSpeedRatio", stroke: "FunctionalClass", fill: "FunctionalClass"})
+  ]
+})
+
+```
+
+:::
+
 
 ### Assignment
  - Added lookup table & source file for diurnal and PA parameters (corresponding factors were removed from the ‘0GeneralParameters.block’ file)
