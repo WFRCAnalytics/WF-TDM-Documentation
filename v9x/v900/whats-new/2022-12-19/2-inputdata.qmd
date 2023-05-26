@@ -6,35 +6,19 @@ author: "WFRC / MAG"
 
 # Input Data
 
-## Global Data
-
 ## Highway Network
-### Dated Updates
 
-**MergedMasterNet - 2023-02-02**
-
- - Updated SEGID to create transit segments
- - Updated Links & Nodes to account for transit segmentation
-
-**MasterNet_v9 – 2023-01-26**
-
- - Added rail segids to various links as well as split a few links to accommodate rail segid additions
- - Rail segid additions were made to allow for easier transit result visualization
+In the 'MergedMasterNet - 2023-02-02.net' and 'MasterNet_v9 – 2023-01-26.net' several link SEGIDs were updated to create transit segments, and split some links to account for transit segmentation. Rail SEGID additions were made to allow for easier transit result visualization.
 
 ## Transit Network
-### Transit Line Files
- - Updated SEGID to create transit segments (all years)
- - Updated Express Bus between Salt Lake and Ogden for:
-    - 2023
-    - 2028
-    - 2032 (RTP & Needs)
-    - 2042 (RTP & Needs)
-    - 2050 (RTP & Needs)
+
+In the transit line files, were updated to incorporate SEGID changes in master network.
+
+The Express Bus between Salt Lake and Ogden for 2023, 2028, 2032 (RTP & Needs) , 2042 (RTP & Needs), and 2050 (RTP & Needs).
 
 ## Externals
-### Other
-  - The 'WF_DY_PA_VehicleTrips.mtx' and 'WF_DY_PA_ExtTripEnds.csv' were updated from UDOT’s subarea extraction process for all years (2015 & 2023 used 2019 data) in '1_Inputs\\5_External\\WF_External
+
+The 'WF_DY_PA_VehicleTrips.mtx' and 'WF_DY_PA_ExtTripEnds.csv' were updated from UDOT’s subarea extraction process for all years (2015 & 2023 used 2019 data) in '1_Inputs\\5_External\\WF_External'
 
 ## Other Changes
- - The '_CreateOutputFolders.s' script was moved to the 'Scenarios\\_default' folder. The script was also updated to reflect changes in '2_ModelScripts\\0_InputProcessing\\a_Setup\\'0_FolderSetup.s’
-
+The '_CreateOutputFolders.s' script was moved to the 'Scenarios\\_default' folder. The script was also updated to reflect changes in '2_ModelScripts\\0_InputProcessing\\a_Setup\\0_FolderSetup.s'
