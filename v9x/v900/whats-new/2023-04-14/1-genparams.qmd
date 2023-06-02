@@ -173,7 +173,7 @@ Markdown(tabulate(
   floatfmt=".2f"))
 ```
 
-<mark>???SHOW PREVIOUS VALUES???</mark>
+<mark>???WE SHOULD PROBABLY SHOW PREVIOUS VALUES???</mark>
 
 ```{python}
 #| label: tbl-occupancy-3p
@@ -268,4 +268,49 @@ Markdown(tabulate(
 
 All transit skim prefix global variable tokens were replaced with values in scripts. Transit skim prefix variables were removed from the General Parameters file.
 
+## Calibration Adjustment K-Factors
 
+Additional k-factors were added for calibration purposes to include work trips, truck trips, and external trips. In v8.3.2 there were only three k-factors defined for non-work personal trips. The calibration adjustment k-factors reset to 1, as shown in @tbl-k-factors.
+```{python}
+#| label: tbl-k-factors
+#| tbl-cap: K-Factors
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Salt Lake to Utah County' , 'Work'    ,'SL_UT_KFAC_Wrk', 1.00, 'N/A'],
+         ['Salt Lake to Utah County' , 'Other'   ,'SL_UT_KFAC_Oth', 1.00, 0.85 ],
+         ['Salt Lake to Utah County' , 'Truck'   ,'SL_UT_KFAC_Trk', 1.00, 'N/A'],
+         ['Salt Lake to Utah County' , 'External','SL_UT_KFAC_Ext', 1.00, 'N/A'],
+         ['Salt Lake to Davis County', 'Work'    ,'SL_DA_KFAC_Wrk', 1.00, 'N/A'],
+         ['Salt Lake to Davis County', 'Other'   ,'SL_DA_KFAC_Oth', 1.00, 0.95 ],
+         ['Salt Lake to Davis County', 'Truck'   ,'SL_DA_KFAC_Trk', 1.00, 'N/A'],
+         ['Salt Lake to Davis County', 'External','SL_DA_KFAC_Ext', 1.00, 'N/A'],
+         ['Weber to Box Elder County', 'Work'    ,'WE_BE_KFAC_Wrk', 1.00, 'N/A'],
+         ['Weber to Box Elder County', 'Other'   ,'WE_BE_KFAC_Oth', 1.00, 1.00],
+         ['Weber to Box Elder County', 'Truck'   ,'WE_BE_KFAC_Trk', 1.00, 'N/A'],
+         ['Weber to Box Elder County', 'External','WE_BE_KFAC_Ext', 1.00, 'N/A']]
+
+merged_rows = []
+prev_row = [''] * len(table[0])
+merge_cols=[0] # index of which columns to include in merging
+
+for row in table:
+    merged_row  = row.copy()
+    for idx, c in enumerate(row):
+        if idx in merge_cols:
+            if row[idx]==prev_row[idx]:
+                merged_row[idx]  = ''
+    merged_rows.append(merged_row)
+    prev_row = row
+
+Markdown(tabulate(merged_rows,
+  headers=['County-to-County Pair','Purpose','Code','Value','v8.3.2 Value']))
+
+
+```
+
+## Other#
+
+The rail to core bus route multiplier *RAIL2COR_MULTIPLIER* was changed from 0.40 to 0.33.
+
+Period and Production/Attraction factors were removed.

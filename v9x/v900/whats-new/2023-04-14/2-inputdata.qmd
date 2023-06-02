@@ -253,7 +253,7 @@ The cost of permanent parking for the Lagoon TAZ was set to *$0* based on the as
 
 The cost of permanent parking at the Salt Lake City International Airport was set to *$0* based on the assumption that workers at the airport do not pay for parking. The cost of temporary parking was set to $1.25 based on a weighted average of short-term premium and economy rates and drop offs and a assumed average vehicle occupancy rate.
 
-The 2022 the cost for the short-term premium parking in the gararge is $5.00 per hour. Short-term economy rate is $2.00 per hour. And for drop-offs there is no charge for parking. The asssumed occupancy rate of 2 people per vehicle would result in per-person rates of $2.50, $1.00, and $0.00, respectively. The average of the three per-person rates is $1.75. Given the unknown distribution of travelers, but assuming more drop-offs than parking, a lower value than $1.75 should be expected. The 2019 cost was chosen to be $1.25.
+The 2022 the cost for the short-term premium parking in the garage is $5.00 per hour. Short-term economy rate is $2.00 per hour. And for drop-offs there is no charge for parking. The assumed occupancy rate of 2 people per vehicle would result in per-person rates of $2.50, $1.00, and $0.00, respectively. The average of the three per-person rates is $1.75. Given the unknown distribution of travelers, but assuming more drop-offs than parking, a lower value than $1.75 should be expected. The 2019 cost was chosen to be $1.25.
 
 Compared to the previous temporary parking values of $1 in 2010 dollars, the chosen cost represents a 25 cent increase in 2019 dollars (25%) over 9 years. This growth seems reasonable, especially given the recent improvements to the airport. Additional justification for the chosen increase is the [CPI adjustment](https://www.bls.gov/data/inflation_calculator.html), which for the 2010 value of $1.00 in results in a 2019 value of $1.18.
 
@@ -313,12 +313,12 @@ layer.bindTooltip(name); // Add tooltip
 Two additional polygon shapefiles were added to the Districts subfolder:
 
 * Wasatch Front Subarea *WF_Subarea.shp*  <mark>???WHAT IS THIS???</mark>
-* REMM Distric Areas *Dist_REMM_Area.shp* <mark>???WHAT IS THIS???</mark>
+* REMM District Areas *Dist_REMM_Area.shp* <mark>???WHAT IS THIS???</mark>
 
 <mark>???SHOW MAPS???</mark>
 
 ### Source
-The *\_Source* subfolder was added and includes the following shapefile data sets: Cities, Counties, Districts, adn EnvConstraints. Additionally, a *\_\_ViewTAZDistricts* folder with ArcGIS Pro project & mapping files was added.
+The *\_Source* subfolder was added and includes the following shapefile data sets: Cities, Counties, Districts, and EnvConstraints. Additionally, a *\_\_ViewTAZDistricts* folder with ArcGIS Pro project & mapping files was added.
 
 <mark>???SHOW MAPS!???</mark>
 
@@ -332,7 +332,7 @@ The updated SE forecasts can be found using the [Household and Job Forecasts Web
 
 ```{ojs}
 //|label: fig-household-job-forecast-map
-//|fig-cap: Household and Job Forecast Map)
+//|fig-cap: Embedded Household and Job Forecast Map
 //|echo: false
 
 html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-origin: 0 0;">
@@ -581,13 +581,13 @@ The highway network updates are listed by their file date.
 
 #### 2022-10-05
 
-This network file includes most recently updated MAG merged master network with updated 2032, 2042 & 2050 Needs fields. Snapped updated MAG network with ‘MasterNet - 2022-09-08.net’ that included WFRC’s latest changes.
+The 2022-10-05 master network file includes most recently updated MAG merged master network with updated 2032, 2042 & 2050 Needs fields. Snapped updated MAG network with ‘MasterNet - 2022-09-08.net’ that included WFRC’s latest changes.
 
 <mark>???WHY IS 2022-09-08 MENTIONED BUT NOT LISTED BELOW???</mark>
 
 #### 2022-09-19a
 
-This network file includes the following changes:
+This 2022-09-19a master network file includes the following changes:
 
 - Updated Commuter-Rail Transit (CRT) Fare Zone
     - Vineyard & Orem stations were modified to have the same fare zone (similar to North Temple & Central)
@@ -618,23 +618,13 @@ The following updates were made to correspond with the 2023 RTP
 - RTP 2032, 2042 & 2050: rolled 2028 changes forward into plan phased years & updated based on 2023 draft plan
 - Needs 2032, 2042 & 2050: rolled 2028 changes forward into plan phased years & updated based on 2023 draft plan
 
-The following transit line files were renumbered according to new highway node numbering schema:
-
-- Lin_2019
-- Lin_2023
-- Lin_2032
-- Lin_2032_Needs
-- Lin_2042
-- Lin_2042_Needs
-- Lin_2050_Needs_5yrSP
+The transit line files were renumbered according to new highway node numbering schema.
 
 Route S902 in *wfrc_sl_exp_xxxx.lin* files were updated so route no longer goes to the I-80 Parleys Canyon external node.
 
-### CUBE Public Transport (PT) Parameters
+### Public Transport (PT) Parameters
 
-The node numbers in the factor files were updated to correspond with the new highway network nodes.
-
-The fare files were updated with 2019 fare data. The fares were updated to match the actual advertised fares, whereas the v8.3.2 model contained a 46% adjustment fares. This reduction accounts for monthly pass, education, fare-pay, senior, employer paid, and other discounts. This adjustment will be added into the General Parameters file and incorporated into the scripts in a future version. <mark>???ADD REFERENCE???</mark> As such, an additional set of fare files with a *Discounted* suffix were created and are being used consistent v8.3.2 and methodology.
+The node numbers in the transit factor files were updated to correspond with the new highway network nodes. The fare files were updated with 2019 fare data. The fares were updated to match the actual advertised fares, whereas the v8.3.2 model contained a 46% adjustment fares. This reduction accounts for monthly pass, education, fare-pay, senior, employer paid, and other discounts. This adjustment will be added into the General Parameters file and incorporated into the scripts in a future version. <mark>???ADD REFERENCE???</mark> As such, an additional set of fare files with a *Discounted* suffix were created and are being used consistent v8.3.2 and methodology.
         
 ### General Hand-Coded Support Links
 *General_hand_coded_walk_links.NTL* files were updated to account for new highway node numbering and TAZs.
@@ -689,11 +679,11 @@ if not os.path.isfile('data/externalnew.geojson'):
 
 ## Externals
 
-With the change in model extents, a change in external locations was necessitated. Additionally, the forecasts were updated with additional years of observed data.
+With the change in model extents, a corresponding change in external locations was necessitated. Additionally, the forecasts were updated with additional years of observed data.
 
 ### Location
 
-Updated to new External Node locations and numbering scheme:
+The locations of the former and updated location of externals is shown in @fig-externals.
 
 
 ```{ojs}
@@ -704,7 +694,7 @@ geojsonMasterNetLink = FileAttachment("data/masternetlink.geojson").json()
 ```
 
 ```{ojs}
-//|label: fig-externals
+//|label: 
 //|fig-cap: Externals
 //|echo: false
 
@@ -822,13 +812,12 @@ mapExternals = {
       
       return div;
     };
-    legend.addTo(map);
-
-  //let lyrK12Enroll = L.geoJson(geojsonK12Enroll, { size: 5, color: '#FFFFFF'}).addTo(map);
-  
+    legend.addTo(map);  
 }
 ```
 
+
+The updated numbering scheme can be found in the @fig-descrip1, @fig-descrip2, and @fig-descrip3.
 
 ![v9 External Description.](../_pictures/ex_descrip1.png){#fig-descrip1}
 
@@ -837,34 +826,16 @@ mapExternals = {
 ![v9 & v8.3.2 External Description.](../_pictures/ex_descrip3.png){#fig-descrip3}
 
 
-### Forecast
- - Updated 'Ext_Vol_Control'
-    - Added '_Source_ExternalTAZ_HistoricalAADT v9 - 2022-04-04a.xlsx'
-        - Added 8 new externals, removed 2 v832 externals
-        - Updated External Node numbers
-    - Updated 2010-2060 volume forecasts using 2019 historic data
-    - Updated ‘external_year_vol.csv’
 
+### Forecasts
+
+Forecasts through 2060 were generated for the updated external locations using historical data through 2019. The files can be found in the *Ext_Vol_Control* folder. The */_Source_ExternalTAZ_HistoricalAADT v9 - 2022-04-04a.xlsx* file contains the spreadsheet used to generate the forecast file used in the model: *external_year_vol.csv*.
+
+<note>???ADD DYNAMIC CHART SHOWING HISTORIC AND FORECAST DATA WITH DROPDOWN FOR EXTERNAL # AND NAME???</note>
 
 ### Subarea Extraction Matrices
- - Updated 'WF_External'
-    - Created placeholder 'WF_ExtTripTable_DY.mtx'
-    - Modified matrix to work with new external numbers & added 6 new TAZ
-    - Copied placeholder matrix into all years & deleted v832 data
-    - Added 2028
-    - Renamed 2024 to 2023, 2030 to 2032, & 2040 to 2042
+A subarea extraction placeholder matrix *WF_ExtTripTable_DY.mtx* was placed in all the subfolders in the *WF_External* folder. The matrix was modified to work with the new external numbers. The subfolders were renamed to the new corresponding phase years.
 
 ## Segment
-**Master_Segs_withFactors_20220915shp.shp**
 
- - Updated segments to align with 2023 RTP network changes
- - Added segments to account for rail transit corridors
-
-**Stamping_Polygons\ SegmentPolygon_forTDM_20220915.shp**
-
- - Updated polygon stamping shapefile to coincide with Segment Shapefile and Master Network edits
-
-
-## Other Changes
- - Updated '2_External_TripTable.s'
-
+The *Master_Segs_withFactors_20220915.shp* file contains the updated segments to align with 2023 RTP network changes. Additional segments were added to account for rail transit corridors. The corresponding *Stamping_Polygons\SegmentPolygon_forTDM_20220915.shp* file was also updated.

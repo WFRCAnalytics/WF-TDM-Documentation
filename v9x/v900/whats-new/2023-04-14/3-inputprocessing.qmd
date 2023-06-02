@@ -5,15 +5,13 @@ author: "WFRC / MAG"
 ---
 
 # Input Processing
+The changes in the input processing scripts are listed here by their corresponding subfolder.
 
 ## Setup
-**'0_FolderSetup.s'**
 
- - Updated & renamed previous script (previous script was not being used) & added to 'HailMary.s'
- - Added 'UpdatedMasterNet' & 'UpdatedMasterNet\\GIS' folders to '0_InputProcessing' folder
- - Note: these changes were also made to '_CreateOutputFolders.s' & '_BlankFolderSetup' in the 'Scenarios\\_default' folder
+The *0_FolderSetup.s* script was updated, renamed, and added to the *HailMary.s* script. Additionally, *UpdatedMasterNet* and *UpdatedMasterNet\\GIS* folders were added to *0_InputProcessing* folder. These changes were also made to *\_CreateOutputFolders.s* and *\_BlankFolderSetup* in the *Scenarios\_default* folder.
 
-**'1_InputSetup.s'**
+References to *CITY* and *COUNTY* fields in the TAZ shapefile were removed from the *1_InputSetup.s* script.
 
  - Removed references in checks to 'CITY', 'COUNTY' fields in TAZ shapefile to account for removal of fields from TAZ shapefile
 
@@ -24,7 +22,7 @@ author: "WFRC / MAG"
     - Updated 'FILEI LOOKUPI[1]'' reference
     - Updated 'SE_ContTot' lookup function indices
 - Updated control total lookup index calculation and added the following note:
- 
+
     - ::: {.callout-note collapse="true"}
       ;look up county control totals
     
