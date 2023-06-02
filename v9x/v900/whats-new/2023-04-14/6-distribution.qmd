@@ -6,53 +6,77 @@ author: "WFRC / MAG"
 
 # Distribution
 
-**'1_Distribution.s'**
+The changes described in this section were made in the `1_Distribution.s` script.
 
- - General script clean up
- - Removed initializing and logging of trip, VMT, and VHT variables printed to LOG
- - Updated trip table convergence criteria:
-    - Change % change convergence threshold from 10% to 7.5%
-    - Only process cells where current iter trips>0 (cells with trips>0 are counted as significant trips and form the denominator in the % converged calculation; cells with trips=0 are counted as not significant)
-    - Converged trip table matrix cell:
-        - % change from previous iteration is within % change convergence threshold
-        - If current iter trips>0 & previous iter trips=0, then cell is not converged
-        - If current iter trips<1, then cell is converged
- - Updated link convergence criteria:
-    - Change % change convergence threshold from 5% to 7.5%
-    - Only process highway links (FT>1)
-    - Converged link
-        - % change from previous iteration is within % change convergence threshold
-        - If current iter vol=0 & previous iter vol>0 OR current iter vol>0 & previous iter vol=0, then link is not converged
-        - If current iter vol=0 & previous iter vol=0, then link is converged
- - Updated convergence check criteria and removed minimum of 5 iterations requirement
- - Updated assignment
-    - Moved RGAP parameter passthrough variable from block file to main script just before each assignment call
-    - Set EV RGAP parameter to value in ‘0GeneralParameters.block’ / 10
- - Updated trip table and link convergence reports in LOG
- - Added new reports (csv files) to better track convergence in 
-    - '_Stats - Distrib Assign - @RID@.csv'
-    - '_Stats - Distrib Loaded Net - @RID@.csv'
-    - '_Stats - Distrib Trip Table - @RID@.csv'
- - Added ‘@unloadednetprefix@_@n@_convg.net' to ‘Temp\3_Distribute’ folder which includes following fields (net1= current iteration, net2=previous iteration):
-    - AM_Cur = li.1.AM_VOL
-    - MD_Cur = li.1.MD_VOL
-    - PM_Cur = li.1.PM_VOL
-    - EV_Cur = li.1.EV_VOL
-    - DY_Cur = li.1.DY_VOL
-    - AM_Pre = li.2.AM_VOL
-    - MD_Pre = li.2.MD_VOL
-    - PM_Pre = li.2.PM_VOL
-    - EV_Pre = li.2.EV_VOL
-    - DY_Pre = li.2.DY_VOL
-    - AM_Diff = AM_Cur - AM_Pre
-    - MD_Diff = MD_Cur - MD_Pre
-    - PM_Diff = PM_Cur - PM_Pre
-    - EV_Diff = EV_Cur - EV_Pre
-    - DY_Diff = DY_Cur - DY_Pre
-    - AM_PctDiff = ABS(AM_Diff) / AM_Pre
-    - MD_PctDiff = ABS(MD_Diff) / MD_Pre
-    - PM_PctDiff = ABS(PM_Diff) / PM_Pre
-    - EV_PctDiff = ABS(EV_Diff) / EV_Pre
-    - DY_PctDiff = ABS(DY_Diff) / DY_Pre
-    - CONVLINK (if (DY_PctDiff<=_ConvThreshold)  CONVLINK = 1)
- - & '4pd_mainbody_distribution.block'
+## Convergence
+
+The convergence criteria was updated for trip table and link convergences, as well as the check criteria.
+
+### Trip Table Convergence
+
+For trip table convergence, the percent change threshold was reduced from 10% to 7.5%. For each iteration, only cells where the trips in the current iterations are greater than zero are considered. Cells with trips greater than zero are counted as significant trips and form the denominator in the percent converged calculation.
+
+The trip matrix cell is considered converged if:
+
+ 1. Percent change from previous iteration is within 7.5%, or
+ 2. Trips from the current iteration are less than 1
+
+With the exception that the cell is not converged if the trips from the current iteration is greater than zero and the trips from the previous iteration equals zero.
+
+### Link Convergence
+
+For link volume convergence, the percent change threshold was increased from 5% to 7.5%. Centroid connectors are not considered when determining convergence. For each iteration, only cells where the trips in the current iterations are greater than zero are considered. Cells with trips greater than zero are counted as significant trips and form the denominator in the percent converged calculation.
+
+The link is considered converged if:
+
+ 1. Percent change from previous iteration is within 7.5%, or
+ 2. Volume from current iteration equals zero and volume from previous iteration equals zero.
+
+With the exception that the link is not converged if:
+
+ 1. Volume from the current iteration is greater than zero and the volume from the previous iteration equals zero, or
+ 2. Volume from the current iteration is zero and the volume from the previous iteration is greater than zero.
+
+### Check Criteria
+
+The convergence check criteria was updated. The minimum of 5 iterations requirement was removed. The `RGAP` parameter passthrough variable from moved from the block file to main script just before each assignment call The `EV RGAP` parameter to value in `0GeneralParameters.block` divided by 10.
+
+## Reports
+
+The initializing and logging of trip, vehicle-miles traveled (VMT), and vehicle-hours traveled (VHT) variables were removed from the log file. The trip table and link convergence reports in the log file were updated.
+
+The following new reports were added to better track convergence:
+
+- `_Stats - Distrib Assign - @RID@.csv`
+- `_Stats - Distrib Loaded Net - @RID@.csv`
+- `_Stats - Distrib Trip Table - @RID@.csv`
+
+## Other
+
+A `@unloadednetprefix@_@n@_convg.net` file was added to `Temp\3_Distribute` folder. It includes following fields (`li.1`=current iteration, `li.2`=previous iteration):
+
+- `AM_Cur = li.1.AM_VOL`
+- `MD_Cur = li.1.MD_VOL`
+- `PM_Cur = li.1.PM_VOL`
+- `EV_Cur = li.1.EV_VOL`
+- `DY_Cur = li.1.DY_VOL`
+- `AM_Pre = li.2.AM_VOL`
+- `MD_Pre = li.2.MD_VOL`
+- `PM_Pre = li.2.PM_VOL`
+- `EV_Pre = li.2.EV_VOL`
+- `DY_Pre = li.2.DY_VOL`
+- `AM_Diff = AM_Cur - AM_Pre`
+- `MD_Diff = MD_Cur - MD_Pre`
+- `PM_Diff = PM_Cur - PM_Pre`
+- `EV_Diff = EV_Cur - EV_Pre`
+- `DY_Diff = DY_Cur - DY_Pre`
+- `AM_PctDiff = ABS(AM_Diff) / AM_Pre`
+- `MD_PctDiff = ABS(MD_Diff) / MD_Pre`
+- `PM_PctDiff = ABS(PM_Diff) / PM_Pre`
+- `EV_PctDiff = ABS(EV_Diff) / EV_Pre`
+- `DY_PctDiff = ABS(DY_Diff) / DY_Pre`
+- `CONVLINK (if (DY_PctDiff<=_ConvThreshold)  CONVLINK = 1)`
+
+
+
+<mark>???NOT SURE WHAT THIS WAS SUPPOSED TO MEAN. IT IS ALL ALONE IN DOCUMENT:</mark> `4pd_mainbody_distribution.block`
