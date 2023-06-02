@@ -6,6 +6,4 @@ author: "WFRC / MAG"
 
 # Household Disaggregation and Auto Ownership
 
-**'1_LifeCycle.s'**
-
- - Changed 'COUNTY' field and @SL_ID@, @UT_ID@ references to 'CO_FIPS' and respective ids for county-specific variables to account for removal of field from TAZ shapefile
+The `1_LifeCycle.s` was modified to account for removal of the `COUNTY` field from the TAZ shapefile and respective ids for county-specific variables removed from `0_GeneralParameters.block`.

@@ -5,115 +5,37 @@ author: "WFRC / MAG"
 ---
 
 # Input Processing
+
 The changes in the input processing scripts are listed here by their corresponding subfolder.
 
 ## Setup
 
-The *0_FolderSetup.s* script was updated, renamed, and added to the *HailMary.s* script. Additionally, *UpdatedMasterNet* and *UpdatedMasterNet\\GIS* folders were added to *0_InputProcessing* folder. These changes were also made to *\_CreateOutputFolders.s* and *\_BlankFolderSetup* in the *Scenarios\_default* folder.
+The `0_FolderSetup.s` script was updated, renamed, and added to the `HailMary.s` script. Additionally, `UpdatedMasterNet` and `UpdatedMasterNet\GIS` folders were added to `0_InputProcessing` folder. These changes were also made to `_CreateOutputFolders.s` and `_BlankFolderSetup` in the `Scenarios\_default` folder.
 
-References to *CITY* and *COUNTY* fields in the TAZ shapefile were removed from the *1_InputSetup.s* script.
+To account for removal of the fields from the TAZ shapefile, the references to `CITY` and `COUNTY` fields were removed from the `1_InputSetup.s` script.
 
- - Removed references in checks to 'CITY', 'COUNTY' fields in TAZ shapefile to account for removal of fields from TAZ shapefile
+The copied locations of a few files in the `\_CopyToFolders` folder were updated. VPR files in the `2_ModelScripts\_CopyToFolders\Distrib_ConvVPR` folder are now copied to the `Temp\3_Distribute` folder. The `_Urbanization.mxd` and `_WalkBuffer.mxd` in the `2_ModelScripts\_CopyToFolders\ArcMap_mxd` folder are copied to the `0_InputProcessing` folder.
 
 ## SE Processing
-**'1_DemographicsAnalysis.s'**
 
-- Updated script to read 'ControlTotal_SE_AllCounties.csv'
-    - Updated 'FILEI LOOKUPI[1]'' reference
-    - Updated 'SE_ContTot' lookup function indices
-- Updated control total lookup index calculation and added the following note:
-
-    - ::: {.callout-note collapse="true"}
-      ;look up county control totals
-    
-      ;  note: Weber Co control total uses the following CO_FIPS convention: 
-    
-      ;        57 = all county   (CO_FIPS) 
-    
-      ;      9057 = WFRC portion (90 prefix + CO_FIPS - 9=sub-county total, 0=UDOT  SubareaID) 
-    
-      ;      9157 = WFRC portion (91 prefix + CO_FIPS - 9=sub-county total, 1=UDOT  SubareaID) 
-    
-      BE_Index =    3 * 10000  +  @DemographicYear@ 
-    
-      WE_Index = 9157 * 10000  +  @DemographicYear@ 
-    
-      DA_Index =   11 * 10000  +  @DemographicYear@ 
-    
-      SL_Index =   35 * 10000  +  @DemographicYear@ 
-    
-      UT_Index =   49 * 10000  +  @DemographicYear@ 
-      :::
+The `1_DemographicsAnalysis.s` script was updated to read `ControlTotal_SE_AllCounties.csv`. The control total lookup index calculation was updated to account for Weber County indexing between two sub-areas. The `9057` prefix is for the UDOT Subarea and `9157` prefix for the WFRC Subarea.
 
 ## Network Processing
 
-**'0_Update_TAZID_Distance.s'**
+The `0_Update_TAZID_Distance.s` script was updated to export out true shape link and node shapefiles.
 
- - Updated script to export out true shape Link/Node shapefiles
- - Cleaned up script
-    - Note: section to update DIRECTION and LINK_ID is commented out for now
+To account for the removal of `CITY` and `COUNTY` fields from the TAZ shapefile, the `1_NetProcessor.s` and `4_Create_walk_xfer_access_links.s` script was updated to remove references to those fields and the `COUNTY` field in the `c_PNR_nodes.dbf` output was changed to `CO_FIPS`.
 
-**'1_NetProcessor.s'**
+The `1_NetProcessor.s` was updated script to export out true shape Link/Node shapefiles.
 
- - Removed references in checks to 'CITY', 'COUNTY' fields in TAZ shapefile to account for removal of fields from TAZ shapefile
- - Updated script to export out true shape Link/Node shapefiles
- - Fixed bug in CAV calculation:
- - From:
-    - ::: {.callout-note collapse="true"}
-      ;shift column indices by 1 to line up with lookup tables
+A bug in the Connected-and-Autonomous Vehicle (CAV) calculation was fixed where the column index was needed to be incremented by 1 to link up with lookup tables.
 
-      _CAV_Idx_Lower = _CAV_Idx_Lower + 1
-
-      _CAV_Idx_Upper = _CAV_Idx_Upper + 1
-
-      ;lookup the capacity factor for columns above & below input value
-
-      if (LANES=2)
-
-          _CapFac_CAV_Lo = CAV_CapFac_2Ln(_CAV_Idx_Lower, Cap1hr1ln)
-
-          _CapFac_CAV_Hi = CAV_CapFac_2Ln(_CAV_Idx_Upper, Cap1hr1ln)
-
-      elseif (LANES>=3)
-
-          _CapFac_CAV_Lo = CAV_CapFac_3Ln(_CAV_Idx_Lower, Cap1hr1ln)
-
-          _CapFac_CAV_Hi = CAV_CapFac_3Ln(_CAV_Idx_Upper, Cap1hr1ln)
-
-      endif  ;LANES=2, LANES>=3
-      :::
-
- - To:
-    - ::: {.callout-note collapse="true"}
-      ;lookup the capacity factor for columns above & below input value
-
-      ; note: shift column indices by 1 to line up with lookup tables
-
-      if (LANES=2)
-  
-          _CapFac_CAV_Lo = CAV_CapFac_2Ln(_CAV_Idx_Lower+1, Cap1hr1ln)
-
-          _CapFac_CAV_Hi = CAV_CapFac_2Ln(_CAV_Idx_Upper+1, Cap1hr1ln)
-  
-      elseif (LANES>=3)
-  
-          _CapFac_CAV_Lo = CAV_CapFac_3Ln(_CAV_Idx_Lower+1, Cap1hr1ln)
-
-          _CapFac_CAV_Hi = CAV_CapFac_3Ln(_CAV_Idx_Upper+1, Cap1hr1ln)
-  
-      endif  ;LANES=2, LANES>=3
-      :::
-
-**'3_TurnPenalty.s'**
-
- - Updated hard-coded turn penalty node numbers to new v8.3.2/v9.0 master network node numbering
-
-**'4_Create_walk_xfer_access_links.s'**
-
- - Changed 'COUNTY' field in 'c_PNR_nodes.dbf' output to 'CO_FIPS' to account for removal of field from TAZ shapefile
+The hard-coded turn penalty node numbers in the `3_TurnPenalty.s` script were updated to the new v8.3.2/v9.0.0 master network node numbering.
 
 ## Trip Table
 
-**'2_External_TripTables.'**
+The `EXTERNAL` field reference in the `2_External_TripTables.s` script was replaced with a reference to the `General_Parameters.block` token `@external_zones@` to account for removal of field from TAZ shapefile.
 
- - Replaced use of the 'EXTERNAL' field from TAZ shapefile with a reference to @external_zones@ field in 'General_Parameters.block' to account for removal of field from TAZ shapefile
+## Time of Day Factors
+
+A new folder called `e_TimeOfDayFactors` was added with a `1_CalculateTimeOfDayFac.s` script to output a new file with time of day factors for use in following scripts.

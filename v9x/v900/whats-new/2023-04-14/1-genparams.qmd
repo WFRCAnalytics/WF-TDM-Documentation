@@ -6,6 +6,8 @@ author: "WFRC / MAG"
 
 # General Parameters
 
+The changes made to the `0_GeneralParameters.block` file are discussed in this section.
+
 ## Zone Parameters
 
 With the update to the TAZ inputs, the TAZ references were made in various locations.
@@ -38,7 +40,7 @@ The following ranges were removed: RegionRange, WFRCRange, MAGRange.
 
 ### Updated College and University Node References
 
-College and university were updated with new zone numbers. See @tbl-college-renumber. Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero. See ????INPUTS DOC REF ???? for more detail.
+College and university were updated with new zone numbers. See @tbl-college-renumber. Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero. <mark>???ADD INPUTS DOC REFERENCE???</mark>
 
 ```{python}
 #| label: tbl-college-renumber
@@ -129,11 +131,11 @@ Markdown(tabulate(
 
 ## County Identification
 
-Removed the county identification section section containing the following variables: CountyRange, CountyName1, CountyName2, CountyName3, CountyName4, CountyName5, CO_Name1, CO_Name2, CO_Name3, CO_Name4, CO_Name5.
+Removed the county identification section section containing the following variables: `CountyRange`, `CountyName1`, `CountyName2`, `CountyName3`, `CountyName4`, `CountyName5`, `CO_Name1`, `CO_Name2`, `CO_Name3`, `CO_Name4`, `CO_Name5`.
 
 ## Air Quality Conformity Reports
 
-Removed the air quality conformity section containing the following variables broken down by each county and 3 cities: RE_ID, WE_ID, DA_ID, SL_ID, UT_ID, BE_ID, OC_ID, SC_ID, PC_ID.
+Removed the air quality conformity section containing the following variables broken down by each county and 3 cities: `RE_ID`, `WE_ID`, `DA_ID`, `SL_ID`, `UT_ID`, `BE_ID`, `OC_ID`, `SC_ID`, `PC_ID`.
 
 ## Household Disaggregation Parameters
 
@@ -277,18 +279,18 @@ Additional k-factors were added for calibration purposes to include work trips, 
 #| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
-table = [['Salt Lake to Utah County' , 'Work'    ,'SL_UT_KFAC_Wrk', 1.00, 'N/A'],
-         ['Salt Lake to Utah County' , 'Other'   ,'SL_UT_KFAC_Oth', 1.00, 0.85 ],
-         ['Salt Lake to Utah County' , 'Truck'   ,'SL_UT_KFAC_Trk', 1.00, 'N/A'],
-         ['Salt Lake to Utah County' , 'External','SL_UT_KFAC_Ext', 1.00, 'N/A'],
-         ['Salt Lake to Davis County', 'Work'    ,'SL_DA_KFAC_Wrk', 1.00, 'N/A'],
-         ['Salt Lake to Davis County', 'Other'   ,'SL_DA_KFAC_Oth', 1.00, 0.95 ],
-         ['Salt Lake to Davis County', 'Truck'   ,'SL_DA_KFAC_Trk', 1.00, 'N/A'],
-         ['Salt Lake to Davis County', 'External','SL_DA_KFAC_Ext', 1.00, 'N/A'],
-         ['Weber to Box Elder County', 'Work'    ,'WE_BE_KFAC_Wrk', 1.00, 'N/A'],
-         ['Weber to Box Elder County', 'Other'   ,'WE_BE_KFAC_Oth', 1.00, 1.00],
-         ['Weber to Box Elder County', 'Truck'   ,'WE_BE_KFAC_Trk', 1.00, 'N/A'],
-         ['Weber to Box Elder County', 'External','WE_BE_KFAC_Ext', 1.00, 'N/A']]
+table = [['Salt Lake to Utah County' , 'Work'    ,'SL_UT_KFAC_Wrk', '1.00', '--'   ],
+         ['Salt Lake to Utah County' , 'Other'   ,'SL_UT_KFAC_Oth', '1.00', '0.85' ],
+         ['Salt Lake to Utah County' , 'Truck'   ,'SL_UT_KFAC_Trk', '1.00', '--'   ],
+         ['Salt Lake to Utah County' , 'External','SL_UT_KFAC_Ext', '1.00', '--'   ],
+         ['Salt Lake to Davis County', 'Work'    ,'SL_DA_KFAC_Wrk', '1.00', '--'   ],
+         ['Salt Lake to Davis County', 'Other'   ,'SL_DA_KFAC_Oth', '1.00', '0.95' ],
+         ['Salt Lake to Davis County', 'Truck'   ,'SL_DA_KFAC_Trk', '1.00', '--'   ],
+         ['Salt Lake to Davis County', 'External','SL_DA_KFAC_Ext', '1.00', '--'   ],
+         ['Weber to Box Elder County', 'Work'    ,'WE_BE_KFAC_Wrk', '1.00', '--'   ],
+         ['Weber to Box Elder County', 'Other'   ,'WE_BE_KFAC_Oth', '1.00', '1.00' ],
+         ['Weber to Box Elder County', 'Truck'   ,'WE_BE_KFAC_Trk', '1.00', '--'   ],
+         ['Weber to Box Elder County', 'External','WE_BE_KFAC_Ext', '1.00', '--'   ]]
 
 merged_rows = []
 prev_row = [''] * len(table[0])
@@ -304,13 +306,13 @@ for row in table:
     prev_row = row
 
 Markdown(tabulate(merged_rows,
-  headers=['County-to-County Pair','Purpose','Code','Value','v8.3.2 Value']))
+  headers=['County-to-County Pair','Purpose','Code','v9.0.0','v8.3.2']))
 
 
 ```
 
-## Other#
+## Other
 
-The rail to core bus route multiplier *RAIL2COR_MULTIPLIER* was changed from 0.40 to 0.33.
+The rail to core bus route multiplier `RAIL2COR_MULTIPLIER` was changed from 0.40 to 0.33.
 
 Period and Production/Attraction factors were removed.
