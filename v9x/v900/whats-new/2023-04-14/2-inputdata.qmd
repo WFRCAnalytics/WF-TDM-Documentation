@@ -584,6 +584,8 @@ html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-
      </div>`
 ```
 
+<mark>???MAYBE ADD SOME CHARTS OR MAPS IN ADDITION TO WEB APP???</mark>
+
 ### Control Totals
 Updates to the county control totals were made based on projections from the Gardner Policy Institute as found in the `ControlTotal_SE_AllCounties.csv` file. See @fig-county-control-totals-by-category for a comparison chart. The comparisons show that overall projections are lower than the for the SE data in the v8.3.2 model. Also, the affect of home-based job employment from COVID-19 can be seen in the new v9.0.0 dataset.
 

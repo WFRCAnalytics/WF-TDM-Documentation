@@ -6,6 +6,4 @@ author: "WFRC / MAG"
 
 # Highway Assignment
 
-**'4_SummarizeLoadedNetworks.s'**
-
- - Pointed GEOMI reference to '0_InputProcessing\\UpdatedMasterNet\\GIS\\@MasterPrefix@ - Link.shp' instead of '1_Inputs\\3_Highway' folder
+The `4_SummarizeLoadedNetworks.s` script was modified to point the GEOMI reference to `0_InputProcessing\UpdatedMasterNet\GIS\@MasterPrefix@ - Link.shp` instead of the `1_Inputs\3_Highway` folder.
