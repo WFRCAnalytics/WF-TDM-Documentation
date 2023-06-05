@@ -1,0 +1,1106 @@
+---
+title:  "Version 9.0.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+```{python}
+#|echo: false
+
+# model folder
+tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
+tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\_archive\WF TDM v9.0 - 2022-10-05"
+```
+
+```{python}
+#|echo: false
+# PREPROCESS GEOSPATIAL DATA
+import os
+import pandas as pd
+import geopandas as gpd
+import topojson as tp
+
+fnTazOldIn    = tdmOld + r"\1_Inputs\1_TAZ\TAZ.shp"
+fnTazNewIn    = tdmNew + r"\1_Inputs\1_TAZ\TAZ.shp"
+fnK12EnrollIn = tdmNew + r"\1_Inputs\2_SEData\_ source - HBSch Enroll & Med Inc\K-12 Enrollment\k12_schools_enrollment\k12_schools_enrollment.shp"
+fnCity        = tdmNew + r"\1_Inputs\1_TAZ\Districts\City_Name.dbf"
+fnSDst        = tdmNew + r"\1_Inputs\1_TAZ\Districts\Dist_Small.dbf"
+fnMDst        = tdmNew + r"\1_Inputs\1_TAZ\Districts\Dist_Medium.dbf"
+fnLDst        = tdmNew + r"\1_Inputs\1_TAZ\Districts\Dist_Large.dbf"
+
+fnDistrictsOld    = tdmNew + r"\1_Inputs\1_TAZ\TAZ.shp"
+
+def writeGeoJson(in_path,out_path,fields):
+  if not os.path.isfile(out_path):
+    gdf = gpd.read_file(in_path)
+    gdf = gdf[fields]
+    gdf = gdf.to_crs({'init': 'epsg:4326'}) 
+    topo = tp.Topology(gdf, prequantize=False)
+    gdf_simplified = topo.toposimplify(.0001).to_gdf()
+    gdf_simplified.to_file(out_path, driver='GeoJSON')
+    return;
+
+writeGeoJson(fnTazOldIn   , "data/tazOld.geojson"   , ['TAZID','CO_TAZID','geometry'])
+writeGeoJson(fnTazNewIn   , "data/tazNew.geojson"   , ['TAZID','CO_TAZID','REMM','geometry'])
+writeGeoJson(fnK12EnrollIn, "data/k12enroll.geojson", ['SchoolName','Enrol_Elem','Enrol_Midl','Enrol_High','PublicElem','PublicMidl','PublicHigh','PriChaElem','PriChaMidl','PriChaHigh','geometry'])
+writeGeoJson(fnCity       , "data/city.geojson"     , ['CITY_NAME','geometry'])
+writeGeoJson(fnSDst       , "data/sdst.geojson"     , ['DISTSML','DSML_NAME','geometry'])
+writeGeoJson(fnMDst       , "data/mdst.geojson"     , ['DISTMED','DMED_NAME','geometry'])
+writeGeoJson(fnLDst       , "data/ldst.geojson"     , ['DISTLRG','DLRG_NAME','geometry'])
+
+# add median income to taz file
+if not os.path.isfile('data/tazmedincome.geojson'):
+  gdfTazNew = gpd.read_file("data/tazNew.geojson")
+  dfMedIncome = pd.read_csv(tdmNew + r"\1_Inputs\2_SEData\_ source - HBSch Enroll & Med Inc\Median Income & VOT\for SE file -- TAZ Median Income - 2022-03-17.csv")
+  gdfTazMedIncome = pd.DataFrame.merge(gdfTazNew,dfMedIncome,on='CO_TAZID',how='left')
+  gdfTazMedIncome.to_file('data/tazmedincome.geojson', driver='GeoJSON')
+```
+
+```{ojs}
+//|echo: false
+// setup mapping and layers
+L = require('leaflet@1.2.0')
+html`<link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' />`
+
+geojsonTazOld    = FileAttachment("data/tazOld.geojson"   ).json()
+geojsonTazNew    = FileAttachment("data/tazNew.geojson"   ).json()
+geojsonK12Enroll = FileAttachment("data/k12enroll.geojson").json()
+geojsonCity      = FileAttachment("data/city.geojson"     ).json()
+geojsonSDst      = FileAttachment("data/sdst.geojson"     ).json()
+geojsonMDst      = FileAttachment("data/mdst.geojson"     ).json()
+geojsonLDst      = FileAttachment("data/ldst.geojson"     ).json()
+```
+
+# Input Data
+The changes in each `1_Inputs` subfolder are described in their respective sections.
+
+## Global Data
+This section includes a discussion of any changes made within the `0_GlobalData` subfolder in the model inputs.
+
+### Trip Tables
+
+The college base distribution source file `_Source - CollegeBaseDistribution - 2022-08-30.xlsx` and model lookup file `BaseDistribution.csv` were updated to the v9.0.0 Traffic Analysis Zone (TAZ) structure. The centroid of the v8.3.2 TAZ were spatially joined to the v9.0.0 TAZ to find their new TAZ designation.
+
+### Household Disaggregation and Auto Ownership
+
+Using parameters developed statewide based on 2020 census block data, 2020 ACS block group data, and 2019 population by age group data, the age percent lookup files `_Source - TAZ_AgePct_Lookup - 2022-06-07.xlsb` and `Lookup - BYTAZAgePct - AllCo.csv` were updated to v9.0.0 TAZ & 2019 base year.
+
+
+### Mode Choice
+
+Bus speed ratios were updated in the `bus_speed_ratios.csv` file. A companion file showing additional calculations is included in the new `_source - bus_speed_ratios.xlsx` file.
+
+The factors to calculate bus speeds from congested auto speeds from the distribution loaded network were re-estimated based on General Transit Feed Specification (GTFS) data from August through November 2019. The functional groups were redefined and expanded to include area type as well as peak and off-peak time periods. 
+
+```{python}
+# Convert bus speeds input into long format
+import pandas as pd
+
+# add name data to expand model CSV
+dfAreaTypes = pd.DataFrame([
+  ['Rur','Rural'     ],
+  ['Trn','Transition'],
+  ['Sub','Suburban'  ],
+  ['Urb','Urban'     ],
+  ['CBD','CBD-Like'  ]
+], columns=('AreaType','AreaTypeName'))
+
+dfTimePeriods = pd.DataFrame([
+  ['Pk','Peak'    ],
+  ['Ok','Off-Peak'],
+  ['DY','Daily'   ]
+], columns=('TimePeriod','TimePeriodName'))
+
+dfFunctionalClasses = pd.DataFrame([
+  [1, 'Col', 'Collectors & Locals'],
+  [2, 'Min', 'Minor Arterials'    ],
+  [3, 'Maj', 'Major Arterials'    ],
+  [4, 'Exp', 'Expressways'        ],
+  [5, 'Fwy', 'Freeways & Ramps'   ]
+], columns=('FC','FunctionalClass','FunctionalClassName'))
+
+# read in bus speed ratios
+dfBusSpeedRatios = pd.read_csv(r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-28\1_Inputs\0_GlobalData\4_ModeChoice\bus_speed_ratios.csv").rename(columns={';FC':'FC'})
+
+# create a list of column names to use as variable names
+varCols = dfBusSpeedRatios.columns.to_list()
+
+# remove the ID columns from variable columns list
+varCols.remove('Functional Class')
+
+# melt table to get long format using FC and FC Name as ids
+dfBusSpeedRatios_long = pd.melt(dfBusSpeedRatios, id_vars=['FC'], value_vars=varCols, var_name='TimePeriod_AreaType', value_name='BusSpeedRatio')
+
+# get Time Period and Area Type from TimePeriod_AreaType field
+dfBusSpeedRatios_long['TimePeriod'] = dfBusSpeedRatios_long['TimePeriod_AreaType'].str.split('_').str[0]
+dfBusSpeedRatios_long['AreaType'  ] = dfBusSpeedRatios_long['TimePeriod_AreaType'].str.split('_').str[1]
+
+dfBusSpeedRatios_long = dfBusSpeedRatios_long.merge(dfFunctionalClasses,on='FC'        )
+dfBusSpeedRatios_long = dfBusSpeedRatios_long.merge(dfTimePeriods      ,on='TimePeriod')
+dfBusSpeedRatios_long = dfBusSpeedRatios_long.merge(dfAreaTypes        ,on='AreaType'  )
+
+# limit columns and export csv
+dfBusSpeedRatios_long = dfBusSpeedRatios_long[['FunctionalClass','FunctionalClassName','TimePeriod','TimePeriodName','AreaType','AreaTypeName','BusSpeedRatio']]
+
+## create objects for observable js
+#ojs_define(busdata = dfBusSpeedRatios_long, typed=True)
+#ojs_define(fcnames = dfBusSpeedRatios_long[['FunctionalClassName']].drop_duplicates())
+#ojs_define(tpnames = dfBusSpeedRatios_long[['TimePeriodName'     ]].drop_duplicates())
+#ojs_define(atnames = dfBusSpeedRatios_long[['AreaTypeName'       ]].drop_duplicates())
+
+dfBusSpeedRatios_long.to_csv(r'data\bus_speed_ratios_long.csv', index=False)
+
+# export function class list csv
+dfBusSpeedRatios_long[['FunctionalClass','FunctionalClassName']].drop_duplicates().to_csv('data\\functionalclass.csv', index=False)
+dfBusSpeedRatios_long[['TimePeriod'     ,'TimePeriodName'     ]].drop_duplicates().to_csv('data\\timeperiod.csv'     , index=False)
+dfBusSpeedRatios_long[['AreaType'       ,'AreaTypeName'       ]].drop_duplicates().to_csv('data\\areatype.csv'       , index=False)
+
+dfBusSpeedRatios_Previous = pd.DataFrame([
+   ['Collectors'                        , 0.60],
+   ['Minor Arterials\n(Urb/CBD)'        , 0.65],
+   ['Minor Arterials\n(Sub/Rur)'        , 0.65],
+   ['Principal Arterials\n& Expressways', 0.55],
+   ['Freeway Ramps'                     , 0.75],
+   ['Freeways'                          , 0.95]
+], columns=('FunctionalClass','BusSpeedRatio'))
+
+dfBusSpeedRatios_Previous.to_csv(r'data\bus_speed_ratios_previous.csv', index=False)
+
+
+```
+
+
+::: {.panel-tabset}
+
+#### Bus Speeds Plot
+
+```{ojs}
+//| echo: false
+
+// read in CSVs
+faDataBusSpeeds     = FileAttachment("data\\bus_speed_ratios_long.csv").csv({ typed: true });
+faFunctionalClasses = FileAttachment("data\\functionalclass.csv"      ).csv({ typed: true });
+faTimePeriods       = FileAttachment("data\\timeperiod.csv"           ).csv({ typed: true });
+faAreaTypes         = FileAttachment("data\\areatype.csv"             ).csv({ typed: true });
+
+viewof facetSelect  = Inputs.select(new Map([['Time Period', 'TimePeriodName'], ['Area Type', 'AreaTypeName'], ['Functional Class', 'FunctionalClassName']]), {value: 'TimePeriodName'     , label: "Columns:"});
+viewof domainSelect = Inputs.select(new Map([['Time Period', 'TimePeriodName'], ['Area Type', 'AreaTypeName'], ['Functional Class', 'FunctionalClassName']]), {value: 'AreaTypeName'       , label: "X-Axis:"});
+viewof strokeSelect = Inputs.select(new Map([['Time Period', 'TimePeriodName'], ['Area Type', 'AreaTypeName'], ['Functional Class', 'FunctionalClassName']]), {value: 'FunctionalClassName', label: "Series:"});
+
+// FILTER DATA
+//viewof functionalclasses_checked = Inputs.checkbox(faFunctionalClasses.map(function(d) {return d.FunctionalClassName}),
+//                                                   {value: faFunctionalClasses.map(function(d) {return d.FunctionalClassName}),
+//                                                    label: "Function Class"});
+//viewof timeperiods_checked       = Inputs.checkbox(faTimePeriods      .map(function(d) {return d.TimePeriodName     }),
+//                                                   {value: faTimePeriods      .map(function(d) {return d.TimePeriodName     }),
+//                                                    label: "Time Period"   });
+//filteredBusData = faDataBusSpeeds.filter(function(busspeed) {
+//  return functionalclasses_checked.includes(busspeed.FunctionalClassName) &&
+//         timeperiods_checked      .includes(busspeed.TimePeriodName     )// &&
+//         //areatypes        .includes(busspeed.AreaTypeName  );
+//});
+
+domainFromSelect = {
+  switch(domainSelect) {
+    case 'TimePeriodName'     : return faTimePeriods      .map(function(d) {return d.TimePeriod     }); break;
+    case 'AreaTypeName'       : return faAreaTypes        .map(function(d) {return d.AreaType       }); break;
+    case 'FunctionalClassName': return faFunctionalClasses.map(function(d) {return d.FunctionalClass}); break;
+    default                   : return                                                                       ;
+  }
+}
+
+xPlotDomainSelect = {
+  switch(domainSelect) {
+    case 'TimePeriodName'     : return "TimePeriod"     ; break;
+    case 'AreaTypeName'       : return "AreaType"       ; break;
+    case 'FunctionalClassName': return "FunctionalClass"; break;
+    default                   : return                         ;
+  }
+}
+
+xLabel = {
+  switch(domainSelect) {
+    case 'TimePeriodName'     : return "Time Period"     ;      break;
+    case 'AreaTypeName'       : return "Area Type"       ;      break;
+    case 'FunctionalClassName': return "Functional Class";      break;
+    default                   : return                               ;
+  }
+}
+
+domainFacetSelect = {
+  switch(facetSelect) {
+    case 'TimePeriodName'     : return faTimePeriods      .map(function(d) {return d.TimePeriodName     }); break;
+    case 'AreaTypeName'       : return faAreaTypes        .map(function(d) {return d.AreaTypeName       }); break;
+    case 'FunctionalClassName': return faFunctionalClasses.map(function(d) {return d.FunctionalClassName}); break;
+    default                   : return;  }
+}
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  facet: {data: faDataBusSpeeds, x: facetSelect, label: xLabel},
+  x: {label: xLabel, domain: domainFromSelect},
+  y: {label: "Bus Speed Ratio" , domain: [0, 1]},
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 16 } },
+  style: {
+    fontSize: 12
+  },
+  marks: [
+    Plot.frame(),
+    Plot.line(faDataBusSpeeds, {x: xPlotDomainSelect, y: "BusSpeedRatio", stroke: strokeSelect, strokeWidth: 2}),
+    Plot.dot (faDataBusSpeeds, {x: xPlotDomainSelect, y: "BusSpeedRatio", stroke: strokeSelect, r: 4, fill: strokeSelect})
+  ]
+})
+```
+
+#### Bus Speeds Data
+
+```{ojs}
+//| echo: false
+Inputs.table(faDataBusSpeeds, {
+  style: {
+    fontSize: 16,
+  },
+  columns: [
+    "FunctionalClassName",
+    "TimePeriodName",
+    "AreaTypeName",
+    "BusSpeedRatio"
+  ],
+  header: {
+    FunctionalClassName: "Functional Class",
+    TimePeriodName: "Time Period",
+    AreaTypeName: "Area Type",
+    BusSpeedRatio: "Bus Speed Ratio"
+  }})
+```
+
+#### Previous Bus Speeds
+
+```{ojs}
+//| echo: false
+
+// read in CSVs
+faDataBusSpeeds_previous = FileAttachment("data\\bus_speed_ratios_previous.csv").csv({ typed: true });
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  style: {
+    fontSize: 16,
+  },
+  x: {label: "Functional Class", tickRotate: 90, domain: faDataBusSpeeds_previous.map(function(d) {return d.FunctionalClass})//,
+      //tickFormat: (d) => {
+//          const label = d.toString(); // Convert the tick value to a string
+//          const maxWidth = 15; // Specify the maximum width for each label
+//          const words = label.split(" "); // Split the label into words
+//
+//          let line = "";
+//          let lines = [];
+//
+//          words.forEach((word) => {
+//            if (line.length + word.length > maxWidth) {
+//              lines.push(line);
+//              line = "";
+//            }
+//            line += word + " ";
+//          });
+//
+//          lines.push(line);
+//
+//          return lines;
+//      }
+    },
+  y: {label: "Bus Speed Ratio" , domain: [0, 1]},
+  color: { type: "categorical", legend: true },
+  marks: [
+    Plot.frame(),
+    Plot.barY(faDataBusSpeeds_previous, {x: "FunctionalClass", y: "BusSpeedRatio", stroke: "FunctionalClass", fill: "FunctionalClass"})
+  ]
+})
+
+```
+
+:::
+
+<mark>???PERHAPS CONSOLIDATE 3 DROPDOWNS INTO SINGLE ONE TO AVOID STRANGE VIEWS OF CHARTS???</mark>
+
+<mark>???NEED TO FIX OVERLAPPING CHART LABELS???</mark>
+
+### Assignment
+Diurnal and production/attraction factors were calculated in `_source - Diurnal & PA factors.xlsx` and exported to a model lookup table called `Diurnal & PA factors.csv`. Corresponding factors were removed from the `0GeneralParameters.block` file. 
+
+## Traffic Analysis Zones (TAZ)
+The v9.0.0 TAZ zone set includes new geographies, new TAZ numbering ranges, zone attributes, and districts, as well as a new `\_Source` subfolder.
+
+### Geographies
+Changes in TAZ geographies include both expansion of the model area and splitting and/or changing zone boundaries. The expanded model area now includes TAZs in additional portions of Box Elder County, all of western Weber County, and the entirety of Davis, Salt Lake and Utah Counties. External dummy zones (represented as quadrilaterals) were removed from the TAZ shapefile.
+
+Additional area in the expanded WFRC and MAG areas include the following:
+
+- Canyon areas of the Wasatch mountains up to the eastern boundary of Salt Lake, Utah, and Davis counties, and additionally the canyon areas up to eastern boundary of Box Elder County for the portion of Box Elder County that was in the v8.3.2 model.
+- Canyon areas of the Wasatch mountains up to the ridge line of Weber County, excluding the Ogden Valley (Huntsville, Eden, Liberty) and other portions of eastern Weber County which remain in UDOT's transportation planning jurisdiction.
+- Canyon areas of the Oquirrh mountain range up to the western boundary of Salt Lake County
+- Great Salt Lake areas to the western boundary of Salt Lake, Davis, and Weber counties
+
+The additional areas and reconfigured TAZs result in 694 additional zones, 688 internal zones and 6 new external zones. A comparison of zone counts is found in @tbl-taz-count-comparison.
+
+```{python}
+#| label: tbl-taz-count-comparison
+#| tbl-cap: TAZ Count Comparions
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [  ['Internal Used Zones'  , '3,546', '2,858',        '688'],
+           ['External Count'       ,    '29',    '23',          '6'],
+           ['All New Used Zones'   , '3,575', '2,881',        '694'],
+           ['Internal Unused Zones',    '54',     '0',         '54'],
+           ['Max Used Zone'        , '3,629', '2,881',        '748']]
+Markdown(tabulate(
+  table, 
+  headers= ['Category'             ,'v9.0.0','v8.3.2', 'Difference'],
+  colalign=('left'                 ,'right' ,'right' , 'right'     )
+))
+```
+
+The interactive map in @fig-taz-compare-map can be explored to visualize the difference in v9.0.0 and v8.3.2 TAZs.
+
+```{ojs}
+//|label: fig-taz-compare-map
+//|fig-cap: TAZ Geography Comparison Map
+//|echo: false
+
+mapTaz = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
+
+  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  let lcolors = ['#0000FF'    ,'#FFFF00'   ]
+  let llabels = ['v8.3.2 TAZ' ,'v9.0.0 TAZ'];
+
+  let lyrTAZOld = L.geoJson(geojsonTazOld, { weight: 3.00, color: lcolors[0]}).addTo(map);
+  let lyrTAZNew = L.geoJson(geojsonTazNew, { weight: 0.75, color: lcolors[1]}).addTo(map);
+
+  var legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'legend');
+      div.innerHTML = '';
+      for (var i = 0; i < llabels.length; i++) {
+        div.innerHTML += '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' + llabels[i] + '<br/>';
+      }
+
+      // Add CSS style for the background color
+      div.style.backgroundColor = 'lightgray';
+      div.style.padding = '10px';
+      
+      return div;
+    };
+    legend.addTo(map);
+}
+```
+
+### TAZ Ranges
+The new and previous internal and external ranges of TAZIDs by for each county are shown in @tbl-new-taz-ranges.
+
+```{python}
+#| label: tbl-new-taz-ranges
+#| tbl-cap: TAZ Ranges
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [  ['Box Elder County',          '1-153',       '3601-3606',          '1-135',         '136-140'],
+           ['Weber County'    ,        '154-581',       '3607-3609',        '141-420',         '421-423'],
+           ['Davis County'    ,        '582-905',             'N/A',        '424-654',             'N/A'],
+           ['Salt Lake County',       '906-2216',       '3610-3615',       '655-1781',       '1782-1788'],
+           ['Utah County'     ,      '2217-3546',       '3616-3629',      '1789-2873',       '2874-2881']
+        ]
+Markdown(tabulate(
+  table, 
+  headers= ['County'          ,'v9.0.0 Internal', 'v9.0.0 External','v8.3.2 Internal','v8.3.2. External'],
+  colalign=('left'            ,'right'          ,'right'           ,'right'          ,'right'           )
+))
+```
+
+### Attributes
+This section describes the changes made to the attributes of the TAZ shapefile.
+
+#### REMM Space
+To indicate which TAZs are included in the Real Estate Market Model (REMM) space, the `REMM` field was added with a value of `1` indicating that it is part of REMM and `0` indicating it is not part of REMM, as shown in @fig-taz-remm-space.
+
+```{ojs}
+//|label: fig-taz-remm-space
+//|fig-cap: TAZ REMM Space
+//|echo: false
+
+mapTazRemmSpace = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
+
+  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  let remmColors = ['#00887F'   ,'#BD0026'       ]
+  let remmLabels = ['REMM Space','Non-REMM Space'];
+  
+  let lyrTAZNew = L.geoJson(geojsonTazNew, {
+                            style: function(feature) {
+                              var d = feature.properties.REMM;
+                              return d==1 ? {color:remmColors[0], weight:1, opacity:0.95} :
+                                     d==0 ? {color:remmColors[1], weight:1, opacity:0.95} : 
+                                            {color:    '#000000', weight:1, opacity:0.95} ;
+                            }
+  }).addTo(map);
+  
+  var legend = L.control({position: 'bottomleft'});
+  legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'legend');
+    div.innerHTML = '';
+    for (var i = 0; i < remmLabels.length; i++) {
+      div.innerHTML += '<i style="background:' + remmColors[i] + '">&nbsp;</i> ' + remmLabels[i] + '<br/>';
+    }
+
+    // Add CSS style for the background color
+    div.style.backgroundColor = 'lightgray';
+    div.style.padding = '10px';
+    
+    return div;
+  };
+  legend.addTo(map);
+}
+```
+
+#### Parking Costs
+The values in the permanent parking cost field `PRKCSTPERM` and temporary parking cost field `PRKCSTTEMP` were updated based on 2022 parking rates obtained from Salt Lake City, web searches, and field visits.
+
+A new methodology for calculating parking cost was envisioned but not implemented for v9.0.0. Accordingly, updates to parking data were done in a way to facilitate the change to the new methodology in the future. These updates include a new polygon source file for downtown and university areas. However, since the envisioned methodology removes the use of parking cost fields for Lagoon and Salt Lake City International Airport, they were not included in this new shapefile.
+
+##### Downtown and University Areas
+
+Parking costs were developed for downtown areas for Ogden, Salt Lake City, and Provo, as well as major university areas along the Wasatch Front. A new source polygon shapefile was developed to hold rates for Home-Based Work (HBW), Home-Based College (HBC), Home-Based Other (HBO), and Non-Home-Based (NHB) trip purposes. While rates are included for these four purposes, the v9.0.0 model only utilizes HBW for permanent parking and HBO for temporary parking. The future methodology will incorporate all four purposes.
+
+<mark>???WHERE IS NEW SHAPEFILE... SHOW MAP OF NEW SHAPEFILE???</mark>
+
+##### Lagoon and Salt Lake City International Airport
+The Airport & Lagoon parking costs were updated based on current parking rate information and the assumptions described in this section.
+
+The cost of permanent parking for the Lagoon TAZ was set to `$0` based on the assumption that workers at Lagoon do not pay for parking. The temporary parking was set to `$6` as calculated by dividing the 2022 advertised parking rate of $18 per day by an assumed average occupancy of 3 people per vehicle. The cost of temporary parking in previous models was $5 in 2010 dollars. The resulting $1 increase in 2019 dollars (20%) over 9 years seems reasonable.
+
+The cost of permanent parking at the Salt Lake City International Airport was set to *$0* based on the assumption that workers at the airport do not pay for parking. The cost of temporary parking was set to $1.25 based on a weighted average of short-term premium and economy rates and drop offs and a assumed average vehicle occupancy rate.
+
+The 2022 the cost for the short-term premium parking in the garage is $5.00 per hour. Short-term economy rate is $2.00 per hour. And for drop-offs there is no charge for parking. The assumed occupancy rate of 2 people per vehicle would result in per-person rates of $2.50, $1.00, and $0.00, respectively. The average of the three per-person rates is $1.75. Given the unknown distribution of travelers, but assuming more drop-offs than parking, a lower value than $1.75 should be expected. The 2019 cost was chosen to be $1.25.
+
+Compared to the previous temporary parking values of $1 in 2010 dollars, the chosen cost represents a 25 cent increase in 2019 dollars (25%) over 9 years. This growth seems reasonable, especially given the recent improvements to the airport. Additional justification for the chosen increase is the [CPI adjustment](https://www.bls.gov/data/inflation_calculator.html), which for the 2010 value of $1.00 in results in a 2019 value of $1.18.
+
+
+### Districts
+Small District definitions and names were updated to include a larger number of TAZs than previous models' small districts. There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). Small districts were modified in conjunction with origin-destination data from StreetLight. Districts are shown in @fig-districts.
+
+```{ojs}
+//|label: fig-districts
+//|fig-cap: Districts
+//|echo: false
+
+mapDistricts = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
+
+  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  let lcolors     = ['#FF0000'       ,'#00FF00'        ,'#0000FF'        ];
+  let llabels     = ['Small District','Medium District','Large District' ];
+
+  let lyrLDst = L.geoJson(geojsonLDst, { weight: 12.00, color: lcolors[2], fillOpacity: 0}).addTo(map);
+  let lyrMDst = L.geoJson(geojsonMDst, { weight:  6.00, color: lcolors[1], fillOpacity: 0}).addTo(map);
+  let lyrSDst = L.geoJson(geojsonSDst, { weight:  2.00, color: lcolors[0], fillOpacity: 0}).addTo(map);
+
+  lyrSDst.eachLayer(function(layer) {
+    var name = layer.feature.properties.DSML_NAME; // Assuming the attribute field is named "DSML_NAME"
+layer.bindTooltip(name); // Add tooltip
+    // OR
+    // layer.bindPopup(name); // Add popup
+  });
+
+  var legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'legend');
+      div.innerHTML = '';
+      for (var i = 0; i < llabels.length; i++) {
+        div.innerHTML += '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' + llabels[i] + '<br/>';
+      }
+
+      // Add CSS style for the background color
+      div.style.backgroundColor = 'lightgray';
+      div.style.padding = '10px';
+      
+      return div;
+    };
+    legend.addTo(map);
+}
+```
+
+
+Two additional polygon shapefiles were added to the Districts subfolder:
+
+* The Wasatch Front subarea is included in `WF_Subarea.shp`
+* The REMM district areas is included in `Dist_REMM_Area.shp`
+
+<mark>???SHOW SHAPEFILES???</mark>
+
+### Source
+The `_Source` subfolder was added and includes the following shapefile data sets: Cities, Counties, Districts, and Environmental Constraints. Additionally, a `__ViewTAZDistricts` folder with ArcGIS Pro project & mapping files was added.
+
+<mark>???SHOW SHAPEFILES???</mark>
+
+## Socioeconomic Data
+Forecasts and control totals were updated based on new census data, updated base year parcel data, and the results of the REMM Model.
+
+###  Forecasts
+The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The rest of the WFRC area was updated with draft *REMM - 2022-10-11* results using draft 2023 fiscally constrained plan. <mark>???ADD REFERENCE TO REMM DOCUMENTATION???</mark> The MAG area continues to use the 2019 fiscally constrained plan.
+
+The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9.0.0. You can explore the data in the embedded web application in @fig-household-job-forecast-map
+
+```{ojs}
+//|label: fig-household-job-forecast-map
+//|fig-cap: Embedded Household and Job Forecast Map
+//|echo: false
+
+html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-origin: 0 0;">
+         <iframe width="900" height="800" src="https://wfrc.org/household-job-forecast-map/" title="Household and Job Forecast"></iframe>
+     </div>`
+```
+
+<mark>???MAYBE ADD SOME CHARTS OR MAPS IN ADDITION TO WEB APP???</mark>
+
+### Control Totals
+Updates to the county control totals were made based on projections from the Gardner Policy Institute as found in the `ControlTotal_SE_AllCounties.csv` file. See @fig-county-control-totals-by-category for a comparison chart. The comparisons show that overall projections are lower than the for the SE data in the v8.3.2 model. Also, the affect of home-based job employment from COVID-19 can be seen in the new v9.0.0 dataset.
+
+<mark>???NEED TO EXPLAIN WHY PRE-2019 IS SO DIFFERENT FOR SOME CATEGORIES LIKE HBJ???</mark>
+
+```{python}
+#| echo: false
+import pandas as pd
+
+# County Control Totals
+fnConTotOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_WF.csv"
+fnConTotNew = tdmNew + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
+
+dfConTotOld = pd.read_csv(fnConTotOld)
+dfConTotOld = dfConTotOld.rename(columns={'CoName':'CO_NAME'})
+dfConTotOld['CO_NAME'] = dfConTotOld['CO_NAME'].str.replace(' County','')
+dfConTotOld['ModelVersion'] = 'v8.3.2'
+
+dfConTotNew = pd.read_csv(fnConTotNew)
+dfConTotNew = dfConTotNew[dfConTotNew['Subarea']=='1 - Wasatch Front'] # only WF area
+dfConTotNew['ModelVersion'] = 'v9.0.0'
+
+dfConTot = pd.concat([dfConTotOld,dfConTotNew])
+
+#display(dfConTot)
+dfConTot_melt = pd.melt(dfConTot, id_vars=('CO_NAME','YEAR','ModelVersion'), value_name='ControlTotal', var_name='Category', value_vars=('TOTPOP','GQ_Pop','HH_Pop','HH','HH_Size','POP_00_17','POP_18_64','POP_65P','ALLEMP','RETL','FOOD','MANU','WSLE','OFFI','GVED','HLTH','OTHR','AGRI','MING','CONS','HBJ','Job_HH','WrkPop_Job'))
+
+dfConTot_melt.to_csv('data/controltotal.csv',index=False)
+dfConTot_melt.groupby(['CO_NAME'],as_index=False).agg(COUNT=('YEAR','size')).to_csv('data/counties.csv',index=False)
+
+```
+
+```{ojs}
+//|echo: false
+
+// read in CSVs
+faControlTotals = FileAttachment("data/controltotal.csv").csv({ typed: true });
+faCounties      = FileAttachment("data/counties.csv"    ).csv({ typed: true });
+
+cats = new Map([['Total Population'               , 'TOTPOP'    ],
+                ['Group Quarter Population'       , 'GQ_Pop'    ],
+                ['Household Population'           , 'HH_Pop'    ],
+                ['Households'                     , 'HH'        ],
+                ['Household Size'                 , 'HH_Size'   ],
+                ['Population 0-17'                , 'POP_00_17' ],
+                ['Population 18-64'               , 'POP_18_64' ],
+                ['Population 65+'                 , 'POP_65P'   ],
+                ['All Employment'                 , 'ALLEMP'    ],
+                ['Retail Employment'              , 'RETL'      ],
+                ['Food Employment'                , 'FOOD'      ],
+                ['Manufacturing Employment'       , 'MANU'      ],
+                ['Wholesale Employment'           , 'WSLE'      ],
+                ['Office Employment'              , 'OFFI'      ],
+                ['Government/Education Employment', 'GVED'      ],
+                ['Health Employment'              , 'HLTH'      ],
+                ['Other Employment'               , 'OTHR'      ],
+                ['Agriculture Employment'         , 'AGRI'      ],
+                ['Mining Employment'              , 'MING'      ],
+                ['Construction Employment'        , 'CONS'      ],
+                ['Home-Based Job Employment'      , 'HBJ'       ],
+                ['Jobs per Household'             , 'Job_HH'    ],
+                ['Working Population per Job'     , 'WrkPop_Job']])
+
+viewof selectCounty   = Inputs.select(faCounties.map(function(d) {return d.CO_NAME}), {value: 'Salt Lake', label: 'County: '});
+viewof selectCategory = Inputs.select(cats, {value: 'HH_Pop', label: 'Category: '});
+// FILTER DATA
+filteredControlTotals = faControlTotals.filter(function(ct) {
+  return selectCounty   == ct.CO_NAME &&
+         selectCategory == ct.Category;
+});
+
+maxY = Math.max(...filteredControlTotals.map(item => item.ControlTotal));
+```
+
+```{ojs}
+//|label: fig-county-control-totals-by-category
+//|fig-cap: County Control Totals by Category
+//|echo: false
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: {label: 'Year', tickFormat: d => d},
+  y: {label: 'Control Total', domain: [0, maxY]},
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 16 } },
+  marginLeft: 60,
+  style: {
+    fontSize: 12
+  },
+  marks: [
+    Plot.line(filteredControlTotals, {x: 'YEAR', y: 'ControlTotal', stroke: 'ModelVersion', strokeWidth: 3}),
+  ]
+})
+```
+
+
+<mark>???WORK AT HOME IS EXACLTY THE SAME BETWEEN VERSIONS???.</mark>
+
+The source worksheet for these input files are found in the `_Source - ControlTotal_SE - 2022-08-31.xlsx` file. Other files in this directory were removed.
+
+
+### Source Files
+The `_Income & K-12 Source` folder was renamed as `_ source - HBSch Enroll & Med Inc` folder. The Kindergarten through 12th grade (K-12) enrollment data was updated using the 2019 statewide school enrollment database. Additionally, a point shapefile dataset was included, as shown in @fig-school-locations.
+
+
+```{ojs}
+//|label: fig-school-locations
+//|fig-cap: K-12 School Locations
+//|echo: false
+
+mapK12Enroll = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
+
+  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  var cHigh = "#FF0000"
+  var cMidl = "#00FF00"
+  var cElem = "#0000FF"
+
+  var geojsonMarkerOptions_High = {
+      radius: 4,
+      fillColor: cHigh,
+      color: cHigh,
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 1.0,
+  };
+
+  var geojsonMarkerOptions_Midl = {
+      radius: 4,
+      fillColor: cMidl,
+      color: cMidl,
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 1.0,
+  };
+  var geojsonMarkerOptions_Elem = {
+      radius: 4,
+      fillColor: cElem,
+      color: cElem,
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 1.0,
+  };
+            
+  // function to use different icons based on number of stations
+  function markerByEnrollment(feature) {
+    if (feature.properties.Enrol_High >= 100) {
+      return geojsonMarkerOptions_High
+    } else if (feature.properties.Enrol_Midl >= 100){
+      return geojsonMarkerOptions_Midl;
+    } else{
+      return geojsonMarkerOptions_Elem;
+    }
+  };
+
+  function getColor(c) {
+    if (c=='High School') {
+      return cHigh;
+    } else if (c=='Middle School') {
+      return cMidl;
+    } else if (c=='Elementary School') {
+      return cElem;
+    }
+  };
+          
+  // create the GeoJSON layer and call the styling function with each marker
+  var layerSchools = L.geoJSON(geojsonK12Enroll,  {
+    pointToLayer: function (feature, latlng) {
+      var mypopup = L.popup().setContent("<b>" + feature.properties.SchoolName + " Enrollment</b>" +
+                    "<br><b>High School: </b>" + feature.properties.Enrol_High +
+                    "<br><b>Middle School: </b>" + feature.properties.Enrol_Midl +
+                    "<br><b>Elementary School: </b>" + feature.properties.Enrol_Elem);
+      var mymarker = L.circleMarker(latlng, markerByEnrollment(feature));
+      mymarker.bindPopup(mypopup);
+      return mymarker;
+    }
+  }).addTo(map);
+
+  var legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'info legend');
+      var labelsBill = []; // legend title
+      var lcategories = ['High School','Middle School','Elementary School'];
+
+      for (var i = 0; i < lcategories.length; i++) {
+        div.innerHTML += 
+          labelsBill.push(
+            '<i class="bi bi-circle-fill" style="color:' + getColor(lcategories[i]) + '"></i> ' +
+          (lcategories[i] ? lcategories[i] : '+'));
+      }
+      div.innerHTML = labelsBill.join('<br>');
+
+      // Add CSS style for the background color
+      div.style.backgroundColor = 'lightgray';
+      div.style.padding = '10px';
+      
+      return div;
+    };
+    legend.addTo(map);
+
+  //let lyrK12Enroll = L.geoJson(geojsonK12Enroll, { size: 5, color: '#FFFFFF'}).addTo(map);
+  
+}
+```
+
+In the `_Source - Med Income & Value of Time - 2022-07-16.xlsb` file, the median income & value-of-time (VOT) inputs for the model were updated with 2019 data and used to update the TAZ Median Income in the TAZ file.
+
+## Highway Network
+
+Changes include expansion of the highway network area to the extents of the expanded TAZ areas. See <a href="#geographies">TAZ Geographies</a> All v8.3.2 highway and transit nodes are used by v9.0.0. The naming conventions for Link and node fields were set to correspond with the 2023 Regional Transportation Plan (RTP). 2019 RTP fields are also in the highway network for reference and will be dropped before model release. 2023 RTP fields were initially populated with 2019 RTP values and are being updated to reflect draft 2023 RTP.
+
+### Highway Node Numbering Schema
+Updates to the highway node numbering schema are shown in @tbl-master-network-node-numbering-schema. An additional reference file called `_Node Definition - v832 & v9.xlsx` is found in the `3_Highway` folder.
+
+```{python}
+#| label: tbl-master-network-node-numbering-schema
+#| tbl-cap: Master Network Node Numbering Schema
+#| echo: False
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['WFRC'   , '10,000 - 19,999', '20,000 - 49,999', '90,000 - 94,999'],
+         ['MAG'    , '50,000 - 59,999', '60,000 - 89,999', '95,000 - 99,999']]
+Markdown(tabulate(
+  table, 
+  headers=["MPO","Transit Nodes", "Highway Nodes", "v9.0.0 Expansion Areas"]
+))
+```
+
+### Dated Updates
+
+The highway network updates are listed by their file date. 
+
+#### 2022-10-05
+
+The 2022-10-05 master network file includes most recently updated MAG merged master network with updated 2032, 2042 & 2050 Needs fields. Snapped updated MAG network with `MasterNet - 2022-09-08.net` that included WFRC’s latest changes.
+
+<mark>???WHY IS 2022-09-08 MENTIONED BUT NOT LISTED BELOW???</mark>
+
+#### 2022-09-19a
+
+This 2022-09-19a master network file includes the following changes:
+
+- Updated Commuter-Rail Transit (CRT) Fare Zone
+    - Vineyard & Orem stations were modified to have the same fare zone (similar to North Temple & Central)
+    - Updated and fixed fare zone definitions in WFRC area
+- Fixed small network error in Box Elder where a local road was drawn to the centroid of v8.3.2 TAZ 53
+- A few edits to WFRC draft RTP project list
+- Updated segment ids
+    - Made consistent with the latest segment shapefile
+    - Updated segments to account for recent network changes & add segment definitions to account for rail transit
+- Added `SEGEX_RTP` & `SEGEX_NEED` as text fields (to be populated later when script/processing updated). These are segment ID exception fields where the future SEGIDs are different than existing SEGIDs.
+ 
+Additionally, a `MergedMasterNet - 2022-09-19a` folder was added to serve as a workspace for editing and updating Merged Master Network and for exporting to v8.3.2 & v9.0.0 master networks.
+
+#### 2022-10-11
+
+The 2022-10-11 master network file includes the following changes:
+
+- Phase change for Managed Motorways in WFRC area
+- A couple of phasing updates from the WFRC RTP project list
+- Cleaned up `GIS23_32` and `GIS23_42` fields
+- Differentiated what projects will be built by 2028 from what will be built by 2023
+
+#### 2023-02-02 and 2023-01-26
+In the `MergedMasterNet - 2023-02-02.net` and `MasterNet_v9 – 2023-01-26.net` several link `SEGID`s were updated to create transit segments, and split some links to account for transit segmentation. Rail `SEGID` additions were made to allow for easier transit result visualization.
+
+### Comparison
+
+<mark>???SHOW COMPARISON BETWEEN 2019 RTP and 2023 RTP WITH DYNAMIC MAP SELECTING SCENARIO TO COMPARE???</mark>
+
+## Transit
+The transit line files and CUBE Public Transport (PT) files were updated.
+
+### Transit Line Files
+
+The following updates were made to correspond with the 2023 RTP:
+
+- 2019 was thoroughly vetted to represent Aug 2019 change day
+- 2023: updated route alignment, headways & stops based on Aug 2022 change day (WFRC & MAG)
+- 2028: updated route alignment, headways & stops based on UTA 5-Year Service Plan (WFRC & MAG)
+- RTP 2032, 2042 & 2050: rolled 2028 changes forward into plan phased years & updated based on 2023 draft plan
+- Needs 2032, 2042 & 2050: rolled 2028 changes forward into plan phased years & updated based on 2023 draft plan
+
+The transit line files were renumbered according to new highway node numbering schema.
+
+Route S902 in `wfrc_sl_exp_xxxx.lin` files were updated so route no longer goes to the I-80 Parleys Canyon external node.
+
+### Public Transport (PT) Parameters
+
+The node numbers in the transit factor files were updated to correspond with the new highway network nodes. The fare files were updated with 2019 fare data. The fares were updated to match the actual advertised fares, whereas the v8.3.2 model contained a 46% adjustment fares. This reduction accounts for monthly pass, education, fare-pay, senior, employer paid, and other discounts. This adjustment will be added into the General Parameters file and incorporated into the scripts in a future version. <mark>???ADD REFERENCE???</mark> As such, an additional set of fare files with a `Discounted` suffix were created and are being used consistent v8.3.2 and methodology.
+        
+### General Hand-Coded Support Links
+*General_hand_coded_walk_links.NTL* files were updated to account for new highway node numbering and TAZs.
+
+### Transit Route Tester
+
+A `_chk Transit Compile on Net` folder was added with a separate route tester script for each model scenario. The script checks to see if transit line files for the respective scenario compile on the scenario highway network. The scripts create scenario networks in the `_temp - Scenario Net` folder. A `.VPR` file has scenario transit lines pre-loaded onto the network. This can be used for easy transit line edits.
+
+The scripts create error reports (e.g. `check - 1 - BY_2023.txt`) that contain any issues if the transit network fails to compile on the highway network. Opening this file and searching for 'F(' will indicate any inconsistencies.
+
+### Comparison
+
+<mark>???SHOW COMPARISON BETWEEN 2019 RTP and 2023 RTP WITH DYNAMIC MAP SELECTING SCENARIO TO COMPARE???</mark>
+
+```{python}
+#|echo: false
+# get externals mapping layers
+
+import os
+import pandas as pd
+import geopandas as gpd
+import topojson as tp
+
+if not os.path.isfile('data/masternetlink.geojson'):
+  gdfMasterNetLink = gpd.read_file(r"A:\1 - TDM\1 - Input Dev\5 - External\_GIS_Layers\Master Net\MasterNet - 2022-07-29_Link.shp")
+  gdfMasterNetLink = gdfMasterNetLink.to_crs({'init': 'epsg:4326'}) 
+  gdfMasterNetLink = gdfMasterNetLink[gdfMasterNetLink['FT_2019']>1]
+  gdfMasterNetLink = gdfMasterNetLink[['LINKID','FLG_NEWNET','geometry']]
+  topo = tp.Topology(gdfMasterNetLink, prequantize=False)
+  gdfMasterNetLink = topo.toposimplify(.0001).to_gdf()
+  gdfMasterNetLink.to_file('data/masternetlink.geojson', driver='GeoJSON')
+
+if not os.path.isfile('data/masternetnode.geojson'):
+  gdfMasterNetNode = gpd.read_file(r"A:\1 - TDM\1 - Input Dev\5 - External\_GIS_Layers\Master Net\MasterNet - 2022-07-29_Node.shp")
+  gdfMasterNetNode = gdfMasterNetNode.to_crs({'init': 'epsg:4326'}) 
+  gdfMasterNetNode = gdfMasterNetNode[['N','EXTERNAL','EXT_V9','geometry']]
+  topo = tp.Topology(gdfMasterNetNode, prequantize=False)
+  gdfMasterNetNode = topo.toposimplify(.0001).to_gdf()
+  gdfMasterNetNode.to_file('data/masternetnode.geojson', driver='GeoJSON')
+
+if not os.path.isfile('data/externalold.geojson'):
+  gdfMasterNetNode = gpd.read_file('data/masternetnode.geojson')
+  gdfExtNew = gdfMasterNetNode[gdfMasterNetNode['EXTERNAL']==1]
+  gdfExtNew.to_file('data/externalold.geojson', driver='GeoJSON')
+
+if not os.path.isfile('data/externalnew.geojson'):
+  gdfMasterNetNode = gpd.read_file('data/masternetnode.geojson')
+  gdfExtNew = gdfMasterNetNode[gdfMasterNetNode['EXT_V9']==1]
+  gdfExtNew.to_file('data/externalnew.geojson', driver='GeoJSON')
+
+```
+
+## Externals
+
+With the change in model extents, a corresponding change in external locations was necessitated. Additionally, the forecasts were updated with additional years of observed data.
+
+### Location
+
+The locations of the former and updated location of externals is shown in @fig-externals.
+
+
+```{ojs}
+//|echo: false
+geojsonExternalOld   = FileAttachment("data/externalold.geojson"  ).json()
+geojsonExternalNew   = FileAttachment("data/externalnew.geojson"  ).json()
+geojsonMasterNetLink = FileAttachment("data/masternetlink.geojson").json()
+```
+
+```{ojs}
+//|label: fig-externals
+//|fig-cap: Externals
+//|echo: false
+
+mapExternals = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
+
+  let osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map); 
+
+  var cNew = "#FF0000";
+  var cOld = "#00FF00";
+
+  var squareIcon_New = L.icon({
+    iconUrl: 'https://wfrc.org/wftdm-docs/_pictures/square_green.png',  // Replace with the path to your square-like icon image
+    iconSize: [15, 15],          // Adjust the size of the square-like icon
+    iconAnchor: [5, 5],          // Adjust the anchor point if needed
+  });
+
+  var squareIcon_Old = L.icon({
+    iconUrl: 'https://wfrc.org/wftdm-docs/_pictures/square_red.png',       // Replace with the path to your square-like icon image
+    iconSize: [15, 15],          // Adjust the size of the square-like icon
+    iconAnchor: [5, 5],          // Adjust the anchor point if needed
+  });
+
+  var cCommon = "#FF0000"
+  var cAdded  = "#00FF00"
+  var cOther  = "#888888"
+
+  var geolineCommon = {
+      color: cCommon,
+      weight: 2,
+      opacity: 1,
+  };
+
+  var geoLineAdded = {
+      color: cAdded,
+      weight: 2,
+      opacity: 1,
+  };
+  var geoLineOther = {
+      color: cOther,
+      weight: 2,
+      opacity: 1,
+  };
+            
+  // function to use different icons based on number of stations
+  function markerByNewNet(feature) {
+    if (feature.properties.FLG_NEWNET==3) {
+      return geolineCommon;
+    } else if (feature.properties.FLG_NEWNET==23){
+      return geoLineAdded;
+    } else{
+      return geoLineOther;
+    }
+  };
+
+  function getColor(c) {
+    if        (c=='Common') {
+      return cCommon;
+    } else if (c=='Added') {
+      return cAdded;
+    } else if (c=='Other') {
+      return cOther;
+    }
+  };
+
+  //let lyrNetwork = L.geoJson(geojsonMasterNetLink, { weight: 0.75, color: "#888888", fillOpacity: 0}).addTo(map);
+
+  // create the GeoJSON layer and call the styling function with each marker
+//  var lyrNetwork = L.geoJson(geojsonMasterNetLink,  { function (markerByNewNet(feature))}).addTo(map);
+
+  // create the GeoJSON layer and call the styling function with each marker
+  var externalNewLayer = L.geoJSON(geojsonExternalNew, {
+    pointToLayer: function (feature, latlng) {
+      var mypopup = L.popup().setContent("<b>Node: " + feature.properties.N + "</b>");
+      var mymarker = L.marker(latlng, { icon: squareIcon_New });
+      mymarker.bindPopup(mypopup);
+      return mymarker;
+    }
+  }).addTo(map);
+
+  // create the GeoJSON layer and call the styling function with each marker
+  var externalOldLayer = L.geoJSON(geojsonExternalOld, {
+    pointToLayer: function (feature, latlng) {
+      var mypopup = L.popup().setContent("<b>Node: " + feature.properties.N + "</b>");
+      var mymarker = L.marker(latlng, { icon: squareIcon_Old });
+      mymarker.bindPopup(mypopup);
+      return mymarker;
+    }
+  }).addTo(map);
+
+  var legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'info legend');
+      var labelsBill = []; // legend title
+      var lcategories = ['v8.3.2','v9.0.0'];
+      var lcolors     = [cOld    ,cNew    ];
+
+      for (var i = 0; i < lcategories.length; i++) {
+        div.innerHTML += 
+          labelsBill.push(
+            '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' +
+          (lcategories[i] ? lcategories[i] : '+'));
+      }
+      div.innerHTML = labelsBill.join('<br>');
+
+      // Add CSS style for the background color
+      div.style.backgroundColor = 'lightgray';
+      div.style.padding = '10px';
+      
+      return div;
+    };
+    legend.addTo(map);  
+}
+```
+
+
+The updated numbering scheme can be found in the @fig-descrip1, @fig-descrip2, and @fig-descrip3.
+
+![v9 External Description.](../_pictures/ex_descrip1.png){#fig-descrip1}
+
+![v8.3.2 External Description.](../_pictures/ex_descrip2.png){#fig-descrip2}
+
+![v9 & v8.3.2 External Description.](../_pictures/ex_descrip3.png){#fig-descrip3}
+
+### Forecasts
+
+Forecasts through 2060 were generated for the updated external locations using historical data through 2019. The files can be found in the `Ext_Vol_Control` folder. The `_Source_ExternalTAZ_HistoricalAADT v9 - 2022-04-04a.xlsx` file contains the spreadsheet used to generate the forecast file used in the model: `external_year_vol.csv`.
+
+<mark>???ADD DYNAMIC CHART SHOWING HISTORIC AND FORECAST DATA WITH DROPDOWN FOR EXTERNAL # AND NAME???</mark>
+
+### Subarea Extraction Matrices
+
+The external matrices from USTM were updated. `AM`, `MD`, `PM`, `EV`, and `DY` external matrices were replaced from USTM’s subarea extraction process for the following years:
+    - 2015 – copied `DY` matrix from 2019
+    - 2019
+    - 2023 – copied `DY` matrix from 2019
+    - 2028 – copied `DY` matrix from 2032
+    - 2032
+    - 2042
+    - 2050
+ - USTM version used: 'USTM_v3.0 - 2022-09-15' which included TAZ, MasterNet, SE & loaded nets from 'WF TDM v9.0 - 2022-10-05'
+
+## Segment
+
+The `Master_Segs_withFactors_20220915.shp` file contains the updated segments to align with 2023 RTP network changes. Additional segments were added to account for rail transit corridors. The corresponding `Stamping_Polygons\SegmentPolygon_forTDM_20220915.shp` file was also updated.

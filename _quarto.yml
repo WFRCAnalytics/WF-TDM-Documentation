@@ -104,42 +104,24 @@ website:
           href: v9x/v900/downloads.qmd
         - section: 'Whats New?'
           contents:
-          - section: '2022-12-19'
-            contents: 
-              - text: "General Parameters - Comparison with v8.3.2"
-                href: v9x/v900/whats-new/2022-12-19/1-genparams.qmd  
-              - text: "Input Data"
-                href: v9x/v900/whats-new/2022-12-19/2-inputdata.qmd
-              - text: "Input Processing"
-                href: v9x/v900/whats-new/2022-12-19/3-inputprocessing.qmd
-              - text: "Distribution"
-                href: v9x/v900/whats-new/2022-12-19/6-distribution.qmd
-          - section: '2022-11-01'
+          - section: '2023-04-14'
             contents:
-              - text: "General Parameters - Comparison with v8.3.2"
-                href: v9x/v900/whats-new/2022-11-01/1-genparams.qmd  
+              - text: "General Parameters"
+                href: v9x/v900/whats-new/2023-04-14/1-genparams.qmd  
               - text: "Input Data"
-                href: v9x/v900/whats-new/2022-11-01/2-inputdata.qmd
+                href: v9x/v900/whats-new/2023-04-14/2-inputdata.qmd
               - text: "Input Processing"
-                href: v9x/v900/whats-new/2022-11-01/3-inputprocessing.qmd
-              - text: "Mode Choice"
-                href: v9x/v900/whats-new/2022-11-01/7-mc.qmd
-          - section: '2022-10-05'
-            contents:
-              - text: "General Parameters - Comparison with v8.3.2"
-                href: v9x/v900/whats-new/2022-10-05/1-genparams.qmd  
-              - text: "Input Data"
-                href: v9x/v900/whats-new/2022-10-05/2-inputdata.qmd
-              - text: "Input Processing"
-                href: v9x/v900/whats-new/2022-10-05/3-inputprocessing.qmd
+                href: v9x/v900/whats-new/2023-04-14/3-inputprocessing.qmd
               - text: "Household Disaggregation and Auto Ownership"
-                href: v9x/v900/whats-new/2022-10-05/4-hhdisag.qmd
+                href: v9x/v900/whats-new/2023-04-14/4-hhdisag.qmd
+              - text: "Distribution"
+                href: v9x/v900/whats-new/2023-04-14/6-distribution.qmd
               - text: "Mode Choice"
-                href: v9x/v900/whats-new/2022-10-05/7-mc.qmd
+                href: v9x/v900/whats-new/2023-04-14/7-mc.qmd
               - text: "Highway Assignment"
-                href: v9x/v900/whats-new/2022-10-05/8-assign.qmd
+                href: v9x/v900/whats-new/2023-04-14/8-assign.qmd
               - text: "Model Results - Comparison with v8.3.2"
-                href: v9x/v900/whats-new/2022-10-05/10-modelresults.qmd  
+                href: v9x/v900/whats-new/2023-04-14/10-modelresults.qmd  
         - section: "Calibration/Validation"
           contents:
           - section: '2022-12-19'
