@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -60,6 +94,11 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script type="module" src="../../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -439,9 +478,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#highway-assignment" id="toc-highway-assignment" class="nav-link active" data-scroll-target="#highway-assignment">Highway Assignment</a></li>
+  <li><a href="#highway-assignment" id="toc-highway-assignment" class="nav-link active" data-scroll-target="#highway-assignment">Highway Assignment</a>
+  <ul class="collapse">
+  <li><a href="#table-summaries" id="toc-table-summaries" class="nav-link" data-scroll-target="#table-summaries">Table Summaries</a>
+  <ul class="collapse">
+  <li><a href="#regional-summaries" id="toc-regional-summaries" class="nav-link" data-scroll-target="#regional-summaries">Regional Summaries</a></li>
+  <li><a href="#average-daily-comparison" id="toc-average-daily-comparison" class="nav-link" data-scroll-target="#average-daily-comparison">Average Daily Comparison</a></li>
+  </ul></li>
+  <li><a href="#validation-charts" id="toc-validation-charts" class="nav-link" data-scroll-target="#validation-charts">Validation Charts</a></li>
+  </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="7-assign.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -466,7 +513,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 15, 2023</p>
+      <p class="date-modified">June 5, 2023</p>
     </div>
   </div>
     
@@ -477,11 +524,344 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="highway-assignment" class="level1">
 <h1>Highway Assignment</h1>
+<p>Ideas:</p>
+<ul>
+<li><p>Table Summary of total region wide volume difference and vmt difference by facility type</p></li>
+<li><p>Also include a Simple plot showing this</p>
+<ul>
+<li>(to represent the Table Summaries in the Dashboard oin the 01 - WF Validation - v2023-04-14.xlsx in the Calib_Valid folder)</li>
+</ul></li>
+<li><p>Interactive Table selection where user picks County or Region; VMT or Counts; and Number, Difference, or RMSE</p>
+<ul>
+<li>(to represent the Tables Tab of the validation xlsx sheet)</li>
+</ul></li>
+<li><p>Interactive Validation Charts where the user chooses total volume, car, md, or hv as one selection and count or percent error as other selection</p>
+<ul>
+<li>(to represent the 8 validation charts in the Dashboard of the validation xlsx sheet)</li>
+</ul></li>
+<li><p>Screen shots of the TTT to get the segment-level validation map of model vs.&nbsp;obseved for all vehicles, cars and LT, MD, and HV</p></li>
+</ul>
+<section id="table-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="table-summaries">Table Summaries</h2>
+<section id="regional-summaries" class="level3">
+<h3 class="anchored" data-anchor-id="regional-summaries">Regional Summaries</h3>
+<div class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "vvpct", "value": {"Variable": ["Volume", "Volume", "Volume", "Volume", "Volume", "VMT", "VMT", "VMT", "VMT", "VMT"], "FunctionalType": ["Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All"], "All": ["2%", "-2%", "-2%", "2%", "0%", "3%", "-2%", "-1%", "-1%", "0%"], "Box Elder": ["-14%", "4%", "-8%", "-22%", "-10%", "-10%", "5%", "-11%", "-23%", "-10%"], "Weber": ["2%", "-5%", "-5%", "-5%", "-1%", "-2%", "-6%", "-3%", "-5%", "-3%"], "Davis": ["-5%", "2%", "-1%", "-10%", "-2%", "-3%", "-5%", "-1%", "-13%", "-3%"], "Salt Lake": ["4%", "-1%", "-2%", "-9%", "-1%", "6%", "-1%", "0%", "-15%", "0%"], "Utah": ["1%", "-7%", "-1%", "44%", "4%", "2%", "-1%", "-2%", "54%", "4%"]}}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "vvpctLong", "value": {"FunctionalType": ["Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All", "Principal", "Minor", "Freeway", "Collector", "All"], "Variable": ["Volume", "Volume", "Volume", "Volume", "Volume", "VMT", "VMT", "VMT", "VMT", "VMT", "Volume", "Volume", "Volume", "Volume", "Volume", "VMT", "VMT", "VMT", "VMT", "VMT", "Volume", "Volume", "Volume", "Volume", "Volume", "VMT", "VMT", "VMT", "VMT", "VMT", "Volume", "Volume", "Volume", "Volume", "Volume", "VMT", "VMT", "VMT", "VMT", "VMT", "Volume", "Volume", "Volume", "Volume", "Volume", "VMT", "VMT", "VMT", "VMT", "VMT", "Volume", "Volume", "Volume", "Volume", "Volume", "VMT", "VMT", "VMT", "VMT", "VMT"], "Region": ["All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "Box Elder", "Box Elder", "Box Elder", "Box Elder", "Box Elder", "Box Elder", "Box Elder", "Box Elder", "Box Elder", "Box Elder", "Weber", "Weber", "Weber", "Weber", "Weber", "Weber", "Weber", "Weber", "Weber", "Weber", "Davis", "Davis", "Davis", "Davis", "Davis", "Davis", "Davis", "Davis", "Davis", "Davis", "Salt Lake", "Salt Lake", "Salt Lake", "Salt Lake", "Salt Lake", "Salt Lake", "Salt Lake", "Salt Lake", "Salt Lake", "Salt Lake", "Utah", "Utah", "Utah", "Utah", "Utah", "Utah", "Utah", "Utah", "Utah", "Utah"], "Value": [1.9799851011, -1.8776258369, -1.7074416888, 1.8323077448, -0.0175605659, 2.8951701153, -1.6550694434, -0.8734059686, -1.2582897815, -0.0823653222, -13.8317496554, 4.4090612908, -8.48785872, -22.2652624002, -10.0235269591, -10.1579429821, 4.8437372071, -10.7344630004, -23.1104831018, -9.8406391056, 2.4080544377, -4.8631550341, -4.8930013472, -5.2532192061, -1.2110917153, -1.6349071896, -5.9071369682, -2.8922419372, -5.0677021973, -3.2414672546, -5.0641076713, 2.0651331641, -0.5091245979, -10.2868871272, -2.1849309903, -2.7152910605, -4.6514759182, -0.6334278517, -12.9894518316, -2.6975845308, 3.9263613201, -0.6001030663, -2.1358548906, -8.9508569603, -0.7020465607, 5.8868508133, -0.5324332565, 0.3958872854, -14.5563587621, 0.0322174632, 1.1808633741, -7.2523470257, -0.7638719137, 44.4314716565, 3.759519627, 2.027789256, -1.0981412496, -1.6346575319, 53.5942298896, 3.7462166002]}}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "vvabsLong", "value": {"CO_FIPS": [3, 3, 3, 3, 3, 11, 11, 11, 11, 11, 35, 35, 35, 35, 35, 49, 49, 49, 49, 49, 57, 57, 57, 57, 57, "All", "All", "All", "All", "All", 3, 3, 3, 3, 3, 11, 11, 11, 11, 11, 35, 35, 35, 35, 35, 49, 49, 49, 49, 49, 57, 57, 57, 57, 57, "All", "All", "All", "All", "All", 3, 3, 3, 3, 3, 11, 11, 11, 11, 11, 35, 35, 35, 35, 35, 49, 49, 49, 49, 49, 57, 57, 57, 57, 57, "All", "All", "All", "All", "All", 3, 3, 3, 3, 3, 11, 11, 11, 11, 11, 35, 35, 35, 35, 35, 49, 49, 49, 49, 49, 57, 57, 57, 57, 57, "All", "All", "All", "All", "All"], "FunctionalType": ["All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal"], "DataSource": ["Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed"], "Value": [9382.8530864198, 1691.7551724138, 34060.2833333333, 6965.7666666667, 14412.296, 20007.3685096154, 5741.6989071038, 106250.5545454545, 15676.0601503759, 25091.7925373134, 23894.849327957, 7401.923857868, 135210.9027027027, 19567.1974468085, 33934.3036827195, 15853.5988394584, 5097.4172344689, 127244.5210526316, 11021.0158301158, 25879.3071428571, 14656.8464668094, 4707.4854460094, 79427.2363636364, 12204.9, 27261.7616541353, 19471.0214285714, 5954.2141254125, 119908.8160493827, 15734.9063444109, 29173.2305147059, 10428.1183395062, 2176.3181103448, 37219.4146666667, 6671.6112380952, 16725.761452, 20454.2804213942, 6400.066526776, 106794.2704454545, 15358.8788496241, 26430.2487940298, 24063.7883262769, 8129.5920101523, 138161.8391, 19685.3297140426, 32652.2580524079, 15279.1752471954, 3529.2981342685, 128223.9880842105, 11882.7975444015, 25577.2744764706, 14836.53045803, 4968.4911788732, 83513.5557727273, 12828.7836372727, 26620.7202195489, 19474.4412506598, 5847.0776684488, 121991.7541160494, 16036.0024699899, 28606.8197458333, 1182323.84796203, 29366.32256563, 765369.39701, 98200.3623714, 289387.766015, 7753895.5937142, 693667.6837573, 4988162.74083, 1043502.7588539, 1028562.410273, 24949631.600132, 2364881.2619919, 11378088.5374, 4216460.866951, 6990200.9337891, 11846781.88402375, 1379836.61759195, 5921087.26599, 1473344.7823384, 3072513.2181034, 3963149.10026784, 569350.29323464, 1227811.12528, 645706.4021202, 1520281.279633, 49695782.02609982, 5037102.17914142, 24280519.06651, 7477215.1726349, 12900945.6078135, 1311371.1501867, 38192.8821383, 857407.4863999999, 93663.5463284, 322107.23532, 7968862.39291, 797222.51883171, 5019960.56922, 1094408.92651729, 1057270.378341, 24941596.05059992, 2767767.41689422, 11333221.75345, 4239030.877096, 6601576.0031597, 11419001.359518355, 898364.879060665, 6019485.234763, 1489703.83464319, 3011447.4110515, 4095916.90553465, 599743.50817665, 1264380.05549, 686243.761019, 1545549.580849, 49736747.85874963, 5101291.205101545, 24494455.099323, 7603050.94560388, 12537950.6087212], "Variable": ["Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT"]}}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "vvabsLongR", "value": {"CO_FIPS": ["All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All"], "FunctionalType": ["All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal"], "DataSource": ["Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed"], "Value": [19471.0214285714, 5954.2141254125, 119908.8160493827, 15734.9063444109, 29173.2305147059, 19474.4412506598, 5847.0776684488, 121991.7541160494, 16036.0024699899, 28606.8197458333, 49695782.02609982, 5037102.17914142, 24280519.06651, 7477215.1726349, 12900945.6078135, 49736747.85874963, 5101291.205101545, 24494455.099323, 7603050.94560388, 12537950.6087212], "Variable": ["Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "Volume", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT", "VMT"]}}]}</script>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="122" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 121;"><span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>viewof vvSelect <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Volume'</span><span class="op">,</span><span class="st">'Volume'</span>]<span class="op">,</span> [<span class="st">'VMT'</span><span class="op">,</span><span class="st">'VMT'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'Variable'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Select Summary Variable:"</span>})</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="co">//viewof bCountySelect2 = Inputs.select(new Map([['Box Elder',3], ['Weber',57], ['Davis',11], ['Salt Lake',35], ['Utah',49], ['Region', 'All']]), {value: 'CO_FIPS', label: "Select Region:"})</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="128" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 127;"><span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>vvp <span class="op">=</span> <span class="fu">transpose</span>(vvpct)</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>vvpL <span class="op">=</span> <span class="fu">transpose</span>(vvpctLong)</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>vvaL <span class="op">=</span> <span class="fu">transpose</span>(vvabsLong)</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>vvaLR <span class="op">=</span> <span class="fu">transpose</span>(vvabsLongR)</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>table_vvData <span class="op">=</span> vvp<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataL) {</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> vvSelect <span class="op">==</span> dataL<span class="op">.</span><span class="at">Variable</span><span class="op">;</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>stack_vvaData <span class="op">=</span> vvaLR<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataL) {</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> vvSelect <span class="op">==</span> dataL<span class="op">.</span><span class="at">Variable</span><span class="op">;</span> <span class="co">//&amp;&amp;</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>           <span class="co">//bCountySelect2 == dataL.CO_FIPS;</span></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Model v. Observed</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Regional Summary Table</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="144" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 143;"><span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {GroupedBarChart} <span class="im">from</span> <span class="st">"@d3/grouped-bar-chart"</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {Legend<span class="op">,</span> Swatches} <span class="im">from</span> <span class="st">"@d3/color-legend"</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {howto<span class="op">,</span> altplot} <span class="im">from</span> <span class="st">"@d3/example-components"</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>chart2 <span class="op">=</span> <span class="fu">GroupedBarChart</span>(stack_vvaData<span class="op">,</span> {</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">FunctionalType</span><span class="op">,</span></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Value</span><span class="op">,</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    <span class="dt">z</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">DataSource</span><span class="op">,</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"Value"</span><span class="op">,</span></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zDomain</span><span class="op">:</span> [<span class="st">'Model'</span><span class="op">,</span><span class="st">'Observed'</span>]<span class="op">,</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>    width<span class="op">,</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colors</span><span class="op">:</span> [<span class="st">"#376092"</span><span class="op">,</span> <span class="st">"#77933c"</span>]</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="161" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 160;"><span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(table_vvData<span class="op">,</span> {</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FunctionalType"</span><span class="op">,</span></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>    <span class="st">"All"</span><span class="op">,</span></span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Box Elder"</span><span class="op">,</span></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Weber"</span><span class="op">,</span></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Davis'</span><span class="op">,</span></span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Salt Lake'</span><span class="op">,</span></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Utah'</span></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>  <span class="dt">header</span><span class="op">:</span> {</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>    <span class="dt">FunctionalType</span><span class="op">:</span><span class="st">"FT"</span><span class="op">,</span></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>    <span class="dt">All</span><span class="op">:</span> <span class="st">'Region'</span></span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>  }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="average-daily-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="average-daily-comparison">Average Daily Comparison</h3>
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "vol", "value": {"CO_FIPS": [3, 3, 3, 3, 3, 11, 11, 11, 11, 11, 35, 35, 35, 35, 35, 49, 49, 49, 49, 49, 57, 57, 57, 57, 57, "All", "All", "All", "All", "All"], "FunctionalType": ["All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal"], "NumberOfSegs": [81, 29, 6, 21, 25, 416, 183, 33, 133, 67, 1488, 591, 74, 470, 353, 1034, 499, 38, 259, 238, 467, 213, 11, 110, 133, 3486, 1515, 162, 993, 816], "ModelVolume": [9383, 1692, 34060, 6966, 14412, 20007, 5742, 106251, 15676, 25092, 23895, 7402, 135211, 19567, 33934, 15854, 5097, 127245, 11021, 25879, 14657, 4707, 79427, 12205, 27262, 19471, 5954, 119909, 15735, 29173], "CountVolume": [10428, 2176, 37219, 6672, 16726, 20454, 6400, 106794, 15359, 26430, 24064, 8130, 138162, 19685, 32652, 15279, 3529, 128224, 11883, 25577, 14837, 4968, 83514, 12829, 26621, 19474, 5847, 121992, 16036, 28607], "VolDiff": [-1045, -485, -3159, 294, -2313, -447, -658, -544, 317, -1338, -169, -728, -2951, -118, 1282, 574, 1568, -979, -862, 302, -180, -261, -4086, -624, 641, -3, 107, -2083, -301, 566], "VolPctDiff": ["-10%", "-22%", "-8%", "4%", "-14%", "-2%", "-10%", "-1%", "2%", "-5%", "-1%", "-9%", "-2%", "-1%", "4%", "4%", "44%", "-1%", "-7%", "1%", "-1%", "-5%", "-5%", "-5%", "2%", "0%", "2%", "-2%", "-2%", "2%"], "RMSE": [3790, 1430, 4985, 2700, 5852, 8115, 4336, 16621, 8175, 10016, 10034, 6180, 24681, 9065, 11351, 8265, 4483, 26177, 7558, 10224, 5763, 3736, 9986, 5493, 7897, 8704, 5070, 22074, 8125, 10259], "PctRMSE": ["36%", "66%", "13%", "40%", "35%", "40%", "68%", "16%", "53%", "38%", "42%", "76%", "18%", "46%", "35%", "54%", "127%", "20%", "64%", "40%", "39%", "75%", "12%", "43%", "30%", "45%", "87%", "18%", "51%", "36%"]}}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "vmt", "value": {"CO_FIPS": [3, 3, 3, 3, 3, 11, 11, 11, 11, 11, 35, 35, 35, 35, 35, 49, 49, 49, 49, 49, 57, 57, 57, 57, 57, "All", "All", "All", "All", "All"], "FunctionalType": ["All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal", "All", "Collector", "Freeway", "Minor", "Principal"], "NumberOfSegs": [81, 29, 6, 21, 25, 416, 183, 33, 133, 67, 1488, 591, 74, 470, 353, 1034, 499, 38, 259, 238, 467, 213, 11, 110, 133, 3486, 1515, 162, 993, 816], "ModelVMT": [1182324, 29366, 765369, 98200, 289388, 7753896, 693668, 4988163, 1043503, 1028562, 24949632, 2364881, 11378089, 4216461, 6990201, 11846782, 1379837, 5921087, 1473345, 3072513, 3963149, 569350, 1227811, 645706, 1520281, 49695782, 5037102, 24280519, 7477215, 12900946], "ObserveVMT": [1311371, 38193, 857407, 93664, 322107, 7968862, 797223, 5019961, 1094409, 1057270, 24941596, 2767767, 11333222, 4239031, 6601576, 11419001, 898365, 6019485, 1489704, 3011447, 4095917, 599744, 1264380, 686244, 1545550, 49736748, 5101291, 24494455, 7603051, 12537951], "VMTDiff": [-129047, -8827, -92038, 4537, -32719, -214967, -103555, -31798, -50906, -28708, 8036, -402886, 44867, -22570, 388625, 427781, 481472, -98398, -16359, 61066, -132768, -30393, -36569, -40537, -25268, -40966, -64189, -213936, -125836, 362995], "VMTPctDiff": ["-10%", "-23%", "-11%", "5%", "-10%", "-3%", "-13%", "-1%", "-5%", "-3%", "0%", "-15%", "0%", "-1%", "6%", "4%", "54%", "-2%", "-1%", "2%", "-3%", "-5%", "-3%", "-6%", "-2%", "0%", "-1%", "-1%", "-2%", "3%"]}}]}</script>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="188" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 187;"><span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a>viewof bCountySelect <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Box Elder'</span><span class="op">,</span><span class="dv">3</span>]<span class="op">,</span> [<span class="st">'Weber'</span><span class="op">,</span><span class="dv">57</span>]<span class="op">,</span> [<span class="st">'Davis'</span><span class="op">,</span><span class="dv">11</span>]<span class="op">,</span> [<span class="st">'Salt Lake'</span><span class="op">,</span><span class="dv">35</span>]<span class="op">,</span> [<span class="st">'Utah'</span><span class="op">,</span><span class="dv">49</span>]<span class="op">,</span> [<span class="st">'Region'</span><span class="op">,</span> <span class="st">'All'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'CO_FIPS'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Select Region:"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="193" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 192;"><span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>volT <span class="op">=</span> <span class="fu">transpose</span>(vol)</span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>vmtT <span class="op">=</span> <span class="fu">transpose</span>(vmt)</span>
+<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>filtered_volData <span class="op">=</span> volT<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataL) {</span>
+<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bCountySelect <span class="op">==</span> dataL<span class="op">.</span><span class="at">CO_FIPS</span><span class="op">;</span></span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>filtered_vmtData <span class="op">=</span> vmtT<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataL){</span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bCountySelect <span class="op">==</span> dataL<span class="op">.</span><span class="at">CO_FIPS</span><span class="op">;</span></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<p><strong>Table 1: Average Daily Comparison by Facility Type (Volume).</strong></p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="205" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 204;"><span id="cb7-205"><a href="#cb7-205" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(filtered_volData<span class="op">,</span> {</span>
+<span id="cb7-206"><a href="#cb7-206" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb7-207"><a href="#cb7-207" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb7-208"><a href="#cb7-208" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-209"><a href="#cb7-209" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [</span>
+<span id="cb7-210"><a href="#cb7-210" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FunctionalType"</span><span class="op">,</span></span>
+<span id="cb7-211"><a href="#cb7-211" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NumberOfSegs"</span><span class="op">,</span></span>
+<span id="cb7-212"><a href="#cb7-212" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ModelVolume"</span><span class="op">,</span></span>
+<span id="cb7-213"><a href="#cb7-213" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CountVolume"</span><span class="op">,</span></span>
+<span id="cb7-214"><a href="#cb7-214" aria-hidden="true" tabindex="-1"></a>    <span class="st">'VolDiff'</span><span class="op">,</span></span>
+<span id="cb7-215"><a href="#cb7-215" aria-hidden="true" tabindex="-1"></a>    <span class="st">'VolPctDiff'</span><span class="op">,</span></span>
+<span id="cb7-216"><a href="#cb7-216" aria-hidden="true" tabindex="-1"></a>    <span class="st">'RMSE'</span><span class="op">,</span></span>
+<span id="cb7-217"><a href="#cb7-217" aria-hidden="true" tabindex="-1"></a>    <span class="st">'PctRMSE'</span></span>
+<span id="cb7-218"><a href="#cb7-218" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb7-219"><a href="#cb7-219" aria-hidden="true" tabindex="-1"></a>  <span class="dt">header</span><span class="op">:</span> {</span>
+<span id="cb7-220"><a href="#cb7-220" aria-hidden="true" tabindex="-1"></a>    <span class="dt">FunctionalType</span><span class="op">:</span><span class="st">"FT"</span><span class="op">,</span></span>
+<span id="cb7-221"><a href="#cb7-221" aria-hidden="true" tabindex="-1"></a>    <span class="dt">NumberOfSegs</span><span class="op">:</span><span class="st">"NumSegs"</span><span class="op">,</span></span>
+<span id="cb7-222"><a href="#cb7-222" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ModelVolume</span><span class="op">:</span><span class="st">"Model"</span><span class="op">,</span></span>
+<span id="cb7-223"><a href="#cb7-223" aria-hidden="true" tabindex="-1"></a>    <span class="dt">CountVolume</span><span class="op">:</span><span class="st">"Observe"</span><span class="op">,</span></span>
+<span id="cb7-224"><a href="#cb7-224" aria-hidden="true" tabindex="-1"></a>    <span class="dt">VolDiff</span><span class="op">:</span><span class="st">'Diff'</span><span class="op">,</span></span>
+<span id="cb7-225"><a href="#cb7-225" aria-hidden="true" tabindex="-1"></a>    <span class="dt">VolPctDiff</span><span class="op">:</span><span class="st">'PctDiff'</span><span class="op">,</span></span>
+<span id="cb7-226"><a href="#cb7-226" aria-hidden="true" tabindex="-1"></a>    <span class="dt">RMSE</span><span class="op">:</span><span class="st">'RMSE'</span><span class="op">,</span></span>
+<span id="cb7-227"><a href="#cb7-227" aria-hidden="true" tabindex="-1"></a>    <span class="dt">PctRMS</span><span class="op">:</span><span class="st">'PctRMSE'</span></span>
+<span id="cb7-228"><a href="#cb7-228" aria-hidden="true" tabindex="-1"></a>  }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p><strong>Table 2: Average Daily Comparison by Facility Type (VMT).</strong></p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="235" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 234;"><span id="cb8-235"><a href="#cb8-235" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(filtered_vmtData<span class="op">,</span> {</span>
+<span id="cb8-236"><a href="#cb8-236" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb8-237"><a href="#cb8-237" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span><span class="op">,</span></span>
+<span id="cb8-238"><a href="#cb8-238" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb8-239"><a href="#cb8-239" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [</span>
+<span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FunctionalType"</span><span class="op">,</span></span>
+<span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NumberOfSegs"</span><span class="op">,</span></span>
+<span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ModelVMT"</span><span class="op">,</span></span>
+<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ObserveVMT"</span><span class="op">,</span></span>
+<span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a>    <span class="st">'VMTDiff'</span><span class="op">,</span></span>
+<span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a>    <span class="st">'VMTPctDiff'</span></span>
+<span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb8-247"><a href="#cb8-247" aria-hidden="true" tabindex="-1"></a>  <span class="dt">header</span><span class="op">:</span> {</span>
+<span id="cb8-248"><a href="#cb8-248" aria-hidden="true" tabindex="-1"></a>    <span class="dt">FunctionalType</span><span class="op">:</span><span class="st">"FT"</span><span class="op">,</span></span>
+<span id="cb8-249"><a href="#cb8-249" aria-hidden="true" tabindex="-1"></a>    <span class="dt">NumberOfSegs</span><span class="op">:</span><span class="st">"NumSegs"</span><span class="op">,</span></span>
+<span id="cb8-250"><a href="#cb8-250" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ModelVMT</span><span class="op">:</span><span class="st">"Model"</span><span class="op">,</span></span>
+<span id="cb8-251"><a href="#cb8-251" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ObserveVMT</span><span class="op">:</span><span class="st">"Observe"</span><span class="op">,</span></span>
+<span id="cb8-252"><a href="#cb8-252" aria-hidden="true" tabindex="-1"></a>    <span class="dt">VMTDiff</span><span class="op">:</span><span class="st">'Diff'</span><span class="op">,</span></span>
+<span id="cb8-253"><a href="#cb8-253" aria-hidden="true" tabindex="-1"></a>    <span class="dt">VMTPctDiff</span><span class="op">:</span><span class="st">'PctDiff'</span></span>
+<span id="cb8-254"><a href="#cb8-254" aria-hidden="true" tabindex="-1"></a>  }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="validation-charts" class="level2">
+<h2 class="anchored" data-anchor-id="validation-charts">Validation Charts</h2>
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
+
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof vvSelect = Inputs.select(new Map([['Volume','Volume'], ['VMT','VMT']]), {value: 'Variable', label: \"Select Summary Variable:\"})\n//viewof bCountySelect2 = Inputs.select(new Map([['Box Elder',3], ['Weber',57], ['Davis',11], ['Salt Lake',35], ['Utah',49], ['Region', 'All']]), {value: 'CO_FIPS', label: \"Select Region:\"})\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"vvp = transpose(vvpct)\nvvpL = transpose(vvpctLong)\nvvaL = transpose(vvabsLong)\nvvaLR = transpose(vvabsLongR)\ntable_vvData = vvp.filter(function(dataL) {\n    return vvSelect == dataL.Variable;\n})\nstack_vvaData = vvaLR.filter(function(dataL) {\n    return vvSelect == dataL.Variable; //&&\n           //bCountySelect2 == dataL.CO_FIPS;\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"import {GroupedBarChart} from \"@d3/grouped-bar-chart\"\nimport {Legend, Swatches} from \"@d3/color-legend\"\nimport {howto, altplot} from \"@d3/example-components\"\nchart2 = GroupedBarChart(stack_vvaData, {\n    x: d => d.FunctionalType,\n    y: d => d.Value,\n    z: d => d.DataSource,\n    yLabel: \"Value\",\n    zDomain: ['Model','Observed'],\n    width,\n    height: 500,\n    colors: [\"#376092\", \"#77933c\"]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"Inputs.table(table_vvData, {\n  style: {\n    fontSize: 16,\n  },\n  columns: [\n    \"FunctionalType\",\n    \"All\",\n    \"Box Elder\",\n    \"Weber\",\n    'Davis',\n    'Salt Lake',\n    'Utah'\n  ],\n  header: {\n    FunctionalType:\"FT\",\n    All: 'Region'\n  }})\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"viewof bCountySelect = Inputs.select(new Map([['Box Elder',3], ['Weber',57], ['Davis',11], ['Salt Lake',35], ['Utah',49], ['Region', 'All']]), {value: 'CO_FIPS', label: \"Select Region:\"})\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"volT = transpose(vol)\nvmtT = transpose(vmt)\nfiltered_volData = volT.filter(function(dataL) {\n    return bCountySelect == dataL.CO_FIPS;\n})\nfiltered_vmtData = vmtT.filter(function(dataL){\n    return bCountySelect == dataL.CO_FIPS;\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"Inputs.table(filtered_volData, {\n  style: {\n    fontSize: 16,\n  },\n  columns: [\n    \"FunctionalType\",\n    \"NumberOfSegs\",\n    \"ModelVolume\",\n    \"CountVolume\",\n    'VolDiff',\n    'VolPctDiff',\n    'RMSE',\n    'PctRMSE'\n  ],\n  header: {\n    FunctionalType:\"FT\",\n    NumberOfSegs:\"NumSegs\",\n    ModelVolume:\"Model\",\n    CountVolume:\"Observe\",\n    VolDiff:'Diff',\n    VolPctDiff:'PctDiff',\n    RMSE:'RMSE',\n    PctRMS:'PctRMSE'\n  }})\n\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"Inputs.table(filtered_vmtData, {\n  style: {\n    fontSize: 16,\n  },\n  columns: [\n    \"FunctionalType\",\n    \"NumberOfSegs\",\n    \"ModelVMT\",\n    \"ObserveVMT\",\n    'VMTDiff',\n    'VMTPctDiff'\n  ],\n  header: {\n    FunctionalType:\"FT\",\n    NumberOfSegs:\"NumSegs\",\n    ModelVMT:\"Model\",\n    ObserveVMT:\"Observe\",\n    VMTDiff:'Diff',\n    VMTPctDiff:'PctDiff'\n  }})\n"},{"methodName":"interpretQuiet","source":"shinyInput('vvSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('bCountySelect')"}]}
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../v9x/v900/calib-valid";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

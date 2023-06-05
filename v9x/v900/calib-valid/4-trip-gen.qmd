@@ -587,7 +587,6 @@ fig2
 ```
 
 
-
 ```{python}
 #| label: fig-ptrip-valid
 #| fig-cap: "Total Trip Validation."
