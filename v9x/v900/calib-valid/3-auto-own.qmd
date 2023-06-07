@@ -2,6 +2,47 @@
 title:  "Version 9.0.0 - Calibration/Validation"
 date-modified: last-modified
 author: "WFRC / MAG"
+echo: false
 ---
 
 # Auto Ownership
+
+The Auto Ownership model begins with the disaggregated households by TAZ and calculates how many vehicles each group owns. Households by vehicle ownership is grouped by 0, 1, 2, and 3+ vehicles. Auto ownership is based on utility functions for each combination of household size group, worker group, and income level (low/high). The utilities for each TAZ are then converted into probabilities. When the probabilities are multiplied by the associated number of households, then an auto ownership distribution by TAZ is created.
+
+The utility functions for auto ownership contain a series of binary and linear variables. The binary variables are loop toggles that are set to 1 or 0 for household size groups, worker groups, and income levels. There are also two linear variables that are taken from TAZ attributes: population density of five nearest zones and employment within 30 minutes by transit. The coefficients for the utility function are shown in @tbl-veh-owner.
+
+The code loops through the three groups to create utilities for each combination of binary variables for each TAZ. As can be seen in the table, for household size groups 5 and 6+, 3+ workers in a household, and high income, there are zero utility coefficients, which mean for combinations with these variables there is no utility. Additionally, the 3-vehicle utility is always set to 0 for every combination.
+
+
+```{python}
+#| label: tbl-veh-owner
+#| tbl-cap: "Coefficients for Vehicle Ownership Utility Functions"
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [
+    ['Constant', '-5.007', '-2.185', '0.148', '0'],
+    ['Household Size of 1', '3.671', '3.441', '0.951', '0'],
+    ['Household Size of 2', '1.036', '1.016', '0.758', '0'],
+    ['Household Size of 3', '0.186', '0.134', '-0.318', '0'],
+    ['Household Size of 4', '0.001', '-0.738', '-0.793', '0'],
+    ['Household Size of 5', '0', '0', '0', '0'],
+    ['Household Size of 6+', '0', '0', '0', '0'],
+    ['0 Worker in Household', ' 0.998', '0.514', '0', '0'],
+    ['1 Workers in Household', '0', '0.552', '0.081', '0'],
+    ['2 Workers in Household', '0', '0', '0.070', '0'],
+    ['3+ Workers in Household', '0', '0', '0', '0'],
+    ['Low Income (Group 1)', '2.733', '1.557', '0.538', '0'],
+    ['High Income (Group 2-4)','0', '0', '0', '0'],
+    ['Population Density of 5 nearest Zones','0.05159', '0.07346', '0.02366', '0'],
+    ['Employment within 30 minutes by transit', '0.0000199', '0.000008342', '0', '0']]
+Markdown(tabulate(
+  table, 
+  headers=["Variable","0-Vehicle Utility Function Coefficients", "1-Vehicle Utility Function Coefficients", "2-Vehicle Utility Function Coefficients", "3+-Vehicle Utility Function Coefficients"],
+  tablefmt="pipe", 
+  colalign=("left",)*5
+))
+```
+
+Using the utility values, probabilities for the vehicle ownership groups are calculated for each TAZ for each combination. The probability is the ratio of the exponential utility of each vehicle ownership group divided by the sum of the exponential utility of all three vehicle ownership groups for each combination. The vehicle ownership probabilities are multiplied by their associated household numbers as calculated in the household disaggregation script to get the number of households in each vehicle ownership group. Additionally, several aggregations are made to calculate total number of vehicles in different groupings. When calculating the number of vehicles in a 3+-vehicle group, the value of 3.5 number of vehicles per 3+ households is used.
+
+<mark>???Which validation charts should I add???</mark>
