@@ -8,7 +8,11 @@ execute:
 
 # Model Results - Comparison with v8.3.2
 
-## Road Volume
+This section compares the model results between v9.0.0 and v8.3.2 for roadway volumes and transit.
+
+## Road Volume Comparisons
+
+The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in v9.0.0 compared to v8.3.2 are shown in blue, while increases are shown in red. Salt Lake and northern Davis counties display a drop in roadway volumes, most apparent on I-15. Weber, southern Davis, and Utah Counties show increases. Most of the changes are relatively minor, with the largest decreases occurring on the freeways in Salt Lake County. However, given the large daily volume for these roadways, the percent change is relatively low.
 
 ::: {#fig-volume-comparison layout-ncol=3 .column-screen-inset-right}
 
@@ -20,6 +24,11 @@ execute:
 
 Model Daily Volumes Comparison (v9.0 vs v8.3.2)
 :::
+
+<mark>???WOULD BE BETTER TO REMOVE LINKS THAT HAVE ZERO LANES, NOTE MUTLIPLE UTAH LAKE CROSSING LINKS IN BOTH 2019 and 2050.</mark>
+
+<mark>???MAY BE GOOD TO INCLUDE TRUCK VOLUME COMPARISON???</mark>
+
 
 ```{python}
 import pandas as pd
@@ -168,7 +177,7 @@ def update_plot(tdmVersionsWithDate, scenarioGroups, modeGroups, trippurps, peri
             range=(2018,2051)
         ),
         width=800,
-        height=450
+        height=550
     )
     
     fig = go.Figure(data=data, layout=layout)
@@ -225,8 +234,8 @@ def update_plot_stackedarea(tdmVersionWithDate, scenarioGroup, modeGroups, tripp
                 y=yplot,
                 mode='lines',
                 name= m,
-                stackgroup='one'#,
-                #groupnorm='percent' # sets the normalization for the sum of the stackgroup
+                stackgroup='one',
+                groupnorm='percent' # sets the normalization for the sum of the stackgroup
             )
             data.append(trace1)
 
@@ -234,7 +243,7 @@ def update_plot_stackedarea(tdmVersionWithDate, scenarioGroup, modeGroups, tripp
     layout = go.Layout(
         #title=tdmVersionWithDate + ' Trips Mode Split (' + '/'.join(trippurps) + ' ' + '/'.join(periods) + ')',
         yaxis=dict(
-            title='Trips'#,
+            title='Percent of Total Trips'#,
             #rangemode = 'tozero',
             #ticksuffix='%',
             #range=(0,100)
@@ -291,8 +300,8 @@ def update_plot_stackedarea_boardings(tdmVersionWithDate, scenarioGroup):
                 y=yplot,
                 mode='lines',
                 name= 'Mode ' + str(m),
-                stackgroup='one'#,
-                #groupnorm='percent' # sets the normalization for the sum of the stackgroup
+                stackgroup='one',
+                groupnorm='percent' # sets the normalization for the sum of the stackgroup
             )
             data.append(trace1)
 
@@ -300,7 +309,7 @@ def update_plot_stackedarea_boardings(tdmVersionWithDate, scenarioGroup):
     layout = go.Layout(
         #title=tdmVersionWithDate + ' Boardings by Mode',
         yaxis=dict(
-            title='Trips'#,
+            title='Percent of Total Boardings'#,
             #rangemode = 'tozero',
             #ticksuffix='%',
             #range=(0,100)
@@ -319,15 +328,20 @@ py.offline.init_notebook_mode(connected=True)
 ```
 ## Transit Comparisons
 
+Transit comparisons were done with ridership, trips mode share, and boardings mode share. Overall ridership increases significantly in v9.0.0, and Core Bus ridership takes a larger share of trips and boardings than in v8.3.2.
+
 ### Transit Ridership
+
+Transit ridership in v9.0.0 compared to v8.3.2 shows significant increase in 2032, 2042, and 2050. See @fig-hy-tr-all. The total ridership in 2050 for v9.0.0 is 332,000 daily trips compared to the v8.3.2 model that showed 258,000 daily trips, which represents a 29% increase. The increase is largely due to the improvements in commuter rail with increased frequency and speed. <mark>???VERIFY!!???</mark>
+
 ```{python}
 #| label: fig-hy-tr-all
-#| fig-cap: "Daily transit ridership - All Modes"
+#| fig-cap: "Daily Transit Ridership - All Purposes"
 #| cap-location: margin
 #| column: screen-inset-right
 
 update_plot(
-    ['WF TDM v8.3.2 - 2022-02-04a','WF TDM v9.0 - 2022-12-19'], 
+    ['WF TDM v8.3.2 - 2022-02-04a', 'WF TDM v9.0 - 2023-04-28'], 
     ['RTP'], 
     ['4: Transit'], 
     ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
@@ -335,14 +349,18 @@ update_plot(
 )
 ```
 
+<mark>???NEED TO GET RID OF DATE TIME STAMP AND OTHER 'CODE'S IN MODEL LEGEND "Transit" instead of "4: Transit"???</mark>
+
+For Home-Based College (HBC) trips, the v9.0.0 model shows lower projections. See @fig-dy-tr-hbc. This is mostly due to many of the lower enrollment colleges being removed from the trips tables. The uptick in HBC trips in 2042 and 2050 in v9.0.0 follow similar increases the updated enrollment trends. <mark>???ADD REFERENCE TO COLLEGES SECTION IN INPUTS???</mark>
+
 ```{python}
 #| label: fig-dy-tr-hbc
-#| fig-cap: "Daily transit ridership - HBC"
+#| fig-cap: "Daily Transit Ridership - Home-Based College"
 #| cap-location: margin
 #| column: screen-inset-right
 
 update_plot(
-    ['WF TDM v8.3.2 - 2022-02-04a','WF TDM v9.0 - 2022-12-19'], 
+    ['WF TDM v8.3.2 - 2022-02-04a','WF TDM v9.0 - 2023-04-28'], 
     ['RTP'], 
     ['4: Transit'], 
     ['HBC'], 
@@ -350,26 +368,21 @@ update_plot(
 )
 ```
 
+
 ### Transit Share
 
-```{python}
-#| label: fig-shr-tr-all-832
-#| fig-cap: "Transit ridership share by transit mode - v8.3.2"
-#| cap-location: margin
-#| column: screen-inset-right
+A comparison of the share of trips amongst the various modes of transit was done for both Trips and Boardings.
 
-update_plot_stackedarea(
-    'WF TDM v8.3.2 - 2022-02-04a', 
-    'RTP', 
-    ['4a: Local Bus','4b: Core Bus','4c: Express Bus','4d: Bus-Rapid Transit','4e: Light-Rail Transit','4f: Commuter-Rail Transit'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
-)
-```
+#### Trips
+
+The transit ridership trip shares by mode can be found in @fig-shr-tr-all-9 for v9.0.0 and @fig-shr-tr-all-832 for v8.3.2. The main difference in v9.0.0 trip share by mode is the large increase in Core Bus trips in 2032 from almost nothing in 2028, while in v8.3.2 the increase in Core Bus trips is spread out between 2024 and 2030. This large increase is consistent with the transit inputs into the model with a large number of Core Bus routes coming into production in 2032, replacing mostly local bus service. The new Core Buy takes most of the local bus ridership it is replacing, but also quite a lot of ridership from Light Rail Transit (Mode 7).
+
+
+<mark>???MAP SHOWING TRANSIT CHANGES, LIKE ROADWAY VOLUMES WOULD BE USEFUL???</mark>
 
 ```{python}
 #| label: fig-shr-tr-all-9
-#| fig-cap: "Transit ridership share by transit mode - v9.0"
+#| fig-cap: "Transit Trips Share by Mode - v9.0"
 #| cap-location: margin
 #| column: screen-inset-right
 
@@ -382,32 +395,59 @@ update_plot_stackedarea(
 )
 ```
 
-### Transit Boardings
-
-
 ```{python}
-#| label: fig-brd-832
-#| fig-cap: "Transit boardings share by transit mode - v8.3.2"
+#| label: fig-shr-tr-all-832
+#| fig-cap: "Transit Trips Share by Mode - v8.3.2"
 #| cap-location: margin
 #| column: screen-inset-right
 
-update_plot_stackedarea_boardings('WF TDM v8.3.2 - 2022-02-04a', 'RTP')
+update_plot_stackedarea(
+    'WF TDM v8.3.2 - 2022-02-04a', 
+    'RTP', 
+    ['4a: Local Bus','4b: Core Bus','4c: Express Bus','4d: Bus-Rapid Transit','4e: Light-Rail Transit','4f: Commuter-Rail Transit'], 
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
+    ['Pk','Ok']
+)
 ```
+
+<mark>???ANYWAY TO GET THESE CHARTS SIDE-BY-SIDE... ALSO LOT OF WHITE SPACE BETWEEN CHART AND CAPTION, WHICH MAKES IT A LITTLE CONFUSING???</mark>
+
+
+### Transit Boardings
+
+Transit boardings for v9.0.0 are found in @fig-brd-9 and for v8.3.2 are found in @fig-brd-832. Boardings follow the same pattern as trips, but boardings are able to differentiate between modes better than trips that are categorized hierarchically.
 
 
 ```{python}
 #| label: fig-brd-9
-#| fig-cap: "Transit boardings share by transit mode - v9.0"
+#| fig-cap: "Transit Boardings Share by Mode - v9.0"
 #| cap-location: margin
 #| column: screen-inset-right
 
 update_plot_stackedarea_boardings('WF TDM v9.0 - 2022-12-19', 'RTP')
 ```
 
+```{python}
+#| label: fig-brd-832
+#| fig-cap: "Transit Boardings Share by Mode - v8.3.2"
+#| cap-location: margin
+#| column: screen-inset-right
+
+update_plot_stackedarea_boardings('WF TDM v8.3.2 - 2022-02-04a', 'RTP')
+```
+
+<mark>???SAME COMMENTS FOR THESE TWO AS THE TWO ABOVE???</mark>
+
+## Commuter Rail Station Boardings
+
+The comparison of base year (2019) station-level boardings for commuter-rail transit (CRT) is found in @fig-fr-brd. CRT boardings were found to be higher than observed for Davis County and lower than observed for Utah County. An adjustment of 5 additional minutes to in-vehicle-time for trips to/from Davis County and 5 fewer minute to in-vehicle-time for Utah County was made to attempt to bring the model more in-line with observations. <mark>???VERIFY!!!???</mark>
+
+Additional investigation was conducted into why Provo and Lehi were particularly low in the model. The findings did not turn up any obvious errors in the transit or model network. So, the conclusion is that further adjustments to CRT will be possible in the Mode Choice Update project that is currently being undertaken for the next release of the model.
+
 
 ```{python}
 #| label: fig-fr-brd
-#| fig-cap: "Daily FrontRunner boardings by station compared to observed."
+#| fig-cap: "2019 Daily CRT Boardings by Station - Model vs Observed "
 #| cap-location: margin
 #| column: screen-inset-right
 
