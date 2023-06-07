@@ -1,0 +1,31 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "What's New? - Version 8.3.2"
+  author: "WFRC / MAG"
+  date: "2/4/22"
+  chapters:
+    - index.qmd
+    - _20220204-update.qmd
+    - 1-genparams.qmd
+    - 2-inputdata.qmd
+    - 3-inputprocessing.qmd
+    - 4-hhdisag.qmd
+    - 5-tripgen.qmd
+    - 6-distribution.qmd
+    - 7-mc.qmd
+    - 8-assign.qmd
+    - 9-pp.qmd
+    - 10-modelresults.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    cover-image: _pictures/cover.png
+    code-fold: true
+  pdf:
+    documentclass: scrreprt

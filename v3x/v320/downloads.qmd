@@ -1,0 +1,15 @@
+---
+title:  "Version 3.2.0 - Downloads"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The downloads for the Version 3.2.0 documentation is shown below by category.
+
+### What's New Document
+
+ - {{< downloadthis "downloads/WF-TDM-v3.2-Whats-New.doc"
+label="v3.2 Whats New" dname=v3.2-whats-new id=download-btn >}}
+
+
+

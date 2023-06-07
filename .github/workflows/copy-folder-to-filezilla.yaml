@@ -1,0 +1,24 @@
+name: Copy _site to filezilla
+
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  run-script:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.3.4
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.13
+      - name: Run script
+        env:
+          FILEZILLA_USERNAME: ${{ secrets.FILEZILLA_USERNAME }}
+          FILEZILLA_PASSWORD: ${{ secrets.FILEZILLA_PASSWORD }}
+          FILEZILLA_HOSTNAME: ${{ secrets.FILEZILLA_HOSTNAME }}
+        run: python copy-to-filezilla.py

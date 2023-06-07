@@ -1,0 +1,53 @@
+---
+title:  "Version 9.0.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Input Data
+
+## Global Data
+
+### Mode Choice
+ - Added input files regarding new bus speed ratios
+    - Added 'bus_speed_ratios.csv' -- file containing the bus speed factors read in by the model
+    - Added '_source - bus_speed_ratios.xlsx' -- source file for bus speed ratios csv
+
+#### Update Transit Speed Factors
+The factors to calculate bus speeds from congested auto speeds from the distribution loaded network were re-estimated based on Aug-Nov 2019 GTFS data from UTA. The functional groups were redefined and expanded to include area type as well as peak and off-peak. @fig-old-bus shows the previous bus speed factors and @fig-new-bus shows the new bus speed factors used in this model version.
+
+![Previous Bus Speed Factors.](../_pictures/old_bus_speeds.png){#fig-old-bus}
+
+![New Bus Speed Factors.](../_pictures/new_bus_speeds.png){#fig-new-bus}
+
+### Assignment
+ - Added lookup table & source file for diurnal and PA parameters (corresponding factors were removed from the ‘0GeneralParameters.block’ file)
+    - 'Diurnal & PA factors.csv'
+    - _source - Diurnal & PA factors.xlsx'
+ - The 'Diurnal & PA factors.csv' was updated
+
+## Highway Network
+### Dated Updates
+
+**MergedMasterNet - 2022-10-11**
+
+ - Phase change for Managed Motorways in WFRC area
+ - A couple of phasing updates from the WFRC RTP project list
+ - Cleaned up GIS23_32 & GIS23_42 fields
+ - Differentiated what projects will be built by 2028 from what will be built by 2023
+
+## Externals
+### External Matrices from USTM
+The external matrices from USTM were updated:
+
+ - Replaced AM, MD, PM, EV & DY external matrices from USTM’s subarea extraction process for the following years:
+    - 2015 – copied DY matrix from 2019
+    - 2019
+    - 2023 – copied DY matrix from 2019
+    - 2028 – copied DY matrix from 2032
+    - 2032
+    - 2042
+    - 2050
+ - USTM version used: 'USTM_v3.0 - 2022-09-15' which included TAZ, MasterNet, SE & loaded nets from 'WF TDM v9.0 - 2022-10-05'
+
+

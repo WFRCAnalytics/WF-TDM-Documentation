@@ -1,0 +1,13 @@
+---
+title:  "Version 8.3.2 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Distribution
+
+The following changes were made in the distribution scripts:
+
+- Friction factors, which were previously calibrated to the county level, were recalibrated at the large district level.
+- Truck speed factors are now applied to all facility types, where previously they applied only to freeway.
+

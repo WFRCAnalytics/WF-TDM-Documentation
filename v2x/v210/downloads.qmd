@@ -1,0 +1,15 @@
+---
+title:  "Version 2.1.0 - Downloads"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The downloads for the Version 2.1.0 documentation is shown below by category.
+
+### Users GUide
+
+ - {{< downloadthis "downloads/WF-TDM-v2.1-Users-Guide.doc"
+label="v2.1 Users Guide" dname=v2.1-users-guide id=download-btn >}}
+
+
+

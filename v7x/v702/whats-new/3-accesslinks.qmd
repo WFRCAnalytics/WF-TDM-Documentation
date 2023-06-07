@@ -1,0 +1,9 @@
+---
+title:  "Version 7.0.2 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+## Hand Coded Access Links
+The model was modified so that new hand coded walk and drive access links can be added to transit scenarios. This was done by separating the walk and drive access links that remain unchanged regardless of transit from those that are specific to a given scenario. General walk and drive access link files were placed in the '_Inputs\\4_Transit\\_General Hand-Coded Support Links' directory. Scenario specific walk and drive access links can be added to the 'scenario_hand_coded_walk_links.sup' and 'scenario_hand_coded_drive_links.sup' files found in the scenario line folders.
+

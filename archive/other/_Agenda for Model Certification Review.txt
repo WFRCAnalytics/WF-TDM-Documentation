@@ -1,0 +1,8 @@
+Agenda Topics
+
+1. WFRC/MAG model summary 
+2. Any model updates
+3. Data collection
+4. Model maintenance
+5. Other agency activities related to the travel and land use models
+

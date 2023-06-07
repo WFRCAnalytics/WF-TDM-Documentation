@@ -1,0 +1,14 @@
+---
+title:  "Version 8.3.0 - Downloads"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+The downloads for the Version 8.3.0 documentation is shown below by category.
+
+### Inputs
+
+ - {{< downloadthis "downloads/WF-TDM-Model-Doc-v8.3-2019-06-18-2SEd.docx"
+label="v8.3 2019-06-18 Inputs" dname=v83-2019-06-18-inputs id=download-btn >}}
+
+

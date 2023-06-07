@@ -1,0 +1,12 @@
+---
+title:  "Version 3.2.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+## Introduction
+This document summarizes the important changes to the WFRC-MAG travel modeling process since the previous Version 3.11. The document is not intended to be comprehensive, that is it would not allow someone to build the travel modeling process from scratch, but it is targeted towards an audience familiar with travel modeling.  If you have questions, please contact Chad Worthen (cworthen@wfrc.org).
+
+See earlier “What’s new?” documents to understand other model elements that were worked on in earlier stages.
+
+

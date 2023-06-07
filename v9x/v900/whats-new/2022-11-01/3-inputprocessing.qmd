@@ -1,0 +1,11 @@
+---
+title:  "Version 9.0.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Input Processing
+
+## Time of Day Factors
+
+ - Update '1_1_CalculateTimeOfDayFac.s' script to output a new file

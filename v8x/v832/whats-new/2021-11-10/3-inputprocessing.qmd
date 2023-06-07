@@ -1,0 +1,27 @@
+---
+title:  "Version 8.3.2 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Input Processing
+
+## Inbound/Outbound and HOV Capacity
+A couple bugs were corrected in the input processing script:
+
+- Corrected inbound/outbound designations for EB/WB links.
+- Removed FT=37-38 as a condition for populating link additional HOV capacity (AdHOVCap1H) values since related HOV fields are populated on GP links not HOV links. Also, corrected capacity lookup to be for FT=37 and not FT of link.
+
+## Walk Buffer Modifications
+The walk buffer script was improved with a couple simple modifications to the routes and stops that are included in walk buffer creation:
+- Removed local bus route buffers along expressways and freeways (anything with FT>=12). Only local bus routes along arterials or collectors are now included in route buffers. 
+- Removed buffers that were calculated from local bus stops, which were redundant with local bus route buffers.
+- The remaining combined walk buffer areas are shown in green.
+The '_WalkBuffer_ArcMap103.mxd' file was updated to version 10.3 of ArcMap, and the scripts were modified to copy the walk buffer mxd to scenario folders.
+
+![Walk Buffer Modifications.](_pictures/walk-buffers.png){#fig-walk-buffers}
+
+
+
+
+

@@ -1,0 +1,11 @@
+---
+title:  "Version 9.0.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Highway Assignment
+
+**'4_SummarizeLoadedNetworks.s'**
+
+ - Pointed GEOMI reference to '0_InputProcessing\\UpdatedMasterNet\\GIS\\@MasterPrefix@ - Link.shp' instead of '1_Inputs\\3_Highway' folder
