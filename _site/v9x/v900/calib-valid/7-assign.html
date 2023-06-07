@@ -465,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="table-summaries" class="level2">
 <h2 class="anchored" data-anchor-id="table-summaries">Table Summaries</h2>
 <div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="344">
 <div>
 
 
@@ -1194,6 +1194,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ato-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="ato-analysis">ATO Analysis</h2>
+<p>Access to opportunities, also referred to as accessibility or ATO, is a way to measure how well people can connect to jobs, or vice versa. ATO metrics quantify how well the current and future transportation system work with land use. Both shorter travel times and an increased presence of employment and other opportunities result in higher accessibility scores.</p>
+<p>A script to calculate ATO metrics, <code>1_Access_to_Opportunity.s</code> located in the <code>2_ModelScripts\7_PostProcessing</code> folder, has been added to the model’s <code>_HailMary.s</code> batch script and runs automatically with every model run. The script sums the number of jobs and households that are within a typical commute travel shed (in minutes) by auto and transit. The typical commute travel shed is defined using a distance decay curve estimated from the 2012 household travel survey. Metrics that combine the jobs and households are also calculated.</p>
+<p>Results from the ATO script are output into <code>7_PostProcessing\Access_to_Opportunity_@DemographicYear@.dbf</code>. Results can be joined with the TAZ shapefile to visualize the data, such as is shown in <a href="#fig-ato1">Figure&nbsp;1</a> and <a href="#fig-ato2">Figure&nbsp;2</a>.</p>
+<p><mark>??? Using the CompJobHHByTran and CompJobHHByAuto fields…is that right???&lt;/mark</mark></p>
+<div class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<div id="fig-ato1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="7-assign_files/figure-html/fig-ato1-output-1.png" width="669" height="758" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Access to opportunity by auto mode.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<div id="fig-ato2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="7-assign_files/figure-html/fig-ato2-output-1.png" width="661" height="758" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Access to opportunity by transit mode.</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>

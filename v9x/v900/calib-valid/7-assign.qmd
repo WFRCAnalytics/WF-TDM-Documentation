@@ -328,4 +328,55 @@ chart = Plot.plot({
 
 <mark>???Add screen shots of the TTT to get the segment-level validation map of model vs. obseved for all vehicles, cars and LT, MD, and HV???</mark>
 
-## ATO Analysis
+## ATO Analysis 
+Access to opportunities, also referred to as accessibility or ATO, is a way to measure how well people can connect to jobs, or vice versa. ATO metrics quantify how well the current and future transportation system work with land use.  Both shorter travel times and an increased presence of employment and other opportunities result in higher accessibility scores.  
+
+A script to calculate ATO metrics, `1_Access_to_Opportunity.s` located in the `2_ModelScripts\7_PostProcessing` folder, has been added to the model’s `_HailMary.s` batch script and runs automatically with every model run. The script sums the number of jobs and households that are within a typical commute travel shed (in minutes) by auto and transit. The typical commute travel shed is defined using a distance decay curve estimated from the 2012 household travel survey. Metrics that combine the jobs and households are also calculated.  
+
+Results from the ATO script are output into `7_PostProcessing\Access_to_Opportunity_@DemographicYear@.dbf`.  Results can be joined with the TAZ shapefile to visualize the data, such as is shown in @fig-ato1 and @fig-ato2. 
+
+<mark>??? Using the CompJobHHByTran and CompJobHHByAuto fields...is that right???</mark
+
+```{python}
+import json
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt #if using matplotlib
+ato_data = pd.read_csv('data/assign/Access_to_Opportunity_2019.csv')
+geojson_path = r'data/assign/tazNew.geojson'
+```
+
+```{python}
+geojson_data = gpd.read_file(geojson_path)
+gdf = gpd.GeoDataFrame(ato_data, geometry=geojson_data.geometry)
+```
+
+```{python}
+#|label: fig-ato1
+#|fig-cap: Access to opportunity by auto mode.
+
+fig, ax = plt.subplots(1, figsize=(16,10))
+gdf.plot(column='CompJobHHByAuto', cmap='YlOrRd', linewidth=.1, ax=ax, edgecolor='black', legend=False)
+ax.axis('off')
+
+# Add legend at the bottom
+cbar = plt.colorbar(ax.get_children()[0], ax=ax, orientation='vertical', pad=0.05, shrink=0.3)
+cbar.set_label('Composite ATO Score')
+
+plt.show()
+```
+
+```{python}
+#|label: fig-ato2
+#|fig-cap: Access to opportunity by transit mode.
+
+fig, ax = plt.subplots(1, figsize=(16,10))
+gdf.plot(column='CompJobHHByTran', cmap='YlOrRd', linewidth=.1, ax=ax, edgecolor='black', legend=False)
+ax.axis('off')
+
+# Add legend at the bottom
+cbar = plt.colorbar(ax.get_children()[0], ax=ax, orientation='vertical', pad=0.05, shrink=0.3)
+cbar.set_label('Composite ATO Score')
+
+plt.show()
+```
