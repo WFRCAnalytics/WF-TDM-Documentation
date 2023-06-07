@@ -1,0 +1,10 @@
+FunctionalClass,BusSpeedRatio
+Collectors,0.6
+"Minor Arterials
+(Urb/CBD)",0.65
+"Minor Arterials
+(Sub/Rur)",0.65
+"Principal Arterials
+& Expressways",0.55
+Freeway Ramps,0.75
+Freeways,0.95

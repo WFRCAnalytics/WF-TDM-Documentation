@@ -3,27 +3,11 @@ title:  "Version 9.0.0 - Calibration/Validation"
 date-modified: last-modified
 author: "WFRC / MAG"
 echo: false
+warning: false
+message: false
 ---
 
 # Highway Assignment
-
-Ideas:
-
- - Table Summary of total region wide volume difference and vmt difference by facility type 
-
-- Also include a Simple plot showing this
-
-    - (to represent the Table Summaries in the Dashboard oin the 01 - WF Validation - v2023-04-14.xlsx in the Calib_Valid folder)
-
- - Interactive Table selection where user picks County or Region; VMT or Counts; and Number, Difference, or RMSE 
-
-    - (to represent the Tables Tab of the validation xlsx sheet)
-
- - Interactive Validation Charts where the user chooses total volume, car, md, or hv as one selection and count or percent error as other selection
-
-    - (to represent the 8 validation charts in the Dashboard of the validation xlsx sheet)
-
-- Screen shots of the TTT to get the segment-level validation map of model vs. obseved for all vehicles, cars and LT, MD, and HV
 
 ## Table Summaries
 
@@ -40,6 +24,7 @@ allveh_melted = allveh_melted[['CO_FIPS', 'SEGID', 'Valid', 'ATYPENAME', 'Mod_AW
                  'Mod_Car', 'Obs_Car', 'Diff_Car', 'Pct_Dev_Car', 'Diff_Sq_Car', 'Mod_MD', 'Obs_MD', 'Diff_MD',
                  'Pct_Dev_MD', 'Diff_Sq_MD', 'Mod_HV', 'Obs_HV', 'Diff_HV', 'Pct_Dev_HV', 'Diff_Sq_HV', 'DY_VMT','DY_VMT.1']]
 allveh_melted = allveh_melted.rename(columns = {'DY_VMT':'ModelVMT', 'DY_VMT.1':'ObserveVMT'})
+allveh_melted
 ```
 
 ```{python}
@@ -256,3 +241,91 @@ Inputs.table(filtered_vmtData, {
 ```
 
 ## Validation Charts
+
+<mark>???Hard to find regression model that starts at (0,0) -- Good enough???</mark>
+
+<mark>???Hard to create pct error graphs with bins???</mark>
+
+<mark>???Should I just do screen shots of the validation charts???</mark>
+
+```{python}
+allveh_validC = allveh_valid[['Mod_AWDT','Obs_AWDT','Pct_Dev', 'Mod_Car','Obs_Car','Pct_Dev_Car','Mod_MD', 'Obs_MD', 'Pct_Dev_MD', 'Mod_HV', 'Obs_HV', 'Pct_Dev_HV']]
+allveh_validC['row_number'] = range(1, len(allveh_validC) + 1)
+allveh_validC = pd.melt(
+    allveh_validC,
+    id_vars = ['row_number'],
+    value_vars=['Mod_AWDT','Obs_AWDT', 'Mod_Car','Obs_Car','Mod_MD', 'Obs_MD', 'Mod_HV', 'Obs_HV'],
+    var_name='Variable',
+    value_name='Value'
+)
+allveh_validC['Vehicle'] = allveh_validC['Variable'].str.split('_').str[-1]
+allveh_validC['DataSource'] = allveh_validC['Variable'].apply(lambda x: 'Model' if 'Mod' in x else 'Observed')
+allveh_validC = allveh_validC.pivot(index = ['row_number','Vehicle'],columns = 'DataSource', values = 'Value').reset_index().drop(columns={'row_number'})
+allveh_validC['Diff'] = allveh_validC['Model'] - allveh_validC['Observed']
+allveh_validC['Pct_Dev'] = allveh_validC['Diff'] / allveh_validC['Observed']
+allveh_validC = allveh_validC.fillna(0)
+allveh_validC['Vehicle'] = allveh_validC['Vehicle'].apply(lambda x: 'All' if 'AWDT' in x else x)
+```
+
+
+```{python}
+ojs_define(validc = allveh_validC)
+```
+
+
+```{ojs}
+viewof vehSelect = Inputs.select(new Map([['All','All'], ['Car','Car'], ['MD', 'MD'], ['HV','HV']]), {value: 'Vehicle', label: "Select Vehicle:"})
+```
+
+```{ojs}
+validT = transpose(validc)
+filtered_vehData = validT.filter(function(dataL) {
+    return vehSelect == dataL.Vehicle;
+})
+```
+
+```{ojs}
+ML = require("https://www.lactame.com/lib/ml/6.0.0/ml.min.js")
+vehData_lm = new ML.SimpleLinearRegression(filtered_vehData.map(d => d.Observed), filtered_vehData.map(d => d.Model))
+vehData_coefficients = vehData_lm.coefficients 
+
+vehData_corr = vehData_lm.score(filtered_vehData.map(d => d.Observed), filtered_vehData.map(d => d.Model))
+```
+
+```{ojs}
+
+chart = Plot.plot({
+  marks: [
+    Plot.dot(filtered_vehData, { // Add scatterplot (blue points)
+      x: "Observed",
+      y: "Model",
+      fill: "blue",
+      r: 4,
+      opacity: 0.4
+    }),
+    Plot.linearRegressionY(filtered_vehData, {
+      x: "Observed",
+      y: "Model"
+    }),
+    Plot.text( // Add text annotation for model estimates (shown in blue)
+      [`y = ${vehData_coefficients[1].toFixed(1)}x - ${-vehData_coefficients[0].toFixed(1)}
+        
+        𝘙 ² = ${vehData_corr.r2.toFixed(2)}
+        
+        𝘳 = ${vehData_corr.r.toFixed(2)}` 
+      ],
+      {frameAnchor: "bottom-right", 
+       dy: -20,
+       fontSize: 16, 
+       fill: "blue", 
+       fontWeight: 600} 
+    )
+  ]
+})
+```
+
+## Map Analysis
+
+<mark>???Add screen shots of the TTT to get the segment-level validation map of model vs. obseved for all vehicles, cars and LT, MD, and HV???</mark>
+
+## ATO Analysis
