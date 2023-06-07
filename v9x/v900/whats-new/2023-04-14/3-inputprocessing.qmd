@@ -1,0 +1,41 @@
+---
+title:  "Version 9.0.0 - What's New?"
+date-modified: last-modified
+author: "WFRC / MAG"
+---
+
+# Input Processing
+
+The changes in the input processing scripts are listed here by their corresponding subfolder.
+
+## Setup
+
+The `0_FolderSetup.s` script was updated, renamed, and added to the `HailMary.s` script. Additionally, `UpdatedMasterNet` and `UpdatedMasterNet\GIS` folders were added to `0_InputProcessing` folder. These changes were also made to `_CreateOutputFolders.s` and `_BlankFolderSetup` in the `Scenarios\_default` folder.
+
+To account for removal of the fields from the TAZ shapefile, the references to `CITY` and `COUNTY` fields were removed from the `1_InputSetup.s` script.
+
+The copied locations of a few files in the `\_CopyToFolders` folder were updated. VPR files in the `2_ModelScripts\_CopyToFolders\Distrib_ConvVPR` folder are now copied to the `Temp\3_Distribute` folder. The `_Urbanization.mxd` and `_WalkBuffer.mxd` in the `2_ModelScripts\_CopyToFolders\ArcMap_mxd` folder are copied to the `0_InputProcessing` folder.
+
+## SE Processing
+
+The `1_DemographicsAnalysis.s` script was updated to read `ControlTotal_SE_AllCounties.csv`. The control total lookup index calculation was updated to account for Weber County indexing between two sub-areas. The `9057` prefix is for the UDOT Subarea and `9157` prefix for the WFRC Subarea.
+
+## Network Processing
+
+The `0_Update_TAZID_Distance.s` script was updated to export out true shape link and node shapefiles.
+
+To account for the removal of `CITY` and `COUNTY` fields from the TAZ shapefile, the `1_NetProcessor.s` and `4_Create_walk_xfer_access_links.s` script was updated to remove references to those fields and the `COUNTY` field in the `c_PNR_nodes.dbf` output was changed to `CO_FIPS`.
+
+The `1_NetProcessor.s` was updated script to export out true shape Link/Node shapefiles.
+
+A bug in the Connected-and-Autonomous Vehicle (CAV) calculation was fixed where the column index was needed to be incremented by 1 to link up with lookup tables.
+
+The hard-coded turn penalty node numbers in the `3_TurnPenalty.s` script were updated to the new v8.3.2/v9.0.0 master network node numbering.
+
+## Trip Table
+
+The `EXTERNAL` field reference in the `2_External_TripTables.s` script was replaced with a reference to the `General_Parameters.block` token `@external_zones@` to account for removal of field from TAZ shapefile.
+
+## Time of Day Factors
+
+A new folder called `e_TimeOfDayFactors` was added with a `1_CalculateTimeOfDayFac.s` script to output a new file with time of day factors for use in following scripts.

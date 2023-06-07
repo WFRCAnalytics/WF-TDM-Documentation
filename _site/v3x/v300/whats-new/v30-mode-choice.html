@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="WFRC / MAG">
+
+<title>Documentation - Version 3.0.0 - What’s New?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../_pictures/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://wfrc.org" class="navbar-brand navbar-brand-logo">
+    <img src="../../../_pictures/wf-logo-new-white-t.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9.x</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9.x">    
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-8.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 8.x</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-8.x">    
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v831/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v830/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v810/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.1.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
+        <li>
+    <a class="dropdown-item" href="../../../v7x/v702/index.html" rel="" target="">
+ <span class="dropdown-text">Version 7.0.2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v7x/v701/index.html" rel="" target="">
+ <span class="dropdown-text">Version 7.0.1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v7x/v700/index.html" rel="" target="">
+ <span class="dropdown-text">Version 7.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v6x/v610/index.html" rel="" target="">
+ <span class="dropdown-text">Version 6.1.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v6x/v600/index.html" rel="" target="">
+ <span class="dropdown-text">Version 6.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v5x/v500/index.html" rel="" target="">
+ <span class="dropdown-text">Version 5.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v4x/v430/index.html" rel="" target="">
+ <span class="dropdown-text">Version 4.3.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v4x/v420/index.html" rel="" target="">
+ <span class="dropdown-text">Version 4.2.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v4x/v400/index.html" rel="" target="">
+ <span class="dropdown-text">Version 4.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v3x/v320/index.html" rel="" target="">
+ <span class="dropdown-text">Version 3.2.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v3x/v310/index.html" rel="" target="">
+ <span class="dropdown-text">Version 3.1.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v3x/v300/index.html" rel="" target="">
+ <span class="dropdown-text">Version 3.0.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v2x/v210/index.html" rel="" target="">
+ <span class="dropdown-text">Version 2.1.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-testing" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Testing</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-testing">    
+        <li>
+    <a class="dropdown-item" href="../../../testing/jupyter-widgets.html" rel="" target="">
+ <span class="dropdown-text">Visualization</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Whats New?</li><li class="breadcrumb-item"><a href="../../../v3x/v300/whats-new/v30-doc.html">06/25/2003</a></li><li class="breadcrumb-item"><a href="../../../v3x/v300/whats-new/v30-mode-choice.html">Mode Choice</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/downloads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Downloads</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Whats New?</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">06/25/2003</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-doc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Documentation &amp; Source Files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-input-prep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Input Preparation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-modeling-process.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling Process</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-auto-own.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Auto Ownership Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-trip-gen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Trip Generation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Trip Distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-mode-choice.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Mode Choice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-assign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Highway Assignment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reports, Post Processors, Data Management</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v3x/v300/whats-new/v30-terms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Terms and Abbreviations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mode-choice" id="toc-mode-choice" class="nav-link active" data-scroll-target="#mode-choice">Mode Choice</a>
+  <ul class="collapse">
+  <li><a href="#new-logit-models-for-hbo-and-nhb-purposes" id="toc-new-logit-models-for-hbo-and-nhb-purposes" class="nav-link" data-scroll-target="#new-logit-models-for-hbo-and-nhb-purposes">New Logit models for HBO and NHB purposes</a></li>
+  <li><a href="#market-segmentation-for-home-based-purposes" id="toc-market-segmentation-for-home-based-purposes" class="nav-link" data-scroll-target="#market-segmentation-for-home-based-purposes">Market segmentation for home-based purposes</a></li>
+  <li><a href="#walk-access-to-transit-methodology-revised" id="toc-walk-access-to-transit-methodology-revised" class="nav-link" data-scroll-target="#walk-access-to-transit-methodology-revised">Walk access to transit methodology revised</a></li>
+  <li><a href="#drive-access-to-transit-coding" id="toc-drive-access-to-transit-coding" class="nav-link" data-scroll-target="#drive-access-to-transit-coding">Drive access to transit coding</a></li>
+  <li><a href="#summit-formatted-output" id="toc-summit-formatted-output" class="nav-link" data-scroll-target="#summit-formatted-output">Summit-formatted output</a></li>
+  <li><a href="#improved-transit-speeds" id="toc-improved-transit-speeds" class="nav-link" data-scroll-target="#improved-transit-speeds">Improved transit speeds</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Version 3.0.0 - What’s New?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>WFRC / MAG </p>
+          </div>
+  </div>
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 7, 2023</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="mode-choice" class="level2">
+<h2 class="anchored" data-anchor-id="mode-choice">Mode Choice</h2>
+<section id="new-logit-models-for-hbo-and-nhb-purposes" class="level3">
+<h3 class="anchored" data-anchor-id="new-logit-models-for-hbo-and-nhb-purposes">New Logit models for HBO and NHB purposes</h3>
+<p>Mode choice was considered a relatively weak link in version 2.1, particularly for non-work trips. It has been extensively revised. The mode choice models’ major deficiencies were lack of independent Logit models for the HBO and NHB purposes. Trips for these purposes were calculated by factoring HBW trips – a practice considered sub-standard by the January 2001 peer review. Independent models for each purpose now exist.</p>
+<div id="fig-mc-nest" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/mc-nest.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Mode Choice Model Nesting Structure (and nesting coefficients).</figcaption>
+</figure>
+</div>
+<div id="fig-mc-coef" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/mc-coef.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Mode Choice Model Coefficients by purpose.</figcaption>
+</figure>
+</div>
+</section>
+<section id="market-segmentation-for-home-based-purposes" class="level3">
+<h3 class="anchored" data-anchor-id="market-segmentation-for-home-based-purposes">Market segmentation for home-based purposes</h3>
+<p>HBW, HBC, and HBO models have been market segmented by three auto-ownership classes (0,1,2), and two income classes (lowest income quartile, 3 highest income quartiles). Since NHB by definition has no specific household information, HNB trips cannot be segmented using household data.</p>
+</section>
+<section id="walk-access-to-transit-methodology-revised" class="level3">
+<h3 class="anchored" data-anchor-id="walk-access-to-transit-methodology-revised">Walk access to transit methodology revised</h3>
+<p>Version 2.1 contained an “all or nothing” approach to determining whether a zone had walk access to transit. If the zone centroid was within ½ mile of a bus stop, 100% of the zone had access (3/4 mile for rail). However, network-traced paths often require far more walking than would occur in reality. Further, a wide variance in the size of zones (and hence the number of people who “have access”) caused some concern.</p>
+<p>The new approach attempts to determine the percentage of each zone’s area that truly is within walk distance of transit. GIS is used to create a 4/10 mile buffer around bus lines, express bus stops, and rail stops. This buffer is then intersected with the TAZs to estimate the number of people and jobs within the buffer.</p>
+<p>The algorithm to determine walk-access times for zones within walking distance of transit makes a concerted effort to trace at least one walk path to a transit stop for all zones within walking distance of transit. This is done by tracing a series of access paths, increasing the maximum path length over the network. The algorithm then caps the access path length at .4 miles.</p>
+</section>
+<section id="drive-access-to-transit-coding" class="level3">
+<h3 class="anchored" data-anchor-id="drive-access-to-transit-coding">Drive access to transit coding</h3>
+<p>A coding flaw was also discovered that affected drive access to transit. The previous code ensured drive-to-transit access in the form of park-n-ride links, but neglected to ensure that there were walk links available to egress the system at the destination. In other words, you could easily drive-to-transit, it was just hard to find places where you could get off. Modes where drive access can range from 25-85% (express bus, light rail, commuter rail), were seeing only a 10-15% drive share in Version 2.1. This has been corrected.</p>
+</section>
+<section id="summit-formatted-output" class="level3">
+<h3 class="anchored" data-anchor-id="summit-formatted-output">Summit-formatted output</h3>
+<p>FTA New Starts funding requests require the analysis of mode choice output using software named “Summit”. FTA developed Summit for comparing two alternatives to determine “winners and losers”. It is a useful tool for all types of alternatives analysis, including highway alternatives. The model can now easily generate the input required for Summit with a simple toggle switch.</p>
+</section>
+<section id="improved-transit-speeds" class="level3">
+<h3 class="anchored" data-anchor-id="improved-transit-speeds">Improved transit speeds</h3>
+<p>Version 2.1 had a carry over from much earlier models that assumed that if a bus traveled on any street outside the CBD or a freeway, that its average speed (including stops) would be 0.9 multiplied by the average congested speed for vehicles. This may be true under the most extreme congestion, but for most circumstances the relative speeds between buses and private autos is more pronounced. Version 3.0 conducted a substantial review of UTA’s scheduled stops (to determine typical average bus speeds), and compared these against average private auto congested speeds obtained using GPS. The resulting factors are noted below. The new transit speed coding methodology, as well as the observed auto speed data allowed us to closely model observed bus speeds (see <a href="#fig-bus-speeds">Figure&nbsp;3</a>) and bus boardings (<a href="#fig-bus-boardings">Figure&nbsp;4</a>).</p>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="tbl-21-30-speeed" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Congested Speed Factors between Model Versions</caption>
+<colgroup>
+<col style="width: 17%">
+<col style="width: 26%">
+<col style="width: 28%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Version 2.1</th>
+<th style="text-align: left;">#.#* Congested speed</th>
+<th style="text-align: left;">Version 3.0</th>
+<th style="text-align: left;">#.#* Congested speed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Freeway factor</td>
+<td style="text-align: left;">1.0</td>
+<td style="text-align: left;">Freeway factor</td>
+<td style="text-align: left;">0.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Freeway factor</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Ramp factor</td>
+<td style="text-align: left;">0.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CBD factor</td>
+<td style="text-align: left;">0.5</td>
+<td style="text-align: left;">Principal/Collector</td>
+<td style="text-align: left;">0.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">All others</td>
+<td style="text-align: left;">0.9</td>
+<td style="text-align: left;">Minor art CBD/urban</td>
+<td style="text-align: left;">0.55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">All others</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Minor art Suburban/rural</td>
+<td style="text-align: left;">0.65</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="fig-bus-speeds" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/bus-speeds.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: 2001 Modeled vs.&nbsp;Actual Bus Speed Comparison.</figcaption>
+</figure>
+</div>
+<div id="fig-bus-boardings" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/bus-boardings.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;4: 2001 Mode vs.&nbsp;Actual Bus Boardings.</figcaption>
+</figure>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://wfrc.org"><img src="https://wfrc.org/wp-content/uploads/2021/11/logo.jpg" class="img-fluid" alt="WFRC" width="150"></a> <a href="https://mountainland.org/"><img src="https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg" class="img-fluid" alt="MAG" width="65"></a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
