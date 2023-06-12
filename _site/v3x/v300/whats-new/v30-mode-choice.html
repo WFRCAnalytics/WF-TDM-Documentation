@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="WFRC / MAG">
 
-<title>Documentation - Version 3.0.0 - What’s New?</title>
+<title>Documentation – v30-mode-choice</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,10 +85,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Version 9.x</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9-series" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9 Series</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9.x">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
         <li>
     <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
  <span class="dropdown-text">Version 9.0.0</span></a>
@@ -97,10 +96,10 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-8.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Version 8.x</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-8.x">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
         <li>
     <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
  <span class="dropdown-text">Version 8.3.2</span></a>
@@ -117,13 +116,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../../v8x/v810/index.html" rel="" target="">
  <span class="dropdown-text">Version 8.1.0</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Past Versions</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
         <li>
     <a class="dropdown-item" href="../../../v7x/v702/index.html" rel="" target="">
  <span class="dropdown-text">Version 7.0.2</span></a>
@@ -175,17 +167,6 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="../../../v2x/v210/index.html" rel="" target="">
  <span class="dropdown-text">Version 2.1.0</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-testing" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Testing</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-testing">    
-        <li>
-    <a class="dropdown-item" href="../../../testing/jupyter-widgets.html" rel="" target="">
- <span class="dropdown-text">Visualization</span></a>
   </li>  
     </ul>
   </li>
@@ -312,20 +293,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p>Version 3.0.0 - What’s New?</p>
+</div></div>
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#mode-choice" id="toc-mode-choice" class="nav-link active" data-scroll-target="#mode-choice">Mode Choice</a>
-  <ul class="collapse">
-  <li><a href="#new-logit-models-for-hbo-and-nhb-purposes" id="toc-new-logit-models-for-hbo-and-nhb-purposes" class="nav-link" data-scroll-target="#new-logit-models-for-hbo-and-nhb-purposes">New Logit models for HBO and NHB purposes</a></li>
+  <li><a href="#new-logit-models-for-hbo-and-nhb-purposes" id="toc-new-logit-models-for-hbo-and-nhb-purposes" class="nav-link active" data-scroll-target="#new-logit-models-for-hbo-and-nhb-purposes">New Logit models for HBO and NHB purposes</a></li>
   <li><a href="#market-segmentation-for-home-based-purposes" id="toc-market-segmentation-for-home-based-purposes" class="nav-link" data-scroll-target="#market-segmentation-for-home-based-purposes">Market segmentation for home-based purposes</a></li>
   <li><a href="#walk-access-to-transit-methodology-revised" id="toc-walk-access-to-transit-methodology-revised" class="nav-link" data-scroll-target="#walk-access-to-transit-methodology-revised">Walk access to transit methodology revised</a></li>
   <li><a href="#drive-access-to-transit-coding" id="toc-drive-access-to-transit-coding" class="nav-link" data-scroll-target="#drive-access-to-transit-coding">Drive access to transit coding</a></li>
   <li><a href="#summit-formatted-output" id="toc-summit-formatted-output" class="nav-link" data-scroll-target="#summit-formatted-output">Summit-formatted output</a></li>
   <li><a href="#improved-transit-speeds" id="toc-improved-transit-speeds" class="nav-link" data-scroll-target="#improved-transit-speeds">Improved transit speeds</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -334,35 +314,21 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Version 3.0.0 - What’s New?</h1>
+<h1 class="title">Mode Choice</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>WFRC / MAG </p>
-          </div>
-  </div>
     
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 7, 2023</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="mode-choice" class="level2">
-<h2 class="anchored" data-anchor-id="mode-choice">Mode Choice</h2>
 <section id="new-logit-models-for-hbo-and-nhb-purposes" class="level3">
 <h3 class="anchored" data-anchor-id="new-logit-models-for-hbo-and-nhb-purposes">New Logit models for HBO and NHB purposes</h3>
 <p>Mode choice was considered a relatively weak link in version 2.1, particularly for non-work trips. It has been extensively revised. The mode choice models’ major deficiencies were lack of independent Logit models for the HBO and NHB purposes. Trips for these purposes were calculated by factoring HBW trips – a practice considered sub-standard by the January 2001 peer review. Independent models for each purpose now exist.</p>
@@ -469,7 +435,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -1,7 +1,5 @@
 ---
-title:  "Version 8.3.2 - What's New?"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 8.3.2 - What's New?
 ---
 
 # Model Results - Comparison with v8.3.1

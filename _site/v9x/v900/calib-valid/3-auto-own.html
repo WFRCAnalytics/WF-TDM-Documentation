@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="WFRC / MAG">
 
-<title>Documentation - Version 9.0.0 - Calibration/Validation</title>
+<title>Documentation – auto-own</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,10 +85,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Version 9.x</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9-series" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9 Series</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9.x">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
         <li>
     <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
  <span class="dropdown-text">Version 9.0.0</span></a>
@@ -97,10 +96,10 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-8.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Version 8.x</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-8.x">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
         <li>
     <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
  <span class="dropdown-text">Version 8.3.2</span></a>
@@ -117,13 +116,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../../v8x/v810/index.html" rel="" target="">
  <span class="dropdown-text">Version 8.1.0</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Past Versions</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
         <li>
     <a class="dropdown-item" href="../../../v7x/v702/index.html" rel="" target="">
  <span class="dropdown-text">Version 7.0.2</span></a>
@@ -175,17 +167,6 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="../../../v2x/v210/index.html" rel="" target="">
  <span class="dropdown-text">Version 2.1.0</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-testing" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Testing</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-testing">    
-        <li>
-    <a class="dropdown-item" href="../../../testing/jupyter-widgets.html" rel="" target="">
- <span class="dropdown-text">Visualization</span></a>
   </li>  
     </ul>
   </li>
@@ -370,49 +351,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#auto-ownership" id="toc-auto-ownership" class="nav-link active" data-scroll-target="#auto-ownership">Auto Ownership</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p>Version 9.0.0 - Calibration/Validation</p>
+</div></div>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Version 9.0.0 - Calibration/Validation</h1>
+<h1 class="title">Auto Ownership</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>WFRC / MAG </p>
-          </div>
-  </div>
     
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 8, 2023</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="auto-ownership" class="level1">
-<h1>Auto Ownership</h1>
 <p>The Auto Ownership model begins with the disaggregated households by TAZ and calculates how many vehicles each group owns. Households by vehicle ownership is grouped by 0, 1, 2, and 3+ vehicles. Auto ownership is based on utility functions for each combination of household size group, worker group, and income level (low/high). The utilities for each TAZ are then converted into probabilities. When the probabilities are multiplied by the associated number of households, then an auto ownership distribution by TAZ is created.</p>
 <p>The utility functions for auto ownership contain a series of binary and linear variables. The binary variables are loop toggles that are set to 1 or 0 for household size groups, worker groups, and income levels. There are also two linear variables that are taken from TAZ attributes: population density of five nearest zones and employment within 30 minutes by transit. The coefficients for the utility function are shown in <a href="#tbl-veh-owner">Table&nbsp;1</a>.</p>
 <p>The code loops through the three groups to create utilities for each combination of binary variables for each TAZ. As can be seen in the table, for household size groups 5 and 6+, 3+ workers in a household, and high income, there are zero utility coefficients, which mean for combinations with these variables there is no utility. Additionally, the 3-vehicle utility is always set to 0 for every combination.</p>
@@ -552,7 +515,6 @@ ul.task-list li input[type="checkbox"] {
 <p><mark>???Which validation charts should I add???</mark></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="WFRC / MAG">
 
-<title>Documentation - Version 7.0.2 - What’s New?</title>
+<title>Documentation – modes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,10 +85,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Version 9.x</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9-series" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9 Series</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9.x">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
         <li>
     <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
  <span class="dropdown-text">Version 9.0.0</span></a>
@@ -97,10 +96,10 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-8.x" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Version 8.x</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-8.x">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
         <li>
     <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
  <span class="dropdown-text">Version 8.3.2</span></a>
@@ -117,13 +116,6 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../../../v8x/v810/index.html" rel="" target="">
  <span class="dropdown-text">Version 8.1.0</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Past Versions</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
         <li>
     <a class="dropdown-item" href="../../../v7x/v702/index.html" rel="" target="">
  <span class="dropdown-text">Version 7.0.2</span></a>
@@ -175,17 +167,6 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="../../../v2x/v210/index.html" rel="" target="">
  <span class="dropdown-text">Version 2.1.0</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-testing" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Testing</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-testing">    
-        <li>
-    <a class="dropdown-item" href="../../../testing/jupyter-widgets.html" rel="" target="">
- <span class="dropdown-text">Visualization</span></a>
   </li>  
     </ul>
   </li>
@@ -276,18 +257,17 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p>Version 7.0.2 - What’s New?</p>
+</div></div>
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#version-7.0.2" id="toc-version-7.0.2" class="nav-link active" data-scroll-target="#version-7.0.2">Version 7.0.2</a>
-  <ul class="collapse">
-  <li><a href="#modes-5-and-9" id="toc-modes-5-and-9" class="nav-link" data-scroll-target="#modes-5-and-9">Modes 5 and 9</a>
+  <li><a href="#modes-5-and-9" id="toc-modes-5-and-9" class="nav-link active" data-scroll-target="#modes-5-and-9">Modes 5 and 9</a>
   <ul class="collapse">
   <li><a href="#brt-speeds" id="toc-brt-speeds" class="nav-link" data-scroll-target="#brt-speeds">BRT Speeds</a></li>
   <li><a href="#mode-specific-constants" id="toc-mode-specific-constants" class="nav-link" data-scroll-target="#mode-specific-constants">Mode Specific Constants</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -297,35 +277,21 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Version 7.0.2 - What’s New?</h1>
+<h1 class="title">Version 7.0.2</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>WFRC / MAG </p>
-          </div>
-  </div>
     
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 7, 2023</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="version-7.0.2" class="level1">
-<h1>Version 7.0.2</h1>
 <p>Changes in this version of the model primarily affect the modeling of modes 5 and 9, which have been modified to reflect BRT-Light (e.g.&nbsp;BRT I) and BRT-Heavy (e.g.&nbsp;BRT III), respectively.</p>
 <section id="modes-5-and-9" class="level2">
 <h2 class="anchored" data-anchor-id="modes-5-and-9">Modes 5 and 9</h2>
@@ -374,7 +340,6 @@ ul.task-list li input[type="checkbox"] {
 <p>The mode specific constant refers to the general attractiveness of each mode. Rail modes have the highest values while local bus has the lowest. Previously modes 5 and 9 had a constant that was halfway between local bus and light rail. These constants were modified so that mode 5 now has a constant of 33% of the difference between local bus and light rail and mode 9 has a constant of 67% of the difference.</p>
 
 
-</section>
 </section>
 </section>
 

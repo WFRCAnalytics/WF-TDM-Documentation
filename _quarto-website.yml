@@ -25,13 +25,13 @@ website:
       - text: "Overview"
         href: index.qmd
 
-      - text: "Version 9.x"
+      - text: "Version 9 Series"
         menu:
         - text: "Version 9.0.0" 
           href: v9x/v900/index.qmd
           id: v900-preface
 
-      - text: "Version 8.x"
+      - text: "Past Versions"
         menu:
         - text: "Version 8.3.2"
           href: v8x/v832/index.qmd 
@@ -45,9 +45,6 @@ website:
         - text: "Version 8.1.0"
           href: v8x/v810/index.qmd
           id: v810-preface
-
-      - text: "Past Versions"
-        menu:
         - text: "Version 7.0.2"
           href: v7x/v702/index.qmd
           id: v702-preface
@@ -87,12 +84,6 @@ website:
         - text: "Version 2.1.0"
           href: v2x/v210/index.qmd
           id: v210-preface
-
-      - text: "Testing"
-        menu:
-        - text: "Visualization"
-          href: testing/jupyter-widgets.qmd
-          id: testing-index
           
   sidebar:
     - id: v900-preface
@@ -104,7 +95,7 @@ website:
           href: v9x/v900/downloads.qmd
         - section: 'Whats New?'
           contents:
-          - section: '2023-04-14'
+          - section: '2023-06-15'
             contents:
               - text: "General Parameters"
                 href: v9x/v900/whats-new/2023-04-14/1-genparams.qmd  
@@ -124,7 +115,7 @@ website:
                 href: v9x/v900/whats-new/2023-04-14/10-modelresults.qmd  
         - section: "Calibration/Validation"
           contents:
-          - section: '2022-12-19'
+          - section: '2023-06-15'
             contents:
               - text: "Life Cycle"
                 href: v9x/v900/calib-valid/1-life-cycle.qmd

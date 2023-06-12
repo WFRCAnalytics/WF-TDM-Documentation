@@ -1,9 +1,20 @@
 ---
 title:  "Wasatch Front Travel Demand Model Documentation"
-author: WFRC / MAG
-date-modified: last-modified
 ---
 
-This website documents the progress of the Wasatch Front Travel Demand Model (TDM). The main topics of this site regard the *What's New? Documentation*, the complete *Model Documentation*, the *Calibration/Validation Report*, and various other resources worth noting -- all for different model versions.
+The Wasatch Front Travel Demand Model (WF TDM) is a macro transportation model. It forecasts daily travel patterns based on household characteristics and where people live in relation to the location of their daily activites and transportation opportunities. Travel decisions are based on a series of models that are calibrated to travel behavior of Wasatch Front residents measured from household travel diary surveys. Trips are assigned to a set of highway or transit-system routes by time of day based on where and by what mode people are likely to travel and the best route available to them. 
 
-Wasatch Front Regional Council (WFRC) alongside Mountainland Association of Governments (MAG) facilitates the development and documentation of the TDM.
+The travel demand models are able to evaluate transportation and traffic impacts resulting from:
+
+ - transportation improvements
+ - provision of new modes of travel and/or enhancement of existing alternative modes
+ - changes in land use activity
+ - changes in travel behavior or policies/economic circumstances affecting behavior
+
+As such, travel demand output is used to forecast where future travel demand is likely to exceed capacity and to assess the merits of future transportation investments. Travel demand output is also used to analyze air quality and other ancillary impacts of the transportation system. 
+
+The current WF TDM covers Weber, Davis, Salt Lake, and Utah Counties and a portion of Box Eder County. The WF TDM is jointly owned by the Wasatch Front Regional Council (WFRC) and the Mountainland Association of Governments (MAG). To request a copy of the WF TDM,  please contact the following persons:
+
+ - Suzie Swim (WFRC): sswim@wfrc.org
+ - Matt DeLora (MAG): mdelora@magutah.org
+
