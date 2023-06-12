@@ -1,0 +1,46 @@
+---
+title:  "Wasatch Front Travel Demand Model Documentation"
+author: WFRC / MAG
+date-modified: last-modified
+---
+
+This website documents the progress of the Wasatch Front Travel Demand Model (TDM). The main topics of this site regard the *What's New? Documentation*, the complete *Model Documentation*, the *Calibration/Validation Report*, and various other resources worth noting -- all for different model versions.
+
+Wasatch Front Regional Council (WFRC) alongside Mountainland Association of Governments (MAG) facilitates the development and documentation of the TDM.
+
+## Modeling Region
+@fig-wf-tdm shows the modeling area for the Wasatch Front region. It is composed of the urbanized areas within Box Elder, Davis, Salt Lake, Utah, and Weber counties. 
+
+![Wasatch Front Modeling Area](_pictures/wf-tdm-area.png){#fig-wf-tdm}
+
+## Model Characteristics
+In addition to the region, below is a list of some of the important model characteristics that exist.
+
+ - Model Type: Trip-based
+ - Geographic Projection: NAD 1983 UTM Zone 12
+ - Scenario Years
+    - 2019 (base year), 2023 (plan opening year), and 2028 (STIP year)
+    - Plan Years: 2032, 2042, 2050
+ - Model day: average weekday
+ - Time Periods: AM, midday, PM, evening, and daily
+ - Internal TAZs: 3546 (1-3546)   &   External Stations: 29 (3601-3629)
+ - Trip Types: internal resident, external, and commercial (light, medium, and heavy  - trucks) 
+ - Unique Components
+    - External forces: telecommute, eCommerce, CAVs
+    - Robust Mode Choice Auto (drive alone, shared ride, drive alone toll, shared ride  - toll) and Transit (walk/drive to local bus, core route, express bus, BRT, light  - rail & commuter rail) 
+    - Can model Tollway, HOT & HOV facilities
+    - Can model Managed Motorways facilities
+ - Current version: v9 Beta (2022-12-19)
+ - Run Time: 5-7 hours
+ - Subarea ID: 1 (used for the statewide model)
+
+## Software
+
+The most recent version of the Wasatch Front TDM uses Cube 6.4.5 as the model software and AcrGIS 10.6 as the mapping software. The model is run using Cube Scripts (Hailmary).
+
+## Points of Contact
+
+With questions regarding the development of the model, reach out to the following persons:
+
+ - **Matt DeLora (MAG)**: mdelora@magutah.org
+ - **Suzie Swim (WFRC)**: sswim@wfrc.org

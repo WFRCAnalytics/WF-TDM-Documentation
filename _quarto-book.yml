@@ -1,0 +1,34 @@
+project:
+  type: book
+  output-dir: _book/v9x-v900-whats-new-4
+
+book:
+  title: "What's New? - Version 9.0.0"
+  author: "WFRC / MAG"
+  date: "6/9/2023"
+  chapters:
+    - index.qmd
+    - v9x/v900/whats-new/2023-04-14/1-genparams.qmd
+    - v9x/v900/whats-new/2023-04-14/2-inputdata.qmd
+    - v9x/v900/whats-new/2023-04-14/3-inputprocessing.qmd
+    - v9x/v900/whats-new/2023-04-14/4-hhdisag.qmd
+    #- v9x/v900/whats-new/2023-04-14/5-tripgen.qmd
+    - v9x/v900/whats-new/2023-04-14/6-distribution.qmd
+    - v9x/v900/whats-new/2023-04-14/7-mc.qmd
+    - v9x/v900/whats-new/2023-04-14/8-assign.qmd
+    #- v9x/v900/whats-new/2023-04-14/9-pp.qmd
+    - v9x/v900/whats-new/2023-04-14/10-modelresults.qmd
+
+#bibliography: references.bib
+
+format:
+  pdf:
+    toc: true
+    lot: true
+    lof: true
+    number-sections: true
+    colorlinks: true
+    tbl-colwidths: [70, 30]
+    documentclass: report #scrreprt
+    classoption:
+      - 'titlepage=false'
