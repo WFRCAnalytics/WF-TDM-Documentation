@@ -32,3 +32,7 @@ format:
     documentclass: report #scrreprt
     classoption:
       - 'titlepage=false'
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
