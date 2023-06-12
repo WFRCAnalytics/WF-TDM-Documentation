@@ -1,7 +1,5 @@
 ---
-title:  "Version 9.0.0 - What's New?"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 9.0.0 - What's New?
 execute:
     echo: false
 ---
@@ -464,4 +462,23 @@ fig.update_layout(
 )
 #fig.update_xaxes(tickangle=90)
 fig.show()
+```
+
+
+```{python}
+import plotly.express as px
+import pandas as pd
+df = pd.read_csv('https://gist.githubusercontent.com/shinokada/f01139d3a024de375ede23cec5d52360/raw/424ac0055ed71a04e6f45badfaef73df96ad0aad/CrimeStatebyState_1960-2014.csv')
+df = df[(df['State']!= 'District of Columbia' )]
+px.choropleth(df, 
+              locations = 'State_code',
+              color="Murder_per100000", 
+              animation_frame="Year",
+              color_continuous_scale="Inferno",
+              locationmode='USA-states',
+              scope="usa",
+              range_color=(0, 20),
+              title='Crime by State',
+              height=600
+             )
 ```

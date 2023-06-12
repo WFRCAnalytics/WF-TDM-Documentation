@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="WFRC / MAG">
 
-<title>Documentation - Version 9.0.0 - What’s New?</title>
+<title>Documentation – genparams</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -370,17 +369,17 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p>Version 9.0.0 - What’s New?</p>
+</div></div>
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#general-parameters" id="toc-general-parameters" class="nav-link active" data-scroll-target="#general-parameters">General Parameters</a>
+  <li><a href="#zone-parameters" id="toc-zone-parameters" class="nav-link active" data-scroll-target="#zone-parameters">Zone Parameters</a>
   <ul class="collapse">
-  <li><a href="#zone-parameters" id="toc-zone-parameters" class="nav-link" data-scroll-target="#zone-parameters">Zone Parameters</a>
-  <ul class="collapse">
-  <li><a href="#taz-range-and-highway-node-references" id="toc-taz-range-and-highway-node-references" class="nav-link" data-scroll-target="#taz-range-and-highway-node-references">TAZ Range and Highway Node References</a></li>
-  <li><a href="#updated-college-and-university-node-references" id="toc-updated-college-and-university-node-references" class="nav-link" data-scroll-target="#updated-college-and-university-node-references">Updated College and University Node References</a></li>
+  <li><a href="#taz-range-and-highway-node-reference" id="toc-taz-range-and-highway-node-reference" class="nav-link" data-scroll-target="#taz-range-and-highway-node-reference">TAZ Range and Highway Node Reference</a></li>
+  <li><a href="#updated-college-and-university-node-reference" id="toc-updated-college-and-university-node-reference" class="nav-link" data-scroll-target="#updated-college-and-university-node-reference">Updated College and University Node Reference</a></li>
   <li><a href="#updated-special-generator-node-references" id="toc-updated-special-generator-node-references" class="nav-link" data-scroll-target="#updated-special-generator-node-references">Updated Special Generator Node References</a></li>
   </ul></li>
   <li><a href="#special-trip-table-parameters" id="toc-special-trip-table-parameters" class="nav-link" data-scroll-target="#special-trip-table-parameters">Special Trip Table Parameters</a></li>
@@ -397,7 +396,6 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#calibration-adjustment-k-factors" id="toc-calibration-adjustment-k-factors" class="nav-link" data-scroll-target="#calibration-adjustment-k-factors">Calibration Adjustment K-Factors</a></li>
   <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other">Other</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -406,44 +404,30 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Version 9.0.0 - What’s New?</h1>
+<h1 class="title">General Parameters</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>WFRC / MAG </p>
-          </div>
-  </div>
     
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 7, 2023</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<section id="general-parameters" class="level1">
-<h1>General Parameters</h1>
 <p>The changes made to the <code>0_GeneralParameters.block</code> file are discussed in this section.</p>
 <section id="zone-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="zone-parameters">Zone Parameters</h2>
 <p>With the update to the TAZ inputs, the TAZ references were made in various locations.</p>
-<section id="taz-range-and-highway-node-references" class="level3">
-<h3 class="anchored" data-anchor-id="taz-range-and-highway-node-references">TAZ Range and Highway Node References</h3>
+<section id="taz-range-and-highway-node-reference" class="level3">
+<h3 class="anchored" data-anchor-id="taz-range-and-highway-node-reference">TAZ Range and Highway Node Reference</h3>
 <p>TAZ and highway node references were update with new zone numbers as shown in <a href="#tbl-taz-highway-renumber">Table&nbsp;1</a>.</p>
 <div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <div id="tbl-taz-highway-renumber" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;1: Renumbered Range and Highway TAZs</caption>
@@ -512,11 +496,11 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>The following ranges were removed: RegionRange, WFRCRange, MAGRange.</p>
 </section>
-<section id="updated-college-and-university-node-references" class="level3">
-<h3 class="anchored" data-anchor-id="updated-college-and-university-node-references">Updated College and University Node References</h3>
+<section id="updated-college-and-university-node-reference" class="level3">
+<h3 class="anchored" data-anchor-id="updated-college-and-university-node-reference">Updated College and University Node Reference</h3>
 <p>College and university were updated with new zone numbers. See <a href="#tbl-college-renumber">Table&nbsp;2</a>. Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero. <mark>???ADD INPUTS DOC REFERENCE???</mark></p>
 <div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div id="tbl-college-renumber" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;2: Renumbered College and University Zones</caption>
@@ -725,7 +709,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="updated-special-generator-node-references">Updated Special Generator Node References</h3>
 <p>Special generators were updated with new zone numbers, as shown in <a href="#tbl-specgen-renumber">Table&nbsp;3</a>.</p>
 <div class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="23">
 <div id="tbl-specgen-renumber" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;3: Renumbered College and University Zones</caption>
@@ -768,7 +752,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="special-trip-table-parameters">Special Trip Table Parameters</h2>
 <p>The income break points for Salt Lake City International Airport were updated as shown in <a href="#tbl-airport-income">Table&nbsp;4</a>.</p>
 <div class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="24">
 <div id="tbl-airport-income" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;4: Airport Income Levels</caption>
@@ -820,7 +804,7 @@ ul.task-list li input[type="checkbox"] {
 <p>The vehicle occupancy rates were updated expanded to additional trips purposes. See <a href="#tbl-occupancy">Table&nbsp;5</a> and <a href="#tbl-occupancy-3p">Table&nbsp;6</a>. Variables were renamed where indicated. Auto occupancy parameters were updated based on 2012 Household Travel Survey (reprocessed). Values represent average persons per vehicle for just the Wasatch Front model space. External trips are average for IX + XI, all other parameters are averages for II trips.</p>
 <p><mark>???SHOW PREVIOUS VALUES???</mark></p>
 <div class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div id="tbl-occupancy" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;5: Average Auto-Occupancy Codes and Rates</caption>
@@ -924,7 +908,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p><mark>???WE SHOULD PROBABLY SHOW PREVIOUS VALUES???</mark></p>
 <div class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <div id="tbl-occupancy-3p" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;6: Average Auto-Occupancy Codes and Rates for Vehicles with 3+ Persons</caption>
@@ -1007,7 +991,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="value-of-time">Value of Time</h3>
 <p>Value of time was updated for 2019 dollars, as shown in <a href="#tbl-vot">Table&nbsp;7</a>.</p>
 <div class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div id="tbl-vot" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;7: Value of Time</caption>
@@ -1089,7 +1073,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="auto-operating-costs">Auto Operating Costs</h3>
 <p>Auto operating cost (AOC) were updated based on 2019 fuel cost &amp; economy and vehicle maintenance. See <a href="#tbl-aoc">Table&nbsp;8</a>.</p>
 <div class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="28">
 <div id="tbl-aoc" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;8: Auto Operating Costs</caption>
@@ -1131,7 +1115,7 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="toll-and-hot-costs">Toll and HOT Costs</h3>
 <p>Toll and HOT Costs were updated as shown in <a href="#tbl-toll-hot-costs">Table&nbsp;9</a>. Toll costs reflect a toll of approximately $5.00 for a 10.25 mi trip (average work distance) or $3.00 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars. The toll costs apply to links with a functional type of 40. HOT costs reflect a toll of approximately $3.50 for a 10.25 mi trip (average work distance) or $2.20 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars. HOT costs are applicable to links with a functional type of 38.</p>
 <div class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="29">
 <div id="tbl-toll-hot-costs" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;9: Toll and High-Occupancy Toll Costs</caption>
@@ -1178,7 +1162,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="calibration-adjustment-k-factors">Calibration Adjustment K-Factors</h2>
 <p>Additional k-factors were added for calibration purposes to include work trips, truck trips, and external trips. In v8.3.2 there were only three k-factors defined for non-work personal trips. The calibration adjustment k-factors reset to 1, as shown in <a href="#tbl-k-factors">Table&nbsp;10</a>.</p>
 <div class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="30">
 <div id="tbl-k-factors" class="anchored">
 <table class="table table-sm table-striped small">
 <caption>Table&nbsp;10: K-Factors</caption>
@@ -1288,7 +1272,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Period and Production/Attraction factors were removed.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

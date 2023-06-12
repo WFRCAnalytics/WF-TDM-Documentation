@@ -1,7 +1,5 @@
 ---
-title:  "Version 9.0.0 - What's New?"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 9.0.0 - What's New?
 ---
 
 # General Parameters
@@ -12,7 +10,7 @@ The changes made to the `0_GeneralParameters.block` file are discussed in this s
 
 With the update to the TAZ inputs, the TAZ references were made in various locations.
 
-### TAZ Range and Highway Node References
+### TAZ Range and Highway Node Reference
 
 TAZ and highway node references were update with new zone numbers as shown in @tbl-taz-highway-renumber.
 
@@ -38,7 +36,7 @@ Markdown(tabulate(
 ```
 The following ranges were removed: RegionRange, WFRCRange, MAGRange.
 
-### Updated College and University Node References
+### Updated College and University Node Reference
 
 College and university were updated with new zone numbers. See @tbl-college-renumber. Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero. <mark>???ADD INPUTS DOC REFERENCE???</mark>
 
@@ -144,7 +142,6 @@ The updated regional median income was $74,946 from 2019 5-year ACS, in 2019 dol
 ## Distribution, Mode Choice, and Assignment Parameters
 
 ### Auto Occupancy
-
 The vehicle occupancy rates were updated expanded to additional trips purposes. See @tbl-occupancy and @tbl-occupancy-3p. Variables were renamed where indicated. Auto occupancy parameters were updated based on 2012 Household Travel Survey (reprocessed). Values represent average persons per vehicle for just the Wasatch Front model space. External trips are average for IX + XI, all other parameters are averages for II trips.
 
 <mark>???SHOW PREVIOUS VALUES???</mark>
