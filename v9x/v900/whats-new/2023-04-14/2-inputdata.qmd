@@ -1,5 +1,7 @@
 ---
 margin-header: Version 9.0.0 - What's New?
+warning: false
+message: false
 ---
 
 ```{python}

@@ -1,4 +1,10 @@
 /*-- scss:defaults --*/
+$h3-font-size:          1.2rem;
+$h3-font-weight:        350;
+//$h3-font-color:         #000080;
+
+$table-font-family: Arial, sans-serif;
+$table-font-size: 10pt;
 
 /*-- scss:rules --*/
 
@@ -61,4 +67,15 @@ margin-left: 2px;
 
 a:has(#download-btn) {
 text-decoration: none !important;
+}
+
+h3 {
+  font-size: $h3-font-size;
+  font-weight: $h3-font-weight;
+}
+
+table td,
+table th {
+  font-family: $table-font-family;
+  font-size: $table-font-size;
 }
