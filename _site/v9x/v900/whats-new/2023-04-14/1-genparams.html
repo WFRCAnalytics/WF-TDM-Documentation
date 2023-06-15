@@ -59,6 +59,9 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -360,24 +363,34 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#zone-parameters" id="toc-zone-parameters" class="nav-link active" data-scroll-target="#zone-parameters">Zone Parameters</a>
   <ul class="collapse">
-  <li><a href="#taz-range-and-highway-node-reference" id="toc-taz-range-and-highway-node-reference" class="nav-link" data-scroll-target="#taz-range-and-highway-node-reference">TAZ Range and Highway Node Reference</a></li>
-  <li><a href="#updated-college-and-university-node-reference" id="toc-updated-college-and-university-node-reference" class="nav-link" data-scroll-target="#updated-college-and-university-node-reference">Updated College and University Node Reference</a></li>
-  <li><a href="#updated-special-generator-node-references" id="toc-updated-special-generator-node-references" class="nav-link" data-scroll-target="#updated-special-generator-node-references">Updated Special Generator Node References</a></li>
+  <li><a href="#taz" id="toc-taz" class="nav-link" data-scroll-target="#taz">TAZ</a></li>
+  <li><a href="#highway-nodes" id="toc-highway-nodes" class="nav-link" data-scroll-target="#highway-nodes">Highway Nodes</a></li>
+  <li><a href="#college-zones" id="toc-college-zones" class="nav-link" data-scroll-target="#college-zones">College Zones</a></li>
+  <li><a href="#zones-with-off-line-trip-tables" id="toc-zones-with-off-line-trip-tables" class="nav-link" data-scroll-target="#zones-with-off-line-trip-tables">Zones with Off-line Trip Tables</a></li>
+  <li><a href="#special-generator-zones" id="toc-special-generator-zones" class="nav-link" data-scroll-target="#special-generator-zones">Special Generator Zones</a></li>
   </ul></li>
-  <li><a href="#special-trip-table-parameters" id="toc-special-trip-table-parameters" class="nav-link" data-scroll-target="#special-trip-table-parameters">Special Trip Table Parameters</a></li>
-  <li><a href="#county-identification" id="toc-county-identification" class="nav-link" data-scroll-target="#county-identification">County Identification</a></li>
-  <li><a href="#air-quality-conformity-reports" id="toc-air-quality-conformity-reports" class="nav-link" data-scroll-target="#air-quality-conformity-reports">Air Quality Conformity Reports</a></li>
+  <li><a href="#exogenous-trip-table-parameters" id="toc-exogenous-trip-table-parameters" class="nav-link" data-scroll-target="#exogenous-trip-table-parameters">Exogenous Trip Table Parameters</a></li>
   <li><a href="#household-disaggregation-parameters" id="toc-household-disaggregation-parameters" class="nav-link" data-scroll-target="#household-disaggregation-parameters">Household Disaggregation Parameters</a></li>
   <li><a href="#distribution-mode-choice-and-assignment-parameters" id="toc-distribution-mode-choice-and-assignment-parameters" class="nav-link" data-scroll-target="#distribution-mode-choice-and-assignment-parameters">Distribution, Mode Choice, and Assignment Parameters</a>
   <ul class="collapse">
+  <li><a href="#k-factors" id="toc-k-factors" class="nav-link" data-scroll-target="#k-factors">K-Factors</a></li>
   <li><a href="#auto-occupancy" id="toc-auto-occupancy" class="nav-link" data-scroll-target="#auto-occupancy">Auto Occupancy</a></li>
   <li><a href="#value-of-time" id="toc-value-of-time" class="nav-link" data-scroll-target="#value-of-time">Value of Time</a></li>
   <li><a href="#auto-operating-costs" id="toc-auto-operating-costs" class="nav-link" data-scroll-target="#auto-operating-costs">Auto Operating Costs</a></li>
-  <li><a href="#toll-and-hot-costs" id="toc-toll-and-hot-costs" class="nav-link" data-scroll-target="#toll-and-hot-costs">Toll and HOT Costs</a></li>
-  <li><a href="#prefix-for-transit-skims" id="toc-prefix-for-transit-skims" class="nav-link" data-scroll-target="#prefix-for-transit-skims">Prefix for Transit Skims</a></li>
+  <li><a href="#managed-lane-costs" id="toc-managed-lane-costs" class="nav-link" data-scroll-target="#managed-lane-costs">Managed Lane Costs</a></li>
+  <li><a href="#core-bus-constant-multiplier" id="toc-core-bus-constant-multiplier" class="nav-link" data-scroll-target="#core-bus-constant-multiplier">Core Bus Constant Multiplier</a></li>
+  <li><a href="#crt-adjustment-factors" id="toc-crt-adjustment-factors" class="nav-link" data-scroll-target="#crt-adjustment-factors">CRT Adjustment Factors</a></li>
+  <li><a href="#transit-fare-discount-factor" id="toc-transit-fare-discount-factor" class="nav-link" data-scroll-target="#transit-fare-discount-factor">Transit Fare Discount Factor</a></li>
   </ul></li>
-  <li><a href="#calibration-adjustment-k-factors" id="toc-calibration-adjustment-k-factors" class="nav-link" data-scroll-target="#calibration-adjustment-k-factors">Calibration Adjustment K-Factors</a></li>
-  <li><a href="#other" id="toc-other" class="nav-link" data-scroll-target="#other">Other</a></li>
+  <li><a href="#removed-parameters" id="toc-removed-parameters" class="nav-link" data-scroll-target="#removed-parameters">Removed Parameters</a>
+  <ul class="collapse">
+  <li><a href="#county-identification-parameters" id="toc-county-identification-parameters" class="nav-link" data-scroll-target="#county-identification-parameters">County Identification Parameters</a></li>
+  <li><a href="#air-quality-conformity-report-parameters" id="toc-air-quality-conformity-report-parameters" class="nav-link" data-scroll-target="#air-quality-conformity-report-parameters">Air Quality Conformity Report Parameters</a></li>
+  <li><a href="#bus-speed-ratios" id="toc-bus-speed-ratios" class="nav-link" data-scroll-target="#bus-speed-ratios">Bus Speed Ratios</a></li>
+  <li><a href="#prefixes-for-transit-skims" id="toc-prefixes-for-transit-skims" class="nav-link" data-scroll-target="#prefixes-for-transit-skims">Prefixes for Transit Skims</a></li>
+  <li><a href="#diurnal-factors" id="toc-diurnal-factors" class="nav-link" data-scroll-target="#diurnal-factors">Diurnal Factors</a></li>
+  <li><a href="#assignment-type-flag" id="toc-assignment-type-flag" class="nav-link" data-scroll-target="#assignment-type-flag">Assignment Type Flag</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -401,285 +414,119 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>The changes made to the <code>0_GeneralParameters.block</code> file are discussed in this section.</p>
+<p>Changes made to the <code>0_GeneralParameters.block</code> file are discussed in this section.</p>
 <section id="zone-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="zone-parameters">Zone Parameters</h2>
-<p>With the update to the TAZ inputs, the TAZ references were made in various locations.</p>
-<section id="taz-range-and-highway-node-reference" class="level3">
-<h3 class="anchored" data-anchor-id="taz-range-and-highway-node-reference">TAZ Range and Highway Node Reference</h3>
-<p>TAZ and highway node references were update with new zone numbers as shown in <a href="#tbl-taz-highway-renumber">Table&nbsp;1</a>.</p>
+<p>The TAZ and highway node schema was changed in version 9. The following parameters were updated to reflect these changes.</p>
+<section id="taz" class="level3">
+<h3 class="anchored" data-anchor-id="taz">TAZ</h3>
+<p>Note, the following TAZ parameters ranges were removed from the general parameters file in v9 as they were not being used in the WF TDM:</p>
+<ul>
+<li>RegionRange</li>
+<li>WFRCRange</li>
+<li>MAGRange</li>
+</ul>
 <div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
-<div id="tbl-taz-highway-renumber" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: Renumbered Range and Highway TAZs</caption>
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-taz-renumber" class="anchored">
+<table id="T_6fd9a" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Renumbered TAZ Ranges</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Range</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: left;">TAZ</th>
+<th id="T_6fd9a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_6fd9a_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_6fd9a_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_6fd9a_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Used Zones</td>
-<td style="text-align: left;">UsedZones</td>
-<td style="text-align: left;">3629</td>
+<td id="T_6fd9a_row0_col0" class="data row0 col0">UsedZones</td>
+<td id="T_6fd9a_row0_col1" class="data row0 col1">3629</td>
+<td id="T_6fd9a_row0_col2" class="data row0 col2">2881</td>
+<td id="T_6fd9a_row0_col3" class="data row0 col3">Highest TAZ number used by model</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Box Elder County Range</td>
-<td style="text-align: left;">BoxElderRange</td>
-<td style="text-align: left;">1-153</td>
+<td id="T_6fd9a_row1_col0" class="data row1 col0">BoxElderRange</td>
+<td id="T_6fd9a_row1_col1" class="data row1 col1">1-153</td>
+<td id="T_6fd9a_row1_col2" class="data row1 col2">1-140</td>
+<td id="T_6fd9a_row1_col3" class="data row1 col3">Box Elder County Range</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Weber County Range</td>
-<td style="text-align: left;">WeberRange</td>
-<td style="text-align: left;">154-581</td>
+<td id="T_6fd9a_row2_col0" class="data row2 col0">WeberRange</td>
+<td id="T_6fd9a_row2_col1" class="data row2 col1">154-581</td>
+<td id="T_6fd9a_row2_col2" class="data row2 col2">141-423</td>
+<td id="T_6fd9a_row2_col3" class="data row2 col3">Weber County Range</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Davis County Range</td>
-<td style="text-align: left;">DavisRange</td>
-<td style="text-align: left;">582-905</td>
+<td id="T_6fd9a_row3_col0" class="data row3 col0">DavisRange</td>
+<td id="T_6fd9a_row3_col1" class="data row3 col1">582-905</td>
+<td id="T_6fd9a_row3_col2" class="data row3 col2">424-654</td>
+<td id="T_6fd9a_row3_col3" class="data row3 col3">Davis County Range</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Salt Lake County Range</td>
-<td style="text-align: left;">SLRange</td>
-<td style="text-align: left;">906-2216</td>
+<td id="T_6fd9a_row4_col0" class="data row4 col0">SLRange</td>
+<td id="T_6fd9a_row4_col1" class="data row4 col1">906-2216</td>
+<td id="T_6fd9a_row4_col2" class="data row4 col2">655-1788</td>
+<td id="T_6fd9a_row4_col3" class="data row4 col3">Salt Lake County Range</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Utah County Range</td>
-<td style="text-align: left;">UtahRange</td>
-<td style="text-align: left;">2217-3546</td>
+<td id="T_6fd9a_row5_col0" class="data row5 col0">UtahRange</td>
+<td id="T_6fd9a_row5_col1" class="data row5 col1">2217-3546</td>
+<td id="T_6fd9a_row5_col2" class="data row5 col2">1789-2881</td>
+<td id="T_6fd9a_row5_col3" class="data row5 col3">Utah County Range</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Dummy Zones</td>
-<td style="text-align: left;">Dummyzones</td>
-<td style="text-align: left;">3547-3600</td>
+<td id="T_6fd9a_row6_col0" class="data row6 col0">Dummyzones</td>
+<td id="T_6fd9a_row6_col1" class="data row6 col1">3547-3600</td>
+<td id="T_6fd9a_row6_col2" class="data row6 col2">2882-3400</td>
+<td id="T_6fd9a_row6_col3" class="data row6 col3">Placeholder for future TAZ splits</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">External Zones</td>
-<td style="text-align: left;">Externalzones</td>
-<td style="text-align: left;">3601-3629</td>
+<td id="T_6fd9a_row7_col0" class="data row7 col0">Externalzones</td>
+<td id="T_6fd9a_row7_col1" class="data row7 col1">3601-3629</td>
+<td id="T_6fd9a_row7_col2" class="data row7 col2">136-140, 421-423, 1782-1788, 2874-2881</td>
+<td id="T_6fd9a_row7_col3" class="data row7 col3">External zones</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">North Brigham City</td>
-<td style="text-align: left;">NorthBC</td>
-<td style="text-align: left;">3604,3605,3606</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Highway Nodes</td>
-<td style="text-align: left;">HwyNodes</td>
-<td style="text-align: left;">10000-99999</td>
+<td id="T_6fd9a_row8_col0" class="data row8 col0">NorthBC</td>
+<td id="T_6fd9a_row8_col1" class="data row8 col1">3604-3606</td>
+<td id="T_6fd9a_row8_col2" class="data row8 col2">138, 139, 140</td>
+<td id="T_6fd9a_row8_col3" class="data row8 col3">North Brigham City external zones</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>The following ranges were removed: RegionRange, WFRCRange, MAGRange.</p>
 </section>
-<section id="updated-college-and-university-node-reference" class="level3">
-<h3 class="anchored" data-anchor-id="updated-college-and-university-node-reference">Updated College and University Node Reference</h3>
-<p>College and university were updated with new zone numbers. See <a href="#tbl-college-renumber">Table&nbsp;2</a>. Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero. <mark>???ADD INPUTS DOC REFERENCE???</mark></p>
+<section id="highway-nodes" class="level3">
+<h3 class="anchored" data-anchor-id="highway-nodes">Highway Nodes</h3>
 <div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div id="tbl-college-renumber" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;2: Renumbered College and University Zones</caption>
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-highway-renumber" class="anchored">
+<table id="T_4679f" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;2: Renumbered Highway Nodes</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">College or University</th>
-<th style="text-align: left;">Campus</th>
-<th style="text-align: left;">Address</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: right;">TAZ</th>
-<th style="text-align: left;">Status</th>
+<th id="T_4679f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_4679f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_4679f_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_4679f_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Ensign College</td>
-<td style="text-align: left;">Main</td>
-<td style="text-align: left;">95 N 300 W<br>Salt Lake City, UT 84101</td>
-<td style="text-align: left;">Ensign</td>
-<td style="text-align: right;">1029</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Westminster College</td>
-<td style="text-align: left;">Main</td>
-<td style="text-align: left;">1840 S 1300 E<br>Salt Lake City, UT 84105</td>
-<td style="text-align: left;">Westmin</td>
-<td style="text-align: right;">1263</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">University of Utah</td>
-<td style="text-align: left;">Main</td>
-<td style="text-align: left;">201 Presidents Cir<br>Salt Lake City, UT 84112</td>
-<td style="text-align: left;">UOFU_Main</td>
-<td style="text-align: right;">1051</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Medical</td>
-<td style="text-align: left;">30 N 1900 E<br>Salt Lake City, UT 84132</td>
-<td style="text-align: left;">UOFU_Med</td>
-<td style="text-align: right;">1007</td>
-<td style="text-align: left;">Discontinued</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Weber State University</td>
-<td style="text-align: left;">Main</td>
-<td style="text-align: left;">3848 Harrison Blvd<br>Ogden, UT 84403</td>
-<td style="text-align: left;">WSU_Main</td>
-<td style="text-align: right;">437</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Davis</td>
-<td style="text-align: left;">2750 University Park Blvd<br>Layton, UT, 84041</td>
-<td style="text-align: left;">WSU_Davis</td>
-<td style="text-align: right;">693</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">West</td>
-<td style="text-align: left;">5627 S 3500 W<br>Roy, UT, 84067</td>
-<td style="text-align: left;">WSU_West</td>
-<td style="text-align: right;">521</td>
-<td style="text-align: left;">Discontinued</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Salt Lake<br>Community College</td>
-<td style="text-align: left;">Main</td>
-<td style="text-align: left;">4600 S Redwood Rd<br>Taylorsville, UT 84123</td>
-<td style="text-align: left;">SLCC_Main</td>
-<td style="text-align: right;">1580</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">South City</td>
-<td style="text-align: left;">1575 S State Street<br>Salt Lake City, UT 84115</td>
-<td style="text-align: left;">SLCC_SC</td>
-<td style="text-align: right;">1231</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Jordan</td>
-<td style="text-align: left;">3491 W 9000 S<br>West Jordan, UT 84088</td>
-<td style="text-align: left;">SLCC_JD</td>
-<td style="text-align: right;">1776</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Meadbrook</td>
-<td style="text-align: left;">218 W 3900 S<br>Salt Lake City, UT 84107</td>
-<td style="text-align: left;">SLCC_Mead</td>
-<td style="text-align: right;">1491</td>
-<td style="text-align: left;">Discontinued</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Miller</td>
-<td style="text-align: left;">9750 S 300 W<br>Sandy, UT 84070</td>
-<td style="text-align: left;">SLCC_ML</td>
-<td style="text-align: right;">1886</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Library</td>
-<td style="text-align: left;">231 E 400 S<br>Salt Lake City, UT 84111</td>
-<td style="text-align: left;">SLCC_LB</td>
-<td style="text-align: right;">1085</td>
-<td style="text-align: left;">Discontinued</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Highland</td>
-<td style="text-align: left;">3760 S Highland Drive<br>Salt Lake City, UT 84106</td>
-<td style="text-align: left;">SLCC_HL</td>
-<td style="text-align: right;">1525</td>
-<td style="text-align: left;">Discontinued</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Airport</td>
-<td style="text-align: left;">551 2200 W<br>Salt Lake City, UT 84116</td>
-<td style="text-align: left;">SLCC_Airp</td>
-<td style="text-align: right;">979</td>
-<td style="text-align: left;">Discontinued</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Westpointe</td>
-<td style="text-align: left;">2150 W Dauntless Ave<br>Salt Lake City, UT 84116</td>
-<td style="text-align: left;">SLCC_West</td>
-<td style="text-align: right;">959</td>
-<td style="text-align: left;">Discontinued</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Herriman</td>
-<td style="text-align: left;">14200 S 4000 W<br>Herriman, UT</td>
-<td style="text-align: left;">SLCC_HM</td>
-<td style="text-align: right;">2031</td>
-<td style="text-align: left;">Discontinued</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Brigham Young University</td>
-<td style="text-align: left;">Main</td>
-<td style="text-align: left;">1 N University Hill<br>Provo, UT 84602</td>
-<td style="text-align: left;">BYU</td>
-<td style="text-align: right;">2939</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Utah Valley University</td>
-<td style="text-align: left;">Main</td>
-<td style="text-align: left;">800 West University Parkway<br>Orem, UT 84058</td>
-<td style="text-align: left;">UVU_Main</td>
-<td style="text-align: right;">2848</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Geneva</td>
-<td style="text-align: left;">951 S Geneva Rd<br>Orem, UT 84058</td>
-<td style="text-align: left;">UVU_Geneva</td>
-<td style="text-align: right;">2882</td>
-<td style="text-align: left;">Discontinued</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Lehi</td>
-<td style="text-align: left;">2301 W. Ashton Blvd<br>Lehi, UT 84043</td>
-<td style="text-align: left;">UVU_Lehi</td>
-<td style="text-align: right;">2606</td>
-<td style="text-align: left;">Existing</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Vineyard</td>
-<td style="text-align: left;">Mill Rd<br>Vineyard, UT</td>
-<td style="text-align: left;">UVU_Vine</td>
-<td style="text-align: right;">2809</td>
-<td style="text-align: left;">Future</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Payson</td>
-<td style="text-align: left;">Future Nebo Belt Rd<br>Payson, UT</td>
-<td style="text-align: left;">UVU_Payson</td>
-<td style="text-align: right;">3336</td>
-<td style="text-align: left;">Future</td>
+<td id="T_4679f_row0_col0" class="data row0 col0">HwyNodes</td>
+<td id="T_4679f_row0_col1" class="data row0 col1">10000-99999</td>
+<td id="T_4679f_row0_col2" class="data row0 col2">3401-999999</td>
+<td id="T_4679f_row0_col3" class="data row0 col3">Highway and transit node range</td>
 </tr>
 </tbody>
 </table>
@@ -687,79 +534,214 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="updated-special-generator-node-references" class="level3">
-<h3 class="anchored" data-anchor-id="updated-special-generator-node-references">Updated Special Generator Node References</h3>
-<p>Special generators were updated with new zone numbers, as shown in <a href="#tbl-specgen-renumber">Table&nbsp;3</a>.</p>
+<section id="college-zones" class="level3">
+<h3 class="anchored" data-anchor-id="college-zones">College Zones</h3>
+<p>Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero.</p>
+<p><mark>???ADD INPUTS DOC REFERENCE???</mark></p>
 <div class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div id="tbl-specgen-renumber" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;3: Renumbered College and University Zones</caption>
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-college-renumber" class="anchored">
+<table id="T_89f7b" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;3: Renumbered College Zones</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Special Generator</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: right;">TAZ</th>
+<th id="T_89f7b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Area</th>
+<th id="T_89f7b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_89f7b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_89f7b_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_89f7b_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Lagoon Amusement Park</td>
-<td style="text-align: left;">Lagoon</td>
-<td style="text-align: right;">781</td>
+<td id="T_89f7b_row0_col0" class="data row0 col0">WFRC Colleges</td>
+<td id="T_89f7b_row0_col1" class="data row0 col1">Ensign (was LDSBC)</td>
+<td id="T_89f7b_row0_col2" class="data row0 col2">1029</td>
+<td id="T_89f7b_row0_col3" class="data row0 col3">950</td>
+<td id="T_89f7b_row0_col4" class="data row0 col4">Ensign College</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Salt Lake City International Airport</td>
-<td style="text-align: left;">Aiport</td>
-<td style="text-align: right;">965</td>
+<td id="T_89f7b_row1_col0" class="data row1 col0"></td>
+<td id="T_89f7b_row1_col1" class="data row1 col1">Westmin</td>
+<td id="T_89f7b_row1_col2" class="data row1 col2">1263</td>
+<td id="T_89f7b_row1_col3" class="data row1 col3">1150</td>
+<td id="T_89f7b_row1_col4" class="data row1 col4">Westminster College</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">LDS Salt Lake Temple Square</td>
-<td style="text-align: left;">TempleSquare</td>
-<td style="text-align: right;">1035</td>
+<td id="T_89f7b_row2_col0" class="data row2 col0"></td>
+<td id="T_89f7b_row2_col1" class="data row2 col1">UOFU_Main</td>
+<td id="T_89f7b_row2_col2" class="data row2 col2">1051</td>
+<td id="T_89f7b_row2_col3" class="data row2 col3">1075</td>
+<td id="T_89f7b_row2_col4" class="data row2 col4">University of Utah - Main</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Salt Lake City Main Library</td>
-<td style="text-align: left;">SLC_Library</td>
-<td style="text-align: right;">1147</td>
+<td id="T_89f7b_row3_col0" class="data row3 col0"></td>
+<td id="T_89f7b_row3_col1" class="data row3 col1">UOFU_Med</td>
+<td id="T_89f7b_row3_col2" class="data row3 col2">1007</td>
+<td id="T_89f7b_row3_col3" class="data row3 col3">1076</td>
+<td id="T_89f7b_row3_col4" class="data row3 col4">University of Utah - Medical (removed)</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row4_col0" class="data row4 col0"></td>
+<td id="T_89f7b_row4_col1" class="data row4 col1">WSU_Main (was WSU_OGDEN)</td>
+<td id="T_89f7b_row4_col2" class="data row4 col2">437</td>
+<td id="T_89f7b_row4_col3" class="data row4 col3">383</td>
+<td id="T_89f7b_row4_col4" class="data row4 col4">Weber State University - Main</td>
+</tr>
+<tr class="even">
+<td id="T_89f7b_row5_col0" class="data row5 col0"></td>
+<td id="T_89f7b_row5_col1" class="data row5 col1">WSU_Davis</td>
+<td id="T_89f7b_row5_col2" class="data row5 col2">693</td>
+<td id="T_89f7b_row5_col3" class="data row5 col3">525</td>
+<td id="T_89f7b_row5_col4" class="data row5 col4">Weber State University - Davis</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row6_col0" class="data row6 col0"></td>
+<td id="T_89f7b_row6_col1" class="data row6 col1">WSU_West</td>
+<td id="T_89f7b_row6_col2" class="data row6 col2">521</td>
+<td id="T_89f7b_row6_col3" class="data row6 col3">290</td>
+<td id="T_89f7b_row6_col4" class="data row6 col4">Weber State University - West (removed)</td>
+</tr>
+<tr class="even">
+<td id="T_89f7b_row7_col0" class="data row7 col0"></td>
+<td id="T_89f7b_row7_col1" class="data row7 col1">SLCC_Main (was SLCC_TL)</td>
+<td id="T_89f7b_row7_col2" class="data row7 col2">1580</td>
+<td id="T_89f7b_row7_col3" class="data row7 col3">897</td>
+<td id="T_89f7b_row7_col4" class="data row7 col4">Salt Lake Community College - Main</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row8_col0" class="data row8 col0"></td>
+<td id="T_89f7b_row8_col1" class="data row8 col1">SLCC_SC</td>
+<td id="T_89f7b_row8_col2" class="data row8 col2">1231</td>
+<td id="T_89f7b_row8_col3" class="data row8 col3">1126</td>
+<td id="T_89f7b_row8_col4" class="data row8 col4">Salt Lake Community College - South City</td>
+</tr>
+<tr class="even">
+<td id="T_89f7b_row9_col0" class="data row9 col0"></td>
+<td id="T_89f7b_row9_col1" class="data row9 col1">SLCC_JD</td>
+<td id="T_89f7b_row9_col2" class="data row9 col2">1776</td>
+<td id="T_89f7b_row9_col3" class="data row9 col3">1493</td>
+<td id="T_89f7b_row9_col4" class="data row9 col4">Salt Lake Community College - Jordan</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row10_col0" class="data row10 col0"></td>
+<td id="T_89f7b_row10_col1" class="data row10 col1">SLCC_Mead</td>
+<td id="T_89f7b_row10_col2" class="data row10 col2"></td>
+<td id="T_89f7b_row10_col3" class="data row10 col3">1206</td>
+<td id="T_89f7b_row10_col4" class="data row10 col4">Salt Lake Community College - Meadbrook (removed)</td>
+</tr>
+<tr class="even">
+<td id="T_89f7b_row11_col0" class="data row11 col0"></td>
+<td id="T_89f7b_row11_col1" class="data row11 col1">SLCC_ML</td>
+<td id="T_89f7b_row11_col2" class="data row11 col2">1886</td>
+<td id="T_89f7b_row11_col3" class="data row11 col3">1516</td>
+<td id="T_89f7b_row11_col4" class="data row11 col4">Salt Lake Community College - Miller</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row12_col0" class="data row12 col0"></td>
+<td id="T_89f7b_row12_col1" class="data row12 col1">SLCC_LB</td>
+<td id="T_89f7b_row12_col2" class="data row12 col2">1085</td>
+<td id="T_89f7b_row12_col3" class="data row12 col3">989</td>
+<td id="T_89f7b_row12_col4" class="data row12 col4">Salt Lake Community College - Library (removed)</td>
+</tr>
+<tr class="even">
+<td id="T_89f7b_row13_col0" class="data row13 col0"></td>
+<td id="T_89f7b_row13_col1" class="data row13 col1">SLCC_HL</td>
+<td id="T_89f7b_row13_col2" class="data row13 col2">1525</td>
+<td id="T_89f7b_row13_col3" class="data row13 col3">1294</td>
+<td id="T_89f7b_row13_col4" class="data row13 col4">Salt Lake Community College - Highland (removed)</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row14_col0" class="data row14 col0"></td>
+<td id="T_89f7b_row14_col1" class="data row14 col1">SLCC_Airp</td>
+<td id="T_89f7b_row14_col2" class="data row14 col2">979</td>
+<td id="T_89f7b_row14_col3" class="data row14 col3">746</td>
+<td id="T_89f7b_row14_col4" class="data row14 col4">Salt Lake Community College - Airport (removed)</td>
+</tr>
+<tr class="even">
+<td id="T_89f7b_row15_col0" class="data row15 col0"></td>
+<td id="T_89f7b_row15_col1" class="data row15 col1">SLCC_West</td>
+<td id="T_89f7b_row15_col2" class="data row15 col2">959</td>
+<td id="T_89f7b_row15_col3" class="data row15 col3">745</td>
+<td id="T_89f7b_row15_col4" class="data row15 col4">Salt Lake Community College - Westpointe (removed)</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row16_col0" class="data row16 col0"></td>
+<td id="T_89f7b_row16_col1" class="data row16 col1">SLCC_HM</td>
+<td id="T_89f7b_row16_col2" class="data row16 col2">2031</td>
+<td id="T_89f7b_row16_col3" class="data row16 col3">1607</td>
+<td id="T_89f7b_row16_col4" class="data row16 col4">Salt Lake Community College - Herriman (removed)</td>
+</tr>
+<tr class="even">
+<td id="T_89f7b_row17_col0" class="data row17 col0">MAG Colleges</td>
+<td id="T_89f7b_row17_col1" class="data row17 col1">BYU</td>
+<td id="T_89f7b_row17_col2" class="data row17 col2">2939</td>
+<td id="T_89f7b_row17_col3" class="data row17 col3">2384</td>
+<td id="T_89f7b_row17_col4" class="data row17 col4">Brigham Young University - Main</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row18_col0" class="data row18 col0"></td>
+<td id="T_89f7b_row18_col1" class="data row18 col1">UVU_Main</td>
+<td id="T_89f7b_row18_col2" class="data row18 col2">2848</td>
+<td id="T_89f7b_row18_col3" class="data row18 col3">2326</td>
+<td id="T_89f7b_row18_col4" class="data row18 col4">Utah Valley University - Main</td>
+</tr>
+<tr class="even">
+<td id="T_89f7b_row19_col0" class="data row19 col0"></td>
+<td id="T_89f7b_row19_col1" class="data row19 col1">UVU_Geneva</td>
+<td id="T_89f7b_row19_col2" class="data row19 col2">2882</td>
+<td id="T_89f7b_row19_col3" class="data row19 col3">2280</td>
+<td id="T_89f7b_row19_col4" class="data row19 col4">Utah Valley University - Geneva (removed)</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row20_col0" class="data row20 col0"></td>
+<td id="T_89f7b_row20_col1" class="data row20 col1">UVU_Lehi (was UVU_THANKP)</td>
+<td id="T_89f7b_row20_col2" class="data row20 col2">2606</td>
+<td id="T_89f7b_row20_col3" class="data row20 col3">2099</td>
+<td id="T_89f7b_row20_col4" class="data row20 col4">Utah Valley University - Lehi</td>
+</tr>
+<tr class="even">
+<td id="T_89f7b_row21_col0" class="data row21 col0"></td>
+<td id="T_89f7b_row21_col1" class="data row21 col1">UVU_Vine</td>
+<td id="T_89f7b_row21_col2" class="data row21 col2">2809</td>
+<td id="T_89f7b_row21_col3" class="data row21 col3">2259</td>
+<td id="T_89f7b_row21_col4" class="data row21 col4">Utah Valley University - Vineyard</td>
+</tr>
+<tr class="odd">
+<td id="T_89f7b_row22_col0" class="data row22 col0"></td>
+<td id="T_89f7b_row22_col1" class="data row22 col1">UVU_Payson</td>
+<td id="T_89f7b_row22_col2" class="data row22 col2">3336</td>
+<td id="T_89f7b_row22_col3" class="data row22 col3">2690</td>
+<td id="T_89f7b_row22_col4" class="data row22 col4">Utah Valley University - Payson</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="special-trip-table-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="special-trip-table-parameters">Special Trip Table Parameters</h2>
-<p>The income break points for Salt Lake City International Airport were updated as shown in <a href="#tbl-airport-income">Table&nbsp;4</a>.</p>
 <div class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div id="tbl-airport-income" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;4: Airport Income Levels</caption>
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-college-renumber-2" class="anchored">
+<table id="T_60cbd" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;4: Renumbered College Zones (continued)</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Category Break Point</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: left;">Income</th>
+<th id="T_60cbd_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_60cbd_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_60cbd_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Low</td>
-<td style="text-align: left;">Income_Lo</td>
-<td style="text-align: left;">$45,000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Medium</td>
-<td style="text-align: left;">Income_Md</td>
-<td style="text-align: left;">$75,000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">High</td>
-<td style="text-align: left;">Income_Hi</td>
-<td style="text-align: left;">$125,000</td>
+<td id="T_60cbd_row0_col0" class="data row0 col0">colleges</td>
+<td id="T_60cbd_row0_col1" class="data row0 col1">437, 521, 693, 959, 979, 1007, 1029, 1051, 1085, 1231, 1263, 1491, 1525, 1580, 1776, 1886, 2031, 2606, 2809, 2848, 2882, 2939, 3336</td>
+<td id="T_60cbd_row0_col2" class="data row0 col2">290, 383, 525, 897, 950, 989, 1075, 1076, 1126, 1150, 1294, 1493, 1516, 1607, 2099, 2259, 2280, 2326, 2384, 2690</td>
 </tr>
 </tbody>
 </table>
@@ -767,201 +749,473 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="county-identification" class="level2">
-<h2 class="anchored" data-anchor-id="county-identification">County Identification</h2>
-<p>Removed the county identification section section containing the following variables: <code>CountyRange</code>, <code>CountyName1</code>, <code>CountyName2</code>, <code>CountyName3</code>, <code>CountyName4</code>, <code>CountyName5</code>, <code>CO_Name1</code>, <code>CO_Name2</code>, <code>CO_Name3</code>, <code>CO_Name4</code>, <code>CO_Name5</code>.</p>
+<section id="zones-with-off-line-trip-tables" class="level3">
+<h3 class="anchored" data-anchor-id="zones-with-off-line-trip-tables">Zones with Off-line Trip Tables</h3>
+<div class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-offline-renumber" class="anchored">
+<table id="T_ba48b" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;5: Renumbered Off-line Trip Table Zones</caption>
+<thead>
+<tr class="header">
+<th id="T_ba48b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_ba48b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_ba48b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_ba48b_row0_col0" class="data row0 col0">Lagoon</td>
+<td id="T_ba48b_row0_col1" class="data row0 col1">781</td>
+<td id="T_ba48b_row0_col2" class="data row0 col2">562</td>
+</tr>
+<tr class="even">
+<td id="T_ba48b_row1_col0" class="data row1 col0">Airport</td>
+<td id="T_ba48b_row1_col1" class="data row1 col1">965</td>
+<td id="T_ba48b_row1_col2" class="data row1 col2">742</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
-<section id="air-quality-conformity-reports" class="level2">
-<h2 class="anchored" data-anchor-id="air-quality-conformity-reports">Air Quality Conformity Reports</h2>
-<p>Removed the air quality conformity section containing the following variables broken down by each county and 3 cities: <code>RE_ID</code>, <code>WE_ID</code>, <code>DA_ID</code>, <code>SL_ID</code>, <code>UT_ID</code>, <code>BE_ID</code>, <code>OC_ID</code>, <code>SC_ID</code>, <code>PC_ID</code>.</p>
+<section id="special-generator-zones" class="level3">
+<h3 class="anchored" data-anchor-id="special-generator-zones">Special Generator Zones</h3>
+<div class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-specgen-renumber" class="anchored">
+<table id="T_016e3" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;6: Renumbered Special Generator Zones</caption>
+<thead>
+<tr class="header">
+<th id="T_016e3_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_016e3_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_016e3_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_016e3_row0_col0" class="data row0 col0">TempleSquare</td>
+<td id="T_016e3_row0_col1" class="data row0 col1">1035</td>
+<td id="T_016e3_row0_col2" class="data row0 col2">966</td>
+</tr>
+<tr class="even">
+<td id="T_016e3_row1_col0" class="data row1 col0">SLC_Library</td>
+<td id="T_016e3_row1_col1" class="data row1 col1">1147</td>
+<td id="T_016e3_row1_col2" class="data row1 col2">1015</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exogenous-trip-table-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="exogenous-trip-table-parameters">Exogenous Trip Table Parameters</h2>
+<p>Income break points for the airport exogenous trip table generation were updated to reflect 2019 base year income.</p>
+<div class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-exogen-income" class="anchored">
+<table id="T_d200e" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;7: Income Break Points for Airport Exogenous Trip Table Generation</caption>
+<thead>
+<tr class="header">
+<th id="T_d200e_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_d200e_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_d200e_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_d200e_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_d200e_row0_col0" class="data row0 col0">Income_Lo</td>
+<td id="T_d200e_row0_col1" class="data row0 col1">45000</td>
+<td id="T_d200e_row0_col2" class="data row0 col2">35000</td>
+<td id="T_d200e_row0_col3" class="data row0 col3">breakpoint between Inc1 &amp; Inc2</td>
+</tr>
+<tr class="even">
+<td id="T_d200e_row1_col0" class="data row1 col0">Income_Md</td>
+<td id="T_d200e_row1_col1" class="data row1 col1">75000</td>
+<td id="T_d200e_row1_col2" class="data row1 col2">70000</td>
+<td id="T_d200e_row1_col3" class="data row1 col3">breakpoint between Inc2 &amp; Inc3</td>
+</tr>
+<tr class="odd">
+<td id="T_d200e_row2_col0" class="data row2 col0">Income_Hi</td>
+<td id="T_d200e_row2_col1" class="data row2 col1">125000</td>
+<td id="T_d200e_row2_col2" class="data row2 col2">100000</td>
+<td id="T_d200e_row2_col3" class="data row2 col3">breakpoint between Inc3 &amp; Inc4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="household-disaggregation-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="household-disaggregation-parameters">Household Disaggregation Parameters</h2>
-<p>The updated regional median income was $74,946 from 2019 5-year ACS, in 2019 dollars. This represents average for just the Wasatch Front region.</p>
-</section>
-<section id="distribution-mode-choice-and-assignment-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="distribution-mode-choice-and-assignment-parameters">Distribution, Mode Choice, and Assignment Parameters</h2>
-<section id="auto-occupancy" class="level3">
-<h3 class="anchored" data-anchor-id="auto-occupancy">Auto Occupancy</h3>
-<p>The vehicle occupancy rates were updated expanded to additional trips purposes. See <a href="#tbl-occupancy">Table&nbsp;5</a> and <a href="#tbl-occupancy-3p">Table&nbsp;6</a>. Variables were renamed where indicated. Auto occupancy parameters were updated based on 2012 Household Travel Survey (reprocessed). Values represent average persons per vehicle for just the Wasatch Front model space. External trips are average for IX + XI, all other parameters are averages for II trips.</p>
-<p><mark>???SHOW PREVIOUS VALUES???</mark></p>
-<div class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="5">
-<div id="tbl-occupancy" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;5: Average Auto-Occupancy Codes and Rates</caption>
+<p>The regional median income was updated using 2019 5-year ACS data and kept in 2019 dollars to reflect 2019 base year. v8 was estimated from 2015 ACS data and deflated to 2010 dollars.</p>
+<div class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-hh-disagg" class="anchored">
+<table id="T_65f1d" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;8: Household Disaggregation Parameter Income Update</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Trip Purpose</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: left;">Previous Code</th>
-<th style="text-align: right;">Updated Value</th>
+<th id="T_65f1d_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_65f1d_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_65f1d_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Home-Based Work</td>
-<td style="text-align: left;">VehOcc_HBW</td>
-<td style="text-align: left;">VEH_OCCUPANCY_HBW</td>
-<td style="text-align: right;">1.10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Home-Based Shopping</td>
-<td style="text-align: left;">VehOcc_HBShp</td>
-<td style="text-align: left;">VEH_OCCUPANCY_HBSHP</td>
-<td style="text-align: right;">1.63</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Home-Based Other</td>
-<td style="text-align: left;">VehOcc_HBOth</td>
-<td style="text-align: left;">VEH_OCCUPANCY_HBOTH</td>
-<td style="text-align: right;">1.68</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Home-Based School</td>
-<td style="text-align: left;">VehOcc_HBSch</td>
-<td style="text-align: left;">VEH_OCCUPANCY_HBSCH</td>
-<td style="text-align: right;">1.76</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Home-Based College</td>
-<td style="text-align: left;">VehOcc_HBC</td>
-<td style="text-align: left;">VEH_OCCUPANCY_HBC</td>
-<td style="text-align: right;">1.12</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Non-Home-Based Work</td>
-<td style="text-align: left;">VehOcc_NHBW</td>
-<td style="text-align: left;">VEH_OCCUPANCY_NHBW</td>
-<td style="text-align: right;">1.21</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Non-Home-Based Non-Work</td>
-<td style="text-align: left;">VehOcc_NHBNW</td>
-<td style="text-align: left;">VEH_OCCUPANCY_NHBNW</td>
-<td style="text-align: right;">1.76</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Recreation</td>
-<td style="text-align: left;">VehOcc_Rec</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">1.68</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Home-Based Other (sub-category)</td>
-<td style="text-align: left;">VehOcc_HBO</td>
-<td style="text-align: left;">VEH_OCCUPANCY_HBO</td>
-<td style="text-align: right;">1.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Non-Home-Based (sub-category)</td>
-<td style="text-align: left;">VehOcc_NHB</td>
-<td style="text-align: left;">VEH_OCCUPANCY_NHB</td>
-<td style="text-align: right;">1.54</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">External Work</td>
-<td style="text-align: left;">VehOcc_ExtWrk</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">1.16</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">External Home-Based Other</td>
-<td style="text-align: left;">VehOcc_ExtHBO</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">1.82</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Non-Home-Based</td>
-<td style="text-align: left;">VehOcc_ExtNHB</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">1.73</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">External Recreation</td>
-<td style="text-align: left;">VehOcc_ExtRec</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">1.73</td>
+<td id="T_65f1d_row0_col0" class="data row0 col0">Reg_Median_Inc</td>
+<td id="T_65f1d_row0_col1" class="data row0 col1">74946</td>
+<td id="T_65f1d_row0_col2" class="data row0 col2">58793</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<p><mark>???WE SHOULD PROBABLY SHOW PREVIOUS VALUES???</mark></p>
-<div class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display" data-execution_count="6">
-<div id="tbl-occupancy-3p" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;6: Average Auto-Occupancy Codes and Rates for Vehicles with 3+ Persons</caption>
+</section>
+<section id="distribution-mode-choice-and-assignment-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="distribution-mode-choice-and-assignment-parameters">Distribution, Mode Choice, and Assignment Parameters</h2>
+<section id="k-factors" class="level3">
+<h3 class="anchored" data-anchor-id="k-factors">K-Factors</h3>
+<p>K-factors were expanded by trip purpose to allow for more flexibility in calibrating distribution. All K-factors were reset to 1.</p>
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-kfactors" class="anchored">
+<table id="T_f96ec" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;9: Reset K-Factors</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Trip Purpose</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: left;">Previous Code</th>
-<th style="text-align: right;">Updated Value</th>
+<th id="T_f96ec_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Area</th>
+<th id="T_f96ec_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Parameter</th>
+<th id="T_f96ec_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_f96ec_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">v8Parameter</th>
+<th id="T_f96ec_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">v8Value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Home-Based Work</td>
-<td style="text-align: left;">VehOcc_3p_HBW</td>
-<td style="text-align: left;">VEH_OCC_3P_HBW</td>
-<td style="text-align: right;">3.53</td>
+<td id="T_f96ec_row0_col0" class="data row0 col0">between Salt Lake and Utah counties</td>
+<td id="T_f96ec_row0_col1" class="data row0 col1">SL_UT_KFAC_Wrk</td>
+<td id="T_f96ec_row0_col2" class="data row0 col2">1</td>
+<td id="T_f96ec_row0_col3" class="data row0 col3">SL_UT_KFAC</td>
+<td id="T_f96ec_row0_col4" class="data row0 col4">0.85</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Home-Based Shopping</td>
-<td style="text-align: left;">VehOcc_3p_HBShp</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">3.49</td>
+<td id="T_f96ec_row1_col0" class="data row1 col0"></td>
+<td id="T_f96ec_row1_col1" class="data row1 col1">SL_UT_KFAC_Oth</td>
+<td id="T_f96ec_row1_col2" class="data row1 col2">1</td>
+<td id="T_f96ec_row1_col3" class="data row1 col3">SL_UT_KFAC</td>
+<td id="T_f96ec_row1_col4" class="data row1 col4">0.85</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Home-Based Other</td>
-<td style="text-align: left;">VehOcc_3p_HBOth</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">3.73</td>
+<td id="T_f96ec_row2_col0" class="data row2 col0"></td>
+<td id="T_f96ec_row2_col1" class="data row2 col1">SL_UT_KFAC_Trk</td>
+<td id="T_f96ec_row2_col2" class="data row2 col2">1</td>
+<td id="T_f96ec_row2_col3" class="data row2 col3">SL_UT_KFAC</td>
+<td id="T_f96ec_row2_col4" class="data row2 col4">0.85</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Home-Based School</td>
-<td style="text-align: left;">VehOcc_3p_HBSch</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">3.88</td>
+<td id="T_f96ec_row3_col0" class="data row3 col0"></td>
+<td id="T_f96ec_row3_col1" class="data row3 col1">SL_UT_KFAC_Ext</td>
+<td id="T_f96ec_row3_col2" class="data row3 col2">1</td>
+<td id="T_f96ec_row3_col3" class="data row3 col3">SL_UT_KFAC</td>
+<td id="T_f96ec_row3_col4" class="data row3 col4">0.85</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Home-Based College</td>
-<td style="text-align: left;">VehOcc_3p_HBC</td>
-<td style="text-align: left;">VEH_OCC_3P_HBC</td>
-<td style="text-align: right;">3.24</td>
+<td id="T_f96ec_row4_col0" class="data row4 col0">between Salt Lake and Davis counties</td>
+<td id="T_f96ec_row4_col1" class="data row4 col1">SL_DA_KFAC_Wrk</td>
+<td id="T_f96ec_row4_col2" class="data row4 col2">1</td>
+<td id="T_f96ec_row4_col3" class="data row4 col3">SL_DA_KFAC</td>
+<td id="T_f96ec_row4_col4" class="data row4 col4">0.95</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Non-Home-Based Work</td>
-<td style="text-align: left;">VehOcc_3p_NHBW</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">3.71</td>
+<td id="T_f96ec_row5_col0" class="data row5 col0"></td>
+<td id="T_f96ec_row5_col1" class="data row5 col1">SL_DA_KFAC_Oth</td>
+<td id="T_f96ec_row5_col2" class="data row5 col2">1</td>
+<td id="T_f96ec_row5_col3" class="data row5 col3">SL_DA_KFAC</td>
+<td id="T_f96ec_row5_col4" class="data row5 col4">0.95</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Non-Home-Based Non-Work</td>
-<td style="text-align: left;">VehOcc_3p_NHBNW</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">3.71</td>
+<td id="T_f96ec_row6_col0" class="data row6 col0"></td>
+<td id="T_f96ec_row6_col1" class="data row6 col1">SL_DA_KFAC_Trk</td>
+<td id="T_f96ec_row6_col2" class="data row6 col2">1</td>
+<td id="T_f96ec_row6_col3" class="data row6 col3">SL_DA_KFAC</td>
+<td id="T_f96ec_row6_col4" class="data row6 col4">0.95</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Recreation</td>
-<td style="text-align: left;">VehOcc_3p_Rec</td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">3.73</td>
+<td id="T_f96ec_row7_col0" class="data row7 col0"></td>
+<td id="T_f96ec_row7_col1" class="data row7 col1">SL_DA_KFAC_Ext</td>
+<td id="T_f96ec_row7_col2" class="data row7 col2">1</td>
+<td id="T_f96ec_row7_col3" class="data row7 col3">SL_DA_KFAC</td>
+<td id="T_f96ec_row7_col4" class="data row7 col4">0.95</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Home-Based Other (sub-category)</td>
-<td style="text-align: left;">VehOcc_3p_HBO</td>
-<td style="text-align: left;">VEH_OCC_3P_HBO</td>
-<td style="text-align: right;">3.68</td>
+<td id="T_f96ec_row8_col0" class="data row8 col0">between Box Elder and Weber counties</td>
+<td id="T_f96ec_row8_col1" class="data row8 col1">WE_BE_KFAC_Wrk</td>
+<td id="T_f96ec_row8_col2" class="data row8 col2">1</td>
+<td id="T_f96ec_row8_col3" class="data row8 col3">WE_BE_KFAC</td>
+<td id="T_f96ec_row8_col4" class="data row8 col4">1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Non-Home-Based (sub-category)</td>
-<td style="text-align: left;">VehOcc_3p_NHB</td>
-<td style="text-align: left;">VEH_OCC_3P_NHB</td>
-<td style="text-align: right;">3.71</td>
+<td id="T_f96ec_row9_col0" class="data row9 col0"></td>
+<td id="T_f96ec_row9_col1" class="data row9 col1">WE_BE_KFAC_Oth</td>
+<td id="T_f96ec_row9_col2" class="data row9 col2">1</td>
+<td id="T_f96ec_row9_col3" class="data row9 col3">WE_BE_KFAC</td>
+<td id="T_f96ec_row9_col4" class="data row9 col4">1</td>
+</tr>
+<tr class="odd">
+<td id="T_f96ec_row10_col0" class="data row10 col0"></td>
+<td id="T_f96ec_row10_col1" class="data row10 col1">WE_BE_KFAC_Trk</td>
+<td id="T_f96ec_row10_col2" class="data row10 col2">1</td>
+<td id="T_f96ec_row10_col3" class="data row10 col3">WE_BE_KFAC</td>
+<td id="T_f96ec_row10_col4" class="data row10 col4">1</td>
+</tr>
+<tr class="even">
+<td id="T_f96ec_row11_col0" class="data row11 col0"></td>
+<td id="T_f96ec_row11_col1" class="data row11 col1">WE_BE_KFAC_Ext</td>
+<td id="T_f96ec_row11_col2" class="data row11 col2">1</td>
+<td id="T_f96ec_row11_col3" class="data row11 col3">WE_BE_KFAC</td>
+<td id="T_f96ec_row11_col4" class="data row11 col4">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="auto-occupancy" class="level3">
+<h3 class="anchored" data-anchor-id="auto-occupancy">Auto Occupancy</h3>
+<p>Auto or vehicle occupancy rates were expanded to include additional trips purposes and calculated based on the reprocessed 2012 Household Travel Survey. Values represent average persons per vehicle for just the Wasatch Front model space. External trips are average for IX + XI; all other parameters are averages for II trips.</p>
+<div class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-auto-occ1" class="anchored">
+<table id="T_fe40b" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;10: Vehicle Occupancy Rates</caption>
+<thead>
+<tr class="header">
+<th id="T_fe40b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">v9Parameter</th>
+<th id="T_fe40b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_fe40b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Parameter</th>
+<th id="T_fe40b_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_fe40b_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_fe40b_row0_col0" class="data row0 col0">VehOcc_HBW</td>
+<td id="T_fe40b_row0_col1" class="data row0 col1">1.1</td>
+<td id="T_fe40b_row0_col2" class="data row0 col2">VEH_OCCUPANCY_HBW</td>
+<td id="T_fe40b_row0_col3" class="data row0 col3">1.1</td>
+<td id="T_fe40b_row0_col4" class="data row0 col4">Home-Based Work</td>
+</tr>
+<tr class="even">
+<td id="T_fe40b_row1_col0" class="data row1 col0">VehOcc_HBShp</td>
+<td id="T_fe40b_row1_col1" class="data row1 col1">1.63</td>
+<td id="T_fe40b_row1_col2" class="data row1 col2">VEH_OCCUPANCY_HBSHP</td>
+<td id="T_fe40b_row1_col3" class="data row1 col3">1.58</td>
+<td id="T_fe40b_row1_col4" class="data row1 col4">Home-Based Shopping</td>
+</tr>
+<tr class="odd">
+<td id="T_fe40b_row2_col0" class="data row2 col0">VehOcc_HBOth</td>
+<td id="T_fe40b_row2_col1" class="data row2 col1">1.68</td>
+<td id="T_fe40b_row2_col2" class="data row2 col2">VEH_OCCUPANCY_HBOTH</td>
+<td id="T_fe40b_row2_col3" class="data row2 col3">1.66</td>
+<td id="T_fe40b_row2_col4" class="data row2 col4">Home-Based Other</td>
+</tr>
+<tr class="even">
+<td id="T_fe40b_row3_col0" class="data row3 col0">VehOcc_HBSch</td>
+<td id="T_fe40b_row3_col1" class="data row3 col1">1.76</td>
+<td id="T_fe40b_row3_col2" class="data row3 col2">VEH_OCCUPANCY_HBSCH</td>
+<td id="T_fe40b_row3_col3" class="data row3 col3">2.14</td>
+<td id="T_fe40b_row3_col4" class="data row3 col4">Home-Based School</td>
+</tr>
+<tr class="odd">
+<td id="T_fe40b_row4_col0" class="data row4 col0">VehOcc_HBC</td>
+<td id="T_fe40b_row4_col1" class="data row4 col1">1.12</td>
+<td id="T_fe40b_row4_col2" class="data row4 col2">VEH_OCCUPANCY_HBC</td>
+<td id="T_fe40b_row4_col3" class="data row4 col3">1.26</td>
+<td id="T_fe40b_row4_col4" class="data row4 col4">Home-Based College</td>
+</tr>
+<tr class="even">
+<td id="T_fe40b_row5_col0" class="data row5 col0">VehOcc_NHBW</td>
+<td id="T_fe40b_row5_col1" class="data row5 col1">1.21</td>
+<td id="T_fe40b_row5_col2" class="data row5 col2">VEH_OCCUPANCY_NHBW</td>
+<td id="T_fe40b_row5_col3" class="data row5 col3">1.2</td>
+<td id="T_fe40b_row5_col4" class="data row5 col4">Non-Home-Based Work</td>
+</tr>
+<tr class="odd">
+<td id="T_fe40b_row6_col0" class="data row6 col0">VehOcc_NHBNW</td>
+<td id="T_fe40b_row6_col1" class="data row6 col1">1.76</td>
+<td id="T_fe40b_row6_col2" class="data row6 col2">VEH_OCCUPANCY_NHBNW</td>
+<td id="T_fe40b_row6_col3" class="data row6 col3">1.7</td>
+<td id="T_fe40b_row6_col4" class="data row6 col4">Non-Home-Based Non-Work</td>
+</tr>
+<tr class="even">
+<td id="T_fe40b_row7_col0" class="data row7 col0">VehOcc_Rec</td>
+<td id="T_fe40b_row7_col1" class="data row7 col1">1.68</td>
+<td id="T_fe40b_row7_col2" class="data row7 col2">(Uses HBO)</td>
+<td id="T_fe40b_row7_col3" class="data row7 col3">1.64</td>
+<td id="T_fe40b_row7_col4" class="data row7 col4">Recreation</td>
+</tr>
+<tr class="odd">
+<td id="T_fe40b_row8_col0" class="data row8 col0">VehOcc_HBO</td>
+<td id="T_fe40b_row8_col1" class="data row8 col1">1.67</td>
+<td id="T_fe40b_row8_col2" class="data row8 col2">VEH_OCCUPANCY_HBO</td>
+<td id="T_fe40b_row8_col3" class="data row8 col3">1.64</td>
+<td id="T_fe40b_row8_col4" class="data row8 col4">Home-Based Other (HBShp+HBOth)</td>
+</tr>
+<tr class="even">
+<td id="T_fe40b_row9_col0" class="data row9 col0">VehOcc_NHB</td>
+<td id="T_fe40b_row9_col1" class="data row9 col1">1.54</td>
+<td id="T_fe40b_row9_col2" class="data row9 col2">VEH_OCCUPANCY_NHB</td>
+<td id="T_fe40b_row9_col3" class="data row9 col3">1.48</td>
+<td id="T_fe40b_row9_col4" class="data row9 col4">Non-Home-Based (NHBW+NHBNW)</td>
+</tr>
+<tr class="odd">
+<td id="T_fe40b_row10_col0" class="data row10 col0">VehOcc_ExtWrk</td>
+<td id="T_fe40b_row10_col1" class="data row10 col1">1.16</td>
+<td id="T_fe40b_row10_col2" class="data row10 col2">(Uses HBW)</td>
+<td id="T_fe40b_row10_col3" class="data row10 col3">1.1</td>
+<td id="T_fe40b_row10_col4" class="data row10 col4">External Work</td>
+</tr>
+<tr class="even">
+<td id="T_fe40b_row11_col0" class="data row11 col0">VehOcc_ExtHBO</td>
+<td id="T_fe40b_row11_col1" class="data row11 col1">1.82</td>
+<td id="T_fe40b_row11_col2" class="data row11 col2">(Uses HBO)</td>
+<td id="T_fe40b_row11_col3" class="data row11 col3">1.64</td>
+<td id="T_fe40b_row11_col4" class="data row11 col4">External Home-Based Other</td>
+</tr>
+<tr class="odd">
+<td id="T_fe40b_row12_col0" class="data row12 col0">VehOcc_ExtNHB</td>
+<td id="T_fe40b_row12_col1" class="data row12 col1">1.73</td>
+<td id="T_fe40b_row12_col2" class="data row12 col2">(Uses NHB)</td>
+<td id="T_fe40b_row12_col3" class="data row12 col3">1.48</td>
+<td id="T_fe40b_row12_col4" class="data row12 col4">Non-Home-Based</td>
+</tr>
+<tr class="even">
+<td id="T_fe40b_row13_col0" class="data row13 col0">VehOcc_ExtRec</td>
+<td id="T_fe40b_row13_col1" class="data row13 col1">1.73</td>
+<td id="T_fe40b_row13_col2" class="data row13 col2">(Uses HBO)</td>
+<td id="T_fe40b_row13_col3" class="data row13 col3">1.64</td>
+<td id="T_fe40b_row13_col4" class="data row13 col4">External Recreation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-auto-occ2" class="anchored">
+<table id="T_57503" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;11: Vehicle Occupancy 3+ Rates</caption>
+<thead>
+<tr class="header">
+<th id="T_57503_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">v9Parameter</th>
+<th id="T_57503_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_57503_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Parameter</th>
+<th id="T_57503_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_57503_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_57503_row0_col0" class="data row0 col0">VehOcc_3p_HBW</td>
+<td id="T_57503_row0_col1" class="data row0 col1">3.53</td>
+<td id="T_57503_row0_col2" class="data row0 col2">VEH_OCC_3P_HBW</td>
+<td id="T_57503_row0_col3" class="data row0 col3">3.4</td>
+<td id="T_57503_row0_col4" class="data row0 col4">3+ Person Home-Based Work</td>
+</tr>
+<tr class="even">
+<td id="T_57503_row1_col0" class="data row1 col0">VehOcc_3p_HBShp</td>
+<td id="T_57503_row1_col1" class="data row1 col1">3.49</td>
+<td id="T_57503_row1_col2" class="data row1 col2">(Uses HBO)</td>
+<td id="T_57503_row1_col3" class="data row1 col3">3.55</td>
+<td id="T_57503_row1_col4" class="data row1 col4">3+ Person Home-Based Shopping</td>
+</tr>
+<tr class="odd">
+<td id="T_57503_row2_col0" class="data row2 col0">VehOcc_3p_HBOth</td>
+<td id="T_57503_row2_col1" class="data row2 col1">3.73</td>
+<td id="T_57503_row2_col2" class="data row2 col2">(Uses HBO)</td>
+<td id="T_57503_row2_col3" class="data row2 col3">3.55</td>
+<td id="T_57503_row2_col4" class="data row2 col4">3+ Person Home-Based Other</td>
+</tr>
+<tr class="even">
+<td id="T_57503_row3_col0" class="data row3 col0">VehOcc_3p_HBSch</td>
+<td id="T_57503_row3_col1" class="data row3 col1">3.88</td>
+<td id="T_57503_row3_col2" class="data row3 col2">(Uses HBO)</td>
+<td id="T_57503_row3_col3" class="data row3 col3">3.55</td>
+<td id="T_57503_row3_col4" class="data row3 col4">3+ Person Home-Based School</td>
+</tr>
+<tr class="odd">
+<td id="T_57503_row4_col0" class="data row4 col0">VehOcc_3p_HBC</td>
+<td id="T_57503_row4_col1" class="data row4 col1">3.24</td>
+<td id="T_57503_row4_col2" class="data row4 col2">VEH_OCC_3P_HBC</td>
+<td id="T_57503_row4_col3" class="data row4 col3">3.53</td>
+<td id="T_57503_row4_col4" class="data row4 col4">3+ Person Home-Based College</td>
+</tr>
+<tr class="even">
+<td id="T_57503_row5_col0" class="data row5 col0">VehOcc_3p_NHBW</td>
+<td id="T_57503_row5_col1" class="data row5 col1">3.71</td>
+<td id="T_57503_row5_col2" class="data row5 col2">(Uses NHB)</td>
+<td id="T_57503_row5_col3" class="data row5 col3">3.51</td>
+<td id="T_57503_row5_col4" class="data row5 col4">3+ Person Non-Home-Based Work</td>
+</tr>
+<tr class="odd">
+<td id="T_57503_row6_col0" class="data row6 col0">VehOcc_3p_NHBNW</td>
+<td id="T_57503_row6_col1" class="data row6 col1">3.71</td>
+<td id="T_57503_row6_col2" class="data row6 col2">(Uses NHB)</td>
+<td id="T_57503_row6_col3" class="data row6 col3">3.51</td>
+<td id="T_57503_row6_col4" class="data row6 col4">3+ Person Non-Home-Based Non-Work</td>
+</tr>
+<tr class="even">
+<td id="T_57503_row7_col0" class="data row7 col0">VehOcc_3p_Rec</td>
+<td id="T_57503_row7_col1" class="data row7 col1">3.73</td>
+<td id="T_57503_row7_col2" class="data row7 col2">(Uses HBO)</td>
+<td id="T_57503_row7_col3" class="data row7 col3">3.55</td>
+<td id="T_57503_row7_col4" class="data row7 col4">3+ Person Recreation</td>
+</tr>
+<tr class="odd">
+<td id="T_57503_row8_col0" class="data row8 col0">VehOcc_3p_HBO</td>
+<td id="T_57503_row8_col1" class="data row8 col1">3.68</td>
+<td id="T_57503_row8_col2" class="data row8 col2">VEH_OCC_3P_HBO</td>
+<td id="T_57503_row8_col3" class="data row8 col3">3.55</td>
+<td id="T_57503_row8_col4" class="data row8 col4">3+ Person Home-Based Other (HBShp+HBOth)</td>
+</tr>
+<tr class="even">
+<td id="T_57503_row9_col0" class="data row9 col0">VehOcc_3p_NHB</td>
+<td id="T_57503_row9_col1" class="data row9 col1">3.71</td>
+<td id="T_57503_row9_col2" class="data row9 col2">VEH_OCC_3P_NHB</td>
+<td id="T_57503_row9_col3" class="data row9 col3">3.51</td>
+<td id="T_57503_row9_col4" class="data row9 col4">3+ Person Non-Home-Based (NHBW+NHBNW)</td>
 </tr>
 </tbody>
 </table>
@@ -971,79 +1225,108 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="value-of-time" class="level3">
 <h3 class="anchored" data-anchor-id="value-of-time">Value of Time</h3>
-<p>Value of time was updated for 2019 dollars, as shown in <a href="#tbl-vot">Table&nbsp;7</a>.</p>
-<div class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="7">
-<div id="tbl-vot" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;7: Value of Time</caption>
+<p>Value of time parameters were updated using 2019 5-year ACS data and previous model assumptions and are in 2019 dollars. v8 parameters were calibrated to 2015 ACS data and deflated to 2010 dollars. Values of time are in cents/minute.</p>
+<div class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-vot1" class="anchored">
+<table id="T_ab56c" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;12: Value of Time Rates</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Category</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: right;">Value of Time (???UNITS???)</th>
+<th id="T_ab56c_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">v9Parameter</th>
+<th id="T_ab56c_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_ab56c_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Parameter</th>
+<th id="T_ab56c_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_ab56c_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Auto Work Trips</td>
-<td style="text-align: left;">VOT_Auto_Wrk</td>
-<td style="text-align: right;">22</td>
+<td id="T_ab56c_row0_col0" class="data row0 col0">VOT_Auto_Wrk</td>
+<td id="T_ab56c_row0_col1" class="data row0 col1">22</td>
+<td id="T_ab56c_row0_col2" class="data row0 col2">VOT_Auto_Wrk</td>
+<td id="T_ab56c_row0_col3" class="data row0 col3">18</td>
+<td id="T_ab56c_row0_col4" class="data row0 col4">work trips (HBW)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Auto Work Trips - Low Income</td>
-<td style="text-align: left;">VOT_Auto_Wrk_Lo</td>
-<td style="text-align: right;">9</td>
+<td id="T_ab56c_row1_col0" class="data row1 col0">VOT_Auto_Per</td>
+<td id="T_ab56c_row1_col1" class="data row1 col1">17</td>
+<td id="T_ab56c_row1_col2" class="data row1 col2">VOT_Auto_Per</td>
+<td id="T_ab56c_row1_col3" class="data row1 col3">14</td>
+<td id="T_ab56c_row1_col4" class="data row1 col4">non-work trips</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Auto Work Trips - High Income</td>
-<td style="text-align: left;">VOT_Auto_Wrk_Hi</td>
-<td style="text-align: right;">24</td>
+<td id="T_ab56c_row2_col0" class="data row2 col0">VOT_Auto_Ext</td>
+<td id="T_ab56c_row2_col1" class="data row2 col1">20</td>
+<td id="T_ab56c_row2_col2" class="data row2 col2">VOT_Auto_Ext</td>
+<td id="T_ab56c_row2_col3" class="data row2 col3">16</td>
+<td id="T_ab56c_row2_col4" class="data row2 col4">external</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Auto Personal Trips</td>
-<td style="text-align: left;">VOT_Auto_Per</td>
-<td style="text-align: right;">17</td>
+<td id="T_ab56c_row3_col0" class="data row3 col0">VOT_LT</td>
+<td id="T_ab56c_row3_col1" class="data row3 col1">37</td>
+<td id="T_ab56c_row3_col2" class="data row3 col2">VOT_LT</td>
+<td id="T_ab56c_row3_col3" class="data row3 col3">30</td>
+<td id="T_ab56c_row3_col4" class="data row3 col4">light truck</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Auto Personal Trips - Low Income</td>
-<td style="text-align: left;">VOT_Auto_Per_Lo</td>
-<td style="text-align: right;">7</td>
+<td id="T_ab56c_row4_col0" class="data row4 col0">VOT_MD</td>
+<td id="T_ab56c_row4_col1" class="data row4 col1">50</td>
+<td id="T_ab56c_row4_col2" class="data row4 col2">VOT_MD</td>
+<td id="T_ab56c_row4_col3" class="data row4 col3">40</td>
+<td id="T_ab56c_row4_col4" class="data row4 col4">medium truck</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Auto Personal Trips - High Income</td>
-<td style="text-align: left;">VOT_Auto_Per_Hi</td>
-<td style="text-align: right;">19</td>
+<td id="T_ab56c_row5_col0" class="data row5 col0">VOT_HV</td>
+<td id="T_ab56c_row5_col1" class="data row5 col1">63</td>
+<td id="T_ab56c_row5_col2" class="data row5 col2">VOT_HV</td>
+<td id="T_ab56c_row5_col3" class="data row5 col3">50</td>
+<td id="T_ab56c_row5_col4" class="data row5 col4">heavy truck</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Auto External Trips</td>
-<td style="text-align: left;">VOT_Auto_Ext</td>
-<td style="text-align: right;">20</td>
+<td id="T_ab56c_row6_col0" class="data row6 col0">VOT_Toll</td>
+<td id="T_ab56c_row6_col1" class="data row6 col1">63</td>
+<td id="T_ab56c_row6_col2" class="data row6 col2">VOT_Toll</td>
+<td id="T_ab56c_row6_col3" class="data row6 col3">50</td>
+<td id="T_ab56c_row6_col4" class="data row6 col4">all vehicles on tollway</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Light Trucks</td>
-<td style="text-align: left;">VOT_LT</td>
-<td style="text-align: right;">37</td>
+<td id="T_ab56c_row7_col0" class="data row7 col0">VOT_HOT_DA</td>
+<td id="T_ab56c_row7_col1" class="data row7 col1">63</td>
+<td id="T_ab56c_row7_col2" class="data row7 col2">VOT_HOT_DA</td>
+<td id="T_ab56c_row7_col3" class="data row7 col3">50</td>
+<td id="T_ab56c_row7_col4" class="data row7 col4">drive alone on HOT</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Medium Trucks</td>
-<td style="text-align: left;">VOT_MD</td>
-<td style="text-align: right;">50</td>
+<td id="T_ab56c_row8_col0" class="data row8 col0">VOT_Auto_Wrk_Lo</td>
+<td id="T_ab56c_row8_col1" class="data row8 col1">9</td>
+<td id="T_ab56c_row8_col2" class="data row8 col2"></td>
+<td id="T_ab56c_row8_col3" class="data row8 col3"></td>
+<td id="T_ab56c_row8_col4" class="data row8 col4">work trips - low income (added)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Heavy Trucks</td>
-<td style="text-align: left;">VOT_HV</td>
-<td style="text-align: right;">63</td>
+<td id="T_ab56c_row9_col0" class="data row9 col0">VOT_Auto_Wrk_Hi</td>
+<td id="T_ab56c_row9_col1" class="data row9 col1">24</td>
+<td id="T_ab56c_row9_col2" class="data row9 col2"></td>
+<td id="T_ab56c_row9_col3" class="data row9 col3"></td>
+<td id="T_ab56c_row9_col4" class="data row9 col4">work trips - high income (added)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Toll Trips</td>
-<td style="text-align: left;">VOT_Toll</td>
-<td style="text-align: right;">63</td>
+<td id="T_ab56c_row10_col0" class="data row10 col0">VOT_Auto_Per_Lo</td>
+<td id="T_ab56c_row10_col1" class="data row10 col1">7</td>
+<td id="T_ab56c_row10_col2" class="data row10 col2"></td>
+<td id="T_ab56c_row10_col3" class="data row10 col3"></td>
+<td id="T_ab56c_row10_col4" class="data row10 col4">non-work trips - loc income (added)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">High-Occupancy Toll Trips</td>
-<td style="text-align: left;">VOT_HOT_DA</td>
-<td style="text-align: right;">63</td>
+<td id="T_ab56c_row11_col0" class="data row11 col0">VOT_Auto_Per_Hi</td>
+<td id="T_ab56c_row11_col1" class="data row11 col1">19</td>
+<td id="T_ab56c_row11_col2" class="data row11 col2"></td>
+<td id="T_ab56c_row11_col3" class="data row11 col3"></td>
+<td id="T_ab56c_row11_col4" class="data row11 col4">non-work trips - high income (added)</td>
 </tr>
 </tbody>
 </table>
@@ -1053,39 +1336,47 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="auto-operating-costs" class="level3">
 <h3 class="anchored" data-anchor-id="auto-operating-costs">Auto Operating Costs</h3>
-<p>Auto operating cost (AOC) were updated based on 2019 fuel cost &amp; economy and vehicle maintenance. See <a href="#tbl-aoc">Table&nbsp;8</a>.</p>
-<div class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="8">
-<div id="tbl-aoc" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;8: Auto Operating Costs</caption>
+<p>Auto operating costs were updated to reflect 2019 fuel cost, average fuel economy, and cost of vehicle maintenance and are in 2019 dollars. v8 parameters were calibrated to 2015 data and deflated to 2010 dollars. Costs are in cents/mile.</p>
+<div class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-auto-op" class="anchored">
+<table id="T_243bb" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;13: Auto Operating Cost Rates</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Category</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: right;">Auto Operating Cost (???UNITS???)</th>
+<th id="T_243bb_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_243bb_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_243bb_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_243bb_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Personal Vehicle Auto</td>
-<td style="text-align: left;">AOC_Auto</td>
-<td style="text-align: right;">21.7</td>
+<td id="T_243bb_row0_col0" class="data row0 col0">AOC_Auto</td>
+<td id="T_243bb_row0_col1" class="data row0 col1">21.7</td>
+<td id="T_243bb_row0_col2" class="data row0 col2">18.3</td>
+<td id="T_243bb_row0_col3" class="data row0 col3">auto</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Commercial Vehicle - Light Truck</td>
-<td style="text-align: left;">AOC_LT</td>
-<td style="text-align: right;">27.3</td>
+<td id="T_243bb_row1_col0" class="data row1 col0">AOC_LT</td>
+<td id="T_243bb_row1_col1" class="data row1 col1">27.3</td>
+<td id="T_243bb_row1_col2" class="data row1 col2">24.6</td>
+<td id="T_243bb_row1_col3" class="data row1 col3">light truck</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Commercial Vehicle - Medium Truck</td>
-<td style="text-align: left;">AOC_MD</td>
-<td style="text-align: right;">55.5</td>
+<td id="T_243bb_row2_col0" class="data row2 col0">AOC_MD</td>
+<td id="T_243bb_row2_col1" class="data row2 col1">55.5</td>
+<td id="T_243bb_row2_col2" class="data row2 col2">47.8</td>
+<td id="T_243bb_row2_col3" class="data row2 col3">medium truck</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Commercial Vehicle - Heavy Truck</td>
-<td style="text-align: left;">AOC_HV</td>
-<td style="text-align: right;">74.3</td>
+<td id="T_243bb_row3_col0" class="data row3 col0">AOC_HV</td>
+<td id="T_243bb_row3_col1" class="data row3 col1">74.3</td>
+<td id="T_243bb_row3_col2" class="data row3 col2">63.7</td>
+<td id="T_243bb_row3_col3" class="data row3 col3">heavy truck</td>
 </tr>
 </tbody>
 </table>
@@ -1093,41 +1384,61 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="toll-and-hot-costs" class="level3">
-<h3 class="anchored" data-anchor-id="toll-and-hot-costs">Toll and HOT Costs</h3>
-<p>Toll and HOT Costs were updated as shown in <a href="#tbl-toll-hot-costs">Table&nbsp;9</a>. Toll costs reflect a toll of approximately $5.00 for a 10.25 mi trip (average work distance) or $3.00 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars. The toll costs apply to links with a functional type of 40. HOT costs reflect a toll of approximately $3.50 for a 10.25 mi trip (average work distance) or $2.20 for a 6.5 mi trip (average trip distance of all trips) in 2019 dollars. HOT costs are applicable to links with a functional type of 38.</p>
-<div class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="9">
-<div id="tbl-toll-hot-costs" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;9: Toll and High-Occupancy Toll Costs</caption>
+<section id="managed-lane-costs" class="level3">
+<h3 class="anchored" data-anchor-id="managed-lane-costs">Managed Lane Costs</h3>
+<p>Tolls on managed lanes were updated to reflect approximately a $5.00 toll for work trips and a $3.00 toll for non-work trips for tollways (FT=40) and approximately a $3.50 toll for work trips and $2.20 for non-work trips for HOT (FT=38) and reliability lanes. Distances of 10.25 miles (length of average work trip) and 6.5 miles (average length of all trips) were used to determine the work/non-work toll costs in cents per mile in 2019 dollars. Toll costs for v8 are in 2010 dollars.</p>
+<div class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-managed-lane" class="anchored">
+<table id="T_beca3" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;14: Managed Lane Cost Rates</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Category</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: right;">Cost (cent/mile)</th>
+<th id="T_beca3_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_beca3_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_beca3_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_beca3_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Toll Peak Cost</td>
-<td style="text-align: left;">Cost_Toll_Pk</td>
-<td style="text-align: right;">48</td>
+<td id="T_beca3_row0_col0" class="data row0 col0">Cost_Toll_Pk</td>
+<td id="T_beca3_row0_col1" class="data row0 col1">48</td>
+<td id="T_beca3_row0_col2" class="data row0 col2">24</td>
+<td id="T_beca3_row0_col3" class="data row0 col3">Tollways (FT 40) cost - Peak</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Toll Off-Peak Cost</td>
-<td style="text-align: left;">Cost_Toll_Ok</td>
-<td style="text-align: right;">48</td>
+<td id="T_beca3_row1_col0" class="data row1 col0">Cost_Toll_Ok</td>
+<td id="T_beca3_row1_col1" class="data row1 col1">48</td>
+<td id="T_beca3_row1_col2" class="data row1 col2">24</td>
+<td id="T_beca3_row1_col3" class="data row1 col3">Tollways (FT 40) cost - Off-peak</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">High-Occupancy Toll Peak Cost</td>
-<td style="text-align: left;">Cost_HOT_Pk</td>
-<td style="text-align: right;">34</td>
+<td id="T_beca3_row2_col0" class="data row2 col0">Cost_HOT_Pk</td>
+<td id="T_beca3_row2_col1" class="data row2 col1">34</td>
+<td id="T_beca3_row2_col2" class="data row2 col2">10</td>
+<td id="T_beca3_row2_col3" class="data row2 col3">HOT (FT 38) cost - Peak</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">High-Occupancy Toll Off-Peak Cost</td>
-<td style="text-align: left;">Cost_HOT_Ok</td>
-<td style="text-align: right;">17</td>
+<td id="T_beca3_row3_col0" class="data row3 col0">Cost_HOT_Ok</td>
+<td id="T_beca3_row3_col1" class="data row3 col1">17</td>
+<td id="T_beca3_row3_col2" class="data row3 col2">5</td>
+<td id="T_beca3_row3_col3" class="data row3 col3">HOT (FT 38) cost - Off-peak</td>
+</tr>
+<tr class="odd">
+<td id="T_beca3_row4_col0" class="data row4 col0">Cost_REL_Pk</td>
+<td id="T_beca3_row4_col1" class="data row4 col1">34</td>
+<td id="T_beca3_row4_col2" class="data row4 col2">10</td>
+<td id="T_beca3_row4_col3" class="data row4 col3">Reliability lane cost - Peak</td>
+</tr>
+<tr class="even">
+<td id="T_beca3_row5_col0" class="data row5 col0">Cost_REL_Ok</td>
+<td id="T_beca3_row5_col1" class="data row5 col1">17</td>
+<td id="T_beca3_row5_col2" class="data row5 col2">5</td>
+<td id="T_beca3_row5_col3" class="data row5 col3">Reliability lane cost - Off-peak</td>
 </tr>
 </tbody>
 </table>
@@ -1135,112 +1446,33 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="prefix-for-transit-skims" class="level3">
-<h3 class="anchored" data-anchor-id="prefix-for-transit-skims">Prefix for Transit Skims</h3>
-<p>All transit skim prefix global variable tokens were replaced with values in scripts. Transit skim prefix variables were removed from the General Parameters file.</p>
-</section>
-</section>
-<section id="calibration-adjustment-k-factors" class="level2">
-<h2 class="anchored" data-anchor-id="calibration-adjustment-k-factors">Calibration Adjustment K-Factors</h2>
-<p>Additional k-factors were added for calibration purposes to include work trips, truck trips, and external trips. In v8.3.2 there were only three k-factors defined for non-work personal trips. The calibration adjustment k-factors reset to 1, as shown in <a href="#tbl-k-factors">Table&nbsp;10</a>.</p>
-<div class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display" data-execution_count="10">
-<div id="tbl-k-factors" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;10: K-Factors</caption>
+<section id="core-bus-constant-multiplier" class="level3">
+<h3 class="anchored" data-anchor-id="core-bus-constant-multiplier">Core Bus Constant Multiplier</h3>
+<p>The parameter used to set the Core Bus constant was renamed and updated in v9.</p>
+<div class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-vot2" class="anchored">
+<table id="T_6f1f0" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;15: Core Bus Constant Multiplier</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">County-to-County Pair</th>
-<th style="text-align: left;">Purpose</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: right;">v9.0.0</th>
-<th style="text-align: left;">v8.3.2</th>
+<th id="T_6f1f0_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">v9Parameter</th>
+<th id="T_6f1f0_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9Value</th>
+<th id="T_6f1f0_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8Parameter</th>
+<th id="T_6f1f0_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">v8Value</th>
+<th id="T_6f1f0_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Salt Lake to Utah County</td>
-<td style="text-align: left;">Work</td>
-<td style="text-align: left;">SL_UT_KFAC_Wrk</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">–</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">SL_UT_KFAC_Oth</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.85</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Truck</td>
-<td style="text-align: left;">SL_UT_KFAC_Trk</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">–</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">External</td>
-<td style="text-align: left;">SL_UT_KFAC_Ext</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">–</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Salt Lake to Davis County</td>
-<td style="text-align: left;">Work</td>
-<td style="text-align: left;">SL_DA_KFAC_Wrk</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">–</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">SL_DA_KFAC_Oth</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">0.95</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Truck</td>
-<td style="text-align: left;">SL_DA_KFAC_Trk</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">–</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">External</td>
-<td style="text-align: left;">SL_DA_KFAC_Ext</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">–</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Weber to Box Elder County</td>
-<td style="text-align: left;">Work</td>
-<td style="text-align: left;">WE_BE_KFAC_Wrk</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">–</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Other</td>
-<td style="text-align: left;">WE_BE_KFAC_Oth</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">1.00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Truck</td>
-<td style="text-align: left;">WE_BE_KFAC_Trk</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">–</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">External</td>
-<td style="text-align: left;">WE_BE_KFAC_Ext</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">–</td>
+<td id="T_6f1f0_row0_col0" class="data row0 col0">RAIL2COR_MULTIPLIER</td>
+<td id="T_6f1f0_row0_col1" class="data row0 col1">0.33</td>
+<td id="T_6f1f0_row0_col2" class="data row0 col2">RAIL2BRT_MULTIPLIER</td>
+<td id="T_6f1f0_row0_col3" class="data row0 col3">0.4</td>
+<td id="T_6f1f0_row0_col4" class="data row0 col4">factor to set Core Route constant relative to LRT constant</td>
 </tr>
 </tbody>
 </table>
@@ -1248,12 +1480,214 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="other" class="level2">
-<h2 class="anchored" data-anchor-id="other">Other</h2>
-<p>The rail to core bus route multiplier <code>RAIL2COR_MULTIPLIER</code> was changed from 0.40 to 0.33.</p>
-<p>Period and Production/Attraction factors were removed.</p>
+<section id="crt-adjustment-factors" class="level3">
+<h3 class="anchored" data-anchor-id="crt-adjustment-factors">CRT Adjustment Factors</h3>
+<p>The following parameters were added to adjust CRT ridership for Davis and Utah Counties. The parameters are applied in the mode choice utility calculation and represent a penalty/incentive in equivalent minutes.</p>
+<ul>
+<li>ADJ_CONST_UT = 0 ;place holder</li>
+<li>ADJ_CONST_CRT_UT = -5 ;encourge CRT in UT County</li>
+<li>ADJ_CONST_CRT_DA = 5 ;discourage CRT in Davis County</li>
+<li>ADJ_CONST_BRT = 0 ;place holder</li>
+</ul>
+</section>
+<section id="transit-fare-discount-factor" class="level3">
+<h3 class="anchored" data-anchor-id="transit-fare-discount-factor">Transit Fare Discount Factor</h3>
+<p>Added a transit fare discount factor to adjust transit fares in PT fare input file to calculate effective transit fares (effective fares include discounts for transit passes and other discounts). Transit fares are in v9 are encoded as the standard 2019 fares (in 2019 dollars). Fares in v8 are encoded as discounted 2015 fares deflated to 2010 dollars. The discounted fare in v8 was approximately 54% of the standard fare. This ratio was carried forward into v9.</p>
+<ul>
+<li>FARE_DISCOUNT = 0.54</li>
+</ul>
+</section>
+</section>
+<section id="removed-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="removed-parameters">Removed Parameters</h2>
+<p>The following parameters were removed from the 0_GeneralParameters.block file.</p>
+<section id="county-identification-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="county-identification-parameters">County Identification Parameters</h3>
+<p>The following county identification parameters are no longer used in v9 and were removed:</p>
+<ul>
+<li>CountyRange = ‘1-5’</li>
+<li>CountyName1 = ‘Weber’</li>
+<li>CountyName2 = ‘Davis’</li>
+<li>CountyName3 = ‘SaltLake’</li>
+<li>CountyName4 = ‘Utah’</li>
+<li>CountyName5 = ‘BoxElder’</li>
+<li>CO_Name1 = ‘WE’</li>
+<li>CO_Name2 = ‘DA’</li>
+<li>CO_Name3 = ‘SL’</li>
+<li>CO_Name4 = ‘UT’</li>
+<li>CO_Name5 = ‘BE’</li>
+</ul>
+</section>
+<section id="air-quality-conformity-report-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="air-quality-conformity-report-parameters">Air Quality Conformity Report Parameters</h3>
+<p>The following air quality conformity reporting parameters are no longer used in v9 and were removed:</p>
+<ul>
+<li>RE_ID = 0 ;Entire region</li>
+<li>WE_ID = 1 ;Weber</li>
+<li>DA_ID = 2 ;Davis</li>
+<li>SL_ID = 3 ;Salt Lake</li>
+<li>UT_ID = 4 ;Utah</li>
+<li>BE_ID = 5 ;BoxElder</li>
+<li>OC_ID = 55980 ;Ogden</li>
+<li>SC_ID = 67000 ;Salt Lake City</li>
+<li>PC_ID = 62470 ;Provo</li>
+</ul>
+</section>
+<section id="bus-speed-ratios" class="level3">
+<h3 class="anchored" data-anchor-id="bus-speed-ratios">Bus Speed Ratios</h3>
+<p>Bus speed ratios were updated in v9 and bus speed ratio parameters are now inputed via a file. The following bus speed ratio parameters were removed from the <code>0_GeneralParameters.block</code> file:</p>
+<ul>
+<li>ratio_fway = 0.95 ;bus speed to auto speed - freeways</li>
+<li>ratio_ramp = 0.75 ;bus speed to auto speed - freeway ramps</li>
+<li>ratio_part = 0.60 ;bus speed to auto speed - principal arterials</li>
+<li>ratio_mart_urbcbd = 0.55 ;bus speed to auto speed - minor arterials, urban/cbd</li>
+<li>ratio_mart_subrur = 0.65 ;bus speed to auto speed - minor arterials, suburban/rural</li>
+<li>ratio_collector = 0.60 ;bus speed to auto speed - collectors</li>
+<li>minimum_bus_speed = 10.0 ;mph</li>
+</ul>
+</section>
+<section id="prefixes-for-transit-skims" class="level3">
+<h3 class="anchored" data-anchor-id="prefixes-for-transit-skims">Prefixes for Transit Skims</h3>
+<p>Prefixes to identify transit skim output files are coded directly into the scripts in v9. The following transit skim prefix parameters were removed from the <code>0_GeneralParameters.block</code> file:</p>
+<ul>
+<li>W_LCL_skims = ‘skm_w4’ ;walk-to-local skims</li>
+<li>D_LCL_skims = ‘skm_d4’ ;drive-to-local skims</li>
+<li>W_BRT_skims = ‘skm_w5’ ;walk-to-BRT skims</li>
+<li>D_BRT_skims = ‘skm_d5’ ;drive-to-BRT skims</li>
+<li>W_EXP_skims = ‘skm_w6’ ;walk-to-express bus skims</li>
+<li>D_EXP_skims = ‘skm_d6’ ;drive-to-express bus skims</li>
+<li>W_LRT_skims = ‘skm_w7’ ;walk-to-light rail skims</li>
+<li>D_LRT_skims = ‘skm_d7’ ;drive-to-light rail skims</li>
+<li>W_CRT_skims = ‘skm_w8’ ;walk-to-commuter rail skims</li>
+<li>D_CRT_skims = ‘skm_d8’ ;drive-to-commuter rail skims</li>
+<li>W_mode9_skims = ‘skm_w9’</li>
+<li>D_mode9_skims = ‘skm_d9’</li>
+</ul>
+</section>
+<section id="diurnal-factors" class="level3">
+<h3 class="anchored" data-anchor-id="diurnal-factors">Diurnal Factors</h3>
+<p>Diurnal factors were updated in v9 and diurnal factor parameters are now inputed via a file. The following diurnal factor parameters were removed from the <code>0_GeneralParameters.block</code> file:</p>
+<p><u>% of trips in period</u></p>
+<ul>
+<li>HBW_AM_Pct = 0.3254</li>
+<li>HBW_MD_Pct = 0.1831</li>
+<li>HBW_PM_Pct = 0.3074</li>
+<li>HBW_EV_Pct = 0.1841</li>
+<li>HBC_AM_Pct = 0.2592</li>
+<li>HBC_MD_Pct = 0.3374</li>
+<li>HBC_PM_Pct = 0.1853</li>
+<li>HBC_EV_Pct = 0.2181</li>
+<li>HBSch_AM_Pct = 0.3784</li>
+<li>HBSch_MD_Pct = 0.2931</li>
+<li>HBSch_PM_Pct = 0.2941</li>
+<li>HBSch_EV_Pct = 0.0344</li>
+<li>HBShp_AM_Pct = 0.0192</li>
+<li>HBShp_MD_Pct = 0.4391</li>
+<li>HBShp_PM_Pct = 0.2496</li>
+<li>HBShp_EV_Pct = 0.2921</li>
+<li>HBOth_AM_Pct = 0.0997</li>
+<li>HBOth_MD_Pct = 0.3129</li>
+<li>HBOth_PM_Pct = 0.2367</li>
+<li>HBOth_EV_Pct = 0.3507</li>
+<li>NHBW_AM_Pct = 0.0697</li>
+<li>NHBW_MD_Pct = 0.5582</li>
+<li>NHBW_PM_Pct = 0.2597</li>
+<li>NHBW_EV_Pct = 0.1124</li>
+<li>NHBNW_AM_Pct = 0.0498</li>
+<li>NHBNW_MD_Pct = 0.4752</li>
+<li>NHBNW_PM_Pct = 0.2426</li>
+<li>NHBNW_EV_Pct = 0.2324</li>
+<li>IX_AM_Pct = 0.1786</li>
+<li>IX_MD_Pct = 0.3291</li>
+<li>IX_PM_Pct = 0.2604</li>
+<li>IX_EV_Pct = 0.2319</li>
+<li>XI_AM_Pct = 0.1786</li>
+<li>XI_MD_Pct = 0.3291</li>
+<li>XI_PM_Pct = 0.2604</li>
+<li>XI_EV_Pct = 0.2319</li>
+<li>XX_AM_Pct = 0.1786</li>
+<li>XX_MD_Pct = 0.3291</li>
+<li>XX_PM_Pct = 0.2604</li>
+<li>XX_EV_Pct = 0.2319</li>
+<li>TR_AM_Pct = 0.1590</li>
+<li>TR_MD_Pct = 0.3522</li>
+<li>TR_PM_Pct = 0.2274</li>
+<li>TR_EV_Pct = 0.2614<br>
+</li>
+<li>HBO_AM_Pct = 0.0840</li>
+<li>HBO_MD_Pct = 0.3383</li>
+<li>HBO_PM_Pct = 0.2401</li>
+<li>HBO_EV_Pct = 0.3376</li>
+<li>NHB_AM_Pct = 0.0563</li>
+<li>NHB_MD_Pct = 0.5024</li>
+<li>NHB_PM_Pct = 0.2482</li>
+<li>NHB_EV_Pct = 0.1931</li>
+</ul>
+<p><u>% of trips in PA direction</u></p>
+<ul>
+<li>HBW_AM_PA = 0.9706</li>
+<li>HBW_MD_PA = 0.5690</li>
+<li>HBW_PM_PA = 0.0871</li>
+<li>HBW_EV_PA = 0.2891</li>
+<li>HBC_AM_PA = 0.9828</li>
+<li>HBC_MD_PA = 0.5259</li>
+<li>HBC_PM_PA = 0.2420</li>
+<li>HBC_EV_PA = 0.1057</li>
+<li>HBSch_AM_PA = 0.7899</li>
+<li>HBSch_MD_PA = 0.4306</li>
+<li>HBSch_PM_PA = 0.2268</li>
+<li>HBSch_EV_PA = 0.2391</li>
+<li>HBShp_AM_PA = 0.7826</li>
+<li>HBShp_MD_PA = 0.5615</li>
+<li>HBShp_PM_PA = 0.4604</li>
+<li>HBShp_EV_PA = 0.4228</li>
+<li>HBOth_AM_PA = 0.7147</li>
+<li>HBOth_MD_PA = 0.5517</li>
+<li>HBOth_PM_PA = 0.5181</li>
+<li>HBOth_EV_PA = 0.3806</li>
+<li>NHBW_AM_PA = 0.5000</li>
+<li>NHBW_MD_PA = 0.5000</li>
+<li>NHBW_PM_PA = 0.5000</li>
+<li>NHBW_EV_PA = 0.5000</li>
+<li>NHBNW_AM_PA = 0.5000</li>
+<li>NHBNW_MD_PA = 0.5000</li>
+<li>NHBNW_PM_PA = 0.5000</li>
+<li>NHBNW_EV_PA = 0.5000</li>
+<li>IX_AM_PA = 0.8563</li>
+<li>IX_MD_PA = 0.5627</li>
+<li>IX_PM_PA = 0.3288</li>
+<li>IX_EV_PA = 0.3290</li>
+<li>XI_AM_PA = 0.8563</li>
+<li>XI_MD_PA = 0.5627</li>
+<li>XI_PM_PA = 0.3288</li>
+<li>XI_EV_PA = 0.3290</li>
+<li>XX_AM_PA = 0.8563</li>
+<li>XX_MD_PA = 0.5627</li>
+<li>XX_PM_PA = 0.3288</li>
+<li>XX_EV_PA = 0.3290</li>
+<li>TR_AM_PA = 0.5000</li>
+<li>TR_MD_PA = 0.5000</li>
+<li>TR_PM_PA = 0.5000</li>
+<li>TR_EV_PA = 0.5000</li>
+<li>HBO_AM_PA = 0.7283</li>
+<li>HBO_MD_PA = 0.5495</li>
+<li>HBO_PM_PA = 0.5050</li>
+<li>HBo_EV_PA = 0.3901</li>
+<li>NHB_AM_PA = 0.5000</li>
+<li>NHB_MD_PA = 0.5000</li>
+<li>NHB_PM_PA = 0.5000</li>
+<li>NHB_EV_PA = 0.5000</li>
+</ul>
+</section>
+<section id="assignment-type-flag" class="level3">
+<h3 class="anchored" data-anchor-id="assignment-type-flag">Assignment Type Flag</h3>
+<p>The assignment type parameter is no longer used in v9 and was removed:</p>
+<ul>
+<li>AssignType = ‘managed’</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
