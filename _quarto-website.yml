@@ -87,8 +87,13 @@ website:
           
   sidebar:
     - id: v900-preface
-      title: "Version 9.0.0"
-      contents:
+      style: "floating"
+      search: True
+      collapse-level: 4
+      type: "primary"
+      foreground: "info"
+      #background: "secondary"
+      contents: #items:
         - text: "Preface"
           href: v9x/v900/index.qmd
         - text: "Downloads"
@@ -529,6 +534,7 @@ format:
   html:
     toc: true
     toc-depth: 3
+    toc-location: right 
     theme:
       - cerulean
       - custom.scss

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="WFRC / MAG">
 
-<title>Documentation – mc</title>
+<title>Documentation - Version 8.3.0</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -177,273 +178,53 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Whats New?</li><li class="breadcrumb-item"><a href="../../../../v9x/v900/whats-new/2023-04-14/1-genparams.html">2023-06-15</a></li><li class="breadcrumb-item"><a href="../../../../v9x/v900/whats-new/2023-04-14/7-mc.html">Mode Choice</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/downloads.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Downloads</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Whats New?</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">2023-06-15</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/whats-new/2023-04-14/1-genparams.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">General Parameters</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/whats-new/2023-04-14/2-inputdata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Input Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/whats-new/2023-04-14/3-inputprocessing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Input Processing</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/whats-new/2023-04-14/4-hhdisag.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Household Disaggregation and Auto Ownership</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/whats-new/2023-04-14/6-distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distribution</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/whats-new/2023-04-14/7-mc.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Mode Choice</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/whats-new/2023-04-14/8-assign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Highway Assignment</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/whats-new/2023-04-14/10-modelresults.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Model Results - Comparison with v8.3.2</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Calibration/Validation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">2023-06-15</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/calib-valid/1-life-cycle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Life Cycle</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/calib-valid/2-hh-disagg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Household Disaggregation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/calib-valid/3-auto-own.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Auto Ownership</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/calib-valid/4-trip-gen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Trip Generation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/calib-valid/5-distribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Trip Distribution</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/calib-valid/6-mc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Mode Choice</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/calib-valid/7-assign.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Highway Assignment</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../v9x/v900/calib-valid/8-sensitivity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sensitivity Tests</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<p>Version 9.0.0 - What’s New?</p>
-</div></div>
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#drive-access-links" id="toc-drive-access-links" class="nav-link active" data-scroll-target="#drive-access-links">Drive Access Links</a></li>
-  <li><a href="#transit-skims" id="toc-transit-skims" class="nav-link" data-scroll-target="#transit-skims">Transit Skims</a></li>
-  <li><a href="#district-summaries" id="toc-district-summaries" class="nav-link" data-scroll-target="#district-summaries">District Summaries</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Mode Choice</h1>
+<h1 class="title">Version 8.3.0</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>WFRC / MAG </p>
+          </div>
+  </div>
     
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 16, 2023</p>
+    </div>
+  </div>
     
   </div>
   
 
 </header>
 
-<p>Updates to the Mode Choice portion of the model include drive access links, transit skims, and district summaries.</p>
-<section id="drive-access-links" class="level2">
-<h2 class="anchored" data-anchor-id="drive-access-links">Drive Access Links</h2>
-<p>The <code>04_Create_drive_access_links.s</code> script was modified to reference the new <code>ControlTotal_SE_AllCounties.csv</code> input file. The control total lookup index calculation was updated to account for Weber County indexing between two sub-areas. The <code>9057</code> prefix is for the UDOT Subarea and <code>9157</code> prefix for the WFRC Subarea.</p>
-</section>
-<section id="transit-skims" class="level2">
-<h2 class="anchored" data-anchor-id="transit-skims">Transit Skims</h2>
-<p>The <code>05_Skim_Tran.s</code> script was modified to account for the new bus speeds inputs. <mark>???INCLUDE REFERENCE HERE TO INPUT DATA - BUS SPEEDS???</mark> The lookup index is based on updated Functional Class groups shown in <a href="#tbl-hway-count">Table&nbsp;1</a>.</p>
-<div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
-<div id="tbl-hway-count" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: Updated Functional Class Groups for Bus Speed</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Functional Class</th>
-<th style="text-align: left;">FT</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Collectors &amp; Locals</td>
-<td style="text-align: left;">1, 4-10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Minor Arterials</td>
-<td style="text-align: left;">3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Principal Arterials</td>
-<td style="text-align: left;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Expressways</td>
-<td style="text-align: left;">11-19</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Freeways &amp; Ramps</td>
-<td style="text-align: left;">20-49</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<section id="district-summaries" class="level2">
-<h2 class="anchored" data-anchor-id="district-summaries">District Summaries</h2>
-<p>The <code>18_SumToDistricts_FinalTripTables.s</code> script was modified to change <code>COUNTY</code> field references to <code>CO_FIPS</code> for county summaries due to removal of field from TAZ shapefile.</p>
+<p>This is the documentation for the Wasatch Front Travel Demand Model for Version 8.3.0. The documentation includes:</p>
+<ul>
+<li><a href="downloads.qmd">Inputs Document</a></li>
+</ul>
+<p>For access to this version of the TDM visit .</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
