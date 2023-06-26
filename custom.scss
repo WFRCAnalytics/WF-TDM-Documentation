@@ -3,6 +3,9 @@ $h3-font-size:          1.2rem;
 $h3-font-weight:        350;
 //$h3-font-color:         #000080;
 
+$h4-font-size:          1.0rem;
+$h4-font-weight:        200;
+
 $table-font-family: Arial, sans-serif;
 $table-font-size: 10pt;
 
@@ -72,6 +75,11 @@ text-decoration: none !important;
 h3 {
   font-size: $h3-font-size;
   font-weight: $h3-font-weight;
+}
+
+h4 {
+  font-size: $h4-font-size;
+  font-weight: $h4-font-weight;
 }
 
 table td,

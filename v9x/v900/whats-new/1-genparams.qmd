@@ -1,0 +1,399 @@
+---
+echo: false
+warning: false
+toc-title: General Parameters
+---
+
+# General Parameters
+Changes made to the `0_GeneralParameters.block` file are discussed in this section.
+
+## Zone Parameters
+The TAZ and highway node schema was changed in version 9. The following parameters were updated to reflect these changes.
+
+### TAZ
+Note, the following TAZ parameters ranges were removed from the general parameters file in v9 as they were not being used in the WF TDM:
+
+ - RegionRange
+ - WFRCRange
+ - MAGRange
+
+```{python}
+#| label: tbl-taz-renumber
+#| tbl-cap: Renumbered TAZ Ranges
+import pandas as pd
+import numpy as np
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'TAZ']
+table = table[['Parameter', 'v9Value', 'v8Value','Notes']]
+display(table.style.hide_index())
+```
+
+### Highway Nodes
+```{python}
+#| label: tbl-highway-renumber
+#| tbl-cap: Renumbered Highway Nodes
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'HighwayNodes']
+table = table[['Parameter', 'v9Value', 'v8Value','Notes']]
+display(table.style.hide_index())
+```
+
+### College Zones
+Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero.
+
+<mark>???ADD INPUTS DOC REFERENCE???</mark>
+
+```{python}
+#| label: tbl-college-renumber
+#| tbl-cap: Renumbered College Zones
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'CollegeZones1']
+table = table[['SubHeader','Parameter', 'v9Value', 'v8Value','Notes']]
+table = table.rename(columns={'SubHeader':'Area'})
+table = table.replace(np. nan,'',regex=True) 
+display(table.style.hide_index())
+```
+
+```{python}
+#| label: tbl-college-renumber-2
+#| tbl-cap: Renumbered College Zones (continued)
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'CollegeZones2']
+table = table[['Parameter', 'v9Value', 'v8Value']]
+display(table.style.hide_index())
+```
+
+
+### Zones with Off-line Trip Tables
+```{python}
+#| label: tbl-offline-renumber
+#| tbl-cap: Renumbered Off-line Trip Table Zones
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'OfflineTripZones']
+table = table[['Parameter', 'v9Value', 'v8Value']]
+display(table.style.hide_index())
+```
+
+
+### Special Generator Zones
+```{python}
+#| label: tbl-specgen-renumber
+#| tbl-cap: Renumbered Special Generator Zones
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'SpecialGeneratorZones']
+table = table[['Parameter', 'v9Value', 'v8Value']]
+display(table.style.hide_index())
+```
+
+## Exogenous Trip Table Parameters
+Income break points for the airport exogenous trip table generation were updated to reflect 2019 base year income.
+
+```{python}
+#| label: tbl-exogen-income
+#| tbl-cap: Income Break Points for Airport Exogenous Trip Table Generation
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'ExogenousTrips']
+table = table[['Parameter', 'v9Value', 'v8Value', 'Notes']]
+display(table.style.hide_index())
+```
+
+## Household Disaggregation Parameters
+
+The regional median income was updated using 2019 5-year ACS data and kept in 2019 dollars to reflect 2019 base year. v8 was estimated from 2015 ACS data and deflated to 2010 dollars.
+
+```{python}
+#| label: tbl-hh-disagg
+#| tbl-cap: Household Disaggregation Parameter Income Update
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'HHDisaggParams']
+table = table[['Parameter', 'v9Value', 'v8Value']]
+display(table.style.hide_index())
+```
+
+## Distribution, Mode Choice, and Assignment Parameters
+### K-Factors
+K-factors were expanded by trip purpose to allow for more flexibility in calibrating distribution. All K-factors were reset to 1.
+
+```{python}
+#| label: tbl-kfactors
+#| tbl-cap: Reset K-Factors
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'KFactors']
+table = table[['SubHeader','v9Parameter','v9Value', 'v8Parameter','v8Value']]
+table = table.rename(columns={'SubHeader':'Area'})
+table = table.replace(np. nan,'',regex=True) 
+display(table.style.hide_index())
+```
+
+### Auto Occupancy
+Auto or vehicle occupancy rates were expanded to include additional trips purposes and calculated based on the reprocessed 2012 Household Travel Survey. Values represent average persons per vehicle for just the Wasatch Front model space. External trips are average for IX + XI; all other parameters are averages for II trips.
+
+```{python}
+#| label: tbl-auto-occ1
+#| tbl-cap: Vehicle Occupancy Rates
+import pandas as pd
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'AutoOccupancy1']
+table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
+display(table.style.hide_index())
+```
+
+```{python}
+#| label: tbl-auto-occ2
+#| tbl-cap: Vehicle Occupancy 3+ Rates
+import pandas as pd
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'AutoOccupancy2']
+table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
+display(table.style.hide_index())
+```
+
+### Value of Time
+Value of time parameters were updated using 2019 5-year ACS data and previous model assumptions and are in 2019 dollars. v8 parameters were calibrated to 2015 ACS data and deflated to 2010 dollars. Values of time are in cents/minute.
+
+```{python}
+#| label: tbl-vot1
+#| tbl-cap: Value of Time Rates
+import pandas as pd
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'VOT1']
+table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
+table = table.replace(np. nan,'',regex=True) 
+display(table.style.hide_index())
+```
+
+### Auto Operating Costs
+Auto operating costs were updated to reflect 2019 fuel cost, average fuel economy, and cost of vehicle maintenance and are in 2019 dollars. v8 parameters were calibrated to 2015 data and deflated to 2010 dollars. Costs are in cents/mile.
+
+```{python}
+#| label: tbl-auto-op
+#| tbl-cap: Auto Operating Cost Rates
+import pandas as pd
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'AutoOperatingCosts']
+table = table[['Parameter','v9Value','v8Value','Notes']]
+display(table.style.hide_index())
+```
+
+### Managed Lane Costs
+Tolls on managed lanes were updated to reflect approximately a $5.00 toll for work trips and a $3.00 toll for non-work trips for tollways (FT=40) and approximately a $3.50 toll for work trips and $2.20 for non-work trips for HOT (FT=38) and reliability lanes. Distances of 10.25 miles (length of average work trip) and 6.5 miles (average length of all trips) were used to determine the work/non-work toll costs in cents per mile in 2019 dollars. Toll costs for v8 are in 2010 dollars.
+
+```{python}
+#| label: tbl-managed-lane
+#| tbl-cap: Managed Lane Cost Rates
+import pandas as pd
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'ManagedLaneCosts']
+table = table[['Parameter','v9Value','v8Value','Notes']]
+display(table.style.hide_index())
+```
+
+### Core Bus Constant Multiplier
+The parameter used to set the Core Bus constant was renamed and updated in v9.
+```{python}
+#| label: tbl-vot2
+#| tbl-cap: Core Bus Constant Multiplier
+import pandas as pd
+table = pd.read_csv('tables/1-genparams.csv')
+table = table.loc[table['Table'] == 'VOT2']
+table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
+display(table.style.hide_index())
+```
+
+### CRT Adjustment Factors
+The following parameters were added to adjust CRT ridership for Davis and Utah Counties. The parameters are applied in the mode choice utility calculation and represent a penalty/incentive in equivalent minutes.
+
+  - ADJ_CONST_UT = 0         ;place holder
+  - ADJ_CONST_CRT_UT = -5    ;encourge CRT in UT County
+  - ADJ_CONST_CRT_DA =  5    ;discourage CRT in Davis County
+  - ADJ_CONST_BRT = 0        ;place holder
+
+### Transit Fare Discount Factor
+Added a transit fare discount factor to adjust transit fares in PT fare input file to calculate effective transit fares (effective fares include discounts for transit passes and other discounts). Transit fares are in v9 are encoded as the standard 2019 fares (in 2019 dollars). Fares in v8 are encoded as discounted 2015 fares deflated to 2010 dollars. The discounted fare in v8 was approximately 54% of the standard fare. This ratio was carried forward into v9.
+
+  - FARE_DISCOUNT = 0.54
+
+## Removed Parameters
+The following parameters were removed from the 0_GeneralParameters.block file.
+
+### County Identification Parameters
+The following county identification parameters are no longer used in v9 and were removed:
+
+  - CountyRange = '1-5'
+  - CountyName1 = 'Weber'
+  - CountyName2 = 'Davis'
+  - CountyName3 = 'SaltLake'
+  - CountyName4 = 'Utah'
+  - CountyName5 = 'BoxElder'
+  - CO_Name1 = 'WE'
+  - CO_Name2 = 'DA'
+  - CO_Name3 = 'SL'
+  - CO_Name4 = 'UT'
+  - CO_Name5 = 'BE'
+
+### Air Quality Conformity Report Parameters
+The following air quality conformity reporting parameters are no longer used in v9 and were removed:
+
+  - RE_ID = 0   ;Entire region
+  - WE_ID = 1   ;Weber
+  - DA_ID = 2   ;Davis
+  - SL_ID = 3   ;Salt Lake
+  - UT_ID = 4   ;Utah
+  - BE_ID = 5   ;BoxElder
+  - OC_ID = 55980 ;Ogden
+  - SC_ID = 67000 ;Salt Lake City
+  - PC_ID = 62470 ;Provo
+
+### Bus Speed Ratios
+Bus speed ratios were updated in v9 and bus speed ratio parameters are now inputed via a file. The following bus speed ratio parameters were removed from the `0_GeneralParameters.block` file:
+
+  - ratio_fway  = 0.95            ;bus speed to auto speed - freeways
+  - ratio_ramp = 0.75             ;bus speed to auto speed - freeway ramps
+  - ratio_part   = 0.60           ;bus speed to auto speed - principal arterials
+  - ratio_mart_urbcbd = 0.55      ;bus speed to auto speed - minor arterials, urban/cbd
+  - ratio_mart_subrur = 0.65      ;bus speed to auto speed - minor arterials, suburban/rural
+  - ratio_collector   = 0.60      ;bus speed to auto speed - collectors
+  - minimum_bus_speed = 10.0      ;mph
+
+### Prefixes for Transit Skims
+Prefixes to identify transit skim output files are coded directly into the scripts in v9. The following transit skim prefix parameters were removed from the `0_GeneralParameters.block` file:
+
+  - W_LCL_skims   = 'skm_w4'   ;walk-to-local skims
+  - D_LCL_skims   = 'skm_d4'   ;drive-to-local skims
+  - W_BRT_skims   = 'skm_w5'   ;walk-to-BRT skims
+  - D_BRT_skims   = 'skm_d5'   ;drive-to-BRT skims
+  - W_EXP_skims   = 'skm_w6'   ;walk-to-express bus skims
+  - D_EXP_skims   = 'skm_d6'   ;drive-to-express bus skims
+  - W_LRT_skims   = 'skm_w7'   ;walk-to-light rail skims
+  - D_LRT_skims   = 'skm_d7'   ;drive-to-light rail skims
+  - W_CRT_skims   = 'skm_w8'   ;walk-to-commuter rail skims
+  - D_CRT_skims   = 'skm_d8'   ;drive-to-commuter rail skims
+  - W_mode9_skims = 'skm_w9'
+  - D_mode9_skims = 'skm_d9'
+
+### Diurnal Factors
+Diurnal factors were updated in v9 and diurnal factor parameters are now inputed via a file. The following diurnal factor parameters were removed from the `0_GeneralParameters.block` file:
+
+<u>% of trips in period</u>
+
+  - HBW_AM_Pct   = 0.3254
+  - HBW_MD_Pct   = 0.1831
+  - HBW_PM_Pct   = 0.3074
+  - HBW_EV_Pct   = 0.1841
+  - HBC_AM_Pct   = 0.2592
+  - HBC_MD_Pct   = 0.3374
+  - HBC_PM_Pct   = 0.1853
+  - HBC_EV_Pct   = 0.2181
+  - HBSch_AM_Pct = 0.3784
+  - HBSch_MD_Pct = 0.2931
+  - HBSch_PM_Pct = 0.2941
+  - HBSch_EV_Pct = 0.0344
+  - HBShp_AM_Pct = 0.0192
+  - HBShp_MD_Pct = 0.4391
+  - HBShp_PM_Pct = 0.2496
+  - HBShp_EV_Pct = 0.2921
+  - HBOth_AM_Pct = 0.0997
+  - HBOth_MD_Pct = 0.3129
+  - HBOth_PM_Pct = 0.2367
+  - HBOth_EV_Pct = 0.3507
+  - NHBW_AM_Pct  = 0.0697
+  - NHBW_MD_Pct  = 0.5582
+  - NHBW_PM_Pct  = 0.2597
+  - NHBW_EV_Pct  = 0.1124
+  - NHBNW_AM_Pct = 0.0498
+  - NHBNW_MD_Pct = 0.4752
+  - NHBNW_PM_Pct = 0.2426
+  - NHBNW_EV_Pct = 0.2324
+  - IX_AM_Pct    = 0.1786
+  - IX_MD_Pct    = 0.3291
+  - IX_PM_Pct    = 0.2604
+  - IX_EV_Pct    = 0.2319
+  - XI_AM_Pct    = 0.1786
+  - XI_MD_Pct    = 0.3291
+  - XI_PM_Pct    = 0.2604
+  - XI_EV_Pct    = 0.2319
+  - XX_AM_Pct    = 0.1786
+  - XX_MD_Pct    = 0.3291
+  - XX_PM_Pct    = 0.2604
+  - XX_EV_Pct    = 0.2319
+  - TR_AM_Pct    = 0.1590
+  - TR_MD_Pct    = 0.3522
+  - TR_PM_Pct    = 0.2274
+  - TR_EV_Pct    = 0.2614                         
+  - HBO_AM_Pct   = 0.0840
+  - HBO_MD_Pct   = 0.3383
+  - HBO_PM_Pct   = 0.2401
+  - HBO_EV_Pct   = 0.3376
+  - NHB_AM_Pct   = 0.0563
+  - NHB_MD_Pct   = 0.5024
+  - NHB_PM_Pct   = 0.2482
+  - NHB_EV_Pct   = 0.1931
+
+<u>% of trips in PA direction</u>
+
+  - HBW_AM_PA   = 0.9706
+  - HBW_MD_PA   = 0.5690
+  - HBW_PM_PA   = 0.0871
+  - HBW_EV_PA   = 0.2891
+  - HBC_AM_PA   = 0.9828
+  - HBC_MD_PA   = 0.5259
+  - HBC_PM_PA   = 0.2420
+  - HBC_EV_PA   = 0.1057
+  - HBSch_AM_PA = 0.7899
+  - HBSch_MD_PA = 0.4306
+  - HBSch_PM_PA = 0.2268
+  - HBSch_EV_PA = 0.2391
+  - HBShp_AM_PA = 0.7826
+  - HBShp_MD_PA = 0.5615
+  - HBShp_PM_PA = 0.4604
+  - HBShp_EV_PA = 0.4228
+  - HBOth_AM_PA = 0.7147
+  - HBOth_MD_PA = 0.5517
+  - HBOth_PM_PA = 0.5181
+  - HBOth_EV_PA = 0.3806
+  - NHBW_AM_PA  = 0.5000
+  - NHBW_MD_PA  = 0.5000
+  - NHBW_PM_PA  = 0.5000
+  - NHBW_EV_PA  = 0.5000
+  - NHBNW_AM_PA = 0.5000
+  - NHBNW_MD_PA = 0.5000
+  - NHBNW_PM_PA = 0.5000
+  - NHBNW_EV_PA = 0.5000
+  - IX_AM_PA    = 0.8563
+  - IX_MD_PA    = 0.5627
+  - IX_PM_PA    = 0.3288
+  - IX_EV_PA    = 0.3290
+  - XI_AM_PA    = 0.8563
+  - XI_MD_PA    = 0.5627
+  - XI_PM_PA    = 0.3288
+  - XI_EV_PA    = 0.3290
+  - XX_AM_PA    = 0.8563
+  - XX_MD_PA    = 0.5627
+  - XX_PM_PA    = 0.3288
+  - XX_EV_PA    = 0.3290
+  - TR_AM_PA    = 0.5000
+  - TR_MD_PA    = 0.5000
+  - TR_PM_PA    = 0.5000
+  - TR_EV_PA    = 0.5000
+  - HBO_AM_PA   = 0.7283
+  - HBO_MD_PA   = 0.5495
+  - HBO_PM_PA   = 0.5050
+  - HBo_EV_PA   = 0.3901
+  - NHB_AM_PA   = 0.5000
+  - NHB_MD_PA   = 0.5000
+  - NHB_PM_PA   = 0.5000
+  - NHB_EV_PA   = 0.5000
+
+### Assignment Type Flag
+The assignment type parameter is no longer used in v9 and was removed:
+
+  - AssignType = 'managed'
+
+
+
+
+
+
+
+
+

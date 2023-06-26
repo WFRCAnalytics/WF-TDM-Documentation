@@ -84,7 +84,7 @@ require(['plotly'], function(Plotly) {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -203,118 +203,102 @@ require(['plotly'], function(Plotly) {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Calibration/Validation</li><li class="breadcrumb-item"><a href="../../../v9x/v900/calib-valid/1-life-cycle.html">2023-06-15</a></li><li class="breadcrumb-item"><a href="../../../v9x/v900/calib-valid/4-trip-gen.html">Trip Generation</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../v9x/v900/calib-valid/1-life-cycle.html"><strong>Calibration/Validation</strong></a></li><li class="breadcrumb-item"><a href="../../../v9x/v900/calib-valid/4-trip-gen.html">Trip Generation</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../v9x/v900/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text"><strong>Preface</strong></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../v9x/v900/downloads.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Downloads</span></a>
-  </div>
-</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Whats New?</span></a>
+ <span class="menu-text"><strong>Whats New?</strong></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">2023-06-15</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../v9x/v900/whats-new/2023-04-14/1-genparams.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../v9x/v900/whats-new/1-genparams.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">General Parameters</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../v9x/v900/whats-new/2023-04-14/2-inputdata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Input Data</span></a>
+  <a href="../../../v9x/v900/whats-new/2-inputdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">model folder</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../v9x/v900/whats-new/2023-04-14/3-inputprocessing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../v9x/v900/whats-new/3-inputprocessing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Input Processing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../v9x/v900/whats-new/2023-04-14/4-hhdisag.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../v9x/v900/whats-new/4-hhdisag.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Household Disaggregation and Auto Ownership</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../v9x/v900/whats-new/2023-04-14/6-distribution.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../v9x/v900/whats-new/6-distribution.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Distribution</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../v9x/v900/whats-new/2023-04-14/7-mc.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../v9x/v900/whats-new/7-mc.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Mode Choice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../v9x/v900/whats-new/2023-04-14/8-assign.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../v9x/v900/whats-new/8-assign.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Highway Assignment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../v9x/v900/whats-new/2023-04-14/10-modelresults.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../v9x/v900/whats-new/10-modelresults.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Results - Comparison with v8.3.2</span></a>
   </div>
 </li>
       </ul>
   </li>
-      </ul>
-  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Calibration/Validation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><strong>Calibration/Validation</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">2023-06-15</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../v9x/v900/calib-valid/1-life-cycle.html" class="sidebar-item-text sidebar-link">
@@ -365,8 +349,7 @@ require(['plotly'], function(Plotly) {
 </li>
       </ul>
   </li>
-      </ul>
-  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
     </ul>
     </div>
 </nav>
@@ -378,22 +361,9 @@ require(['plotly'], function(Plotly) {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
-  <li><a href="#estimate-productions" id="toc-estimate-productions" class="nav-link active" data-scroll-target="#estimate-productions">Estimate Productions</a>
   <ul class="collapse">
-  <li><a href="#base-productions" id="toc-base-productions" class="nav-link" data-scroll-target="#base-productions">Base Productions</a></li>
-  <li><a href="#external-trip-productions" id="toc-external-trip-productions" class="nav-link" data-scroll-target="#external-trip-productions">External Trip Productions</a></li>
-  <li><a href="#short-haul-trucks-productions" id="toc-short-haul-trucks-productions" class="nav-link" data-scroll-target="#short-haul-trucks-productions">Short-Haul Trucks Productions</a></li>
-  </ul></li>
-  <li><a href="#estimate-attractions" id="toc-estimate-attractions" class="nav-link" data-scroll-target="#estimate-attractions">Estimate Attractions</a>
-  <ul class="collapse">
-  <li><a href="#base-attractions" id="toc-base-attractions" class="nav-link" data-scroll-target="#base-attractions">Base Attractions</a></li>
-  <li><a href="#telecommuting-and-home-based-attractions" id="toc-telecommuting-and-home-based-attractions" class="nav-link" data-scroll-target="#telecommuting-and-home-based-attractions">Telecommuting and Home-based Attractions</a></li>
-  <li><a href="#external-trip-attractions" id="toc-external-trip-attractions" class="nav-link" data-scroll-target="#external-trip-attractions">External Trip Attractions</a></li>
-  <li><a href="#cbd-and-area-type-adjustments" id="toc-cbd-and-area-type-adjustments" class="nav-link" data-scroll-target="#cbd-and-area-type-adjustments">CBD and Area Type Adjustments</a></li>
-  <li><a href="#county-truck-adjustments" id="toc-county-truck-adjustments" class="nav-link" data-scroll-target="#county-truck-adjustments">County Truck Adjustments</a></li>
-  <li><a href="#adjustments-for-special-generators" id="toc-adjustments-for-special-generators" class="nav-link" data-scroll-target="#adjustments-for-special-generators">Adjustments for Special Generators</a></li>
-  </ul></li>
+  <li><a href="#estimate-productions" id="toc-estimate-productions" class="nav-link active" data-scroll-target="#estimate-productions">Estimate Productions</a></li>
+  <li><a href="#estimate-attractions" id="toc-estimate-attractions" class="nav-link" data-scroll-target="#estimate-attractions">Estimate Attractions</a></li>
   <li><a href="#balance-productions-and-attractions" id="toc-balance-productions-and-attractions" class="nav-link" data-scroll-target="#balance-productions-and-attractions">Balance Productions and Attractions</a></li>
   <li><a href="#validation-results" id="toc-validation-results" class="nav-link" data-scroll-target="#validation-results">Validation Results</a></li>
   </ul>

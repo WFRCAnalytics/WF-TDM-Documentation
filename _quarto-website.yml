@@ -87,57 +87,43 @@ website:
           
   sidebar:
     - id: v900-preface
-      style: "floating"
-      search: True
+      style: "docked"
       collapse-level: 4
-      type: "primary"
-      foreground: "info"
-      #background: "secondary"
+      foreground: "dark"
+      background: "secondary"
+      border: true
       contents: #items:
-        - text: "Preface"
+        - text: "**Preface**"
           href: v9x/v900/index.qmd
-        - text: "Downloads"
-          href: v9x/v900/downloads.qmd
-        - section: 'Whats New?'
+        #- text: "**Downloads**"
+        #  href: v9x/v900/downloads.qmd
+        #- text: "Whats New?"
+        #  href: v9x/v900/whats-new/0-all.qmd
+        #- text: "Calibration/Validation"
+        #  href: v9x/v900/calib-valid/0-all.qmd
+        - "---"
+        - section: '**Whats New?**'
           contents:
-          - section: '2023-06-15'
-            contents:
-              - text: "General Parameters"
-                href: v9x/v900/whats-new/2023-04-14/1-genparams.qmd  
-              - text: "Input Data"
-                href: v9x/v900/whats-new/2023-04-14/2-inputdata.qmd
-              - text: "Input Processing"
-                href: v9x/v900/whats-new/2023-04-14/3-inputprocessing.qmd
-              - text: "Household Disaggregation and Auto Ownership"
-                href: v9x/v900/whats-new/2023-04-14/4-hhdisag.qmd
-              - text: "Distribution"
-                href: v9x/v900/whats-new/2023-04-14/6-distribution.qmd
-              - text: "Mode Choice"
-                href: v9x/v900/whats-new/2023-04-14/7-mc.qmd
-              - text: "Highway Assignment"
-                href: v9x/v900/whats-new/2023-04-14/8-assign.qmd
-              - text: "Model Results - Comparison with v8.3.2"
-                href: v9x/v900/whats-new/2023-04-14/10-modelresults.qmd  
-        - section: "Calibration/Validation"
+            - v9x/v900/whats-new/1-genparams.qmd  
+            - v9x/v900/whats-new/2-inputdata.qmd
+            - v9x/v900/whats-new/3-inputprocessing.qmd
+            - v9x/v900/whats-new/4-hhdisag.qmd
+            - v9x/v900/whats-new/6-distribution.qmd
+            - v9x/v900/whats-new/7-mc.qmd
+            - v9x/v900/whats-new/8-assign.qmd
+            - v9x/v900/whats-new/10-modelresults.qmd  
+        - "---"
+        - section: "**Calibration/Validation**"
           contents:
-          - section: '2023-06-15'
-            contents:
-              - text: "Life Cycle"
-                href: v9x/v900/calib-valid/1-life-cycle.qmd
-              - text: "Household Disaggregation"
-                href: v9x/v900/calib-valid/2-hh-disagg.qmd
-              - text: "Auto Ownership"
-                href: v9x/v900/calib-valid/3-auto-own.qmd
-              - text: "Trip Generation"
-                href: v9x/v900/calib-valid/4-trip-gen.qmd
-              - text: "Trip Distribution"
-                href: v9x/v900/calib-valid/5-distribution.qmd
-              - text: "Mode Choice"
-                href: v9x/v900/calib-valid/6-mc.qmd
-              - text: "Highway Assignment"
-                href: v9x/v900/calib-valid/7-assign.qmd
-              - text: "Sensitivity Tests"
-                href: v9x/v900/calib-valid/8-sensitivity.qmd
+            - v9x/v900/calib-valid/1-life-cycle.qmd
+            - v9x/v900/calib-valid/2-hh-disagg.qmd
+            - v9x/v900/calib-valid/3-auto-own.qmd
+            - v9x/v900/calib-valid/4-trip-gen.qmd
+            - v9x/v900/calib-valid/5-distribution.qmd
+            - v9x/v900/calib-valid/6-mc.qmd
+            - v9x/v900/calib-valid/7-assign.qmd
+            - v9x/v900/calib-valid/8-sensitivity.qmd
+        - "---"
     - id: v832-preface
       title: "Version 8.3.2"
       contents:
@@ -532,9 +518,11 @@ website:
 
 format:
   html:
+    grid:
+      sidebar-width: 400px
     toc: true
-    toc-depth: 3
-    toc-location: right 
+    toc-depth: 2 #3
+    toc-location: right #left
     theme:
       - cerulean
       - custom.scss

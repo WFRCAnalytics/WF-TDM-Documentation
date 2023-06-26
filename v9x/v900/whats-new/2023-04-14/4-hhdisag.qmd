@@ -1,7 +1,0 @@
----
-margin-header: Version 9.0.0 - What's New?
----
-
-# Household Disaggregation and Auto Ownership
-
-The `1_LifeCycle.s` was modified to account for removal of the `COUNTY` field from the TAZ shapefile and respective ids for county-specific variables removed from `0_GeneralParameters.block`.
