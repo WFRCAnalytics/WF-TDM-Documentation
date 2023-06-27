@@ -1,13 +1,24 @@
 /*-- scss:defaults --*/
+$h-font-color:         #3f748e;
+
+$h1-font-size:          2.5rem;
+
+$h2-font-weight:        430;
+
 $h3-font-size:          1.2rem;
-$h3-font-weight:        350;
-//$h3-font-color:         #000080;
+$h3-font-weight:        360;
 
 $h4-font-size:          1.0rem;
 $h4-font-weight:        200;
 
-$table-font-family: Arial, sans-serif;
-$table-font-size: 10pt;
+//$table-font-family: Arial, sans-serif;
+//$table-font-size: 10pt;
+
+$navbar-bg:#3E6682;
+$navbar-fg: white;
+//$navbar-hl:#3E6682;
+$toc-color: #666486;
+$toc-active-border: #3E6682;
 
 /*-- scss:rules --*/
 
@@ -58,6 +69,24 @@ div.blockquotes-block {
   max-height: 44px;
 }
 
+.navbar {
+  height: 80px;
+}
+
+//.sidebar {
+//  background-color: #f2f2f2; /* Set the background color of the sidebar */
+//  //color: white; /* Set the text color of the sidebar */
+//  font-weight: 200rem;
+//}
+//
+//.sidebar a {
+//  color: black; /* Set the link color in the sidebar */
+//}
+//
+//.sidebar .selected {
+//  color: #ffffff !important; /* Set the text color of the selected item to white */
+//}
+
 #download-btn {
   font-size: xx-small;
   padding: 0.2rem 0.3rem !important;
@@ -72,6 +101,20 @@ a:has(#download-btn) {
 text-decoration: none !important;
 }
 
+/* Adjust font color, size, and weights*/
+h1, h2, h3, h4, h5, h6 {
+  color: $h-font-color;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-weight: $h2-font-weight;
+}
+
 h3 {
   font-size: $h3-font-size;
   font-weight: $h3-font-weight;
@@ -82,8 +125,30 @@ h4 {
   font-weight: $h4-font-weight;
 }
 
-table td,
+/* Adjust table appearance*/
+//table td,
+//table th {
+//  font-family: $table-font-family;
+//  font-size: $table-font-size;
+//}
+
+caption {
+  font-style: italic;
+  font-size: 13pt;
+  font-weight: 350;
+}
+
 table th {
-  font-family: $table-font-family;
-  font-size: $table-font-size;
+  background-color: #3E6682 !important;
+  color: white;
+  font-weight: normal;
+}
+
+/* Adjust toc appearance*/
+.sidebar nav[role="doc-toc"] ul > li > a.active {
+  font-weight: bold;
+}
+
+.sidebar nav[role="doc-toc"] .title {
+  font-weight: bold;
 }

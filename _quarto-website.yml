@@ -4,7 +4,7 @@ project:
 plugins:
     - last_modified
 website:
-  title: "Documentation"
+  title: "WFTDM Documentation"
   favicon: _pictures/favicon.ico
   page-footer:
     right: "Built using [Quarto](https://quarto.org)"
@@ -516,11 +516,15 @@ format:
   html:
     grid:
       sidebar-width: 400px
+
     toc: true
     toc-depth: 2
     toc-location: right
-    toc-title: "Section Contents"
-    mainfont: "Arial"
+    toc-title: "**Section Contents**<br>_________________"
+
+    mainfont: "Azo Sans"
+    fontsize: 11.5pt
+
     theme:
       - cerulean
       - custom.scss
