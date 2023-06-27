@@ -1,7 +1,6 @@
 ---
 echo: false
 warning: false
-toc-title: General Parameters
 ---
 
 # General Parameters

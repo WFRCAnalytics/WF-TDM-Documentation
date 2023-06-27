@@ -1,5 +1,4 @@
 ---
-margin-header: Version 9.0.0 - Calibration/Validation
 echo: false
 jupyter: python3
 warning: false

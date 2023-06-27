@@ -97,12 +97,8 @@ website:
           href: v9x/v900/index.qmd
         #- text: "**Downloads**"
         #  href: v9x/v900/downloads.qmd
-        #- text: "Whats New?"
-        #  href: v9x/v900/whats-new/0-all.qmd
-        #- text: "Calibration/Validation"
-        #  href: v9x/v900/calib-valid/0-all.qmd
         - "---"
-        - section: '**Whats New?**'
+        - section: "**Whats New?**"
           contents:
             - v9x/v900/whats-new/1-genparams.qmd  
             - v9x/v900/whats-new/2-inputdata.qmd
@@ -521,8 +517,10 @@ format:
     grid:
       sidebar-width: 400px
     toc: true
-    toc-depth: 2 #3
-    toc-location: right #left
+    toc-depth: 2
+    toc-location: right
+    toc-title: "Section Contents"
+    mainfont: "Arial"
     theme:
       - cerulean
       - custom.scss

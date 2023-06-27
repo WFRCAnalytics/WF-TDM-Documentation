@@ -2489,7 +2489,7 @@
     "href": "v9x/v900/whats-new/1-genparams.html#household-disaggregation-parameters",
     "title": "General Parameters",
     "section": "Household Disaggregation Parameters",
-    "text": "Household Disaggregation Parameters\nThe regional median income was updated using 2019 5-year ACS data and kept in 2019 dollars to reflect 2019 base year. v8 was estimated from 2015 ACS data and deflated to 2010 dollars.\n\n\n\n\n\n\nTable 8: Household Disaggregation Parameter Income Update\n\n\nParameter\nv9Value\nv8Value\n\n\n\n\nReg_Median_Inc\n74946\n58793"
+    "text": "Household Disaggregation Parameters\nThe regional median income was updated using 2019 5-year ACS data and kept in 2019 dollars to reflect 2019 base year. v8 was estimated from 2015 ACS data and deflated to 2010 dollars.\n\n\n\n\n\n\nTable 8: Household Disaggregation Parameter Income Update\n\n\nParameter\nv9Value\nv8Value\n\n\n\n\nReg_Median_Inc\n$74,946\n$58,793"
   },
   {
     "objectID": "v9x/v900/whats-new/1-genparams.html#distribution-mode-choice-and-assignment-parameters",

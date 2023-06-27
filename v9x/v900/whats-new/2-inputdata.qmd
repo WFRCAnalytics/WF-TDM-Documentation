@@ -1,7 +1,6 @@
 ---
 warning: false
 message: false
-toc-title: Input Data
 ---
 
 # Input Data
