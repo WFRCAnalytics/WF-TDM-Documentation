@@ -1,9 +1,8 @@
 ---
+title: Life Cycle
 execute:
     echo: false
 ---
-
-# Life Cycle
 
 The Life Cycle model determines the how much of the TAZ population and households from the processed socioeconomic input file will be in one of three life cycle categories:
 

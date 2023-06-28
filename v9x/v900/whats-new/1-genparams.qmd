@@ -1,9 +1,9 @@
 ---
+title: General Parameters
 echo: false
 warning: false
 ---
 
-# General Parameters
 Changes made to the `0_GeneralParameters.block` file are discussed in this section.
 
 ## Zone Parameters

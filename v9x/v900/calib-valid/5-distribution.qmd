@@ -1,10 +1,10 @@
 ---
+title: Trip Distribution
 echo: false
 warning: false
 message: false
 ---
 
-# Trip Distribution
 The validation results for the Trip Distribution portion of the model are shown in this section. The observed data comes from the 2012 Household Survey. 
 
 

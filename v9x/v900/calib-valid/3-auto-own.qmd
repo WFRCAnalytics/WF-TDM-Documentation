@@ -1,8 +1,7 @@
 ---
+title: Auto Ownership
 echo: false
 ---
-
-# Auto Ownership
 
 The Auto Ownership model begins with the disaggregated households by TAZ and calculates how many vehicles each group owns. Households by vehicle ownership is grouped by 0, 1, 2, and 3+ vehicles. Auto ownership is based on utility functions for each combination of household size group, worker group, and income level (low/high). The utilities for each TAZ are then converted into probabilities. When the probabilities are multiplied by the associated number of households, then an auto ownership distribution by TAZ is created.
 

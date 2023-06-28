@@ -1,5 +1,6 @@
-
-# Mode Choice
+---
+title: Mode Choice
+---
 
 Updates to the Mode Choice portion of the model include drive access links, transit skims, and district summaries.
 

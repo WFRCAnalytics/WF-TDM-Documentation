@@ -1,5 +1,6 @@
-
-# Distribution
+---
+title: Distribution
+---
 
 The changes described in this section were made in the `1_Distribution.s` script.
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Documentation – inputprocessing</title>
+<title>WFTDM Documentation - InputProcessing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -182,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/2-inputdata.html"><strong>Whats New?</strong></a></li><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/3-inputprocessing.html">Input Processing</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/1-genparams.html"><span style="color: #3E6682;">**Whats New?**</span></a></li><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/3-inputprocessing.html">InputProcessing</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -197,14 +197,14 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../v9x/v900/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><strong>Preface</strong></span></a>
+ <span class="menu-text"><span style="color: #3E6682;"><strong>Preface</strong></span></span></a>
   </div>
 </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../v9x/v900/whats-new/2-inputdata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">**Whats New?**</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><span style="color: #3E6682;"><strong>Whats New?</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -225,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../v9x/v900/whats-new/3-inputprocessing.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Input Processing</span></a>
+ <span class="menu-text">InputProcessing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -264,7 +264,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text"><strong>Calibration/Validation</strong></span></a>
+ <span class="menu-text"><span style="color: #3E6682;"><strong>Calibration/Validation</strong></span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -328,27 +328,37 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Section Contents</h2>
+    <h2 id="toc-title"><strong>Section Contents</strong><br>_________________</h2>
    
   <ul class="collapse">
-  <li><a href="#input-processing" id="toc-input-processing" class="nav-link active" data-scroll-target="#input-processing">Input Processing</a>
-  <ul class="collapse">
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#se-processing" id="toc-se-processing" class="nav-link" data-scroll-target="#se-processing">SE Processing</a></li>
   <li><a href="#network-processing" id="toc-network-processing" class="nav-link" data-scroll-target="#network-processing">Network Processing</a></li>
   <li><a href="#trip-table" id="toc-trip-table" class="nav-link" data-scroll-target="#trip-table">Trip Table</a></li>
   <li><a href="#time-of-day-factors" id="toc-time-of-day-factors" class="nav-link" data-scroll-target="#time-of-day-factors">Time of Day Factors</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">InputProcessing</h1>
+</div>
 
 
-<section id="input-processing" class="level1">
-<h1>Input Processing</h1>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
 <p>The changes in the input processing scripts are listed here by their corresponding subfolder.</p>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
@@ -377,7 +387,6 @@ ul.task-list li input[type="checkbox"] {
 <p>A new folder called <code>e_TimeOfDayFactors</code> was added with a <code>1_CalculateTimeOfDayFac.s</code> script to output a new file with time of day factors for use in following scripts.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
