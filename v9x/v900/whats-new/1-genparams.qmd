@@ -40,8 +40,6 @@ display(table.style.hide_index())
 ### College Zones
 Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero.
 
-<mark>???ADD INPUTS DOC REFERENCE???</mark>
-
 ```{python}
 #| label: tbl-college-renumber
 #| tbl-cap: Renumbered College Zones
@@ -247,7 +245,7 @@ The following air quality conformity reporting parameters are no longer used in 
   - PC_ID = 62470 ;Provo
 
 ### Bus Speed Ratios
-Bus speed ratios were updated in v9 and bus speed ratio parameters are now inputed via a file. The following bus speed ratio parameters were removed from the `0_GeneralParameters.block` file:
+Bus speed ratios were updated in v9 and bus speed ratio parameters are now input via a file. The following bus speed ratio parameters were removed from the `0_GeneralParameters.block` file:
 
   - ratio_fway  = 0.95            ;bus speed to auto speed - freeways
   - ratio_ramp = 0.75             ;bus speed to auto speed - freeway ramps
@@ -274,7 +272,7 @@ Prefixes to identify transit skim output files are coded directly into the scrip
   - D_mode9_skims = 'skm_d9'
 
 ### Diurnal Factors
-Diurnal factors were updated in v9 and diurnal factor parameters are now inputed via a file. The following diurnal factor parameters were removed from the `0_GeneralParameters.block` file:
+Diurnal factors were updated in v9 and diurnal factor parameters are now input via a file. The following diurnal factor parameters were removed from the `0_GeneralParameters.block` file:
 
 <u>% of trips in period</u>
 
