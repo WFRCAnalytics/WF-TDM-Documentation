@@ -2,4 +2,4 @@
 title: Highway Assignment
 ---
 
-The `4_SummarizeLoadedNetworks.s` script was modified to point the GEOMI reference to `0_InputProcessing\UpdatedMasterNet\GIS\@MasterPrefix@ - Link.shp` instead of the `1_Inputs\3_Highway` folder.
+The summarize loaded networks script was modified to point the geometry input reference to the input processing output folder instead of the highway inputs folder.
