@@ -4,9 +4,7 @@ warning: false
 message: false
 ---
 
-# Input Data
-The updates to the input data of the model are listed here by the subfolder they are contained in.
-
+Changes made to the `1_Inputs` folder are discussed in this section.
 
 ```{python}
 #|echo: false
@@ -325,7 +323,7 @@ Plot.plot({
 <mark>???NEED TO FIX OVERLAPPING CHART LABELS???</mark>
 
 ### Assignment
-As described in the *General Parameters* section, diurnal and production/attraction factors were imputed. The resulting factors are found in the `Diurnal & PA factors.csv` file. 
+As described in the *General Parameters* section, diurnal and production/attraction factors were moved out of the `0_GeneralParameters.block` file to an input file. The factors are now found in the `Diurnal & PA factors.csv` file. 
 
 ## Traffic Analysis Zones (TAZ)
 The TAZ zone set includes new geographies, TAZ numbering ranges, zone attributes, and districts, as well as a new `\_Source` subfolder.
@@ -497,7 +495,8 @@ Compared to the previous temporary parking values of $1 in 2010 dollars, the cho
 
 ### Small Districts
 
-There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). Districts are shown in @fig-districts.
+There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). Districts are shown in @fig-districts. Two additional polygon shapefiles were added to the Districts subfolder to represent the Wasatch Front sub area and the REMM area.
+
 
 ```{ojs}
 //|label: fig-districts
@@ -547,8 +546,6 @@ layer.bindTooltip(name); // Add tooltip
 }
 ```
 
-Two additional polygon shapefiles were added to the Districts subfolder to represent the Wasatch Front sub area and the REMM area.
-
 ### Source
 
 The `_Source` subfolder was added and includes the following shapefile data sets: Cities, Counties, Districts, and Environmental Constraints. Additionally, a ArcGIS Pro project & mapping files can be found in the `__ViewTAZDistricts` subfolder.
@@ -573,7 +570,7 @@ html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-
 
 ### Control Totals
 
-Updates to the county control totals were made based on projections from the Gardner Policy Institute as found in the `ControlTotal_SE_AllCounties.csv` file. See @fig-county-control-totals-by-category for a comparison chart.
+Updates to the county control totals were made based on projections from the Gardner Policy Institute. See @fig-county-control-totals-by-category for a comparison between v8 and v9 by county for any given socioeconomic category.
 
 ```{python}
 #| echo: false
@@ -665,7 +662,7 @@ Plot.plot({
 })
 ```
 
-### School Enrollment and Median Income
+### School Enrollment
 
 The Kindergarten through 12th grade (K-12) enrollment data was updated using the 2019 statewide school enrollment database. This was done at the state-wide level and then applied to the Wasatch Front. Additionally, a point shapefile of the state-wide dataset is included with the TDM, as shown in @fig-school-locations.
 
@@ -776,6 +773,8 @@ mapK12Enroll = {
   
 }
 ```
+
+### Median Income
 
 Median income & value-of-time (VOT) inputs for the model were updated with 2019 data and used to update the TAZ Median Income in the TAZ file.
 
