@@ -525,7 +525,7 @@ format:
     toc-location: right
     toc-title: "**Section Contents**<br>__________________"
 
-    mainfont: "Azo Sans"
+    mainfont: "Ebrima"
     fontsize: 11.5pt
     linkcolor: "#789d4b"
     #monobackgroundcolor: "#789d4b"

@@ -493,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mode-choice" class="level3">
 <h3 class="anchored" data-anchor-id="mode-choice">Mode Choice</h3>
 <p>The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the <em>General Parameters</em> section, and included in a new bus speed ratios file <code>bus_speed_ratios.csv</code>. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert bus speeds input into long format</span></span>
@@ -845,56 +845,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Canyon areas of the Oquirrh mountain range up to the western boundary of Salt Lake County</li>
 <li>Great Salt Lake areas to the western boundary of Salt Lake, Davis, and Weber counties</li>
 </ul>
-<p>The additional areas and reconfigured TAZs result in 694 additional zones, 688 internal zones and 6 new external zones. A comparison of zone counts is found in <a href="#tbl-taz-count-comparison">Table&nbsp;1</a>.</p>
-<div class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<div id="tbl-taz-count-comparison" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: TAZ Count Comparions</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Category</th>
-<th style="text-align: right;">v9</th>
-<th style="text-align: right;">v8</th>
-<th style="text-align: right;">Difference</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Internal Used Zones</td>
-<td style="text-align: right;">3,546</td>
-<td style="text-align: right;">2,858</td>
-<td style="text-align: right;">688</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">External Count</td>
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: right;">6</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">All New Used Zones</td>
-<td style="text-align: right;">3,575</td>
-<td style="text-align: right;">2,881</td>
-<td style="text-align: right;">694</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Internal Unused Zones</td>
-<td style="text-align: right;">54</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">54</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Max Used Zone</td>
-<td style="text-align: right;">3,629</td>
-<td style="text-align: right;">2,881</td>
-<td style="text-align: right;">748</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+<p>The additional areas and reconfigured TAZs result in 694 additional zones, 688 internal zones and 6 new external zones. A comparison of zone counts is found in <strong>?@tbl-taz-count-comparison</strong>.</p>
 <p>The interactive map in <a href="#fig-taz-compare-map">Figure&nbsp;1</a> can be explored to visualize the difference in v9 and v8 TAZs.</p>
 <div class="cell">
 <details class="hidden">
@@ -945,62 +896,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="taz-ranges" class="level3">
 <h3 class="anchored" data-anchor-id="taz-ranges">TAZ Ranges</h3>
-<p>The new and previous internal and external ranges of TAZIDs by for each county are shown in <a href="#tbl-new-taz-ranges">Table&nbsp;2</a>.</p>
-<div class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="5">
-<div id="tbl-new-taz-ranges" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;2: TAZ Ranges</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">County</th>
-<th style="text-align: right;">v9.0.0 Internal</th>
-<th style="text-align: right;">v9.0.0 External</th>
-<th style="text-align: right;">v8.3.2 Internal</th>
-<th style="text-align: right;">v8.3.2. External</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Box Elder County</td>
-<td style="text-align: right;">1-153</td>
-<td style="text-align: right;">3601-3606</td>
-<td style="text-align: right;">1-135</td>
-<td style="text-align: right;">136-140</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Weber County</td>
-<td style="text-align: right;">154-581</td>
-<td style="text-align: right;">3607-3609</td>
-<td style="text-align: right;">141-420</td>
-<td style="text-align: right;">421-423</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Davis County</td>
-<td style="text-align: right;">582-905</td>
-<td style="text-align: right;">N/A</td>
-<td style="text-align: right;">424-654</td>
-<td style="text-align: right;">N/A</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Salt Lake County</td>
-<td style="text-align: right;">906-2216</td>
-<td style="text-align: right;">3610-3615</td>
-<td style="text-align: right;">655-1781</td>
-<td style="text-align: right;">1782-1788</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Utah County</td>
-<td style="text-align: right;">2217-3546</td>
-<td style="text-align: right;">3616-3629</td>
-<td style="text-align: right;">1789-2873</td>
-<td style="text-align: right;">2874-2881</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+<p>The new and previous internal and external ranges of TAZIDs by for each county are shown in <strong>?@tbl-new-taz-ranges</strong>.</p>
 </section>
 <section id="attributes" class="level3">
 <h3 class="anchored" data-anchor-id="attributes">Attributes</h3>
@@ -1412,38 +1308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The highway network was expanded to incorporate the new model areas. See <a href="#geographies">TAZ Geographies</a>. The 2023 RTP fields have been updated to reflect the adopted 2023 RTP.</p>
 <section id="highway-node-numbering-schema" class="level3">
 <h3 class="anchored" data-anchor-id="highway-node-numbering-schema">Highway Node Numbering Schema</h3>
-<p>Updates to the highway node numbering schema are shown in <a href="#tbl-master-network-node-numbering-schema">Table&nbsp;3</a>. An additional reference file called <code>_Node Definition - v832 &amp; v9.xlsx</code> is found in the <code>3_Highway</code> folder.</p>
-<div class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="7">
-<div id="tbl-master-network-node-numbering-schema" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;3: Master Network Node Numbering Schema</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">MPO</th>
-<th style="text-align: left;">Transit Nodes</th>
-<th style="text-align: left;">Highway Nodes</th>
-<th style="text-align: left;">v9 Expansion Areas</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">WFRC</td>
-<td style="text-align: left;">10,000 - 19,999</td>
-<td style="text-align: left;">20,000 - 49,999</td>
-<td style="text-align: left;">90,000 - 94,999</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MAG</td>
-<td style="text-align: left;">50,000 - 59,999</td>
-<td style="text-align: left;">60,000 - 89,999</td>
-<td style="text-align: left;">95,000 - 99,999</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+<p>Updates to the highway node numbering schema are shown in <strong>?@tbl-master-network-node-numbering-schema</strong>. An additional reference file called <code>_Node Definition - v832 &amp; v9.xlsx</code> is found in the <code>3_Highway</code> folder.</p>
 <p>The highway network updates include the following:</p>
 <ul>
 <li>Updated Commuter-Rail Transit (CRT) Fare Zone
@@ -1653,7 +1518,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<p>The updated numbering scheme can be found in the <a href="#fig-descrip1">Figure&nbsp;8</a>, <a href="#fig-descrip2">Figure&nbsp;9</a>, and <a href="#fig-descrip3">Figure&nbsp;10</a>.</p>
+<p>The updated numbering scheme can be found in <a href="#fig-descrip1">Figure&nbsp;8</a>, <a href="#fig-descrip2">Figure&nbsp;9</a>, and <a href="#fig-descrip3">Figure&nbsp;10</a>.</p>
 <div id="fig-descrip1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="_pictures/ex_descrip1.png" class="img-fluid figure-img"></p>
