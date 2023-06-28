@@ -2,7 +2,7 @@
 title: Distribution
 ---
 
-The changes described in this section were made in the `1_Distribution.s` script.
+Changes made to the `2_ModelScripts\3_Distribute` folder are discussed in this section. The changes described in this section were made exclusively in the `1_Distribution.s` script.
 
 ## Convergence
 
@@ -72,7 +72,3 @@ A `@unloadednetprefix@_@n@_convg.net` file was added to `Temp\3_Distribute` fold
 - `EV_PctDiff = ABS(EV_Diff) / EV_Pre`
 - `DY_PctDiff = ABS(DY_Diff) / DY_Pre`
 - `CONVLINK (if (DY_PctDiff<=_ConvThreshold)  CONVLINK = 1)`
-
-
-
-<mark>???NOT SURE WHAT THIS WAS SUPPOSED TO MEAN. IT IS ALL ALONE IN DOCUMENT:</mark> `4pd_mainbody_distribution.block`
