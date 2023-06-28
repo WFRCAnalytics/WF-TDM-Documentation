@@ -19,12 +19,14 @@ Note, the following TAZ parameters ranges were removed from the general paramete
 ```{python}
 #| label: tbl-taz-renumber
 #| tbl-cap: Renumbered TAZ Ranges
+#| tbl-opts: width=50%
+#| tbl-colwidths: [25,25,25,25]
 import pandas as pd
 import numpy as np
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'TAZ']
 table = table[['Parameter', 'v9Value', 'v8Value','Notes']]
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}).set_table_styles([dict(selector='th', props=[('text-align', 'center')])]))
 ```
 
 ### Highway Nodes
@@ -34,7 +36,7 @@ display(table.style.hide_index())
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'HighwayNodes']
 table = table[['Parameter', 'v9Value', 'v8Value','Notes']]
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ### College Zones
@@ -48,7 +50,7 @@ table = table.loc[table['Table'] == 'CollegeZones1']
 table = table[['SubHeader','Parameter', 'v9Value', 'v8Value','Notes']]
 table = table.rename(columns={'SubHeader':'Area'})
 table = table.replace(np. nan,'',regex=True) 
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ```{python}
@@ -57,7 +59,7 @@ display(table.style.hide_index())
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'CollegeZones2']
 table = table[['Parameter', 'v9Value', 'v8Value']]
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 
@@ -68,7 +70,7 @@ display(table.style.hide_index())
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'OfflineTripZones']
 table = table[['Parameter', 'v9Value', 'v8Value']]
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 
@@ -79,7 +81,7 @@ display(table.style.hide_index())
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'SpecialGeneratorZones']
 table = table[['Parameter', 'v9Value', 'v8Value']]
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ## Exogenous Trip Table Parameters
@@ -91,7 +93,9 @@ Income break points for the airport exogenous trip table generation were updated
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'ExogenousTrips']
 table = table[['Parameter', 'v9Value', 'v8Value', 'Notes']]
-display(table.style.hide_index())  
+table['v9Value'] = table['v9Value'].astype(int).apply(lambda x: "${:,}".format((x)))
+table['v8Value'] = table['v8Value'].astype(int).apply(lambda x: "${:,}".format((x)))
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))  
 ```
 
 ## Household Disaggregation Parameters
@@ -107,7 +111,7 @@ table = table[['Parameter', 'v9Value', 'v8Value']]
 table['v9Value'] = table['v9Value'].astype(int).apply(lambda x: "${:,}".format((x)))
 table['v8Value'] = table['v8Value'].astype(int).apply(lambda x: "${:,}".format((x)))
 
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ## Distribution, Mode Choice, and Assignment Parameters
@@ -121,8 +125,11 @@ table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'KFactors']
 table = table[['SubHeader','v9Parameter','v9Value', 'v8Parameter','v8Value']]
 table = table.rename(columns={'SubHeader':'Area'})
-table = table.replace(np. nan,'',regex=True) 
-display(table.style.hide_index())
+table['v9Value'] = table['v9Value'].astype('float').apply(lambda x: "{:,.2f}".format((x)))
+table['v8Value'] = table['v8Value'].astype('float').apply(lambda x: "{:,.2f}".format((x)))
+table = table.replace(np.nan,'',regex=True)
+table = table.replace('nan','',regex=True) 
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ### Auto Occupancy
@@ -135,7 +142,11 @@ import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'AutoOccupancy1']
 table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
-display(table.style.hide_index())
+table['v9Value'] = table['v9Value'].astype('float').apply(lambda x: "{:,.2f}".format((x)))
+table['v8Value'] = table['v8Value'].astype('float').apply(lambda x: "{:,.2f}".format((x)))
+table = table.replace(np.nan,'',regex=True)
+table = table.replace('nan','',regex=True) 
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ```{python}
@@ -145,7 +156,11 @@ import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'AutoOccupancy2']
 table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
-display(table.style.hide_index())
+table['v9Value'] = table['v9Value'].astype('float').apply(lambda x: "{:,.2f}".format((x)))
+table['v8Value'] = table['v8Value'].astype('float').apply(lambda x: "{:,.2f}".format((x)))
+table = table.replace(np.nan,'',regex=True)
+table = table.replace('nan','',regex=True) 
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ### Value of Time
@@ -159,7 +174,7 @@ table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'VOT1']
 table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
 table = table.replace(np. nan,'',regex=True) 
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ### Auto Operating Costs
@@ -172,7 +187,7 @@ import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'AutoOperatingCosts']
 table = table[['Parameter','v9Value','v8Value','Notes']]
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ### Managed Lane Costs
