@@ -1012,7 +1012,7 @@ mapExternals = {
 }
 ```
 
-The updated numbering scheme can be found in the @fig-descrip1, @fig-descrip2, and @fig-descrip3.
+The updated numbering scheme can be found in  @fig-descrip1, @fig-descrip2, and @fig-descrip3.
 
 ![v9 External Description.](_pictures/ex_descrip1.png){#fig-descrip1}
 
