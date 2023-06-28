@@ -9,12 +9,12 @@ $h3-font-size:          1.2rem;
 $h3-font-weight:        360;
 
 $h4-font-size:          1.0rem;
-$h4-font-weight:        200;
+$h4-font-weight:        300;
 
 //$table-font-family: Arial, sans-serif;
 //$table-font-size: 10pt;
 
-$navbar-bg:#3E6682;
+$navbar-bg:#0B2842;//#3E6682;
 $navbar-fg: white;
 //$navbar-hl:#3E6682;
 $toc-color: #666486;
@@ -71,15 +71,20 @@ div.blockquotes-block {
 
 .navbar {
   height: 80px;
+  //text-transform: uppercase;
 }
 
-//.sidebar {
-//  //background-color: black; /* Set the background color of the sidebar */
-//  color: #333333; /* Set the text color of the sidebar */
-//}
+body {
+  line-height: 1.35;
+}
+
+.sidebar {
+  background-color: #F8F8F8 !important;
+}
 
 .sidebar a {
   color: #8C8C8C; /* Set the link color in the sidebar */
+  line-height: 1.6 !important;
 }
 
 .sidebar .active {
@@ -87,8 +92,6 @@ div.blockquotes-block {
   font-weight: bold;
 }
 
-//
-//#666486;
 
 #download-btn {
   font-size: xx-small;
@@ -139,6 +142,19 @@ caption {
   font-style: italic;
   font-size: 13pt;
   font-weight: 350;
+  text-align: center;
+}
+
+figure {
+  /* Styles for the figure element itself */
+
+  figcaption {
+    /* Styles for the figcaption element within the figure */
+    font-style: italic;
+    font-size: 13pt !important;
+    font-weight: 350;
+    text-align: center; /* Add this line to center the caption */
+  }
 }
 
 table th {
@@ -154,4 +170,18 @@ table th {
 
 .sidebar nav[role="doc-toc"] .title {
   font-weight: bold;
+}
+
+ul {
+  list-style-image: url('_pictures/rtp_bullet.png'); /* Set the path to your custom bullet image */
+  background-size: 5px;
+  padding-left: 68px; /* Adjust the padding to align the image properly */
+}
+
+.container {
+  /* Styles for the container element */
+  position: relative !important;
+  background-image: url('_pictures/elephant.jpg') !important; /* Replace 'path/to/watermark.png' with the actual path to your watermark image */
+  background-repeat: repeat !important;
+  opacity: 0.3 !important; /* Adjust the opacity value as desired */
 }

@@ -18,6 +18,8 @@ website:
     tools:
       - icon: github
         href: https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages
+      - icon: envelope
+        href: mailto:sswim@wfrc.org
     title: false
     collapse-below: lg
     left:
@@ -90,6 +92,7 @@ website:
       style: "docked"
       collapse-level: 4
       border: true
+      background: white
       contents: #items:
         - text: "<span style=\"color: #3E6682;\">**Preface**</span>"
           href: v9x/v900/index.qmd
@@ -512,16 +515,20 @@ website:
 
 format:
   html:
+    #margin-top: 20px
     grid:
-      sidebar-width: 400px
-
+      sidebar-width: 380px
+      gutter-width: 40px
+      margin-width: 350px
     toc: true
     toc-depth: 2
     toc-location: right
-    toc-title: "**Section Contents**<br>___________________"
+    toc-title: "**Section Contents**<br>__________________"
 
     mainfont: "Azo Sans"
     fontsize: 11.5pt
+    linkcolor: "#789d4b"
+    #monobackgroundcolor: "#789d4b"
 
     theme:
       - cerulean
