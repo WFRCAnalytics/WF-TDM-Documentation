@@ -1,10 +1,10 @@
 ---
+title: Trip Generation
 echo: false
 warning: false
 message: false
 ---
 
-# Trip Generation
 A trip is defined as the movement of a person between two locations for a given purpose. Each trip has two trip ends. Each trip end is associated within a TAZ. Trips are comprised of a both a production zone and an attraction zone. The production zone is where the trip was produced, typically a household for a home-based trip or a place of employment for a non-home-based trip. The attraction zone is the location that is attracting a trip, typically a place of employment or commercial activity. Productions and attractions are travel direction agnostic, meaning that a to-work trip and from-work trip would show as two productions in the home location TAZ and as two attractions in the work location TAZ.
 
 The Trip Generation script calculates productions and attractions at the TAZ level. The trip ends are not paired in this step but remain distinctly separated, which is then used as input into the Trip Distribution model that pairs trip ends together. The script calculates productions and attractions per zone using trip generation rates and adjustments. All values produced by this script represent person trips, not vehicle trips. The trip generation rates are calculated from the household travel survey. 

@@ -74,18 +74,21 @@ div.blockquotes-block {
 }
 
 //.sidebar {
-//  background-color: #f2f2f2; /* Set the background color of the sidebar */
-//  //color: white; /* Set the text color of the sidebar */
-//  font-weight: 200rem;
+//  //background-color: black; /* Set the background color of the sidebar */
+//  color: #333333; /* Set the text color of the sidebar */
 //}
+
+.sidebar a {
+  color: #8C8C8C; /* Set the link color in the sidebar */
+}
+
+.sidebar .active {
+  color: #666486 !important;
+  font-weight: bold;
+}
+
 //
-//.sidebar a {
-//  color: black; /* Set the link color in the sidebar */
-//}
-//
-//.sidebar .selected {
-//  color: #ffffff !important; /* Set the text color of the selected item to white */
-//}
+//#666486;
 
 #download-btn {
   font-size: xx-small;

@@ -1,8 +1,8 @@
 ---
+title: Household Disaggregation
 echo: false
 ---
 
-# Household Disaggregation
 The Household Disaggregation model classifies a TAZ’s households by:
 
  - Household Size

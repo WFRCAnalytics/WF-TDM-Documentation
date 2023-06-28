@@ -89,16 +89,14 @@ website:
     - id: v900-preface
       style: "docked"
       collapse-level: 4
-      foreground: "dark"
-      background: "secondary"
       border: true
       contents: #items:
-        - text: "**Preface**"
+        - text: "<span style=\"color: #3E6682;\">**Preface**</span>"
           href: v9x/v900/index.qmd
         #- text: "**Downloads**"
         #  href: v9x/v900/downloads.qmd
         - "---"
-        - section: "**Whats New?**"
+        - section: "<span style=\"color: #3E6682;\">**Whats New?**</span>"
           contents:
             - v9x/v900/whats-new/1-genparams.qmd  
             - v9x/v900/whats-new/2-inputdata.qmd
@@ -109,7 +107,7 @@ website:
             - v9x/v900/whats-new/8-assign.qmd
             - v9x/v900/whats-new/10-modelresults.qmd  
         - "---"
-        - section: "**Calibration/Validation**"
+        - section: "<span style=\"color: #3E6682;\">**Calibration/Validation**</span>"
           contents:
             - v9x/v900/calib-valid/1-life-cycle.qmd
             - v9x/v900/calib-valid/2-hh-disagg.qmd
@@ -520,7 +518,7 @@ format:
     toc: true
     toc-depth: 2
     toc-location: right
-    toc-title: "**Section Contents**<br>_________________"
+    toc-title: "**Section Contents**<br>___________________"
 
     mainfont: "Azo Sans"
     fontsize: 11.5pt

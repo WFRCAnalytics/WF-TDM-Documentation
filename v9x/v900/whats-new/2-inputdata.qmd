@@ -1,9 +1,9 @@
 ---
+title: Input Data
 warning: false
 message: false
 ---
 
-# Input Data
 The changes in each `1_Inputs` subfolder are described in their respective sections.
 
 

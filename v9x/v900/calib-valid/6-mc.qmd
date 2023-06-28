@@ -1,11 +1,11 @@
 ---
+title: Mode Choice
 echo: false
 jupyter: python3
 warning: false
 message: false
 ---
 
-# Mode Choice
 The validation results for the Mode Choice portion of the model are shown in this section. The observed data comes from the Utah Transit Authority 2019 On-Board Survey as well as the 2012 Household Travel Survey. 
 
 ## Mode Choice Constants

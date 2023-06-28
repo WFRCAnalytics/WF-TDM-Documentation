@@ -2333,51 +2333,51 @@
   {
     "objectID": "v9x/v900/whats-new/3-inputprocessing.html",
     "href": "v9x/v900/whats-new/3-inputprocessing.html",
-    "title": "Input Processing",
+    "title": "InputProcessing",
     "section": "",
-    "text": "The changes in the input processing scripts are listed here by their corresponding subfolder.\n\n\nThe 0_FolderSetup.s script was updated, renamed, and added to the HailMary.s script. Additionally, UpdatedMasterNet and UpdatedMasterNet\\GIS folders were added to 0_InputProcessing folder. These changes were also made to _CreateOutputFolders.s and _BlankFolderSetup in the Scenarios\\_default folder.\nTo account for removal of the fields from the TAZ shapefile, the references to CITY and COUNTY fields were removed from the 1_InputSetup.s script.\nThe copied locations of a few files in the \\_CopyToFolders folder were updated. VPR files in the 2_ModelScripts\\_CopyToFolders\\Distrib_ConvVPR folder are now copied to the Temp\\3_Distribute folder. The _Urbanization.mxd and _WalkBuffer.mxd in the 2_ModelScripts\\_CopyToFolders\\ArcMap_mxd folder are copied to the 0_InputProcessing folder.\n\n\n\nThe 1_DemographicsAnalysis.s script was updated to read ControlTotal_SE_AllCounties.csv. The control total lookup index calculation was updated to account for Weber County indexing between two sub-areas. The 9057 prefix is for the UDOT Subarea and 9157 prefix for the WFRC Subarea.\n\n\n\nThe 0_Update_TAZID_Distance.s script was updated to export out true shape link and node shapefiles.\nTo account for the removal of CITY and COUNTY fields from the TAZ shapefile, the 1_NetProcessor.s and 4_Create_walk_xfer_access_links.s script was updated to remove references to those fields and the COUNTY field in the c_PNR_nodes.dbf output was changed to CO_FIPS.\nThe 1_NetProcessor.s was updated script to export out true shape Link/Node shapefiles.\nA bug in the Connected-and-Autonomous Vehicle (CAV) calculation was fixed where the column index was needed to be incremented by 1 to link up with lookup tables.\nThe hard-coded turn penalty node numbers in the 3_TurnPenalty.s script were updated to the new v8.3.2/v9.0.0 master network node numbering.\n\n\n\nThe EXTERNAL field reference in the 2_External_TripTables.s script was replaced with a reference to the General_Parameters.block token @external_zones@ to account for removal of field from TAZ shapefile.\n\n\n\nA new folder called e_TimeOfDayFactors was added with a 1_CalculateTimeOfDayFac.s script to output a new file with time of day factors for use in following scripts."
+    "text": "The changes in the input processing scripts are listed here by their corresponding subfolder."
   },
   {
     "objectID": "v9x/v900/whats-new/3-inputprocessing.html#setup",
     "href": "v9x/v900/whats-new/3-inputprocessing.html#setup",
-    "title": "Input Processing",
-    "section": "",
-    "text": "The 0_FolderSetup.s script was updated, renamed, and added to the HailMary.s script. Additionally, UpdatedMasterNet and UpdatedMasterNet\\GIS folders were added to 0_InputProcessing folder. These changes were also made to _CreateOutputFolders.s and _BlankFolderSetup in the Scenarios\\_default folder.\nTo account for removal of the fields from the TAZ shapefile, the references to CITY and COUNTY fields were removed from the 1_InputSetup.s script.\nThe copied locations of a few files in the \\_CopyToFolders folder were updated. VPR files in the 2_ModelScripts\\_CopyToFolders\\Distrib_ConvVPR folder are now copied to the Temp\\3_Distribute folder. The _Urbanization.mxd and _WalkBuffer.mxd in the 2_ModelScripts\\_CopyToFolders\\ArcMap_mxd folder are copied to the 0_InputProcessing folder."
+    "title": "InputProcessing",
+    "section": "Setup",
+    "text": "Setup\nThe 0_FolderSetup.s script was updated, renamed, and added to the HailMary.s script. Additionally, UpdatedMasterNet and UpdatedMasterNet\\GIS folders were added to 0_InputProcessing folder. These changes were also made to _CreateOutputFolders.s and _BlankFolderSetup in the Scenarios\\_default folder.\nTo account for removal of the fields from the TAZ shapefile, the references to CITY and COUNTY fields were removed from the 1_InputSetup.s script.\nThe copied locations of a few files in the \\_CopyToFolders folder were updated. VPR files in the 2_ModelScripts\\_CopyToFolders\\Distrib_ConvVPR folder are now copied to the Temp\\3_Distribute folder. The _Urbanization.mxd and _WalkBuffer.mxd in the 2_ModelScripts\\_CopyToFolders\\ArcMap_mxd folder are copied to the 0_InputProcessing folder."
   },
   {
     "objectID": "v9x/v900/whats-new/3-inputprocessing.html#se-processing",
     "href": "v9x/v900/whats-new/3-inputprocessing.html#se-processing",
-    "title": "Input Processing",
-    "section": "",
-    "text": "The 1_DemographicsAnalysis.s script was updated to read ControlTotal_SE_AllCounties.csv. The control total lookup index calculation was updated to account for Weber County indexing between two sub-areas. The 9057 prefix is for the UDOT Subarea and 9157 prefix for the WFRC Subarea."
+    "title": "InputProcessing",
+    "section": "SE Processing",
+    "text": "SE Processing\nThe 1_DemographicsAnalysis.s script was updated to read ControlTotal_SE_AllCounties.csv. The control total lookup index calculation was updated to account for Weber County indexing between two sub-areas. The 9057 prefix is for the UDOT Subarea and 9157 prefix for the WFRC Subarea."
   },
   {
     "objectID": "v9x/v900/whats-new/3-inputprocessing.html#network-processing",
     "href": "v9x/v900/whats-new/3-inputprocessing.html#network-processing",
-    "title": "Input Processing",
-    "section": "",
-    "text": "The 0_Update_TAZID_Distance.s script was updated to export out true shape link and node shapefiles.\nTo account for the removal of CITY and COUNTY fields from the TAZ shapefile, the 1_NetProcessor.s and 4_Create_walk_xfer_access_links.s script was updated to remove references to those fields and the COUNTY field in the c_PNR_nodes.dbf output was changed to CO_FIPS.\nThe 1_NetProcessor.s was updated script to export out true shape Link/Node shapefiles.\nA bug in the Connected-and-Autonomous Vehicle (CAV) calculation was fixed where the column index was needed to be incremented by 1 to link up with lookup tables.\nThe hard-coded turn penalty node numbers in the 3_TurnPenalty.s script were updated to the new v8.3.2/v9.0.0 master network node numbering."
+    "title": "InputProcessing",
+    "section": "Network Processing",
+    "text": "Network Processing\nThe 0_Update_TAZID_Distance.s script was updated to export out true shape link and node shapefiles.\nTo account for the removal of CITY and COUNTY fields from the TAZ shapefile, the 1_NetProcessor.s and 4_Create_walk_xfer_access_links.s script was updated to remove references to those fields and the COUNTY field in the c_PNR_nodes.dbf output was changed to CO_FIPS.\nThe 1_NetProcessor.s was updated script to export out true shape Link/Node shapefiles.\nA bug in the Connected-and-Autonomous Vehicle (CAV) calculation was fixed where the column index was needed to be incremented by 1 to link up with lookup tables.\nThe hard-coded turn penalty node numbers in the 3_TurnPenalty.s script were updated to the new v8.3.2/v9.0.0 master network node numbering."
   },
   {
     "objectID": "v9x/v900/whats-new/3-inputprocessing.html#trip-table",
     "href": "v9x/v900/whats-new/3-inputprocessing.html#trip-table",
-    "title": "Input Processing",
-    "section": "",
-    "text": "The EXTERNAL field reference in the 2_External_TripTables.s script was replaced with a reference to the General_Parameters.block token @external_zones@ to account for removal of field from TAZ shapefile."
+    "title": "InputProcessing",
+    "section": "Trip Table",
+    "text": "Trip Table\nThe EXTERNAL field reference in the 2_External_TripTables.s script was replaced with a reference to the General_Parameters.block token @external_zones@ to account for removal of field from TAZ shapefile."
   },
   {
     "objectID": "v9x/v900/whats-new/3-inputprocessing.html#time-of-day-factors",
     "href": "v9x/v900/whats-new/3-inputprocessing.html#time-of-day-factors",
-    "title": "Input Processing",
-    "section": "",
-    "text": "A new folder called e_TimeOfDayFactors was added with a 1_CalculateTimeOfDayFac.s script to output a new file with time of day factors for use in following scripts."
+    "title": "InputProcessing",
+    "section": "Time of Day Factors",
+    "text": "Time of Day Factors\nA new folder called e_TimeOfDayFactors was added with a 1_CalculateTimeOfDayFac.s script to output a new file with time of day factors for use in following scripts."
   },
   {
     "objectID": "v9x/v900/whats-new/4-hhdisag.html",
     "href": "v9x/v900/whats-new/4-hhdisag.html",
     "title": "Household Disaggregation and Auto Ownership",
     "section": "",
-    "text": "Household Disaggregation and Auto Ownership\nThe 1_LifeCycle.s was modified to account for removal of the COUNTY field from the TAZ shapefile and respective ids for county-specific variables removed from 0_GeneralParameters.block."
+    "text": "The 1_LifeCycle.s was modified to account for removal of the COUNTY field from the TAZ shapefile and respective ids for county-specific variables removed from 0_GeneralParameters.block."
   },
   {
     "objectID": "v9x/v900/whats-new/6-distribution.html",
@@ -2440,7 +2440,7 @@
     "href": "v9x/v900/whats-new/8-assign.html",
     "title": "Highway Assignment",
     "section": "",
-    "text": "Highway Assignment\nThe 4_SummarizeLoadedNetworks.s script was modified to point the GEOMI reference to 0_InputProcessing\\UpdatedMasterNet\\GIS\\@MasterPrefix@ - Link.shp instead of the 1_Inputs\\3_Highway folder."
+    "text": "The 4_SummarizeLoadedNetworks.s script was modified to point the GEOMI reference to 0_InputProcessing\\UpdatedMasterNet\\GIS\\@MasterPrefix@ - Link.shp instead of the 1_Inputs\\3_Highway folder."
   },
   {
     "objectID": "v9x/v900/whats-new/0-all.html",
