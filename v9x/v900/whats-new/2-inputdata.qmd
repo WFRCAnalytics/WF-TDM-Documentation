@@ -831,7 +831,7 @@ Route S902 was updated so route no longer go to the I-80 Parleys Canyon external
 
 ### Public Transport (PT) Parameters
 
-The fare files were updated with 2019 fare data. The fares were updated to match the actual advertised fares, whereas the v8.3.2 model contained a 46% adjustment fares. This reduction accounts for monthly pass, education, fare-pay, senior, employer paid, and other discounts. This adjustment is now explicitely defined, as was discussed in the *General Parameters* section.
+The fare files were updated with 2019 fare data. The fares were updated to match the actual advertised fares, whereas the v8.3.2 model contained a 46% adjustment fares. This reduction accounts for monthly pass, education, fare-pay, senior, employer paid, and other discounts. This adjustment is now explicitly defined, as was discussed in the *General Parameters* section.
         
 ### General Hand-Coded Support Links
 `General_hand_coded_walk_links.NTL` files were reviewed and updated.
