@@ -6,11 +6,11 @@ execute:
     warning: false
 ---
 
-This section compares the model results between v9.0.0 and v8.3.2 for roadway volumes and transit.
+This section compares the model results between v9.0 and v8.3.2 for roadway volumes and transit.
 
 ## Road Volume Comparisons
 
-The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in v9.0.0 compared to v8.3.2 are shown in blue, while increases are shown in red. Salt Lake and northern Davis counties display a drop in roadway volumes, most apparent on I-15. Weber, southern Davis, and Utah Counties show increases. Most of the changes are relatively minor, with the largest decreases occurring on the freeways in Salt Lake County. However, given the large daily volume for these roadways, the percent change is relatively low.
+The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in v9.0 compared to v8.3.2 are shown in blue, while increases are shown in red. Salt Lake and northern Davis counties display a drop in roadway volumes, most apparent on I-15. Weber, southern Davis, and Utah Counties show increases. Most of the changes are relatively minor, with the largest decreases occurring on the freeways in Salt Lake County. However, given the large daily volume for these roadways, the percent change is relatively low.
 
 ::: {#fig-volume-comparison layout-ncol=3}
 
@@ -326,11 +326,11 @@ py.offline.init_notebook_mode(connected=True)
 ```
 ## Transit Comparisons
 
-Transit comparisons were done with ridership, trips mode share, and boardings mode share. Overall ridership increases significantly in v9.0.0, and Core Bus ridership takes a larger share of trips and boardings than in v8.3.2.
+Transit comparisons were done with ridership, trips mode share, and boardings mode share. Overall ridership increases significantly in v9.0, and Core Bus ridership takes a larger share of trips and boardings than in v8.3.2.
 
 ### Transit Ridership
 
-Transit ridership in v9.0.0 compared to v8.3.2 shows significant increase in 2032, 2042, and 2050. See @fig-hy-tr-all. The total ridership in 2050 for v9.0.0 is 332,000 daily trips compared to the v8.3.2 model that showed 258,000 daily trips, which represents a 29% increase. The increase is largely due to the improvements in commuter rail with increased frequency and speed. <mark>???VERIFY!!???</mark>
+Transit ridership in v9.0 compared to v8.3.2 shows significant increase in 2032, 2042, and 2050. See @fig-hy-tr-all. The total ridership in 2050 for v9.0 is 332,000 daily trips compared to the v8.3.2 model that showed 258,000 daily trips, which represents a 29% increase. The increase is largely due to the improvements in commuter rail with increased frequency and speed. <mark>???VERIFY!!???</mark>
 
 ```{python}
 #| label: fig-hy-tr-all
@@ -348,7 +348,7 @@ update_plot(
 
 <mark>???NEED TO GET RID OF DATE TIME STAMP AND OTHER 'CODE'S IN MODEL LEGEND "Transit" instead of "4: Transit"???</mark>
 
-For Home-Based College (HBC) trips, the v9.0.0 model shows lower projections. See @fig-dy-tr-hbc. This is mostly due to many of the lower enrollment colleges being removed from the trips tables. The uptick in HBC trips in 2042 and 2050 in v9.0.0 follow similar increases the updated enrollment trends. <mark>???ADD REFERENCE TO COLLEGES SECTION IN INPUTS???</mark>
+For Home-Based College (HBC) trips, the v9.0 model shows lower projections. See @fig-dy-tr-hbc. This is mostly due to many of the lower enrollment colleges being removed from the trips tables. The uptick in HBC trips in 2042 and 2050 in v9.0 follow similar increases the updated enrollment trends. <mark>???ADD REFERENCE TO COLLEGES SECTION IN INPUTS???</mark>
 
 ```{python}
 #| label: fig-dy-tr-hbc
@@ -371,7 +371,7 @@ A comparison of the share of trips amongst the various modes of transit was done
 
 #### Trips
 
-The transit ridership trip shares by mode can be found in @fig-shr-tr-all-9 for v9.0.0 and @fig-shr-tr-all-832 for v8.3.2. The main difference in v9.0.0 trip share by mode is the large increase in Core Bus trips in 2032 from almost nothing in 2028, while in v8.3.2 the increase in Core Bus trips is spread out between 2024 and 2030. This large increase is consistent with the transit inputs into the model with a large number of Core Bus routes coming into production in 2032, replacing mostly local bus service. The new Core Buy takes most of the local bus ridership it is replacing, but also quite a lot of ridership from Light Rail Transit (Mode 7).
+The transit ridership trip shares by mode can be found in @fig-shr-tr-all-9 for v9.0 and @fig-shr-tr-all-832 for v8.3.2. The main difference in v9.0 trip share by mode is the large increase in Core Bus trips in 2032 from almost nothing in 2028, while in v8.3.2 the increase in Core Bus trips is spread out between 2024 and 2030. This large increase is consistent with the transit inputs into the model with a large number of Core Bus routes coming into production in 2032, replacing mostly local bus service. The new Core Buy takes most of the local bus ridership it is replacing, but also quite a lot of ridership from Light Rail Transit (Mode 7).
 
 
 <mark>???MAP SHOWING TRANSIT CHANGES, LIKE ROADWAY VOLUMES WOULD BE USEFUL???</mark>
@@ -409,7 +409,7 @@ update_plot_stackedarea(
 
 ### Transit Boardings
 
-Transit boardings for v9.0.0 are found in @fig-brd-9 and for v8.3.2 are found in @fig-brd-832. Boardings follow the same pattern as trips, but boardings are able to differentiate between modes better than trips that are categorized hierarchically.
+Transit boardings for v9.0 are found in @fig-brd-9 and for v8.3.2 are found in @fig-brd-832. Boardings follow the same pattern as trips, but boardings are able to differentiate between modes better than trips that are categorized hierarchically.
 
 
 ```{python}
