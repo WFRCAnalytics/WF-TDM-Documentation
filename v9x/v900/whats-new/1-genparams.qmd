@@ -1,7 +1,7 @@
 ---
 title: General Parameters
-echo: false
-warning: false
+#echo: false
+#warning: false
 ---
 
 Changes made to the `0_GeneralParameters.block` file are discussed in this section.
@@ -16,6 +16,11 @@ Note, the following TAZ parameters ranges were removed from the general paramete
  - WFRCRange
  - MAGRange
 
+\begingroup
+\setlength{\LTleft}{0pt minus 500pt}
+\setlength{\LTright}{0pt minus 500pt}
+\fontsize{5pt}{7pt}\selectfont
+\addtolength{\tabcolsep}{-3pt}
 ```{python}
 #| label: tbl-taz-renumber
 #| tbl-cap: Renumbered TAZ Ranges
@@ -28,6 +33,7 @@ table = table.loc[table['Table'] == 'TAZ']
 table = table[['Parameter', 'v9Value', 'v8Value','Notes']]
 display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}).set_table_styles([dict(selector='th', props=[('text-align', 'center')])]))
 ```
+\endgroup
 
 ### Highway Nodes
 ```{python}
