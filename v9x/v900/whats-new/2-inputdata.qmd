@@ -10,7 +10,6 @@ Changes made to the `1_Inputs` folder are discussed in this section.
 
 ```{python}
 #|echo: false
-
 # model folder
 tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
 tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\_archive\WF TDM v9.0 - 2022-10-05"
@@ -60,6 +59,7 @@ if not os.path.isfile('data/tazmedincome.geojson'):
   gdfTazMedIncome.to_file('data/tazmedincome.geojson', driver='GeoJSON')
 ```
 
+::: {.content-visible when-format="html"}
 ```{ojs}
 //|echo: false
 // setup mapping and layers
@@ -74,7 +74,7 @@ geojsonSDst      = FileAttachment("data/sdst.geojson"     ).json()
 geojsonMDst      = FileAttachment("data/mdst.geojson"     ).json()
 geojsonLDst      = FileAttachment("data/ldst.geojson"     ).json()
 ```
-
+:::
 
 ## Global Data
 This section includes the changes made within the `0_GlobalData` subfolder.
@@ -173,6 +173,7 @@ dfBusSpeedRatios_Previous.to_csv(r'data\bus_speed_ratios_previous.csv', index=Fa
 
 #### Bus Speeds Plot
 
+::: {.content-visible when-format="html"}
 ```{ojs}
 //| echo: false
 
@@ -251,6 +252,9 @@ Plot.plot({
   ]
 })
 ```
+:::
+
+
 
 #### Bus Speeds Data
 

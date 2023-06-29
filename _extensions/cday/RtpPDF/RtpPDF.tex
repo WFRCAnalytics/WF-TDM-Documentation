@@ -8,6 +8,7 @@
 \usepackage{titlesec}
 \usepackage{tabularx}
 \usepackage{etoolbox}
+\usepackage{graphicx}
 
 %% Set page size with a wider left margin
 \geometry{a4paper, total={170mm,257mm}, left=54mm, top=35mm, bottom=20mm, right=15mm}
@@ -39,10 +40,11 @@
 
 \AddToShipoutPictureBG{%
     \begin{tikzpicture}[remember picture,overlay]
-        \node[opacity=0.4,inner sep=0pt,anchor=north west] at (current page.north west) {\includegraphics[height=\paperheight,width=\paperheight,keepaspectratio]{_extensions/cday/RtpPDF/watermark6.png}};
+        \node[opacity=0.25,inner sep=0pt,anchor=north west] at (current page.north west) {\includegraphics[height=\paperheight,width=\paperheight,keepaspectratio]{_extensions/cday/RtpPDF/watermark6.png}};
     \end{tikzpicture}%
 }
 
+% Make watermark full color on title page
 \AddToShipoutPictureBG*{%
     \ifnum\value{page}=1
         \begin{tikzpicture}[remember picture,overlay]
@@ -51,25 +53,31 @@
     \fi
 }
 
-\usepackage{eso-pic}
-\usepackage{graphicx}
-
+% Add page numbers and sponsor png to bottom of pages
 \fancypagestyle{mystyle}{
   \fancyhf{}
   \renewcommand\headrulewidth{0pt}
-  \fancyfoot[C]{\thepage}
+  \fancyfoot[C]{\ifnum\value{page}>1\thepage\fi}
   \fancyfootoffset{3.5cm}
   \AddToShipoutPictureBG{%
     \AtPageLowerLeft{
-      \put(-2.50cm,.9cm){
-        \hspace{\dimexpr\paperwidth-2cm}\hspace*{-2cm}\vspace*{2cm}\includegraphics[width=5cm, height=5cm]{_extensions/cday/RtpPDF/sponsors2.png}
-        }  
-      }%
+      \ifnum\value{page}>1
+        \put(-2.50cm,.9cm){
+          \hspace{\dimexpr\paperwidth-2cm}\hspace*{-2cm}\vspace*{2cm}\includegraphics[width=5cm, height=5cm]{_extensions/cday/RtpPDF/sponsors2.png}
+        }
+      \fi  
+    }%
   }
 }
 
 \setlength{\footskip}{20pt}
 
+\usepackage{titlesec}
+
+\titleformat{\subsubsection}
+  {\normalfont\bfseries}{\thesubsubsection.}{1em}{}
+
+\setcounter{secnumdepth}{4}
 
 %% Style the chapter/section fonts
 \chapterfont{\color{dark}\fontsize{28}{15}\selectfont}
@@ -110,4 +118,12 @@
     BoldFont=*-Bold,
     ItalicFont=*-Italic,
 ]
+
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+\renewcommand{\labelitemi}{\includegraphics[width=0.5cm]{_extensions/cday/RtpPDF/rtp_bullet2.png}}
+\renewcommand{\labelitemii}{\includegraphics[width=0.5cm]{_extensions/cday/RtpPDF/rtp_bullet2.png}}
+\renewcommand{\labelitemiii}{\includegraphics[width=0.5cm]{_extensions/cday/RtpPDF/rtp_bullet2.png}}
+\renewcommand{\labelitemiv}{\includegraphics[width=0.5cm]{_extensions/cday/RtpPDF/rtp_bullet2.png}}
 
