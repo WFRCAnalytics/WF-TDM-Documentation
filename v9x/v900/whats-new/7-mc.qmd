@@ -6,7 +6,7 @@ Changes made to the `2_ModelScripts\4_ModeChoice` folder are discussed in this s
 
 ## Transit Skims
 
-Modifications to the transit skim script to account for the new bus speeds input file.
+Modifications to the transit skim script were made to incorporate the new bus speeds input file.
 
 ## District Summaries
 
