@@ -36,7 +36,7 @@ table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'TAZ']
 table = table[['Parameter', 'v9Value', 'v8Value','Notes']]
 
-headers = ['Parameter', 'v9Value', 'v8Value','Notes']
+headers = ['Parameter', 'v9 Value', 'v8 Value','Notes']
 Markdown(tabulate(table, 
   headers=headers, 
   tablefmt="pipe", 
@@ -220,7 +220,7 @@ import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'ManagedLaneCosts']
 table = table[['Parameter','v9Value','v8Value','Notes']]
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ### Core Bus Constant Multiplier
@@ -232,7 +232,7 @@ import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'VOT2']
 table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
-display(table.style.hide_index())
+display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
 ```
 
 ### CRT Adjustment Factors
