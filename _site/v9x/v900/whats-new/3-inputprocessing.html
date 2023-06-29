@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>WFTDM Documentation - InputProcessing</title>
+<title>WFTDM Documentation - Input Processing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -183,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/1-genparams.html"><span style="color: #3E6682;">**Whats New?**</span></a></li><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/3-inputprocessing.html">InputProcessing</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/1-genparams.html"><span style="color: #3E6682;">**Whats New?**</span></a></li><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/3-inputprocessing.html">Input Processing</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -226,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../v9x/v900/whats-new/3-inputprocessing.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">InputProcessing</span></a>
+ <span class="menu-text">Input Processing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -335,7 +335,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#se-processing" id="toc-se-processing" class="nav-link" data-scroll-target="#se-processing">SE Processing</a></li>
   <li><a href="#network-processing" id="toc-network-processing" class="nav-link" data-scroll-target="#network-processing">Network Processing</a></li>
-  <li><a href="#trip-table" id="toc-trip-table" class="nav-link" data-scroll-target="#trip-table">Trip Table</a></li>
   <li><a href="#time-of-day-factors" id="toc-time-of-day-factors" class="nav-link" data-scroll-target="#time-of-day-factors">Time of Day Factors</a></li>
   </ul>
 </nav>
@@ -345,7 +344,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">InputProcessing</h1>
+<h1 class="title">Input Processing</h1>
 </div>
 
 
@@ -360,32 +359,24 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>The changes in the input processing scripts are listed here by their corresponding subfolder.</p>
+<p>Changes made to the <code>2_ModelScripts\0_InputProcessing</code> folder are discussed in this section.</p>
+<p>Global changes made to the all the scripts in this folder included modifications to the script to account for removal of the <code>CITY</code>, <code>COUNTY</code>, and <code>EXTERNAL</code> fields from the TAZ shapefile and updates to use true shape link and node shapefiles.</p>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>The <code>0_FolderSetup.s</code> script was updated, renamed, and added to the <code>HailMary.s</code> script. Additionally, <code>UpdatedMasterNet</code> and <code>UpdatedMasterNet\GIS</code> folders were added to <code>0_InputProcessing</code> folder. These changes were also made to <code>_CreateOutputFolders.s</code> and <code>_BlankFolderSetup</code> in the <code>Scenarios\_default</code> folder.</p>
-<p>To account for removal of the fields from the TAZ shapefile, the references to <code>CITY</code> and <code>COUNTY</code> fields were removed from the <code>1_InputSetup.s</code> script.</p>
-<p>The copied locations of a few files in the <code>\_CopyToFolders</code> folder were updated. VPR files in the <code>2_ModelScripts\_CopyToFolders\Distrib_ConvVPR</code> folder are now copied to the <code>Temp\3_Distribute</code> folder. The <code>_Urbanization.mxd</code> and <code>_WalkBuffer.mxd</code> in the <code>2_ModelScripts\_CopyToFolders\ArcMap_mxd</code> folder are copied to the <code>0_InputProcessing</code> folder.</p>
+<p>The folder setup routine was integrated into the <code>HailMary.s</code> script to run automatically. It is no longer necessary prior to running the model to copy empty folders or run the <code>_CreateOutputFolders.s</code> separately.</p>
 </section>
 <section id="se-processing" class="level2">
 <h2 class="anchored" data-anchor-id="se-processing">SE Processing</h2>
-<p>The <code>1_DemographicsAnalysis.s</code> script was updated to read <code>ControlTotal_SE_AllCounties.csv</code>. The control total lookup index calculation was updated to account for Weber County indexing between two sub-areas. The <code>9057</code> prefix is for the UDOT Subarea and <code>9157</code> prefix for the WFRC Subarea.</p>
+<p>The <code>1_DemographicsAnalysis.s</code> script was updated to read <code>ControlTotal_SE_AllCounties.csv</code>. Weber County contains two sets of indexes bus on whether it is the UDOT Subarea <code>9057</code> or the Wasatch Front Subarea <code>9157</code>.</p>
 </section>
 <section id="network-processing" class="level2">
 <h2 class="anchored" data-anchor-id="network-processing">Network Processing</h2>
-<p>The <code>0_Update_TAZID_Distance.s</code> script was updated to export out true shape link and node shapefiles.</p>
-<p>To account for the removal of <code>CITY</code> and <code>COUNTY</code> fields from the TAZ shapefile, the <code>1_NetProcessor.s</code> and <code>4_Create_walk_xfer_access_links.s</code> script was updated to remove references to those fields and the <code>COUNTY</code> field in the <code>c_PNR_nodes.dbf</code> output was changed to <code>CO_FIPS</code>.</p>
-<p>The <code>1_NetProcessor.s</code> was updated script to export out true shape Link/Node shapefiles.</p>
 <p>A bug in the Connected-and-Autonomous Vehicle (CAV) calculation was fixed where the column index was needed to be incremented by 1 to link up with lookup tables.</p>
-<p>The hard-coded turn penalty node numbers in the <code>3_TurnPenalty.s</code> script were updated to the new v8.3.2/v9.0.0 master network node numbering.</p>
-</section>
-<section id="trip-table" class="level2">
-<h2 class="anchored" data-anchor-id="trip-table">Trip Table</h2>
-<p>The <code>EXTERNAL</code> field reference in the <code>2_External_TripTables.s</code> script was replaced with a reference to the <code>General_Parameters.block</code> token <code>@external_zones@</code> to account for removal of field from TAZ shapefile.</p>
+<p>The hard-coded turn penalty node numbers in the <code>3_TurnPenalty.s</code> script were updated to the new master network node numbering.</p>
 </section>
 <section id="time-of-day-factors" class="level2">
 <h2 class="anchored" data-anchor-id="time-of-day-factors">Time of Day Factors</h2>
-<p>A new folder called <code>e_TimeOfDayFactors</code> was added with a <code>1_CalculateTimeOfDayFac.s</code> script to output a new file with time of day factors for use in following scripts.</p>
+<p>A new file <code>1_CalculateTimeOfDayFac.s</code> is created during the model that includes time of day factors for use in following scripts.</p>
 
 
 </section>

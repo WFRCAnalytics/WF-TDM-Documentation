@@ -20,7 +20,7 @@ book:
 #bibliography: references.bib
 
 format:
-  PrettyPDF-pdf:
+  RtpPDF-pdf:
     toc: true
     lot: true
     lof: true

@@ -226,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../v9x/v900/whats-new/3-inputprocessing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">InputProcessing</span></a>
+ <span class="menu-text">Input Processing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,8 +332,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
    
   <ul class="collapse">
-  <li><a href="#drive-access-links" id="toc-drive-access-links" class="nav-link active" data-scroll-target="#drive-access-links">Drive Access Links</a></li>
-  <li><a href="#transit-skims" id="toc-transit-skims" class="nav-link" data-scroll-target="#transit-skims">Transit Skims</a></li>
+  <li><a href="#transit-skims" id="toc-transit-skims" class="nav-link active" data-scroll-target="#transit-skims">Transit Skims</a></li>
   <li><a href="#district-summaries" id="toc-district-summaries" class="nav-link" data-scroll-target="#district-summaries">District Summaries</a></li>
   </ul>
 </nav>
@@ -358,55 +357,14 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Updates to the Mode Choice portion of the model include drive access links, transit skims, and district summaries.</p>
-<section id="drive-access-links" class="level2">
-<h2 class="anchored" data-anchor-id="drive-access-links">Drive Access Links</h2>
-<p>The <code>04_Create_drive_access_links.s</code> script was modified to reference the new <code>ControlTotal_SE_AllCounties.csv</code> input file. The control total lookup index calculation was updated to account for Weber County indexing between two sub-areas. The <code>9057</code> prefix is for the UDOT Subarea and <code>9157</code> prefix for the WFRC Subarea.</p>
-</section>
+<p>Changes made to the <code>2_ModelScripts\4_ModeChoice</code> folder are discussed in this section. Updates to the mode choice portion of the model include transit skims and district summaries.</p>
 <section id="transit-skims" class="level2">
 <h2 class="anchored" data-anchor-id="transit-skims">Transit Skims</h2>
-<p>The <code>05_Skim_Tran.s</code> script was modified to account for the new bus speeds inputs. <mark>???INCLUDE REFERENCE HERE TO INPUT DATA - BUS SPEEDS???</mark> The lookup index is based on updated Functional Class groups shown in <a href="#tbl-hway-count">Table&nbsp;1</a>.</p>
-<div class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
-<div id="tbl-hway-count" class="anchored">
-<table class="table table-sm table-striped small">
-<caption>Table&nbsp;1: Updated Functional Class Groups for Bus Speed</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Functional Class</th>
-<th style="text-align: left;">FT</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Collectors &amp; Locals</td>
-<td style="text-align: left;">1, 4-10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Minor Arterials</td>
-<td style="text-align: left;">3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Principal Arterials</td>
-<td style="text-align: left;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Expressways</td>
-<td style="text-align: left;">11-19</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Freeways &amp; Ramps</td>
-<td style="text-align: left;">20-49</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
+<p>Modifications to the transit skim script to account for the new bus speeds input file.</p>
 </section>
 <section id="district-summaries" class="level2">
 <h2 class="anchored" data-anchor-id="district-summaries">District Summaries</h2>
-<p>The <code>18_SumToDistricts_FinalTripTables.s</code> script was modified to change <code>COUNTY</code> field references to <code>CO_FIPS</code> for county summaries due to removal of field from TAZ shapefile.</p>
+<p>The district summary script was modified to change <code>COUNTY</code> field references to <code>CO_FIPS</code> for county summaries due to removal of field from TAZ shapefile.</p>
 
 
 </section>

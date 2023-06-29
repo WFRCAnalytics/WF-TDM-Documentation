@@ -6,18 +6,16 @@
 \usepackage{sectsty}
 \usepackage{fontspec}
 \usepackage{titlesec}
-\usepackage{tabularx}
-\usepackage{etoolbox}
 
 %% Set page size with a wider right margin
 \geometry{a4paper, total={170mm,257mm}, left=20mm, top=20mm, bottom=20mm, right=50mm}
 
-%% Define colours
+%% Let's define some colours
 \definecolor{light}{HTML}{E6E6FA}
 \definecolor{highlight}{HTML}{800080}
 \definecolor{dark}{HTML}{330033}
 
-%% Add border on the right-hand side
+%% Let's add the border on the right hand side 
 \AddToShipoutPicture{% 
     \AtPageLowerLeft{% 
         \put(\LenToUnit{\dimexpr\paperwidth-3cm},0){% 
@@ -41,7 +39,7 @@
 }
 \setlength{\footskip}{20pt}
 
-%% Style the chapter/section fonts
+%% style the chapter/section fonts
 \chapterfont{\color{dark}\fontsize{20}{16.8}\selectfont}
 \sectionfont{\color{dark}\fontsize{20}{16.8}\selectfont}
 \subsectionfont{\color{dark}\fontsize{14}{16.8}\selectfont}
@@ -59,7 +57,7 @@
 }
 \makeatother
 
-%% Use custom fonts
+%% Use some custom fonts
 \setsansfont{Ubuntu}[
     Path=_extensions/nrennie/PrettyPDF/Ubuntu/,
     Scale=0.9,
@@ -67,7 +65,7 @@
     UprightFont=*-Regular,
     BoldFont=*-Bold,
     ItalicFont=*-Italic,
-]
+    ]
 
 \setmainfont{Ubuntu}[
     Path=_extensions/nrennie/PrettyPDF/Ubuntu/,
@@ -76,5 +74,4 @@
     UprightFont=*-Regular,
     BoldFont=*-Bold,
     ItalicFont=*-Italic,
-]
-
+    ]
