@@ -164,15 +164,16 @@ dfBusSpeedRatios_Previous.to_csv(r'data\bus_speed_ratios_previous.csv', index=Fa
 ```
 
 ::: {.content-visible when-format='pdf'}
-
 The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the *General Parameters* section, and included in a new bus speed ratios file `bus_speed_ratios.csv`. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes. @fig-pdf-old-bus-speeds-plot shows the old bus speed ratios and @fig-pdf-bus-speeds-plot shows the updated bus speed ratios.
 
 ![Bus Speeds Plot - Version 8.3.2](_pictures/old_bus_speeds.png){#fig-pdf-old-bus-speeds-plot}
 
 ![Bus Speeds Plot - Version 9.0.0.](_pictures/pdf-bus-speeds-plot.png){#fig-pdf-bus-speeds-plot}
+:::
 
 ::: {.content-visible when-format="html"}
 The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the *General Parameters* section, and included in a new bus speed ratios file `bus_speed_ratios.csv`. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes.
+
 ::: {.panel-tabset}
 
 #### Bus Speeds Plot
@@ -277,7 +278,7 @@ Inputs.table(faDataBusSpeeds, {
     BusSpeedRatio: "Bus Speed Ratio"
   }})
 
-
+```
 
 #### Previous Bus Speeds
 
@@ -326,7 +327,9 @@ Plot.plot({
 ```
 
 :::
+
 <mark>???NEED TO FIX OVERLAPPING CHART LABELS???</mark>
+
 :::
 
 ### Assignment
@@ -576,9 +579,50 @@ Compared to the previous temporary parking values of $1 in 2010 dollars, the cho
 
 ### Small Districts
 
+::: {.content-visible when-format="pdf"}
+There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). Districts are shown in @fig-districts-pdf. Two additional polygon shapefiles were added to the Districts subfolder to represent the Wasatch Front sub area and the REMM area.
+
+```{python}
+#|label: fig-districts-pdf
+#|fig-cap: Districts
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+# Read the GeoJSON files
+data_ldst = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\ldst.geojson')
+data_mdst= gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\mdst.geojson')
+data_sdst= gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\sdst.geojson')
+
+# Set the line colors and line width for each GeoDataFrame
+line_color_ldst = '#0B2842'
+line_color_mdst = 'purple'
+line_color_sdst = '#789d4b'
+line_width = 1.5
+
+# Create the figure and axes
+fig, ax = plt.subplots(figsize=(15, 15))
+
+# Plot the GeoDataFrames with different line colors and line width
+data_ldst.plot(ax=ax, facecolor='none', edgecolor=line_color_ldst, linewidth=(line_width + 7))
+data_mdst.plot(ax=ax, facecolor='none', edgecolor=line_color_mdst, linewidth=(line_width + 3))
+data_sdst.plot(ax=ax, facecolor='none', edgecolor=line_color_sdst, linewidth=line_width)
+
+legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1]) 
+legend_elements = [
+    plt.Line2D([0], [0], color=line_color_ldst, linewidth=line_width, label='ldst'),
+    plt.Line2D([0], [0], color=line_color_mdst, linewidth=line_width, label='mdst'),
+    plt.Line2D([0], [0], color=line_color_sdst, linewidth=line_width, label='sdst'),
+]
+legend_ax.legend(handles=legend_elements, loc='center')
+legend_ax.axis('off')
+
+# Display the plot
+plt.show()
+```
+:::
+
+::: {.content-visible when-format="html"}
 There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). Districts are shown in @fig-districts. Two additional polygon shapefiles were added to the Districts subfolder to represent the Wasatch Front sub area and the REMM area.
-
-
 ```{ojs}
 //|label: fig-districts
 //|fig-cap: Districts
@@ -626,6 +670,7 @@ layer.bindTooltip(name); // Add tooltip
     legend.addTo(map);
 }
 ```
+:::
 
 ### Source
 
@@ -636,7 +681,11 @@ The `_Source` subfolder was added and includes the following shapefile data sets
 Forecasts and control totals were updated based on new census data, updated base year parcel data, and the results of the REMM Model.
 
 ###  Forecasts
+::: {.content-visible when-format="pdf"}
+The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9.0.0.
+:::
 
+::: {.content-visible when-format="html"}
 The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9.0.0. You can explore the data in the embedded web application in @fig-household-job-forecast-map
 
 ```{ojs}
@@ -648,9 +697,15 @@ html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-
          <iframe width="900" height="800" src="https://wfrc.org/household-job-forecast-map/" title="Household and Job Forecast"></iframe>
      </div>`
 ```
+:::
 
 ### Control Totals
+::: {.content-visible when-format="pdf"}
+Updates to the county control totals were made based on projections from the Gardner Policy Institute. See @fig-county-control-totals-by-category for a comparison between v8 and v9 by county for any given socioeconomic category.
+:::
 
+
+::: {.content-visible when-format="html"}
 Updates to the county control totals were made based on projections from the Gardner Policy Institute. See @fig-county-control-totals-by-category for a comparison between v8 and v9 by county for any given socioeconomic category.
 
 ```{python}
@@ -742,12 +797,15 @@ Plot.plot({
   ]
 })
 ```
+:::
 
 ### School Enrollment
+::: {.content-visible when-format="pdf"}
+The Kindergarten through 12th grade (K-12) enrollment data was updated using the 2019 statewide school enrollment database. This was done at the state-wide level and then applied to the Wasatch Front. 
+:::
 
+::: {.content-visible when-format="html"}
 The Kindergarten through 12th grade (K-12) enrollment data was updated using the 2019 statewide school enrollment database. This was done at the state-wide level and then applied to the Wasatch Front. Additionally, a point shapefile of the state-wide dataset is included with the TDM, as shown in @fig-school-locations.
-
-
 ```{ojs}
 //|label: fig-school-locations
 //|fig-cap: K-12 School Locations
@@ -854,6 +912,7 @@ mapK12Enroll = {
   
 }
 ```
+:::
 
 ### Median Income
 
@@ -961,6 +1020,12 @@ if not os.path.isfile('data/externalnew.geojson'):
 
 ## Externals
 
+::: {.content-visible when-format="pdf"}
+External locations and forecasts were updated. The locations of the former and updated location of externals is shown in @fig-externals-pdf. Forecasts through 2060 were generated for the updated external locations using historical data through 2019.
+![v9 External Description.](_pictures/externals.png){#fig-externals-pdf}
+:::
+
+::: {.content-visible when-format="html"}
 External locations and forecasts were updated. The locations of the former and updated location of externals is shown in @fig-externals. Forecasts through 2060 were generated for the updated external locations using historical data through 2019.
 
 ```{ojs}
@@ -1092,6 +1157,7 @@ mapExternals = {
     legend.addTo(map);  
 }
 ```
+:::
 
 The updated numbering scheme can be found in  @fig-descrip1, @fig-descrip2, and @fig-descrip3.
 
