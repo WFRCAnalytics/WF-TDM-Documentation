@@ -3,7 +3,6 @@ title: Input Data
 warning: false
 message: false
 echo: false
-include: false
 ---
 
 Changes made to the `1_Inputs` folder are discussed in this section.
