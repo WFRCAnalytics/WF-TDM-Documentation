@@ -11,7 +11,7 @@
 \usepackage{graphicx}
 
 %% Set page size with a wider left margin
-\geometry{a4paper, total={170mm,257mm}, left=54mm, top=35mm, bottom=20mm, right=15mm}
+\geometry{a4paper, total={170mm,257mm}, left=54mm, top=35mm, bottom=25mm, right=15mm}
 
 %% Define colours
 \definecolor{light}{HTML}{3E6682}
@@ -57,7 +57,8 @@
 \fancypagestyle{mystyle}{
   \fancyhf{}
   \renewcommand\headrulewidth{0pt}
-  \fancyfoot[C]{\ifnum\value{page}>1\thepage\fi}
+  \fancyfoot[C]{\ifnum\value{page}>1\hspace{-3cm}\textcolor{dark}{\textbf{\thepage}}\fi}
+  \fancyfoot[L]{\ifnum\value{page}>1\textcolor{dark}{\textbf{What's New? - Version 9.0.0}}\fi}
   \fancyfootoffset{3.5cm}
   \AddToShipoutPictureBG{%
     \AtPageLowerLeft{
@@ -66,17 +67,18 @@
           \hspace{\dimexpr\paperwidth-2cm}\hspace*{-2cm}\vspace*{2cm}\includegraphics[width=5cm, height=5cm]{_extensions/cday/RtpPDF/sponsors2.png}
         }
       \fi  
+      \put(\LenToUnit{1.2cm}, \LenToUnit{2cm}){%
+        \includegraphics[width=19cm, height=5cm]{_extensions/cday/RtpPDF/footer-line.png}%
+      }
     }%
   }
 }
+\setlength{\footskip}{35pt}
 
-\setlength{\footskip}{20pt}
 
 \usepackage{titlesec}
-
 \titleformat{\subsubsection}
   {\normalfont\bfseries}{\thesubsubsection.}{1em}{}
-
 \setcounter{secnumdepth}{4}
 
 %% Style the chapter/section fonts

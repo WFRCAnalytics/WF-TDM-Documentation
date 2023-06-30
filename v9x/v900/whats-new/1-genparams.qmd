@@ -17,14 +17,12 @@ Note, the following TAZ parameters ranges were removed from the general paramete
  - WFRCRange
  - MAGRange
 
-See  @tbl-taz-ranges-html 
-
 ::: {.grid}
 ::: {.g-col-1}
 :::
 ::: {.g-col-10}
 ```{python}
-#| label: tbl-taz-ranges-html
+#| label: tbl-taz-ranges
 #| tbl-cap: Renumbered TAZ Ranges
 #| tbl-colwidths: [20,20,30,30]
 import pandas as pd
@@ -53,10 +51,12 @@ Markdown(tabulate(table,
 ```{python}
 #| label: tbl-highway-renumber
 #| tbl-cap: Renumbered Highway Nodes
+#| tbl-colwidths: [20, 20, 20, 40]
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'HighwayNodes']
 table = table[['Parameter', 'v9Value', 'v8Value','Notes']]
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+headers = ['Parameter', 'v9 Value', 'v8 Value','Notes']
+display(table.style.hide_index())  
 ```
 
 ### College Zones
@@ -65,21 +65,35 @@ Where noted, several colleges were effectively discontinued, meaning references 
 ```{python}
 #| label: tbl-college-renumber
 #| tbl-cap: Renumbered College Zones
+#| tbl-colwidths: [20,20,11,11,38]
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'CollegeZones1']
 table = table[['SubHeader','Parameter', 'v9Value', 'v8Value','Notes']]
 table = table.rename(columns={'SubHeader':'Area'})
 table = table.replace(np. nan,'',regex=True) 
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+headers = ['Area','Parameter', 'v9 Value', 'v8 Value','Notes']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 
 ```{python}
 #| label: tbl-college-renumber-2
 #| tbl-cap: Renumbered College Zones (continued)
+#| tbl-colwidths: [15,40,45]
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'CollegeZones2']
 table = table[['Parameter', 'v9Value', 'v8Value']]
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+headers = ['Parameter', 'v9Value', 'v8Value']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 
 
@@ -90,7 +104,7 @@ display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], *
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'OfflineTripZones']
 table = table[['Parameter', 'v9Value', 'v8Value']]
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+display(table.style.hide_index())
 ```
 
 
@@ -101,7 +115,7 @@ display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], *
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'SpecialGeneratorZones']
 table = table[['Parameter', 'v9Value', 'v8Value']]
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+display(table.style.hide_index())
 ```
 
 ## Exogenous Trip Table Parameters
@@ -115,7 +129,7 @@ table = table.loc[table['Table'] == 'ExogenousTrips']
 table = table[['Parameter', 'v9Value', 'v8Value', 'Notes']]
 table['v9Value'] = table['v9Value'].astype(int).apply(lambda x: "${:,}".format((x)))
 table['v8Value'] = table['v8Value'].astype(int).apply(lambda x: "${:,}".format((x)))
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))  
+display(table.style.hide_index())  
 ```
 
 ## Household Disaggregation Parameters
@@ -131,7 +145,7 @@ table = table[['Parameter', 'v9Value', 'v8Value']]
 table['v9Value'] = table['v9Value'].astype(int).apply(lambda x: "${:,}".format((x)))
 table['v8Value'] = table['v8Value'].astype(int).apply(lambda x: "${:,}".format((x)))
 
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+display(table.style.hide_index())
 ```
 
 ## Distribution, Mode Choice, and Assignment Parameters
@@ -141,6 +155,7 @@ K-factors were expanded by trip purpose to allow for more flexibility in calibra
 ```{python}
 #| label: tbl-kfactors
 #| tbl-cap: Reset K-Factors
+#| tbl-colwidths: [37,25,10,18,10]
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'KFactors']
 table = table[['SubHeader','v9Parameter','v9Value', 'v8Parameter','v8Value']]
@@ -149,7 +164,14 @@ table['v9Value'] = table['v9Value'].astype('float').apply(lambda x: "{:,.2f}".fo
 table['v8Value'] = table['v8Value'].astype('float').apply(lambda x: "{:,.2f}".format((x)))
 table = table.replace(np.nan,'',regex=True)
 table = table.replace('nan','',regex=True) 
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+
+headers = ['Area', 'v9Parameter','v9Value', 'v8Parameter','v8Value']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 
 ### Auto Occupancy
@@ -158,6 +180,7 @@ Auto or vehicle occupancy rates were expanded to include additional trips purpos
 ```{python}
 #| label: tbl-auto-occ1
 #| tbl-cap: Vehicle Occupancy Rates
+#| tbl-colwidths: [20,8,35,8,29]
 import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'AutoOccupancy1']
@@ -166,12 +189,20 @@ table['v9Value'] = table['v9Value'].astype('float').apply(lambda x: "{:,.2f}".fo
 table['v8Value'] = table['v8Value'].astype('float').apply(lambda x: "{:,.2f}".format((x)))
 table = table.replace(np.nan,'',regex=True)
 table = table.replace('nan','',regex=True) 
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+
+headers = ['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 
 ```{python}
 #| label: tbl-auto-occ2
 #| tbl-cap: Vehicle Occupancy 3+ Rates
+#| tbl-colwidths: [24,8,24,8,36]
 import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'AutoOccupancy2']
@@ -180,7 +211,14 @@ table['v9Value'] = table['v9Value'].astype('float').apply(lambda x: "{:,.2f}".fo
 table['v8Value'] = table['v8Value'].astype('float').apply(lambda x: "{:,.2f}".format((x)))
 table = table.replace(np.nan,'',regex=True)
 table = table.replace('nan','',regex=True) 
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+
+headers = ['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 
 ### Value of Time
@@ -189,12 +227,20 @@ Value of time parameters were updated using 2019 5-year ACS data and previous mo
 ```{python}
 #| label: tbl-vot1
 #| tbl-cap: Value of Time Rates
+#| tbl-colwidths: [24,8,24,8,36]
 import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'VOT1']
 table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
 table = table.replace(np. nan,'',regex=True) 
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+
+headers = ['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 
 ### Auto Operating Costs
@@ -207,7 +253,7 @@ import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'AutoOperatingCosts']
 table = table[['Parameter','v9Value','v8Value','Notes']]
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+display(table.style.hide_index())
 ```
 
 ### Managed Lane Costs
@@ -220,7 +266,7 @@ import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'ManagedLaneCosts']
 table = table[['Parameter','v9Value','v8Value','Notes']]
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+display(table.style.hide_index())
 ```
 
 ### Core Bus Constant Multiplier
@@ -228,11 +274,19 @@ The parameter used to set the Core Bus constant was renamed and updated in v9.
 ```{python}
 #| label: tbl-vot2
 #| tbl-cap: Core Bus Constant Multiplier
+#| tbl-colwidths: [30,8,30,8,20]
 import pandas as pd
 table = pd.read_csv('tables/1-genparams.csv')
 table = table.loc[table['Table'] == 'VOT2']
 table = table[['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']]
-display(table.style.hide_index().set_properties(subset=["v9Value", "v8Value"], **{'text-align': 'right'}))
+
+headers = ['v9Parameter','v9Value', 'v8Parameter','v8Value','Notes']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 
 ### CRT Adjustment Factors
