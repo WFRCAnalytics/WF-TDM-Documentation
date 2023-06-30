@@ -6,11 +6,11 @@ message: false
 
 Changes made to the `2_ModelScripts\0_InputProcessing` folder are discussed in this section.
 
-Global changes made to the all the scripts in this folder included modifications to the script to account for removal of the `CITY`,  `COUNTY`, and `EXTERNAL` fields from the TAZ shapefile and updates to use true shape link and node shapefiles.
+Global changes made to all the scripts in this folder included modifications to the script to account for removal of the `CITY`,  `COUNTY`, and `EXTERNAL` fields from the TAZ shapefile and updates to use true shape link and node shapefiles.
 
 ## Setup
 
-The folder setup routine was integrated into the `HailMary.s` script to run automatically. It is no longer necessary prior to running the model to copy empty folders or run the `_CreateOutputFolders.s` separately.
+The folder setup routine was integrated into the `HailMary.s` script to run automatically. It is no longer necessary to copy empty folders or run the `_CreateOutputFolders.s` prior to running the model .
 
 ## SE Processing
 

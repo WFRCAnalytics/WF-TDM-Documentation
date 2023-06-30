@@ -17,7 +17,7 @@ The trip matrix cell is considered converged if:
  1. Percent change from previous iteration is within 7.5%, or
  2. Trips from the current iteration are less than 1
 
-With the exception that the cell is not converged if the trips from the current iteration is greater than zero and the trips from the previous iteration equals zero.
+With the exception that the cell is not converged if the trips from the current iteration are greater than zero and the trips from the previous iteration equals zero.
 
 ### Link Convergence
 
@@ -35,7 +35,7 @@ With the exception that the link is not converged if:
 
 ### Check Criteria
 
-The convergence check criteria was updated. The minimum of 5 iterations requirement was removed. The `RGAP` parameter passthrough variable from moved from the block file to main script just before each assignment call The `EV RGAP` parameter to value in `0GeneralParameters.block` divided by 10.
+The convergence check criteria was updated. The minimum of 5 iterations requirement was removed. The `RGAP` parameter passthrough variable was from moved from the block file to main script just before each assignment call. The `EV RGAP` parameter is set to the `0GeneralParameters.block` value divided by 10.
 
 ## Reports
 
