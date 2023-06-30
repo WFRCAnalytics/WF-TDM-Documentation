@@ -3,7 +3,6 @@ title: Input Data
 warning: false
 message: false
 echo: false
-include: false
 ---
 
 Changes made to the `1_Inputs` folder are discussed in this section.
@@ -89,8 +88,6 @@ The age percent lookup file `Lookup - BYTAZAgePct - AllCo.csv` used in household
 
 ### Mode Choice
 
-The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the *General Parameters* section, and included in a new bus speed ratios file `bus_speed_ratios.csv`. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes.
-
 ```{python}
 # Convert bus speeds input into long format
 import pandas as pd
@@ -119,7 +116,7 @@ dfFunctionalClasses = pd.DataFrame([
 ], columns=('FC','FunctionalClass','FunctionalClassName'))
 
 # read in bus speed ratios
-dfBusSpeedRatios = pd.read_csv(r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\WF TDM v9.0 - 2023-04-28\1_Inputs\0_GlobalData\4_ModeChoice\bus_speed_ratios.csv").rename(columns={';FC':'FC'})
+dfBusSpeedRatios = pd.read_csv(r"\\modelace\ModelAce-E\1 - TDM\2 - Sandbox\v9_Development\WF TDM v9.0 - 2023-04-28\1_Inputs\0_GlobalData\4_ModeChoice\bus_speed_ratios.csv").rename(columns={';FC':'FC'})
 
 # create a list of column names to use as variable names
 varCols = dfBusSpeedRatios.columns.to_list()
@@ -164,16 +161,22 @@ dfBusSpeedRatios_Previous = pd.DataFrame([
 ], columns=('FunctionalClass','BusSpeedRatio'))
 
 dfBusSpeedRatios_Previous.to_csv(r'data\bus_speed_ratios_previous.csv', index=False)
-
-
 ```
 
+::: {.content-visible when-format='pdf'}
 
+The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the *General Parameters* section, and included in a new bus speed ratios file `bus_speed_ratios.csv`. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes. @fig-pdf-old-bus-speeds-plot shows the old bus speed ratios and @fig-pdf-bus-speeds-plot shows the updated bus speed ratios.
+
+![Bus Speeds Plot - Version 8.3.2](_pictures/old_bus_speeds.png){#fig-pdf-old-bus-speeds-plot}
+
+![Bus Speeds Plot - Version 9.0.0.](_pictures/pdf-bus-speeds-plot.png){#fig-pdf-bus-speeds-plot}
+
+::: {.content-visible when-format="html"}
+The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the *General Parameters* section, and included in a new bus speed ratios file `bus_speed_ratios.csv`. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes.
 ::: {.panel-tabset}
 
 #### Bus Speeds Plot
 
-::: {.content-visible when-format="html"}
 ```{ojs}
 //| echo: false
 
@@ -252,9 +255,6 @@ Plot.plot({
   ]
 })
 ```
-:::
-
-
 
 #### Bus Speeds Data
 
@@ -276,7 +276,8 @@ Inputs.table(faDataBusSpeeds, {
     AreaTypeName: "Area Type",
     BusSpeedRatio: "Bus Speed Ratio"
   }})
-```
+
+
 
 #### Previous Bus Speeds
 
@@ -325,8 +326,8 @@ Plot.plot({
 ```
 
 :::
-
 <mark>???NEED TO FIX OVERLAPPING CHART LABELS???</mark>
+:::
 
 ### Assignment
 As described in the *General Parameters* section, diurnal and production/attraction factors were moved out of the `0_GeneralParameters.block` file to an input file. The factors are now found in the `Diurnal & PA factors.csv` file. 
@@ -344,12 +345,11 @@ Additional area in the expanded WFRC and MAG areas include the following:
 - Canyon areas of the Oquirrh mountain range up to the western boundary of Salt Lake County
 - Great Salt Lake areas to the western boundary of Salt Lake, Davis, and Weber counties
 
-The additional areas and reconfigured TAZs result in 694 additional zones, 688 internal zones and 6 new external zones. A comparison of zone counts is found in @tbl-taz-count-comparison.
+The additional areas and reconfigured TAZs result in 694 additional zones, 688 internal zones and 6 new external zones. A comparison of zone counts is found in @tbl-taz-count.
 
 ```{python}
-#| label: tbl-taz-count-comparison
+#| label: tbl-taz-count
 #| tbl-cap: TAZ Count Comparions
-#| echo: False
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [  ['Internal Used Zones'  , '3,546', '2,858',        '688'],
@@ -357,13 +357,54 @@ table = [  ['Internal Used Zones'  , '3,546', '2,858',        '688'],
            ['All New Used Zones'   , '3,575', '2,881',        '694'],
            ['Internal Unused Zones',    '54',     '0',         '54'],
            ['Max Used Zone'        , '3,629', '2,881',        '748']]
-Markdown(tabulate(
-  table, 
-  headers= ['Category'             ,'v9'    ,'v8'    , 'Difference'],
-  colalign=('left'                 ,'right' ,'right' , 'right'     )
-))
+headers = ['Category','v9','v8', 'Difference']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 
+::: {.content-visible when-format="pdf"}
+The map in @fig-taz-compare-map-pdf shows the difference in v9 and v8 TAZs.
+
+```{python}
+#| label: fig-taz-compare-map-pdf
+#| fig-cap: TAZ Geography Comparison Map
+import geopandas as gpd
+import matplotlib.pyplot as plt
+
+# Read the GeoJSON files
+data_taz_new = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
+data_taz_old = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazOld.geojson')
+
+# Set the line colors and line width for each GeoDataFrame
+line_color_new = '#0B2842'
+line_color_old = '#789d4b'
+line_width = 0.5
+
+# Create the figure and axes
+fig, ax = plt.subplots(figsize=(15, 15))
+
+# Plot the GeoDataFrames with different line colors and line width
+data_taz_new.plot(ax=ax, facecolor='none', edgecolor=line_color_new, linewidth=line_width)
+data_taz_old.plot(ax=ax, facecolor='none', edgecolor=line_color_old, linewidth=line_width)
+
+legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1]) 
+legend_elements = [
+    plt.Line2D([0], [0], color=line_color_new, linewidth=line_width, label='v9.0.0'),
+    plt.Line2D([0], [0], color=line_color_old, linewidth=line_width, label='v8.3.2')
+]
+legend_ax.legend(handles=legend_elements, loc='center')
+legend_ax.axis('off')
+
+# Display the plot
+plt.show()
+```
+:::
+
+::: {.content-visible when-format="html"}
 The interactive map in @fig-taz-compare-map can be explored to visualize the difference in v9 and v8 TAZs.
 
 ```{ojs}
@@ -405,6 +446,8 @@ mapTaz = {
     legend.addTo(map);
 }
 ```
+:::
+
 
 ### TAZ Ranges
 The new and previous internal and external ranges of TAZIDs by for each county are shown in @tbl-new-taz-ranges.
@@ -432,6 +475,37 @@ Markdown(tabulate(
 This section describes the changes made to the attributes of the TAZ shapefile.
 
 #### REMM Space
+
+::: {.content-visible when-format="pdf"}
+To indicate which TAZs are included in the Real Estate Market Model (REMM) space, the `REMM` field was added with a value of `1` indicating that it is part of REMM and `0` indicating it is not part of REMM, as shown in @fig-taz-remm-space-pdf.
+
+```{python}
+#|label: fig-taz-remm-space-pdf
+#|fig-cap: TAZ REMM Space
+# Read the GeoJSON files
+import matplotlib.colors as colors
+data_taz_new = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
+remm_values = data_taz_new['REMM'].astype(int)
+cmap = 'Accent_r'
+
+fig, ax = plt.subplots(figsize=(10, 10))
+data_taz_new.plot(column=remm_values, cmap=cmap, linewidth=0.5, ax=ax)
+
+legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1]) 
+legend_elements = [
+    plt.Line2D([0], [0], color='green', linewidth=line_width, label='REMM Space'),
+    plt.Line2D([0], [0], color='gray', linewidth=line_width, label='Non-REMM Space')
+]
+legend_ax.legend(handles=legend_elements, loc='center')
+legend_ax.axis('off')
+
+# Display the plot
+plt.show()
+
+```
+:::
+
+::: {.content-visible when-format="html"}
 To indicate which TAZs are included in the Real Estate Market Model (REMM) space, the `REMM` field was added with a value of `1` indicating that it is part of REMM and `0` indicating it is not part of REMM, as shown in @fig-taz-remm-space.
 
 ```{ojs}
@@ -479,6 +553,7 @@ mapTazRemmSpace = {
   legend.addTo(map);
 }
 ```
+:::
 
 #### Parking Costs
 Parking costs were updated based on 2022 parking rates obtained from Salt Lake City, web searches, and field visits. A new methodology for calculating parking cost was envisioned but not implemented for v9. Accordingly, updates to parking data were done in a way to facilitate the change to the new methodology in the future. These updates include a new polygon source file for downtown and university areas. However, since the envisioned methodology removes the use of parking cost fields for Lagoon and Salt Lake City International Airport, they were not included in this new shapefile.
