@@ -163,7 +163,7 @@ dfBusSpeedRatios_Previous = pd.DataFrame([
 dfBusSpeedRatios_Previous.to_csv(r'data\bus_speed_ratios_previous.csv', index=False)
 ```
 
-::: {.content-visible when-format='pdf'}
+::: {.content-hidden when-format="html"}
 The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the *General Parameters* section, and included in a new bus speed ratios file `bus_speed_ratios.csv`. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes. @fig-pdf-old-bus-speeds-plot shows the old bus speed ratios and @fig-pdf-bus-speeds-plot shows the updated bus speed ratios.
 
 ![Bus Speeds Plot - Version 8.3.2](_pictures/old_bus_speeds.png){#fig-pdf-old-bus-speeds-plot}
@@ -369,7 +369,7 @@ Markdown(tabulate(table,
 )
 ```
 
-::: {.content-visible when-format="pdf"}
+::: {.content-hidden when-format="html"}
 The map in @fig-taz-compare-map-pdf shows the difference in v9 and v8 TAZs.
 
 ```{python}
@@ -479,7 +479,7 @@ This section describes the changes made to the attributes of the TAZ shapefile.
 
 #### REMM Space
 
-::: {.content-visible when-format="pdf"}
+::: {.content-hidden when-format="html"}
 To indicate which TAZs are included in the Real Estate Market Model (REMM) space, the `REMM` field was added with a value of `1` indicating that it is part of REMM and `0` indicating it is not part of REMM, as shown in @fig-taz-remm-space-pdf.
 
 ```{python}
@@ -579,7 +579,7 @@ Compared to the previous temporary parking values of $1 in 2010 dollars, the cho
 
 ### Small Districts
 
-::: {.content-visible when-format="pdf"}
+::: {.content-hidden when-format="html"}
 There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). Districts are shown in @fig-districts-pdf. Two additional polygon shapefiles were added to the Districts subfolder to represent the Wasatch Front sub area and the REMM area.
 
 ```{python}
@@ -681,7 +681,7 @@ The `_Source` subfolder was added and includes the following shapefile data sets
 Forecasts and control totals were updated based on new census data, updated base year parcel data, and the results of the REMM Model.
 
 ###  Forecasts
-::: {.content-visible when-format="pdf"}
+::: {.content-hidden when-format="html"}
 The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9.0.0.
 :::
 
@@ -700,7 +700,7 @@ html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-
 :::
 
 ### Control Totals
-::: {.content-visible when-format="pdf"}
+::: {.content-hidden when-format="html"}
 Updates to the county control totals were made based on projections from the Gardner Policy Institute.
 :::
 
@@ -800,7 +800,7 @@ Plot.plot({
 :::
 
 ### School Enrollment
-::: {.content-visible when-format="pdf"}
+::: {.content-hidden when-format="html"}
 The Kindergarten through 12th grade (K-12) enrollment data was updated using the 2019 statewide school enrollment database. This was done at the state-wide level and then applied to the Wasatch Front. 
 :::
 
@@ -1020,7 +1020,7 @@ if not os.path.isfile('data/externalnew.geojson'):
 
 ## Externals
 
-::: {.content-visible when-format="pdf"}
+::: {.content-hidden when-format="html"}
 External locations and forecasts were updated. The locations of the former and updated location of externals is shown in @fig-externals-pdf. Forecasts through 2060 were generated for the updated external locations using historical data through 2019.
 
 ![v9 External Description.](_pictures/externals.png){#fig-externals-pdf}

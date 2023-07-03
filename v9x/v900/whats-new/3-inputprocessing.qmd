@@ -14,7 +14,8 @@ The folder setup routine was integrated into the `HailMary.s` script to run auto
 
 ## SE Processing
 
-The `1_DemographicsAnalysis.s` script was updated to read `ControlTotal_SE_AllCounties.csv`. Weber County contains two sets of indexes bus on whether it is the UDOT Subarea `9057` or the Wasatch Front Subarea `9157`.
+The `1_DemographicsAnalysis.s` script was updated to read <br>  
+`ControlTotal_SE_AllCounties.csv`. Weber County contains two sets of indexes bus on whether it is the UDOT Subarea `9057` or the Wasatch Front Subarea `9157`.
 
 ## Network Processing
 

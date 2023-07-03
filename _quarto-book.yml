@@ -15,22 +15,24 @@ book:
     - v9x/v900/whats-new/6-distribution.qmd
     - v9x/v900/whats-new/7-mc.qmd
     - v9x/v900/whats-new/8-assign.qmd
-    - v9x/v900/whats-new/10-modelresults.qmd
+    #- v9x/v900/whats-new/10-modelresults.qmd
 
 #bibliography: references.bib
 
 format:
-  RtpPDF-pdf:
-    toc: true
-    lot: true
-    lof: true
-    number-sections: true
-    colorlinks: true
-    tbl-colwidths: [70, 30]
-    classoption:
-      - 'titlepage=false'
-    geometry:
-      - top=30mm
-      - left=20mm
-      - heightrounded
+  #RtpPDF-pdf:
+  #  toc: true
+  #  lot: true
+  #  lof: true
+  #  number-sections: true
+  #  colorlinks: true
+  #  tbl-colwidths: [70, 30]
+  #  classoption:
+  #    - 'titlepage=false'
+  #  geometry:
+  #    - top=30mm
+  #    - left=20mm
+  #    - heightrounded
+  docx: default
+  
   
