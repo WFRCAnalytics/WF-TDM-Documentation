@@ -48,6 +48,10 @@ Markdown(tabulate(table,
 
 
 ### Highway Nodes
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-highway-renumber
 #| tbl-cap: Renumbered Highway Nodes
@@ -58,10 +62,16 @@ table = table[['Parameter', 'v9Value', 'v8Value','Notes']]
 headers = ['Parameter', 'v9 Value', 'v8 Value','Notes']
 display(table.style.hide_index())  
 ```
+:::
+:::
 
 ### College Zones
 Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-college-renumber
 #| tbl-cap: Renumbered College Zones
@@ -79,7 +89,13 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-college-renumber-2
 #| tbl-cap: Renumbered College Zones (continued)
@@ -95,9 +111,15 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
-
+:::
+:::
 
 ### Zones with Off-line Trip Tables
+
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-offline-renumber
 #| tbl-cap: Renumbered Off-line Trip Table Zones
@@ -106,9 +128,14 @@ table = table.loc[table['Table'] == 'OfflineTripZones']
 table = table[['Parameter', 'v9Value', 'v8Value']]
 display(table.style.hide_index())
 ```
-
+:::
+:::
 
 ### Special Generator Zones
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-specgen-renumber
 #| tbl-cap: Renumbered Special Generator Zones
@@ -117,10 +144,16 @@ table = table.loc[table['Table'] == 'SpecialGeneratorZones']
 table = table[['Parameter', 'v9Value', 'v8Value']]
 display(table.style.hide_index())
 ```
+:::
+:::
 
 ## Exogenous Trip Table Parameters
 Income break points for the airport exogenous trip table generation were updated to reflect 2019 base year income.
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-exogen-income
 #| tbl-cap: Income Break Points for Airport Exogenous Trip Table Generation
@@ -131,11 +164,17 @@ table['v9Value'] = table['v9Value'].astype(int).apply(lambda x: "${:,}".format((
 table['v8Value'] = table['v8Value'].astype(int).apply(lambda x: "${:,}".format((x)))
 display(table.style.hide_index())  
 ```
+:::
+:::
 
 ## Household Disaggregation Parameters
 
 The regional median income was updated using 2019 5-year ACS data and kept in 2019 dollars to reflect 2019 base year. v8 was estimated from 2015 ACS data and deflated to 2010 dollars.
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-hh-disagg
 #| tbl-cap: Household Disaggregation Parameter Income Update
@@ -147,11 +186,17 @@ table['v8Value'] = table['v8Value'].astype(int).apply(lambda x: "${:,}".format((
 
 display(table.style.hide_index())
 ```
+:::
+:::
 
 ## Distribution, Mode Choice, and Assignment Parameters
 ### K-Factors
 K-factors were expanded by trip purpose to allow for more flexibility in calibrating distribution. All K-factors were reset to 1.
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-kfactors
 #| tbl-cap: Reset K-Factors
@@ -173,10 +218,16 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 ### Auto Occupancy
 Auto or vehicle occupancy rates were expanded to include additional trips purposes and calculated based on the reprocessed 2012 Household Travel Survey. Values represent average persons per vehicle for just the Wasatch Front model space. External trips are average for IX + XI; all other parameters are averages for II trips.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-auto-occ1
 #| tbl-cap: Vehicle Occupancy Rates
@@ -198,7 +249,13 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-auto-occ2
 #| tbl-cap: Vehicle Occupancy 3+ Rates
@@ -220,10 +277,16 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 ### Value of Time
 Value of time parameters were updated using 2019 5-year ACS data and previous model assumptions and are in 2019 dollars. v8 parameters were calibrated to 2015 ACS data and deflated to 2010 dollars. Values of time are in cents/minute.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-vot1
 #| tbl-cap: Value of Time Rates
@@ -242,10 +305,16 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 ### Auto Operating Costs
 Auto operating costs were updated to reflect 2019 fuel cost, average fuel economy, and cost of vehicle maintenance and are in 2019 dollars. v8 parameters were calibrated to 2015 data and deflated to 2010 dollars. Costs are in cents/mile.
 
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-auto-op
 #| tbl-cap: Auto Operating Cost Rates
@@ -255,10 +324,16 @@ table = table.loc[table['Table'] == 'AutoOperatingCosts']
 table = table[['Parameter','v9Value','v8Value','Notes']]
 display(table.style.hide_index())
 ```
+:::
+:::
 
 ### Managed Lane Costs
 Tolls on managed lanes were updated to reflect approximately a $5.00 toll for work trips and a $3.00 toll for non-work trips for tollways (FT=40) and approximately a $3.50 toll for work trips and $2.20 for non-work trips for HOT (FT=38) and reliability lanes. Distances of 10.25 miles (length of average work trip) and 6.5 miles (average length of all trips) were used to determine the work/non-work toll costs in cents per mile in 2019 dollars. Toll costs for v8 are in 2010 dollars.
 
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-managed-lane
 #| tbl-cap: Managed Lane Cost Rates
@@ -268,9 +343,16 @@ table = table.loc[table['Table'] == 'ManagedLaneCosts']
 table = table[['Parameter','v9Value','v8Value','Notes']]
 display(table.style.hide_index())
 ```
+:::
+:::
 
 ### Core Bus Constant Multiplier
 The parameter used to set the Core Bus constant was renamed and updated in v9.
+
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-vot2
 #| tbl-cap: Core Bus Constant Multiplier
@@ -288,6 +370,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 ### CRT Adjustment Factors
 The following parameters were added to adjust CRT ridership for Davis and Utah Counties. The parameters are applied in the mode choice utility calculation and represent a penalty/incentive in equivalent minutes.

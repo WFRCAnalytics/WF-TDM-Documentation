@@ -350,6 +350,10 @@ Additional area in the expanded WFRC and MAG areas include the following:
 
 The additional areas and reconfigured TAZs result in 694 additional zones, 688 internal zones and 6 new external zones. A comparison of zone counts is found in @tbl-taz-count.
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-taz-count
 #| tbl-cap: TAZ Count Comparions
@@ -368,6 +372,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 ::: {.content-hidden when-format="html"}
 The map in @fig-taz-compare-map-pdf shows the difference in v9 and v8 TAZs.
@@ -455,6 +461,10 @@ mapTaz = {
 ### TAZ Ranges
 The new and previous internal and external ranges of TAZIDs by for each county are shown in @tbl-new-taz-ranges.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-new-taz-ranges
 #| tbl-cap: TAZ Ranges
@@ -473,6 +483,8 @@ Markdown(tabulate(
   colalign=('left'            ,'right'          ,'right'           ,'right'          ,'right'           )
 ))
 ```
+:::
+:::
 
 ### Attributes
 This section describes the changes made to the attributes of the TAZ shapefile.
@@ -925,6 +937,10 @@ The highway network was expanded to incorporate the new model areas. See <a href
 ### Highway Node Numbering Schema
 Updates to the highway node numbering schema are shown in @tbl-master-network-node-numbering-schema. An additional reference file called `_Node Definition - v832 & v9.xlsx` is found in the `3_Highway` folder.
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-master-network-node-numbering-schema
 #| tbl-cap: Master Network Node Numbering Schema
@@ -938,6 +954,8 @@ Markdown(tabulate(
   headers=["MPO","Transit Nodes", "Highway Nodes", "v9 Expansion Areas"]
 ))
 ```
+:::
+:::
 
 The highway network updates include the following: 
 

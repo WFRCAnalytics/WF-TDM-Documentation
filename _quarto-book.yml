@@ -15,7 +15,7 @@ book:
     - v9x/v900/whats-new/6-distribution.qmd
     - v9x/v900/whats-new/7-mc.qmd
     - v9x/v900/whats-new/8-assign.qmd
-    #- v9x/v900/whats-new/10-modelresults.qmd
+    - v9x/v900/whats-new/10-modelresults.qmd
 
 #bibliography: references.bib
 
