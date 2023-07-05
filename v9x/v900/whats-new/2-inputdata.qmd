@@ -176,7 +176,7 @@ The bus speed ratios in the model were further categorized and refined using act
 
 ::: {.panel-tabset}
 
-#### Bus Speeds Plot
+#### Bus Speed Ratios Plot
 
 ```{ojs}
 //| echo: false
@@ -206,58 +206,99 @@ viewof strokeSelect = Inputs.select(new Map([['Time Period', 'TimePeriodName'], 
 
 domainFromSelect = {
   switch(domainSelect) {
-    case 'TimePeriodName'     : return faTimePeriods      .map(function(d) {return d.TimePeriod     }); break;
-    case 'AreaTypeName'       : return faAreaTypes        .map(function(d) {return d.AreaType       }); break;
-    case 'FunctionalClassName': return faFunctionalClasses.map(function(d) {return d.FunctionalClass}); break;
-    default                   : return                                                                       ;
+    case 'TimePeriodName'     : return faTimePeriods      .map(function(d) {return d.TimePeriodName     }); break;
+    case 'AreaTypeName'       : return faAreaTypes        .map(function(d) {return d.AreaTypeName       }); break;
+    case 'FunctionalClassName': return faFunctionalClasses.map(function(d) {return d.FunctionalClassName}); break;
+    default: return;
   }
 }
 
-xPlotDomainSelect = {
-  switch(domainSelect) {
-    case 'TimePeriodName'     : return "TimePeriod"     ; break;
-    case 'AreaTypeName'       : return "AreaType"       ; break;
-    case 'FunctionalClassName': return "FunctionalClass"; break;
-    default                   : return                         ;
+//xPlotDomainSelect = {
+//  switch(domainSelect) {
+//    case 'TimePeriodName'     : return "TimePeriod"     ; break;
+//    case 'AreaTypeName'       : return "AreaType"       ; break;
+//    case 'FunctionalClassName': return "FunctionalClass"; break;
+//    default: return;
+//  }
+//}
+
+fLabel = {
+  switch(facetSelect) {
+    case 'TimePeriodName'     : return "Time Period"     ; break;
+    case 'AreaTypeName'       : return "Area Type"       ; break;
+    case 'FunctionalClassName': return "Functional Class"; break;
+    default: return;
   }
 }
 
 xLabel = {
   switch(domainSelect) {
-    case 'TimePeriodName'     : return "Time Period"     ;      break;
-    case 'AreaTypeName'       : return "Area Type"       ;      break;
-    case 'FunctionalClassName': return "Functional Class";      break;
-    default                   : return                               ;
+    case 'TimePeriodName'     : return "Time Period"     ; break;
+    case 'AreaTypeName'       : return "Area Type"       ; break;
+    case 'FunctionalClassName': return "Functional Class"; break;
+    default: return;
   }
 }
 
 domainFacetSelect = {
   switch(facetSelect) {
-    case 'TimePeriodName'     : return faTimePeriods      .map(function(d) {return d.TimePeriodName     }); break;
-    case 'AreaTypeName'       : return faAreaTypes        .map(function(d) {return d.AreaTypeName       }); break;
-    case 'FunctionalClassName': return faFunctionalClasses.map(function(d) {return d.FunctionalClassName}); break;
-    default                   : return;  }
+    case 'TimePeriodName':
+      return faTimePeriods.map(function(d) {
+          return d.TimePeriodName
+        });
+      break;
+    case 'AreaTypeName':
+      return faAreaTypes.map(function(d) {
+          return d.AreaTypeName
+        });
+      break;
+    case 'FunctionalClassName':
+      return faFunctionalClasses.map(function(d) {
+          return d.FunctionalClassName
+        });
+      break;
+    default:
+      return; 
+  }
+}
+
+bottomMargin = {
+
 }
 
 Plot.plot({
   grid: true,
-  aspectRatio: 0.5,
-  facet: {data: faDataBusSpeeds, x: facetSelect, label: xLabel},
-  x: {label: xLabel, domain: domainFromSelect},
-  y: {label: "Bus Speed Ratio" , domain: [0, 1]},
+  aspectRatio: 0.25,
+  facet: { data: faDataBusSpeeds, x: facetSelect, label: fLabel, marginTop: 40},
+  x: {
+    label: xLabel,
+    domain: domainFromSelect,
+    tickSize: 4,
+    tickPadding: 2,
+    marginTop: 40,
+    tickRotate: 90,
+  },
+  y: {
+    label: "Bus Speed Ratio",
+    domain: [0, 1],
+    fontSize: 8
+  },
   color: { type: "categorical", legend: true, legendStyle: { fontSize: 16 } },
   style: {
     fontSize: 12
   },
+  marginTop: 60,
+  marginBottom: 120,
   marks: [
     Plot.frame(),
-    Plot.line(faDataBusSpeeds, {x: xPlotDomainSelect, y: "BusSpeedRatio", stroke: strokeSelect, strokeWidth: 2}),
-    Plot.dot (faDataBusSpeeds, {x: xPlotDomainSelect, y: "BusSpeedRatio", stroke: strokeSelect, r: 4, fill: strokeSelect})
+    Plot.line(faDataBusSpeeds, { x: domainSelect, y: "BusSpeedRatio", stroke: strokeSelect, strokeWidth: 2 }),
+    Plot.dot(faDataBusSpeeds, { x: domainSelect, y: "BusSpeedRatio", stroke: strokeSelect, r: 4, fill: strokeSelect })
   ]
 })
+
 ```
 
-#### Bus Speeds Data
+#### Bus Speed Ratios Data
 
 ```{ojs}
 //| echo: false
@@ -280,7 +321,7 @@ Inputs.table(faDataBusSpeeds, {
 
 ```
 
-#### Previous Bus Speeds
+#### Previous Bus Speed Ratios
 
 ```{ojs}
 //| echo: false
@@ -292,43 +333,31 @@ Plot.plot({
   grid: true,
   aspectRatio: 0.5,
   style: {
-    fontSize: 16,
+    fontSize: 16
   },
-  x: {label: "Functional Class", tickRotate: 90, domain: faDataBusSpeeds_previous.map(function(d) {return d.FunctionalClass})//,
-      //tickFormat: (d) => {
-//          const label = d.toString(); // Convert the tick value to a string
-//          const maxWidth = 15; // Specify the maximum width for each label
-//          const words = label.split(" "); // Split the label into words
-//
-//          let line = "";
-//          let lines = [];
-//
-//          words.forEach((word) => {
-//            if (line.length + word.length > maxWidth) {
-//              lines.push(line);
-//              line = "";
-//            }
-//            line += word + " ";
-//          });
-//
-//          lines.push(line);
-//
-//          return lines;
-//      }
-    },
+  style: {
+    fontSize: 10,
+  },
+  margin: 40,
+  marginBottom: 150,
+  x: {
+    label: "",
+    //tickFormat: () => "",
+    tickRotate: 90,
+    domain: faDataBusSpeeds_previous.map(function(d) {return d.FunctionalClass}),
+    tickSize: 0
+  },
   y: {label: "Bus Speed Ratio" , domain: [0, 1]},
-  color: { type: "categorical", legend: true },
+  color: { type: "categorical", legend: false },
   marks: [
     Plot.frame(),
     Plot.barY(faDataBusSpeeds_previous, {x: "FunctionalClass", y: "BusSpeedRatio", stroke: "FunctionalClass", fill: "FunctionalClass"})
-  ]
+  ]  
 })
 
 ```
 
 :::
-
-<mark>???NEED TO FIX OVERLAPPING CHART LABELS???</mark>
 
 :::
 
