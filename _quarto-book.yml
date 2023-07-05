@@ -1,21 +1,37 @@
 project:
   type: book
-  output-dir: _book/v9x-v900-whats-new-pdf #_book/v9x-v900-whats-new-word-doc
+  #output-dir: _book/v9x-v900-whats-new-pdf #_book/v9x-v900-whats-new-word-doc
+  output-dir: _book/v9x-v900-calib-valid-pdf #_book/v9x-v900-calib-valid-doc
 
 book:
-  title: "What's New? - Version 9.0.0"
+  #title: "What's New? - Version 9.0.0"
+  #author: "WFRC / MAG"
+  #date: "6/9/2023"
+  #chapters:
+  ##v9-whats-new
+  #  - index.qmd
+  #  - v9x/v900/whats-new/1-genparams.qmd
+  #  - v9x/v900/whats-new/2-inputdata.qmd
+  #  - v9x/v900/whats-new/3-inputprocessing.qmd
+  #  - v9x/v900/whats-new/4-hhdisag.qmd
+  #  - v9x/v900/whats-new/6-distribution.qmd
+  #  - v9x/v900/whats-new/7-mc.qmd
+  #  - v9x/v900/whats-new/8-assign.qmd
+  #  - v9x/v900/whats-new/10-modelresults.qmd
+  title: "Calibration/Validation Report - Version 9.0.0"
   author: "WFRC / MAG"
   date: "6/9/2023"
   chapters:
+  #v9-calib-valid
     - index.qmd
-    - v9x/v900/whats-new/1-genparams.qmd
-    - v9x/v900/whats-new/2-inputdata.qmd
-    - v9x/v900/whats-new/3-inputprocessing.qmd
-    - v9x/v900/whats-new/4-hhdisag.qmd
-    - v9x/v900/whats-new/6-distribution.qmd
-    - v9x/v900/whats-new/7-mc.qmd
-    - v9x/v900/whats-new/8-assign.qmd
-    - v9x/v900/whats-new/10-modelresults.qmd
+    - v9x/v900/calib-valid/1-life-cycle.qmd
+    #- v9x/v900/calib-valid/2-hh-disagg.qmd
+    #- v9x/v900/calib-valid/3-auto-own.qmd
+    #- v9x/v900/calib-valid/4-trip-gen.qmd
+    #- v9x/v900/calib-valid/5-distribution.qmd
+    #- v9x/v900/calib-valid/6-mc.qmd
+    #- v9x/v900/calib-valid/7-assign.qmd
+    #- v9x/v900/calib-valid/8-sensitivity.qmd
 
 #bibliography: references.bib
 
