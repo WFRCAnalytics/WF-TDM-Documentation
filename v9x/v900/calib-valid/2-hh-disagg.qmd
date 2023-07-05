@@ -65,7 +65,7 @@ import numpy as np
 ```
 
 ```{python}
-hhlf_csv = pd.read_csv(r'data/hhdisag/HHSize_byLC.csv').replace(r'^.*-.*$',0,regex=True)
+hhlf_csv = pd.read_csv(r'data/2-hhdisag/HHSize_byLC.csv').replace(r'^.*-.*$',0,regex=True)
 ```
 
 ```{python}
@@ -146,7 +146,7 @@ The shares of the modeled 2015 base year households by Household Size category w
 
 ::: {.content-visible when-format="html"}
 ```{python}
-hhsizevalid_csv = pd.read_csv('data/hhdisag/HHSizeValidation.csv')
+hhsizevalid_csv = pd.read_csv('data/2-hhdisag/HHSizeValidation.csv')
 
 hhsizevalid = hhsizevalid_csv.replace('%','', regex=True)
 hhsizevalid = hhsizevalid.drop(columns={'CO_FIPS','Total'})

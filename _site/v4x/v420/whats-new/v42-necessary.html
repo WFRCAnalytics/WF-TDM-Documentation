@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.3.340" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>WFTDM Documentation – v30-input-prep</title>
+<title>WFTDM Documentation – v42-necessary</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +22,24 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../_pictures/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -48,7 +63,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body>
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -56,19 +71,17 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a href="https://wfrc.org" class="navbar-brand navbar-brand-logo">
-    <img src="/_pictures/wf-logo-new-white-t.png" alt="" class="navbar-logo" />
+    <img src="../../../_pictures/wf-logo-new-white-t.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
-  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="/index.html" rel="" target="">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
  <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -77,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
         <li>
-    <a class="dropdown-item" href="/v9x/v900/index.html" rel="" target="">
+    <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
  <span class="dropdown-text">Version 9.0.0</span></a>
   </li>  
     </ul>
@@ -88,15 +101,15 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
         <li>
-    <a class="dropdown-item" href="/v8x/v832/index.html" rel="" target="">
+    <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
  <span class="dropdown-text">Version 8.3.2</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="/v8x/v831/index.html" rel="" target="">
+    <a class="dropdown-item" href="../../../v8x/v831/index.html" rel="" target="">
  <span class="dropdown-text">Version 8.3.1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="/v8x/v830/index.html" rel="" target="">
+    <a class="dropdown-item" href="../../../v8x/v830/index.html" rel="" target="">
  <span class="dropdown-text">Version 8.3.0</span></a>
   </li>  
     </ul>
@@ -114,59 +127,31 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p>Version 4.2.0 - What’s New?</p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
+   
+  <ul class="collapse">
+  <li><a href="#what-were-4.0-and-4.1-and-why-were-they-necessary" id="toc-what-were-4.0-and-4.1-and-why-were-they-necessary" class="nav-link active" data-scroll-target="#what-were-4.0-and-4.1-and-why-were-they-necessary">What were 4.0 and 4.1, and why were they necessary?</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
-   
-  <ul>
-  <li><a href="#input-preparation" id="toc-input-preparation">Input Preparation</a></li>
-  </ul>
-</nav>
-<section id="input-preparation" class="level2">
-<h2>Input Preparation</h2>
-<section id="extensive-revision-of-demographic-projections" class="level3">
-<h3>Extensive revision of demographic projections</h3>
-<p>The 2000 Census provided a good base and motive to forecast future population and employment anew. The method employed by both WFRC and MAG for forecasting population and employment was also thoroughly reviewed, and revised to better incorporate GIS data of land use plans and existing development. At the time of Version 3.0’s release (June 16, 2003), MAG’s new projections were not yet available, so their previous projections were used in their stead. 3.1 is expected to include MAG’s new projections, and some minor revisions to WFRC’s projections.</p>
-<p>Population and Employment density are now calculated using developable land by land-use category, as specified in city master plans. Further refinements to the projections process include “seeding” undeveloped zones with pop/emp to allow for automated growth allocation, and an extensive review of the region looking for neighborhoods that are not expected to change significantly in the coming years (primarily, the highest-end residential zones that are built out). See documentation on demographics forecasting for further details.</p>
-</section>
-<section id="expansion-of-household-categories-based-on-2000-census" class="level3">
-<h3>Expansion of household categories based on 2000 Census</h3>
-<p>The 2000 Census provided an opportunity to classify households by size (people in the household), income quartile, and workers per household. An off-model C++ program was written to apply Census curves to basic zonal information such as the total households, average household size, and average zonal income, to estimate the total number of households in combinations of these categories: into 6 HH size categories (1 person to 6+ person), 4 worker categories (0 to 3+), and 4 income quartile categories. This then becomes basic input to Auto Ownership, Trip Generation, and Mode Choice, allowing for market segmentation to be used throughout the modeling process.</p>
-</section>
-<section id="dynamic-identification-of-area-type" class="level3">
-<h3>Dynamic identification of area type</h3>
-<p>A key variable in determining average free flow speeds on the highway network and terminal times within each zone is the intensity and type of land use surrounding a highway link. A process was inserted into the model stream that considers the population and employment density of a zone and its four nearest neighbors to estimate the likely area type of that zone. Any links that pass through that zone are then automatically flagged with that type, and a free flow speed is assigned that in part relies on this area type. Thus, for example, for any scenarios that test “future CBD level densities” in an existing Greenfield area, arterial street speeds will respond downward accordingly because of the higher density surrounding the street. Area types are, in order of density: 1) Rural, 2) Transition, 3) Suburban, 4) Urban, 5) CBD.</p>
-</section>
-<section id="improved-free-flow-speed-and-capacity-methodology" class="level3">
-<h3>Improved free flow speed and capacity methodology</h3>
-<p>To improve free flow speed and capacity estimates, methodologies in NCHRP 357 and HCM 2001 were applied. Speeds are now determined by applying an unsignalized speed stratified by functional type and area type, which is then factored by number of stops/mile and the delay/stop for the functional type and area type. Speeds are further adjusted based on whether the link is part of a high priority or low priority corridor. Higher priority corridors are more likely to have higher green times, better signal coordination, and less on-street parking, thus higher free-flow speeds. Free flow speeds were compared against GPS speed data to adjust NCHRP 387 default values. GPS speed data was used to validate both these free flow speeds and congested speeds.</p>
-<p>Capacities are determined by factoring a saturation flow rate by the percentages of heavy vehicles, bus blockages, lane utilization, and green time. Specific links known to have unusually high or low “friction” are flagged and adjusted accordingly.</p>
-</section>
-<section id="updated-highway-and-transit-networks" class="level3">
-<h3>Updated highway and transit networks</h3>
-<p>Numerous automated tools have been developed and applied to help highlight network deficiencies, and facilitate network maintenance. Highway networks are now far more robust than they have ever been. The networks have further been updated with recently constructed roadways as well as the most current UTA operational plans. Future years are consistent with the most recent long-range transportation plans and programmed improvements. Future year transit networks reflect the latest thinking from EISs and New Starts submittals.</p>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">WFTDM Documentation</span> <span class="hidden" data-render-id="quarto-int-navbar-title">WFTDM Documentation</span> <span class="hidden" data-render-id="quarto-int-navbar:Overview">Overview</span> <span class="hidden" data-render-id="quarto-int-navbar:/index.html">/index.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Version 9 Series">Version 9 Series</span> <span class="hidden" data-render-id="quarto-int-navbar:Version 9.0.0">Version 9.0.0</span> <span class="hidden" data-render-id="quarto-int-navbar:/v9x/v900/index.html">/v9x/v900/index.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Past Versions">Past Versions</span> <span class="hidden" data-render-id="quarto-int-navbar:Version 8.3.2">Version 8.3.2</span> <span class="hidden" data-render-id="quarto-int-navbar:/v8x/v832/index.html">/v8x/v832/index.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Version 8.3.1">Version 8.3.1</span> <span class="hidden" data-render-id="quarto-int-navbar:/v8x/v831/index.html">/v8x/v831/index.html</span> <span class="hidden" data-render-id="quarto-int-navbar:Version 8.3.0">Version 8.3.0</span> <span class="hidden" data-render-id="quarto-int-navbar:/v8x/v830/index.html">/v8x/v830/index.html</span> <span class="hidden" data-render-id="quarto-navbar-tools:https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages">https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages</span> <span class="hidden" data-render-id="quarto-navbar-tools:mailto:sswim@wfrc.org">mailto:sswim@wfrc.org</span> <span class="hidden" data-render-id="footer-left"><a href="https://wfrc.org"><img src="https://wfrc.org/wp-content/uploads/2021/11/logo.jpg" class="img-fluid" alt="WFRC" width="150" /></a> <a href="https://mountainland.org/"><img src="https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg" class="img-fluid" alt="MAG" width="65" /></a></span> <span class="hidden" data-render-id="footer-right">Built using <a href="https://quarto.org">Quarto</a></span></p>
-<div class="hidden" data-render-id="margin-header">
-<div class="margin-header-item">
-<p>Version 3.0.0 - What’s New?</p>
-</div>
-</div>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-twittercardtitle"></span> <span class="hidden" data-render-id="quarto-ogcardtitle"></span> <span class="hidden" data-render-id="quarto-metasitename">WFTDM Documentation</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
-</div>
-</section>
+
+<section id="what-were-4.0-and-4.1-and-why-were-they-necessary" class="level2">
+<h2 class="anchored" data-anchor-id="what-were-4.0-and-4.1-and-why-were-they-necessary">What were 4.0 and 4.1, and why were they necessary?</h2>
+<p>UTA’s Commuter Rail project had a number of specific Mode Choice improvements identified by FTA as necessary for them to be comfortable with the forecasts. Their requirements led to a complete overhaul of the MC model, which is now estimated on local data, better calibrated, considerably better treatment of walk/drive access to transit, better Home-based college representations, and peak/off-peak modeling. While important to transit forecasting, this change has a relatively minor effect on roadway volumes. The new MC model was used for New Starts submittals, and constituted 4.0. Shortly thereafter, we separated BRT as a specific mode (BRT was simply “slower LRT” in 4.0, but is now a discrete choice with alternative specific constant equal to ½ that of LRT in 4.1). This “4.1” was given to MAG to help them get going on their BYU-UVSC BRT study.</p>
+
+
 </section>
 
 </main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -402,20 +387,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">
-      <div class='footer-contents'>[![](https://wfrc.org/wp-content/uploads/2021/11/logo.jpg){fig-alt='WFRC' width=150px}](https://wfrc.org) 
-[![](https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg){fig-alt='MAG' width=65px}](https://mountainland.org/)
-</div>  
-    </div>   
+    <div class="nav-footer-left"><a href="https://wfrc.org"><img src="https://wfrc.org/wp-content/uploads/2021/11/logo.jpg" class="img-fluid" alt="WFRC" width="150"></a> <a href="https://mountainland.org/"><img src="https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg" class="img-fluid" alt="MAG" width="65"></a></div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
-    <div class="nav-footer-right">
-      <div class='footer-contents'>Built using [Quarto](https://quarto.org)</div>  
-    </div>
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
   </div>
 </footer>
 
-</body>
 
-</html>
+
+</body></html>

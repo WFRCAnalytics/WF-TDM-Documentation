@@ -34,7 +34,7 @@ The Census data was also summarized at the medium district level.  If the Census
 ```{python}
 #| echo: False
 import pandas as pd
-mdist_age = pd.read_csv(r'data/1-lifecycle/MEDDIST-AgePct-WF-Lookup.csv')
+mdist_age = pd.read_csv(r'data/1-lifecycle/TAZ_AgePct_Lookup-2022-06-07_v9.0-2023-06-30.csv')
 mdist_age['MediumDistrict'] = mdist_age['MEDDIST'].astype(str).str.cat(mdist_age['MEDDIST2'], sep="-")
 mdist_age_sum = mdist_age.groupby(['MediumDistrict','MEDDIST']).sum().reset_index()
 mdist_age_sum['Total'] = mdist_age_sum['TotPop_0-17'] + mdist_age_sum['TotPop_18-64'] + mdist_age_sum['TotPop_65Plus']
@@ -76,7 +76,7 @@ The initial TAZ-based population by Age Group is then factored to reflect the ye
 
 ::: {.content-visible when-format="html"}
 ```{python}
-gpi_age = pd.read_csv(r'data/1-lifecycle/chk_Age_ControlTotal_SE_2022_08_31.csv')
+gpi_age = pd.read_csv(r'data/1-lifecycle/ControlTotal_SE-2022-08-31_v9.0-2023-06-30.csv')
 gpi_age_long = gpi_age.melt(id_vars=['AgeGroup','Region'], value_vars=['1990','2000','2010','2020','2030','2040','2050','2060'], var_name='Year',value_name='Percent')
 gpi_age_long['Percent'] = gpi_age_long['Percent']
 ```
@@ -103,7 +103,6 @@ fig2.show()
 ![GPI County Population Projections by Age Group for Wasatch Front Counties.](_pictures/1-plot2.png){#fig-pdf-gpi-age}
 :::
 
-<mark>???UPDATE TO USE 2023-06-09 version instead of 2023-04-28???</mark>
 
 ::: {.content-visible when-format="html"}
 The 2020 model base year population by county and Age Group was compared to the 2020 GPI county-level population by Age Group, shown in the following charts.  The model’s estimate of the population in each Age Group mirrors the GPI county-level projections.
@@ -261,7 +260,7 @@ lf_control_pop['Source'] = 'Observed'
 ```{python}
 #| include: False
 from dbfread import DBF
-lc_dbf = pd.DataFrame(DBF(r'data/1-lifecycle/LifeCycle_Households_Population_v9.0-2023-04-28-BY_2019.dbf', load=True))
+lc_dbf = pd.DataFrame(DBF(r'data/1-lifecycle/LifeCycle_Households_Population_v9.0-2023-06-30-BY_2019.dbf', load=True))
 lc_dbf = lc_dbf[lc_dbf['CO_FIPS'].isin([3,11,35,49,57])]
 lc_dbf['Region'] = lc_dbf['CO_FIPS'].apply(get_county_name).str.upper()
 lc_wf = lc_dbf[['Region','POP_LC1','POP_LC2','POP_LC3']]
