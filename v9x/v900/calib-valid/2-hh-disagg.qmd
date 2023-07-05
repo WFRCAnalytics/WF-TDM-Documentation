@@ -11,13 +11,14 @@ The Household Disaggregation model classifies a TAZ’s households by:
 
 Household Disaggregation is done in three steps with each step adding another level of disaggregation: estimating the distribution of households by size group, further disaggregation by income group and income level, and further disaggregation by number of workers per household. This results in 96 groupings when using the four income groups or 48 groupings when using low/high income levels.
 
-For disaggregation to household size groups, the following lookup files contain the distribution of households across the six household size groups according the average household size for the three life cycle categories: Lookup - HH Size_LC1.csv, Lookup - HH Size_LC2.csv, and Lookup - HH Size_LC3.csv. The distributions in these files are grouped by county. There is also a third lookup file that contains a regional distribution used for comparison purposes: Lookup - HH Size.csv. When computing income ratios, the regional median household income of $74,946 (2019 dollars) is used from the latest ACS.
+For disaggregation to household size groups, the following lookup files contain the distribution of households across the six household size groups according the average household size for the three life cycle categories: `Lookup - HH Size_LC1.csv`, `Lookup - HH Size_LC2.csv`, and `Lookup - HH Size_LC3.csv`. The distributions in these files are grouped by county. There is also a third lookup file that contains a regional distribution used for comparison purposes: `Lookup - HH Size.csv`. When computing income ratios, the regional median household income of $74,946 (2019 dollars) is used from the latest ACS.
 
-Further disaggregation by income groups is done in multiple steps. First a target TAZ distribution by income is calculated using a county distribution found in Lookup - Income.csv. Then a Fratar/Furness balancing method is used to get the matrix distribution across income groups and household sizes. The matrix is initialized with the values found in @tbl-hhsize-seed, which is hard-coded into the 2_HHDisaggregation.s script with the source being the 2012 Household Survey. The balancing method is run through until convergence is reached at (0.0001) or a max of 15 iterations.
+Further disaggregation by income groups is done in multiple steps. First a target TAZ distribution by income is calculated using a county distribution found in `Lookup - Income.csv`. Then a Fratar/Furness balancing method is used to get the matrix distribution across income groups and household sizes. The matrix is initialized with the values found in @tbl-hhsize-seed, which is hard-coded into the `2_HHDisaggregation.s` script with the source being the 2012 Household Survey. The balancing method is run through until convergence is reached at (0.0001) or a max of 15 iterations.
 
 ```{python}
 #| label: tbl-hhsize-seed
 #| tbl-cap: "Initialization Seed Values for Household Size and income Group"
+#| tbl-colwidths: [20,20,20,20,20]
 from IPython.display import Markdown
 from tabulate import tabulate
 table = [['1', '0.591', '0.167' , '0.210', '0.032'],
@@ -26,15 +27,16 @@ table = [['1', '0.591', '0.167' , '0.210', '0.032'],
          ['4', '0.211', '0.151' , '0.395', '0.243'],
          ['5', '0.154', '0.157' , '0.460', '0.229'],
          ['6', '0.118', '0.122' , '0.479', '0.281']]
-Markdown(tabulate(
-  table, 
-  headers=["Householde Size","Income Group 1 Seed", "Income Group 2 Seed", "Income Group 3 Seed", "Income Gruop 4 Seed"],
+headers=["Household Size","Income Group 1 Seed", "Income Group 2 Seed", "Income Group 3 Seed", "Income Gruop 4 Seed"]
+Markdown(tabulate(table, 
+  headers=headers, 
   tablefmt="pipe", 
-  colalign=("left",)*5
-))
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 
-Final disaggregation by worker is a simple distribution which is found in the Lookup – Worker.csv file. This file contains a distribution across the worker groups by each of the 24 combinations of the six household size groups and the four income groups. Households are then aggregated back to the two income levels (low/high).
+Final disaggregation by worker is a simple distribution which is found in the `Lookup – Worker.csv` file. This file contains a distribution across the worker groups by each of the 24 combinations of the six household size groups and the four income groups. Households are then aggregated back to the two income levels (low/high).
 
 ## Household Size
 The Household Disaggregation model estimates how many households are in six Household Size categories:
@@ -48,13 +50,14 @@ The Household Disaggregation model estimates how many households are in six Hous
 
 The model uses the TAZ’s average household size to look up the share of households in each of the six Household Size categories.  This is done independently for each of the three Life Cycle categories estimated in the previous model step.  
 
-<mark>???UPDATE???</mark>
-2010 Census Block Group data was used to determine the initial relationship between average household size and the number of households in each size category.  To increase sample size, all Block Groups in Utah were included.  Draft curves were estimated from the data’s polynomial trendline.  
+<mark>???Is there newer data than the 2018 spreadsheet???</mark>
 
-<mark>???Plots for "2010 Census Block Group Data - Household Size Share by Average Household Size"???</mark>
+2010 Census Block Group data was used to determine the initial relationship between average household size and the number of households in each size category.  To increase sample size, all Block Groups in Utah were included.  Draft curves were estimated from the data’s polynomial trendline as shown in @fig-hh-poly-curves.  
 
-The results from the equations derived from teh Census data were adjusted to remove negative values and to smooth and scale the resulting curves. The sum of the individual curves at any given average household size is 1.
+![2010 Census Block Group Data - Household Size Share by Average Household Size.](_pictures/2-excel1.png){#fig-hh-poly-curves}
 
+::: {.content-visible when-format="html"}
+The results from the equations derived from the Census data were adjusted to remove negative values and to smooth and scale the resulting curves. The sum of the individual curves at any given average household size is 1. @fig-alldata shows the smoothed curves for household size share by average household size.
 ```{python}
 import plotly.express as px
 import pandas as pd
@@ -84,50 +87,64 @@ fig.update_layout(
     xaxis_title='Average Household Size',
     yaxis_title='Percent'
 )
-fig
+fig.show()
 ```
+:::
 
-The 2012 Household Survey was used to estimate the share of households in each Household Size category by Life Cycle.  The entire statewide database was used and aggregated to medium districts in order to obtain sufficient number of survey records in a group yet preserve a sufficient number of observations to estimate lookup curves by Life Cycle.  The estimated Life Cycle curves were then used to weight the Household Size lookup curves derived from the Census data (termed “All Data” in the following figures) to obtain Household Size lookup curves by Life Cycle.   
+::: {.content-hidden when-format="html"}
+The results from the equations derived from the Census data were adjusted to remove negative values and to smooth and scale the resulting curves. The sum of the individual curves at any given average household size is 1. @fig-pdf-alldata shows the smoothed curves for household size share by average household size.
 
+![Household Size Share by Average Household Size -- All Data.](_pictures/2-plot2.png){#fig-pdf-alldata}
+:::
+
+The 2012 Household Survey was used to estimate the share of households in each Household Size category by Life Cycle.  The entire statewide database was used and aggregated to medium districts in order to obtain sufficient number of survey records in a group yet preserve a sufficient number of observations to estimate lookup curves by Life Cycle.  The estimated Life Cycle curves were then used to weight the Household Size lookup curves derived from the Census data (termed "All Data" in @fig-comp-all) to obtain Household Size lookup curves by Life Cycle.   
 
 ```{python}
-alldata = alldata[['HH Size', 'Household Type', '%HH']]
-alldata[['Data']] = 'AllData'
+#alldata = alldata[['HH Size', 'Household Type', '%HH']]
+#alldata[['Data']] = 'AllData'
+#
+#hhlf = hhlf_csv.drop(columns={'Total'})
+#hhlf = hhlf.melt(id_vars=['Data','HH Size'], var_name= 'HHSizeGroup', value_name #= 'Percent')
+#hhlf['Household Type'] = np.select(
+#  [hhlf['HHSizeGroup'] == '%HH1', hhlf['HHSizeGroup'] == '%HH2', hhlf#['HHSizeGroup'] == '%HH3', hhlf['HHSizeGroup'] == '%HH4', hhlf['HHSizeGroup'] #== '%HH5', hhlf['HHSizeGroup'] == '%HH6'],
+#  ['1 Person HH', '2 Person HH', '3 Person HH', '4 Person HH', '5 Person HH', '6+ #Person HH'], default=hhlf['HHSizeGroup']
+#)
+#hhlf = hhlf[['Data','Household Type', 'HH Size', 'Percent']]
+#hhlf[['Percent']] = hhlf[['Percent']].apply(pd.to_numeric)
+#
+## label: fig-lc-comp
+## fig-cap: "Comparison of Life Cycle and All Data Household Size Lookup Curves"
+## cap-location: margin
+#fig2 = px.line(hhlf, 
+#    x="HH Size", 
+#    y="Percent",
+#    #text_auto='.2s',    
+#    color='Data', 
+#    height=1600, 
+#    facet_row = 'Household Type')
+#fig2.update_layout(
+#    xaxis_title='Average Household Size'
+#)
+#fig2
 ```
 
-```{python}
-hhlf = hhlf_csv.drop(columns={'Total'})
-hhlf = hhlf.melt(id_vars=['Data','HH Size'], var_name= 'HHSizeGroup', value_name = 'Percent')
-hhlf['Household Type'] = np.select(
-  [hhlf['HHSizeGroup'] == '%HH1', hhlf['HHSizeGroup'] == '%HH2', hhlf['HHSizeGroup'] == '%HH3', hhlf['HHSizeGroup'] == '%HH4', hhlf['HHSizeGroup'] == '%HH5', hhlf['HHSizeGroup'] == '%HH6'],
-  ['1 Person HH', '2 Person HH', '3 Person HH', '4 Person HH', '5 Person HH', '6+ Person HH'], default=hhlf['HHSizeGroup']
-)
-hhlf = hhlf[['Data','Household Type', 'HH Size', 'Percent']]
-hhlf[['Percent']] = hhlf[['Percent']].apply(pd.to_numeric)
-```
 
+![Comparison of Life Cycle and All Data Household Size Lookup Curves.](_pictures/2-excel3.png){#fig-comp-all height='90%'}
 
-```{python}
-#| label: fig-lc-comp
-#| fig-cap: "Comparison of Life Cycle and All Data Household Size Lookup Curves"
-#| cap-location: margin
-fig2 = px.line(hhlf, 
-    x="HH Size", 
-    y="Percent",
-    #text_auto='.2s',    
-    color='Data', 
-    height=1600, 
-    facet_row = 'Household Type')
-fig2.update_layout(
-    xaxis_title='Average Household Size'
-)
-fig2
-```
+The Household Size lookup curves were then calibrated to county-level household size data from the 2010 Census as shown in @fig-hhcounty-1, @fig-hhcounty-2, and @fig-hhcounty-3.  The county-level adjustments were done to tailor to the lookup curves to account for local variations.  
 
-<mark>???Skipping County Level Life Cycle Plots???</mark>
+![Comparison of Household Size Lookup Curves by County – Life Cycle 1.](_pictures/2-excel4.png){#fig-hhcounty-1}
+
+![Comparison of Household Size Lookup Curves by County – Life Cycle 2.](_pictures/2-excel5.png){#fig-hhcounty-2}
+
+![Comparison of Household Size Lookup Curves by County – Life Cycle 3.](_pictures/2-excel6.png){#fig-hhcounty-3}
+
 
 The shares of the modeled 2015 base year households by Household Size category were validated to 2010 Census and 2016 ACS data at the county level.  The model’s estimate of households by each of the six Household Size category matches within about 2% of the observed data for all counties.
 
+<mark>???Update to use 2019 Model???</mark>>>
+
+::: {.content-visible when-format="html"}
 ```{python}
 hhsizevalid_csv = pd.read_csv('data/hhdisag/HHSizeValidation.csv')
 
@@ -156,8 +173,13 @@ fig3 = px.bar(hhsizevalid,
     color_discrete_map=colors2, 
     text=[f'{round(val2*100,1)}' for val2 in hhsizevalid['Percent']], template='simple_white')
 fig3.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
-fig3
+fig3.show()
 ```
+:::
+
+::: {.content-hidden when-format="html"}
+![2015 Model vs. 2010 Census & 2016 ACS – % Households by Household Size.](_pictures/2-plot7.png){#fig-pdf-hh-modobs height='90%'}
+:::
 
 ## Income
 
