@@ -183,7 +183,7 @@ fig3.show()
 
 ## Income
 
-<mark>???UPDATE???</mark>
+<mark>???UPDATE -- maybe from validation in this location: A:\1 - TDM\2 - Estimate Param\1 - HHDisag_AutoOwn???</mark>
 
  - Income Gruops (Income Levels) in 2016 dollars:
     - 1: $0 to 35,000 (Low)
@@ -197,4 +197,4 @@ fig3.show()
  - Worker Groups: 0, 1, 2, 3+ workers per household
 
 
-<mark>???Make more validation charts???</mark>
+<mark>???UPDATE -- maybe from validation in this location: A:\1 - TDM\2 - Estimate Param\1 - HHDisag_AutoOwn???</mark>
