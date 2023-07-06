@@ -2,12 +2,12 @@
 title: Trip Distribution
 echo: false
 warning: false
-message: false
+message: false40
 ---
 
 The validation results for the Trip Distribution portion of the model are shown in this section. The observed data comes from the 2012 Household Survey. 
 
-
+::: {.content-visible when-format="html"}
 ```{python}
 import pandas as pd
 gc_csv = pd.read_csv('data/distrib/v9-gencost-mod-obs.csv')
@@ -111,4 +111,31 @@ chart = GroupedBarChart(filtered_data, {
 Inputs.table(filtered_data)
 ```
 
+:::
+
+:::
+
+
+::: {.content-hidden when-format="html"}
+![Average Trip Length for Generalized Cost for Main Purposes.](_pictures/5-plot1.png){#fig-pdf-gc-purp height=40%}
+
+![Average Trip Length for Generalized Cost for External Forces.](_pictures/5-plot2.png){#fig-pdf-gc-ext height=40%}
+
+![Average Trip Length for Generalized Cost for Telecommuting.](_pictures/5-plot3.png){#fig-pdf-cg-tele height=40%}
+:::
+
+::: {.content-hidden when-format="html"}
+![Average Trip Length for Distance for Main Purposes.](_pictures/5-plot4.png){#fig-pdf-dist-purp height=40%}
+
+![Average Trip Length for Distance for External Forces.](_pictures/5-plot5.png){#fig-pdf-dist-ext height=40%}
+
+![Average Trip Length for Distance for Telecommuting.](_pictures/5-plot6.png){#fig-pdf-dist-tele height=40%}
+:::
+
+::: {.content-hidden when-format="html"}
+![Average Trip Length for Time for Main Purposes.](_pictures/5-plot7.png){#fig-pdf-time-purp height=40%}
+
+![Average Trip Length for Time for External Forces.](_pictures/5-plot8.png){#fig-pdf-time-ext height=40%}
+
+![Average Trip Length for Time for Telecommuting.](_pictures/5-plot9.png){#fig-pdf-time-tele height=40%}
 :::

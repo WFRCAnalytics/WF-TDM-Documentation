@@ -28,9 +28,9 @@ book:
     - v9x/v900/calib-valid/2-hh-disagg.qmd
     - v9x/v900/calib-valid/3-auto-own.qmd
     - v9x/v900/calib-valid/4-trip-gen.qmd
-    #- v9x/v900/calib-valid/5-distribution.qmd
-    #- v9x/v900/calib-valid/6-mc.qmd
-    #- v9x/v900/calib-valid/7-assign.qmd
+    - v9x/v900/calib-valid/5-distribution.qmd
+    - v9x/v900/calib-valid/6-mc.qmd
+    - v9x/v900/calib-valid/7-assign.qmd
     #- v9x/v900/calib-valid/8-sensitivity.qmd
 
 #bibliography: references.bib

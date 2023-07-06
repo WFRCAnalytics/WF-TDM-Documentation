@@ -5,6 +5,10 @@ warning: false
 message: false
 ---
 
+The validation results for the Highway Assignment portion of the model are shown in this section. The observed data comes from the Utah Transit Authority 2019 On-Board Survey. 
+
+::: {.content-visible when-format="html"}
+
 ## Table Summaries
 
 ```{python}
@@ -236,100 +240,40 @@ Inputs.table(filtered_vmtData, {
   }})
 ```
 
+:::
+
+
+::: {.content-hidden when-format="html"}
+
+![Average Daily Comparison by Facility Type by Region.](_pictures/7-plot1.png){#fig-pdf-ave-ft}
+
+:::
+
+
 ## Validation Charts
+Write some words here.
 
-<mark>???Hard to find regression model that starts at (0,0) -- Good enough???</mark>
+![Volume Comparison -- All Vehicles.](_pictures/7-plot2.png){#fig-allvehicles height="60%"}
 
-<mark>???Hard to create pct error graphs with bins???</mark>
+![Volume Comparison -- Passenger Cars.](_pictures/7-plot3.png){#fig-pc height="60%"}
 
-<mark>???Should I just do screen shots of the validation charts???</mark>
+![Volume Comparison -- Medium Trucks.](_pictures/7-plot4.png){#fig-md-trucks height="60%"}
 
-```{python}
-allveh_validC = allveh_valid[['Mod_AWDT','Obs_AWDT','Pct_Dev', 'Mod_Car','Obs_Car','Pct_Dev_Car','Mod_MD', 'Obs_MD', 'Pct_Dev_MD', 'Mod_HV', 'Obs_HV', 'Pct_Dev_HV']]
-allveh_validC['row_number'] = range(1, len(allveh_validC) + 1)
-allveh_validC = pd.melt(
-    allveh_validC,
-    id_vars = ['row_number'],
-    value_vars=['Mod_AWDT','Obs_AWDT', 'Mod_Car','Obs_Car','Mod_MD', 'Obs_MD', 'Mod_HV', 'Obs_HV'],
-    var_name='Variable',
-    value_name='Value'
-)
-allveh_validC['Vehicle'] = allveh_validC['Variable'].str.split('_').str[-1]
-allveh_validC['DataSource'] = allveh_validC['Variable'].apply(lambda x: 'Model' if 'Mod' in x else 'Observed')
-allveh_validC = allveh_validC.pivot(index = ['row_number','Vehicle'],columns = 'DataSource', values = 'Value').reset_index().drop(columns={'row_number'})
-allveh_validC['Diff'] = allveh_validC['Model'] - allveh_validC['Observed']
-allveh_validC['Pct_Dev'] = allveh_validC['Diff'] / allveh_validC['Observed']
-allveh_validC = allveh_validC.fillna(0)
-allveh_validC['Vehicle'] = allveh_validC['Vehicle'].apply(lambda x: 'All' if 'AWDT' in x else x)
-```
+![Volume Comparison -- Heavy Trucks.](_pictures/7-plot5.png){#fig-hv-trucks height="60%"}
 
-
-```{python}
-ojs_define(validc = allveh_validC)
-```
-
-
-```{ojs}
-viewof vehSelect = Inputs.select(new Map([['All','All'], ['Car','Car'], ['MD', 'MD'], ['HV','HV']]), {value: 'Vehicle', label: "Select Vehicle:"})
-```
-
-```{ojs}
-validT = transpose(validc)
-filtered_vehData = validT.filter(function(dataL) {
-    return vehSelect == dataL.Vehicle;
-})
-```
-
-```{ojs}
-ML = require("https://www.lactame.com/lib/ml/6.0.0/ml.min.js")
-vehData_lm = new ML.SimpleLinearRegression(filtered_vehData.map(d => d.Observed), filtered_vehData.map(d => d.Model))
-vehData_coefficients = vehData_lm.coefficients 
-
-vehData_corr = vehData_lm.score(filtered_vehData.map(d => d.Observed), filtered_vehData.map(d => d.Model))
-```
-
-```{ojs}
-
-chart = Plot.plot({
-  marks: [
-    Plot.dot(filtered_vehData, { // Add scatterplot (blue points)
-      x: "Observed",
-      y: "Model",
-      fill: "blue",
-      r: 4,
-      opacity: 0.4
-    }),
-    Plot.linearRegressionY(filtered_vehData, {
-      x: "Observed",
-      y: "Model"
-    }),
-    Plot.text( // Add text annotation for model estimates (shown in blue)
-      [`y = ${vehData_coefficients[1].toFixed(1)}x - ${-vehData_coefficients[0].toFixed(1)}
-        
-        𝘙 ² = ${vehData_corr.r2.toFixed(2)}
-        
-        𝘳 = ${vehData_corr.r.toFixed(2)}` 
-      ],
-      {frameAnchor: "bottom-right", 
-       dy: -20,
-       fontSize: 16, 
-       fill: "blue", 
-       fontWeight: 600} 
-    )
-  ]
-})
-```
 
 ## Map Analysis
+Write some words here.
 
-<mark>???Add screen shots of the TTT to get the segment-level validation map of model vs. obseved for all vehicles, cars and LT, MD, and HV???</mark>
+![Volume Comparison -- Heavy Trucks.](_pictures/7-plot6.png){#fig-hv-trucks}
 
 ## ATO Analysis 
 Access to opportunities, also referred to as accessibility or ATO, is a way to measure how well people can connect to jobs, or vice versa. ATO metrics quantify how well the current and future transportation system work with land use.  Both shorter travel times and an increased presence of employment and other opportunities result in higher accessibility scores.  
 
 A script to calculate ATO metrics, `1_Access_to_Opportunity.s` located in the `2_ModelScripts\7_PostProcessing` folder, has been added to the model’s `_HailMary.s` batch script and runs automatically with every model run. The script sums the number of jobs and households that are within a typical commute travel shed (in minutes) by auto and transit. The typical commute travel shed is defined using a distance decay curve estimated from the 2012 household travel survey. Metrics that combine the jobs and households are also calculated.  
 
-Results from the ATO script are output into `7_PostProcessing\Access_to_Opportunity_@DemographicYear@.dbf`.  Results can be joined with the TAZ shapefile to visualize the data, such as is shown in @fig-ato1 and @fig-ato2. 
+Results from the ATO script are output into <br>  
+`7_PostProcessing\Access_to_Opportunity_@DemographicYear@.dbf`. Results can be joined with the TAZ shapefile to visualize the data, such as is shown in @fig-ato1 and @fig-ato2. 
 
 <mark>??? Using the CompJobHHByTran and CompJobHHByAuto fields...is that right???</mark
 
