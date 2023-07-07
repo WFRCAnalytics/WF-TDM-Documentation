@@ -1,7 +1,6 @@
 ---
 title: Mode Choice
 echo: false
-jupyter: python3
 warning: false
 message: false
 ---
@@ -11,8 +10,6 @@ The validation results for the Mode Choice portion of the model are shown in thi
 ::: {.content-visible when-format="html"}
 ## Mode Choice Constants
 The  mode choice constants within the model used to estimate mode shares are shown below:
-
-**Table 1: Mode Choice Constants**
 
 ```{python}
 #import libraries
@@ -375,7 +372,7 @@ nameBoardTDM = "Boardings_TDM"
 ```
 
 ```{python}
-df_OBS = pd.read_csv(r'data/mc/2019 Final Weighted UTA OD Data - 2020-09-09_BH.csv')
+df_OBS = pd.read_csv(r'data/6-mc/2019 Final Weighted UTA OD Data - 2020-09-09_BH.csv')
 df_OBS = df_OBS[df_OBS.Use == 1]
 
 #create dataset with only desired columns
@@ -416,7 +413,7 @@ df_HHSModes = pd.DataFrame(data=dHHSModes)
 ```
 
 ```{python}
-df_HHS  = pd.read_csv(r'data\mc\TripData_June19_2013.csv')
+df_HHS  = pd.read_csv(r'data\6-mc\TripData_June19_2013.csv')
 df_HHS = df_HHS[df_HHS.WF_IXXI_MS == 'II']
 df_HHS = df_HHS[df_HHS.main_mode_w_auto_occ_text != 'other']
 
@@ -473,8 +470,8 @@ df_TDMCatToModes = pd.DataFrame(dTDMCatToModes)
 ```
 
 ```{python}
-df_TDM_Pk  = pd.read_csv(r'data\mc\v832_SE19_Net19_RegionShares_Pk.csv')
-df_TDM_Ok  = pd.read_csv(r'data\mc\v832_SE19_Net19_RegionShares_Ok.csv')
+df_TDM_Pk  = pd.read_csv(r'data\6-mc\v9_SE19_Net19_RegionShares_Pk.csv')
+df_TDM_Ok  = pd.read_csv(r'data\6-mc\v9_SE19_Net19_RegionShares_Ok.csv')
 
 df_TDM_Pk['Period'] = 'PK'
 df_TDM_Ok['Period'] = 'OK'
@@ -567,8 +564,8 @@ dfC_Long_P = pd.melt(dfC_Long_P,
 
 ```{python}
 ojs_define(dataLong = dfC_Long_P)
-#dfC_Long.to_csv('data/mc/dfC_Long.csv')
-#dataLong2 = FileAttachment("data\\mc\\dfC_Long.csv").csv({ typed: true });
+#dfC_Long.to_csv('data/6-mc/dfC_Long.csv')
+#dataLong2 = FileAttachment("data\\6-mc\\dfC_Long.csv").csv({ typed: true });
 #| echo: false
 #Inputs.table(filtered_data, {
 #  style: {
@@ -595,8 +592,6 @@ ojs_define(dataLong = dfC_Long_P)
 ## Mode Share
 
 The following figure provides and interactive view to understand the mode share by different modes, periods, and purposes between modeled and observed data. 
-
-**Figure 1: Mode share between model and observed by mode, period, and purpose.**
 
 ```{ojs}
 viewof plotSelect = Inputs.select(new Map([['Mode','Mode'], ['Motorized / Non-Motorized', 'Motorized / Non-Motorized'], ['Drive Alone / Share Ride', 'Drive Alone / Share Ride'], ['Share 2 / Share 3+', 'Share 2 / Share 3+'], ['Auto / Transit', 'Auto / Transit'], ['Transit Mode', 'Transit Mode'], ['Access Mode', 'Access Mode']]), {value: 'Title', label: "Plot Type"})
@@ -630,6 +625,11 @@ import {howto, altplot} from "@d3/example-components"
 ```{ojs}
 //https://observablehq.com/@d3/grouped-bar-chart
 key = Legend(chart.scales.color, {title: "Data Source"})
+```
+
+```{ojs}
+//|label: fig-mode-share
+//|fig-cap: "Mode share between model and observed by mode, period, and purpose"
 chart = GroupedBarChart(filtered_data, {
     x: d => d.Mode,
     y: d => d.Percent,
@@ -665,7 +665,7 @@ df_ModeTDM = pd.DataFrame(dModeTDM)
 
 ```{python}
 from dbfread import DBF
-dbf_TDM_PARoute=pd.DataFrame(DBF(r"data/mc/_v832_SE19_Net19_1_PA_Route.dbf", load=True))
+dbf_TDM_PARoute=pd.DataFrame(DBF(r"data/6-mc/_v9_SE19_Net19_1_PA_Route.dbf", load=True))
 dbf_TDM_PARoute
 
 dbf_TDM_PARoute_LinkModebyBoardMode = pd.melt(dbf_TDM_PARoute, id_vars=['MODE','NAMEID','NAME'], value_vars=['DY_4_XITB','DY_5_XITB','DY_6_XITB','DY_7_XITB','DY_8_XITB','DY_9_XITB'])
@@ -824,8 +824,6 @@ ojs_define(boardLong = df_boardings_obj_longer)
 
 The following figure provides and interactive view to understand the transit boarding trips, linked trips, transfer ratios, and mode surveyed between modeled and observed data. 
 
-**Figure 2: Transit boardings by trip, linked trip, transfer ratio, and mode surveyed.**
-
 ```{ojs}
 viewof bPlotSelect = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: 'Title', label: "Plot Type"})
 ```
@@ -843,6 +841,11 @@ filtered_bData = dataBLT.filter(function(dataL) {
 ### Plot
 ```{ojs}
 key2 = Legend(chart2.scales.color, {title: "Data Source"})
+```
+
+```{ojs}
+//|label: fig-mc-brdings
+//|fig-cap: Transit boardings by trip, linked trip, transfer ratio, and mode surveyed.
 chart2 = GroupedBarChart(filtered_bData, {
     x: d => d.Mode,
     y: d => d.ViewValue,
@@ -863,8 +866,6 @@ Inputs.table(filtered_bData)
 ```
 
 :::
-
-**Figure 3: Transit boardings -- absolute and relative difference between model and observed.**
 
 
 ```{ojs}
@@ -887,6 +888,11 @@ filtered_bData2 = dataBLT.filter(function(dataL) {
 ```{ojs}
 //https://observablehq.com/@d3/diverging-bar-chart
 import {DivergingBarChart} from "@d3/diverging-bar-chart"
+```
+
+```{ojs}
+//|label: fig-mc-tr-brdings
+//|fig-cap: Transit boardings -- absolute and relative difference between model and observed.
 chart3 = DivergingBarChart(filtered_bData2, {
     x: d => d.ViewValue,
     y: d => d.Mode,

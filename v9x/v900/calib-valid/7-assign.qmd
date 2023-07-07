@@ -15,7 +15,7 @@ The validation results for the Highway Assignment portion of the model are shown
 ```{python}
 import pandas as pd
 import numpy as np
-allveh_valid = pd.read_csv("data/assign/wf-validation-04-14-2023-AllVeh.csv")
+allveh_valid = pd.read_csv("data/7-assign/wf-validation-06-30-2023-AllVeh.csv")
 value_vars = ['Valid_FC', 'Valid_All']
 allveh_melted = allveh_valid.melt(id_vars=['CO_FIPS', 'SEGID', 'ATYPENAME', 'Mod_AWDT', 'Obs_AWDT', 'Diff', 'Pct_Dev', 'Diff_Sq',
                                    'Mod_Car', 'Obs_Car', 'Diff_Car', 'Pct_Dev_Car', 'Diff_Sq_Car', 'Mod_MD', 'Obs_MD',
@@ -25,7 +25,7 @@ allveh_melted = allveh_melted[['CO_FIPS', 'SEGID', 'Valid', 'ATYPENAME', 'Mod_AW
                  'Mod_Car', 'Obs_Car', 'Diff_Car', 'Pct_Dev_Car', 'Diff_Sq_Car', 'Mod_MD', 'Obs_MD', 'Diff_MD',
                  'Pct_Dev_MD', 'Diff_Sq_MD', 'Mod_HV', 'Obs_HV', 'Diff_HV', 'Pct_Dev_HV', 'Diff_Sq_HV', 'DY_VMT','DY_VMT.1']]
 allveh_melted = allveh_melted.rename(columns = {'DY_VMT':'ModelVMT', 'DY_VMT.1':'ObserveVMT'})
-allveh_melted
+#allveh_melted
 ```
 
 ```{python}
@@ -125,11 +125,16 @@ stack_vvaData = vvaLR.filter(function(dataL) {
 ```
 
 ::: {.panel-tabset}
-### Model v. Observed
+### Regional Summary Chart
 ```{ojs}
 import {GroupedBarChart} from "@d3/grouped-bar-chart"
 import {Legend, Swatches} from "@d3/color-legend"
 import {howto, altplot} from "@d3/example-components"
+```
+
+```{ojs}
+//|label: fig-reg-sum
+//|fig-cap: Regional Summary Comparison
 chart2 = GroupedBarChart(stack_vvaData, {
     x: d => d.FunctionalType,
     y: d => d.Value,
@@ -186,7 +191,7 @@ filtered_vmtData = vmtT.filter(function(dataL){
 })
 ```
 
-**Table 1: Average Daily Comparison by Facility Type (Volume).**
+*Average Daily Comparison by Facility Type (Volume).*
 ```{ojs}
 //| echo: false
 Inputs.table(filtered_volData, {
@@ -216,7 +221,7 @@ Inputs.table(filtered_volData, {
 
 ```
 
-**Table 2: Average Daily Comparison by Facility Type (VMT).**
+*Average Daily Comparison by Facility Type (VMT).*
 ```{ojs}
 //| echo: false
 Inputs.table(filtered_vmtData, {
@@ -283,8 +288,8 @@ import json
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt #if using matplotlib
-ato_data = pd.read_csv('data/assign/Access_to_Opportunity_2019.csv')
-geojson_path = r'data/assign/tazNew.geojson'
+ato_data = pd.read_csv('data/7-assign/Access_to_Opportunity_2019.csv')
+geojson_path = r'data/7-assign/tazNew.geojson'
 ```
 
 ```{python}

@@ -10,9 +10,9 @@ The validation results for the Trip Distribution portion of the model are shown 
 ::: {.content-visible when-format="html"}
 ```{python}
 import pandas as pd
-gc_csv = pd.read_csv('data/distrib/v9-gencost-mod-obs.csv')
-dist_csv = pd.read_csv('data/distrib/v9-dist-mod-obs.csv')
-time_csv = pd.read_csv('data/distrib/v9-time-mod-obs.csv')
+gc_csv = pd.read_csv('data/5-distrib/v9-gencost-mod-obs.csv')
+dist_csv = pd.read_csv('data/5-distrib/v9-dist-mod-obs.csv')
+time_csv = pd.read_csv('data/5-distrib/v9-time-mod-obs.csv')
 ```
 
 ```{python}
@@ -60,7 +60,6 @@ gcdtime_Stats['PurpType'] = np.where(gcdtime_Stats['Purpose'].isin(mainPurposes)
 gc_Stats = gcdtime_Stats.loc[gcdtime_Stats['Variable'] == 'GenCost']
 ```
 
-**Figure 1: Average Trip Length between model and observed.**
 ```{python}
 ojs_define(dataStats = gcdtime_Stats)
 ```
@@ -89,8 +88,15 @@ import {howto, altplot} from "@d3/example-components"
 
 ### Plot
 ```{ojs}
+//|echo: False
 //https://observablehq.com/@d3/grouped-bar-chart
 key = Legend(chart.scales.color, {title: "Data Source"})
+```
+
+```{ojs}
+//|label: fig-ave-trip-length
+//|fig-cap: Average Trip Length between model and observed.
+//|echo: False
 chart = GroupedBarChart(filtered_data, {
     x: d => d.Purpose,
     y: d => d.AVG_TRIP_LEN,
@@ -111,6 +117,7 @@ chart = GroupedBarChart(filtered_data, {
 Inputs.table(filtered_data)
 ```
 
+TAZ Geography Comparison Map
 :::
 
 :::
