@@ -11,7 +11,7 @@ Changes made to the `1_Inputs` folder are discussed in this section.
 #|echo: false
 # model folder
 tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
-tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\_archive\WF TDM v9.0 - 2022-10-05"
+tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v9.0\WF TDM v9.0 - 2023-06-30"
 ```
 
 ```{python}
@@ -179,7 +179,7 @@ The bus speed ratios in the model were further categorized and refined using act
 #### Bus Speed Ratios Plot
 
 ```{ojs}
-//| echo: false
+
 
 // read in CSVs
 faDataBusSpeeds     = FileAttachment("data\\bus_speed_ratios_long.csv").csv({ typed: true });
@@ -261,11 +261,14 @@ domainFacetSelect = {
       return; 
   }
 }
+```
 
-bottomMargin = {
 
-}
 
+```{ojs}
+//|label: fig-bus-speed-ratios
+//|fig-cap: Bus Speed Ratios
+//|echo: false
 Plot.plot({
   grid: true,
   aspectRatio: 0.25,
@@ -301,10 +304,9 @@ Plot.plot({
 #### Bus Speed Ratios Data
 
 ```{ojs}
-//| echo: false
 Inputs.table(faDataBusSpeeds, {
   style: {
-    fontSize: 16,
+    fontSize: 12,
   },
   columns: [
     "FunctionalClassName",
@@ -317,26 +319,29 @@ Inputs.table(faDataBusSpeeds, {
     TimePeriodName: "Time Period",
     AreaTypeName: "Area Type",
     BusSpeedRatio: "Bus Speed Ratio"
-  }})
+  }
+})
 
 ```
 
 #### Previous Bus Speed Ratios
 
 ```{ojs}
-//| echo: false
 
 // read in CSVs
 faDataBusSpeeds_previous = FileAttachment("data\\bus_speed_ratios_previous.csv").csv({ typed: true });
+```
+
+```{ojs}
+//|label: fig-bus-speed-ratios-previous
+//|fig-cap: Previous Bus Speed Ratios
+//|echo: false
 
 Plot.plot({
   grid: true,
   aspectRatio: 0.5,
   style: {
-    fontSize: 16
-  },
-  style: {
-    fontSize: 10,
+    fontSize: 12,
   },
   margin: 40,
   marginBottom: 150,
