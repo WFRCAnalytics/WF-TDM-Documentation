@@ -8,6 +8,7 @@ message: false
 
 The validation results for the Mode Choice portion of the model are shown in this section. The observed data comes from the Utah Transit Authority 2019 On-Board Survey as well as the 2012 Household Travel Survey. 
 
+::: {.content-visible when-format="html"}
 ## Mode Choice Constants
 The  mode choice constants within the model used to estimate mode shares are shown below:
 
@@ -903,3 +904,27 @@ Inputs.table(filtered_bData2)
 ```
 
 :::
+
+:::
+
+::: {.content-hidden when-format="html"}
+## Boardings
+@fig-pdf-boardings show validation charts to understadn the transit boardings, linked trips, transfer ratios, and mode surveyed between modeled and observed. 
+
+![Mode Choice boardings.](_pictures/6-plot1.png){#fig-pdf-boardings}
+
+:::
+
+
+::: {.content-hidden when-format="html"}
+## Mode Share
+@fig-pdf-trips-dy, @fig-pdf-trips-pk, and @fig-pdf-trips-ok show validation charts by modes, periods, and purposes.
+
+![Total Trips - Daily.](_pictures/6-plot2.png){#fig-pdf-trips-dy}
+
+![Total Trips - Daily.](_pictures/6-plot2.png){#fig-pdf-trips-pk}
+
+![Total Trips - Daily.](_pictures/6-plot4.png){#fig-pdf-trips-ok}
+
+:::
+
