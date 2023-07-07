@@ -15,6 +15,10 @@ For disaggregation to household size groups, the following lookup files contain 
 
 Further disaggregation by income groups is done in multiple steps. First a target TAZ distribution by income is calculated using a county distribution found in `Lookup - Income.csv`. Then a Fratar/Furness balancing method is used to get the matrix distribution across income groups and household sizes. The matrix is initialized with the values found in @tbl-hhsize-seed, which is hard-coded into the `2_HHDisaggregation.s` script with the source being the 2012 Household Survey. The balancing method is run through until convergence is reached at (0.0001) or a max of 15 iterations.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-hhsize-seed
 #| tbl-cap: "Initialization Seed Values for Household Size and income Group"
@@ -35,6 +39,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 Final disaggregation by worker is a simple distribution which is found in the `Lookup – Worker.csv` file. This file contains a distribution across the worker groups by each of the 24 combinations of the six household size groups and the four income groups. Households are then aggregated back to the two income levels (low/high).
 
@@ -52,11 +58,20 @@ The model uses the TAZ’s average household size to look up the share of househ
 
 <mark>???Is there newer data than the 2018 spreadsheet???</mark>
 
-2010 Census Block Group data was used to determine the initial relationship between average household size and the number of households in each size category.  To increase sample size, all Block Groups in Utah were included.  Draft curves were estimated from the data’s polynomial trendline as shown in @fig-hh-poly-curves.  
+::: {.content-hidden when-format="html"}
 
-![2010 Census Block Group Data - Household Size Share by Average Household Size.](_pictures/2-excel1.png){#fig-hh-poly-curves}
+2010 Census Block Group data was used to determine the initial relationship between average household size and the number of households in each size category.  To increase sample size, all Block Groups in Utah were included.  Draft curves were estimated from the data’s polynomial trendline as shown in @fig-pdf-hh-poly-curves.  
+
+![2010 Census Block Group Data - Household Size Share by Average Household Size.](_pictures/2-excel1.png){#fig-pdf-hh-poly-curves}
+
+:::
 
 ::: {.content-visible when-format="html"}
+
+2010 Census Block Group data was used to determine the initial relationship between average household size and the number of households in each size category.  To increase sample size, all Block Groups in Utah were included.  Draft curves were estimated from the data’s polynomial trendline as shown in @fig-hh-poly-curves.  
+
+![2010 Census Block Group Data - Household Size Share by Average Household Size.](_pictures/2-excel1.png){#fig-hh-poly-curves width='75%'}
+
 The results from the equations derived from the Census data were adjusted to remove negative values and to smooth and scale the resulting curves. The sum of the individual curves at any given average household size is 1. @fig-alldata shows the smoothed curves for household size share by average household size.
 ```{python}
 import plotly.express as px
@@ -89,6 +104,7 @@ fig.update_layout(
 )
 fig.show()
 ```
+
 :::
 
 ::: {.content-hidden when-format="html"}
@@ -128,16 +144,33 @@ The 2012 Household Survey was used to estimate the share of households in each H
 #fig2
 ```
 
+::: {.content-hidden when-format="html"}
 
 ![Comparison of Life Cycle and All Data Household Size Lookup Curves.](_pictures/2-excel3.png){#fig-comp-all height='90%'}
 
+The Household Size lookup curves were then calibrated to county-level household size data from the 2010 Census as shown in @fig-pdf-hhcounty-1, @fig-pdf-hhcounty-2, and @fig-pdf-hhcounty-3.  The county-level adjustments were done to tailor to the lookup curves to account for local variations.  
+
+![Comparison of Household Size Lookup Curves by County – Life Cycle 1.](_pictures/2-excel4.png){#fig-pdf-hhcounty-1}
+
+![Comparison of Household Size Lookup Curves by County – Life Cycle 2.](_pictures/2-excel5.png){#fig-pdf-hhcounty-2}
+
+![Comparison of Household Size Lookup Curves by County – Life Cycle 3.](_pictures/2-excel6.png){#fig-pdf-hhcounty-3}
+
+:::
+
+::: {.content-visible when-format="html"}
+
+![Comparison of Life Cycle and All Data Household Size Lookup Curves.](_pictures/2-excel3.png){#fig-comp-all width='74%'}
+
 The Household Size lookup curves were then calibrated to county-level household size data from the 2010 Census as shown in @fig-hhcounty-1, @fig-hhcounty-2, and @fig-hhcounty-3.  The county-level adjustments were done to tailor to the lookup curves to account for local variations.  
 
-![Comparison of Household Size Lookup Curves by County – Life Cycle 1.](_pictures/2-excel4.png){#fig-hhcounty-1}
+![Comparison of Household Size Lookup Curves by County – Life Cycle 1.](_pictures/2-excel4.png){#fig-hhcounty-1 width='75%'}
 
-![Comparison of Household Size Lookup Curves by County – Life Cycle 2.](_pictures/2-excel5.png){#fig-hhcounty-2}
+![Comparison of Household Size Lookup Curves by County – Life Cycle 2.](_pictures/2-excel5.png){#fig-hhcounty-2 width='75%'}
 
-![Comparison of Household Size Lookup Curves by County – Life Cycle 3.](_pictures/2-excel6.png){#fig-hhcounty-3}
+![Comparison of Household Size Lookup Curves by County – Life Cycle 3.](_pictures/2-excel6.png){#fig-hhcounty-3 width='75%'}
+
+:::
 
 
 The shares of the modeled 2015 base year households by Household Size category were validated to 2010 Census and 2016 ACS data at the county level.  The model’s estimate of households by each of the six Household Size category matches within about 2% of the observed data for all counties.

@@ -5,6 +5,7 @@ warning: false
 message: false
 ---
 
+
 The validation results for the Highway Assignment portion of the model are shown in this section. The observed data comes from the Utah Transit Authority 2019 On-Board Survey. 
 
 ::: {.content-visible when-format="html"}
@@ -275,7 +276,7 @@ A script to calculate ATO metrics, `1_Access_to_Opportunity.s` located in the `2
 Results from the ATO script are output into <br>  
 `7_PostProcessing\Access_to_Opportunity_@DemographicYear@.dbf`. Results can be joined with the TAZ shapefile to visualize the data, such as is shown in @fig-ato1 and @fig-ato2. 
 
-<mark>??? Using the CompJobHHByTran and CompJobHHByAuto fields...is that right???</mark
+<mark>??? Using the CompJobHHByTran and CompJobHHByAuto fields...is that right???</mark>
 
 ```{python}
 import json
@@ -320,3 +321,4 @@ cbar.set_label('Composite ATO Score')
 
 plt.show()
 ```
+

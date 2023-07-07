@@ -53,6 +53,10 @@ Base productions are generated based on TAZ household attributes including numbe
 
 The production rates are only estimated for combinations of TAZ variable and trip purpose that are valid. A household with no workers does not generate any work trips. Additionally, households in Life Cycle 1 would not generate any school trips by definition.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-tp-prod
 #| tbl-cap: "Production Rates by Trip Purpose."
@@ -89,12 +93,18 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 <span style="font-size: 11px;">*Note for @tbl-tp-prod: HBSch productions for each TAZ are divided into HBSch_Pr and HBSch_Sc based on their respective regional shares of total enrollment.*</span>
 
 To calculate the total productions by trip purpose for each TAZ, the value of each variable is multiplied by the associated rate for that trip purpose and then summed over all the variables. Further division of Home-Based School trips into Primary and Secondary is done based on their respective regional shares of total enrollment.
 Productions for non-home-based trip purposes are further adjusted by the visitor adjustment factors in @tbl-visitor-adj, which were taken from the 2012 Household Survey.
 
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-visitor-adj
 #| tbl-cap: "Visitor Adjustment Factors."
@@ -111,12 +121,18 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 ### External Trip Productions
 Productions for internal-to-external (IX) trips are estimated by the model since the production occurs within the model space. The IX productions are taken as a share from the base productions and reassigned to the IX category. Ultimately, IX trips are not separated by trip purpose. But for the estimation of IX trip productions, trips are separated into two general trip purposes: work and non-work trips. Work trips include HBW. Non-Work trips include all other purposes except for school trips, which are excluded from external trips.
 
 The share of productions that are IX work/non-work trips is shown in @tbl-ix-shares. Typically shares of productions are in the 1% to 4% range for all counties except Box Elder, which ranges from 5% to 20% of all trip productions being IX trips.
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-ix-shares
 #| tbl-cap: "Internal-to-External Shares (2012 HH Survey)"
@@ -136,6 +152,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 After calculating the number of IX productions using the share values, these trips are removed from the base productions. Additionally, since IX productions are in vehicle-trips the final step in calculating IX productions is to multiply the person trips by vehicle occupancy rate of 1.54.
 
@@ -159,6 +177,10 @@ where,
  - *Fac_ECom_HH* represents the ecommerce factor applied to households (See @tbl-ecommerce-fcts),
  - and *FAC_ECom_Emp* represents the ecommerce factor applied to employment (See @tbl-ecommerce-fcts).
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-share-ecom
 #| tbl-cap: "Proportion of Truck Trips to apply E-Commerce Factors"
@@ -176,10 +198,15 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
-
+:::
+:::
 
 The *Fac_ECom_HH* variable corresponds to the values in the *Households* rows in @tbl-ecommerce-fcts. The *Fac_ECom_Emp* variable is computed as a function of the sum of the other variables in @tbl-ecommerce-fcts multiplied by their corresponding employment types. 
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-ecommerce-fcts
 #| tbl-cap: "Employment Factors by Scenario and Truck Type"
@@ -210,9 +237,15 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 An additional adjustment factor is used during the calibration process to further tune the model results for trucks to match observed truck traffic. These adjustments are made at the three main groupings for short-haul productions and are shown in @tbl-sh-gen. A factor of 1 means there is no adjustment. 
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-sh-gen
 #| tbl-cap: "General Short Haul Truck Production/Attraction Factors"
@@ -230,7 +263,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
-
+:::
+:::
 
 ## Estimate Attractions
 The Trip Generation script estimates attractions for all trip purposes. Attractions are defined as the end of the trip that is serving as the attraction for a trip. For home-based trips (trips produced at a home location), attractions could include work locations, retail centers, restaurants, schools, colleges, etc. For non-home-based trips (trips produced at work or another locations), attractions could include delivery locations, restaurants, etc. The attractions for each TAZ are estimated in the following steps:
@@ -279,6 +313,10 @@ Markdown(tabulate(table,
 ### Telecommuting and Home-based Attractions
 Telecommuting and home-based jobs for each employment category are the calculated by applying the telecommuting rates taken from the model input files. Work-at-home jobs (HBJ) are added back into each employment category for the attraction calculations when calculating telecommuting. Telecommuting attractions are specified as either home-based work or non home-based work. @tbl-telecom shows the rates applied to each job portion of the telecommutting function. 
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-telecom
 #| tbl-cap: "Telecommuting Rates applied to each Job portion of the Telecommuting Function"
@@ -304,6 +342,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 For performing scenario testing, the 1ControlCenter.block file for the model scenario contains a telecommuting factor that serves as a multiplier to all employment-based telecommuting calculations. The default value for this factor is 1. A value less than 1 decreases the telecommuting share and a value greater than 1 increases the telecommuting share.
 
@@ -314,6 +354,10 @@ The TAZ attractions for external-to-internal (XI) attractions is set to the numb
 
 Additional adjustment factors applied to XI attractions include county factors and a scaling factor. The county adjustment factors are shown in @tbl-county-adj-fcts. The scaling factor used for the model is 0.010957.
 
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-county-adj-fcts
 #| tbl-cap: "IX Attraction County Adjustment Factors"
@@ -333,12 +377,18 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 When calculating attractions for the opposing direction, internal-to-external (IX), the values come directly from the External_TripEnds.dbf file as generated in the Input Processing scripts.
 
 ### CBD and Area Type Adjustments
 Some trip purposed are further adjusted by select geographies. This allows for localized nuances to be applied when attraction rates may be atypical of regional rates. Two sets of adjustments are made. First, an adjustment of 0.5 is made to home-based shopping trips attracted to the CBD in Salt Lake County. Thus, shopping trips attracted to the CBD are half of what a non-CBD rate would be. Second, there are adjustments based on select area types for Davis and Salt Lake Counties. These adjustments are shown in @tbl-cbd-adj-fcts. Attractions for urban area types are reduced 70% to 80% for select trip purposes. For CBD-like area types in Salt Lake County, there is an increase of 25% for home-based work trips showing a greater number of attractions compared as compared to similar areas in the rest of the region.
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-cbd-adj-fcts
 #| tbl-cap: "Adjustment Factors for Select Counties/Area Types"
@@ -356,10 +406,16 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 ### County Truck Adjustments
 An additional adjustment factor is used during the calibration process to further tune the model results for medium and heavy trucks to match observed truck traffic. These adjustments are made at the three main groupings for short-haul attractions. Light trucks were low in Box Elder, Weber, Davis, and Utah County and high in Salt Lake county. Medium trucks were low in Box Elder and Davis county and high in Weber, Salt Lake, and Utah county. Heavy trucks were low in Box Elder, Davis, and Utah county and high in Weber and Salt Lake County. The factors as shown in @tbl-sh-area were set to help offset these differences.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-sh-area
 #| tbl-cap: "Area Specific Short Haul Truck Production/Attraction Factors"
@@ -392,6 +448,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 ### Adjustments for Special Generators
 There are two groups of special generators that have adjustments for trip attractions. Temple Square and the SLC Library are in one group and colleges are in another.
@@ -399,6 +457,10 @@ There are two groups of special generators that have adjustments for trip attrac
 #### Temple Square and SLC Library
 Trip attractions for Temple Square and the SLC Library are generated using a base year daily visitation numbers and then increasing by an annual growth rate to estimate trip ends in the model year. The values used for estimation are shown in @tbl-lib. Temple Square had an estimated five million visitors in 2013, which translates to roughly 13,700 visitors per day and 27,400 trip ends per day. The SLC library is the second most popular destination in Salt Lake with approximately four million visitors per year or roughly 11,000 visitors and 22,000 trip ends per day.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-lib
 #| tbl-cap: "Adjustment Factors for Select Counties/Area Types"
@@ -415,6 +477,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 After calculating model year attractions for the two special generators, the total attractions are then added to TAZ attractions proportionally amongst the trip purposes HBOth and NHBNW for the TAZ including Temple Square and HBOth, NHBW, and NHBNW for the TAZ including SLC Library.
 
@@ -437,6 +501,10 @@ HBOth, NHBW, and NHBNW trip adjustments are calculated through the following ste
 4.	Calculate the number of non-HBC/HBW attractions to add to the TAZ by subtracting the college associated HBW trips (step 3) and HBC trips (TripTable.mtx) from the total attractions (step 2).
 5.	Distribute the additional attractions (step 4) proportionally amongst HBOth, NHBW, and NHBNW.
 
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-colege-fcts
 #| tbl-cap: "College Employment Factors"
@@ -458,6 +526,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 ## Balance Productions and Attractions
 The final step of Trip Generation is to balance the productions and attractions. Balancing takes place by proportionally increasing or decreasing productions/attractions across the entire model space to match regional totals. For trips internal to the model space (non-externals) the attractions are balanced to match the productions. External trip productions and attractions are balanced in the WFRC/MAG model space. The IX productions are balanced to the IX attractions and the XI attractions are balanced to the XI productions. 

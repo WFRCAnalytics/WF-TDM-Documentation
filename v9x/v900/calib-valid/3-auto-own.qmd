@@ -9,7 +9,10 @@ The utility functions for auto ownership contain a series of binary and linear v
 
 The code loops through the three groups to create utilities for each combination of binary variables for each TAZ. As can be seen in the table, for household size groups 5 and 6+, 3+ workers in a household, and high income, there are zero utility coefficients, which mean for combinations with these variables there is no utility. Additionally, the 3-vehicle utility is always set to 0 for every combination.
 
-
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-veh-owner
 #| tbl-cap: "Coefficients for Vehicle Ownership Utility Functions"
@@ -40,6 +43,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 Using the utility values, probabilities for the vehicle ownership groups are calculated for each TAZ for each combination. The probability is the ratio of the exponential utility of each vehicle ownership group divided by the sum of the exponential utility of all three vehicle ownership groups for each combination. The vehicle ownership probabilities are multiplied by their associated household numbers as calculated in the household disaggregation script to get the number of households in each vehicle ownership group. Additionally, several aggregations are made to calculate total number of vehicles in different groupings. When calculating the number of vehicles in a 3+-vehicle group, the value of 3.5 number of vehicles per 3+ households is used.
 

@@ -191,6 +191,10 @@ The 2020 model base year population by county and Age Group was compared to the 
 ## Population by Life Cycle
 The Life Cycle model uses parameters estimated from the 2012 Household Survey to convert population in Age Groups to population in a Life Cycle category.  Unique parameters were estimated for each county and are found in @tbl-life-factors.  
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-life-factors
 #| tbl-cap: "Percent of Age Group Population in Life Cycle 2 by County"
@@ -210,9 +214,15 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 Only factors for Life Cycle 2 were estimated.  Life Cycle 1 has no children leaving the 0-17 population to be divided between Life Cycles 2 and 3.  Life Cycle 3 has no adults age 18-64 leaving the 18-64 population to be divided between Life Cycles 1 and 2.  All of 65+ population lies completely within Life Cycle 3.  @tbl-life-eqs contains the equations used to calculate Life Cycle population.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-life-eqs
 #| tbl-cap: "Equations to Calculate Age Group Population in Each Life Cycle Category"
@@ -230,6 +240,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 Almost all of the child-aged population is contained within Life Cycle 2, ranging between 96.1% in Salt Lake County and 99.3% in Box Elder County.  The remaining child population is in Life Cycle 3.  The majority of the adult-not-a-senior population is contained in Life Cycle category 2, ranging between 52.5% in Salt Lake County and 71.1% in Davis County, with the remainder falling into Life Cycle 1.  
 
@@ -321,6 +333,10 @@ fig4.show()
 ## Households by Life Cycle
 The Life Cycle model calculates households by Life Cycle using the average household size for each Life Cycle category.  Unique average household sizes were estimated for each county and Life Cycle from the 2012 Household Survey.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-lc-avehh
 #| tbl-cap: "Average Household Size by Life Cycle and County"
@@ -340,12 +356,17 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 The TAZ-level population by Life Cycle category are divided by the average household size factors to generate an estimate of the share of TAZ-level households in each Life Cycle category.  The share of households in each Life Cycle category is then multiplied by the total households in the TAZ to get the adjusted number of households per Life Cycle category.  
 
 A final check is made to avoid unrealistic household sizes for zones with smaller populations.  The number of households for a given Life Cycle category are capped at the minimum and maximum household sizes found in @tbl-lc-maxhh.  
 
-
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-lc-maxhh
 #| tbl-cap: "Allowed Minimum and Maximum Average Household Size by Life Cycle"
@@ -363,6 +384,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 The shares of the modeled 2019 base year households by Life Cycle were compared to the 2012 Household Survey at the county level.  The model’s estimate of households by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 1.5% of the observed data.
 

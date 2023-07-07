@@ -297,6 +297,11 @@ ul.task-list li input[type="checkbox"] {
 <p>The Auto Ownership model begins with the disaggregated households by TAZ and calculates how many vehicles each group owns. Households by vehicle ownership is grouped by 0, 1, 2, and 3+ vehicles. Auto ownership is based on utility functions for each combination of household size group, worker group, and income level (low/high). The utilities for each TAZ are then converted into probabilities. When the probabilities are multiplied by the associated number of households, then an auto ownership distribution by TAZ is created.</p>
 <p>The utility functions for auto ownership contain a series of binary and linear variables. The binary variables are loop toggles that are set to 1 or 0 for household size groups, worker groups, and income levels. There are also two linear variables that are taken from TAZ attributes: population density of five nearest zones and employment within 30 minutes by transit. The coefficients for the utility function are shown in <a href="#tbl-veh-owner">Table&nbsp;1</a>.</p>
 <p>The code loops through the three groups to create utilities for each combination of binary variables for each TAZ. As can be seen in the table, for household size groups 5 and 6+, 3+ workers in a household, and high income, there are zero utility coefficients, which mean for combinations with these variables there is no utility. Additionally, the 3-vehicle utility is always set to 0 for every combination.</p>
+<div class="grid">
+<div class="g-col-1">
+
+</div>
+<div class="g-col-10">
 <div class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div id="tbl-veh-owner" class="anchored">
@@ -426,6 +431,8 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+</div>
+</div>
 </div>
 </div>
 </div>
