@@ -1214,7 +1214,7 @@ The updated numbering scheme can be found in  @fig-descrip1, @fig-descrip2, and 
 
 ![v8.3.2 External Description.](_pictures/ex_descrip2.png){#fig-descrip2}
 
-![v9 & v8.3.2 External Description.](_pictures/ex_descrip3.png){#fig-descrip3}
+![v9 & v8.3.2 External Description.](_pictures/ex_descrip3.png){#fig-descrip3 width='50%'}
 
 ## Segment
 
