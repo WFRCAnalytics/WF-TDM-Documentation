@@ -10,7 +10,7 @@ Changes made to the `1_Inputs` folder are discussed in this section.
 ```{python}
 #|echo: false
 # model folder
-tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
+tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
 tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\2 - Sandbox\v9.0Beta\_archive\WF TDM v9.0 - 2022-10-05"
 ```
 
