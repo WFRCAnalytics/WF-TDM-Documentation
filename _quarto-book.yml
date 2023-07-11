@@ -1,7 +1,9 @@
 project:
   type: book
-  #output-dir: _book/v9x-v900-whats-new-pdf #_book/v9x-v900-whats-new-word-doc
-  output-dir: _book/v9x-v900-calib-valid-pdf #_book/v9x-v900-calib-valid-doc
+  #output-dir: _book/v9x-v900-whats-new-word-doc
+  #output-dir: _book/v9x-v900-whats-new-pdf 
+  output-dir: _book/v9x-v900-calib-valid-pdf
+  #output-dir: _book/v9x-v900-calib-valid-doc
 
 book:
   #title: "What's New? - Version 9.0.0"
@@ -18,7 +20,7 @@ book:
   #  - v9x/v900/whats-new/7-mc.qmd
   #  - v9x/v900/whats-new/8-assign.qmd
   #  - v9x/v900/whats-new/10-modelresults.qmd
-  title: "Calibration/Validation Report - Version 9.0.0"
+  title: "Validation Report - Version 9.0.0"
   author: "WFRC / MAG"
   date: "6/9/2023"
   chapters:
@@ -50,6 +52,6 @@ format:
       - left=20mm
       - heightrounded
   #docx: 
-  #  reference-doc: _extensions/cday/custom-reference-doc.docx
+  #  reference-doc: _extensions/cday/template-rtp.docx
   
   
