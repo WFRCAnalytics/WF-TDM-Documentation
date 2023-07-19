@@ -6,30 +6,19 @@ execute:
     warning: false
 ---
 
-The Life Cycle model determines the how much of the TAZ population and households from the processed socioeconomic input file will be in one of three life cycle categories:
+The validation of the Life Cycle model includes the comparison of model output to observed data for the following categories:
+
+ - Population by Age Group and County
+ - Population by Life Cycle
+ - Households by Life Cycle
+
+For Population by Age Group and County model results are compared to observed data as represented by the Kem C. Gardner Policy Institute (GPI) control totals. Population by Life Cycle and Households by Life Cycle are compared to the Utah Household Travel Survey. 
+
+Life Cycle comparisons are summarized by the following three life cycle categories:
 
  - Life Cycle 1 – households with no children and no seniors
  - Life Cycle 2 – households with children and no seniors
  - Life Cycle 3 – households with seniors (may have children)
-
-The Life Cycle model does its calculations in three phases:
-
- - Determine the TAZ population that is in three age groups
- - Determine each age group population that is in the three life cycle categories
- - Determine the number of households in each life cycle category
-
-## Population by Age Group
- The Life Cycle model first estimates how much of the TAZ population falls into one of three Age Group categories:
-
- - Age Group 1 – 0 to 17 years old
- - Age Group 2 – 18 to 64 years old
- - Age Group 3 – 65+ years old
-
-The initial share of the TAZ population in each Age Group is determined by multiplying the TAZ household population by the TAZ-level Age Group percentages in the `Lookup - BYTAZAgePct - AllCo.csv` file located in the  <br>  
-`1_Inputs\\0_GlobalData\\1_HHDisag_AutoOwn` directory.  These initial TAZ-level Age Group percentages were calculated from 2020 Census block and 2020 ACS block group data summarized at the TAZ level.  
-
-::: {.content-visible when-format="html"}
-The Census data was also summarized at the medium district level.  If the Census TAZ data had fewer than 50 people, the percentages from medium districts were used.  The medium district distribution of 2020 Census Age Group percentages for the Wasatch Front can be seen in the following Figure.  The share of population in each of the Age Groups varies significantly by geography.  Urban areas tend to have the highest share of population 18-64 years old and the fewest children and seniors.  Suburban and rural areas tend to have the highest share of children.
 
 ```{python}
 #| echo: False
@@ -51,31 +40,6 @@ mdist_age_long = mdist_age_sum.melt(id_vars=['MediumDistrict'], value_vars=['Per
 ```
 
 ```{python}
-#| echo: false
-#| include: false
-import plotly.express as px
-morder = mdist_age_long['MediumDistrict'].to_list()
-fig = px.scatter(mdist_age_long, x="Percent", y="MediumDistrict", color="AgeGroup", category_orders={'MediumDistrict':morder}, height = 1800)
-```
-
-```{python}
-#| label: fig-lifemd
-#| fig-cap: "2020 Census % Population by Age Group by Medium District."
-#| cap-location: margin
-fig.show()
-```
-:::
-
-::: {.content-hidden when-format="html"}
-The Census data was also summarized at the medium district level.  If the Census TAZ data had fewer than 50 people, the percentages from medium districts were used.  The medium district distribution of 2020 Census Age Group percentages for the Wasatch Front can be seen in @fig-pdf-lifemd.  The share of population in each of the Age Groups varies significantly by geography.  Urban areas tend to have the highest share of population 18-64 years old and the fewest children and seniors.  Suburban and rural areas tend to have the highest share of children.
-
-![2020 Census % Population by Age Group by Medium District.](_pictures/1-plot1.png){#fig-pdf-lifemd height=95%}
-:::
-
-The initial TAZ-based population by Age Group is then factored to reflect the year being modeled.  This is done using the county population by Age Group forecasts found in `ControlTotal_Age.csv` located in `1_Inputs\\2_SEData\\_ControlTotals` directory.  The Age Group county-level percentages are calculated from county-level population projections from the Kem C. Gardner Policy Institute (GPI), 2020-2060 State and County Total Population by Sex and Single-Year of Age.  The GPI projections show a trend in all counties in the Wasatch Front model space toward a more senior population and fewer children.  Adult population in the age range of 18-64 also saw a slight increase in population share.
-
-::: {.content-visible when-format="html"}
-```{python}
 gpi_age = pd.read_csv(r'data/1-lifecycle/ControlTotal_SE-2022-08-31_v9.0-2023-06-30.csv')
 gpi_age_long = gpi_age.melt(id_vars=['AgeGroup','Region'], value_vars=['1990','2000','2010','2020','2030','2040','2050','2060'], var_name='Year',value_name='Percent')
 gpi_age_long['Percent'] = gpi_age_long['Percent']
@@ -83,6 +47,7 @@ gpi_age_long['Percent'] = gpi_age_long['Percent']
 
 ```{python}
 #| include: False
+import plotly.express as px
 colors = {'Age 0 - 17': 'steelblue', 'Age 18 - 64': 'peru', 'Age 65+': 'darkgrey'}
 fig2 = px.bar(gpi_age_long, x = "Year", y = "Percent", color = "AgeGroup", facet_row = "Region", height = 1000, color_discrete_map=colors,
 text=[f'{val:.00%}' for val in gpi_age_long['Percent']], 
@@ -91,21 +56,11 @@ fig2.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', 
 fig2.update_traces(textposition='inside', textangle = 0, textfont=dict(color='white'))
 ```
 
-```{python}
-#| label: fig-gpi-age
-#| fig-cap: "GPI County Population Projections by Age Group for Wasatch Front Counties."
-#| cap-location: margin
-fig2.show()
-```
-:::
 
-::: {.content-hidden when-format="html"}
-![GPI County Population Projections by Age Group for Wasatch Front Counties.](_pictures/1-plot2.png){#fig-pdf-gpi-age}
-:::
-
+## Population by Age Group and County
 
 ::: {.content-visible when-format="html"}
-The 2020 model base year population by county and Age Group was compared to the 2020 GPI county-level population by Age Group, shown in the following charts.  The model’s estimate of the population in each Age Group mirrors the GPI county-level projections.
+The 2020 model base year population by county and Age Group was compared to the 2020 GPI county-level population by Age Group, shown in the following charts. The model’s estimate of the population in each Age Group mirrors the GPI county-level projections.
 
 ```{python}
 co_age_sum = mdist_age.groupby(['CountyID']).sum().reset_index()
@@ -173,6 +128,7 @@ fig3.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', 
 fig3.update_traces(textposition='inside', textangle = 0, texttemplate='%{text}%', textfont=dict(color='white'))
 ```
 
+
 ```{python}
 #| label: fig-age-comp
 #| fig-cap: "2020 Model vs. 2020 GPI – % Population by Age Group and County."
@@ -189,63 +145,8 @@ The 2020 model base year population by county and Age Group was compared to the 
 
 
 ## Population by Life Cycle
-The Life Cycle model uses parameters estimated from the 2012 Household Survey to convert population in Age Groups to population in a Life Cycle category.  Unique parameters were estimated for each county and are found in @tbl-life-factors.  
 
-::: {.grid}
-::: {.g-col-1}
-:::
-::: {.g-col-10}
-```{python}
-#| label: tbl-life-factors
-#| tbl-cap: "Percent of Age Group Population in Life Cycle 2 by County"
-#| tbl-colwidths: [12, 44, 44]
-from IPython.display import Markdown
-from tabulate import tabulate
-table = [['Box Elder', '.993' , '.664'],
-         ['Weber'    , '.982' , '.606'],
-         ['Davis'    , '.974' , '.711'],
-         ['Salt Lake', '.961' , '.525'],
-         ['Utah'     , '.981' , '.659']]
-headers=["County","0-17 Population Age Group (LC2 Fac 0-17)", "18-64 Population Age Group (LC2 Fac 18-64)"]
-Markdown(tabulate(table, 
-  headers=headers, 
-  tablefmt="pipe", 
-  colalign=("left",)*len(headers), 
-  showindex=False)
-)
-```
-:::
-:::
-
-Only factors for Life Cycle 2 were estimated.  Life Cycle 1 has no children leaving the 0-17 population to be divided between Life Cycles 2 and 3.  Life Cycle 3 has no adults age 18-64 leaving the 18-64 population to be divided between Life Cycles 1 and 2.  All of 65+ population lies completely within Life Cycle 3.  @tbl-life-eqs contains the equations used to calculate Life Cycle population.
-
-::: {.grid}
-::: {.g-col-1}
-:::
-::: {.g-col-10}
-```{python}
-#| label: tbl-life-eqs
-#| tbl-cap: "Equations to Calculate Age Group Population in Each Life Cycle Category"
-#| tbl-colwidths: [16,28,28,28]
-from IPython.display import Markdown
-from tabulate import tabulate
-table = [['0-17' , '0'                  , 'LC2 Fac 0-17' ,'1 – (LC2 Fac 0-17)'],
-         ['18-64', '1 – (LC2 Fac 18-64)', 'LC2 Fac 18-64','0'                 ],
-         ['65+'  , '0'                  , '0'            ,'1'                 ]] 
-headers=["Age Group","Life Cycle 1", "Life Cycle 2", "Life Cycle 3"]
-Markdown(tabulate(table, 
-  headers=headers, 
-  tablefmt="pipe", 
-  colalign=("left",)*len(headers), 
-  showindex=False)
-)
-```
-:::
-:::
-
-Almost all of the child-aged population is contained within Life Cycle 2, ranging between 96.1% in Salt Lake County and 99.3% in Box Elder County.  The remaining child population is in Life Cycle 3.  The majority of the adult-not-a-senior population is contained in Life Cycle category 2, ranging between 52.5% in Salt Lake County and 71.1% in Davis County, with the remainder falling into Life Cycle 1.  
-
-The shares of the modeled 2019 base year population by Life Cycle were compared to the 2012 Household Survey at the county level.  The model’s estimate of population by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 4% of the observed data.
+The shares of the modeled 2019 base year population by Life Cycle were compared to the 2012 Household Survey at the county level. The model’s estimate of population by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 4% of the observed data.
 
 ::: {.content-visible when-format="html"}
 ```{python}
@@ -331,63 +232,8 @@ fig4.show()
 :::
 
 ## Households by Life Cycle
-The Life Cycle model calculates households by Life Cycle using the average household size for each Life Cycle category.  Unique average household sizes were estimated for each county and Life Cycle from the 2012 Household Survey.
 
-::: {.grid}
-::: {.g-col-1}
-:::
-::: {.g-col-10}
-```{python}
-#| label: tbl-lc-avehh
-#| tbl-cap: "Average Household Size by Life Cycle and County"
-#| tbl-colwidths: [13, 29,29,29]
-from IPython.display import Markdown
-from tabulate import tabulate
-table = [['Box Elder', '1.86' , '4.21', '2.41'],
-         ['Weber'    , '1.88' , '4.53', '1.81'],
-         ['Davis'    , '2.14' , '4.68', '2.33'],
-         ['Salt Lake', '1.86' , '4.44', '1.81'],
-         ['Utah'     , '2.11' , '4.75', '2.21']]
-headers=["County","Household Size for Life Cycle 1", "Household Size for Life Cycle 2", 'Household Size for Life Cycle 3']
-Markdown(tabulate(table, 
-  headers=headers, 
-  tablefmt="pipe", 
-  colalign=("left",)*len(headers), 
-  showindex=False)
-)
-```
-:::
-:::
-
-The TAZ-level population by Life Cycle category are divided by the average household size factors to generate an estimate of the share of TAZ-level households in each Life Cycle category.  The share of households in each Life Cycle category is then multiplied by the total households in the TAZ to get the adjusted number of households per Life Cycle category.  
-
-A final check is made to avoid unrealistic household sizes for zones with smaller populations.  The number of households for a given Life Cycle category are capped at the minimum and maximum household sizes found in @tbl-lc-maxhh.  
-
-::: {.grid}
-::: {.g-col-2}
-:::
-::: {.g-col-8}
-```{python}
-#| label: tbl-lc-maxhh
-#| tbl-cap: "Allowed Minimum and Maximum Average Household Size by Life Cycle"
-#| tbl-colwidths: [24,32,32]
-from IPython.display import Markdown
-from tabulate import tabulate
-table = [['1', '1.0' , '4.0'],
-         ['2', '2.0' , '8.0'],
-         ['3', '1.0' , '4.0']]
-headers=["Life Cycle Category","Minimum Household Size", "Maximum Household Size"]
-Markdown(tabulate(table, 
-  headers=headers, 
-  tablefmt="pipe", 
-  colalign=("left",)*len(headers), 
-  showindex=False)
-)
-```
-:::
-:::
-
-The shares of the modeled 2019 base year households by Life Cycle were compared to the 2012 Household Survey at the county level.  The model’s estimate of households by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 1.5% of the observed data.
+The shares of the modeled 2019 base year households by Life Cycle were compared to the 2012 Household Survey at the county level. The model’s estimate of households by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 1.5% of the observed data.
 
 ::: {.content-visible when-format="html"}
 ```{python}
