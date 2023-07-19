@@ -1,0 +1,148 @@
+---
+title: Trip Distribution
+echo: false
+warning: false
+message: false40
+---
+
+The validation results for the Trip Distribution portion of the model are shown in this section. The observed data comes from the 2012 Household Survey. 
+
+::: {.content-visible when-format="html"}
+```{python}
+import pandas as pd
+gc_csv = pd.read_csv('data/5-distrib/v9-gencost-mod-obs.csv')
+dist_csv = pd.read_csv('data/5-distrib/v9-dist-mod-obs.csv')
+time_csv = pd.read_csv('data/5-distrib/v9-time-mod-obs.csv')
+```
+
+```{python}
+def flip_table(df_csv, unit, varble):
+    df_csv['BIN'] = df_csv[unit]
+
+    mod = df_csv.loc[:, df_csv.columns.str.contains('Model') | (df_csv.columns == 'BIN')]
+    mod.columns = mod.columns.str.replace('-Model', '')
+    mod_melt = mod.melt(id_vars= 'BIN', value_vars= ['HBW','HBShp','HBOth','HBSch_Pr','HBSch_Sc','LT', 'MD', 'HV','IX','XI', 'IX_MD', 'IX_HV', 'XI_MD', 'XI_HV', 'IXXI', 'IXXI_MD', 'IXXI_HV', 'Tel_HBW', 'Tel_NHBW'], var_name= 'Purpose', value_name = 'FREQ' )
+    mod_melt['DataSource'] = 'Model'
+    mod_melt['Variable'] = varble  
+
+    obs = df_csv.loc[:, df_csv.columns.str.contains('Observed') | (df_csv.columns == 'BIN')]
+    obs.columns = obs.columns.str.replace('-Observed', '')
+    obs_melt = obs.melt(id_vars= 'BIN', value_vars= ['HBW','HBShp','HBOth','HBSch_Pr','HBSch_Sc','LT', 'MD','HV','IX','XI'], var_name= 'Purpose', value_name = 'FREQ' )
+    obs_melt['DataSource'] = 'Observed'
+    obs_melt['Variable'] = varble
+
+    comb = pd.concat([mod_melt,obs_melt])
+
+    return comb
+```
+
+```{python}
+gc_melt = flip_table(gc_csv, 'Min', 'GenCost')
+dist_melt = flip_table(dist_csv, 'Mile', 'Distance')
+time_melt = flip_table(time_csv, 'Min', 'Time')
+gcdtime = pd.concat([gc_melt, dist_melt, time_melt])
+```
+
+```{python}
+#CALCUATE TRIP LENGTH AVERAGES AS TABLE
+gcdtime['BINMIDxFREQ'] = (gcdtime['BIN'] + 1) * gcdtime['FREQ']
+gcdtime_Stats = (gcdtime.groupby(['DataSource','Variable','Purpose'],as_index=False).agg(FREQ_SUM=('FREQ','sum'),AVG_TRIP_LEN=('BINMIDxFREQ','sum'))) # ADDING BINMIDxFREQ to get Avg Trip Length only works if FREQ sum = 1
+```
+
+```{python}
+import numpy as np
+mainPurposes = ['HBW','HBShp','HBOth','HBSch_Pr','HBSch_Sc','LT', 'MD','HV']
+externals = ['IX','XI', 'IX_MD', 'IX_HV', 'XI_MD', 'XI_HV', 'IXXI', 'IXXI_MD', 'IXXI_HV']
+telecommute = ['Tel_HBW', 'Tel_NHBW']
+
+gcdtime_Stats['PurpType'] = np.where(gcdtime_Stats['Purpose'].isin(mainPurposes), 'MainPurposes', np.where(gcdtime_Stats['Purpose'].isin(externals), 'Externals', 'Telecommute'))
+
+gc_Stats = gcdtime_Stats.loc[gcdtime_Stats['Variable'] == 'GenCost']
+```
+
+```{python}
+ojs_define(dataStats = gcdtime_Stats)
+```
+
+```{ojs}
+viewof varSelect = Inputs.select(new Map([['Generalized Cost','GenCost'], ['Distance', 'Distance'], ['Time', 'Time']]), {value: 'Variable', label: "Variable"})
+
+viewof purpSelect  = Inputs.select(new Map([['Main Purposes', 'MainPurposes'], ['External Purposes', 'Externals'], ['Telecommute Purposes', 'Telecommute']]), {value: 'PurpType', label: "Purpose Set"});
+```
+
+```{ojs}
+dataLT = transpose(dataStats)
+filtered_data = dataLT.filter(function(dataL) {
+    return varSelect == dataL.Variable &&
+           purpSelect == dataL.PurpType;
+})
+```
+
+```{ojs}
+import {GroupedBarChart} from "@d3/grouped-bar-chart"
+import {Legend, Swatches} from "@d3/color-legend"
+import {howto, altplot} from "@d3/example-components"
+```
+
+::: {.panel-tabset}
+
+### Plot
+```{ojs}
+//|echo: False
+//https://observablehq.com/@d3/grouped-bar-chart
+key = Legend(chart.scales.color, {title: "Data Source"})
+```
+
+```{ojs}
+//|label: fig-ave-trip-length
+//|fig-cap: Average Trip Length between model and observed.
+//|echo: False
+chart = GroupedBarChart(filtered_data, {
+    x: d => d.Purpose,
+    y: d => d.AVG_TRIP_LEN,
+    z: d => d.DataSource,
+    yLabel: "Average Trip Length",
+    //yDomain: [0,1],
+    zDomain: ['Model','Observed'],
+    width,
+    height: 500,
+    colors: ["#376092", "#77933c"]
+})
+```
+
+
+### Table
+```{ojs}
+//| echo: false
+Inputs.table(filtered_data)
+```
+
+
+:::
+
+:::
+
+
+::: {.content-hidden when-format="html"}
+![Average Trip Length for Generalized Cost for Main Purposes.](_pictures/5-plot1.png){#fig-pdf-gc-purp height=40%}
+
+![Average Trip Length for Generalized Cost for External Forces.](_pictures/5-plot2.png){#fig-pdf-gc-ext height=40%}
+
+![Average Trip Length for Generalized Cost for Telecommuting.](_pictures/5-plot3.png){#fig-pdf-cg-tele height=40%}
+:::
+
+::: {.content-hidden when-format="html"}
+![Average Trip Length for Distance for Main Purposes.](_pictures/5-plot4.png){#fig-pdf-dist-purp height=40%}
+
+![Average Trip Length for Distance for External Forces.](_pictures/5-plot5.png){#fig-pdf-dist-ext height=40%}
+
+![Average Trip Length for Distance for Telecommuting.](_pictures/5-plot6.png){#fig-pdf-dist-tele height=40%}
+:::
+
+::: {.content-hidden when-format="html"}
+![Average Trip Length for Time for Main Purposes.](_pictures/5-plot7.png){#fig-pdf-time-purp height=40%}
+
+![Average Trip Length for Time for External Forces.](_pictures/5-plot8.png){#fig-pdf-time-ext height=40%}
+
+![Average Trip Length for Time for Telecommuting.](_pictures/5-plot9.png){#fig-pdf-time-tele height=40%}
+:::

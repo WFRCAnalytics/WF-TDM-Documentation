@@ -1,0 +1,742 @@
+---
+title: Trip Generation
+echo: false
+warning: false
+message: false
+---
+
+A trip is defined as the movement of a person between two locations for a given purpose. Each trip has two trip ends. Each trip end is associated within a TAZ. Trips are comprised of a both a production zone and an attraction zone. The production zone is where the trip was produced, typically a household for a home-based trip or a place of employment for a non-home-based trip. The attraction zone is the location that is attracting a trip, typically a place of employment or commercial activity. Productions and attractions are travel direction agnostic, meaning that a to-work trip and from-work trip would show as two productions in the home location TAZ and as two attractions in the work location TAZ.
+
+The Trip Generation script calculates productions and attractions at the TAZ level. The trip ends are not paired in this step but remain distinctly separated, which is then used as input into the Trip Distribution model that pairs trip ends together. The script calculates productions and attractions per zone using trip generation rates and adjustments. All values produced by this script represent person trips, not vehicle trips. The trip generation rates are calculated from the household travel survey. 
+
+Rates are applied to individual TAZs based on the attributes of the TAZ as taken from the household disaggregation model, additional socioeconomic data, externals data, and special generator data (Temple Square, SLC Main Library, colleges, etc.). All rates in this script are expressed in terms of daily rates. Rates are averages and are only applicable at aggregate levels.
+
+The goal of the script is to generate a set of productions and attractions for each TAZ for the following base trip purposes:
+
+ - Home-Based Work (HBW)
+ - Home-Based School – Primary, Kindergarten to 6th Grade (HBSch_Pr)
+ - Home-Based School – Secondary, 7th to 12th Grade (HBSch_Sc)
+ - Home-Based Shopping (HBShp)
+ - Home-Based Other (HBOth)
+ - Non-Home-Based Work (NHBW)
+ - Non-Home-Based Non-Work (NHBNW)
+
+Additionally, the script estimates trip generation for the following for external trips:
+
+ - Internal-to-External (IX) Productions
+ - External-to-Internal (XI) Attractions
+
+Productions and attractions are also generated for short-haul trucks based on people movement, goods movement, and services for the following truck types:
+
+ - Light Trucks (LT)
+ - Medium Trucks (MD)
+ - Heavy-Trucks (HV)
+
+Given the various combinations of trip purposes and possible attributes, there are quite a few steps in the script. These steps can be grouped into the following three categories:
+
+ 1. Estimate productions
+ 2. Estimate attractions
+ 3. Balance productions and attractions
+
+Following a discussion of these three groups, there is a presentation of the validation results.
+
+## Estimate Productions
+Productions for each TAZ are estimated in the following steps:
+
+ 1. Calculate base productions
+ 2. Calculate internal-to-external productions and adjust base productions accordingly
+ 3. Adjust non-home-based trips to account for visitors
+ 4. Calculate productions for short haul truck trips
+
+### Base Productions
+Base productions are generated based on TAZ household attributes including number of workers, household size, and life cycle. Work trips only utilize attributes based on number of workers. The other trip purposes use household size and life cycle. The associated production rates are shown in @tbl-tp-prod. As expected, the greater the number of workers or the larger the household size, the higher the rates for any given trip purpose. The highest trip rate is 10.703 for home-based other trips for households of size 6+ in life cycle 2.
+
+The production rates are only estimated for combinations of TAZ variable and trip purpose that are valid. A household with no workers does not generate any work trips. Additionally, households in Life Cycle 1 would not generate any school trips by definition.
+
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
+```{python}
+#| label: tbl-tp-prod
+#| tbl-cap: "Production Rates by Trip Purpose."
+#| tbl-colwidths: [37,10,10,10,10,11,12]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Households with 0 Workers'            , '-'     , '-'    , '-'    , '-'     , '-'    , '-'    ],
+         ['Households with 1 Worker'             , '1.764' , '-'    , '-'    , '-'     , '0.856', '-'    ],
+         ['Households with 2 Workers'            , '3.073' , '-'    , '-'    , '-'     , '1.361', '-'    ],
+         ['Households with 3+ Workers'           , '4.698' , '-'    , '-'    , '-'     , '1.781', '-'    ],
+         ['Households of Size 1 in Life Cycle 1' , '-'     , '-'    , '0.443', '1.313' , '-'    , '0.632'],
+         ['Households of Size 2 in Life Cycle 1' , '-'     , '-'    , '0.706', '2.382' , '-'    , '1.013'],
+         ['Households of Size 3 in Life Cycle 1' , '-'     , '-'    , '0.757', '3.657' , '-'    , '1.542'],
+         ['Households of Size 4 in Life Cycle 1' , '-'     , '-'    , '1.088', '5.128' , '-'    , '1.820'],
+         ['Households of Size 5 in Life Cycle 1' , '-'     , '-'    , '1.548', '7.380' , '-'    , '1.989'],
+         ['Households of Size 6+ in Life Cycle 1', '-'     , '-'    , '2.013', '9.643' , '-'    , '2.159'],
+         ['Households of Size 1 in Life Cycle 2 ', '-'     , '-'    , '-'    , '-'     , '-'    , '-'    ],
+         ['Households of Size 2 in Life Cycle 2' , '-'     , '0.530', '0.681', '2.508' , '-'    , '1.499'],
+         ['Households of Size 3 in Life Cycle 2' , '-'     , '0.675', '1.344', '4.437' , '-'    , '1.738'],
+         ['Households of Size 4 in Life Cycle 2' , '-'     , '1.117', '1.720', '6.115' , '-'    , '2.618'],
+         ['Households of Size 5 in Life Cycle 2' , '-'     , '2.473', '1.818', '8.310' , '-'    , '3.282'],
+         ['Households of Size 6+ in Life Cycle 2', '-'     , '3.819', '1.916', '10.703', '-'    , '3.852'],
+         ['Households of Size 1 in Life Cycle 3' , '-'     , '-'    , '0.561', '1.841' , '-'    , '0.990'],
+         ['Households of Size 2 in Life Cycle 3' , '-'     , '0.009', '1.149', '3.673' , '-'    , '1.928'],
+         ['Households of Size 3 in Life Cycle 3' , '-'     , '0.067', '1.272', '4.175' , '-'    , '2.408'],
+         ['Households of Size 4 in Life Cycle 3' , '-'     , '0.427', '1.404', '4.676' , '-'    , '2.676'],
+         ['Households of Size 5 in Life Cycle 3' , '-'     , '1.446', '1.683', '6.450' , '-'    , '2.890'],
+         ['Households of Size 6+ in Life Cycle 3', '-'     , '2.865', '1.960', '8.958' , '-'    , '2.997']] 
+headers=["TAZ Variable","HBW", "HBSch*", "HBShp", 'HBOth', 'NHBW', 'NHBNW']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+<span style="font-size: 11px;">*Note for @tbl-tp-prod: HBSch productions for each TAZ are divided into HBSch_Pr and HBSch_Sc based on their respective regional shares of total enrollment.*</span>
+
+To calculate the total productions by trip purpose for each TAZ, the value of each variable is multiplied by the associated rate for that trip purpose and then summed over all the variables. Further division of Home-Based School trips into Primary and Secondary is done based on their respective regional shares of total enrollment.
+Productions for non-home-based trip purposes are further adjusted by the visitor adjustment factors in @tbl-visitor-adj, which were taken from the 2012 Household Survey.
+
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
+```{python}
+#| label: tbl-visitor-adj
+#| tbl-cap: "Visitor Adjustment Factors."
+#| tbl-colwidths: [20,30]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['NHBW' , '1.046'],
+         ['NHBNW', '1.049']] 
+headers=["Trip Purpose", "Visitor Adjustment Factor"]
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+### External Trip Productions
+Productions for internal-to-external (IX) trips are estimated by the model since the production occurs within the model space. The IX productions are taken as a share from the base productions and reassigned to the IX category. Ultimately, IX trips are not separated by trip purpose. But for the estimation of IX trip productions, trips are separated into two general trip purposes: work and non-work trips. Work trips include HBW. Non-Work trips include all other purposes except for school trips, which are excluded from external trips.
+
+The share of productions that are IX work/non-work trips is shown in @tbl-ix-shares. Typically shares of productions are in the 1% to 4% range for all counties except Box Elder, which ranges from 5% to 20% of all trip productions being IX trips.
+
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
+```{python}
+#| label: tbl-ix-shares
+#| tbl-cap: "Internal-to-External Shares (2012 HH Survey)"
+#| tbl-colwidths: [12, 24,24]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Box Elder', '0.196' , '0.052'],
+         ['Weber'    , '0.035' , '0.016'],
+         ['Davis'    , '0.009' , '0.011'],
+         ['Salt Lake', '0.018' , '0.015'],
+         ['Utah'     , '0.017' , '0.010']]
+headers=["County","Share IX Work Productions", "Share IX Non-Work Productions"]
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+After calculating the number of IX productions using the share values, these trips are removed from the base productions. Additionally, since IX productions are in vehicle-trips the final step in calculating IX productions is to multiply the person trips by vehicle occupancy rate of 1.54.
+
+When calculating productions for the opposing direction, external-to-internal (XI), the TAZ values come directly from the *External_TripEnds.dbf* file as generated in the Input Processing scripts.
+
+### Short-Haul Trucks Productions
+Short-Haul truck productions are calculated as a function of ecommerce variables, residential variables, and employment variables that vary by truck type. The overall formula used to calculate truck productions is as follows,
+
+**Equation 1: Short-Haul Truck Productions**
+
+ - *Good_p~(TR)~ = Share_Ecom~(TR)~ * (ResRate~(TR)~ * TOTHH * Fac_ECom_HH~(TR)~ + EmpRate~(TR)~ * TOTEMP * Fac_ECom_Emp~(TR)~) + (1 - Share_ECom~(TR)~) * (ResRate~(TR)~ * TOTHH)*
+
+where, 
+
+ - *TR* represents truck type (light, medium, or heavy),
+ - *Share_ECom* represents the proportion of truck trips that apply to eCommerce factors (See @tbl-share-ecom),
+ - *ResRate* represents the residential variable (See @tbl-share-ecom),
+ - *EmpRate* represents the employment variable (See @tbl-share-ecom),
+ - *TOTHH* represents the total number of households in a given TAZ,
+ - *TOTEMP* represents the total employment in a given TAZ,
+ - *Fac_ECom_HH* represents the ecommerce factor applied to households (See @tbl-ecommerce-fcts),
+ - and *FAC_ECom_Emp* represents the ecommerce factor applied to employment (See @tbl-ecommerce-fcts).
+
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
+```{python}
+#| label: tbl-share-ecom
+#| tbl-cap: "Proportion of Truck Trips to apply E-Commerce Factors"
+#| tbl-colwidths: [15,25,30,25]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Share_Ecom', '0.55'   , '0.80'   , '0.80'   ],
+         ['ResRate'   , '0.74745', '0.44427', '0.17481'],
+         ['EmpRate'   , '0.25703', '0.18750', '0.11021']]
+headers=["Variable","Light Truck Factor", 'Medium Truck Factor', 'Heavy Truck']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+The *Fac_ECom_HH* variable corresponds to the values in the *Households* rows in @tbl-ecommerce-fcts. The *Fac_ECom_Emp* variable is computed as a function of the sum of the other variables in @tbl-ecommerce-fcts multiplied by their corresponding employment types. 
+
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
+```{python}
+#| label: tbl-ecommerce-fcts
+#| tbl-cap: "Employment Factors by Scenario and Truck Type"
+#| tbl-colwidths: [10,16,20,18,18,18]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['1', 'Base'   ,'Industrial' , '1'   , '1'   , '1'   ],
+         ['1', 'Base'   ,'Retail'     , '1'   , '1'   , '1'   ],
+         ['1', 'Base'   ,'Other'      , '1'   , '1'   , '1'   ],
+         ['1', 'Base'   ,'Households' , '1'   , '1'   , '1'   ],
+         ['2', 'Low'    ,'Industrial' , '1.15', '1.05', '1.1' ],
+         ['2', 'Low'    ,'Retail'     , '1.15', '1.05', '1'   ],
+         ['2', 'Low'    ,'Other'      , '1.15', '1.05', '1'   ],
+         ['2', 'Low'    ,'Households' , '1.25', '1.2' , '1'   ],
+         ['3', 'Medium' ,'Industrial' , '1.2' , '1.1' , '1.15'],
+         ['3', 'Medium' ,'Retail'     , '1.2' , '1.1' , '1.05'],
+         ['3', 'Medium' ,'Other'      , '1.2' , '1.1' , '1'   ],
+         ['3', 'Medium' ,'Households' , '1.35', '1.25', '1'   ],
+         ['4', 'High'   ,'Industrial' , '1.25', '1.15', '1.2' ],
+         ['4', 'High'   ,'Retail'     , '1.25', '1.15', '1.1' ],
+         ['4', 'High'   ,'Other'      , '1.25', '1.15', '1'   ],
+         ['4', 'High'   ,'Households' , '1.45', '1.3' , '1'   ]]
+headers=["Scenario","Scenario Name", "Goods Movement Category", "Light Truck Factor", 'Medium Truck Factor', 'Heavy Truck Factor']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+An additional adjustment factor is used during the calibration process to further tune the model results for trucks to match observed truck traffic. These adjustments are made at the three main groupings for short-haul productions and are shown in @tbl-sh-gen. A factor of 1 means there is no adjustment. 
+
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
+```{python}
+#| label: tbl-sh-gen
+#| tbl-cap: "General Short Haul Truck Production/Attraction Factors"
+#| tbl-colwidths: [20,20,20,20]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['People'  , '1.80', '1.85', '1.65'],
+         ['Goods'   , '1.80', '1.85', '1.65'],
+         ['Services', '1.80', '1.85', '1.65']] 
+headers=["Short-Haul Truck Category","Light Truck Factor", 'Medium Truck Factor', 'Heavy Truck Factor']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+## Estimate Attractions
+The Trip Generation script estimates attractions for all trip purposes. Attractions are defined as the end of the trip that is serving as the attraction for a trip. For home-based trips (trips produced at a home location), attractions could include work locations, retail centers, restaurants, schools, colleges, etc. For non-home-based trips (trips produced at work or another locations), attractions could include delivery locations, restaurants, etc. The attractions for each TAZ are estimated in the following steps:
+
+ 1. Calculate base attractions.
+ 2. Calculate telecommuting attractions.
+ 3. Calculate external-to-internal attractions and adjust base productions accordingly.
+ 4. Adjust attractions based on CBD or area type.
+ 5. Adjust truck attraction based on county.
+ 6. Calculate attractions for short haul truck trips.
+ 7. Calculate attraction adjustments for special generators.
+
+### Base Attractions
+Attractions are generated based on TAZ employment, enrollment, and household attributes. Whereas productions were mostly based on household attributes, attractions are primarily based on employment for most trip purposes with exceptions for HBSch that is based on enrollment and for HBOth, NHBW, and NHBNW with some household attractions. Attraction rates are shown in @tbl-tp-attract.
+
+```{python}
+#| label: tbl-tp-attract
+#| tbl-cap: "Attraction Rates by Trip Purpose."
+#| tbl-colwidths: [20,17,6,12,12,8,8,8,12]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Retail Employment'        , 'RETL'       , '0.957', '-'    , '-'    , '3.660', '-'    , '1.132', '3.419'],
+         ['Food Employment '         , 'FOOD'       , '1.017', '-'    , '-'    , '3.058', '-'    , '1.620', '3.264'],           
+         ['Manufacturing Employment' , 'MANU'       , '1.136', '-'    , '-'    , '-'    , '0.019', '0.231', '0.037'],                  
+         ['Wholesale Employment'     , 'WSLE'       , '1.136', '-'    , '-'    , '-'    , '0.126', '0.410', '0.103'],                  
+         ['Office Employment'        , 'OFFI'       , '1.196', '-'    , '-'    , '-'    , '0.219', '0.178', '0.054'],                  
+         ['Gov./Ed. Employment'      , 'GVED'       , '1.196', '-'    , '-'    , '-'    , '2.455', '0.250', '0.452'],                  
+         ['Health Employment'        , 'HLTH'       , '1.136', '-'    , '-'    , '-'    , '1.135', '0.185', '0.446'],                  
+         ['Other Employment'         , 'OTHR'       , '1.136', '-'    , '-'    , '-'    , '0.902', '0.200', '0.242'],                      
+         ['Agricultural Employment'  , 'FM_AGRI'    , '1.136', '-'    , '-'    , '-'    , '-'    , '0.200', '-'    ],          
+         ['Mining Employment'        , 'FM_MING'    , '1.136', '-'    , '-'    , '-'    , '-'    , '0.200', '-'    ],          
+         ['Construction Employment'  , 'FM_CONS'    , '1.136', '-'    , '-'    , '-'    , '-'    , '0.200', '-'    ],          
+         ['Total Households'         , 'TOTHH'      , '-'    , '-'    , '-'    , '-'    , '2.553', '0.179', '0.589'],                  
+         ['Elementary Enrollment'    , 'ENROL_ELEM' , '-'    , '1.000', '-'    , '-'    , '-'    , '-'    , '-'    ],      
+         ['Middle School Enrollment' , 'ENROL_MIDL' , '-'    , '-'    , '1.000', '-'    , '-'    , '-'    , '-'    ],        
+         ['High School Enrollment'   , 'ENROL_HIGH' , '-'    , '-'    , '1.000', '-'    , '-'    , '-'    , '-'    ]] 
+headers=["TAZ Variable Description","TAZ Variable", "HBW", "HBSch_Pr", "HBSch_Sc", "HBShp",'HBOth', 'NHBW', 'NHBNW']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+
+### Telecommuting and Home-based Attractions
+Telecommuting and home-based jobs for each employment category are the calculated by applying the telecommuting rates taken from the model input files. Work-at-home jobs (HBJ) are added back into each employment category for the attraction calculations when calculating telecommuting. Telecommuting attractions are specified as either home-based work or non home-based work. @tbl-telecom shows the rates applied to each job portion of the telecommutting function. 
+
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
+```{python}
+#| label: tbl-telecom
+#| tbl-cap: "Telecommuting Rates applied to each Job portion of the Telecommuting Function"
+#| tbl-colwidths: [15,25,25]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['RETL', '0.957', '1.132' ],
+         ['FOOD', '1.017', '1.620' ],
+         ['MANU', '1.136', '0.231' ],
+         ['WSLE', '1.136', '0.410' ],
+         ['OFFI', '1.196', '0.178' ],
+         ['GVED', '1.196', '0.250' ],
+         ['HLTH', '1.136', '0.185' ],
+         ['OTHR', '1.136', '0.200' ],
+         ['AGRI', '1.136', '0.200' ],
+         ['MING', '1.136', '0.200' ],
+         ['CONS', '1.136', '0.200' ]] 
+headers=["Job Type","Factor for HBW Telecommuting", 'Factor for NHBW Telecommuting']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+For performing scenario testing, the 1ControlCenter.block file for the model scenario contains a telecommuting factor that serves as a multiplier to all employment-based telecommuting calculations. The default value for this factor is 1. A value less than 1 decreases the telecommuting share and a value greater than 1 increases the telecommuting share.
+
+An additional adjustment factor is used during the calibration process to further tune the model results for telecommuting to match the base year target. This model uses a telecommuting calibration factor of 1.
+
+### External Trip Attractions
+The TAZ attractions for external-to-internal (XI) attractions is set to the number of total households (TOTHH) plus the total employment (TOTEMP). Since XI attractions are scaled to match productions, this means that XI attractions will be proportionally distributed by households plus employment amongst all TAZs. 
+
+Additional adjustment factors applied to XI attractions include county factors and a scaling factor. The county adjustment factors are shown in @tbl-county-adj-fcts. The scaling factor used for the model is 0.010957.
+
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
+```{python}
+#| label: tbl-county-adj-fcts
+#| tbl-cap: "IX Attraction County Adjustment Factors"
+#| tbl-colwidths: [12,25]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Box Elder', '8.5741'],
+         ['Weber'    , '1.0061'],
+         ['Davis'    , '0.5437'],
+         ['Salt Lake', '0.9974'],
+         ['Utah'     , '0.8972']]
+headers=["Job Type","XI Adjustment Factor"]
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+When calculating attractions for the opposing direction, internal-to-external (IX), the values come directly from the External_TripEnds.dbf file as generated in the Input Processing scripts.
+
+### CBD and Area Type Adjustments
+Some trip purposed are further adjusted by select geographies. This allows for localized nuances to be applied when attraction rates may be atypical of regional rates. Two sets of adjustments are made. First, an adjustment of 0.5 is made to home-based shopping trips attracted to the CBD in Salt Lake County. Thus, shopping trips attracted to the CBD are half of what a non-CBD rate would be. Second, there are adjustments based on select area types for Davis and Salt Lake Counties. These adjustments are shown in @tbl-cbd-adj-fcts. Attractions for urban area types are reduced 70% to 80% for select trip purposes. For CBD-like area types in Salt Lake County, there is an increase of 25% for home-based work trips showing a greater number of attractions compared as compared to similar areas in the rest of the region.
+
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
+```{python}
+#| label: tbl-cbd-adj-fcts
+#| tbl-cap: "Adjustment Factors for Select Counties/Area Types"
+#| tbl-colwidths: [12,15,10,12,12,12]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Davis'    , 'Urban'   , '0.8' , '-'   , '-'  , '-'  ],
+         ['Salt Lake', 'Urban'   , '-'   , '0.75', '0.7', '0.8'],
+         ['Salt Lake', 'CBD-Like', '1.25', '-'   , '-'  , '-'  ]]
+headers=["County","Area Type", "HBW", 'HBShp', 'HBOth', 'NHBNW']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+### County Truck Adjustments
+An additional adjustment factor is used during the calibration process to further tune the model results for medium and heavy trucks to match observed truck traffic. These adjustments are made at the three main groupings for short-haul attractions. Light trucks were low in Box Elder, Weber, Davis, and Utah County and high in Salt Lake county. Medium trucks were low in Box Elder and Davis county and high in Weber, Salt Lake, and Utah county. Heavy trucks were low in Box Elder, Davis, and Utah county and high in Weber and Salt Lake County. The factors as shown in @tbl-sh-area were set to help offset these differences.
+
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
+```{python}
+#| label: tbl-sh-area
+#| tbl-cap: "Area Specific Short Haul Truck Production/Attraction Factors"
+#| tbl-colwidths: [20,20,20,20,20]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['People'  , 'Urban Spaces', '1.03', '0.90', '0.90'],
+         ['Goods'   , 'Urban Spaces', '1.03', '0.90', '0.90'],
+         ['Services', 'Urban Spaces', '1.03', '0.90', '0.90'],
+         ['People'  , 'Box Elder'   , '1.50', '1.17', '1.12'],
+         ['Goods'   , 'Box Elder'   , '1.50', '1.17', '1.12'],
+         ['Services', 'Box Elder'   , '1.50', '1.17', '1.12'],         
+         ['People'  , 'Weber'       , '1.22', '0.96', '0.96'],
+         ['Goods'   , 'Weber'       , '1.22', '0.96', '0.96'],
+         ['Services', 'Weber'       , '1.22', '0.96', '0.96'],   
+         ['People'  , 'Davis'       , '1.14', '1.08', '1.10'],
+         ['Goods'   , 'Davis'       , '1.14', '1.08', '1.10'],
+         ['Services', 'Davis'       , '1.14', '1.08', '1.10'],         
+         ['People'  , 'Salt Lake'   , '0.59', '0.62', '0.54'],
+         ['Goods'   , 'Salt Lake'   , '0.59', '0.62', '0.54'],
+         ['Services', 'Salt Lake'   , '0.59', '0.62', '0.54'],  
+         ['People'  , 'Utah'        , '1.19', '0.95', '1.01'],
+         ['Goods'   , 'Utah'        , '1.19', '0.95', '1.01'],
+         ['Services', 'Utah'        , '1.19', '0.95', '1.01']]
+headers=["Short-Haul Truck Category",'Area',"Light Truck Factor", 'Medium Truck Factor', 'Heavy Truck Factor']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+### Adjustments for Special Generators
+There are two groups of special generators that have adjustments for trip attractions. Temple Square and the SLC Library are in one group and colleges are in another.
+
+#### Temple Square and SLC Library
+Trip attractions for Temple Square and the SLC Library are generated using a base year daily visitation numbers and then increasing by an annual growth rate to estimate trip ends in the model year. The values used for estimation are shown in @tbl-lib. Temple Square had an estimated five million visitors in 2013, which translates to roughly 13,700 visitors per day and 27,400 trip ends per day. The SLC library is the second most popular destination in Salt Lake with approximately four million visitors per year or roughly 11,000 visitors and 22,000 trip ends per day.
+
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
+```{python}
+#| label: tbl-lib
+#| tbl-cap: "Adjustment Factors for Select Counties/Area Types"
+#| tbl-colwidths: [25,15,35,25]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [['Temple Square', '2013', '27400' , '1.0%'],
+         ['SLC Library'  , '2005', '22000' , '1.0%']]
+headers=["Special Generator","Base Year", "Base Year Daily Trip Ends", 'Annual Growth Rate']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+After calculating model year attractions for the two special generators, the total attractions are then added to TAZ attractions proportionally amongst the trip purposes HBOth and NHBNW for the TAZ including Temple Square and HBOth, NHBW, and NHBNW for the TAZ including SLC Library.
+
+#### Colleges
+
+<mark>???CHECK ENTIRE SECTION - we updated this but I forgot what we did</mark>
+
+There are several locations with the TDM where trips to and from colleges are estimated. Home-based college (HBC) trips are separately generated and distributed as part of the Input Processing scripts and are found in `TripTable.mtx`. HBC trips are those of enrolled students traveling to and from campus. These trips bypass Trip Generation and Trip Distribution scripts. The attractions for other trip purposes to colleges are generated together with the other trips within the containing TAZ. Adjustments are then made to account for additional attractions to colleges for the three trip purposes of HBOth, NHBW, and NHBNW.
+
+HBOth, NHBW, and NHBNW trip adjustments are calculated through the following steps:
+
+ 1.  Calculate the number of full-time-equivalent (FTE) students per campus by multiplying the enrollment control total for a college campus from TripTableControlTotal.csv by the FTE rate for the college campus from College_Factors.csv.
+ 2. Calculate the total attractions that should be generated based on the number of FTE students. This is done by multiplying the number of FTE students (step 1) by 2.4 vehicle attractions per student **(based on all purposes from ITE, exact reference not included)** multiplied by 1.7 person trips to vehicle trips **(source not stated, is it the HHSurvey??)**.
+ 3. Calculate HBW trips associated with college campus in its containing TAZ with the following steps:
+
+    a. Multiply FTE students (step 1) by the college employment factor (see @tbl-colege-fcts) to get the estimated number of employees for a college campus.
+    b. Divide the estimated number of employees for a college campus by the total employment (TOTEMP) for the containing TAZ to obtain a college employment ratio. The ratio is capped at 1.0.
+    c. The college employment ratio is then multiplied by the number of HBW trips to determine which  portion of HBW are associated with the college.
+
+4.	Calculate the number of non-HBC/HBW attractions to add to the TAZ by subtracting the college associated HBW trips (step 3) and HBC trips (TripTable.mtx) from the total attractions (step 2).
+5.	Distribute the additional attractions (step 4) proportionally amongst HBOth, NHBW, and NHBNW.
+
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
+```{python}
+#| label: tbl-colege-fcts
+#| tbl-cap: "College Employment Factors"
+#| tbl-colwidths: [30,40]
+table = [
+    ['Weber State University'     , '0.25'],
+    ['Utah Valley University'     , '0.25'],
+    ['Salt Lake Community College', '0.29'],
+    ['LDSBC'                      , '0.33'],
+    ['Westminster'                , '0.33'],
+    ['University of Utah'         , '0.71'],
+    ['Brigham Young University'   , '0.71'],
+    ['Unspecified'                , '0.48']]
+headers=["College","College Employment Factor"]
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+:::
+:::
+
+## Balance Productions and Attractions
+The final step of Trip Generation is to balance the productions and attractions. Balancing takes place by proportionally increasing or decreasing productions/attractions across the entire model space to match regional totals. For trips internal to the model space (non-externals) the attractions are balanced to match the productions. External trip productions and attractions are balanced in the WFRC/MAG model space. The IX productions are balanced to the IX attractions and the XI attractions are balanced to the XI productions. 
+
+<mark>???Truck trips are already balanced since TAZ attractions were set equal TAZ productions.** --**really?**???</mark>
+
+There is also an important distinction to be understood regarding non-home-based trips. While non-home-based productions are based on household characteristics of a TAZ, the trips are not actually being produced in the home TAZ location. They are produced at another location, hence the term non-home-based. Non-home-based productions, thus, are only used to get total values that are then used to balance non-home-based attractions. After attractions are balanced to match productions, TAZ productions are set equal to TAZ attractions. So, non-home-based productions are used to get the quantity of trips, but attractions are used to get the distribution of trips.
+
+## Validation Results
+The validation results for the Trip Generation portion of the model are shown in this section. 
+
+<mark>???All the 2012 Household Survey results are scaled to the 2010 Census.-- is the scaled to the 2020 census now???</mark>
+
+::: {.content-visible when-format="html"}
+```{python}
+import pandas as pd
+import numpy as np
+# calculate the total number of houses in the household travel survey
+hh_house_csv = pd.read_csv('data/1-lifecycle/2012_HHSurvey-HHData_2022-09-29.csv')
+hh_house = hh_house_csv[['password','weight', 'h_CO_NAME_v30', 'h_SUBAREA_v30']]
+hh_house = hh_house[hh_house['h_SUBAREA_v30'] == 1]
+hh_houses_sum = hh_house.groupby(['h_CO_NAME_v30'])['weight'].agg('sum').reset_index()
+hh_survey_tot_houses = sum(hh_houses_sum['weight'])
+
+# calculate thte total number of people in the household travel survey
+hh_peeps = hh_house_csv[['password','weight','h_CO_NAME_v30','h_SUBAREA_v30',' Pop_2010 ']]
+hh_peeps = hh_peeps.rename(columns={' Pop_2010 ': 'Pop_2010'})
+hh_peeps = hh_peeps[hh_peeps['h_SUBAREA_v30'] == 1]
+hh_survey_tot_pop = sum(hh_peeps['Pop_2010'])
+
+# calculate the number of II productions in the Household Travel Survey
+hh_trips_csv = pd.read_csv('data/2012_HHSurvey-TripData_2022-11-21.csv')
+hh_trips_purps = hh_trips_csv[['password','weight','h_CO_NAME_v30','h_SUBAREA_v30','p_SUBAREA_v30','a_SUBAREA_v30','PURP7_t']]
+hh_ii = hh_trips_purps[hh_trips_purps['h_SUBAREA_v30'] == 1]
+hh_ii = hh_ii[hh_ii['p_SUBAREA_v30'] == 1]
+hh_ii = hh_ii[hh_ii['a_SUBAREA_v30'] == 1]
+hh_ii = hh_ii.groupby(['PURP7_t'])['weight'].agg('sum').reset_index()
+
+# calculate visitor NHB II Trip Ends
+hh_ii_v = hh_trips_purps[hh_trips_purps['h_SUBAREA_v30'].isin([0,2,3,4])]
+hh_ii_v = hh_ii_v[hh_ii_v['p_SUBAREA_v30'] == 1]
+hh_ii_v = hh_ii_v[hh_ii_v['a_SUBAREA_v30'] == 1]
+hh_ii_v = hh_ii_v.groupby(['PURP7_t'])['weight'].agg('sum').reset_index()
+hh_ii_v = hh_ii_v.rename(columns = {'weight':'weight_2'})
+hh_ii = pd.merge(hh_ii, hh_ii_v, how = 'left', on ='PURP7_t')
+hh_ii = hh_ii.fillna(0)
+hh_ii['weight'] = hh_ii['weight'] + hh_ii['weight_2']
+hh_ii = hh_ii.drop(columns={'weight_2'})
+
+# calculate the number of IX productions in the Household Travel Survey
+hh_ix = hh_trips_purps[hh_trips_purps['h_SUBAREA_v30'] == 1]
+hh_ix = hh_ix[hh_ix['p_SUBAREA_v30'] == 1]
+hh_ix = hh_ix[hh_ix['a_SUBAREA_v30'].isin([-1,0,2,3,4])]
+hh_ix = hh_ix.groupby(['PURP7_t'])['weight'].agg('sum').reset_index()
+hh_ix_tot = sum(hh_ix['weight'])
+hh_ix = pd.DataFrame([['IX',hh_ix_tot]],columns=['PURP7_t','weight'])
+
+# calculate the total number of production in Household Travel Survey
+hh_ii_ix = pd.concat([hh_ii,hh_ix])
+hh_tot = sum(hh_ii_ix['weight'])
+hh_tot = pd.DataFrame([['Total',hh_tot]], columns = ['PURP7_t','weight'])
+hh_ii_ix = pd.concat([hh_ii_ix,hh_tot]).reset_index().drop(columns={'index'})
+hh_ii_ix['DataSource'] = 'Observed'
+hh_ii_ix = hh_ii_ix.rename(columns={'PURP7_t':'Purpose', 'weight':'Trips'})
+hh_ii_ix['houses'] = hh_survey_tot_houses
+```
+
+```{python}
+from dbfread import DBF
+# calculate the total number of trip end productions for the modeled data
+mod_pa = pd.DataFrame(DBF(r'data/4-trip-gen/pa.dbf',load=True))
+mod_pa = mod_pa.filter(regex='_P')
+mod_pa['HBSCH_P'] = mod_pa['HBSCH_PR_P'] + mod_pa['HBSCH_SC_P']
+mod_pa = mod_pa[['HBW_P','HBSHP_P','HBOTH_P','HBSCH_P','NHBW_P','NHBNW_P','IX_P']]
+mod_pa = mod_pa.rename(columns=lambda x: x.rstrip('_P'))
+mod_pa['HBC'] = 0
+mod_pa['Total'] = mod_pa['HBW'] + mod_pa['HBSH'] + mod_pa['HBOTH'] + mod_pa['HBSCH'] + mod_pa['NHBW'] + mod_pa['NHBNW'] + mod_pa['IX'] + mod_pa['HBC']
+mod_pa = mod_pa.rename(columns={'HBSH':'HBShp', 'HBOTH':'HBOth','HBSCH':'HBSch'})
+
+# summarize the data
+sumdf = mod_pa.sum()
+mod_sum = pd.DataFrame(sumdf,columns=['Trips']).reset_index().rename(columns = {'index':'Purp'})
+mod_sum = mod_sum.rename(columns={'Purp':'Purpose'})
+mod_sum['DataSource'] = 'Modeled'
+
+# read in SE data for total households
+se_data = pd.DataFrame(DBF(r'data/4-trip-gen/SE_File_v9_SE19_Net19.dbf',load=True))
+se_hh_sum = sum(se_data['TOTHH'])
+se_pop_sum = sum(se_data['HHPOP'])
+
+mod_sum['houses'] = se_hh_sum
+```
+
+```{python}
+prod_hh_ratio = pd.concat([hh_ii_ix,mod_sum])
+prod_hh_ratio['ratio'] = prod_hh_ratio['Trips'] / prod_hh_ratio['houses']
+prod_hh_ratio['DataSource'] = np.where(prod_hh_ratio['DataSource'] == 'Modeled', '2012 HH Survey', 'BY 2019 Model')
+```
+
+```{python}
+#| include: False
+
+import plotly.express as px
+colors2 = {'2012 HH Survey':'steelblue','BY 2019 Model':'forestgreen', '2009 NHTS': 'gray'}
+fig = px.bar(prod_hh_ratio, 
+    x="Purpose", 
+    y="ratio",
+    text_auto='.2s',    
+    color='DataSource', 
+    barmode='group', 
+    height=500,
+    color_discrete_map=colors2, 
+    text=[f'{round(val2*100,1)}' for val2 in prod_hh_ratio['ratio']], template='simple_white')
+fig.update_yaxes(title='Production to Household Ratio')
+fig.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
+fig
+```
+
+
+```{python}
+#| label: fig-prod-hh
+#| fig-cap: "Productions to Households Ratios -- Total Trip Ends (II + IX)."
+#| cap-location: margin
+fig
+```
+
+
+```{python}
+import numpy as np
+prod_hh_ratio2 = prod_hh_ratio[prod_hh_ratio['Purpose'] == 'Total']
+prod_hh_ratio2['pop'] = np.where(prod_hh_ratio2['DataSource'] == 'Observed', hh_survey_tot_pop, se_pop_sum)
+prod_hh_ratio2['ratio2'] = prod_hh_ratio2['Trips'] / prod_hh_ratio2['pop']
+trip_valid = prod_hh_ratio2[['DataSource', 'ratio','ratio2']]
+nhts = pd.DataFrame([['2009 NHTS',9.5,3.79]], columns = ['DataSource','ratio','ratio2'])
+trip_valid = pd.concat([trip_valid,nhts])
+trip_valid = trip_valid.rename(columns={'ratio':'Total Productions / Household', 'ratio2': 'Total Productions / Person'})
+trip_valid['DataSource'] = np.where(trip_valid['DataSource'] == 'Modeled', '2012 HH Survey', trip_valid['DataSource'])
+trip_valid['DataSource'] = np.where(trip_valid['DataSource'] == 'Observed', 'BY 2019 Model', trip_valid['DataSource'])
+trip_valid = trip_valid.melt(id_vars=['DataSource'], value_vars = ['Total Productions / Household', 'Total Productions / Person'], var_name = 'RatioName', value_name = 'RatioValue')
+```
+
+```{python}
+#| include: False
+import plotly.express as px
+fig2 = px.bar(trip_valid, 
+    x="RatioName", 
+    y="RatioValue",
+    text_auto='.2s',    
+    color='DataSource', 
+    barmode='group', 
+    height=500,
+    color_discrete_map=colors2, 
+    text=[f'{round(val2*100,1)}' for val2 in trip_valid['RatioValue']], template='simple_white')
+fig2.update_yaxes(title='Trip Balance Ratios')
+fig2.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
+fig2
+```
+
+
+```{python}
+#| label: fig-ptrip-valid
+#| fig-cap: "Total Trip Validation."
+#| cap-location: margin
+fig2
+```
+
+
+```{python}
+# calculate the trip balance based on the productions to household ratio data
+trip_balance = prod_hh_ratio[['Purpose','Trips','DataSource']]
+trip_balance = trip_balance.pivot(index='DataSource', columns='Purpose', values='Trips').reset_index()
+trip_balance['NHB'] = trip_balance['NHBW'] + trip_balance['NHBNW']
+trip_balance['HBO'] = trip_balance['HBOth'] + trip_balance['HBShp']
+trip_balance['NHB/HBW'] = trip_balance['NHB'] / trip_balance['HBW']
+trip_balance['HBO/HBW'] = trip_balance['HBO'] / trip_balance['HBW'] 
+trip_balance['HBO/NHB'] = trip_balance['HBO'] / trip_balance['NHB']
+trip_balance = trip_balance[['DataSource','NHB/HBW', 'HBO/HBW', 'HBO/NHB']]
+trip_balance = pd.melt(trip_balance, id_vars=['DataSource'], value_vars=['NHB/HBW','HBO/HBW','HBO/NHB'], var_name='Purpose', value_name='Ratio')
+```
+
+```{python}
+#| include: False
+import plotly.express as px
+fig3 = px.bar(trip_balance, 
+    x="Purpose", 
+    y="Ratio",
+    text_auto='.2s',    
+    color='DataSource', 
+    barmode='group', 
+    height=500,
+    color_discrete_map=colors2, 
+    text=[f'{round(val2*100,1)}' for val2 in trip_balance['Ratio']], template='simple_white')
+fig3.update_yaxes(title='Trip Balance Ratios')
+fig3.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
+fig3
+```
+
+```{python}
+#| label: fig-prod-prod
+#| fig-cap: "Trip Balance Ratios."
+#| cap-location: margin
+fig3
+```
+:::
+
+::: {.content-hidden when-format="html"}
+![Productions to Households Ratios -- Total Trip Ends (II + IX).](_pictures/4-plot1.png){#fig-pdf-prod-hh}
+
+![Total Trip Validation.](_pictures/4-plot2.png){#fig-pdf-ptrip-valid}
+
+![Trip Balance Ratios.](_pictures/4-plot3.png){#fig-pdf-prod-prod}
+:::
