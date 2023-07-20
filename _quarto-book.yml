@@ -64,12 +64,12 @@ book:
   date: "6/9/2023"
   chapters:
     - index.qmd
-    - v9x/v900/model-process/1-HHDisag_AutoOwn.qmd
-    - v9x/v900/model-process/2-TripGen.qmd
-    - v9x/v900/model-process/3-Distribute.qmd
-    - v9x/v900/model-process/4-ModeChoice.qmd
-    - v9x/v900/model-process/5-AssignHwy.qmd
-    - v9x/v900/model-process/A-Sensitivity.qmd
+    - v9x/v900/model-process/1-hhdisag_autoown.qmd
+    - v9x/v900/model-process/2-tripgen.qmd
+    - v9x/v900/model-process/3-distribute.qmd
+    - v9x/v900/model-process/4-modechoice.qmd
+    - v9x/v900/model-process/5-assignhwy.qmd
+    - v9x/v900/model-process/A-sensitivity.qmd
 
 
 format:
