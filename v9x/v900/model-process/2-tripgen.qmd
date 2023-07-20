@@ -546,7 +546,7 @@ The validation results for the Trip Generation portion of the model are shown in
 import pandas as pd
 import numpy as np
 # calculate the total number of houses in the household travel survey
-hh_house_csv = pd.read_csv('data/1-lifecycle/2012_HHSurvey-HHData_2022-09-29.csv')
+hh_house_csv = pd.read_csv('data/1-hhdisag_autoown/2012_HHSurvey-HHData_2022-09-29.csv')
 hh_house = hh_house_csv[['password','weight', 'h_CO_NAME_v30', 'h_SUBAREA_v30']]
 hh_house = hh_house[hh_house['h_SUBAREA_v30'] == 1]
 hh_houses_sum = hh_house.groupby(['h_CO_NAME_v30'])['weight'].agg('sum').reset_index()
@@ -598,7 +598,7 @@ hh_ii_ix['houses'] = hh_survey_tot_houses
 ```{python}
 from dbfread import DBF
 # calculate the total number of trip end productions for the modeled data
-mod_pa = pd.DataFrame(DBF(r'data/4-trip-gen/pa.dbf',load=True))
+mod_pa = pd.DataFrame(DBF(r'data/2-tripgen/pa.dbf',load=True))
 mod_pa = mod_pa.filter(regex='_P')
 mod_pa['HBSCH_P'] = mod_pa['HBSCH_PR_P'] + mod_pa['HBSCH_SC_P']
 mod_pa = mod_pa[['HBW_P','HBSHP_P','HBOTH_P','HBSCH_P','NHBW_P','NHBNW_P','IX_P']]
@@ -614,7 +614,7 @@ mod_sum = mod_sum.rename(columns={'Purp':'Purpose'})
 mod_sum['DataSource'] = 'Modeled'
 
 # read in SE data for total households
-se_data = pd.DataFrame(DBF(r'data/4-trip-gen/SE_File_v9_SE19_Net19.dbf',load=True))
+se_data = pd.DataFrame(DBF(r'data/2-tripgen/SE_File_v9_SE19_Net19.dbf',load=True))
 se_hh_sum = sum(se_data['TOTHH'])
 se_pop_sum = sum(se_data['HHPOP'])
 

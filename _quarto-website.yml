@@ -123,14 +123,12 @@ website:
         - "---"
         - section: "<span style=\"color: #3E6682;\">**Model Process**</span>"
           contents:
-            - v9x/v900/model-process/1-life-cycle.qmd
-            - v9x/v900/model-process/2-hh-disagg.qmd
-            - v9x/v900/model-process/3-auto-own.qmd
-            - v9x/v900/model-process/4-trip-gen.qmd
-            - v9x/v900/model-process/5-distribution.qmd
-            - v9x/v900/model-process/6-mc.qmd
-            - v9x/v900/model-process/7-assign.qmd
-            - v9x/v900/model-process/8-sensitivity.qmd
+            - v9x/v900/model-process/1-hhdisag-autoown.qmd
+            - v9x/v900/model-process/2-tripgen.qmd
+            - v9x/v900/model-process/3-distribute.qmd
+            - v9x/v900/model-process/4-modechoice.qmd
+            - v9x/v900/model-process/5-assignhwy.qmd
+            - v9x/v900/model-process/A-sensitivity.qmd
         - "---"
     - id: v832-preface
       title: "Version 8.3.2"
