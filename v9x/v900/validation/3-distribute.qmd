@@ -10,9 +10,9 @@ The validation results for the Trip Distribution portion of the model are shown 
 ::: {.content-visible when-format="html"}
 ```{python}
 import pandas as pd
-gc_csv = pd.read_csv('data/5-distrib/v9-gencost-mod-obs.csv')
-dist_csv = pd.read_csv('data/5-distrib/v9-dist-mod-obs.csv')
-time_csv = pd.read_csv('data/5-distrib/v9-time-mod-obs.csv')
+gc_csv = pd.read_csv('data/3-distribute/v9-gencost-mod-obs.csv')
+dist_csv = pd.read_csv('data/3-distribute/v9-dist-mod-obs.csv')
+time_csv = pd.read_csv('data/3-distribute/v9-time-mod-obs.csv')
 ```
 
 ```{python}

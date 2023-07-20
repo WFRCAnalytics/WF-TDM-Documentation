@@ -372,7 +372,7 @@ nameBoardTDM = "Boardings_TDM"
 ```
 
 ```{python}
-df_OBS = pd.read_csv(r'data/6-mc/2019 Final Weighted UTA OD Data - 2020-09-09_BH.csv')
+df_OBS = pd.read_csv(r'data/4-modechoice/2019 Final Weighted UTA OD Data - 2020-09-09_BH.csv')
 df_OBS = df_OBS[df_OBS.Use == 1]
 
 #create dataset with only desired columns
@@ -413,7 +413,7 @@ df_HHSModes = pd.DataFrame(data=dHHSModes)
 ```
 
 ```{python}
-df_HHS  = pd.read_csv(r'data\6-mc\TripData_June19_2013.csv')
+df_HHS  = pd.read_csv(r'data\4-modechoice\TripData_June19_2013.csv')
 df_HHS = df_HHS[df_HHS.WF_IXXI_MS == 'II']
 df_HHS = df_HHS[df_HHS.main_mode_w_auto_occ_text != 'other']
 
@@ -470,8 +470,8 @@ df_TDMCatToModes = pd.DataFrame(dTDMCatToModes)
 ```
 
 ```{python}
-df_TDM_Pk  = pd.read_csv(r'data\6-mc\v9_SE19_Net19_RegionShares_Pk.csv')
-df_TDM_Ok  = pd.read_csv(r'data\6-mc\v9_SE19_Net19_RegionShares_Ok.csv')
+df_TDM_Pk  = pd.read_csv(r'data\4-modechoice\v9_SE19_Net19_RegionShares_Pk.csv')
+df_TDM_Ok  = pd.read_csv(r'data\4-modechoice\v9_SE19_Net19_RegionShares_Ok.csv')
 
 df_TDM_Pk['Period'] = 'PK'
 df_TDM_Ok['Period'] = 'OK'
@@ -564,8 +564,8 @@ dfC_Long_P = pd.melt(dfC_Long_P,
 
 ```{python}
 ojs_define(dataLong = dfC_Long_P)
-#dfC_Long.to_csv('data/6-mc/dfC_Long.csv')
-#dataLong2 = FileAttachment("data\\6-mc\\dfC_Long.csv").csv({ typed: true });
+#dfC_Long.to_csv('data/4-modechoice/dfC_Long.csv')
+#dataLong2 = FileAttachment("data\\4-modechoice\\dfC_Long.csv").csv({ typed: true });
 #| echo: false
 #Inputs.table(filtered_data, {
 #  style: {
@@ -665,7 +665,7 @@ df_ModeTDM = pd.DataFrame(dModeTDM)
 
 ```{python}
 from dbfread import DBF
-dbf_TDM_PARoute=pd.DataFrame(DBF(r"data/6-mc/_v9_SE19_Net19_1_PA_Route.dbf", load=True))
+dbf_TDM_PARoute=pd.DataFrame(DBF(r"data/4-modechoice/_v9_SE19_Net19_1_PA_Route.dbf", load=True))
 dbf_TDM_PARoute
 
 dbf_TDM_PARoute_LinkModebyBoardMode = pd.melt(dbf_TDM_PARoute, id_vars=['MODE','NAMEID','NAME'], value_vars=['DY_4_XITB','DY_5_XITB','DY_6_XITB','DY_7_XITB','DY_8_XITB','DY_9_XITB'])
