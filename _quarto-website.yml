@@ -112,11 +112,11 @@ website:
         - "---"
         - section: "<span style=\"color: #3E6682;\">**Validation**</span>"
           contents:
-            - v9x/v900/validation/1-hh-disagg.qmd
-            - v9x/v900/validation/2-trip-gen.qmd
-            - v9x/v900/validation/3-distribution.qmd
-            - v9x/v900/validation/4-mc.qmd
-            - v9x/v900/validation/5-assign.qmd
+            - v9x/v900/validation/1-hhdisag-autoown.qmd
+            - v9x/v900/validation/2-tripgen.qmd
+            - v9x/v900/validation/3-distribute.qmd
+            - v9x/v900/validation/4-modechoice.qmd
+            - v9x/v900/validation/5-assignhwy.qmd
             - v9x/v900/validation/A-sensitivity.qmd
         - "---"
         - section: "<span style=\"color: #3E6682;\">**Model Process**</span>"

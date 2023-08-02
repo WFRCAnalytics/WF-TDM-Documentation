@@ -5,7 +5,14 @@ warning: false
 message: false40
 ---
 
-The validation results for the Trip Distribution portion of the model are shown in this section. The observed data comes from the 2012 Household Survey. 
+The validation for the Trip Distribution are shown in this section. The observed data comes from the 2012 Household Survey.
+
+The model and observed data are compared below by trip purpose for the following variables:
+
+- Trip Generalized Cost
+- Distance
+- Time
+ 
 
 ::: {.content-visible when-format="html"}
 ```{python}
@@ -67,7 +74,7 @@ ojs_define(dataStats = gcdtime_Stats)
 ```{ojs}
 viewof varSelect = Inputs.select(new Map([['Generalized Cost','GenCost'], ['Distance', 'Distance'], ['Time', 'Time']]), {value: 'Variable', label: "Variable"})
 
-viewof purpSelect  = Inputs.select(new Map([['Main Purposes', 'MainPurposes'], ['External Purposes', 'Externals'], ['Telecommute Purposes', 'Telecommute']]), {value: 'PurpType', label: "Purpose Set"});
+viewof purpSelect  = Inputs.select(new Map([['Internal Trip Purposes', 'MainPurposes'], ['External Trip Purposes', 'Externals']]), {value: 'PurpType', label: "Purpose Set"});
 ```
 
 ```{ojs}

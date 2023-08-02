@@ -38,12 +38,12 @@ book:
   date: "6/9/2023"
   chapters:
     - index.qmd
-    - v9x/v900/model-process/1-hhdisag_autoown.qmd
-    - v9x/v900/model-process/2-tripgen.qmd
-    - v9x/v900/model-process/3-distribute.qmd
-    - v9x/v900/model-process/4-modechoice.qmd
-    - v9x/v900/model-process/5-assignhwy.qmd
-    - v9x/v900/model-process/A-sensitivity.qmd
+    - v9x/v900/validation/1-hhdisag-autoown.qmd
+    - v9x/v900/validation/2-tripgen.qmd
+    - v9x/v900/validation/3-distribute.qmd
+    - v9x/v900/validation/4-modechoice.qmd
+    - v9x/v900/validation/5-assignhwy.qmd
+    - v9x/v900/validation/A-sensitivity.qmd
 
 
 #======================
