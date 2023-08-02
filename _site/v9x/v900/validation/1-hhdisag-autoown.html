@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WFTDM Documentation - Household Disaggregation and Auto Ownership</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../_pictures/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+if (typeof require !== 'undefined') {
+require.undef("plotly");
+requirejs.config({
+    paths: {
+        'plotly': ['https://cdn.plot.ly/plotly-2.12.1.min']
+    }
+});
+require(['plotly'], function(Plotly) {
+    window._Plotly = Plotly;
+});
+}
+</script>
+
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://wfrc.org" class="navbar-brand navbar-brand-logo">
+    <img src="../../../_pictures/wf-logo-new-white-t.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9-series" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9 Series</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v831/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v830/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.0</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="mailto:sswim@wfrc.org" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
+   
+  <ul class="collapse">
+  <li><a href="#life-cycle" id="toc-life-cycle" class="nav-link active" data-scroll-target="#life-cycle">Life Cycle</a></li>
+  <li><a href="#population-by-age-group-and-county" id="toc-population-by-age-group-and-county" class="nav-link" data-scroll-target="#population-by-age-group-and-county">Population by Age Group and County</a></li>
+  <li><a href="#population-by-life-cycle" id="toc-population-by-life-cycle" class="nav-link" data-scroll-target="#population-by-life-cycle">Population by Life Cycle</a></li>
+  <li><a href="#households-by-life-cycle" id="toc-households-by-life-cycle" class="nav-link" data-scroll-target="#households-by-life-cycle">Households by Life Cycle</a></li>
+  <li><a href="#household-disaggregation" id="toc-household-disaggregation" class="nav-link" data-scroll-target="#household-disaggregation">Household Disaggregation</a></li>
+  <li><a href="#auto-ownership" id="toc-auto-ownership" class="nav-link" data-scroll-target="#auto-ownership">Auto Ownership</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Household Disaggregation and Auto Ownership</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="life-cycle" class="level2">
+<h2 class="anchored" data-anchor-id="life-cycle">Life Cycle</h2>
+<p>The validation of the Life Cycle model includes the comparison of model output to observed data for the following categories:</p>
+<ul>
+<li>Population by Age Group and County</li>
+<li>Population by Life Cycle</li>
+<li>Households by Life Cycle</li>
+</ul>
+<p>For Population by Age Group and County model results are compared to observed data as represented by the Kem C. Gardner Policy Institute (GPI) control totals. Population by Life Cycle and Households by Life Cycle are compared to the Utah Household Travel Survey.</p>
+<p>Life Cycle comparisons are summarized by the following three life cycle categories:</p>
+<ul>
+<li>Life Cycle 1 – households with no children and no seniors</li>
+<li>Life Cycle 2 – households with children and no seniors</li>
+<li>Life Cycle 3 – households with seniors (may have children)</li>
+</ul>
+</section>
+<section id="population-by-age-group-and-county" class="level2">
+<h2 class="anchored" data-anchor-id="population-by-age-group-and-county">Population by Age Group and County</h2>
+<p>The 2020 model base year population by county and Age Group was compared to the 2020 GPI county-level population by Age Group, shown in the following charts. The model’s estimate of the population in each Age Group mirrors the GPI county-level projections.</p>
+<div class="cell caption-undefined" data-execution_count="11">
+<div id="fig-age-comp" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+
+<div>                            <div id="216e59ef-225e-4a7a-8ab5-c6dcb0b82f6c" class="plotly-graph-div" style="height:800px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("216e59ef-225e-4a7a-8ab5-c6dcb0b82f6c")) {                    Plotly.newPlot(                        "216e59ef-225e-4a7a-8ab5-c6dcb0b82f6c",                        [{"alignmentgroup":"True","hovertemplate":"Source=Observed<br>AgeGroup=Age 0 - 17<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Observed","marker":{"color":"steelblue","pattern":{"shape":""}},"name":"Observed","offsetgroup":"Observed","orientation":"v","showlegend":true,"text":["27.6","32.0","26.1","32.7"],"textposition":"inside","texttemplate":"%{text}%","x":["Weber","Davis","Salt Lake","Utah"],"xaxis":"x3","y":[0.27641345,0.320079578,0.261107226,0.327160531],"yaxis":"y3","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Observed<br>AgeGroup=Age 18 - 64<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Observed","marker":{"color":"steelblue","pattern":{"shape":""}},"name":"Observed","offsetgroup":"Observed","orientation":"v","showlegend":false,"text":["59.6","57.7","62.7","59.5"],"textposition":"inside","texttemplate":"%{text}%","x":["Weber","Davis","Salt Lake","Utah"],"xaxis":"x2","y":[0.59591742,0.5769126,0.626679728,0.595277738],"yaxis":"y2","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Observed<br>AgeGroup=Age 65+<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Observed","marker":{"color":"steelblue","pattern":{"shape":""}},"name":"Observed","offsetgroup":"Observed","orientation":"v","showlegend":false,"text":["12.8","10.3","11.2","7.8"],"textposition":"inside","texttemplate":"%{text}%","x":["Weber","Davis","Salt Lake","Utah"],"xaxis":"x","y":[0.127669131,0.103007823,0.112213046,0.077561731],"yaxis":"y","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Modeled<br>AgeGroup=Age 0 - 17<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Modeled","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"Modeled","offsetgroup":"Modeled","orientation":"v","showlegend":true,"text":["32.1","26.2","32.8","27.8"],"textposition":"inside","texttemplate":"%{text}%","x":["Davis","Salt Lake","Utah","Weber"],"xaxis":"x3","y":[0.3206699470438647,0.2618402379932367,0.32777271424276655,0.2781384984140286],"yaxis":"y3","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Modeled<br>AgeGroup=Age 18 - 64<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Modeled","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"Modeled","offsetgroup":"Modeled","orientation":"v","showlegend":false,"text":["57.7","62.9","59.6","60.6"],"textposition":"inside","texttemplate":"%{text}%","x":["Davis","Salt Lake","Utah","Weber"],"xaxis":"x2","y":[0.5771029986599778,0.6287063574795497,0.5957118933873985,0.6057665014618698],"yaxis":"y2","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Modeled<br>AgeGroup=Age 65+<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Modeled","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"Modeled","offsetgroup":"Modeled","orientation":"v","showlegend":false,"text":["10.2","10.9","7.7","11.6"],"textposition":"inside","texttemplate":"%{text}%","x":["Davis","Salt Lake","Utah","Weber"],"xaxis":"x","y":[0.10222705429615732,0.10945340452721355,0.07651539236983476,0.11609500012410155],"yaxis":"y","type":"bar","textfont":{"color":"white"},"textangle":0}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(36,36,36)"},"error_y":{"color":"rgb(36,36,36)"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"baxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2d"}],"histogram":[{"marker":{"line":{"color":"white","width":0.6}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"colorscale":{"diverging":[[0.0,"rgb(103,0,31)"],[0.1,"rgb(178,24,43)"],[0.2,"rgb(214,96,77)"],[0.3,"rgb(244,165,130)"],[0.4,"rgb(253,219,199)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(209,229,240)"],[0.7,"rgb(146,197,222)"],[0.8,"rgb(67,147,195)"],[0.9,"rgb(33,102,172)"],[1.0,"rgb(5,48,97)"]],"sequential":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"sequentialminus":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"colorway":["#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD","#8C564B","#E377C2","#7F7F7F","#BCBD22","#17BECF"],"font":{"color":"rgb(36,36,36)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","radialaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"zaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"baxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","caxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"}}},"xaxis":{"anchor":"y","domain":[0.0,0.98],"title":{},"tickangle":0,"showticklabels":true,"ticks":"inside","ticklen":10},"yaxis":{"anchor":"x","domain":[0.0,0.3133333333333333],"title":{"text":"Percent"}},"xaxis2":{"anchor":"y2","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis2":{"anchor":"x2","domain":[0.34333333333333327,0.6566666666666665],"matches":"y","title":{"text":"Percent"}},"xaxis3":{"anchor":"y3","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis3":{"anchor":"x3","domain":[0.6866666666666665,0.9999999999999998],"matches":"y","title":{"text":"Percent"}},"annotations":[{"font":{},"showarrow":false,"text":"AgeGroup=Age 65+","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.15666666666666665,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"AgeGroup=Age 18 - 64","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.4999999999999999,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"AgeGroup=Age 0 - 17","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.8433333333333332,"yanchor":"middle","yref":"paper"}],"legend":{"title":{"text":"Source"},"tracegroupgap":0},"margin":{"t":60},"barmode":"group","height":800},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('216e59ef-225e-4a7a-8ab5-c6dcb0b82f6c');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+<figcaption class="figure-caption">Figure&nbsp;1: 2020 Model vs.&nbsp;2020 GPI – % Population by Age Group and County.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="population-by-life-cycle" class="level2">
+<h2 class="anchored" data-anchor-id="population-by-life-cycle">Population by Life Cycle</h2>
+<p>The shares of the modeled 2019 base year population by Life Cycle were compared to the 2012 Household Survey at the county level. The model’s estimate of population by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 4% of the observed data.</p>
+<div class="cell caption-undefined" data-execution_count="16">
+<div id="fig-lc-pop" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+
+<div>                            <div id="1cffb815-3635-4def-83f5-0edec2ed3379" class="plotly-graph-div" style="height:800px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("1cffb815-3635-4def-83f5-0edec2ed3379")) {                    Plotly.newPlot(                        "1cffb815-3635-4def-83f5-0edec2ed3379",                        [{"alignmentgroup":"True","hovertemplate":"Source=Observed<br>LifeCycle=1<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Observed","marker":{"color":"steelblue","pattern":{"shape":""}},"name":"Observed","offsetgroup":"Observed","orientation":"v","showlegend":true,"text":["18.6","16.5","29.4","19.8","23.4"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x3","y":[0.1862024334396359,0.16460618613878839,0.2940654298386891,0.19753074190666978,0.23431996512149403],"yaxis":"y3","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Observed<br>LifeCycle=2<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Observed","marker":{"color":"steelblue","pattern":{"shape":""}},"name":"Observed","offsetgroup":"Observed","orientation":"v","showlegend":false,"text":["71.9","73.2","57.9","72.1","63.8"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x2","y":[0.7193266143322781,0.731628835897639,0.5794865170012087,0.7212497752454292,0.6375865487208423],"yaxis":"y2","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Observed<br>LifeCycle=3<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Observed","marker":{"color":"steelblue","pattern":{"shape":""}},"name":"Observed","offsetgroup":"Observed","orientation":"v","showlegend":false,"text":["9.4","10.4","12.6","8.1","12.8"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x","y":[0.09447095222808594,0.10376497796357263,0.12644805316010213,0.08121948284790105,0.12809348615766364],"yaxis":"y","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Modeled<br>LifeCycle=1<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Modeled","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"Modeled","offsetgroup":"Modeled","orientation":"v","showlegend":true,"text":["18.5","16.7","29.9","20.1","23.6"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x3","y":[0.184785802723896,0.16682265119838763,0.29872614957154814,0.20077345663193116,0.23556939092954873],"yaxis":"y3","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Modeled<br>LifeCycle=2<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Modeled","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"Modeled","offsetgroup":"Modeled","orientation":"v","showlegend":false,"text":["68.5","72.0","58.2","71.3","63.5"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x2","y":[0.6852001650846059,0.7200742553702445,0.5819321064962616,0.7131752801657942,0.634761070278345],"yaxis":"y2","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Modeled<br>LifeCycle=3<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Modeled","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"Modeled","offsetgroup":"Modeled","orientation":"v","showlegend":false,"text":["13.0","11.3","11.9","8.6","13.0"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x","y":[0.13001403219149815,0.11310309343136793,0.11934174393219024,0.08605126320227452,0.12966953879210621],"yaxis":"y","type":"bar","textfont":{"color":"white"},"textangle":0}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(36,36,36)"},"error_y":{"color":"rgb(36,36,36)"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"baxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2d"}],"histogram":[{"marker":{"line":{"color":"white","width":0.6}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"colorscale":{"diverging":[[0.0,"rgb(103,0,31)"],[0.1,"rgb(178,24,43)"],[0.2,"rgb(214,96,77)"],[0.3,"rgb(244,165,130)"],[0.4,"rgb(253,219,199)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(209,229,240)"],[0.7,"rgb(146,197,222)"],[0.8,"rgb(67,147,195)"],[0.9,"rgb(33,102,172)"],[1.0,"rgb(5,48,97)"]],"sequential":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"sequentialminus":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"colorway":["#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD","#8C564B","#E377C2","#7F7F7F","#BCBD22","#17BECF"],"font":{"color":"rgb(36,36,36)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","radialaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"zaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"baxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","caxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"}}},"xaxis":{"anchor":"y","domain":[0.0,0.98],"title":{},"tickangle":0,"showticklabels":true,"ticks":"inside","ticklen":10},"yaxis":{"anchor":"x","domain":[0.0,0.3133333333333333],"title":{"text":"Percent"}},"xaxis2":{"anchor":"y2","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis2":{"anchor":"x2","domain":[0.34333333333333327,0.6566666666666665],"matches":"y","title":{"text":"Percent"}},"xaxis3":{"anchor":"y3","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis3":{"anchor":"x3","domain":[0.6866666666666665,0.9999999999999998],"matches":"y","title":{"text":"Percent"}},"annotations":[{"font":{},"showarrow":false,"text":"LifeCycle=3","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.15666666666666665,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"LifeCycle=2","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.4999999999999999,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"LifeCycle=1","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.8433333333333332,"yanchor":"middle","yref":"paper"}],"legend":{"title":{"text":"Source"},"tracegroupgap":0},"margin":{"t":60},"barmode":"group","height":800},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('1cffb815-3635-4def-83f5-0edec2ed3379');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+<figcaption class="figure-caption">Figure&nbsp;2: 2019 Model vs.&nbsp;2012 Household Survey – % Population by Life Cycle and County.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="households-by-life-cycle" class="level2">
+<h2 class="anchored" data-anchor-id="households-by-life-cycle">Households by Life Cycle</h2>
+<p>The shares of the modeled 2019 base year households by Life Cycle were compared to the 2012 Household Survey at the county level. The model’s estimate of households by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 1.5% of the observed data.</p>
+<div class="cell caption-undefined" data-execution_count="20">
+<div id="fig-lc-hh" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+
+<div>                            <div id="0040aae6-c399-4811-9ceb-8746276603bb" class="plotly-graph-div" style="height:800px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("0040aae6-c399-4811-9ceb-8746276603bb")) {                    Plotly.newPlot(                        "0040aae6-c399-4811-9ceb-8746276603bb",                        [{"alignmentgroup":"True","hovertemplate":"Source=Observed<br>LifeCycle=1<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Observed","marker":{"color":"steelblue","pattern":{"shape":""}},"name":"Observed","offsetgroup":"Observed","orientation":"v","showlegend":true,"text":["31.6","27.8","45.0","33.5","37.2"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x3","y":[0.31614641024544377,0.27842832904001985,0.4495468807735946,0.33462604473308394,0.3721862568702378],"yaxis":"y3","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Observed<br>LifeCycle=2<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Observed","marker":{"color":"steelblue","pattern":{"shape":""}},"name":"Observed","offsetgroup":"Observed","orientation":"v","showlegend":false,"text":["52.5","56.2","37.3","53.9","42.8"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x2","y":[0.5249689617721629,0.5623277326456073,0.37335462534218694,0.5389771053892376,0.42762501672092085],"yaxis":"y2","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Observed<br>LifeCycle=3<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Observed","marker":{"color":"steelblue","pattern":{"shape":""}},"name":"Observed","offsetgroup":"Observed","orientation":"v","showlegend":false,"text":["15.9","15.9","17.7","12.6","20.0"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x","y":[0.1588846279823934,0.15924393831437275,0.1770984938842185,0.12639684987767852,0.2001887264088413],"yaxis":"y","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Modeled<br>LifeCycle=1<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Modeled","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"Modeled","offsetgroup":"Modeled","orientation":"v","showlegend":true,"text":["31.6","27.9","45.3","33.7","37.4"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x3","y":[0.3156028018455033,0.2787078557627479,0.45266955353802235,0.3372398801940142,0.37417006305082384],"yaxis":"y3","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Modeled<br>LifeCycle=2<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Modeled","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"Modeled","offsetgroup":"Modeled","orientation":"v","showlegend":false,"text":["51.1","54.8","36.2","52.8","41.6"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x2","y":[0.5107736689751924,0.5481296126191758,0.3621057509727393,0.5276956346811507,0.4162213629660594],"yaxis":"y2","type":"bar","textfont":{"color":"white"},"textangle":0},{"alignmentgroup":"True","hovertemplate":"Source=Modeled<br>LifeCycle=3<br>Region=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"Modeled","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"Modeled","offsetgroup":"Modeled","orientation":"v","showlegend":false,"text":["17.4","17.3","18.5","13.5","21.0"],"textposition":"inside","texttemplate":"%{text}%","x":["BOX ELDER","DAVIS","SALT LAKE","UTAH","WEBER"],"xaxis":"x","y":[0.1736235291793043,0.17316253161807627,0.18522469548923842,0.13506448512483515,0.20960857398311677],"yaxis":"y","type":"bar","textfont":{"color":"white"},"textangle":0}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(36,36,36)"},"error_y":{"color":"rgb(36,36,36)"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"baxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2d"}],"histogram":[{"marker":{"line":{"color":"white","width":0.6}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"colorscale":{"diverging":[[0.0,"rgb(103,0,31)"],[0.1,"rgb(178,24,43)"],[0.2,"rgb(214,96,77)"],[0.3,"rgb(244,165,130)"],[0.4,"rgb(253,219,199)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(209,229,240)"],[0.7,"rgb(146,197,222)"],[0.8,"rgb(67,147,195)"],[0.9,"rgb(33,102,172)"],[1.0,"rgb(5,48,97)"]],"sequential":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"sequentialminus":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"colorway":["#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD","#8C564B","#E377C2","#7F7F7F","#BCBD22","#17BECF"],"font":{"color":"rgb(36,36,36)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","radialaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"zaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"baxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","caxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"}}},"xaxis":{"anchor":"y","domain":[0.0,0.98],"title":{},"tickangle":0,"showticklabels":true,"ticks":"inside","ticklen":10},"yaxis":{"anchor":"x","domain":[0.0,0.3133333333333333],"title":{"text":"Percent"}},"xaxis2":{"anchor":"y2","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis2":{"anchor":"x2","domain":[0.34333333333333327,0.6566666666666665],"matches":"y","title":{"text":"Percent"}},"xaxis3":{"anchor":"y3","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis3":{"anchor":"x3","domain":[0.6866666666666665,0.9999999999999998],"matches":"y","title":{"text":"Percent"}},"annotations":[{"font":{},"showarrow":false,"text":"LifeCycle=3","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.15666666666666665,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"LifeCycle=2","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.4999999999999999,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"LifeCycle=1","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.8433333333333332,"yanchor":"middle","yref":"paper"}],"legend":{"title":{"text":"Source"},"tracegroupgap":0},"margin":{"t":60},"barmode":"group","height":800},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('0040aae6-c399-4811-9ceb-8746276603bb');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+<figcaption class="figure-caption">Figure&nbsp;3: 2019 Model vs.&nbsp;2012 Household Survey – % Households by Life Cycle and County.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="household-disaggregation" class="level2">
+<h2 class="anchored" data-anchor-id="household-disaggregation">Household Disaggregation</h2>
+<p>The Household Disaggregation was validated to the following measures:</p>
+<ul>
+<li>Household Size</li>
+<li>Income</li>
+<li>Number of Workers</li>
+</ul>
+<section id="household-size" class="level3">
+<h3 class="anchored" data-anchor-id="household-size">Household Size</h3>
+<p>The shares of the modeled 2015 base year households by Household Size category were validated to 2010 Census and 2016 ACS data at the county level. The model’s estimate of households by each of the six Household Size category matches within about 2% of the observed data for all counties.</p>
+<p><mark>???Update to use 2019 Model???</mark>&gt;&gt;</p>
+<div class="cell caption-undefined" data-execution_count="22">
+<div id="fig-hh-modobs" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+
+<div>                            <div id="097af67e-5a97-4700-ac2c-ced1fa7f2b15" class="plotly-graph-div" style="height:1600px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("097af67e-5a97-4700-ac2c-ced1fa7f2b15")) {                    Plotly.newPlot(                        "097af67e-5a97-4700-ac2c-ced1fa7f2b15",                        [{"alignmentgroup":"True","hovertemplate":"Data=2015 Model<br>COUNTY=BOX ELDER<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2015 Model","marker":{"color":"royalblue","pattern":{"shape":""}},"name":"2015 Model","offsetgroup":"2015 Model","orientation":"v","showlegend":true,"text":["1710.0","3100.0","1560.0","1500.0","1120.0","1020.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x5","y":[17.1,31.0,15.6,15.0,11.2,10.2],"yaxis":"y5","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2015 Model<br>COUNTY=DAVIS<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2015 Model","marker":{"color":"royalblue","pattern":{"shape":""}},"name":"2015 Model","offsetgroup":"2015 Model","orientation":"v","showlegend":false,"text":["1520.0","2780.0","1680.0","1650.0","1220.0","1150.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x4","y":[15.2,27.8,16.8,16.5,12.2,11.5],"yaxis":"y4","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2015 Model<br>COUNTY=SALT LAKE<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2015 Model","marker":{"color":"royalblue","pattern":{"shape":""}},"name":"2015 Model","offsetgroup":"2015 Model","orientation":"v","showlegend":false,"text":["2200.0","2900.0","1610.0","1470.0","910.0","930.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x3","y":[22.0,29.0,16.1,14.7,9.1,9.3],"yaxis":"y3","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2015 Model<br>COUNTY=UTAH<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2015 Model","marker":{"color":"royalblue","pattern":{"shape":""}},"name":"2015 Model","offsetgroup":"2015 Model","orientation":"v","showlegend":false,"text":["1160.0","2510.0","1640.0","1710.0","1310.0","1660.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x2","y":[11.6,25.1,16.4,17.1,13.1,16.6],"yaxis":"y2","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2015 Model<br>COUNTY=WEBER<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2015 Model","marker":{"color":"royalblue","pattern":{"shape":""}},"name":"2015 Model","offsetgroup":"2015 Model","orientation":"v","showlegend":false,"text":["2150.0","3040.0","1610.0","1460.0","930.0","810.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x","y":[21.5,30.4,16.1,14.6,9.3,8.1],"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2010 Census<br>COUNTY=BOX ELDER<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2010 Census","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"2010 Census","offsetgroup":"2010 Census","orientation":"v","showlegend":true,"text":["1720.0","3100.0","1560.0","1500.0","1120.0","1020.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x5","y":[17.2,31.0,15.6,15.0,11.2,10.2],"yaxis":"y5","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2010 Census<br>COUNTY=DAVIS<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2010 Census","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"2010 Census","offsetgroup":"2010 Census","orientation":"v","showlegend":false,"text":["1520.0","2780.0","1680.0","1650.0","1220.0","1150.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x4","y":[15.2,27.8,16.8,16.5,12.2,11.5],"yaxis":"y4","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2010 Census<br>COUNTY=SALT LAKE<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2010 Census","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"2010 Census","offsetgroup":"2010 Census","orientation":"v","showlegend":false,"text":["2190.0","2890.0","1610.0","1470.0","910.0","930.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x3","y":[21.9,28.9,16.1,14.7,9.1,9.3],"yaxis":"y3","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2010 Census<br>COUNTY=UTAH<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2010 Census","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"2010 Census","offsetgroup":"2010 Census","orientation":"v","showlegend":false,"text":["1160.0","2520.0","1640.0","1710.0","1310.0","1660.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x2","y":[11.6,25.2,16.4,17.1,13.1,16.6],"yaxis":"y2","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2010 Census<br>COUNTY=WEBER<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2010 Census","marker":{"color":"forestgreen","pattern":{"shape":""}},"name":"2010 Census","offsetgroup":"2010 Census","orientation":"v","showlegend":false,"text":["2140.0","3030.0","1610.0","1470.0","940.0","810.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x","y":[21.4,30.3,16.1,14.7,9.4,8.1],"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2016 5Yr ACS<br>COUNTY=BOX ELDER<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2016 5Yr ACS","marker":{"color":"mediumseagreen","pattern":{"shape":""}},"name":"2016 5Yr ACS","offsetgroup":"2016 5Yr ACS","orientation":"v","showlegend":true,"text":["1850.0","3270.0","1500.0","1470.0","950.0","950.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x5","y":[18.5,32.7,15.0,14.7,9.5,9.5],"yaxis":"y5","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2016 5Yr ACS<br>COUNTY=DAVIS<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2016 5Yr ACS","marker":{"color":"mediumseagreen","pattern":{"shape":""}},"name":"2016 5Yr ACS","offsetgroup":"2016 5Yr ACS","orientation":"v","showlegend":false,"text":["1530.0","2960.0","1570.0","1630.0","1190.0","1120.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x4","y":[15.3,29.6,15.7,16.3,11.9,11.2],"yaxis":"y4","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2016 5Yr ACS<br>COUNTY=SALT LAKE<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2016 5Yr ACS","marker":{"color":"mediumseagreen","pattern":{"shape":""}},"name":"2016 5Yr ACS","offsetgroup":"2016 5Yr ACS","orientation":"v","showlegend":false,"text":["2260.0","2980.0","1620.0","1460.0","850.0","830.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x3","y":[22.6,29.8,16.2,14.6,8.5,8.3],"yaxis":"y3","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2016 5Yr ACS<br>COUNTY=UTAH<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2016 5Yr ACS","marker":{"color":"mediumseagreen","pattern":{"shape":""}},"name":"2016 5Yr ACS","offsetgroup":"2016 5Yr ACS","orientation":"v","showlegend":false,"text":["1180.0","2720.0","1560.0","1650.0","1270.0","1620.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x2","y":[11.8,27.2,15.6,16.5,12.7,16.2],"yaxis":"y2","type":"bar"},{"alignmentgroup":"True","hovertemplate":"Data=2016 5Yr ACS<br>COUNTY=WEBER<br>Household Type=%{x}<br>Percent=%{y}<br>text=%{text}<extra></extra>","legendgroup":"2016 5Yr ACS","marker":{"color":"mediumseagreen","pattern":{"shape":""}},"name":"2016 5Yr ACS","offsetgroup":"2016 5Yr ACS","orientation":"v","showlegend":false,"text":["2200.0","3150.0","1450.0","1470.0","910.0","820.0"],"textposition":"auto","texttemplate":"%{y:.2s}","x":["1 Per HH","2 Per HH","3 Per HH","4 Per HH","5 Per HH","6+ Per HH"],"xaxis":"x","y":[22.0,31.5,14.5,14.7,9.1,8.2],"yaxis":"y","type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"rgb(36,36,36)"},"error_y":{"color":"rgb(36,36,36)"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"baxis":{"endlinecolor":"rgb(36,36,36)","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"rgb(36,36,36)"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"histogram2d"}],"histogram":[{"marker":{"line":{"color":"white","width":0.6}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"},"colorscale":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"rgb(237,237,237)"},"line":{"color":"white"}},"header":{"fill":{"color":"rgb(217,217,217)"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":1,"tickcolor":"rgb(36,36,36)","ticks":"outside"}},"colorscale":{"diverging":[[0.0,"rgb(103,0,31)"],[0.1,"rgb(178,24,43)"],[0.2,"rgb(214,96,77)"],[0.3,"rgb(244,165,130)"],[0.4,"rgb(253,219,199)"],[0.5,"rgb(247,247,247)"],[0.6,"rgb(209,229,240)"],[0.7,"rgb(146,197,222)"],[0.8,"rgb(67,147,195)"],[0.9,"rgb(33,102,172)"],[1.0,"rgb(5,48,97)"]],"sequential":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]],"sequentialminus":[[0.0,"#440154"],[0.1111111111111111,"#482878"],[0.2222222222222222,"#3e4989"],[0.3333333333333333,"#31688e"],[0.4444444444444444,"#26828e"],[0.5555555555555556,"#1f9e89"],[0.6666666666666666,"#35b779"],[0.7777777777777778,"#6ece58"],[0.8888888888888888,"#b5de2b"],[1.0,"#fde725"]]},"colorway":["#1F77B4","#FF7F0E","#2CA02C","#D62728","#9467BD","#8C564B","#E377C2","#7F7F7F","#BCBD22","#17BECF"],"font":{"color":"rgb(36,36,36)"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"white"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","radialaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"zaxis":{"backgroundcolor":"white","gridcolor":"rgb(232,232,232)","gridwidth":2,"linecolor":"rgb(36,36,36)","showbackground":true,"showgrid":false,"showline":true,"ticks":"outside","zeroline":false,"zerolinecolor":"rgb(36,36,36)"}},"shapedefaults":{"fillcolor":"black","line":{"width":0},"opacity":0.3},"ternary":{"aaxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"baxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"},"bgcolor":"white","caxis":{"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside"}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"},"yaxis":{"automargin":true,"gridcolor":"rgb(232,232,232)","linecolor":"rgb(36,36,36)","showgrid":false,"showline":true,"ticks":"outside","title":{"standoff":15},"zeroline":false,"zerolinecolor":"rgb(36,36,36)"}}},"xaxis":{"anchor":"y","domain":[0.0,0.98],"title":{},"tickangle":0,"showticklabels":true,"ticks":"inside","ticklen":10},"yaxis":{"anchor":"x","domain":[0.0,0.17600000000000002],"title":{"text":"Percent"}},"xaxis2":{"anchor":"y2","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis2":{"anchor":"x2","domain":[0.20600000000000002,0.382],"matches":"y","title":{"text":"Percent"}},"xaxis3":{"anchor":"y3","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis3":{"anchor":"x3","domain":[0.41200000000000003,0.5880000000000001],"matches":"y","title":{"text":"Percent"}},"xaxis4":{"anchor":"y4","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis4":{"anchor":"x4","domain":[0.618,0.794],"matches":"y","title":{"text":"Percent"}},"xaxis5":{"anchor":"y5","domain":[0.0,0.98],"matches":"x","showticklabels":true,"title":{},"tickangle":0,"ticks":"inside","ticklen":10},"yaxis5":{"anchor":"x5","domain":[0.8240000000000001,1.0],"matches":"y","title":{"text":"Percent"}},"annotations":[{"font":{},"showarrow":false,"text":"COUNTY=WEBER","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.08800000000000001,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"COUNTY=UTAH","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.29400000000000004,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"COUNTY=SALT LAKE","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.5,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"COUNTY=DAVIS","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.706,"yanchor":"middle","yref":"paper"},{"font":{},"showarrow":false,"text":"COUNTY=BOX ELDER","textangle":90,"x":0.98,"xanchor":"left","xref":"paper","y":0.912,"yanchor":"middle","yref":"paper"}],"legend":{"title":{"text":"Data"},"tracegroupgap":0},"margin":{"t":60},"barmode":"group","height":1600},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('097af67e-5a97-4700-ac2c-ced1fa7f2b15');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+<figcaption class="figure-caption">Figure&nbsp;4: 2015 Model vs.&nbsp;2010 Census &amp; 2016 ACS – % Households by Household Size</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="income" class="level3">
+<h3 class="anchored" data-anchor-id="income">Income</h3>
+<p><mark>???UPDATE – maybe from validation in this location: A:\1 - TDM\2 - Estimate Param\1 - HHDisag_AutoOwn???</mark></p>
+<ul>
+<li>Income Gruops (Income Levels) in 2016 dollars:
+<ul>
+<li>1: $0 to 35,000 (Low)</li>
+<li>2: $35,000 to 60,000 (High)</li>
+<li>3: $60,000 to 100,000 (High)</li>
+<li>4: $100,000 and above (High)</li>
+</ul></li>
+</ul>
+</section>
+<section id="worker" class="level3">
+<h3 class="anchored" data-anchor-id="worker">Worker</h3>
+<ul>
+<li>Worker Groups: 0, 1, 2, 3+ workers per household</li>
+</ul>
+<p><mark>???UPDATE – maybe from validation in this location: A:\1 - TDM\2 - Estimate Param\1 - HHDisag_AutoOwn???</mark></p>
+</section>
+</section>
+<section id="auto-ownership" class="level2">
+<h2 class="anchored" data-anchor-id="auto-ownership">Auto Ownership</h2>
+<p><mark>???Which validation charts should I add???</mark></p>
+<p>Latest validation worksheet: “A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Releasex.3.1_Valid\01 - HHDisag_VehOwn\4 - Veh Own - WF (not finished) - 2019-03-22.xlsx”</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://wfrc.org"><img src="https://wfrc.org/wp-content/uploads/2021/11/logo.jpg" class="img-fluid" alt="WFRC" width="150"></a> <a href="https://mountainland.org/"><img src="https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg" class="img-fluid" alt="MAG" width="65"></a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
