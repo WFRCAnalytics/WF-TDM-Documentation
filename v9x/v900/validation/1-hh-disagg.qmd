@@ -1,10 +1,9 @@
 ---
-title: Life Cycle
-execute:
-    echo: false
-    message: false
-    warning: false
+title: Household Disaggregation and Auto Ownership
+echo: false
 ---
+
+## Life Cycle
 
 The validation of the Life Cycle model includes the comparison of model output to observed data for the following categories:
 
@@ -310,3 +309,80 @@ fig5.show()
 ::: {.content-hidden when-format="html"}
 ![2019 Model vs. 2012 Household Survey – % Households by Life Cycle and County.](_pictures/1-plot5.png){#fig-pdf-lc-hh}
 :::
+
+## Household Disaggregation
+
+The Household Disaggregation was validated to the following measures:
+
+ - Household Size
+ - Income
+ - Number of Workers
+
+### Household Size
+
+The shares of the modeled 2015 base year households by Household Size category were validated to 2010 Census and 2016 ACS data at the county level.  The model’s estimate of households by each of the six Household Size category matches within about 2% of the observed data for all counties.
+
+<mark>???Update to use 2019 Model???</mark>>>
+
+::: {.content-visible when-format="html"}
+```{python}
+import pandas as pd
+hhsizevalid_csv = pd.read_csv('data/2-hhdisag/HHSizeValidation.csv')
+
+hhsizevalid = hhsizevalid_csv.replace('%','', regex=True)
+hhsizevalid = hhsizevalid.drop(columns={'CO_FIPS','Total'})
+hhsizevalid = pd.melt(hhsizevalid, id_vars = ['Data','COUNTY'], var_name = 'Household Type', value_name = 'Percent')
+
+hhsizevalid = hhsizevalid[hhsizevalid['COUNTY'].isin(['BOX ELDER', 'WEBER', 'DAVIS', 'SALT LAKE', 'UTAH'])]
+hhsizevalid[['Percent']] = hhsizevalid[['Percent']].apply(pd.to_numeric)
+```
+
+```{python}
+#| label: fig-hh-modobs
+#| fig-cap: "2015 Model vs. 2010 Census & 2016 ACS – % Households by Household Size"
+#| cap-location: margin
+colors2 = {'2015 Model':'royalblue','2010 Census':'forestgreen', '2016 5Yr ACS': 'mediumseagreen'}
+import plotly.express as px
+fig3 = px.bar(hhsizevalid, 
+    x="Household Type", 
+    y="Percent",
+    text_auto='.2s',    
+    color='Data', 
+    barmode='group', 
+    height=1600,
+    facet_row = 'COUNTY',
+    color_discrete_map=colors2, 
+    text=[f'{round(val2*100,1)}' for val2 in hhsizevalid['Percent']], template='simple_white')
+fig3.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
+fig3.show()
+```
+:::
+
+::: {.content-hidden when-format="html"}
+![2015 Model vs. 2010 Census & 2016 ACS – % Households by Household Size.](_pictures/2-plot7.png){#fig-pdf-hh-modobs height='90%'}
+:::
+
+### Income
+
+<mark>???UPDATE -- maybe from validation in this location: A:\1 - TDM\2 - Estimate Param\1 - HHDisag_AutoOwn???</mark>
+
+ - Income Gruops (Income Levels) in 2016 dollars:
+    - 1: $0 to 35,000 (Low)
+    - 2: $35,000 to 60,000 (High)
+    - 3: $60,000 to 100,000 (High)
+    - 4: $100,000 and above (High)
+
+
+### Worker
+
+ - Worker Groups: 0, 1, 2, 3+ workers per household
+
+
+<mark>???UPDATE -- maybe from validation in this location: A:\1 - TDM\2 - Estimate Param\1 - HHDisag_AutoOwn???</mark>
+
+
+## Auto Ownership
+
+<mark>???Which validation charts should I add???</mark>
+
+Latest validation worksheet: "A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3.1\Calib_Valid\01 - HHDisag_VehOwn\4 - Veh Own - WF (not finished) - 2019-03-22.xlsx"
