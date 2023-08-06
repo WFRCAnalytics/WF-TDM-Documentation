@@ -9,8 +9,8 @@ The validation results for the Mode Choice portion of the model are shown in thi
 
 Results are summarized by the following categories:
 
-- Mode Share
 - Transit Trips and Boardings
+- Mode Share
 
 
 ```{python}
@@ -28,15 +28,17 @@ dirCalibConst = [r"data/calib_const/"]
 ```{python}
 # GLOBAL VARIABLES
 
-# path name for tdm
-pnTdm    = 'A:/1 - TDM/3 - Model Dev/1 - WF/1 - Official Release/v9x/v9.0/WF TDM v9.0 - official/'
-
 # file names for data tables
-fnObs        = 'A:/0 - Source Data/1 - Surveys/2019 UTA Transit On-Board Survey/2019 Final Weighted UTA OD Data - 2022-07-07.csv'
+fnObs        = 'data/4-modechoice/2019 Final Weighted UTA OD Data - 2022-07-07.csv'
 fnHhs        = 'data/4-modechoice/TripData_June19_2013.csv'
-fnTdmPk      = pnTdm + 'Scenarios/BY_2019/4_ModeChoice/4_Shares/v9_SE19_Net19_RegionShares_Pk.csv'
-fnTdmOk      = pnTdm + 'Scenarios/BY_2019/4_ModeChoice/4_Shares/v9_SE19_Net19_RegionShares_Ok.csv'
-fnTdmPaRoute = pnTdm + 'Scenarios/BY_2019/4_ModeChoice/3_TransitAssign/_v9_SE19_Net19_1_PA_Route.dbf'
+fnTdmPk      = 'data/4-modechoice/v9_SE19_Net19_RegionShares_Pk.csv'
+fnTdmOk      = 'data/4-modechoice/v9_SE19_Net19_RegionShares_Ok.csv'
+fnTdmPaRoute = 'data/4-modechoice/_v9_SE19_Net19_1_PA_Route.dbf'
+
+# from 3 - CalibrateTargets - 2023-02-28-r2.xlsx
+# use these to be consistent with excel spreadsheets... could maybe use without adjustment, whish is 120294 trips... so close enough
+transitTripsTarget = 119276
+transitBoardTarget = 156961 
 
 namePurp   = 'TripPurpose'
 namePeriod = 'Period'
@@ -210,6 +212,13 @@ dfHhs = pd.DataFrame.merge(dfHhs, dfHhsModes, on=codeHHSMode, how="left")
 ```
 
 ```{python}
+# get total transit trips from HHS
+#display(dfHhs[dfHhs[nameModeATShare]=='Transit'][nameTripsHHS].sum())
+
+```
+
+
+```{python}
 # create dataframe by Period (Pr), Purpose (Pr), Transit Mode (Tr), Access Mode (Ac)
 dfHhsPrPuTrAc = dfHhs.groupby([namePeriod,namePurp,nameModeMnMShare,nameModeDAShare,nameMode23Share,nameModeATShare], as_index=False).agg({nameTripsHHS: [np.sum]})
 dfHhsPrPuTrAc.columns = dfHhsPrPuTrAc.columns.droplevel(1)
@@ -372,135 +381,6 @@ ojs_define(nameGroup        = nameGroup       )
 #  }})
 ```
 
-## Mode Share
-
-Mode Share validation is shown through the comparison of model and observed for groups of mode, time period, and trip purpose. The interactive  @fig-mode-share allows for selecting of different combinations to visualize the comparisons. The observed data comes from a combination of the Household Travel Survey and the 2019 Transit On-Board Survey.
-
-The motorized/non-motorized model shares are within 0.1% of the observed data for all time periods and all trip purposes and with 0.5% for any combination of time period and purpose. The model transit mode shares are also close to observed with all modes for all time periods and trip purposes with 5%.
-
-```{ojs}
-viewof plotSelect    = Inputs.select(new Map([[nameModeMnMShare,nameModeMnMShare],
-                                              [nameModeATShare ,nameModeATShare ],
-                                              [nameModeDAShare ,nameModeDAShare ],
-                                              [nameMode23Share ,nameMode23Share ],
-                                              [nameModeTransit ,nameModeTransit ],
-                                              [nameModeAccess  ,nameModeAccess  ]
-                                             ]), {value: nameGroup, label: "Mode Group:"})
-viewof periodSelect  = Inputs.select(new Map([['Daily', 'DY'], ['Peak', 'PK'], ['Off-Peak', 'OK']]), {value: namePeriod, label: "Time Period:"});
-viewof purposeSelect = Inputs.select(new Map([['All Purposes', 'All'], ['Home-Based Work', 'HBW'], ['Home-Based College', 'HBC'], ['Home-Based Other', 'HBO'], ['Non-Home Based', 'NHB']]), {value: 'TripPurpose', label: "Trip Purpose:"});
-```
-
-
-```{ojs}
-dataLT = transpose(dataLong)
-dataTT = transpose(dataTable)
-
-filtered_data = dataLT.filter(function(dataL) {
-    return plotSelect == dataL.Group &&
-           periodSelect == dataL.Period &&
-           purposeSelect == dataL.TripPurpose;
-})
-table_filtered_data = dataTT.filter(function(dataTT) {
-    return plotSelect == dataTT.Group &&
-           periodSelect == dataTT.Period &&
-           purposeSelect == dataTT.TripPurpose;
-})
-```
-
-
-```{ojs}
-import {GroupedBarChart} from "@d3/grouped-bar-chart"
-import {Legend, Swatches} from "@d3/color-legend"
-import {howto, altplot} from "@d3/example-components"
-```
-
-```{ojs}
-//https://observablehq.com/@d3/grouped-bar-chart
-key = Legend(chart.scales.color, {title: "Data Source"})
-```
-
-```{ojs}
-xDomain = {
-    switch(plotSelect) {  // assuming all data points have the same Mode
-        case nameModeMnMShare:
-            return ['Motorized', 'Non-Motorized'];
-            break;
-        case nameModeATShare:
-            return ['Auto', 'Transit'];
-            break;
-        case nameModeDAShare:
-            return ['Drive Alone', 'Shared Ride'];
-            break;
-        case nameMode23Share:
-            return ['Shared Ride 2 Occupants', 'Shared Ride 3+ Occupants'];
-            break;
-        case nameModeTransit:
-            return ['Local Bus', 'Core Bus', 'Express Bus', 'BRT', 'LRT', 'CRT'];
-            break;
-        case nameModeAccess:
-            return ['Walk', 'Drive'];
-            break;
-        default:
-            return [];  // or set some sensible default
-    }
-}
-
-
-```
-
-:::: {.columns}
-
-::: {.column width="50%"}
-```{ojs}
-
-chart = GroupedBarChart(filtered_data, {
-    x: d => d.Mode,
-    y: d => d.Percent,
-    z: d => d.DataSource,
-    xDomain: xDomain,
-    yLabel: "Percent",
-    yDomain: [0,1],
-    zDomain: ['Model','Observed'],
-    width: 400,
-    height: 250,
-    colors: ["#376092", "#77933c"]
-})
-```
-
-:::
-
-::: {.column width="50%"}
-
-```{ojs}
-html`
-<table>
-    <thead>
-    <tr>
-        ${[plotSelect, "Model", "Observed", "Difference"].map((d, i) => 
-        html`<th style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; ${i === 0 ? "width: 185px;" : ""}'>${d}</th>`)}
-    </tr>
-    </thead>
-    <tbody>
-    ${table_filtered_data.map(row => html`
-        <tr style='border-bottom: 1px solid lightgrey;'>
-        ${["Mode", "Model", "Observed", "Difference"].map((d, i) => 
-            html`<td style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; ${i === 0 ? "width: 185px;" : ""}'>${row[d]}</td>`)}
-        </tr>`)}
-    </tbody>
-</table>`
-```
-
-:::
-
-::::
-
-```{ojs}
-//|label: fig-mode-share
-//|fig-cap: "Model vs Observed Mode Shares by Mode Group, Time Period, and Trip Purpose"
-emptycell = 1
-```
-
-## Transit Trips and Boardings
 
 ```{python}
 dfModeTDM = pd.DataFrame({
@@ -544,7 +424,15 @@ dfTdmTrp = dfTdmToModes.groupby(nameModeTransit, as_index=False).agg({nameTripsT
 dfTdmTrp = dfTdmTrp[dfTdmTrp[nameModeTransit] != '']
 dfTdmTrp.columns = dfTdmTrp.columns.droplevel(1)
 
-#Obs Trips
+# scale to match target transit ridership
+scaleFactorTrips = transitTripsTarget / dfObs[nameTripsObs].sum()
+scaleFactorBoard = transitBoardTarget / dfObs[nameBoardObs].sum()
+#display(scaleFactor)
+
+dfObs[nameTripsObs] = dfObs[nameTripsObs] * scaleFactorTrips
+dfObs[nameBoardObs] = dfObs[nameBoardObs] * scaleFactorBoard
+
+# Obs Trips
 dfObsBrdTrp = dfObs.groupby(nameModeTransit, as_index=False).agg({nameBoardObs: [np.sum], nameTripsObs: [np.sum]})
 dfObsBrdTrp.columns = dfObsBrdTrp.columns.droplevel(1)
 
@@ -571,8 +459,8 @@ dfTrips = pd.concat([dfTrips,dfTotalRow])
 
 #display(dfTrips.sum())
 #calculate difference
-dfTrips['Diff'] = dfTrips[nameTripsMod] - dfTrips[nameTripsObs]
-dfTrips['% Diff'] = dfTrips['Diff'] / dfTrips[nameTripsObs]
+dfTrips['Difference'] = dfTrips[nameTripsMod] - dfTrips[nameTripsObs]
+dfTrips['% Difference'] = dfTrips['Difference'] / dfTrips[nameTripsObs]
 ```
 
 ```{python}
@@ -591,8 +479,8 @@ dfTotalRow = pd.DataFrame({
 dfBrdLnkTrip = pd.concat([dfBrdLnkTrip,dfTotalRow])
 
 #calculate difference
-dfBrdLnkTrip['Diff'] = dfBrdLnkTrip[nameBoardMod] - dfBrdLnkTrip[nameBoardObs]
-dfBrdLnkTrip['% Diff'] = dfBrdLnkTrip['Diff'] / dfBrdLnkTrip[nameBoardObs]
+dfBrdLnkTrip['Difference'] = dfBrdLnkTrip[nameBoardMod] - dfBrdLnkTrip[nameBoardObs]
+dfBrdLnkTrip['% Difference'] = dfBrdLnkTrip['Difference'] / dfBrdLnkTrip[nameBoardObs]
 ```
 
 ```{python}
@@ -604,10 +492,10 @@ dfTxRatio[nameTxRatioMod] = dfTxRatio[nameBoardMod] / dfTxRatio[nameTripsMod]
 dfTxRatio[nameTxRatioObs] = dfTxRatio[nameBoardObs] / dfTxRatio[nameTripsObs]
 
 #calculate difference
-dfTxRatio['Diff'] = dfTxRatio[nameTxRatioMod] - dfTxRatio[nameTxRatioObs]
-dfTxRatio['% Diff'] = dfTxRatio['Diff'] / dfTxRatio[nameTxRatioObs]
+dfTxRatio['Difference'] = dfTxRatio[nameTxRatioMod] - dfTxRatio[nameTxRatioObs]
+dfTxRatio['% Difference'] = dfTxRatio['Difference'] / dfTxRatio[nameTxRatioObs]
 
-dfTxRatio = dfTxRatio[[nameModeTransit, nameTxRatioMod, nameTxRatioObs, 'Diff', '% Diff']]
+dfTxRatio = dfTxRatio[[nameModeTransit, nameTxRatioMod, nameTxRatioObs, 'Difference', '% Difference']]
 ```
 
 ```{python}
@@ -617,116 +505,161 @@ dfBrdMdSrvy.columns = (nameModeBoard, nameBoardMod, nameBoardObs)
 
 # Compute the total for the TripsModel and TripsObserved columns
 dfTotalRow = pd.DataFrame({
-    nameModeTransit: ["Total"],
+    nameModeTransit + ' - Surveyed': ["Total"],
     nameBoardMod   : dfBrdMdSrvy[nameBoardMod].sum(),
     nameBoardObs   : dfBrdMdSrvy[nameBoardObs].sum()
 })
 
 # Append the total row to the DataFrame
-dfBrdLnkTrip = pd.concat([dfBrdLnkTrip,dfTotalRow])
+dfBrdMdSrvy = pd.concat([dfBrdMdSrvy,dfTotalRow])
 
 #calculate difference
-dfBrdMdSrvy['Diff'] = dfBrdMdSrvy[nameBoardMod] - dfBrdMdSrvy[nameBoardObs]
-dfBrdMdSrvy['% Diff'] = dfBrdMdSrvy['Diff'] / dfBrdMdSrvy[nameBoardObs]
+dfBrdMdSrvy['Difference']   = dfBrdMdSrvy[nameBoardMod] - dfBrdMdSrvy[nameBoardObs]
+dfBrdMdSrvy['% Difference'] = dfBrdMdSrvy['Difference'] / dfBrdMdSrvy[nameBoardObs]
 ```
 
 ```{python}
 df1_Trips = (dfTrips
     .reset_index()
-    .rename(columns={nameModeTransit: 'Mode', nameTripsMod:'Model', nameTripsObs:'Observed', '% Diff': 'PercentDiff'}))
-df1_Trips['Title'] = 'Trips'
+    .rename(columns={nameModeTransit: 'Mode', nameTripsMod:'Model', nameTripsObs:'Observed'}))
+df1_Trips['Title'] = 'Trips by Hierarchical Mode'
 df1_Trips_Melt = pd.melt(df1_Trips, 
-                         id_vars =['Mode', 'Diff', 'PercentDiff','Title'],
+                         id_vars =['Mode', 'Difference', '% Difference','Title'],
                          value_vars = ['Model', 'Observed'],
                          var_name = 'DataSource',
                          value_name = 'Value')
 
 df1_Boardings_LinkedTrip = (dfBrdLnkTrip
     .reset_index()
-    .rename(columns={nameModeTransit: 'Mode', nameBoardMod:'Model', nameBoardObs:'Observed', '% Diff': 'PercentDiff'}))
-df1_Boardings_LinkedTrip['Title'] = 'Boardings by Linked Trip'
+    .rename(columns={nameModeTransit: 'Mode', nameBoardMod:'Model', nameBoardObs:'Observed'}))
+df1_Boardings_LinkedTrip['Title'] = 'Boardings by Hierarchical Mode'
 df1_Boardings_LinkedTrips_Melt = pd.melt(df1_Boardings_LinkedTrip, 
-                         id_vars =['Mode', 'Diff', 'PercentDiff','Title'],
+                         id_vars =['Mode', 'Difference', '% Difference','Title'],
                          value_vars = ['Model', 'Observed'],
                          var_name = 'DataSource',
                          value_name = 'Value')
 
 df1_TxRatio = (dfTxRatio
     .reset_index()
-    .rename(columns={nameModeTransit: 'Mode', nameTxRatioMod:'Model', nameTxRatioObs:'Observed', '% Diff': 'PercentDiff'}))
+    .rename(columns={nameModeTransit: 'Mode', nameTxRatioMod:'Model', nameTxRatioObs:'Observed'}))
 df1_TxRatio['Title'] = 'Transfer Ratio'
 df1_TxRatio_Melt = pd.melt(df1_TxRatio, 
-                         id_vars =['Mode', 'Diff', 'PercentDiff','Title'],
+                         id_vars =['Mode', 'Difference', '% Difference','Title'],
                          value_vars = ['Model', 'Observed'],
                          var_name = 'DataSource',
                          value_name = 'Value')
 
 df1_Boardings_ModeSurveyed = (dfBrdMdSrvy
     .reset_index()
-    .rename(columns={nameModeTransit + ' - Surveyed': 'Mode', nameBoardMod:'Model', nameBoardObs:'Observed', '% Diff': 'PercentDiff'}))
+    .rename(columns={nameModeTransit + ' - Surveyed': 'Mode', nameBoardMod:'Model', nameBoardObs:'Observed'}))
 df1_Boardings_ModeSurveyed['Title'] = 'Boardings by Mode Surveyed'
 df1_Boardings_ModeSurveyed_Melt = pd.melt(df1_Boardings_ModeSurveyed, 
-                         id_vars =['Mode', 'Diff', 'PercentDiff','Title'],
+                         id_vars =['Mode', 'Difference', '% Difference','Title'],
                          value_vars = ['Model', 'Observed'],
                          var_name = 'DataSource',
                          value_name = 'Value')
 ```
 
 ```{python}
-dfboardings_obj = pd.concat([df1_Trips_Melt, df1_Boardings_LinkedTrips_Melt, df1_TxRatio_Melt, df1_Boardings_ModeSurveyed_Melt])
+dfboardings_obj = pd.concat([df1_Trips, df1_Boardings_LinkedTrip, df1_TxRatio, df1_Boardings_ModeSurveyed])
+dfboardings_obj_melt = pd.concat([df1_Trips_Melt, df1_Boardings_LinkedTrips_Melt, df1_TxRatio_Melt, df1_Boardings_ModeSurveyed_Melt])
 
-dfboardings_obj_longer = pd.melt(dfboardings_obj,
+dfboardings_obj_longer = pd.melt(dfboardings_obj_melt,
                                   id_vars =['Mode', 'DataSource','Title'],
-                                  value_vars = ['Value', 'Diff', 'PercentDiff'],
+                                  value_vars = ['Value', 'Difference', '% Difference'],
                                   var_name = 'View',
                                   value_name = 'ViewValue')             
 
 
-# add diff column
-dfboardings_obj['Difference'] = dfboardings_obj['Model'] - dfboardings_obj['Observed']
+# get rid of total for charts
+dfboardings_obj_longer = dfboardings_obj_longer[dfboardings_obj_longer['Mode']!='Total']
 
 # If you want to format all columns in the DataFrame as a percentage:
-for col in ['Model','Observed','Difference']:
+for col in ['% Difference']:
     dfboardings_obj[col] = dfboardings_obj[col].apply(lambda x: "{:.1%}".format(x))
-
-display(dfboardings_obj)
-
+# format numbers with commas unless transfer ratio then use 2 decimals
+for col in ['Model','Observed','Difference']:
+    dfboardings_obj.loc[dfboardings_obj['Title'] != 'Transfer Ratio', col] = dfboardings_obj.loc[dfboardings_obj['Title'] != 'Transfer Ratio', col].apply(lambda x: '{:,.0f}'.format(x))
+    dfboardings_obj.loc[dfboardings_obj['Title'] == 'Transfer Ratio', col] = dfboardings_obj.loc[dfboardings_obj['Title'] == 'Transfer Ratio', col].apply(lambda x: '{:.2f}'.format(x))
+#display(dfboardings_obj)
 ```
 
 ```{python}
-ojs_define(boardLong = dfboardings_obj_longer)
+ojs_define(boardChart = dfboardings_obj_longer)
+ojs_define(boardTable = dfboardings_obj)
 ```
 
-The following figure provides and interactive view to understand the transit boarding trips, linked trips, transfer ratios, and mode surveyed between modeled and observed data. 
+
+
+## Transit Trips and Boardings
+
+Transit trips and boardings validation was evaluated by mode. 
+
+
 
 ```{ojs}
-viewof bPlotSelect = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: nameGroup, label: "Plot Type"})
+viewof bPlotSelect = Inputs.select(new Map([['Trips by Hierarchical Mode', 'Trips by Hierarchical Mode'], ['Boardings by Hierarchical Mode', 'Boardings by Hierarchical Mode'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: nameGroup, label: "Category"})
+viewof metric = Inputs.radio(new Map([["Difference", "Difference"], ["% Difference", "% Difference"]]), {value: "Difference", label: "View:"})
 ```
 
 ```{ojs}
-dataBLT = transpose(boardLong)
-filtered_bData = dataBLT.filter(function(dataL) {
-    return bPlotSelect == dataL.Title &&
-           "Value" == dataL.View;
+dataBLC = transpose(boardChart)
+filtered_bDataC = dataBLC.filter(function(dataBLC) {
+    return bPlotSelect == dataBLC.Title &&
+           "Value" == dataBLC.View;
 })
-```
+dataBTT = transpose(boardTable)
+filtered_bDataT = dataBTT.filter(function(dataBTT) {
+    return bPlotSelect == dataBTT.Title;
+})
 
+```
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="43%"}
 
 ```{ojs}
-key2 = Legend(chart2.scales.color, {title: "Data Source"})
+html`
+<br/>
+<table>
+    <thead>
+    <tr>
+        ${["Mode", "Model", "Observed", "Difference", "% Difference"].map((d, i) => {
+            const widths = ['90px', '60px', '70px', '75px', '90px']; // Define the widths
+            return html`<th style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; width: ${widths[i]};'>${d}</th>`;
+        })}
+    </tr>
+    </thead>
+    <tbody>
+        ${filtered_bDataT.map(row => {
+            const isBold = row['Mode'] === 'Total';
+            return html`<tr style='border-bottom: 1px solid lightgrey;'>
+                ${["Mode", "Model", "Observed", "Difference", "% Difference"].map((d, i) => {
+                    const widths = ['90px', '60px', '70px', '75px', '90px']; // Define the widths
+                    return html`<td style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; width: ${widths[i]}; font-weight: ${isBold ? 'bold' : 'normal'};'>${row[d]}</td>`;
+                })}
+            </tr>`;
+        })}
+    </tbody>
+</table>`
+```
+
+:::
+
+::: {.column width="57%"}
+
+```{ojs}
+key2 = Legend(bChart.scales.color, {title: "Data Source"})
 ```
 
 ```{ojs}
-//|label: fig-mc-brdings
-//|fig-cap: Transit boardings by trip, linked trip, transfer ratio, and mode surveyed.
-chart2 = GroupedBarChart(filtered_bData, {
+
+bChart = GroupedBarChart(filtered_bDataC, {
     x: d => d.Mode,
     y: d => d.ViewValue,
     z: d => d.DataSource,
+    xDomain: ['Local Bus', 'Core Bus', 'Express Bus', 'BRT', 'LRT', 'CRT'],
     yLabel: "Value",
     zDomain: ['Model','Observed'],
     width,
@@ -737,89 +670,186 @@ chart2 = GroupedBarChart(filtered_bData, {
 
 :::
 
-::: {.column width="50%"}
-
-```{ojs}
-//| echo: false
-
-sort_Mode_Source_bData = filtered_bData.sort((a, b) => {
-  // sort by Mode first
-  const modeCompare = a.Mode.localeCompare(b.Mode);
-  if (modeCompare !== 0) return modeCompare;
-  
-  // if Mode is the same, sort by DataSource
-  return a.DataSource.localeCompare(b.DataSource);
-});
-
-Inputs.table(sort_Mode_Source_bData, {
-  style: {
-    fontSize: 16,
-  },
-  columns: [
-    "Mode",
-    "DataSource",
-    "ViewValue"
-  ],
-  header: {
-    Mode: "Grouping",
-    DataSource: "Data Source",
-    ViewValue: "Percent"
-  }})
-```
-
-:::
+::::
 
 
 ```{ojs}
-viewof bPlotSelect2 = Inputs.select(new Map([['Trips', 'Trips'], ['Boardings by Linked Trip', 'Boardings by Linked Trip'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: nameGroup, label: "Plot Type"})
-```
-
-```{ojs}
-viewof metric = Inputs.radio(new Map([["Absolute", "Diff"], ["Relative", "PercentDiff"]]), {value: "View", label: "Change"})
-```
-
-```{ojs}
-filtered_bData2 = dataBLT.filter(function(dataL) {
-    return bPlotSelect2 == dataL.Title  &&
-           metric == dataL.View;
+filtered_bData2 = dataBLC.filter(function(dataBLC) {
+    return bPlotSelect == dataBLC.Title  &&
+           metric == dataBLC.View;
 })
 ```
 
-::: {.panel-tabset}
-### Plot
 ```{ojs}
 //https://observablehq.com/@d3/diverging-bar-chart
 import {DivergingBarChart} from "@d3/diverging-bar-chart"
 ```
 
 ```{ojs}
-//|label: fig-mc-tr-brdings
-//|fig-cap: Transit boardings -- absolute and relative difference between model and observed.
+html`<br/>`
 chart3 = DivergingBarChart(filtered_bData2, {
     x: d => d.ViewValue,
     y: d => d.Mode,
-    xFormat: metric === "Diff" ? "+,d" : "+%",
+    xFormat: metric === "Difference" ? "+,d" : "+%",
+    xLabel: "Model vs Observed Differences",
     width,
-    height: 500,
+    height: 200,
     colors: d3.schemeRdBu[3]
 })
 ```
 
-### Table
+
 ```{ojs}
-//| echo: false
-Inputs.table(filtered_bData2)
+//|label: fig-mc-brdings
+//|fig-cap: Transit Trips, Boardings, and Differences
+bEmptycell = 1
+```
+
+
+
+## Mode Share
+
+Mode Share validation is shown through the comparison of model and observed for groups of mode, time period, and trip purpose. The interactive  @fig-mode-share allows for selecting of different combinations to visualize the comparisons. The observed data comes from a combination of the Household Travel Survey and the 2019 Transit On-Board Survey.
+
+The motorized/non-motorized model shares are within 0.1% of the observed data for all time periods and all trip purposes and with 0.5% for any combination of time period and purpose. The model transit mode shares are also close to observed with all modes for all time periods and trip purposes with 5%.
+
+```{ojs}
+viewof plotSelect    = Inputs.select(new Map([[nameModeMnMShare,nameModeMnMShare],
+                                              [nameModeATShare ,nameModeATShare ],
+                                              [nameModeDAShare ,nameModeDAShare ],
+                                              [nameMode23Share ,nameMode23Share ],
+                                              [nameModeTransit ,nameModeTransit ],
+                                              [nameModeAccess  ,nameModeAccess  ]
+                                             ]), {value: nameGroup, label: "Mode Group:"})
+viewof periodSelect  = Inputs.select(new Map([['Daily', 'DY'], ['Peak', 'PK'], ['Off-Peak', 'OK']]), {value: namePeriod, label: "Time Period:"});
+viewof purposeSelect = Inputs.select(new Map([['All Purposes', 'All'], ['Home-Based Work', 'HBW'], ['Home-Based College', 'HBC'], ['Home-Based Other', 'HBO'], ['Non-Home Based', 'NHB']]), {value: 'TripPurpose', label: "Trip Purpose:"});
+```
+
+
+```{ojs}
+dataLT = transpose(dataLong)
+dataTT = transpose(dataTable)
+
+filtered_data = dataLT.filter(function(dataL) {
+    return plotSelect == dataL.Group &&
+           periodSelect == dataL.Period &&
+           purposeSelect == dataL.TripPurpose;
+})
+table_filtered_data = dataTT.filter(function(dataTT) {
+    return plotSelect == dataTT.Group &&
+           periodSelect == dataTT.Period &&
+           purposeSelect == dataTT.TripPurpose;
+})
+```
+
+
+```{ojs}
+import {GroupedBarChart} from "@d3/grouped-bar-chart"
+import {Legend, Swatches} from "@d3/color-legend"
+import {howto, altplot} from "@d3/example-components"
+```
+
+```{ojs}
+xDomain = {
+    switch(plotSelect) {  // assuming all data points have the same Mode
+        case nameModeMnMShare:
+            return ['Motorized', 'Non-Motorized'];
+            break;
+        case nameModeATShare:
+            return ['Auto', 'Transit'];
+            break;
+        case nameModeDAShare:
+            return ['Drive Alone', 'Shared Ride'];
+            break;
+        case nameMode23Share:
+            return ['Shared Ride 2 Occupants', 'Shared Ride 3+ Occupants'];
+            break;
+        case nameModeTransit:
+            return ['Local Bus', 'Core Bus', 'Express Bus', 'BRT', 'LRT', 'CRT'];
+            break;
+        case nameModeAccess:
+            return ['Walk', 'Drive'];
+            break;
+        default:
+            return [];  // or set some sensible default
+    }
+}
+
+
+```
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{ojs}
+html`
+<br/>
+<table>
+    <thead>
+    <tr>
+        ${[plotSelect, "Model", "Observed", "Difference"].map((d, i) => 
+        html`<th style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; ${i === 0 ? "width: 185px;" : ""}'>${d}</th>`)}
+    </tr>
+    </thead>
+    <tbody>
+    ${table_filtered_data.map(row => html`
+        <tr style='border-bottom: 1px solid lightgrey;'>
+        ${["Mode", "Model", "Observed", "Difference"].map((d, i) => 
+            html`<td style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; ${i === 0 ? "width: 185px;" : ""}'>${row[d]}</td>`)}
+        </tr>`)}
+    </tbody>
+</table>`
 ```
 
 :::
 
+
+::: {.column width="50%"}
+
+
+```{ojs}
+//https://observablehq.com/@d3/grouped-bar-chart
+key = Legend(chart.scales.color, {title: "Data Source"})
+```
+
+
+```{ojs}
+
+chart = GroupedBarChart(filtered_data, {
+    x: d => d.Mode,
+    y: d => d.Percent,
+    z: d => d.DataSource,
+    xDomain: xDomain,
+    yLabel: "Percent",
+    yDomain: [0,1],
+    zDomain: ['Model','Observed'],
+    width: 400,
+    height: 250,
+    colors: ["#376092", "#77933c"]
+})
+```
+
 :::
+
+
+::::
+
+```{ojs}
+//|label: fig-mode-share
+//|fig-cap: "Model vs Observed Mode Shares by Mode Group, Time Period, and Trip Purpose"
+emptycell = 1
+```
+
+
 
 ::: {.content-hidden when-format="html"}
 ## Boardings
 @fig-pdf-boardings show validation charts to understadn the transit boardings, linked trips, transfer ratios, and mode surveyed between modeled and observed. 
 
 ![Mode Choice boardings.](_pictures/6-plot1.png){#fig-pdf-boardings}
+
+:::
 
 ::: {.content-hidden when-format="html"}
 ## Mode Share
