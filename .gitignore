@@ -6,12 +6,14 @@ copy-to-filezilla-test.ipynb
 
 v9x/v900/validation/data/1-hhdisag-autoown/2012_HHSurvey-TripData_2021-07-13.csv
 v9x/v900/validation/data/1-hhdisag-autoown/2012_HHSurvey-TripData_2022-11-21.csv
+v9x/v900/validation/data/2012_HHSurvey-TripData_2022-11-21.csv
 v9x/v900/validation/data/1-hhdisag-autoown/2012_HHSurvey-HHData_2022-09-29.csv
 v9x/v900/validation/data/2012_HHSurvey-TripData_2021-07-13.csv
 v9x/v900/validation/data/2012_HHSurvey-TripData_2021-11-21.csv
 
 v9x/v900/model-process/data/1-hhdisag-autoown/2012_HHSurvey-TripData_2021-07-13.csv
 v9x/v900/model-process/data/1-hhdisag-autoown/2012_HHSurvey-TripData_2022-11-21.csv
+v9x/v900/model-process/data/2012_HHSurvey-TripData_2022-11-21.csv
 v9x/v900/model-process/data/1-hhdisag-autoown/2012_HHSurvey-HHData_2022-09-29.csv
 v9x/v900/model-process/data/2012_HHSurvey-TripData_2021-07-13.csv
 v9x/v900/model-process/data/2012_HHSurvey-TripData_2021-11-21.csv
