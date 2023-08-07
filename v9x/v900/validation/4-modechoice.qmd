@@ -5,9 +5,7 @@ warning: false
 message: false
 ---
 
-The validation results for the Mode Choice portion of the model are shown in this section. The observed data comes from the Utah Transit Authority 2019 On-Board Survey as well as the 2012 Household Travel Survey. 
-
-Results are summarized by the following categories:
+The validation results for the Mode Choice portion of the model are shown in this section. Mode Choice was validated against the Utah Transit Authority 2019 On-Board Survey as well as the 2012 Household Travel Survey. Validation is summarized by the following categories:
 
 - Transit Trips and Boardings
 - Mode Share
@@ -593,16 +591,30 @@ ojs_define(boardTable = dfboardings_obj)
 
 ## Transit Trips and Boardings
 
-Transit trips and boardings validation was evaluated by mode. 
+The validation of daily transit trips and boardings is shown through the comparison of model and observed data by mode. The model was validated by the following measures:
 
+- Trips by Hierarchical Mode
+- Boardings by Hierarchical Mode
+- Transfer Ratio by Hierarchical Mode
+- Boardings by Surveyed Mode (for comparison only)
 
+The three hierarchical mode measures are summarized by the highest hierarchy mode in a given trip with local bus being the lowest on the hierarchy and commuter rail being the highest. For example, if a trip uses Local Bus and then transfers to LRT, the trip is stored as a LRT trip. *Trips by Hierarchical Mode* represent each trip as a single number, regardless of the number of transfer or different modes that were used on a trip.
+
+*Boardings by Hierarchical Mode* represent each boarding separately but summarized at the highest hierarchical mode of the trip. For example, for one transfer from Local Bus to LRT there are two boardings, one on each mode, but they are both stored in the highest hierarchal mode of LRT. The Transfer Ratio by *Hierarchical Mode* is the ratio between boardings and trips for any given mode.
+
+The final measure *Boardings by Surveyed Mode* represents the total boardings on each mode individually. They are not summarize at the highest hierarchical mode of the trip but rather at the mode on which the boarding actually occurred. For example, the Local Bus to LRT trip mentioned previously would be summarized in this measure as one boarding on Local Bus and one boarding one LRT. This measure is for comparison use only, since the structure of the Mode Choice model does not consider this measure during calibration.
+
+The total number of boardings are the same between hierarchical mode and surveyed mode, but depending on the make-up of the trips, there totals by mode will vary.
+
+The model data for hierarchical mode measures is taken from the shares reports `v9_SE19_Net19_RegionShares_Pk.csv` and `v9_SE19_Net19_RegionShares_Ok.csv`. The model data for the surveyed mode comparison is taken from `_v9_SE19_Net19_1_PA_Route.dbf`.
+
+The interactive @fig-mc-boardings allows for the visual comparison of model and observed values for each *Transit Trips and Boardings* category.
 
 ```{ojs}
-viewof bPlotSelect = Inputs.select(new Map([['Trips by Hierarchical Mode', 'Trips by Hierarchical Mode'], ['Boardings by Hierarchical Mode', 'Boardings by Hierarchical Mode'], ['Transfer Ratio','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: nameGroup, label: "Category"})
+html`<br/>`
+viewof bPlotSelect = Inputs.select(new Map([['Trips by Hierarchical Mode', 'Trips by Hierarchical Mode'], ['Boardings by Hierarchical Mode', 'Boardings by Hierarchical Mode'], ['Transfer Ratio by Hierarchical Mode','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: nameGroup, label: "Category"})
 viewof metric = Inputs.radio(new Map([["Difference", "Difference"], ["% Difference", "% Difference"]]), {value: "Difference", label: "View:"})
-```
 
-```{ojs}
 dataBLC = transpose(boardChart)
 filtered_bDataC = dataBLC.filter(function(dataBLC) {
     return bPlotSelect == dataBLC.Title &&
@@ -616,7 +628,6 @@ filtered_bDataT = dataBTT.filter(function(dataBTT) {
 ```
 
 :::: {.columns}
-
 ::: {.column width="43%"}
 
 ```{ojs}
@@ -646,14 +657,10 @@ html`
 ```
 
 :::
-
 ::: {.column width="57%"}
 
 ```{ojs}
 key2 = Legend(bChart.scales.color, {title: "Data Source"})
-```
-
-```{ojs}
 
 bChart = GroupedBarChart(filtered_bDataC, {
     x: d => d.Mode,
@@ -669,23 +676,17 @@ bChart = GroupedBarChart(filtered_bDataC, {
 ```
 
 :::
-
 ::::
-
 
 ```{ojs}
 filtered_bData2 = dataBLC.filter(function(dataBLC) {
     return bPlotSelect == dataBLC.Title  &&
            metric == dataBLC.View;
 })
-```
 
-```{ojs}
 //https://observablehq.com/@d3/diverging-bar-chart
 import {DivergingBarChart} from "@d3/diverging-bar-chart"
-```
 
-```{ojs}
 html`<br/>`
 chart3 = DivergingBarChart(filtered_bData2, {
     x: d => d.ViewValue,
@@ -700,20 +701,59 @@ chart3 = DivergingBarChart(filtered_bData2, {
 
 
 ```{ojs}
-//|label: fig-mc-brdings
-//|fig-cap: Transit Trips, Boardings, and Differences
-bEmptycell = 1
+//|label: fig-mc-boardings
+//|fig-cap: Transit Trips and Boardings Model vs Observed Comparison
+tbEmptyCell = 1
 ```
 
+```{ojs}
+html`<br/>`
+```
+
+When considering *Trips by Hierarchical Mode*, the calibration routine of the model results in the total number of transit trips in the model being very close to the observed. For this model the model trips are only 0.2% higher than observed for the total number of trips. By mode the differences are within reasonable ranges for the higher trip modes. For example, LRT is only 0.1% high and CRT is only 0.8% low.
+
+Due to the very low number of trips for Core Bus and Express Bus, their differences are acceptable. Currently, Core Bus for example has only one route. In future phases of the RTP, additional Core Bus service is planned. While further calibration could have brought the Core Bus validation more in line with observed, over-calibrating the model was not desired.
+
+*Boardings by Hierarchical Mode* show a similar pattern. Overall boardings are only 1.9% lower in model compared to observed, and the modes Local Bus, LRT, and CRT all within 5%. Core Bus is again the furthest away, but it also is a single route with lower number of boardings as compared to the higher boarding modes.
+
+The *Transfer Ratio by Hierarchical Mode* shows the relationship between the trips and the boardings. While the model was only slightly higher in trips, the boardings were low. This results in a lower transfer ratio, which is still acceptable with all values being within about 5%.
+
+And for comparison, *Boardings by Mode Surveyed* shows acceptable differences. The Core Bus and Express Bus values show much larger differences; but again given their low volumes, these are reasonable differences.
 
 
 ## Mode Share
 
-Mode Share validation is shown through the comparison of model and observed for groups of mode, time period, and trip purpose. The interactive  @fig-mode-share allows for selecting of different combinations to visualize the comparisons. The observed data comes from a combination of the Household Travel Survey and the 2019 Transit On-Board Survey.
+Mode Share validation is shown through the comparison by groups of mode, time period, and trip purpose. For model and observed shares, the total percent for each combination of mode group, time period, and trip purpose adds up to 100%. 
 
-The motorized/non-motorized model shares are within 0.1% of the observed data for all time periods and all trip purposes and with 0.5% for any combination of time period and purpose. The model transit mode shares are also close to observed with all modes for all time periods and trip purposes with 5%.
+Mode groups compared include groupings of auto, transit, vehicle occupancy, and transit modes. The highest nest is motorized and non-motorized down to lower nests of individual transit modes and transit access modes. Shares were calculated for the following mode groupings:
+
+- Motorized / Non-Motorized
+- Auto / Transit
+- Drive Alone / Shared Ride
+- Shared Ride # of Occupants
+- Transit Mode
+- Transit Access Mode
+
+Additionally, the shares were compared by the following time period groupings:
+
+- Daily
+- Peak
+- Off-peak
+
+Finally, the shares were further compared for each of the following trip purposes:
+
+- All Purposes
+- Home-Based Work
+- Home-Based College
+- Home-Based Other
+- Non-Home Based
+
+In the model, Home-Based College is the only trip purpose that does not include trips in the off-peak time period. So, any trips with this purpose in the observed data were moved to the peak time period for comparison.
+
+The interactive  @fig-mode-share allows for selecting of different combinations to visualize the comparisons. The observed data comes from a combination of the Household Travel Survey and the 2019 Transit On-Board Survey.
 
 ```{ojs}
+html`<br/>`
 viewof plotSelect    = Inputs.select(new Map([[nameModeMnMShare,nameModeMnMShare],
                                               [nameModeATShare ,nameModeATShare ],
                                               [nameModeDAShare ,nameModeDAShare ],
@@ -723,10 +763,7 @@ viewof plotSelect    = Inputs.select(new Map([[nameModeMnMShare,nameModeMnMShare
                                              ]), {value: nameGroup, label: "Mode Group:"})
 viewof periodSelect  = Inputs.select(new Map([['Daily', 'DY'], ['Peak', 'PK'], ['Off-Peak', 'OK']]), {value: namePeriod, label: "Time Period:"});
 viewof purposeSelect = Inputs.select(new Map([['All Purposes', 'All'], ['Home-Based Work', 'HBW'], ['Home-Based College', 'HBC'], ['Home-Based Other', 'HBO'], ['Non-Home Based', 'NHB']]), {value: 'TripPurpose', label: "Trip Purpose:"});
-```
 
-
-```{ojs}
 dataLT = transpose(dataLong)
 dataTT = transpose(dataTable)
 
@@ -740,16 +777,11 @@ table_filtered_data = dataTT.filter(function(dataTT) {
            periodSelect == dataTT.Period &&
            purposeSelect == dataTT.TripPurpose;
 })
-```
 
-
-```{ojs}
 import {GroupedBarChart} from "@d3/grouped-bar-chart"
 import {Legend, Swatches} from "@d3/color-legend"
 import {howto, altplot} from "@d3/example-components"
-```
 
-```{ojs}
 xDomain = {
     switch(plotSelect) {  // assuming all data points have the same Mode
         case nameModeMnMShare:
@@ -774,12 +806,9 @@ xDomain = {
             return [];  // or set some sensible default
     }
 }
-
-
 ```
 
 :::: {.columns}
-
 ::: {.column width="50%"}
 
 ```{ojs}
@@ -803,18 +832,11 @@ html`
 ```
 
 :::
-
-
 ::: {.column width="50%"}
-
 
 ```{ojs}
 //https://observablehq.com/@d3/grouped-bar-chart
 key = Legend(chart.scales.color, {title: "Data Source"})
-```
-
-
-```{ojs}
 
 chart = GroupedBarChart(filtered_data, {
     x: d => d.Mode,
@@ -831,21 +853,26 @@ chart = GroupedBarChart(filtered_data, {
 ```
 
 :::
-
-
 ::::
 
 ```{ojs}
 //|label: fig-mode-share
 //|fig-cap: "Model vs Observed Mode Shares by Mode Group, Time Period, and Trip Purpose"
-emptycell = 1
+bEmtptyCell=1
 ```
 
+```{ojs}
+html`<br/><br/>`
+```
+
+The Motorized / Non-motorized grouping of model shares are within 0.1% of the observed data for the daily time period and all trip purposes with non-motorized shares being slightly higher than observed and motorized shares being slightly lower. The model shares for additional combinations of time period and purpose are all within 0.5%.
+
+The Transit Mode group of model shares are also close to observed with all modes for all time periods and trip purposes. At the Daily time period for all purposes, Local Bus has slightly higher share at 1.7% compared to observed than other modes, such as CRT that is 0.5% lower than observed and LRT that is 0.3% lower than observed. Nearly all the model shares for Transit Mode combinations of time period and are within 5% of observed. The one exception is Home-Based Other which in the peak period for Local Bus is 5.8% higher than observed. Transit Access Mode model shares are all within 5% of observed shares.
 
 
 ::: {.content-hidden when-format="html"}
 ## Boardings
-@fig-pdf-boardings show validation charts to understadn the transit boardings, linked trips, transfer ratios, and mode surveyed between modeled and observed. 
+@fig-pdf-boardings show validation charts to understand the transit boardings, linked trips, transfer ratios, and mode surveyed between modeled and observed. 
 
 ![Mode Choice boardings.](_pictures/6-plot1.png){#fig-pdf-boardings}
 
