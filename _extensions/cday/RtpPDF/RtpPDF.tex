@@ -90,11 +90,11 @@
 % Redefine \@makechapterhead to format chapter titles
 \makeatletter
 \renewcommand{\@makechapterhead}[1]{%
-  \vspace*{50pt}% Adjust the vertical spacing before the chapter title
+  \vspace*{-30pt}% Adjust the vertical spacing before the chapter title
   {\parindent \z@ \raggedright \normalfont
     \ifnum \c@secnumdepth >\m@ne
       \if@mainmatter
-        \sffamily\Huge\bfseries \thechapter\hspace{0.5em}% Add two spaces after chapter number
+        \color{dark}\sffamily\Huge\bfseries \thechapter\hspace{0.5em}% Add two spaces after chapter number
       \fi
     \fi
     \interlinepenalty\@M
