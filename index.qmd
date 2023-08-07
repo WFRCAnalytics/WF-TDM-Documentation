@@ -2,7 +2,7 @@
 title:  "Wasatch Front Travel Demand Model Documentation"
 ---
 
-The Wasatch Front Travel Demand Model (WF TDM) is a macro transportation model. It forecasts daily travel patterns based on household characteristics and where people live in relation to the location of their daily activites and transportation opportunities. Travel decisions are based on a series of models that are calibrated to travel behavior of Wasatch Front residents measured from household travel diary surveys. Trips are assigned to a set of highway or transit-system routes by time of day based on where and by what mode people are likely to travel and the best route available to them. 
+The Wasatch Front Travel Demand Model (WF TDM) is a macro transportation model. It forecasts daily travel patterns based on household characteristics and where people live in relation to the location of their daily activities and transportation opportunities. Travel decisions are based on a series of models that are calibrated to travel behavior of Wasatch Front residents measured from household travel diary surveys. Trips are assigned to a set of highway or transit-system routes by time of day based on where and by what mode people are likely to travel and the best route available to them. 
 
 The travel demand models are able to evaluate transportation and traffic impacts resulting from:
 

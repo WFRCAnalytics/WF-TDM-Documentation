@@ -11,7 +11,7 @@ Changes made to the `1_Inputs` folder are discussed in this section.
 #|echo: false
 # model folder
 tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
-tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v9.0\WF TDM v9.0 - 2023-06-30"
+tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v9x\v9.0\WF TDM v9.0 - official"
 ```
 
 ```{python}
@@ -419,8 +419,8 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 
 # Read the GeoJSON files
-data_taz_new = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
-data_taz_old = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazOld.geojson')
+data_taz_new = gpd.read_file(r'E:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
+data_taz_old = gpd.read_file(r'E:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazOld.geojson')
 
 # Set the line colors and line width for each GeoDataFrame
 line_color_new = '#0B2842'
@@ -533,7 +533,7 @@ To indicate which TAZs are included in the Real Estate Market Model (REMM) space
 #|fig-cap: TAZ REMM Space
 # Read the GeoJSON files
 import matplotlib.colors as colors
-data_taz_new = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
+data_taz_new = gpd.read_file(r'E:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
 remm_values = data_taz_new['REMM'].astype(int)
 cmap = 'Accent_r'
 
@@ -635,9 +635,9 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 
 # Read the GeoJSON files
-data_ldst = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\ldst.geojson')
-data_mdst= gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\mdst.geojson')
-data_sdst= gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\sdst.geojson')
+data_ldst = gpd.read_file(r'E:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\ldst.geojson')
+data_mdst= gpd.read_file(r'E:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\mdst.geojson')
+data_sdst= gpd.read_file(r'E:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\sdst.geojson')
 
 # Set the line colors and line width for each GeoDataFrame
 line_color_ldst = '#0B2842'

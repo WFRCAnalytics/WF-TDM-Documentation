@@ -28,48 +28,47 @@
 #v9-v900-validation
 #===================
   
-#project:
-#  type: book
-#  #output-dir: _book/v9x-v900-validation-pdf
-#  output-dir: _book/v9x-v900-validation-doc#
-
-#book:
-#  title: "Validation Report - Version 9.0.0"
-#  author: "WFRC / MAG"
-#  date: "6/9/2023"
-#  chapters:
-#    - index.qmd
-#    - v9x/v900/validation/1-life-cycle.qmd
-#    - v9x/v900/validation/2-hh-disagg.qmd
-#    - v9x/v900/validation/3-auto-own.qmd
-#    - v9x/v900/validation/4-trip-gen.qmd
-#    - v9x/v900/validation/5-distribution.qmd
-#    - v9x/v900/validation/6-mc.qmd
-#    - v9x/v900/validation/7-assign.qmd
-#    - v9x/v900/validation/8-sensitivity.qmd
+project:
+  type: book
+  #output-dir: _book/v9x-v900-validation-pdf
+  output-dir: _book/v9x-v900-validation-doc#
+book:
+  title: "Validation Report - Version 9.0.0"
+  author: "WFRC / MAG"
+  date: "6/9/2023"
+  chapters:
+    - index.qmd
+    - v9x/v900/validation/1-hhdisag-autoown.qmd
+    - v9x/v900/validation/2-tripgen.qmd
+    - v9x/v900/validation/3-distribute.qmd
+    - v9x/v900/validation/4-modechoice.qmd
+    - v9x/v900/validation/5-assignhwy.qmd
+    - v9x/v900/validation/A-sensitivity.qmd
 
 
 #======================
 #v9-v900-model-process
 #======================
   
-project:
-  type: book
-  output-dir: _book/v9x-v900-model-process-pdf
-  #output-dir: _book/v9x-v900-model-process-doc
-
-book:
-  title: "Model Process Report - Version 9.0.0"
-  author: "WFRC / MAG"
-  date: "6/9/2023"
-  chapters:
-    - index.qmd
-    - v9x/v900/model-process/1-hhdisag_autoown.qmd
-    - v9x/v900/model-process/2-tripgen.qmd
-    - v9x/v900/model-process/3-distribute.qmd
-    - v9x/v900/model-process/4-modechoice.qmd
-    - v9x/v900/model-process/5-assignhwy.qmd
-    - v9x/v900/model-process/A-sensitivity.qmd
+#$project:
+#$  type: book
+#$  output-dir: _book/v9x-v900-model-process-pdf
+#$  #output-dir: _book/v9x-v900-model-process-doc
+#$
+#$book:
+#$  title: "Model Process Report - Version 9.0.0"
+#$  author: "WFRC / MAG"
+#$  date: "6/9/2023"
+#$  chapters:
+#$    - index.qmd
+#$    - v9x/v900/model-process/1-life-cycle.qmd
+#$    - v9x/v900/model-process/2-hh-disagg.qmd
+#$    - v9x/v900/model-process/3-auto-own.qmd
+#$    - v9x/v900/model-process/4-trip-gen.qmd
+#$    - v9x/v900/model-process/5-distribution.qmd
+#$    - v9x/v900/model-process/6-mc.qmd
+#$    - v9x/v900/model-process/7-assign.qmd
+#$    - v9x/v900/model-process/8-sensitivity.qmd
 
 
 format:

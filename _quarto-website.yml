@@ -29,7 +29,7 @@ website:
 
       - text: "Version 9 Series"
         menu:
-        - text: "Version 9.0.0" 
+        - text: "Version 9.0" 
           href: v9x/v900/index.qmd
           id: v900-preface
 
@@ -110,26 +110,24 @@ website:
             - v9x/v900/whats-new/8-assign.qmd
             - v9x/v900/whats-new/10-modelresults.qmd  
         - "---"
-        - section: "<span style=\"color: #3E6682;\">**Validation**</span>"
-          contents:
-            - v9x/v900/validation/1-life-cycle.qmd
-            - v9x/v900/validation/2-hh-disagg.qmd
-            - v9x/v900/validation/3-auto-own.qmd
-            - v9x/v900/validation/4-trip-gen.qmd
-            - v9x/v900/validation/5-distribution.qmd
-            - v9x/v900/validation/6-mc.qmd
-            - v9x/v900/validation/7-assign.qmd
-            - v9x/v900/validation/8-sensitivity.qmd
-        - "---"
-        - section: "<span style=\"color: #3E6682;\">**Model Process**</span>"
-          contents:
-            - v9x/v900/model-process/1-hhdisag-autoown.qmd
-            - v9x/v900/model-process/2-tripgen.qmd
-            - v9x/v900/model-process/3-distribute.qmd
-            - v9x/v900/model-process/4-modechoice.qmd
-            - v9x/v900/model-process/5-assignhwy.qmd
-            - v9x/v900/model-process/A-sensitivity.qmd
-        - "---"
+        #- section: "<span style=\"color: #3E6682;\">**Validation**</span>"
+        #  contents:
+        #    - v9x/v900/validation/1-hhdisag-autoown.qmd
+        #    - v9x/v900/validation/2-tripgen.qmd
+        #    - v9x/v900/validation/3-distribute.qmd
+        #    - v9x/v900/validation/4-modechoice.qmd
+        #    - v9x/v900/validation/5-assignhwy.qmd
+        #    - v9x/v900/validation/A-sensitivity.qmd
+        #- "---"
+        #- section: "<span style=\"color: #3E6682;\">**Model Process**</span>"
+        #  contents:
+        #    - v9x/v900/model-process/1-hhdisag-autoown.qmd
+        #    - v9x/v900/model-process/2-tripgen.qmd
+        #    - v9x/v900/model-process/3-distribute.qmd
+        #    - v9x/v900/model-process/4-modechoice.qmd
+        #    - v9x/v900/model-process/5-assignhwy.qmd
+        #    - v9x/v900/model-process/A-sensitivity.qmd
+        #- "---"
     - id: v832-preface
       title: "Version 8.3.2"
       contents:

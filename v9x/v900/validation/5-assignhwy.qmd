@@ -15,7 +15,7 @@ The validation results for the Highway Assignment portion of the model are shown
 ```{python}
 import pandas as pd
 import numpy as np
-allveh_valid = pd.read_csv("data/7-assign/wf-validation-06-30-2023-AllVeh.csv")
+allveh_valid = pd.read_csv("data/5-assignhwy/wf-validation-06-30-2023-AllVeh.csv")
 value_vars = ['Valid_FC', 'Valid_All']
 allveh_melted = allveh_valid.melt(id_vars=['CO_FIPS', 'SEGID', 'ATYPENAME', 'Mod_AWDT', 'Obs_AWDT', 'Diff', 'Pct_Dev', 'Diff_Sq',
                                    'Mod_Car', 'Obs_Car', 'Diff_Car', 'Pct_Dev_Car', 'Diff_Sq_Car', 'Mod_MD', 'Obs_MD',
@@ -288,8 +288,8 @@ import json
 import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt #if using matplotlib
-ato_data = pd.read_csv('data/7-assign/Access_to_Opportunity_2019.csv')
-geojson_path = r'data/7-assign/tazNew.geojson'
+ato_data = pd.read_csv('data/5-assignhwy/Access_to_Opportunity_2019.csv')
+geojson_path = r'data/5-assignhwy/tazNew.geojson'
 ```
 
 ```{python}
