@@ -320,7 +320,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
+   
+  <ul class="collapse">
+  <li><a href="#inputs" id="toc-inputs" class="nav-link active" data-scroll-target="#inputs">Inputs</a></li>
+  <li><a href="#gravity-model" id="toc-gravity-model" class="nav-link" data-scroll-target="#gravity-model">Gravity Model</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -342,8 +349,20 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>Trip distribution is the pairing of origins and destinations to form complete trips. This is done separately within each trip type. For example, Home-based work (HBW) productions at residences are paired with HBW attractions at work places.</p>
+<section id="inputs" class="level2">
+<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
+<p>The inputs to trip distribution include the productions and attractions from trip generation and an impedance matrix. The travel impedance for HBW, HBO and NHB trips is a generalized cost that is a function of time, distance (auto operating cost) and toll cost (if applicable). The impedance used for external trips and commercial trips is travel time.</p>
+</section>
+<section id="gravity-model" class="level2">
+<h2 class="anchored" data-anchor-id="gravity-model">Gravity Model</h2>
+<p>The trip distribution within a trip type is done using a gravity model. The theory behind the Gravity Model is that trip-end locations that are closer together will exhibit a stronger attraction than those that are farther apart. Although this is true, since longer trips have a larger travel radius there are more destinations within that radius as well (similar to a body of large mass having a greater gravitational pull). Ultimately, the Gravity Model causes the distribution of trip lengths to include a greater number of shorter trips and fewer longer trips than if the trips were to be distributed randomly.</p>
+<p>The functional form of the Gravity Model is shown in Equation 1. Trip distribution implements a doubly-contrained gravel model, meaning This that an iterative process is used that alternatively balances productions by evaluating the first equation and then balances to attractions by evaluating the second equation. The iterative process is complete when either the convergence criterion is met, or the maximum number of iterations is reached.</p>
+<p><strong>Equation 3: Doubly- Constrained Gravity Model Equations</strong></p>
+<p><img src="_pictures/3-equation1.png" class="img-fluid" style="width:65.0%"></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
