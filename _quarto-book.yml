@@ -77,6 +77,8 @@ format:
     toc: true
     lot: true
     lof: true
+    keep-tex: true
+    fig-pos: 'H'
     number-sections: true
     colorlinks: true
     tbl-colwidths: [70, 30]
@@ -88,5 +90,4 @@ format:
       - heightrounded
   #docx: 
   #  reference-doc: _extensions/cday/template-rtp.docx
-  
   

@@ -454,6 +454,12 @@ Prefixes to identify transit skim output files are coded directly into the scrip
 ### Diurnal Factors
 DDiurnal factor parameters in version 9 are read in via an input file (see section 3.1 of this report for more information). As such, the following diurnal factor parameters were removed from the `0_GeneralParameters.block` file:
 
+::: {.content-visible when-format="html"}
+
+<b><u>% of trips in period</u></b>
+
+:::
+
 \textbf{\underline{\% of trips in period}}
 
   - HBW_AM_Pct   = 0.3254
@@ -508,6 +514,12 @@ DDiurnal factor parameters in version 9 are read in via an input file (see secti
   - NHB_MD_Pct   = 0.5024
   - NHB_PM_Pct   = 0.2482
   - NHB_EV_Pct   = 0.1931
+
+::: {.content-visible when-format="html"}
+
+<b><u>% of trips in PA direction</u></b>
+
+:::
 
 \textbf{\underline{\% of trips in PA direction}}
 

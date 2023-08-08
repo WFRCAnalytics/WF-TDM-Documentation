@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="WFRC / MAG">
 
 <title>WFTDM Documentation - Wasatch Front Travel Demand Model Documentation</title>
 <style>
@@ -92,7 +91,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
         <li>
     <a class="dropdown-item" href="./v9x/v900/index.html" rel="" target="">
- <span class="dropdown-text">Version 9.0.0</span></a>
+ <span class="dropdown-text">Version 9.0</span></a>
   </li>  
     </ul>
   </li>
@@ -129,16 +128,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
-   
-  <ul class="collapse">
-  <li><a href="#modeling-region" id="toc-modeling-region" class="nav-link active" data-scroll-target="#modeling-region">Modeling Region</a></li>
-  <li><a href="#model-characteristics" id="toc-model-characteristics" class="nav-link" data-scroll-target="#model-characteristics">Model Characteristics</a></li>
-  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
-  <li><a href="#points-of-contact" id="toc-points-of-contact" class="nav-link" data-scroll-target="#points-of-contact">Points of Contact</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -152,79 +142,30 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>WFRC / MAG </p>
-          </div>
-  </div>
     
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 12, 2023</p>
-    </div>
-  </div>
     
   </div>
   
 
 </header>
 
-<p>This website documents the progress of the Wasatch Front Travel Demand Model (TDM). The main topics of this site regard the <em>What’s New? Documentation</em>, the complete <em>Model Documentation</em>, the <em>Calibration/Validation Report</em>, and various other resources worth noting – all for different model versions.</p>
-<p>Wasatch Front Regional Council (WFRC) alongside Mountainland Association of Governments (MAG) facilitates the development and documentation of the TDM.</p>
-<section id="modeling-region" class="level2">
-<h2 class="anchored" data-anchor-id="modeling-region">Modeling Region</h2>
-<p><a href="#fig-wf-tdm">Figure&nbsp;1</a> shows the modeling area for the Wasatch Front region. It is composed of the urbanized areas within Box Elder, Davis, Salt Lake, Utah, and Weber counties.</p>
-<div id="fig-wf-tdm" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="_pictures/wf-tdm-area.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Wasatch Front Modeling Area</figcaption>
-</figure>
-</div>
-</section>
-<section id="model-characteristics" class="level2">
-<h2 class="anchored" data-anchor-id="model-characteristics">Model Characteristics</h2>
-<p>In addition to the region, below is a list of some of the important model characteristics that exist.</p>
+<p>The Wasatch Front Travel Demand Model (WF TDM) is a macro transportation model. It forecasts daily travel patterns based on household characteristics and where people live in relation to the location of their daily activities and transportation opportunities. Travel decisions are based on a series of models that are calibrated to travel behavior of Wasatch Front residents measured from household travel diary surveys. Trips are assigned to a set of highway or transit-system routes by time of day based on where and by what mode people are likely to travel and the best route available to them.</p>
+<p>The travel demand models are able to evaluate transportation and traffic impacts resulting from:</p>
 <ul>
-<li>Model Type: Trip-based</li>
-<li>Geographic Projection: NAD 1983 UTM Zone 12</li>
-<li>Scenario Years
-<ul>
-<li>2019 (base year), 2023 (plan opening year), and 2028 (STIP year)</li>
-<li>Plan Years: 2032, 2042, 2050</li>
-</ul></li>
-<li>Model day: average weekday</li>
-<li>Time Periods: AM, midday, PM, evening, and daily</li>
-<li>Internal TAZs: 3546 (1-3546) &amp; External Stations: 29 (3601-3629)</li>
-<li>Trip Types: internal resident, external, and commercial (light, medium, and heavy - trucks)</li>
-<li>Unique Components
-<ul>
-<li>External forces: telecommute, eCommerce, CAVs</li>
-<li>Robust Mode Choice Auto (drive alone, shared ride, drive alone toll, shared ride - toll) and Transit (walk/drive to local bus, core route, express bus, BRT, light - rail &amp; commuter rail)</li>
-<li>Can model Tollway, HOT &amp; HOV facilities</li>
-<li>Can model Managed Motorways facilities</li>
-</ul></li>
-<li>Current version: v9 Beta (2022-12-19)</li>
-<li>Run Time: 5-7 hours</li>
-<li>Subarea ID: 1 (used for the statewide model)</li>
+<li>transportation improvements</li>
+<li>provision of new modes of travel and/or enhancement of existing alternative modes</li>
+<li>changes in land use activity</li>
+<li>changes in travel behavior or policies/economic circumstances affecting behavior</li>
 </ul>
-</section>
-<section id="software" class="level2">
-<h2 class="anchored" data-anchor-id="software">Software</h2>
-<p>The most recent version of the Wasatch Front TDM uses Cube 6.4.5 as the model software and AcrGIS 10.6 as the mapping software. The model is run using Cube Scripts (Hailmary).</p>
-</section>
-<section id="points-of-contact" class="level2">
-<h2 class="anchored" data-anchor-id="points-of-contact">Points of Contact</h2>
-<p>With questions regarding the development of the model, reach out to the following persons:</p>
+<p>As such, travel demand output is used to forecast where future travel demand is likely to exceed capacity and to assess the merits of future transportation investments. Travel demand output is also used to analyze air quality and other ancillary impacts of the transportation system.</p>
+<p>The current WF TDM covers Weber, Davis, Salt Lake, and Utah Counties and a portion of Box Eder County. The WF TDM is jointly owned by the Wasatch Front Regional Council (WFRC) and the Mountainland Association of Governments (MAG). To request a copy of the WF TDM, please contact the following persons:</p>
 <ul>
-<li><strong>Matt DeLora (MAG)</strong>: mdelora@magutah.org</li>
-<li><strong>Suzie Swim (WFRC)</strong>: sswim@wfrc.org</li>
+<li>Suzie Swim (WFRC): sswim@wfrc.org</li>
+<li>Matt DeLora (MAG): mdelora@magutah.org</li>
 </ul>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

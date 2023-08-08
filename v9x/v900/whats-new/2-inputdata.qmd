@@ -80,11 +80,11 @@ This section includes the changes made within the `0_GlobalData` subfolder.
 
 ### Trip Tables
 
-The college base distribution file `BaseDistribution.csv` that contains the household locations of students in the base year was updated using new enrollment data sources. Enrollment totals by zip code for public schools were obtained from the Utah System of Higher Education (USHE). After assigning dormitory populations to TAZs based on group quarter data from the census, the remaining enrollment distributions were done using StreetLight origin-destination data with public schools being control at the zip-code level based on USHE enrollment data.
+The college base distribution file `BaseDistribution.csv` that contains the household locations of students in the base year was updated using new enrollment data sources. Dormitory populations were assigned to TAZs based on group quarter data from the census. The remaining enrollment was distributed using StreetLight origin-destination and USHE enrollment data. 
 
 ### Household Disaggregation and Auto Ownership
 
-The age percent lookup file `Lookup - BYTAZAgePct - AllCo.csv` used in household disaggregation was updated using parameters developed statewide based on 2020 census block data, 2020 ACS block group data, and 2019 population by age group data.
+The age percent lookup file `Lookup - BYTAZAgePct - AllCo.csv` used in household disaggregation was replaced with the updated statewide file. The statewide file was updated based on 2020 Census block data, 2020 ACS block group data, and 2019 ACS population by age group data.
 
 ### Mode Choice
 
@@ -264,7 +264,6 @@ domainFacetSelect = {
 ```
 
 
-
 ```{ojs}
 //|label: fig-bus-speed-ratios
 //|fig-cap: Bus Speed Ratios
@@ -366,55 +365,104 @@ Plot.plot({
 
 :::
 
+\newpage
+
 ### Assignment
 As described in the *General Parameters* section, diurnal and production/attraction factors were moved out of the `0_GeneralParameters.block` file to an input file. The factors are now found in the `Diurnal & PA factors.csv` file. 
 
 ## Traffic Analysis Zones (TAZ)
-The TAZ zone set includes new geographies, TAZ numbering ranges, zone attributes, and districts, as well as a new `\_Source` subfolder.
 
-### Geographies
-Changes in TAZ geographies include both expansion of the model area and splitting and/or changing zone boundaries. The expanded model area now includes TAZs in additional portions of Box Elder County, all of western Weber County, and the entirety of Davis, Salt Lake and Utah Counties. External dummy zones (represented as quadrilaterals) were removed from the TAZ shapefile.
+### Taz Geometry & Geographic Changes
 
-Additional area in the expanded WFRC and MAG areas include the following:
+TAZ geometry was updated and corrected.  These updates include:
 
-- Canyon areas of the Wasatch mountains up to the eastern boundary of Salt Lake, Utah, and Davis counties, and additionally the canyon areas up to eastern boundary of Box Elder County for the portion of Box Elder County that was in the v8.3.2 model.
-- Canyon areas of the Wasatch mountains up to the ridge line of Weber County, excluding the Ogden Valley (Huntsville, Eden, Liberty) and other portions of eastern Weber County which remain in UDOT's transportation planning jurisdiction.
-- Canyon areas of the Oquirrh mountain range up to the western boundary of Salt Lake County
-- Great Salt Lake areas to the western boundary of Salt Lake, Davis, and Weber counties
+ - Fixed the TAZ UTM NAD83 projection to use the standard for Utah rather than the ArcGIS default.
+ - All TAZ boundaries align to county boundaries from the most current version on AGRC's website.
+ - All internal TAZ topology was checked and corrected so there are no slivers, gaps, overlaps.
 
-The additional areas and reconfigured TAZs result in 694 additional zones, 688 internal zones and 6 new external zones. A comparison of zone counts is found in @tbl-taz-count.
+Internal zones were split to increase the model’s geographic resolution. Some zone boundaries were also modified without being split to better align with underlying land uses and planning boundaries.
 
-::: {.grid}
-::: {.g-col-2}
-:::
-::: {.g-col-8}
-```{python}
-#| label: tbl-taz-count
-#| tbl-cap: TAZ Count Comparisons
-from IPython.display import Markdown
-from tabulate import tabulate
-table = [  ['Internal Used Zones'  , '3,546', '2,858',        '688'],
-           ['External Count'       ,    '29',    '23',          '6'],
-           ['All New Used Zones'   , '3,575', '2,881',        '694'],
-           ['Internal Unused Zones',    '54',     '0',         '54'],
-           ['Max Used Zone'        , '3,629', '2,881',        '748']]
-headers = ['Category','v9','v8', 'Difference']
-Markdown(tabulate(table, 
-  headers=headers, 
-  tablefmt="pipe", 
-  colalign=("left",)*len(headers), 
-  showindex=False)
-)
-```
-:::
+The geographic coverage area of the internal zones was also expanded to encompass the entire county.  The notable exceptions to this are the portions of Box Elder County and Weber County that are not in the WFRC planning domain. While not expanded to county boundaries, the geographic coverage area of these counties was still changed to encompass the canyon/mountain areas that are part of the Wasatch Front travel shed.
+
+External zones were revised to reflect the changes of the expanded internal zone area. This included an update to the number and location of the external zones. However, external zones are no longer represented in the TAZ shapefile. The arbitrary polygons representing the external zones in previous version of the TAZ shapefile have been removed. External zones are still represented in other parts of the model, such as in the highway network, general parameters block file.
+
+The expanded area and reconfigured TAZs resulted in the addition of  688 internal zones and 6 external zones. A comparison of zone counts is found in @tbl-taz-count.
+
+\newpage
+
+::: {#tbl-taz-count layout-ncol=2}
+| County    | v9   | v832 | Change |
+|-----------|------|------|--------|
+| Box Elder | 153  | 135  | 18     |
+| Weber     | 428  | 280  | 148    |
+| Davis     | 324  | 231  | 93     |
+| Salt Lake | 1311 | 1127 | 184    |
+| Utah      | 1330 | 1085 | 245    |
+| Total     | 3546 | 2858 | 688    |
+
+: Internal
+
+| County    | v9   | v832 | Change |
+|-----------|------|------|--------|
+| Box Elder | 6    | 5    | 1      |
+| Weber     | 3    | 3    | 0      |
+| Davis     | 0    | 0    | 0      |
+| Salt Lake | 6    | 7    | -1     |
+| Utah      | 14   | 8    | 6      |
+| Total     | 29   | 23   | 6      |
+
+: External
+
+TAZ Count Comparisons
 :::
 
 ::: {.content-hidden when-format="html"}
-The map in @fig-taz-compare-map-pdf shows the difference in v9 and v8 TAZs.
+The maps in @fig-taz-compare-weber-pdf, @fig-taz-compare-davis-pdf, @fig-taz-compare-sl-pdf, and @fig-taz-compare-utah-pdf show the difference in version 9 and version 8 TAZs.
 
 ```{python}
-#| label: fig-taz-compare-map-pdf
-#| fig-cap: TAZ Geography Comparison Map
+import matplotlib.pyplot as plt
+import geopandas as gpd
+# Define a function to generate CO_FIPS attribute based on CO_TAZID
+def assign_fips(co_tazid):
+    co_tazid_str = str(co_tazid)
+    if co_tazid_str.startswith('30'):
+        return '3'
+    elif co_tazid_str.startswith('11'):
+        return '11'
+    elif co_tazid_str.startswith('35'):
+        return '35'
+    elif co_tazid_str.startswith('57'):
+        return '57'
+    elif co_tazid_str.startswith('49'):
+        return '49'
+    else:
+        return None  # Handle other cases if needed
+
+def plot_geo_data_by_fips(data_taz_new, data_taz_old, co_fips_value, line_color_new, line_color_old, line_width):    
+    # Create the figure and axes
+    fig, ax = plt.subplots(figsize=(15, 15))
+    
+    # Filter GeoDataFrames based on CO_FIPS value
+    data_taz_new_filtered = data_taz_new.loc[data_taz_new['CO_FIPS'] == co_fips_value]
+    data_taz_old_filtered = data_taz_old.loc[data_taz_old['CO_FIPS'] == co_fips_value]
+    
+    # Plot the filtered GeoDataFrames with different line colors and line width
+    data_taz_new_filtered.plot(ax=ax, facecolor='none', edgecolor=line_color_new, linewidth=line_width)
+    data_taz_old_filtered.plot(ax=ax, facecolor='none', edgecolor=line_color_old, linewidth=line_width)
+    
+    legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1])
+    legend_elements = [
+        plt.Line2D([0], [0], color=line_color_new, linewidth=line_width, label='v9.0.0'),
+        plt.Line2D([0], [0], color=line_color_old, linewidth=line_width, label='v8.3.2')
+    ]
+    legend_ax.legend(handles=legend_elements, loc='center')
+    legend_ax.axis('off')
+    
+    # Display the plot
+    plt.show()
+```
+
+```{python}
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
@@ -422,33 +470,46 @@ import matplotlib.pyplot as plt
 data_taz_new = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
 data_taz_old = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazOld.geojson')
 
-# Set the line colors and line width for each GeoDataFrame
+# Apply the function to create the CO_FIPS attribute
+data_taz_new['CO_FIPS'] = data_taz_new['CO_TAZID'].apply(assign_fips)
+data_taz_old['CO_FIPS'] = data_taz_old['CO_TAZID'].apply(assign_fips)
+
+# Set the line colors and line width
 line_color_new = '#0B2842'
 line_color_old = '#789d4b'
 line_width = 0.5
-
-# Create the figure and axes
-fig, ax = plt.subplots(figsize=(15, 15))
-
-# Plot the GeoDataFrames with different line colors and line width
-data_taz_new.plot(ax=ax, facecolor='none', edgecolor=line_color_new, linewidth=line_width)
-data_taz_old.plot(ax=ax, facecolor='none', edgecolor=line_color_old, linewidth=line_width)
-
-legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1]) 
-legend_elements = [
-    plt.Line2D([0], [0], color=line_color_new, linewidth=line_width, label='v9.0.0'),
-    plt.Line2D([0], [0], color=line_color_old, linewidth=line_width, label='v8.3.2')
-]
-legend_ax.legend(handles=legend_elements, loc='center')
-legend_ax.axis('off')
-
-# Display the plot
-plt.show()
 ```
+
+```{python}
+#| label: fig-taz-compare-weber-pdf
+#| fig-cap: TAZ Geography Comparison Map -- Weber County
+plot_geo_data_by_fips(data_taz_new, data_taz_old, '57', line_color_new, line_color_old, line_width)
+```
+
+```{python}
+#| label: fig-taz-compare-davis-pdf
+#| fig-cap: TAZ Geography Comparison Map -- Davis County
+plot_geo_data_by_fips(data_taz_new, data_taz_old, '11', line_color_new, line_color_old, line_width)
+```
+
+```{python}
+#| label: fig-taz-compare-sl-pdf
+#| fig-cap: TAZ Geography Comparison Map -- Salt Lake County
+plot_geo_data_by_fips(data_taz_new, data_taz_old, '35', line_color_new, line_color_old, line_width)
+```
+
+```{python}
+#| label: fig-taz-compare-utah-pdf
+#| fig-cap: TAZ Geography Comparison Map -- Utah County
+plot_geo_data_by_fips(data_taz_new, data_taz_old, '49', line_color_new, line_color_old, line_width)
+```
+
+The TAZ numbering was updated to reflect the changes made to the TAZ geometry, as depicted in @tbl-new-taz-ranges. 
+
 :::
 
 ::: {.content-visible when-format="html"}
-The interactive map in @fig-taz-compare-map can be explored to visualize the difference in v9 and v8 TAZs.
+The interactive map in @fig-taz-compare-map can be explored to visualize the difference in version 9 and version 8 TAZs.
 
 ```{ojs}
 //|label: fig-taz-compare-map
@@ -466,11 +527,11 @@ mapTaz = {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
-  let lcolors = ['#0000FF'    ,'#FFFF00'   ]
+  let lcolors = ['#0000FF'    ,'red'   ]
   let llabels = ['v8.3.2 TAZ' ,'v9.0.0 TAZ'];
 
-  let lyrTAZOld = L.geoJson(geojsonTazOld, { weight: 3.00, color: lcolors[0]}).addTo(map);
-  let lyrTAZNew = L.geoJson(geojsonTazNew, { weight: 0.75, color: lcolors[1]}).addTo(map);
+  let lyrTAZOld = L.geoJson(geojsonTazOld, { weight: 3.00, color: lcolors[0], fillOpacity: 0}).addTo(map);
+  let lyrTAZNew = L.geoJson(geojsonTazNew, { weight: 1.50, color: lcolors[1], fillOpacity: 0}).addTo(map);
 
   var legend = L.control({position: 'bottomleft'});
     legend.onAdd = function (map) {
@@ -492,9 +553,6 @@ mapTaz = {
 :::
 
 
-### TAZ Ranges
-The new and previous internal and external ranges of TAZIDs by for each county are shown in @tbl-new-taz-ranges.
-
 ::: {.grid}
 ::: {.g-col-1}
 :::
@@ -513,14 +571,14 @@ table = [  ['Box Elder County',          '1-153',       '3601-3606',          '1
         ]
 Markdown(tabulate(
   table, 
-  headers= ['County'          ,'v9.0.0 Internal', 'v9.0.0 External','v8.3.2 Internal','v8.3.2. External'],
+  headers= ['County'          ,'v9.0.0 Internal', 'v9.0.0 External','v8.3.2 Internal','v8.3.2 External'],
   colalign=('left'            ,'right'          ,'right'           ,'right'          ,'right'           )
 ))
 ```
 :::
 :::
 
-### Attributes
+### TAZ Attribute Changes
 This section describes the changes made to the attributes of the TAZ shapefile.
 
 #### REMM Space
@@ -625,98 +683,7 @@ Compared to the previous temporary parking values of $1 in 2010 dollars, the cho
 
 ### Small Districts
 
-::: {.content-hidden when-format="html"}
-There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). Districts are shown in @fig-districts-pdf. Two additional polygon shapefiles were added to the Districts subfolder to represent the Wasatch Front sub area and the REMM area.
-
-```{python}
-#|label: fig-districts-pdf
-#|fig-cap: Districts
-import geopandas as gpd
-import matplotlib.pyplot as plt
-
-# Read the GeoJSON files
-data_ldst = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\ldst.geojson')
-data_mdst= gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\mdst.geojson')
-data_sdst= gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\sdst.geojson')
-
-# Set the line colors and line width for each GeoDataFrame
-line_color_ldst = '#0B2842'
-line_color_mdst = 'purple'
-line_color_sdst = '#789d4b'
-line_width = 1.5
-
-# Create the figure and axes
-fig, ax = plt.subplots(figsize=(15, 15))
-
-# Plot the GeoDataFrames with different line colors and line width
-data_ldst.plot(ax=ax, facecolor='none', edgecolor=line_color_ldst, linewidth=(line_width + 7))
-data_mdst.plot(ax=ax, facecolor='none', edgecolor=line_color_mdst, linewidth=(line_width + 3))
-data_sdst.plot(ax=ax, facecolor='none', edgecolor=line_color_sdst, linewidth=line_width)
-
-legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1]) 
-legend_elements = [
-    plt.Line2D([0], [0], color=line_color_ldst, linewidth=line_width, label='ldst'),
-    plt.Line2D([0], [0], color=line_color_mdst, linewidth=line_width, label='mdst'),
-    plt.Line2D([0], [0], color=line_color_sdst, linewidth=line_width, label='sdst'),
-]
-legend_ax.legend(handles=legend_elements, loc='center')
-legend_ax.axis('off')
-
-# Display the plot
-plt.show()
-```
-:::
-
-::: {.content-visible when-format="html"}
-There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). Districts are shown in @fig-districts. Two additional polygon shapefiles were added to the Districts subfolder to represent the Wasatch Front sub area and the REMM area.
-```{ojs}
-//|label: fig-districts
-//|fig-cap: Districts
-//|echo: false
-
-mapDistricts = {
-
-  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
-  yield container;
-  
-  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
-
-  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  let lcolors     = ['#FF0000'       ,'#00FF00'        ,'#0000FF'        ];
-  let llabels     = ['Small District','Medium District','Large District' ];
-
-  let lyrLDst = L.geoJson(geojsonLDst, { weight: 12.00, color: lcolors[2], fillOpacity: 0}).addTo(map);
-  let lyrMDst = L.geoJson(geojsonMDst, { weight:  6.00, color: lcolors[1], fillOpacity: 0}).addTo(map);
-  let lyrSDst = L.geoJson(geojsonSDst, { weight:  2.00, color: lcolors[0], fillOpacity: 0}).addTo(map);
-
-  lyrSDst.eachLayer(function(layer) {
-    var name = layer.feature.properties.DSML_NAME; // Assuming the attribute field is named "DSML_NAME"
-layer.bindTooltip(name); // Add tooltip
-    // OR
-    // layer.bindPopup(name); // Add popup
-  });
-
-  var legend = L.control({position: 'bottomleft'});
-    legend.onAdd = function (map) {
-      var div = L.DomUtil.create('div', 'legend');
-      div.innerHTML = '';
-      for (var i = 0; i < llabels.length; i++) {
-        div.innerHTML += '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' + llabels[i] + '<br/>';
-      }
-
-      // Add CSS style for the background color
-      div.style.backgroundColor = 'lightgray';
-      div.style.padding = '10px';
-      
-      return div;
-    };
-    legend.addTo(map);
-}
-```
-:::
+There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). 
 
 ### Source
 

@@ -28,7 +28,7 @@ hh_peeps = hh_peeps[hh_peeps['h_SUBAREA_v30'] == 1]
 hh_survey_tot_pop = sum(hh_peeps['Pop_2010'])
 
 # calculate the number of II productions in the Household Travel Survey
-hh_trips_csv = pd.read_csv('e:/github/tdm-documentation/v9x/v900/validation/data/1-hhdisag-autoown/2012_HHSurvey-TripData_2022-11-21.csv')
+hh_trips_csv = pd.read_csv('D:/github/tdm-documentation/v9x/v900/validation/data/1-hhdisag-autoown/2012_HHSurvey-TripData_2022-11-21.csv')
 hh_trips_purps = hh_trips_csv[['password','weight','h_CO_NAME_v30','h_SUBAREA_v30','p_SUBAREA_v30','a_SUBAREA_v30','PURP7_t']]
 hh_ii = hh_trips_purps[hh_trips_purps['h_SUBAREA_v30'] == 1]
 hh_ii = hh_ii[hh_ii['p_SUBAREA_v30'] == 1]
