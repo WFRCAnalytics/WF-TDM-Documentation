@@ -706,7 +706,7 @@ The Salt Lake City International Airport temporary parking cost was set to $1.25
 
 The Lagoon temporary parking cost was set to $6 based on the 2022 advertised parking rate of $18 per day by an assumed average occupancy of 3 people per vehicle. This represents a $1 (20%) increase from version 8.3.2. Similar to the airport, the cost of permanent parking at Lagoon was set to $0 as workers at Lagoon do not pay for parking.
 
-### District Definitions
+#### District Definitions
 Large, medium, and small districts were redefined and renamed. There are now 26 large districts, 73 medium districts, and 110 small districts. Medium districts still nest within large districts. Small districts were defined based on city area definitions and do not nest within medium districts.
 
 ### Additions to the `1_Inputs\1_TAZ` Folder
