@@ -1,0 +1,28 @@
+---
+title: Trip Distribution
+echo: false
+warning: false
+message: false
+---
+
+Trip distribution is the pairing of origins and destinations to form complete trips. This is done separately within each trip type. For example, Home-based work (HBW) productions at residences are paired with HBW attractions at work places.
+
+## Inputs
+The inputs to trip distribution include the productions and attractions from trip generation and an impedance matrix. The travel impedance for HBW, HBO and NHB trips is a generalized cost that is a function of time, distance (auto operating cost) and toll cost (if applicable). The impedance used for external trips and commercial trips is travel time.
+
+## Gravity Model
+The trip distribution within a trip type is done using a gravity model. The theory behind the Gravity Model is that trip-end locations that are closer together will exhibit a stronger attraction than those that are farther apart. Although this is true, since longer trips have a larger travel radius there are more destinations within that radius as well (similar to a body of large mass having a greater gravitational pull). Ultimately, the Gravity Model causes the distribution of trip lengths to include a greater number of shorter trips and fewer longer trips than if the trips were to be distributed randomly.
+
+The functional form of the Gravity Model is shown in Equation 1. Trip distribution implements a doubly-contrained gravel model, meaning This that an iterative process is used that alternatively balances productions by evaluating the first equation and then balances to attractions by evaluating the second equation. The iterative process is complete when either the convergence criterion is met, or the maximum number of iterations is reached. 
+
+**Equation 3: Doubly- Constrained Gravity Model Equations**
+
+![](_pictures/3-equation1.png){width='65%'}
+
+### Gravity Model Calibration
+
+<mark>???Update???</mark>
+
+**what script?** A Voyager script has been written that iteratively calibrates gravity model friction factors until an observed impedance distribution is matched by the model. The inputs to the calibration script are trip impedance distributions (by trip purpose), trip generation output and modeled travel times and costs between all TAZ pairs. The initial calibration of the friction factors is based on observed trip lengths from the trip diary survey. The gravity model parameters were then adjusted after replication to correspond to **2000 Census Journey to Work data and NHTS data.**
+
+**The friction factors for IXXI and commercial trips were transferred from v8.3.2 of the model.**

@@ -1,0 +1,41 @@
+asc_motor                     =     0      
+asc_nonmotor                  =     0
+       
+asc_auto                      =     0      
+asc_transit                   =     0   
+       
+asc_alone                     =     0      
+asc_shared                    =     0
+       
+asc_hov                       =  0.10
+asc_toll                      = -0.40
+       
+asc_sr2                       =     0      
+asc_sr3                       =     0 
+       
+asc_LCL                     =     0      
+asc_EXP                   =     0 
+;asc_COR                       =     0
+asc_BRT                     =     0
+asc_LRT                       =     0
+asc_CRT                       =     0  
+       
+asc_walkacc                   =     0      
+asc_driveacc                  =     0 
+       
+asc_wLCL                    =     0      
+asc_wEXP                  =     0 
+;asc_wCOR                      =     0 
+asc_wBRT                    =     0 
+asc_wLRT                      =     0 
+asc_wCRT                      =     0 
+       
+asc_dLCL                    =     0
+asc_dEXP                  =     0
+;asc_dCOR                      =     0
+asc_dBRT                    =     0
+asc_dLRT                      =     0
+asc_dCRT                      =     0
+       
+asc_walk                      =     0      
+asc_bike                      =     0

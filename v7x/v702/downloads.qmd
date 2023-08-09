@@ -1,7 +1,6 @@
 ---
-title:  "Version 7.0.2 - Downloads"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 7.0.2 - Downloads
+title: Downloads
 ---
 
 The downloads for the Version 7.0.2 documentation is shown below by category.

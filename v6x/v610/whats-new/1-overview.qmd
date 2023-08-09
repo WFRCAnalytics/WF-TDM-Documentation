@@ -1,7 +1,5 @@
 ---
-title:  "What's New? - Version 6.1.0"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 6.1.0 - What's New?
 ---
 
 ## Front End

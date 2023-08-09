@@ -1,0 +1,306 @@
+---
+title: Mode Choice
+echo: false
+warning: false
+message: false
+---
+
+::: {.content-visible when-format="html"}
+## Mode Choice Constants
+The  mode choice constants within the model used to estimate mode shares are shown below:
+
+```{python}
+#import libraries
+import pandas as pd
+import numpy as np
+import os
+from IPython.display import display, Markdown
+import re
+
+dirCalibConst = [r"data/calib_const/"]
+```
+
+```{python}
+#constant names listed in order you want to display
+dConstOrder = {
+     'ConstName'     : [
+                        'asc_motor',
+                        'asc_motor_0veh',
+                        'asc_motor_1veh',
+                        'asc_motor_2veh',
+                        'asc_motor_all',
+                        'asc_nonmotor',
+                        'asc_nonmotor_0veh',
+                        'asc_nonmotor_1veh',
+                        'asc_nonmotor_2veh',
+                        'asc_nonmotor_all',
+                        'asc_walk',
+                        'asc_walk_0veh',
+                        'asc_walk_1veh',
+                        'asc_walk_2veh',
+                        'asc_walk_all',
+                        'asc_bike',
+                        'asc_bike_0veh',
+                        'asc_bike_1veh',
+                        'asc_bike_2veh',
+                        'asc_bike_all',
+                        'asc_auto',
+                        'asc_auto_0veh',
+                        'asc_auto_1veh',
+                        'asc_auto_2veh',
+                        'asc_auto_all',
+                        'asc_alone',
+                        'asc_alone_0veh',
+                        'asc_alone_1veh',
+                        'asc_alone_2veh',
+                        'asc_alone_all',
+                        'asc_shared',
+                        'asc_shared_0veh',
+                        'asc_shared_1veh',
+                        'asc_shared_2veh',
+                        'asc_shared_all',
+                        'asc_sr2',
+                        'asc_sr2_0veh',
+                        'asc_sr2_1veh',
+                        'asc_sr2_2veh',
+                        'asc_sr2_all',
+                        'asc_sr3',
+                        'asc_sr3_0veh',
+                        'asc_sr3_1veh',
+                        'asc_sr3_2veh',
+                        'asc_sr3_all',
+                        'asc_hov',
+                        'asc_hov_0veh',
+                        'asc_hov_1veh',
+                        'asc_hov_2veh',
+                        'asc_hov_all',
+                        'asc_toll',
+                        'asc_toll_0veh',
+                        'asc_toll_1veh',
+                        'asc_toll_2veh',
+                        'asc_toll_all',
+                        'asc_transit',
+                        'asc_transit_0veh',
+                        'asc_transit_1veh',
+                        'asc_transit_2veh',
+                        'asc_transit_all',
+                        'asc_walkacc',
+                        'asc_walkacc_0veh',
+                        'asc_walkacc_1veh',
+                        'asc_walkacc_2veh',
+                        'asc_walkacc_all',
+                        'asc_driveacc',
+                        'asc_driveacc_0veh',
+                        'asc_driveacc_1veh',
+                        'asc_driveacc_2veh',
+                        'asc_driveacc_all',
+                        'asc_local',
+                        'asc_local_0veh',
+                        'asc_local_1veh',
+                        'asc_local_2veh',
+                        'asc_local_all',
+                        'asc_wlocal',
+                        'asc_wlocal_0veh',
+                        'asc_wlocal_1veh',
+                        'asc_wlocal_2veh',
+                        'asc_wlocal_all',
+                        'asc_dlocal',
+                        'asc_dlocal_0veh',
+                        'asc_dlocal_1veh',
+                        'asc_dlocal_2veh',
+                        'asc_dlocal_all',
+                        'asc_brt',
+                        'asc_brt_0veh',
+                        'asc_brt_1veh',
+                        'asc_brt_2veh',
+                        'asc_brt_all',
+                        'asc_wbrt',
+                        'asc_wbrt_0veh',
+                        'asc_wbrt_1veh',
+                        'asc_wbrt_2veh',
+                        'asc_wbrt_all',
+                        'asc_dbrt',
+                        'asc_dbrt_0veh',
+                        'asc_dbrt_1veh',
+                        'asc_dbrt_2veh',
+                        'asc_dbrt_all',
+                        'asc_mode9',
+                        'asc_mode9_0veh',
+                        'asc_mode9_1veh',
+                        'asc_mode9_2veh',
+                        'asc_mode9_all',
+                        'asc_wmode9',
+                        'asc_wmode9_0veh',
+                        'asc_wmode9_1veh',
+                        'asc_wmode9_2veh',
+                        'asc_wmode9_all',
+                        'asc_dmode9',
+                        'asc_dmode9_0veh',
+                        'asc_dmode9_1veh',
+                        'asc_dmode9_2veh',
+                        'asc_dmode9_all',
+                        'asc_lrt',
+                        'asc_lrt_0veh',
+                        'asc_lrt_1veh',
+                        'asc_lrt_2veh',
+                        'asc_lrt_all',
+                        'asc_wlrt',
+                        'asc_wlrt_0veh',
+                        'asc_wlrt_1veh',
+                        'asc_wlrt_2veh',
+                        'asc_wlrt_all',
+                        'asc_dlrt',
+                        'asc_dlrt_0veh',
+                        'asc_dlrt_1veh',
+                        'asc_dlrt_2veh',
+                        'asc_dlrt_all',
+                        'asc_express',
+                        'asc_express_0veh',
+                        'asc_express_1veh',
+                        'asc_express_2veh',
+                        'asc_express_all',
+                        'asc_wexpress',
+                        'asc_wexpress_0veh',
+                        'asc_wexpress_1veh',
+                        'asc_wexpress_2veh',
+                        'asc_wexpress_all',
+                        'asc_dexpress',
+                        'asc_dexpress_0veh',
+                        'asc_dexpress_1veh',
+                        'asc_dexpress_2veh',
+                        'asc_dexpress_all',
+                        'asc_crt',
+                        'asc_crt_0veh',
+                        'asc_crt_1veh',
+                        'asc_crt_2veh',
+                        'asc_crt_all',
+                        'asc_wcrt',
+                        'asc_wcrt_0veh',
+                        'asc_wcrt_1veh',
+                        'asc_wcrt_2veh',
+                        'asc_wcrt_all',
+                        'asc_dcrt',
+                        'asc_dcrt_0veh',
+                        'asc_dcrt_1veh',
+                        'asc_dcrt_2veh',
+                        'asc_dcrt_all'
+                        ]
+}
+df_ConstOrder = pd.DataFrame(dConstOrder)
+df_ConstOrder = df_ConstOrder.reset_index()
+df_ConstOrder = df_ConstOrder.rename(columns={"index": "SortOrder"})
+```
+
+```{python}
+#initialize
+df_Constants = pd.DataFrame()
+prevround = False
+
+
+for dCC in dirCalibConst:
+
+    #display("Reading Constants from " + dCC)
+    df_Constants_CurRound = pd.DataFrame()
+    
+    
+    df_Files = pd.DataFrame(os.listdir(dCC))
+    df_Files = df_Files[df_Files[0].str.contains('.txt')]
+    numFiles = df_Files.size
+    ctFiles = 0
+    
+    for filename in os.listdir(dCC):
+        if filename.endswith(".txt"):
+            ctFiles = ctFiles + 1
+            
+            filenamewpath = os.path.join(dCC, filename)
+
+            strPurp = filename[0 : 3]
+            strPkOk = filename[17:19]
+
+            #get characters between last underscore(_) and period(.)
+            strIter = int(re.search("[^._]+(?=[^_]*$)", filename).group(0))
+
+            #print(strPurp, strPkOk, strIter)
+            #print("\r                                                                            ", end="")
+            #print("\r" + strPurp, strPkOk, strIter, end="")
+            #print("\r" + str(ctFiles) + ' of ' + str(numFiles), strPurp, strPkOk, strIter, end="")
+            
+            file1 = open(filenamewpath) 
+            Lines = file1.readlines() 
+
+            count = 0
+            # Strips the newline character 
+            for line in Lines: 
+                strLine = str("Line{}: {}".format(count, line.strip()))
+                strLine = strLine[len('Line0:'):]
+                #print (strLine)
+                #print(type (strLine))
+                if "=" in strLine:
+                    strVariable = strLine.split('=')[0].strip()
+                    strValue    = strLine.split('=')[1].strip()
+                    
+                    df = pd.DataFrame([[strPurp,strPkOk,strIter,strVariable,strValue]],
+                              columns=(['Purp'   ,'PkOk'   ,'Iter'   ,'ConstName'  ,'ConstValue']))
+
+                    df_Constants_CurRound = pd.concat([df_Constants_CurRound, df],ignore_index=True)
+
+                    #print(strVariable, strValue)
+        else:
+            continue
+
+    df_Constants_CurRound['Iter']       = pd.to_numeric(df_Constants_CurRound['Iter']      , downcast='integer')
+    df_Constants_CurRound['ConstValue'] = pd.to_numeric(df_Constants_CurRound['ConstValue'], downcast='float'  )
+
+    if not df_Constants.empty:
+        df_Constants_max = df_Constants.groupby(['ConstName','PkOk','Purp'],as_index=False).agg(MAXITER=('Iter','max'))
+
+        df_Constants_CurRound_wMax = pd.DataFrame.merge(df_Constants_CurRound, df_Constants_max, on=('ConstName','PkOk','Purp'))
+
+        df_Constants_CurRound_wMax['Iter'] = df_Constants_CurRound_wMax['Iter'] + df_Constants_CurRound_wMax['MAXITER']
+
+        df_Constants_CurRound = df_Constants_CurRound_wMax.drop(columns=['MAXITER'])
+
+        #display(df_Constants_CurRound)
+        
+        df_Constants = pd.concat([df_Constants,df_Constants_CurRound], ignore_index=True)
+
+    else:
+        df_Constants = df_Constants_CurRound.copy()
+    
+
+
+df_Constants['ConstValueAbs'] = df_Constants['ConstValue'].abs()
+```
+
+```{python}
+# display last iteration constant value
+idx = df_Constants.groupby(['Purp','ConstName'])['Iter'].transform(max) == df_Constants['Iter']
+df_LastConstant = df_Constants[idx]
+#display(df_LastConstant)
+df_LastConstant_pivot = df_LastConstant.pivot(index=['ConstName'],columns=['Purp','PkOk'],values='ConstValue')
+#
+df_LastConstant_pivot.fillna(0,inplace=True)
+df_LastConstant_pivot = df_LastConstant_pivot.loc[~(df_LastConstant_pivot==0).all(axis=1)]
+df_LastConstant_pivot.reset_index(inplace=True)
+#
+df_LastConstant_pivot.columns = df_LastConstant_pivot.columns.map('_'.join)
+df_LastConstant_pivot = df_LastConstant_pivot.rename(columns={'ConstName_':'ConstName'})
+df_LastConstant_pivot['ConstName'] = df_LastConstant_pivot['ConstName'].apply(str.lower)
+#
+df_LastConstant_pivot_ConstOrder = pd.DataFrame.merge(df_LastConstant_pivot, df_ConstOrder, how='left',on='ConstName')
+df_LastConstant_pivot_ConstOrder = df_LastConstant_pivot_ConstOrder.sort_values(by=['SortOrder'])
+df_LastConstant_pivot_ConstOrder = df_LastConstant_pivot_ConstOrder.reset_index().drop(columns = {'SortOrder','index'})
+```
+
+
+```{python}
+ojs_define(constants = df_LastConstant_pivot_ConstOrder)
+```
+
+```{ojs}
+// label: fig-mc-consts
+// fig-cap: Mode Choice Constants
+// echo: false
+Inputs.table(transpose(constants))
+```
+:::

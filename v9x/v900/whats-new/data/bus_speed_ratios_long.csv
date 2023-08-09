@@ -1,0 +1,76 @@
+FunctionalClass,FunctionalClassName,TimePeriod,TimePeriodName,AreaType,AreaTypeName,BusSpeedRatio
+Col,Collectors & Locals,Pk,Peak,Rur,Rural,0.56
+Min,Minor Arterials,Pk,Peak,Rur,Rural,0.82
+Maj,Major Arterials,Pk,Peak,Rur,Rural,0.91
+Exp,Expressways,Pk,Peak,Rur,Rural,0.52
+Fwy,Freeways & Ramps,Pk,Peak,Rur,Rural,0.61
+Col,Collectors & Locals,Ok,Off-Peak,Rur,Rural,0.58
+Min,Minor Arterials,Ok,Off-Peak,Rur,Rural,0.75
+Maj,Major Arterials,Ok,Off-Peak,Rur,Rural,0.79
+Exp,Expressways,Ok,Off-Peak,Rur,Rural,0.54
+Fwy,Freeways & Ramps,Ok,Off-Peak,Rur,Rural,0.47
+Col,Collectors & Locals,DY,Daily,Rur,Rural,0.58
+Min,Minor Arterials,DY,Daily,Rur,Rural,0.8
+Maj,Major Arterials,DY,Daily,Rur,Rural,0.85
+Exp,Expressways,DY,Daily,Rur,Rural,0.53
+Fwy,Freeways & Ramps,DY,Daily,Rur,Rural,0.62
+Col,Collectors & Locals,Pk,Peak,Trn,Transition,0.59
+Min,Minor Arterials,Pk,Peak,Trn,Transition,0.74
+Maj,Major Arterials,Pk,Peak,Trn,Transition,0.78
+Exp,Expressways,Pk,Peak,Trn,Transition,0.54
+Fwy,Freeways & Ramps,Pk,Peak,Trn,Transition,0.64
+Col,Collectors & Locals,Ok,Off-Peak,Trn,Transition,0.6
+Min,Minor Arterials,Ok,Off-Peak,Trn,Transition,0.68
+Maj,Major Arterials,Ok,Off-Peak,Trn,Transition,0.7
+Exp,Expressways,Ok,Off-Peak,Trn,Transition,0.55
+Fwy,Freeways & Ramps,Ok,Off-Peak,Trn,Transition,0.48
+Col,Collectors & Locals,DY,Daily,Trn,Transition,0.6
+Min,Minor Arterials,DY,Daily,Trn,Transition,0.72
+Maj,Major Arterials,DY,Daily,Trn,Transition,0.75
+Exp,Expressways,DY,Daily,Trn,Transition,0.54
+Fwy,Freeways & Ramps,DY,Daily,Trn,Transition,0.64
+Col,Collectors & Locals,Pk,Peak,Sub,Suburban,0.63
+Min,Minor Arterials,Pk,Peak,Sub,Suburban,0.66
+Maj,Major Arterials,Pk,Peak,Sub,Suburban,0.67
+Exp,Expressways,Pk,Peak,Sub,Suburban,0.56
+Fwy,Freeways & Ramps,Pk,Peak,Sub,Suburban,0.71
+Col,Collectors & Locals,Ok,Off-Peak,Sub,Suburban,0.62
+Min,Minor Arterials,Ok,Off-Peak,Sub,Suburban,0.61
+Maj,Major Arterials,Ok,Off-Peak,Sub,Suburban,0.61
+Exp,Expressways,Ok,Off-Peak,Sub,Suburban,0.56
+Fwy,Freeways & Ramps,Ok,Off-Peak,Sub,Suburban,0.5
+Col,Collectors & Locals,DY,Daily,Sub,Suburban,0.62
+Min,Minor Arterials,DY,Daily,Sub,Suburban,0.64
+Maj,Major Arterials,DY,Daily,Sub,Suburban,0.65
+Exp,Expressways,DY,Daily,Sub,Suburban,0.56
+Fwy,Freeways & Ramps,DY,Daily,Sub,Suburban,0.69
+Col,Collectors & Locals,Pk,Peak,Urb,Urban,0.66
+Min,Minor Arterials,Pk,Peak,Urb,Urban,0.6
+Maj,Major Arterials,Pk,Peak,Urb,Urban,0.58
+Exp,Expressways,Pk,Peak,Urb,Urban,0.58
+Fwy,Freeways & Ramps,Pk,Peak,Urb,Urban,0.79
+Col,Collectors & Locals,Ok,Off-Peak,Urb,Urban,0.64
+Min,Minor Arterials,Ok,Off-Peak,Urb,Urban,0.55
+Maj,Major Arterials,Ok,Off-Peak,Urb,Urban,0.53
+Exp,Expressways,Ok,Off-Peak,Urb,Urban,0.57
+Fwy,Freeways & Ramps,Ok,Off-Peak,Urb,Urban,0.55
+Col,Collectors & Locals,DY,Daily,Urb,Urban,0.64
+Min,Minor Arterials,DY,Daily,Urb,Urban,0.58
+Maj,Major Arterials,DY,Daily,Urb,Urban,0.56
+Exp,Expressways,DY,Daily,Urb,Urban,0.58
+Fwy,Freeways & Ramps,DY,Daily,Urb,Urban,0.76
+Col,Collectors & Locals,Pk,Peak,CBD,CBD-Like,0.57
+Min,Minor Arterials,Pk,Peak,CBD,CBD-Like,0.53
+Maj,Major Arterials,Pk,Peak,CBD,CBD-Like,0.5
+Exp,Expressways,Pk,Peak,CBD,CBD-Like,0.6
+Fwy,Freeways & Ramps,Pk,Peak,CBD,CBD-Like,0.87
+Col,Collectors & Locals,Ok,Off-Peak,CBD,CBD-Like,0.52
+Min,Minor Arterials,Ok,Off-Peak,CBD,CBD-Like,0.48
+Maj,Major Arterials,Ok,Off-Peak,CBD,CBD-Like,0.45
+Exp,Expressways,Ok,Off-Peak,CBD,CBD-Like,0.58
+Fwy,Freeways & Ramps,Ok,Off-Peak,CBD,CBD-Like,0.63
+Col,Collectors & Locals,DY,Daily,CBD,CBD-Like,0.53
+Min,Minor Arterials,DY,Daily,CBD,CBD-Like,0.51
+Maj,Major Arterials,DY,Daily,CBD,CBD-Like,0.49
+Exp,Expressways,DY,Daily,CBD,CBD-Like,0.59
+Fwy,Freeways & Ramps,DY,Daily,CBD,CBD-Like,0.84

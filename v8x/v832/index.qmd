@@ -1,7 +1,6 @@
 ---
-title:  "Version 8.3.2"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 8.3.2 - Preface
+title: Preface
 ---
 
 This is the documentation for the Wasatch Front Travel Demand Model for Version 8.3.2. The documentation includes:

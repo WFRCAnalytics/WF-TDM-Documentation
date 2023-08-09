@@ -1,7 +1,6 @@
 ---
-title:  "Version 7.0.1"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 7.0.1 - Preface
+title: Preface
 ---
 
 This is the documentation for the Wasatch Front Travel Demand Model for Version 7.0.1. The documentation includes:

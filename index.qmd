@@ -1,9 +1,15 @@
 ---
-title:  "Wasatch Front Travel Demand Model Documentation"
-author: WFRC / MAG
-date-modified: last-modified
+title:  "Documentation"
 ---
+Documentation of the Wasatch Front Travel Demand Model (WF TDM) has been separated into three documents:
 
-This website documents the progress of the Wasatch Front Travel Demand Model (TDM). The main topics of this site regard the *What's New? Documentation*, the complete *Model Documentation*, the *Calibration/Validation Report*, and various other resources worth noting -- all for different model versions.
+ - What’s New Report – describes the changes made to the WF TDM since the last model release
+ - Validation Report – provides the base year validation of the current version of the WF TDM, as well as a reasonableness check of the model as a forecasting tool
+ - Model Process Report – provides an overview of the model, a summary of the model’s input data sets, and an outline of the model’s primary steps and logic
 
-Wasatch Front Regional Council (WFRC) alongside Mountainland Association of Governments (MAG) facilitates the development and documentation of the TDM.
+These reports will be available as PDF documents in the "_Notes" folder in the WF TDM’s root directory. However, it is expected that the primary means of accessing the model’s documentation will be online at the following links:
+
+ - [What’s New](https://wfrc.org/wftdm-docs/v9x/v900/whats-new/1-genparams.html)
+ - [Validation Report](https://wfrc.org/wftdm-docs/v9x/v900/validation/1-hhdisag-autoown.html)
+ - Model Process Report (in progress)
+ - Previous Versions (in progress)

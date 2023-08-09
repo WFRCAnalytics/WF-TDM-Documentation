@@ -1,0 +1,13 @@
+---
+title: Mode Choice
+---
+
+Changes made to the `2_ModelScripts\4_ModeChoice` folder are discussed in this section. Updates to the mode choice portion of the model include transit skims and district summaries.
+
+## Transit Skims
+
+Modifications to the transit skim script were made to incorporate the new bus speeds input file.
+
+## District Summaries
+
+The district summary script was modified to change `COUNTY` field references to `CO_FIPS` for county summaries due to removal of field from TAZ shapefile.

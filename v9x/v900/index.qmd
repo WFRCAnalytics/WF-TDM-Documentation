@@ -1,11 +1,19 @@
 ---
-margin-header: Version 9.0.0 - Preface
 title: Preface
 ---
 
-This is the documentation for the Wasatch Front Travel Demand Model for Version 9.0.0. The documentation includes:
+This is the documentation for the Wasatch Front Travel Demand Model Version 9.0. The documentation includes the following reports:
 
- - [What's New Document](whats-new/2022-12-19/1-genparams.qmd)
- - [Calibration & Validation Report](calib-valid/1-life-cycle.qmd)
+ - [What's New Document](whats-new/1-genparams.qmd)
+ - Validation Report (soon to be released)
+<!-- - [Validation Report](validation/1-life-cycle.qmd)-->
 
-For access to this version of the TDM visit <https://github.com/WFRCAnalytics/WF-TDM-v9.0>.
+<!--For static versions of the documentation reports, please download the following files:
+
+ - (download link here)
+ - (download link here) -->
+
+For access to this version of the TDM visit please contact the following persons:
+
+ - Suzie Swim (WFRC): sswim@wfrc.org
+ - Matt DeLora (MAG): mdelora@magutah.org

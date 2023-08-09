@@ -1,7 +1,6 @@
 ---
-title:  "Version 5.0.0 - Downloads"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 5.0.0- Downloads
+title: Downloads
 ---
 
 The downloads for the Version 5.0.0 documentation is shown below by category.

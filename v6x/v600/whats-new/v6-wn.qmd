@@ -1,7 +1,5 @@
 ---
-title:  "Version 6.0.0 - What's New?"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 6.0.0 - What's New?
 ---
 
 ## Revised Long Range Population and Employment Projections

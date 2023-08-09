@@ -1,34 +1,93 @@
+
+#==================
+#v9-v900-whats-new
+#==================
+
 project:
   type: book
-  output-dir: _book/v9x-v900-whats-new-4
+  output-dir: _book/v9x-v900-whats-new-pdf 
+  #output-dir: _book/v9x-v900-whats-new-doc
 
 book:
   title: "What's New? - Version 9.0.0"
   author: "WFRC / MAG"
-  date: "6/9/2023"
+  date: "Aug 1, 2023"
+  date-format: long
   chapters:
     - index.qmd
-    - v9x/v900/whats-new/2023-04-14/1-genparams.qmd
-    - v9x/v900/whats-new/2023-04-14/2-inputdata.qmd
-    - v9x/v900/whats-new/2023-04-14/3-inputprocessing.qmd
-    - v9x/v900/whats-new/2023-04-14/4-hhdisag.qmd
-    #- v9x/v900/whats-new/2023-04-14/5-tripgen.qmd
-    - v9x/v900/whats-new/2023-04-14/6-distribution.qmd
-    - v9x/v900/whats-new/2023-04-14/7-mc.qmd
-    - v9x/v900/whats-new/2023-04-14/8-assign.qmd
-    #- v9x/v900/whats-new/2023-04-14/9-pp.qmd
-    - v9x/v900/whats-new/2023-04-14/10-modelresults.qmd
+    - v9x/v900/whats-new/1-genparams.qmd
+    - v9x/v900/whats-new/2-inputdata.qmd
+    - v9x/v900/whats-new/3-inputprocessing.qmd
+    - v9x/v900/whats-new/4-hhdisag.qmd
+    - v9x/v900/whats-new/6-distribution.qmd
+    - v9x/v900/whats-new/7-mc.qmd
+    - v9x/v900/whats-new/8-assign.qmd
+    - v9x/v900/whats-new/10-modelresults.qmd
 
-#bibliography: references.bib
+
+#===================
+#v9-v900-validation
+#===================
+  
+#project:
+#  type: book
+#  #output-dir: _book/v9x-v900-validation-pdf
+#  output-dir: _book/v9x-v900-validation-doc#
+#book:
+#  title: "Validation Report - Version 9.0.0"
+#  author: "WFRC / MAG"
+#  date: "Aug 1, 2023"
+#  date-format: long
+#  chapters:
+#    - index.qmd
+#    - v9x/v900/validation/1-hhdisag-autoown.qmd
+#    - v9x/v900/validation/2-tripgen.qmd
+#    - v9x/v900/validation/3-distribute.qmd
+#    - v9x/v900/validation/4-modechoice.qmd
+#    - v9x/v900/validation/5-assignhwy.qmd
+#    - v9x/v900/validation/A-sensitivity.qmd
+
+
+#======================
+#v9-v900-model-process
+#======================
+  
+#project:
+#  type: book
+#  #output-dir: _book/v9x-v900-model-process-pdf
+#  output-dir: _book/v9x-v900-model-process-doc
+#
+#book:
+#  title: "Model Process Report - Version 9.0.0"
+#  author: "WFRC / MAG"
+#  date: "Aug 1, 2023"
+#  date-format: long
+#  chapters:
+#    - index.qmd
+#    - v9x/v900/model-process/1-hhdisag-autoown.qmd
+#    - v9x/v900/model-process/2-tripgen.qmd
+#    - v9x/v900/model-process/3-distribute.qmd
+#    - v9x/v900/model-process/4-modechoice.qmd
+#    - v9x/v900/model-process/5-assignhwy.qmd
+#    - v9x/v900/model-process/A-sensitivity.qmd
+
 
 format:
-  pdf:
+  RtpPDF-pdf:
     toc: true
     lot: true
     lof: true
+    keep-tex: true
+    fig-pos: 'H'
     number-sections: true
     colorlinks: true
     tbl-colwidths: [70, 30]
-    documentclass: report #scrreprt
     classoption:
       - 'titlepage=false'
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+  #docx: 
+  #  reference-doc: _extensions/cday/template-rtp.docx
+  

@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WFTDM Documentation - Input Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../_pictures/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="module" src="../../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://wfrc.org" class="navbar-brand navbar-brand-logo">
+    <img src="../../../_pictures/wf-logo-new-white-t.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9-series" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9 Series</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v831/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v830/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.0</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="mailto:sswim@wfrc.org" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/1-genparams.html"><span style="color: #3E6682;">**Whats New?**</span></a></li><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/2-inputdata.html">Input Data</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span style="color: #3E6682;"><strong>Preface</strong></span></span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><span style="color: #3E6682;"><strong>Whats New?</strong></span></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/1-genparams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Parameters</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/2-inputdata.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Input Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/3-inputprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Input Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/4-hhdisag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Household Disaggregation and Auto Ownership</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/6-distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/7-mc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mode Choice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/8-assign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Highway Assignment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/10-modelresults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Results - Comparison with v8.3.2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
+   
+  <ul class="collapse">
+  <li><a href="#global-data" id="toc-global-data" class="nav-link active" data-scroll-target="#global-data">Global Data</a></li>
+  <li><a href="#traffic-analysis-zones-taz" id="toc-traffic-analysis-zones-taz" class="nav-link" data-scroll-target="#traffic-analysis-zones-taz">Traffic Analysis Zones (TAZ)</a></li>
+  <li><a href="#socioeconomic-data" id="toc-socioeconomic-data" class="nav-link" data-scroll-target="#socioeconomic-data">Socioeconomic Data</a></li>
+  <li><a href="#highway-network" id="toc-highway-network" class="nav-link" data-scroll-target="#highway-network">Highway Network</a></li>
+  <li><a href="#transit" id="toc-transit" class="nav-link" data-scroll-target="#transit">Transit</a></li>
+  <li><a href="#externals" id="toc-externals" class="nav-link" data-scroll-target="#externals">Externals</a></li>
+  <li><a href="#segment" id="toc-segment" class="nav-link" data-scroll-target="#segment">Segment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Input Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Changes made to the <code>1_Inputs</code> folder are discussed in this section.</p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="65" data-source-offset="-28"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 64;"><span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="pp">require</span>(<span class="st">'leaflet@1.2.0'</span>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;link href='</span><span class="sc">${</span><span class="fu">resolve</span>(<span class="st">'leaflet@1.2.0/dist/leaflet.css'</span>)<span class="sc">}</span><span class="vs">' rel='stylesheet' /&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="68" data-source-offset="-142"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 67;"><span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>geojsonTazOld    <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/tazOld.geojson"</span>   )<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>geojsonTazNew    <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/tazNew.geojson"</span>   )<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>geojsonK12Enroll <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/k12enroll.geojson"</span>)<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>geojsonCity      <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/city.geojson"</span>     )<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>geojsonSDst      <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/sdst.geojson"</span>     )<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>geojsonMDst      <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/mdst.geojson"</span>     )<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>geojsonLDst      <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/ldst.geojson"</span>     )<span class="op">.</span><span class="fu">json</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<section id="global-data" class="level2">
+<h2 class="anchored" data-anchor-id="global-data">Global Data</h2>
+<p>This section includes the changes made within the <code>0_GlobalData</code> subfolder.</p>
+<section id="trip-tables" class="level3">
+<h3 class="anchored" data-anchor-id="trip-tables">Trip Tables</h3>
+<p>The college base distribution file <code>BaseDistribution.csv</code> that contains the household locations of students in the base year was updated using new enrollment data sources. Dormitory populations were assigned to TAZs based on group quarter data from the census. The remaining enrollment was distributed using StreetLight origin-destination and USHE enrollment data.</p>
+</section>
+<section id="household-disaggregation-and-auto-ownership" class="level3">
+<h3 class="anchored" data-anchor-id="household-disaggregation-and-auto-ownership">Household Disaggregation and Auto Ownership</h3>
+<p>The age percent lookup file <code>Lookup - BYTAZAgePct - AllCo.csv</code> used in household disaggregation was replaced with the updated statewide file. The statewide file was updated based on 2020 Census block data, 2020 ACS block group data, and 2019 ACS population by age group data.</p>
+</section>
+<section id="mode-choice" class="level3">
+<h3 class="anchored" data-anchor-id="mode-choice">Mode Choice</h3>
+<p>The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the <em>General Parameters</em> section, and included in a new bus speed ratios file <code>bus_speed_ratios.csv</code>. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Bus Speed Ratios Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Bus Speed Ratios Data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Previous Bus Speed Ratios</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="185" data-source-offset="-18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 184;"><span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>faDataBusSpeeds     <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data</span><span class="sc">\\</span><span class="st">bus_speed_ratios_long.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>faFunctionalClasses <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data</span><span class="sc">\\</span><span class="st">functionalclass.csv"</span>      )<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>faTimePeriods       <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data</span><span class="sc">\\</span><span class="st">timeperiod.csv"</span>           )<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>faAreaTypes         <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data</span><span class="sc">\\</span><span class="st">areatype.csv"</span>             )<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>viewof facetSelect  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Time Period'</span><span class="op">,</span> <span class="st">'TimePeriodName'</span>]<span class="op">,</span> [<span class="st">'Area Type'</span><span class="op">,</span> <span class="st">'AreaTypeName'</span>]<span class="op">,</span> [<span class="st">'Functional Class'</span><span class="op">,</span> <span class="st">'FunctionalClassName'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'TimePeriodName'</span>     <span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Columns:"</span>})<span class="op">;</span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>viewof domainSelect <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Time Period'</span><span class="op">,</span> <span class="st">'TimePeriodName'</span>]<span class="op">,</span> [<span class="st">'Area Type'</span><span class="op">,</span> <span class="st">'AreaTypeName'</span>]<span class="op">,</span> [<span class="st">'Functional Class'</span><span class="op">,</span> <span class="st">'FunctionalClassName'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'AreaTypeName'</span>       <span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"X-Axis:"</span>})<span class="op">;</span></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>viewof strokeSelect <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Time Period'</span><span class="op">,</span> <span class="st">'TimePeriodName'</span>]<span class="op">,</span> [<span class="st">'Area Type'</span><span class="op">,</span> <span class="st">'AreaTypeName'</span>]<span class="op">,</span> [<span class="st">'Functional Class'</span><span class="op">,</span> <span class="st">'FunctionalClassName'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'FunctionalClassName'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Series:"</span>})<span class="op">;</span></span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="co">// FILTER DATA</span></span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a><span class="co">//viewof functionalclasses_checked = Inputs.checkbox(faFunctionalClasses.map(function(d) {return d.FunctionalClassName}),</span></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a><span class="co">//                                                   {value: faFunctionalClasses.map(function(d) {return d.FunctionalClassName}),</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a><span class="co">//                                                    label: "Function Class"});</span></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="co">//viewof timeperiods_checked       = Inputs.checkbox(faTimePeriods      .map(function(d) {return d.TimePeriodName     }),</span></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a><span class="co">//                                                   {value: faTimePeriods      .map(function(d) {return d.TimePeriodName     }),</span></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a><span class="co">//                                                    label: "Time Period"   });</span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="co">//filteredBusData = faDataBusSpeeds.filter(function(busspeed) {</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a><span class="co">//  return functionalclasses_checked.includes(busspeed.FunctionalClassName) &amp;&amp;</span></span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a><span class="co">//         timeperiods_checked      .includes(busspeed.TimePeriodName     )// &amp;&amp;</span></span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="co">//         //areatypes        .includes(busspeed.AreaTypeName  );</span></span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a><span class="co">//});</span></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a>domainFromSelect <span class="op">=</span> {</span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(domainSelect) {</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'TimePeriodName'</span>     <span class="op">:</span> <span class="cf">return</span> faTimePeriods      <span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {<span class="cf">return</span> d<span class="op">.</span><span class="at">TimePeriodName</span>     })<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'AreaTypeName'</span>       <span class="op">:</span> <span class="cf">return</span> faAreaTypes        <span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {<span class="cf">return</span> d<span class="op">.</span><span class="at">AreaTypeName</span>       })<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'FunctionalClassName'</span><span class="op">:</span> <span class="cf">return</span> faFunctionalClasses<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {<span class="cf">return</span> d<span class="op">.</span><span class="at">FunctionalClassName</span>})<span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-212"><a href="#cb3-212" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a><span class="co">//xPlotDomainSelect = {</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="co">//  switch(domainSelect) {</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a><span class="co">//    case 'TimePeriodName'     : return "TimePeriod"     ; break;</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a><span class="co">//    case 'AreaTypeName'       : return "AreaType"       ; break;</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a><span class="co">//    case 'FunctionalClassName': return "FunctionalClass"; break;</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a><span class="co">//    default: return;</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a><span class="co">//  }</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a><span class="co">//}</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a>fLabel <span class="op">=</span> {</span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(facetSelect) {</span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'TimePeriodName'</span>     <span class="op">:</span> <span class="cf">return</span> <span class="st">"Time Period"</span>     <span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'AreaTypeName'</span>       <span class="op">:</span> <span class="cf">return</span> <span class="st">"Area Type"</span>       <span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'FunctionalClassName'</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"Functional Class"</span><span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a>xLabel <span class="op">=</span> {</span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(domainSelect) {</span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'TimePeriodName'</span>     <span class="op">:</span> <span class="cf">return</span> <span class="st">"Time Period"</span>     <span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'AreaTypeName'</span>       <span class="op">:</span> <span class="cf">return</span> <span class="st">"Area Type"</span>       <span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'FunctionalClassName'</span><span class="op">:</span> <span class="cf">return</span> <span class="st">"Functional Class"</span><span class="op">;</span> <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span> <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>domainFacetSelect <span class="op">=</span> {</span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a>  <span class="cf">switch</span>(facetSelect) {</span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'TimePeriodName'</span><span class="op">:</span></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> faTimePeriods<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> d<span class="op">.</span><span class="at">TimePeriodName</span></span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'AreaTypeName'</span><span class="op">:</span></span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> faAreaTypes<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> d<span class="op">.</span><span class="at">AreaTypeName</span></span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">'FunctionalClassName'</span><span class="op">:</span></span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> faFunctionalClasses<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> d<span class="op">.</span><span class="at">FunctionalClassName</span></span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a>      <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a>    <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span><span class="op">;</span> </span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="270" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 269;"><span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a>  <span class="dt">aspectRatio</span><span class="op">:</span> <span class="fl">0.25</span><span class="op">,</span></span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a>  <span class="dt">facet</span><span class="op">:</span> { <span class="dt">data</span><span class="op">:</span> faDataBusSpeeds<span class="op">,</span> <span class="dt">x</span><span class="op">:</span> facetSelect<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> fLabel<span class="op">,</span> <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span>}<span class="op">,</span></span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> xLabel<span class="op">,</span></span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> domainFromSelect<span class="op">,</span></span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickSize</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickPadding</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a>    <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">90</span><span class="op">,</span></span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Bus Speed Ratio"</span><span class="op">,</span></span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span></span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">8</span></span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">"categorical"</span><span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">legendStyle</span><span class="op">:</span> { <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span> } }<span class="op">,</span></span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span></span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginTop</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">120</span><span class="op">,</span></span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">frame</span>()<span class="op">,</span></span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(faDataBusSpeeds<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> domainSelect<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"BusSpeedRatio"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> strokeSelect<span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">2</span> })<span class="op">,</span></span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(faDataBusSpeeds<span class="op">,</span> { <span class="dt">x</span><span class="op">:</span> domainSelect<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"BusSpeedRatio"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> strokeSelect<span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> strokeSelect })</span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-bus-speed-ratios" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;1: Bus Speed Ratios</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="305" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 304;"><span id="cb5-305"><a href="#cb5-305" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(faDataBusSpeeds<span class="op">,</span> {</span>
+<span id="cb5-306"><a href="#cb5-306" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb5-307"><a href="#cb5-307" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span><span class="op">,</span></span>
+<span id="cb5-308"><a href="#cb5-308" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-309"><a href="#cb5-309" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [</span>
+<span id="cb5-310"><a href="#cb5-310" aria-hidden="true" tabindex="-1"></a>    <span class="st">"FunctionalClassName"</span><span class="op">,</span></span>
+<span id="cb5-311"><a href="#cb5-311" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TimePeriodName"</span><span class="op">,</span></span>
+<span id="cb5-312"><a href="#cb5-312" aria-hidden="true" tabindex="-1"></a>    <span class="st">"AreaTypeName"</span><span class="op">,</span></span>
+<span id="cb5-313"><a href="#cb5-313" aria-hidden="true" tabindex="-1"></a>    <span class="st">"BusSpeedRatio"</span></span>
+<span id="cb5-314"><a href="#cb5-314" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb5-315"><a href="#cb5-315" aria-hidden="true" tabindex="-1"></a>  <span class="dt">header</span><span class="op">:</span> {</span>
+<span id="cb5-316"><a href="#cb5-316" aria-hidden="true" tabindex="-1"></a>    <span class="dt">FunctionalClassName</span><span class="op">:</span> <span class="st">"Functional Class"</span><span class="op">,</span></span>
+<span id="cb5-317"><a href="#cb5-317" aria-hidden="true" tabindex="-1"></a>    <span class="dt">TimePeriodName</span><span class="op">:</span> <span class="st">"Time Period"</span><span class="op">,</span></span>
+<span id="cb5-318"><a href="#cb5-318" aria-hidden="true" tabindex="-1"></a>    <span class="dt">AreaTypeName</span><span class="op">:</span> <span class="st">"Area Type"</span><span class="op">,</span></span>
+<span id="cb5-319"><a href="#cb5-319" aria-hidden="true" tabindex="-1"></a>    <span class="dt">BusSpeedRatio</span><span class="op">:</span> <span class="st">"Bus Speed Ratio"</span></span>
+<span id="cb5-320"><a href="#cb5-320" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-321"><a href="#cb5-321" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="328" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 327;"><span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a><span class="co">// read in CSVs</span></span>
+<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a>faDataBusSpeeds_previous <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data</span><span class="sc">\\</span><span class="st">bus_speed_ratios_previous.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="337" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 336;"><span id="cb7-337"><a href="#cb7-337" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-338"><a href="#cb7-338" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb7-339"><a href="#cb7-339" aria-hidden="true" tabindex="-1"></a>  <span class="dt">aspectRatio</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb7-340"><a href="#cb7-340" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb7-341"><a href="#cb7-341" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span><span class="op">,</span></span>
+<span id="cb7-342"><a href="#cb7-342" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-343"><a href="#cb7-343" aria-hidden="true" tabindex="-1"></a>  <span class="dt">margin</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb7-344"><a href="#cb7-344" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginBottom</span><span class="op">:</span> <span class="dv">150</span><span class="op">,</span></span>
+<span id="cb7-345"><a href="#cb7-345" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb7-346"><a href="#cb7-346" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">""</span><span class="op">,</span></span>
+<span id="cb7-347"><a href="#cb7-347" aria-hidden="true" tabindex="-1"></a>    <span class="co">//tickFormat: () =&gt; "",</span></span>
+<span id="cb7-348"><a href="#cb7-348" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickRotate</span><span class="op">:</span> <span class="dv">90</span><span class="op">,</span></span>
+<span id="cb7-349"><a href="#cb7-349" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> faDataBusSpeeds_previous<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {<span class="cf">return</span> d<span class="op">.</span><span class="at">FunctionalClass</span>})<span class="op">,</span></span>
+<span id="cb7-350"><a href="#cb7-350" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickSize</span><span class="op">:</span> <span class="dv">0</span></span>
+<span id="cb7-351"><a href="#cb7-351" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-352"><a href="#cb7-352" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Bus Speed Ratio"</span> <span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]}<span class="op">,</span></span>
+<span id="cb7-353"><a href="#cb7-353" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">"categorical"</span><span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">false</span> }<span class="op">,</span></span>
+<span id="cb7-354"><a href="#cb7-354" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-355"><a href="#cb7-355" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">frame</span>()<span class="op">,</span></span>
+<span id="cb7-356"><a href="#cb7-356" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(faDataBusSpeeds_previous<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"FunctionalClass"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"BusSpeedRatio"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"FunctionalClass"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"FunctionalClass"</span>})</span>
+<span id="cb7-357"><a href="#cb7-357" aria-hidden="true" tabindex="-1"></a>  ]  </span>
+<span id="cb7-358"><a href="#cb7-358" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-bus-speed-ratios-previous" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;2: Previous Bus Speed Ratios</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="assignment" class="level3">
+<h3 class="anchored" data-anchor-id="assignment">Assignment</h3>
+<p>As described in the <em>General Parameters</em> section, diurnal and production/attraction factors were moved out of the <code>0_GeneralParameters.block</code> file to an input file. The factors are now found in the <code>Diurnal &amp; PA factors.csv</code> file.</p>
+</section>
+</section>
+<section id="traffic-analysis-zones-taz" class="level2">
+<h2 class="anchored" data-anchor-id="traffic-analysis-zones-taz">Traffic Analysis Zones (TAZ)</h2>
+<section id="taz-geometry-geographic-changes" class="level3">
+<h3 class="anchored" data-anchor-id="taz-geometry-geographic-changes">Taz Geometry &amp; Geographic Changes</h3>
+<p>TAZ geometry was updated and corrected. These updates include:</p>
+<ul>
+<li>Fixed the TAZ UTM NAD83 projection to use the standard for Utah rather than the ArcGIS default.</li>
+<li>All TAZ boundaries align to county boundaries from the most current version on AGRC’s website.</li>
+<li>All internal TAZ topology was checked and corrected so there are no slivers, gaps, overlaps.</li>
+</ul>
+<p>Internal zones were split to increase the model’s geographic resolution. Some zone boundaries were also modified without being split to better align with underlying land uses and planning boundaries.</p>
+<p>The geographic coverage area of the internal zones was also expanded to encompass the entire county. The notable exceptions to this are the portions of Box Elder County and Weber County that are not in the WFRC planning domain. While not expanded to county boundaries, the geographic coverage area of these counties was still changed to encompass the canyon/mountain areas that are part of the Wasatch Front travel shed.</p>
+<p>External zones were revised to reflect the changes of the expanded internal zone area. This included an update to the number and location of the external zones. However, external zones are no longer represented in the TAZ shapefile. The arbitrary polygons representing the external zones in previous version of the TAZ shapefile have been removed. External zones are still represented in other parts of the model, such as in the highway network, general parameters block file.</p>
+<p>The expanded area and reconfigured TAZs resulted in the addition of 688 internal zones and 6 external zones. A comparison of zone counts is found in <a href="#tbl-taz-count-internal">Table&nbsp;1</a> and <a href="#tbl-taz-count-external">Table&nbsp;2</a>.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" data-execution_count="4" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="55">
+<div id="tbl-taz-count-internal" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Internal TAZ Count Comparison</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">County</th>
+<th style="text-align: left;">v9</th>
+<th style="text-align: left;">v832</th>
+<th style="text-align: left;">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">153</td>
+<td style="text-align: left;">135</td>
+<td style="text-align: left;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">428</td>
+<td style="text-align: left;">280</td>
+<td style="text-align: left;">148</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">324</td>
+<td style="text-align: left;">231</td>
+<td style="text-align: left;">93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">1311</td>
+<td style="text-align: left;">1127</td>
+<td style="text-align: left;">184</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">1330</td>
+<td style="text-align: left;">1085</td>
+<td style="text-align: left;">245</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">3546</td>
+<td style="text-align: left;">2858</td>
+<td style="text-align: left;">688</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" data-execution_count="5" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="56">
+<div id="tbl-taz-count-external" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: External TAZ Count Comparison</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">County</th>
+<th style="text-align: left;">v9</th>
+<th style="text-align: left;">v832</th>
+<th style="text-align: left;">Change</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">-1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">29</td>
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">6</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The interactive map in <a href="#fig-taz-compare-map">Figure&nbsp;3</a> can be explored to visualize the difference in version 9 and version 8 TAZs.</p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="534" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 533;"><span id="cb8-534"><a href="#cb8-534" aria-hidden="true" tabindex="-1"></a>mapTaz <span class="op">=</span> {</span>
+<span id="cb8-535"><a href="#cb8-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-536"><a href="#cb8-536" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb8-537"><a href="#cb8-537" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb8-538"><a href="#cb8-538" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-539"><a href="#cb8-539" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
+<span id="cb8-540"><a href="#cb8-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-541"><a href="#cb8-541" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
+<span id="cb8-542"><a href="#cb8-542" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb8-543"><a href="#cb8-543" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb8-544"><a href="#cb8-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-545"><a href="#cb8-545" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lcolors <span class="op">=</span> [<span class="st">'#0000FF'</span>    <span class="op">,</span><span class="st">'red'</span>   ]</span>
+<span id="cb8-546"><a href="#cb8-546" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> llabels <span class="op">=</span> [<span class="st">'v8.3.2 TAZ'</span> <span class="op">,</span><span class="st">'v9.0.0 TAZ'</span>]<span class="op">;</span></span>
+<span id="cb8-547"><a href="#cb8-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-548"><a href="#cb8-548" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZOld <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTazOld<span class="op">,</span> { <span class="dt">weight</span><span class="op">:</span> <span class="fl">3.00</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> lcolors[<span class="dv">0</span>]<span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb8-549"><a href="#cb8-549" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZNew <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTazNew<span class="op">,</span> { <span class="dt">weight</span><span class="op">:</span> <span class="fl">1.50</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> lcolors[<span class="dv">1</span>]<span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb8-550"><a href="#cb8-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-551"><a href="#cb8-551" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
+<span id="cb8-552"><a href="#cb8-552" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
+<span id="cb8-553"><a href="#cb8-553" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'legend'</span>)<span class="op">;</span></span>
+<span id="cb8-554"><a href="#cb8-554" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">''</span><span class="op">;</span></span>
+<span id="cb8-555"><a href="#cb8-555" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> llabels<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb8-556"><a href="#cb8-556" aria-hidden="true" tabindex="-1"></a>        div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> lcolors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span> llabels[i] <span class="op">+</span> <span class="st">'&lt;br/&gt;'</span><span class="op">;</span></span>
+<span id="cb8-557"><a href="#cb8-557" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb8-558"><a href="#cb8-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-559"><a href="#cb8-559" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add CSS style for the background color</span></span>
+<span id="cb8-560"><a href="#cb8-560" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
+<span id="cb8-561"><a href="#cb8-561" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
+<span id="cb8-562"><a href="#cb8-562" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-563"><a href="#cb8-563" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb8-564"><a href="#cb8-564" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb8-565"><a href="#cb8-565" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb8-566"><a href="#cb8-566" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-taz-compare-map" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-7" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;3: TAZ Geography Comparison Map</figcaption>
+</figure>
+</div>
+</div>
+<p>The TAZ numbering was updated to reflect the changes made to the TAZ geometry, as depicted in <a href="#tbl-taz-ranges-internal">Table&nbsp;3</a> and <a href="#tbl-taz-ranges-external">Table&nbsp;4</a>.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" data-execution_count="12" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="63">
+<div id="tbl-taz-ranges-internal" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;3: Internal TAZ Ranges</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">County</th>
+<th style="text-align: left;">v9</th>
+<th style="text-align: left;">v832</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">1-153</td>
+<td style="text-align: left;">1-135</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">154-581</td>
+<td style="text-align: left;">141-420</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">582-905</td>
+<td style="text-align: left;">424-654</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">906-2216</td>
+<td style="text-align: left;">655-1781</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">2217-3546</td>
+<td style="text-align: left;">1789-2873</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">1-3546</td>
+<td style="text-align: left;">1-2873</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" data-execution_count="13" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="64">
+<div id="tbl-taz-ranges-external" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;4: External TAZ Ranges</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">County</th>
+<th style="text-align: left;">v9</th>
+<th style="text-align: left;">v832</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">3601-3606</td>
+<td style="text-align: left;">136-140</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">3607-3609</td>
+<td style="text-align: left;">421-423</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">3610-3615</td>
+<td style="text-align: left;">1782-1788</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">3616-3629</td>
+<td style="text-align: left;">2874-2881</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">3601-3629</td>
+<td style="text-align: left;">137-140, 421-423, 1782-1788, 2874-2881</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="taz-attribute-changes" class="level3">
+<h3 class="anchored" data-anchor-id="taz-attribute-changes">TAZ Attribute Changes</h3>
+<p>This section describes the changes made to the attributes of the TAZ shapefile.</p>
+<section id="remm-space" class="level4">
+<h4 class="anchored" data-anchor-id="remm-space">REMM Space</h4>
+<p>To indicate which TAZs are included in the Real Estate Market Model (REMM) space, the <code>REMM</code> field was added with a value of <code>1</code> indicating that it is part of REMM and <code>0</code> indicating it is not part of REMM, as shown in <a href="#fig-taz-remm-space">Figure&nbsp;4</a>.</p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="658" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 657;"><span id="cb9-658"><a href="#cb9-658" aria-hidden="true" tabindex="-1"></a>mapTazRemmSpace <span class="op">=</span> {</span>
+<span id="cb9-659"><a href="#cb9-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-660"><a href="#cb9-660" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb9-661"><a href="#cb9-661" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb9-662"><a href="#cb9-662" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-663"><a href="#cb9-663" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
+<span id="cb9-664"><a href="#cb9-664" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-665"><a href="#cb9-665" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
+<span id="cb9-666"><a href="#cb9-666" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb9-667"><a href="#cb9-667" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb9-668"><a href="#cb9-668" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-669"><a href="#cb9-669" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> remmColors <span class="op">=</span> [<span class="st">'#00887F'</span>   <span class="op">,</span><span class="st">'#BD0026'</span>       ]</span>
+<span id="cb9-670"><a href="#cb9-670" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> remmLabels <span class="op">=</span> [<span class="st">'REMM Space'</span><span class="op">,</span><span class="st">'Non-REMM Space'</span>]<span class="op">;</span></span>
+<span id="cb9-671"><a href="#cb9-671" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-672"><a href="#cb9-672" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZNew <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTazNew<span class="op">,</span> {</span>
+<span id="cb9-673"><a href="#cb9-673" aria-hidden="true" tabindex="-1"></a>                            <span class="dt">style</span><span class="op">:</span> <span class="kw">function</span>(feature) {</span>
+<span id="cb9-674"><a href="#cb9-674" aria-hidden="true" tabindex="-1"></a>                              <span class="kw">var</span> d <span class="op">=</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">REMM</span><span class="op">;</span></span>
+<span id="cb9-675"><a href="#cb9-675" aria-hidden="true" tabindex="-1"></a>                              <span class="cf">return</span> d<span class="op">==</span><span class="dv">1</span> <span class="op">?</span> {<span class="dt">color</span><span class="op">:</span>remmColors[<span class="dv">0</span>]<span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">:</span></span>
+<span id="cb9-676"><a href="#cb9-676" aria-hidden="true" tabindex="-1"></a>                                     d<span class="op">==</span><span class="dv">0</span> <span class="op">?</span> {<span class="dt">color</span><span class="op">:</span>remmColors[<span class="dv">1</span>]<span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">:</span> </span>
+<span id="cb9-677"><a href="#cb9-677" aria-hidden="true" tabindex="-1"></a>                                            {<span class="dt">color</span><span class="op">:</span>    <span class="st">'#000000'</span><span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">;</span></span>
+<span id="cb9-678"><a href="#cb9-678" aria-hidden="true" tabindex="-1"></a>                            }</span>
+<span id="cb9-679"><a href="#cb9-679" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb9-680"><a href="#cb9-680" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-681"><a href="#cb9-681" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
+<span id="cb9-682"><a href="#cb9-682" aria-hidden="true" tabindex="-1"></a>  legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
+<span id="cb9-683"><a href="#cb9-683" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'legend'</span>)<span class="op">;</span></span>
+<span id="cb9-684"><a href="#cb9-684" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">''</span><span class="op">;</span></span>
+<span id="cb9-685"><a href="#cb9-685" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> remmLabels<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb9-686"><a href="#cb9-686" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> remmColors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span> remmLabels[i] <span class="op">+</span> <span class="st">'&lt;br/&gt;'</span><span class="op">;</span></span>
+<span id="cb9-687"><a href="#cb9-687" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-688"><a href="#cb9-688" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-689"><a href="#cb9-689" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add CSS style for the background color</span></span>
+<span id="cb9-690"><a href="#cb9-690" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
+<span id="cb9-691"><a href="#cb9-691" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
+<span id="cb9-692"><a href="#cb9-692" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-693"><a href="#cb9-693" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb9-694"><a href="#cb9-694" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb9-695"><a href="#cb9-695" aria-hidden="true" tabindex="-1"></a>  legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb9-696"><a href="#cb9-696" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-taz-remm-space" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-8" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;4: TAZ REMM Space</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="parking-costs" class="level4">
+<h4 class="anchored" data-anchor-id="parking-costs">Parking Costs</h4>
+<p>Parking costs were updated based on 2022 parking rates obtained from Salt Lake City, web searches, and field visits. A new methodology for calculating parking cost was envisioned but not implemented for v9. Accordingly, updates to parking data were done in a way to facilitate the change to the new methodology in the future. These updates include a new polygon source file for downtown and university areas. However, since the envisioned methodology removes the use of parking cost fields for Lagoon and Salt Lake City International Airport, they were not included in this new shapefile.</p>
+<section id="downtown-and-university-areas" class="level5">
+<h5 class="anchored" data-anchor-id="downtown-and-university-areas">Downtown and University Areas</h5>
+<p>Parking costs were developed for downtown areas for Ogden, Salt Lake City, and Provo, as well as major university areas along the Wasatch Front. A new source polygon shapefile was developed to hold rates for Home-Based Work (HBW), Home-Based College (HBC), Home-Based Other (HBO), and Non-Home-Based (NHB) trip purposes. While rates are included for these four purposes, the v9.0.0 model only utilizes HBW for permanent parking and HBO for temporary parking. The future methodology will incorporate all four purposes.</p>
+</section>
+<section id="lagoon-and-salt-lake-city-international-airport" class="level5">
+<h5 class="anchored" data-anchor-id="lagoon-and-salt-lake-city-international-airport">Lagoon and Salt Lake City International Airport</h5>
+<p>The Airport &amp; Lagoon parking costs were updated based on current parking rate information and the assumptions described in this section.</p>
+<p>The cost of permanent parking for the Lagoon TAZ was set to <code>$0</code> based on the assumption that workers at Lagoon do not pay for parking. The temporary parking was set to <code>$6</code> as calculated by dividing the 2022 advertised parking rate of $18 per day by an assumed average occupancy of 3 people per vehicle. The cost of temporary parking in previous models was $5 in 2010 dollars. The resulting $1 increase in 2019 dollars (20%) over 9 years seems reasonable.</p>
+<p>The cost of permanent parking at the Salt Lake City International Airport was set to <em>$0</em> based on the assumption that workers at the airport do not pay for parking. The cost of temporary parking was set to $1.25 based on a weighted average of short-term premium and economy rates and drop offs and a assumed average vehicle occupancy rate.</p>
+<p>The 2022 the cost for the short-term premium parking in the garage is $5.00 per hour. Short-term economy rate is $2.00 per hour. And for drop-offs there is no charge for parking. The assumed occupancy rate of 2 people per vehicle would result in per-person rates of $2.50, $1.00, and $0.00, respectively. The average of the three per-person rates is $1.75. Given the unknown distribution of travelers, but assuming more drop-offs than parking, a lower value than $1.75 should be expected. The 2019 cost was chosen to be $1.25.</p>
+<p>Compared to the previous temporary parking values of $1 in 2010 dollars, the chosen cost represents a 25 cent increase in 2019 dollars (25%) over 9 years. This growth seems reasonable, especially given the recent improvements to the airport. Additional justification for the chosen increase is the <a href="https://www.bls.gov/data/inflation_calculator.html">CPI adjustment</a>, which for the 2010 value of $1.00 in results in a 2019 value of $1.18.</p>
+</section>
+</section>
+</section>
+<section id="small-districts" class="level3">
+<h3 class="anchored" data-anchor-id="small-districts">Small Districts</h3>
+<p>There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field <code>DSML_NAME</code> includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g.&nbsp;15:1).</p>
+</section>
+<section id="source" class="level3">
+<h3 class="anchored" data-anchor-id="source">Source</h3>
+<p>The <code>_Source</code> subfolder was added and includes the following shapefile data sets: Cities, Counties, Districts, and Environmental Constraints. Additionally, a ArcGIS Pro project &amp; mapping files can be found in the <code>__ViewTAZDistricts</code> subfolder.</p>
+</section>
+</section>
+<section id="socioeconomic-data" class="level2">
+<h2 class="anchored" data-anchor-id="socioeconomic-data">Socioeconomic Data</h2>
+<p>Forecasts and control totals were updated based on new census data, updated base year parcel data, and the results of the REMM Model.</p>
+<section id="forecasts" class="level3">
+<h3 class="anchored" data-anchor-id="forecasts">Forecasts</h3>
+<p>The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the <a href="https://wfrc.org/household-job-forecast-map">Household and Job Forecasts Web App</a>. This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the <em>View Advanced Version</em> link in the header to enable the “Changes” option where you can see the change in forecasts between v8.3.2 and v9.0.0. You can explore the data in the embedded web application in <a href="#fig-household-job-forecast-map">Figure&nbsp;5</a></p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="744" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 743;"><span id="cb10-744"><a href="#cb10-744" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="width: 765px; height: 680px; transform: scale(0.85); transform-origin: 0 0;"&gt;</span></span>
+<span id="cb10-745"><a href="#cb10-745" aria-hidden="true" tabindex="-1"></a><span class="vs">         &lt;iframe width="900" height="800" src="https://wfrc.org/household-job-forecast-map/" title="Household and Job Forecast"&gt;&lt;/iframe&gt;</span></span>
+<span id="cb10-746"><a href="#cb10-746" aria-hidden="true" tabindex="-1"></a><span class="vs">     &lt;/div&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-household-job-forecast-map" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-9" data-nodetype="expression">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;5: Embedded Household and Job Forecast Map</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="control-totals" class="level3">
+<h3 class="anchored" data-anchor-id="control-totals">Control Totals</h3>
+<p>Updates to the county control totals were made based on projections from the Gardner Policy Institute. See <a href="#fig-county-control-totals-by-category">Figure&nbsp;6</a> for a comparison between v8 and v9 by county for any given socioeconomic category.</p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="792" data-source-offset="-17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 791;"><span id="cb11-792"><a href="#cb11-792" aria-hidden="true" tabindex="-1"></a>faControlTotals <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/controltotal.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
+<span id="cb11-793"><a href="#cb11-793" aria-hidden="true" tabindex="-1"></a>faCounties      <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/counties.csv"</span>    )<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
+<span id="cb11-794"><a href="#cb11-794" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-795"><a href="#cb11-795" aria-hidden="true" tabindex="-1"></a>cats <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Total Population'</span>               <span class="op">,</span> <span class="st">'TOTPOP'</span>    ]<span class="op">,</span></span>
+<span id="cb11-796"><a href="#cb11-796" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Group Quarter Population'</span>       <span class="op">,</span> <span class="st">'GQ_Pop'</span>    ]<span class="op">,</span></span>
+<span id="cb11-797"><a href="#cb11-797" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Household Population'</span>           <span class="op">,</span> <span class="st">'HH_Pop'</span>    ]<span class="op">,</span></span>
+<span id="cb11-798"><a href="#cb11-798" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Households'</span>                     <span class="op">,</span> <span class="st">'HH'</span>        ]<span class="op">,</span></span>
+<span id="cb11-799"><a href="#cb11-799" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Household Size'</span>                 <span class="op">,</span> <span class="st">'HH_Size'</span>   ]<span class="op">,</span></span>
+<span id="cb11-800"><a href="#cb11-800" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Population 0-17'</span>                <span class="op">,</span> <span class="st">'POP_00_17'</span> ]<span class="op">,</span></span>
+<span id="cb11-801"><a href="#cb11-801" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Population 18-64'</span>               <span class="op">,</span> <span class="st">'POP_18_64'</span> ]<span class="op">,</span></span>
+<span id="cb11-802"><a href="#cb11-802" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Population 65+'</span>                 <span class="op">,</span> <span class="st">'POP_65P'</span>   ]<span class="op">,</span></span>
+<span id="cb11-803"><a href="#cb11-803" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'All Employment'</span>                 <span class="op">,</span> <span class="st">'ALLEMP'</span>    ]<span class="op">,</span></span>
+<span id="cb11-804"><a href="#cb11-804" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Retail Employment'</span>              <span class="op">,</span> <span class="st">'RETL'</span>      ]<span class="op">,</span></span>
+<span id="cb11-805"><a href="#cb11-805" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Food Employment'</span>                <span class="op">,</span> <span class="st">'FOOD'</span>      ]<span class="op">,</span></span>
+<span id="cb11-806"><a href="#cb11-806" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Manufacturing Employment'</span>       <span class="op">,</span> <span class="st">'MANU'</span>      ]<span class="op">,</span></span>
+<span id="cb11-807"><a href="#cb11-807" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Wholesale Employment'</span>           <span class="op">,</span> <span class="st">'WSLE'</span>      ]<span class="op">,</span></span>
+<span id="cb11-808"><a href="#cb11-808" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Office Employment'</span>              <span class="op">,</span> <span class="st">'OFFI'</span>      ]<span class="op">,</span></span>
+<span id="cb11-809"><a href="#cb11-809" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Government/Education Employment'</span><span class="op">,</span> <span class="st">'GVED'</span>      ]<span class="op">,</span></span>
+<span id="cb11-810"><a href="#cb11-810" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Health Employment'</span>              <span class="op">,</span> <span class="st">'HLTH'</span>      ]<span class="op">,</span></span>
+<span id="cb11-811"><a href="#cb11-811" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Other Employment'</span>               <span class="op">,</span> <span class="st">'OTHR'</span>      ]<span class="op">,</span></span>
+<span id="cb11-812"><a href="#cb11-812" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Agriculture Employment'</span>         <span class="op">,</span> <span class="st">'AGRI'</span>      ]<span class="op">,</span></span>
+<span id="cb11-813"><a href="#cb11-813" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Mining Employment'</span>              <span class="op">,</span> <span class="st">'MING'</span>      ]<span class="op">,</span></span>
+<span id="cb11-814"><a href="#cb11-814" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Construction Employment'</span>        <span class="op">,</span> <span class="st">'CONS'</span>      ]<span class="op">,</span></span>
+<span id="cb11-815"><a href="#cb11-815" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Home-Based Job Employment'</span>      <span class="op">,</span> <span class="st">'HBJ'</span>       ]<span class="op">,</span></span>
+<span id="cb11-816"><a href="#cb11-816" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Jobs per Household'</span>             <span class="op">,</span> <span class="st">'Job_HH'</span>    ]<span class="op">,</span></span>
+<span id="cb11-817"><a href="#cb11-817" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Working Population per Job'</span>     <span class="op">,</span> <span class="st">'WrkPop_Job'</span>]])</span>
+<span id="cb11-818"><a href="#cb11-818" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-819"><a href="#cb11-819" aria-hidden="true" tabindex="-1"></a>viewof selectCounty   <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(faCounties<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {<span class="cf">return</span> d<span class="op">.</span><span class="at">CO_NAME</span>})<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'Salt Lake'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">'County: '</span>})<span class="op">;</span></span>
+<span id="cb11-820"><a href="#cb11-820" aria-hidden="true" tabindex="-1"></a>viewof selectCategory <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(cats<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'HH_Pop'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">'Category: '</span>})<span class="op">;</span></span>
+<span id="cb11-821"><a href="#cb11-821" aria-hidden="true" tabindex="-1"></a><span class="co">// FILTER DATA</span></span>
+<span id="cb11-822"><a href="#cb11-822" aria-hidden="true" tabindex="-1"></a>filteredControlTotals <span class="op">=</span> faControlTotals<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(ct) {</span>
+<span id="cb11-823"><a href="#cb11-823" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> selectCounty   <span class="op">==</span> ct<span class="op">.</span><span class="at">CO_NAME</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb11-824"><a href="#cb11-824" aria-hidden="true" tabindex="-1"></a>         selectCategory <span class="op">==</span> ct<span class="op">.</span><span class="at">Category</span><span class="op">;</span></span>
+<span id="cb11-825"><a href="#cb11-825" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb11-826"><a href="#cb11-826" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-827"><a href="#cb11-827" aria-hidden="true" tabindex="-1"></a>maxY <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>filteredControlTotals<span class="op">.</span><span class="fu">map</span>(item <span class="kw">=&gt;</span> item<span class="op">.</span><span class="at">ControlTotal</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-10-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-10-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-10-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-10-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-10-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-10-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-10-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="833" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 832;"><span id="cb12-833"><a href="#cb12-833" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb12-834"><a href="#cb12-834" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb12-835"><a href="#cb12-835" aria-hidden="true" tabindex="-1"></a>  <span class="dt">aspectRatio</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb12-836"><a href="#cb12-836" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">'Year'</span><span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> d}<span class="op">,</span></span>
+<span id="cb12-837"><a href="#cb12-837" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">'Control Total'</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> maxY]}<span class="op">,</span></span>
+<span id="cb12-838"><a href="#cb12-838" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">"categorical"</span><span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">legendStyle</span><span class="op">:</span> { <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span> } }<span class="op">,</span></span>
+<span id="cb12-839"><a href="#cb12-839" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb12-840"><a href="#cb12-840" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb12-841"><a href="#cb12-841" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span></span>
+<span id="cb12-842"><a href="#cb12-842" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb12-843"><a href="#cb12-843" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb12-844"><a href="#cb12-844" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(filteredControlTotals<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">'YEAR'</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">'ControlTotal'</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">'ModelVersion'</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span>})<span class="op">,</span></span>
+<span id="cb12-845"><a href="#cb12-845" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb12-846"><a href="#cb12-846" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-county-control-totals-by-category" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-11" data-nodetype="expression">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;6: County Control Totals by Category</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="school-enrollment" class="level3">
+<h3 class="anchored" data-anchor-id="school-enrollment">School Enrollment</h3>
+<p>The Kindergarten through 12th grade (K-12) enrollment data was updated using the 2019 statewide school enrollment database. This was done at the state-wide level and then applied to the Wasatch Front. Additionally, a point shapefile of the state-wide dataset is included with the TDM, as shown in <a href="#fig-school-locations">Figure&nbsp;7</a>.</p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="862" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 861;"><span id="cb13-862"><a href="#cb13-862" aria-hidden="true" tabindex="-1"></a>mapK12Enroll <span class="op">=</span> {</span>
+<span id="cb13-863"><a href="#cb13-863" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-864"><a href="#cb13-864" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb13-865"><a href="#cb13-865" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb13-866"><a href="#cb13-866" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-867"><a href="#cb13-867" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
+<span id="cb13-868"><a href="#cb13-868" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-869"><a href="#cb13-869" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
+<span id="cb13-870"><a href="#cb13-870" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb13-871"><a href="#cb13-871" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb13-872"><a href="#cb13-872" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-873"><a href="#cb13-873" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cHigh <span class="op">=</span> <span class="st">"#FF0000"</span></span>
+<span id="cb13-874"><a href="#cb13-874" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cMidl <span class="op">=</span> <span class="st">"#00FF00"</span></span>
+<span id="cb13-875"><a href="#cb13-875" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cElem <span class="op">=</span> <span class="st">"#0000FF"</span></span>
+<span id="cb13-876"><a href="#cb13-876" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-877"><a href="#cb13-877" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geojsonMarkerOptions_High <span class="op">=</span> {</span>
+<span id="cb13-878"><a href="#cb13-878" aria-hidden="true" tabindex="-1"></a>      <span class="dt">radius</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb13-879"><a href="#cb13-879" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillColor</span><span class="op">:</span> cHigh<span class="op">,</span></span>
+<span id="cb13-880"><a href="#cb13-880" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cHigh<span class="op">,</span></span>
+<span id="cb13-881"><a href="#cb13-881" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb13-882"><a href="#cb13-882" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb13-883"><a href="#cb13-883" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
+<span id="cb13-884"><a href="#cb13-884" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-885"><a href="#cb13-885" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-886"><a href="#cb13-886" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geojsonMarkerOptions_Midl <span class="op">=</span> {</span>
+<span id="cb13-887"><a href="#cb13-887" aria-hidden="true" tabindex="-1"></a>      <span class="dt">radius</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb13-888"><a href="#cb13-888" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillColor</span><span class="op">:</span> cMidl<span class="op">,</span></span>
+<span id="cb13-889"><a href="#cb13-889" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cMidl<span class="op">,</span></span>
+<span id="cb13-890"><a href="#cb13-890" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb13-891"><a href="#cb13-891" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb13-892"><a href="#cb13-892" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
+<span id="cb13-893"><a href="#cb13-893" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-894"><a href="#cb13-894" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geojsonMarkerOptions_Elem <span class="op">=</span> {</span>
+<span id="cb13-895"><a href="#cb13-895" aria-hidden="true" tabindex="-1"></a>      <span class="dt">radius</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb13-896"><a href="#cb13-896" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillColor</span><span class="op">:</span> cElem<span class="op">,</span></span>
+<span id="cb13-897"><a href="#cb13-897" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cElem<span class="op">,</span></span>
+<span id="cb13-898"><a href="#cb13-898" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb13-899"><a href="#cb13-899" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb13-900"><a href="#cb13-900" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
+<span id="cb13-901"><a href="#cb13-901" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-902"><a href="#cb13-902" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb13-903"><a href="#cb13-903" aria-hidden="true" tabindex="-1"></a>  <span class="co">// function to use different icons based on number of stations</span></span>
+<span id="cb13-904"><a href="#cb13-904" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">markerByEnrollment</span>(feature) {</span>
+<span id="cb13-905"><a href="#cb13-905" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_High</span> <span class="op">&gt;=</span> <span class="dv">100</span>) {</span>
+<span id="cb13-906"><a href="#cb13-906" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geojsonMarkerOptions_High</span>
+<span id="cb13-907"><a href="#cb13-907" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_Midl</span> <span class="op">&gt;=</span> <span class="dv">100</span>){</span>
+<span id="cb13-908"><a href="#cb13-908" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geojsonMarkerOptions_Midl<span class="op">;</span></span>
+<span id="cb13-909"><a href="#cb13-909" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
+<span id="cb13-910"><a href="#cb13-910" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geojsonMarkerOptions_Elem<span class="op">;</span></span>
+<span id="cb13-911"><a href="#cb13-911" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-912"><a href="#cb13-912" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-913"><a href="#cb13-913" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-914"><a href="#cb13-914" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">getColor</span>(c) {</span>
+<span id="cb13-915"><a href="#cb13-915" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (c<span class="op">==</span><span class="st">'High School'</span>) {</span>
+<span id="cb13-916"><a href="#cb13-916" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cHigh<span class="op">;</span></span>
+<span id="cb13-917"><a href="#cb13-917" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Middle School'</span>) {</span>
+<span id="cb13-918"><a href="#cb13-918" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cMidl<span class="op">;</span></span>
+<span id="cb13-919"><a href="#cb13-919" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Elementary School'</span>) {</span>
+<span id="cb13-920"><a href="#cb13-920" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cElem<span class="op">;</span></span>
+<span id="cb13-921"><a href="#cb13-921" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-922"><a href="#cb13-922" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-923"><a href="#cb13-923" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb13-924"><a href="#cb13-924" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
+<span id="cb13-925"><a href="#cb13-925" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> layerSchools <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(geojsonK12Enroll<span class="op">,</span>  {</span>
+<span id="cb13-926"><a href="#cb13-926" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pointToLayer</span><span class="op">:</span> <span class="kw">function</span> (feature<span class="op">,</span> latlng) {</span>
+<span id="cb13-927"><a href="#cb13-927" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mypopup <span class="op">=</span> L<span class="op">.</span><span class="fu">popup</span>()<span class="op">.</span><span class="fu">setContent</span>(<span class="st">"&lt;b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">SchoolName</span> <span class="op">+</span> <span class="st">" Enrollment&lt;/b&gt;"</span> <span class="op">+</span></span>
+<span id="cb13-928"><a href="#cb13-928" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"&lt;br&gt;&lt;b&gt;High School: &lt;/b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_High</span> <span class="op">+</span></span>
+<span id="cb13-929"><a href="#cb13-929" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"&lt;br&gt;&lt;b&gt;Middle School: &lt;/b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_Midl</span> <span class="op">+</span></span>
+<span id="cb13-930"><a href="#cb13-930" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"&lt;br&gt;&lt;b&gt;Elementary School: &lt;/b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_Elem</span>)<span class="op">;</span></span>
+<span id="cb13-931"><a href="#cb13-931" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mymarker <span class="op">=</span> L<span class="op">.</span><span class="fu">circleMarker</span>(latlng<span class="op">,</span> <span class="fu">markerByEnrollment</span>(feature))<span class="op">;</span></span>
+<span id="cb13-932"><a href="#cb13-932" aria-hidden="true" tabindex="-1"></a>      mymarker<span class="op">.</span><span class="fu">bindPopup</span>(mypopup)<span class="op">;</span></span>
+<span id="cb13-933"><a href="#cb13-933" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> mymarker<span class="op">;</span></span>
+<span id="cb13-934"><a href="#cb13-934" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-935"><a href="#cb13-935" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb13-936"><a href="#cb13-936" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-937"><a href="#cb13-937" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
+<span id="cb13-938"><a href="#cb13-938" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
+<span id="cb13-939"><a href="#cb13-939" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'info legend'</span>)<span class="op">;</span></span>
+<span id="cb13-940"><a href="#cb13-940" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> labelsBill <span class="op">=</span> []<span class="op">;</span> <span class="co">// legend title</span></span>
+<span id="cb13-941"><a href="#cb13-941" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> lcategories <span class="op">=</span> [<span class="st">'High School'</span><span class="op">,</span><span class="st">'Middle School'</span><span class="op">,</span><span class="st">'Elementary School'</span>]<span class="op">;</span></span>
+<span id="cb13-942"><a href="#cb13-942" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-943"><a href="#cb13-943" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> lcategories<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb13-944"><a href="#cb13-944" aria-hidden="true" tabindex="-1"></a>        div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> </span>
+<span id="cb13-945"><a href="#cb13-945" aria-hidden="true" tabindex="-1"></a>          labelsBill<span class="op">.</span><span class="fu">push</span>(</span>
+<span id="cb13-946"><a href="#cb13-946" aria-hidden="true" tabindex="-1"></a>            <span class="st">'&lt;i class="bi bi-circle-fill" style="color:'</span> <span class="op">+</span> <span class="fu">getColor</span>(lcategories[i]) <span class="op">+</span> <span class="st">'"&gt;&lt;/i&gt; '</span> <span class="op">+</span></span>
+<span id="cb13-947"><a href="#cb13-947" aria-hidden="true" tabindex="-1"></a>          (lcategories[i] <span class="op">?</span> lcategories[i] <span class="op">:</span> <span class="st">'+'</span>))<span class="op">;</span></span>
+<span id="cb13-948"><a href="#cb13-948" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb13-949"><a href="#cb13-949" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> labelsBill<span class="op">.</span><span class="fu">join</span>(<span class="st">'&lt;br&gt;'</span>)<span class="op">;</span></span>
+<span id="cb13-950"><a href="#cb13-950" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-951"><a href="#cb13-951" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add CSS style for the background color</span></span>
+<span id="cb13-952"><a href="#cb13-952" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
+<span id="cb13-953"><a href="#cb13-953" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
+<span id="cb13-954"><a href="#cb13-954" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb13-955"><a href="#cb13-955" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb13-956"><a href="#cb13-956" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb13-957"><a href="#cb13-957" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb13-958"><a href="#cb13-958" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-959"><a href="#cb13-959" aria-hidden="true" tabindex="-1"></a>  <span class="co">//let lyrK12Enroll = L.geoJson(geojsonK12Enroll, { size: 5, color: '#FFFFFF'}).addTo(map);</span></span>
+<span id="cb13-960"><a href="#cb13-960" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-961"><a href="#cb13-961" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-school-locations" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-12" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;7: K-12 School Locations</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="median-income" class="level3">
+<h3 class="anchored" data-anchor-id="median-income">Median Income</h3>
+<p>Median income &amp; value-of-time (VOT) inputs for the model were updated with 2019 data and used to update the TAZ Median Income in the TAZ file.</p>
+</section>
+</section>
+<section id="highway-network" class="level2">
+<h2 class="anchored" data-anchor-id="highway-network">Highway Network</h2>
+<p>The highway network was expanded to incorporate the new model areas. See <a href="#geographies">TAZ Geographies</a>. The 2023 RTP fields have been updated to reflect the adopted 2023 RTP.</p>
+<section id="highway-node-numbering-schema" class="level3">
+<h3 class="anchored" data-anchor-id="highway-node-numbering-schema">Highway Node Numbering Schema</h3>
+<p>Updates to the highway node numbering schema are shown in <a href="#tbl-master-network-node-numbering-schema">Table&nbsp;5</a>. An additional reference file called <code>_Node Definition - v832 &amp; v9.xlsx</code> is found in the <code>3_Highway</code> folder.</p>
+<div class="grid">
+<div class="g-col-2">
+
+</div>
+<div class="g-col-8">
+<div class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="67">
+<div id="tbl-master-network-node-numbering-schema" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;5: Master Network Node Numbering Schema</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">MPO</th>
+<th style="text-align: left;">Transit Nodes</th>
+<th style="text-align: left;">Highway Nodes</th>
+<th style="text-align: left;">v9 Expansion Areas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">WFRC</td>
+<td style="text-align: left;">10,000 - 19,999</td>
+<td style="text-align: left;">20,000 - 49,999</td>
+<td style="text-align: left;">90,000 - 94,999</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAG</td>
+<td style="text-align: left;">50,000 - 59,999</td>
+<td style="text-align: left;">60,000 - 89,999</td>
+<td style="text-align: left;">95,000 - 99,999</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The highway network updates include the following:</p>
+<ul>
+<li>Updated Commuter-Rail Transit (CRT) Fare Zone
+<ul>
+<li>Vineyard &amp; Orem stations were modified to have the same fare zone (similar to North Temple &amp; Central)</li>
+<li>Updated and fixed fare zone definitions in WFRC area</li>
+</ul></li>
+<li>Fixed small network error in Box Elder where a local road was drawn to the centroid of v8.3.2 TAZ 53</li>
+<li>A few edits to WFRC draft RTP project list</li>
+<li>Updated segment ids
+<ul>
+<li>Made consistent with the latest segment shapefile</li>
+<li>Updated segments to account for recent network changes &amp; add segment definitions to account for rail transit</li>
+</ul></li>
+<li>Added <code>SEGEX_RTP</code> &amp; <code>SEGEX_NEED</code> as text fields (to be populated later when script/processing updated). These are segment ID exception fields where the future SEGIDs are different than existing SEGIDs.</li>
+<li>Phase change for Managed Motorways in WFRC area</li>
+<li>A couple of phasing updates from the WFRC RTP project list</li>
+<li>Cleaned up <code>GIS23_32</code> and <code>GIS23_42</code> fields</li>
+<li>Differentiated what projects will be built by 2028 from what will be built by 2023</li>
+<li>Rail <code>SEGID</code> additions were made to allow for easier transit result visualization.</li>
+</ul>
+<p>Additionally, a <code>MergedMasterNet - 2022-09-19a</code> folder was added to serve as a workspace for editing and updating Merged Master Network and for exporting to v8.3.2 &amp; v9 master networks.</p>
+</section>
+</section>
+<section id="transit" class="level2">
+<h2 class="anchored" data-anchor-id="transit">Transit</h2>
+<p>The transit line files and CUBE Public Transport (PT) files were updated to correspond with the 2023 RTP:</p>
+<ul>
+<li>2019 was thoroughly vetted to represent Aug 2019 change day</li>
+<li>2023: updated route alignment, headways &amp; stops based on August 2022 change day (WFRC &amp; MAG)</li>
+<li>2028: updated route alignment, headways &amp; stops based on UTA 5-Year Service Plan (WFRC &amp; MAG)</li>
+<li>RTP 2032, 2042 &amp; 2050: rolled 2028 changes forward into plan phased years &amp; updated based on 2023 draft plan</li>
+<li>Needs 2032, 2042 &amp; 2050: rolled 2028 changes forward into plan phased years &amp; updated based on 2023 draft plan</li>
+</ul>
+<p>Route S902 was updated so route no longer go to the I-80 Parleys Canyon external node.</p>
+<section id="public-transport-pt-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="public-transport-pt-parameters">Public Transport (PT) Parameters</h3>
+<p>The fare files were updated with 2019 fare data. The fares were updated to match the actual advertised fares, whereas the v8.3.2 model contained a 46% adjustment fares. This reduction accounts for monthly pass, education, fare-pay, senior, employer paid, and other discounts. This adjustment is now explicitly defined, as was discussed in the <em>General Parameters</em> section.</p>
+</section>
+<section id="general-hand-coded-support-links" class="level3">
+<h3 class="anchored" data-anchor-id="general-hand-coded-support-links">General Hand-Coded Support Links</h3>
+<p><code>General_hand_coded_walk_links.NTL</code> files were reviewed and updated.</p>
+</section>
+<section id="transit-route-tester" class="level3">
+<h3 class="anchored" data-anchor-id="transit-route-tester">Transit Route Tester</h3>
+<p>A route tester script was added in the <code>_chk Transit Compile on Net</code> folder. The script checks to see if transit line files for the respective scenario compile on the scenario highway network. This can be used for reviewing transit line edits outside of the model stream.</p>
+</section>
+</section>
+<section id="externals" class="level2">
+<h2 class="anchored" data-anchor-id="externals">Externals</h2>
+<p>External locations and forecasts were updated. The locations of the former and updated location of externals is shown in <a href="#fig-externals">Figure&nbsp;8</a>. Forecasts through 2060 were generated for the updated external locations using historical data through 2019.</p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="1091" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1090;"><span id="cb14-1091"><a href="#cb14-1091" aria-hidden="true" tabindex="-1"></a>geojsonExternalOld   <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/externalold.geojson"</span>  )<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb14-1092"><a href="#cb14-1092" aria-hidden="true" tabindex="-1"></a>geojsonExternalNew   <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/externalnew.geojson"</span>  )<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb14-1093"><a href="#cb14-1093" aria-hidden="true" tabindex="-1"></a>geojsonMasterNetLink <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/masternetlink.geojson"</span>)<span class="op">.</span><span class="fu">json</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-13-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-13-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-13-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb15" data-startfrom="1099" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1098;"><span id="cb15-1099"><a href="#cb15-1099" aria-hidden="true" tabindex="-1"></a>mapExternals <span class="op">=</span> {</span>
+<span id="cb15-1100"><a href="#cb15-1100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1101"><a href="#cb15-1101" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb15-1102"><a href="#cb15-1102" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb15-1103"><a href="#cb15-1103" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-1104"><a href="#cb15-1104" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
+<span id="cb15-1105"><a href="#cb15-1105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1106"><a href="#cb15-1106" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> osmLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'</span><span class="op">,</span> {</span>
+<span id="cb15-1107"><a href="#cb15-1107" aria-hidden="true" tabindex="-1"></a>      <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb15-1108"><a href="#cb15-1108" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span> </span>
+<span id="cb15-1109"><a href="#cb15-1109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1110"><a href="#cb15-1110" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cNew <span class="op">=</span> <span class="st">"#FF0000"</span><span class="op">;</span></span>
+<span id="cb15-1111"><a href="#cb15-1111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cOld <span class="op">=</span> <span class="st">"#00FF00"</span><span class="op">;</span></span>
+<span id="cb15-1112"><a href="#cb15-1112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1113"><a href="#cb15-1113" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> squareIcon_New <span class="op">=</span> L<span class="op">.</span><span class="fu">icon</span>({</span>
+<span id="cb15-1114"><a href="#cb15-1114" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconUrl</span><span class="op">:</span> <span class="st">'https://wfrc.org/wftdm-docs/_pictures/square_green.png'</span><span class="op">,</span>  <span class="co">// Replace with the path to your square-like icon image</span></span>
+<span id="cb15-1115"><a href="#cb15-1115" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconSize</span><span class="op">:</span> [<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">,</span>          <span class="co">// Adjust the size of the square-like icon</span></span>
+<span id="cb15-1116"><a href="#cb15-1116" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconAnchor</span><span class="op">:</span> [<span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span>          <span class="co">// Adjust the anchor point if needed</span></span>
+<span id="cb15-1117"><a href="#cb15-1117" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb15-1118"><a href="#cb15-1118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1119"><a href="#cb15-1119" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> squareIcon_Old <span class="op">=</span> L<span class="op">.</span><span class="fu">icon</span>({</span>
+<span id="cb15-1120"><a href="#cb15-1120" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconUrl</span><span class="op">:</span> <span class="st">'https://wfrc.org/wftdm-docs/_pictures/square_red.png'</span><span class="op">,</span>       <span class="co">// Replace with the path to your square-like icon image</span></span>
+<span id="cb15-1121"><a href="#cb15-1121" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconSize</span><span class="op">:</span> [<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">,</span>          <span class="co">// Adjust the size of the square-like icon</span></span>
+<span id="cb15-1122"><a href="#cb15-1122" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconAnchor</span><span class="op">:</span> [<span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span>          <span class="co">// Adjust the anchor point if needed</span></span>
+<span id="cb15-1123"><a href="#cb15-1123" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb15-1124"><a href="#cb15-1124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1125"><a href="#cb15-1125" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cCommon <span class="op">=</span> <span class="st">"#FF0000"</span></span>
+<span id="cb15-1126"><a href="#cb15-1126" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cAdded  <span class="op">=</span> <span class="st">"#00FF00"</span></span>
+<span id="cb15-1127"><a href="#cb15-1127" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cOther  <span class="op">=</span> <span class="st">"#888888"</span></span>
+<span id="cb15-1128"><a href="#cb15-1128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1129"><a href="#cb15-1129" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geolineCommon <span class="op">=</span> {</span>
+<span id="cb15-1130"><a href="#cb15-1130" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cCommon<span class="op">,</span></span>
+<span id="cb15-1131"><a href="#cb15-1131" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb15-1132"><a href="#cb15-1132" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb15-1133"><a href="#cb15-1133" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-1134"><a href="#cb15-1134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1135"><a href="#cb15-1135" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geoLineAdded <span class="op">=</span> {</span>
+<span id="cb15-1136"><a href="#cb15-1136" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cAdded<span class="op">,</span></span>
+<span id="cb15-1137"><a href="#cb15-1137" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb15-1138"><a href="#cb15-1138" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb15-1139"><a href="#cb15-1139" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-1140"><a href="#cb15-1140" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geoLineOther <span class="op">=</span> {</span>
+<span id="cb15-1141"><a href="#cb15-1141" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cOther<span class="op">,</span></span>
+<span id="cb15-1142"><a href="#cb15-1142" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb15-1143"><a href="#cb15-1143" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb15-1144"><a href="#cb15-1144" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-1145"><a href="#cb15-1145" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb15-1146"><a href="#cb15-1146" aria-hidden="true" tabindex="-1"></a>  <span class="co">// function to use different icons based on number of stations</span></span>
+<span id="cb15-1147"><a href="#cb15-1147" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">markerByNewNet</span>(feature) {</span>
+<span id="cb15-1148"><a href="#cb15-1148" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">FLG_NEWNET</span><span class="op">==</span><span class="dv">3</span>) {</span>
+<span id="cb15-1149"><a href="#cb15-1149" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geolineCommon<span class="op">;</span></span>
+<span id="cb15-1150"><a href="#cb15-1150" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">FLG_NEWNET</span><span class="op">==</span><span class="dv">23</span>){</span>
+<span id="cb15-1151"><a href="#cb15-1151" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geoLineAdded<span class="op">;</span></span>
+<span id="cb15-1152"><a href="#cb15-1152" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
+<span id="cb15-1153"><a href="#cb15-1153" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geoLineOther<span class="op">;</span></span>
+<span id="cb15-1154"><a href="#cb15-1154" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-1155"><a href="#cb15-1155" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-1156"><a href="#cb15-1156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1157"><a href="#cb15-1157" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">getColor</span>(c) {</span>
+<span id="cb15-1158"><a href="#cb15-1158" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>        (c<span class="op">==</span><span class="st">'Common'</span>) {</span>
+<span id="cb15-1159"><a href="#cb15-1159" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cCommon<span class="op">;</span></span>
+<span id="cb15-1160"><a href="#cb15-1160" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Added'</span>) {</span>
+<span id="cb15-1161"><a href="#cb15-1161" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cAdded<span class="op">;</span></span>
+<span id="cb15-1162"><a href="#cb15-1162" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Other'</span>) {</span>
+<span id="cb15-1163"><a href="#cb15-1163" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cOther<span class="op">;</span></span>
+<span id="cb15-1164"><a href="#cb15-1164" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-1165"><a href="#cb15-1165" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-1166"><a href="#cb15-1166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1167"><a href="#cb15-1167" aria-hidden="true" tabindex="-1"></a>  <span class="co">//let lyrNetwork = L.geoJson(geojsonMasterNetLink, { weight: 0.75, color: "#888888", fillOpacity: 0}).addTo(map);</span></span>
+<span id="cb15-1168"><a href="#cb15-1168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1169"><a href="#cb15-1169" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
+<span id="cb15-1170"><a href="#cb15-1170" aria-hidden="true" tabindex="-1"></a><span class="co">//  var lyrNetwork = L.geoJson(geojsonMasterNetLink,  { function (markerByNewNet(feature))}).addTo(map);</span></span>
+<span id="cb15-1171"><a href="#cb15-1171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1172"><a href="#cb15-1172" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
+<span id="cb15-1173"><a href="#cb15-1173" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> externalNewLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(geojsonExternalNew<span class="op">,</span> {</span>
+<span id="cb15-1174"><a href="#cb15-1174" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pointToLayer</span><span class="op">:</span> <span class="kw">function</span> (feature<span class="op">,</span> latlng) {</span>
+<span id="cb15-1175"><a href="#cb15-1175" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mypopup <span class="op">=</span> L<span class="op">.</span><span class="fu">popup</span>()<span class="op">.</span><span class="fu">setContent</span>(<span class="st">"&lt;b&gt;Node: "</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">N</span> <span class="op">+</span> <span class="st">"&lt;/b&gt;"</span>)<span class="op">;</span></span>
+<span id="cb15-1176"><a href="#cb15-1176" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mymarker <span class="op">=</span> L<span class="op">.</span><span class="fu">marker</span>(latlng<span class="op">,</span> { <span class="dt">icon</span><span class="op">:</span> squareIcon_New })<span class="op">;</span></span>
+<span id="cb15-1177"><a href="#cb15-1177" aria-hidden="true" tabindex="-1"></a>      mymarker<span class="op">.</span><span class="fu">bindPopup</span>(mypopup)<span class="op">;</span></span>
+<span id="cb15-1178"><a href="#cb15-1178" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> mymarker<span class="op">;</span></span>
+<span id="cb15-1179"><a href="#cb15-1179" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-1180"><a href="#cb15-1180" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb15-1181"><a href="#cb15-1181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1182"><a href="#cb15-1182" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
+<span id="cb15-1183"><a href="#cb15-1183" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> externalOldLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(geojsonExternalOld<span class="op">,</span> {</span>
+<span id="cb15-1184"><a href="#cb15-1184" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pointToLayer</span><span class="op">:</span> <span class="kw">function</span> (feature<span class="op">,</span> latlng) {</span>
+<span id="cb15-1185"><a href="#cb15-1185" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mypopup <span class="op">=</span> L<span class="op">.</span><span class="fu">popup</span>()<span class="op">.</span><span class="fu">setContent</span>(<span class="st">"&lt;b&gt;Node: "</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">N</span> <span class="op">+</span> <span class="st">"&lt;/b&gt;"</span>)<span class="op">;</span></span>
+<span id="cb15-1186"><a href="#cb15-1186" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mymarker <span class="op">=</span> L<span class="op">.</span><span class="fu">marker</span>(latlng<span class="op">,</span> { <span class="dt">icon</span><span class="op">:</span> squareIcon_Old })<span class="op">;</span></span>
+<span id="cb15-1187"><a href="#cb15-1187" aria-hidden="true" tabindex="-1"></a>      mymarker<span class="op">.</span><span class="fu">bindPopup</span>(mypopup)<span class="op">;</span></span>
+<span id="cb15-1188"><a href="#cb15-1188" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> mymarker<span class="op">;</span></span>
+<span id="cb15-1189"><a href="#cb15-1189" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-1190"><a href="#cb15-1190" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb15-1191"><a href="#cb15-1191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1192"><a href="#cb15-1192" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
+<span id="cb15-1193"><a href="#cb15-1193" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
+<span id="cb15-1194"><a href="#cb15-1194" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'info legend'</span>)<span class="op">;</span></span>
+<span id="cb15-1195"><a href="#cb15-1195" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> labelsBill <span class="op">=</span> []<span class="op">;</span> <span class="co">// legend title</span></span>
+<span id="cb15-1196"><a href="#cb15-1196" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> lcategories <span class="op">=</span> [<span class="st">'v8.3.2'</span><span class="op">,</span><span class="st">'v9.0.0'</span>]<span class="op">;</span></span>
+<span id="cb15-1197"><a href="#cb15-1197" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> lcolors     <span class="op">=</span> [cOld    <span class="op">,</span>cNew    ]<span class="op">;</span></span>
+<span id="cb15-1198"><a href="#cb15-1198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1199"><a href="#cb15-1199" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> lcategories<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb15-1200"><a href="#cb15-1200" aria-hidden="true" tabindex="-1"></a>        div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> </span>
+<span id="cb15-1201"><a href="#cb15-1201" aria-hidden="true" tabindex="-1"></a>          labelsBill<span class="op">.</span><span class="fu">push</span>(</span>
+<span id="cb15-1202"><a href="#cb15-1202" aria-hidden="true" tabindex="-1"></a>            <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> lcolors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span></span>
+<span id="cb15-1203"><a href="#cb15-1203" aria-hidden="true" tabindex="-1"></a>          (lcategories[i] <span class="op">?</span> lcategories[i] <span class="op">:</span> <span class="st">'+'</span>))<span class="op">;</span></span>
+<span id="cb15-1204"><a href="#cb15-1204" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb15-1205"><a href="#cb15-1205" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> labelsBill<span class="op">.</span><span class="fu">join</span>(<span class="st">'&lt;br&gt;'</span>)<span class="op">;</span></span>
+<span id="cb15-1206"><a href="#cb15-1206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1207"><a href="#cb15-1207" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add CSS style for the background color</span></span>
+<span id="cb15-1208"><a href="#cb15-1208" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
+<span id="cb15-1209"><a href="#cb15-1209" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
+<span id="cb15-1210"><a href="#cb15-1210" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb15-1211"><a href="#cb15-1211" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb15-1212"><a href="#cb15-1212" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb15-1213"><a href="#cb15-1213" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span>  </span>
+<span id="cb15-1214"><a href="#cb15-1214" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-externals" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-14" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;8: Externals</figcaption>
+</figure>
+</div>
+</div>
+<p>The updated numbering scheme can be found in <a href="#fig-descrip1">Figure&nbsp;9</a>, <a href="#fig-descrip2">Figure&nbsp;10</a>, and <a href="#fig-descrip3">Figure&nbsp;11</a>.</p>
+<div id="fig-descrip1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/ex_descrip1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;9: v9 External Description.</figcaption>
+</figure>
+</div>
+<div id="fig-descrip2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/ex_descrip2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;10: v8.3.2 External Description.</figcaption>
+</figure>
+</div>
+<div id="fig-descrip3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/ex_descrip3.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;11: v9 &amp; v8.3.2 External Description.</figcaption>
+</figure>
+</div>
+</section>
+<section id="segment" class="level2">
+<h2 class="anchored" data-anchor-id="segment">Segment</h2>
+<p>The <code>Master_Segs_withFactors_20220915.shp</code> file contains the updated segments to align with 2023 RTP network changes. Additional segments for rail transit corridors were added in the Wasatch Front area.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"// setup mapping and layers\nL = require('leaflet@1.2.0')\nhtml`<link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' />`\n\ngeojsonTazOld    = FileAttachment(\"data/tazOld.geojson\"   ).json()\ngeojsonTazNew    = FileAttachment(\"data/tazNew.geojson\"   ).json()\ngeojsonK12Enroll = FileAttachment(\"data/k12enroll.geojson\").json()\ngeojsonCity      = FileAttachment(\"data/city.geojson\"     ).json()\ngeojsonSDst      = FileAttachment(\"data/sdst.geojson\"     ).json()\ngeojsonMDst      = FileAttachment(\"data/mdst.geojson\"     ).json()\ngeojsonLDst      = FileAttachment(\"data/ldst.geojson\"     ).json()\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"\n\n// read in CSVs\nfaDataBusSpeeds     = FileAttachment(\"data\\\\bus_speed_ratios_long.csv\").csv({ typed: true });\nfaFunctionalClasses = FileAttachment(\"data\\\\functionalclass.csv\"      ).csv({ typed: true });\nfaTimePeriods       = FileAttachment(\"data\\\\timeperiod.csv\"           ).csv({ typed: true });\nfaAreaTypes         = FileAttachment(\"data\\\\areatype.csv\"             ).csv({ typed: true });\n\nviewof facetSelect  = Inputs.select(new Map([['Time Period', 'TimePeriodName'], ['Area Type', 'AreaTypeName'], ['Functional Class', 'FunctionalClassName']]), {value: 'TimePeriodName'     , label: \"Columns:\"});\nviewof domainSelect = Inputs.select(new Map([['Time Period', 'TimePeriodName'], ['Area Type', 'AreaTypeName'], ['Functional Class', 'FunctionalClassName']]), {value: 'AreaTypeName'       , label: \"X-Axis:\"});\nviewof strokeSelect = Inputs.select(new Map([['Time Period', 'TimePeriodName'], ['Area Type', 'AreaTypeName'], ['Functional Class', 'FunctionalClassName']]), {value: 'FunctionalClassName', label: \"Series:\"});\n\n// FILTER DATA\n//viewof functionalclasses_checked = Inputs.checkbox(faFunctionalClasses.map(function(d) {return d.FunctionalClassName}),\n//                                                   {value: faFunctionalClasses.map(function(d) {return d.FunctionalClassName}),\n//                                                    label: \"Function Class\"});\n//viewof timeperiods_checked       = Inputs.checkbox(faTimePeriods      .map(function(d) {return d.TimePeriodName     }),\n//                                                   {value: faTimePeriods      .map(function(d) {return d.TimePeriodName     }),\n//                                                    label: \"Time Period\"   });\n//filteredBusData = faDataBusSpeeds.filter(function(busspeed) {\n//  return functionalclasses_checked.includes(busspeed.FunctionalClassName) &&\n//         timeperiods_checked      .includes(busspeed.TimePeriodName     )// &&\n//         //areatypes        .includes(busspeed.AreaTypeName  );\n//});\n\ndomainFromSelect = {\n  switch(domainSelect) {\n    case 'TimePeriodName'     : return faTimePeriods      .map(function(d) {return d.TimePeriodName     }); break;\n    case 'AreaTypeName'       : return faAreaTypes        .map(function(d) {return d.AreaTypeName       }); break;\n    case 'FunctionalClassName': return faFunctionalClasses.map(function(d) {return d.FunctionalClassName}); break;\n    default: return;\n  }\n}\n\n//xPlotDomainSelect = {\n//  switch(domainSelect) {\n//    case 'TimePeriodName'     : return \"TimePeriod\"     ; break;\n//    case 'AreaTypeName'       : return \"AreaType\"       ; break;\n//    case 'FunctionalClassName': return \"FunctionalClass\"; break;\n//    default: return;\n//  }\n//}\n\nfLabel = {\n  switch(facetSelect) {\n    case 'TimePeriodName'     : return \"Time Period\"     ; break;\n    case 'AreaTypeName'       : return \"Area Type\"       ; break;\n    case 'FunctionalClassName': return \"Functional Class\"; break;\n    default: return;\n  }\n}\n\nxLabel = {\n  switch(domainSelect) {\n    case 'TimePeriodName'     : return \"Time Period\"     ; break;\n    case 'AreaTypeName'       : return \"Area Type\"       ; break;\n    case 'FunctionalClassName': return \"Functional Class\"; break;\n    default: return;\n  }\n}\n\ndomainFacetSelect = {\n  switch(facetSelect) {\n    case 'TimePeriodName':\n      return faTimePeriods.map(function(d) {\n          return d.TimePeriodName\n        });\n      break;\n    case 'AreaTypeName':\n      return faAreaTypes.map(function(d) {\n          return d.AreaTypeName\n        });\n      break;\n    case 'FunctionalClassName':\n      return faFunctionalClasses.map(function(d) {\n          return d.FunctionalClassName\n        });\n      break;\n    default:\n      return; \n  }\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"Plot.plot({\n  grid: true,\n  aspectRatio: 0.25,\n  facet: { data: faDataBusSpeeds, x: facetSelect, label: fLabel, marginTop: 40},\n  x: {\n    label: xLabel,\n    domain: domainFromSelect,\n    tickSize: 4,\n    tickPadding: 2,\n    marginTop: 40,\n    tickRotate: 90,\n  },\n  y: {\n    label: \"Bus Speed Ratio\",\n    domain: [0, 1],\n    fontSize: 8\n  },\n  color: { type: \"categorical\", legend: true, legendStyle: { fontSize: 16 } },\n  style: {\n    fontSize: 12\n  },\n  marginTop: 60,\n  marginBottom: 120,\n  marks: [\n    Plot.frame(),\n    Plot.line(faDataBusSpeeds, { x: domainSelect, y: \"BusSpeedRatio\", stroke: strokeSelect, strokeWidth: 2 }),\n    Plot.dot(faDataBusSpeeds, { x: domainSelect, y: \"BusSpeedRatio\", stroke: strokeSelect, r: 4, fill: strokeSelect })\n  ]\n})\n\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"Inputs.table(faDataBusSpeeds, {\n  style: {\n    fontSize: 12,\n  },\n  columns: [\n    \"FunctionalClassName\",\n    \"TimePeriodName\",\n    \"AreaTypeName\",\n    \"BusSpeedRatio\"\n  ],\n  header: {\n    FunctionalClassName: \"Functional Class\",\n    TimePeriodName: \"Time Period\",\n    AreaTypeName: \"Area Type\",\n    BusSpeedRatio: \"Bus Speed Ratio\"\n  }\n})\n\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"\n// read in CSVs\nfaDataBusSpeeds_previous = FileAttachment(\"data\\\\bus_speed_ratios_previous.csv\").csv({ typed: true });\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"\nPlot.plot({\n  grid: true,\n  aspectRatio: 0.5,\n  style: {\n    fontSize: 12,\n  },\n  margin: 40,\n  marginBottom: 150,\n  x: {\n    label: \"\",\n    //tickFormat: () => \"\",\n    tickRotate: 90,\n    domain: faDataBusSpeeds_previous.map(function(d) {return d.FunctionalClass}),\n    tickSize: 0\n  },\n  y: {label: \"Bus Speed Ratio\" , domain: [0, 1]},\n  color: { type: \"categorical\", legend: false },\n  marks: [\n    Plot.frame(),\n    Plot.barY(faDataBusSpeeds_previous, {x: \"FunctionalClass\", y: \"BusSpeedRatio\", stroke: \"FunctionalClass\", fill: \"FunctionalClass\"})\n  ]  \n})\n\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"\nmapTaz = {\n\n  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n  yield container;\n  \n  let map = L.map(container).setView([40.7608, -111.8910], 8.25);\n\n  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {\n    attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n  }).addTo(map);\n\n  let lcolors = ['#0000FF'    ,'red'   ]\n  let llabels = ['v8.3.2 TAZ' ,'v9.0.0 TAZ'];\n\n  let lyrTAZOld = L.geoJson(geojsonTazOld, { weight: 3.00, color: lcolors[0], fillOpacity: 0}).addTo(map);\n  let lyrTAZNew = L.geoJson(geojsonTazNew, { weight: 1.50, color: lcolors[1], fillOpacity: 0}).addTo(map);\n\n  var legend = L.control({position: 'bottomleft'});\n    legend.onAdd = function (map) {\n      var div = L.DomUtil.create('div', 'legend');\n      div.innerHTML = '';\n      for (var i = 0; i < llabels.length; i++) {\n        div.innerHTML += '<i style=\"background:' + lcolors[i] + '\">&nbsp;</i> ' + llabels[i] + '<br/>';\n      }\n\n      // Add CSS style for the background color\n      div.style.backgroundColor = 'lightgray';\n      div.style.padding = '10px';\n      \n      return div;\n    };\n    legend.addTo(map);\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"\nmapTazRemmSpace = {\n\n  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n  yield container;\n  \n  let map = L.map(container).setView([40.7608, -111.8910], 8.25);\n\n  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {\n    attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n  }).addTo(map);\n\n  let remmColors = ['#00887F'   ,'#BD0026'       ]\n  let remmLabels = ['REMM Space','Non-REMM Space'];\n  \n  let lyrTAZNew = L.geoJson(geojsonTazNew, {\n                            style: function(feature) {\n                              var d = feature.properties.REMM;\n                              return d==1 ? {color:remmColors[0], weight:1, opacity:0.95} :\n                                     d==0 ? {color:remmColors[1], weight:1, opacity:0.95} : \n                                            {color:    '#000000', weight:1, opacity:0.95} ;\n                            }\n  }).addTo(map);\n  \n  var legend = L.control({position: 'bottomleft'});\n  legend.onAdd = function (map) {\n    var div = L.DomUtil.create('div', 'legend');\n    div.innerHTML = '';\n    for (var i = 0; i < remmLabels.length; i++) {\n      div.innerHTML += '<i style=\"background:' + remmColors[i] + '\">&nbsp;</i> ' + remmLabels[i] + '<br/>';\n    }\n\n    // Add CSS style for the background color\n    div.style.backgroundColor = 'lightgray';\n    div.style.padding = '10px';\n    \n    return div;\n  };\n  legend.addTo(map);\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"\nhtml`<div style=\"width: 765px; height: 680px; transform: scale(0.85); transform-origin: 0 0;\">\n         <iframe width=\"900\" height=\"800\" src=\"https://wfrc.org/household-job-forecast-map/\" title=\"Household and Job Forecast\"></iframe>\n     </div>`\n"},{"methodName":"interpret","cellName":"ojs-cell-10","inline":false,"source":"\n// read in CSVs\nfaControlTotals = FileAttachment(\"data/controltotal.csv\").csv({ typed: true });\nfaCounties      = FileAttachment(\"data/counties.csv\"    ).csv({ typed: true });\n\ncats = new Map([['Total Population'               , 'TOTPOP'    ],\n                ['Group Quarter Population'       , 'GQ_Pop'    ],\n                ['Household Population'           , 'HH_Pop'    ],\n                ['Households'                     , 'HH'        ],\n                ['Household Size'                 , 'HH_Size'   ],\n                ['Population 0-17'                , 'POP_00_17' ],\n                ['Population 18-64'               , 'POP_18_64' ],\n                ['Population 65+'                 , 'POP_65P'   ],\n                ['All Employment'                 , 'ALLEMP'    ],\n                ['Retail Employment'              , 'RETL'      ],\n                ['Food Employment'                , 'FOOD'      ],\n                ['Manufacturing Employment'       , 'MANU'      ],\n                ['Wholesale Employment'           , 'WSLE'      ],\n                ['Office Employment'              , 'OFFI'      ],\n                ['Government/Education Employment', 'GVED'      ],\n                ['Health Employment'              , 'HLTH'      ],\n                ['Other Employment'               , 'OTHR'      ],\n                ['Agriculture Employment'         , 'AGRI'      ],\n                ['Mining Employment'              , 'MING'      ],\n                ['Construction Employment'        , 'CONS'      ],\n                ['Home-Based Job Employment'      , 'HBJ'       ],\n                ['Jobs per Household'             , 'Job_HH'    ],\n                ['Working Population per Job'     , 'WrkPop_Job']])\n\nviewof selectCounty   = Inputs.select(faCounties.map(function(d) {return d.CO_NAME}), {value: 'Salt Lake', label: 'County: '});\nviewof selectCategory = Inputs.select(cats, {value: 'HH_Pop', label: 'Category: '});\n// FILTER DATA\nfilteredControlTotals = faControlTotals.filter(function(ct) {\n  return selectCounty   == ct.CO_NAME &&\n         selectCategory == ct.Category;\n});\n\nmaxY = Math.max(...filteredControlTotals.map(item => item.ControlTotal));\n"},{"methodName":"interpret","cellName":"ojs-cell-11","inline":false,"source":"\nPlot.plot({\n  grid: true,\n  aspectRatio: 0.5,\n  x: {label: 'Year', tickFormat: d => d},\n  y: {label: 'Control Total', domain: [0, maxY]},\n  color: { type: \"categorical\", legend: true, legendStyle: { fontSize: 16 } },\n  marginLeft: 60,\n  style: {\n    fontSize: 12\n  },\n  marks: [\n    Plot.line(filteredControlTotals, {x: 'YEAR', y: 'ControlTotal', stroke: 'ModelVersion', strokeWidth: 3}),\n  ]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-12","inline":false,"source":"\nmapK12Enroll = {\n\n  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n  yield container;\n  \n  let map = L.map(container).setView([40.7608, -111.8910], 8.25);\n\n  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {\n    attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n  }).addTo(map);\n\n  var cHigh = \"#FF0000\"\n  var cMidl = \"#00FF00\"\n  var cElem = \"#0000FF\"\n\n  var geojsonMarkerOptions_High = {\n      radius: 4,\n      fillColor: cHigh,\n      color: cHigh,\n      weight: 2,\n      opacity: 1,\n      fillOpacity: 1.0,\n  };\n\n  var geojsonMarkerOptions_Midl = {\n      radius: 4,\n      fillColor: cMidl,\n      color: cMidl,\n      weight: 2,\n      opacity: 1,\n      fillOpacity: 1.0,\n  };\n  var geojsonMarkerOptions_Elem = {\n      radius: 4,\n      fillColor: cElem,\n      color: cElem,\n      weight: 2,\n      opacity: 1,\n      fillOpacity: 1.0,\n  };\n            \n  // function to use different icons based on number of stations\n  function markerByEnrollment(feature) {\n    if (feature.properties.Enrol_High >= 100) {\n      return geojsonMarkerOptions_High\n    } else if (feature.properties.Enrol_Midl >= 100){\n      return geojsonMarkerOptions_Midl;\n    } else{\n      return geojsonMarkerOptions_Elem;\n    }\n  };\n\n  function getColor(c) {\n    if (c=='High School') {\n      return cHigh;\n    } else if (c=='Middle School') {\n      return cMidl;\n    } else if (c=='Elementary School') {\n      return cElem;\n    }\n  };\n          \n  // create the GeoJSON layer and call the styling function with each marker\n  var layerSchools = L.geoJSON(geojsonK12Enroll,  {\n    pointToLayer: function (feature, latlng) {\n      var mypopup = L.popup().setContent(\"<b>\" + feature.properties.SchoolName + \" Enrollment</b>\" +\n                    \"<br><b>High School: </b>\" + feature.properties.Enrol_High +\n                    \"<br><b>Middle School: </b>\" + feature.properties.Enrol_Midl +\n                    \"<br><b>Elementary School: </b>\" + feature.properties.Enrol_Elem);\n      var mymarker = L.circleMarker(latlng, markerByEnrollment(feature));\n      mymarker.bindPopup(mypopup);\n      return mymarker;\n    }\n  }).addTo(map);\n\n  var legend = L.control({position: 'bottomleft'});\n    legend.onAdd = function (map) {\n      var div = L.DomUtil.create('div', 'info legend');\n      var labelsBill = []; // legend title\n      var lcategories = ['High School','Middle School','Elementary School'];\n\n      for (var i = 0; i < lcategories.length; i++) {\n        div.innerHTML += \n          labelsBill.push(\n            '<i class=\"bi bi-circle-fill\" style=\"color:' + getColor(lcategories[i]) + '\"></i> ' +\n          (lcategories[i] ? lcategories[i] : '+'));\n      }\n      div.innerHTML = labelsBill.join('<br>');\n\n      // Add CSS style for the background color\n      div.style.backgroundColor = 'lightgray';\n      div.style.padding = '10px';\n      \n      return div;\n    };\n    legend.addTo(map);\n\n  //let lyrK12Enroll = L.geoJson(geojsonK12Enroll, { size: 5, color: '#FFFFFF'}).addTo(map);\n  \n}\n"},{"methodName":"interpret","cellName":"ojs-cell-13","inline":false,"source":"geojsonExternalOld   = FileAttachment(\"data/externalold.geojson\"  ).json()\ngeojsonExternalNew   = FileAttachment(\"data/externalnew.geojson\"  ).json()\ngeojsonMasterNetLink = FileAttachment(\"data/masternetlink.geojson\").json()\n"},{"methodName":"interpret","cellName":"ojs-cell-14","inline":false,"source":"\nmapExternals = {\n\n  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n  yield container;\n  \n  let map = L.map(container).setView([40.7608, -111.8910], 8.25);\n\n  let osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {\n      attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n  }).addTo(map); \n\n  var cNew = \"#FF0000\";\n  var cOld = \"#00FF00\";\n\n  var squareIcon_New = L.icon({\n    iconUrl: 'https://wfrc.org/wftdm-docs/_pictures/square_green.png',  // Replace with the path to your square-like icon image\n    iconSize: [15, 15],          // Adjust the size of the square-like icon\n    iconAnchor: [5, 5],          // Adjust the anchor point if needed\n  });\n\n  var squareIcon_Old = L.icon({\n    iconUrl: 'https://wfrc.org/wftdm-docs/_pictures/square_red.png',       // Replace with the path to your square-like icon image\n    iconSize: [15, 15],          // Adjust the size of the square-like icon\n    iconAnchor: [5, 5],          // Adjust the anchor point if needed\n  });\n\n  var cCommon = \"#FF0000\"\n  var cAdded  = \"#00FF00\"\n  var cOther  = \"#888888\"\n\n  var geolineCommon = {\n      color: cCommon,\n      weight: 2,\n      opacity: 1,\n  };\n\n  var geoLineAdded = {\n      color: cAdded,\n      weight: 2,\n      opacity: 1,\n  };\n  var geoLineOther = {\n      color: cOther,\n      weight: 2,\n      opacity: 1,\n  };\n            \n  // function to use different icons based on number of stations\n  function markerByNewNet(feature) {\n    if (feature.properties.FLG_NEWNET==3) {\n      return geolineCommon;\n    } else if (feature.properties.FLG_NEWNET==23){\n      return geoLineAdded;\n    } else{\n      return geoLineOther;\n    }\n  };\n\n  function getColor(c) {\n    if        (c=='Common') {\n      return cCommon;\n    } else if (c=='Added') {\n      return cAdded;\n    } else if (c=='Other') {\n      return cOther;\n    }\n  };\n\n  //let lyrNetwork = L.geoJson(geojsonMasterNetLink, { weight: 0.75, color: \"#888888\", fillOpacity: 0}).addTo(map);\n\n  // create the GeoJSON layer and call the styling function with each marker\n//  var lyrNetwork = L.geoJson(geojsonMasterNetLink,  { function (markerByNewNet(feature))}).addTo(map);\n\n  // create the GeoJSON layer and call the styling function with each marker\n  var externalNewLayer = L.geoJSON(geojsonExternalNew, {\n    pointToLayer: function (feature, latlng) {\n      var mypopup = L.popup().setContent(\"<b>Node: \" + feature.properties.N + \"</b>\");\n      var mymarker = L.marker(latlng, { icon: squareIcon_New });\n      mymarker.bindPopup(mypopup);\n      return mymarker;\n    }\n  }).addTo(map);\n\n  // create the GeoJSON layer and call the styling function with each marker\n  var externalOldLayer = L.geoJSON(geojsonExternalOld, {\n    pointToLayer: function (feature, latlng) {\n      var mypopup = L.popup().setContent(\"<b>Node: \" + feature.properties.N + \"</b>\");\n      var mymarker = L.marker(latlng, { icon: squareIcon_Old });\n      mymarker.bindPopup(mypopup);\n      return mymarker;\n    }\n  }).addTo(map);\n\n  var legend = L.control({position: 'bottomleft'});\n    legend.onAdd = function (map) {\n      var div = L.DomUtil.create('div', 'info legend');\n      var labelsBill = []; // legend title\n      var lcategories = ['v8.3.2','v9.0.0'];\n      var lcolors     = [cOld    ,cNew    ];\n\n      for (var i = 0; i < lcategories.length; i++) {\n        div.innerHTML += \n          labelsBill.push(\n            '<i style=\"background:' + lcolors[i] + '\">&nbsp;</i> ' +\n          (lcategories[i] ? lcategories[i] : '+'));\n      }\n      div.innerHTML = labelsBill.join('<br>');\n\n      // Add CSS style for the background color\n      div.style.backgroundColor = 'lightgray';\n      div.style.padding = '10px';\n      \n      return div;\n    };\n    legend.addTo(map);  \n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('facetSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('domainSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('strokeSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('selectCounty')"},{"methodName":"interpretQuiet","source":"shinyInput('selectCategory')"}]}
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../v9x/v900/whats-new";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://wfrc.org"><img src="https://wfrc.org/wp-content/uploads/2021/11/logo.jpg" class="img-fluid" alt="WFRC" width="150"></a> <a href="https://mountainland.org/"><img src="https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg" class="img-fluid" alt="MAG" width="65"></a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

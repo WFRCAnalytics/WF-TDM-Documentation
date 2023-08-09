@@ -15,5 +15,3 @@ profile:
   group:
     - ['website','book']
   default: book
-
-

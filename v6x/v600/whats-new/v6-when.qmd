@@ -1,11 +1,9 @@
 ---
-title:  "Version 6.0.0 - What's New?"
-date-modified: last-modified
-author: "WFRC / MAG"
+margin-header: Version 6.0.0 - What's New?
 ---
 
 ## When to use model improvements
-Our intent in “What’s New” documents is to explain what we did, why we did it when we did, and offer some insight as to the magnitude of the changes to allow projects that have significant investments in a prior model version to determine whether the affects to their projects are “in the noise” or whether there is a compelling reason to utilize the improved model set.
+Our intent in 'What’s New' documents is to explain what we did, why we did it when we did, and offer some insight as to the magnitude of the changes to allow projects that have significant investments in a prior model version to determine whether the affects to their projects are “in the noise” or whether there is a compelling reason to utilize the improved model set.
 
 We recognize the value of a stable, unchanging model set in allowing on-going projects to progress through analysis with “the latest and greatest model”. However, we also desire to provide upcoming or new projects with solid footing by addressing specific needs within their time-frame. Further, we are sometimes required to implement changes or provide new analytical features to advance projects (e.g. commuter rail, MVC tolling study). 
 

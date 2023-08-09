@@ -1,0 +1,1908 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WFTDM Documentation - General Parameters</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../_pictures/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://wfrc.org" class="navbar-brand navbar-brand-logo">
+    <img src="../../../_pictures/wf-logo-new-white-t.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9-series" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9 Series</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v831/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v830/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.0</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="mailto:sswim@wfrc.org" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/1-genparams.html"><span style="color: #3E6682;">**Whats New?**</span></a></li><li class="breadcrumb-item"><a href="../../../v9x/v900/whats-new/1-genparams.html">General Parameters</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span style="color: #3E6682;"><strong>Preface</strong></span></span></a>
+  </div>
+</li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><span style="color: #3E6682;"><strong>Whats New?</strong></span></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/1-genparams.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">General Parameters</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/2-inputdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Input Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/3-inputprocessing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Input Processing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/4-hhdisag.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Household Disaggregation and Auto Ownership</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/6-distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/7-mc.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mode Choice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/8-assign.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Highway Assignment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v900/whats-new/10-modelresults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Results - Comparison with v8.3.2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
+   
+  <ul class="collapse">
+  <li><a href="#zone-parameters" id="toc-zone-parameters" class="nav-link active" data-scroll-target="#zone-parameters">Zone Parameters</a></li>
+  <li><a href="#exogenous-trip-table-parameters" id="toc-exogenous-trip-table-parameters" class="nav-link" data-scroll-target="#exogenous-trip-table-parameters">Exogenous Trip Table Parameters</a></li>
+  <li><a href="#household-disaggregation-parameters" id="toc-household-disaggregation-parameters" class="nav-link" data-scroll-target="#household-disaggregation-parameters">Household Disaggregation Parameters</a></li>
+  <li><a href="#distribution-mode-choice-and-assignment-parameters" id="toc-distribution-mode-choice-and-assignment-parameters" class="nav-link" data-scroll-target="#distribution-mode-choice-and-assignment-parameters">Distribution, Mode Choice, and Assignment Parameters</a></li>
+  <li><a href="#removed-parameters" id="toc-removed-parameters" class="nav-link" data-scroll-target="#removed-parameters">Removed Parameters</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">General Parameters</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Changes made to the <code>0_GeneralParameters.block</code> file are discussed in this section.</p>
+<section id="zone-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="zone-parameters">Zone Parameters</h2>
+<p>The TAZ and highway node schema was changed as a result of the version 9 TAZ splits. The following parameters were updated to reflect these changes.</p>
+<section id="taz" class="level3">
+<h3 class="anchored" data-anchor-id="taz">TAZ</h3>
+<div class="grid">
+<div class="g-col-1">
+
+</div>
+<div class="g-col-10">
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="tbl-taz-ranges" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Renumbered TAZ Ranges</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 30%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">v9 Value</th>
+<th style="text-align: left;">v8 Value</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">UsedZones</td>
+<td style="text-align: left;">3629</td>
+<td style="text-align: left;">2881</td>
+<td style="text-align: left;">Highest TAZ number used by model</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BoxElderRange</td>
+<td style="text-align: left;">1-153</td>
+<td style="text-align: left;">1-140</td>
+<td style="text-align: left;">Box Elder County Range</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">WeberRange</td>
+<td style="text-align: left;">154-581</td>
+<td style="text-align: left;">141-423</td>
+<td style="text-align: left;">Weber County Range</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DavisRange</td>
+<td style="text-align: left;">582-905</td>
+<td style="text-align: left;">424-654</td>
+<td style="text-align: left;">Davis County Range</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SLRange</td>
+<td style="text-align: left;">906-2216</td>
+<td style="text-align: left;">655-1788</td>
+<td style="text-align: left;">Salt Lake County Range</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UtahRange</td>
+<td style="text-align: left;">2217-3546</td>
+<td style="text-align: left;">1789-2881</td>
+<td style="text-align: left;">Utah County Range</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dummyzones</td>
+<td style="text-align: left;">3547-3600</td>
+<td style="text-align: left;">2882-3400</td>
+<td style="text-align: left;">Placeholder for future TAZ splits</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Externalzones</td>
+<td style="text-align: left;">3601-3629</td>
+<td style="text-align: left;">136-140, 421-423, 1782-1788, 2874-2881</td>
+<td style="text-align: left;">External zones</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NorthBC</td>
+<td style="text-align: left;">3604-3606</td>
+<td style="text-align: left;">138, 139, 140</td>
+<td style="text-align: left;">North Brigham City external zones</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The following TAZ parameters ranges were removed from the general parameters file as they were not being used in the WF TDM:</p>
+<ul>
+<li>RegionRange</li>
+<li>WFRCRange</li>
+<li>MAGRange</li>
+</ul>
+</section>
+<section id="highway-nodes" class="level3">
+<h3 class="anchored" data-anchor-id="highway-nodes">Highway Nodes</h3>
+<div class="grid">
+<div class="g-col-3">
+
+</div>
+<div class="g-col-6">
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-highway-renumber" class="anchored">
+<table id="T_3d75f" data-quarto-postprocess="true" data-tbl-colwidths="[20,20,20,40]" class="table table-sm table-striped small">
+<caption>Table&nbsp;2: Renumbered Highway Nodes</caption>
+<thead>
+<tr class="header">
+<th id="T_3d75f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_3d75f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9 Value</th>
+<th id="T_3d75f_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8 Value</th>
+<th id="T_3d75f_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_3d75f_row0_col0" class="data row0 col0">HwyNodes</td>
+<td id="T_3d75f_row0_col1" class="data row0 col1">10000-99999</td>
+<td id="T_3d75f_row0_col2" class="data row0 col2">3401-999999</td>
+<td id="T_3d75f_row0_col3" class="data row0 col3">Highway and transit node range</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="college-zones" class="level3">
+<h3 class="anchored" data-anchor-id="college-zones">College Zones</h3>
+<p>Where noted, several colleges were effectively discontinued, meaning references to these schools are still in the code base, but enrollment was set to zero.</p>
+<div class="grid">
+<div class="g-col-1">
+
+</div>
+<div class="g-col-10">
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div id="tbl-college-renumber" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;3: Renumbered College Zones</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Area</th>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">v9 Value</th>
+<th style="text-align: left;">v8 Value</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">WFRC Colleges</td>
+<td style="text-align: left;">Ensign (was LDSBC)</td>
+<td style="text-align: left;">1029</td>
+<td style="text-align: left;">950</td>
+<td style="text-align: left;">Ensign College</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Westmin</td>
+<td style="text-align: left;">1263</td>
+<td style="text-align: left;">1150</td>
+<td style="text-align: left;">Westminster College</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">UOFU_Main</td>
+<td style="text-align: left;">1051</td>
+<td style="text-align: left;">1075</td>
+<td style="text-align: left;">University of Utah - Main</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">UOFU_Med</td>
+<td style="text-align: left;">1007</td>
+<td style="text-align: left;">1076</td>
+<td style="text-align: left;">University of Utah - Medical (removed)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">WSU_Main (was WSU_OGDEN)</td>
+<td style="text-align: left;">437</td>
+<td style="text-align: left;">383</td>
+<td style="text-align: left;">Weber State University - Main</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">WSU_Davis</td>
+<td style="text-align: left;">693</td>
+<td style="text-align: left;">525</td>
+<td style="text-align: left;">Weber State University - Davis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">WSU_West</td>
+<td style="text-align: left;">521</td>
+<td style="text-align: left;">290</td>
+<td style="text-align: left;">Weber State University - West (removed)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_Main (was SLCC_TL)</td>
+<td style="text-align: left;">1580</td>
+<td style="text-align: left;">897</td>
+<td style="text-align: left;">Salt Lake Community College - Main</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_SC</td>
+<td style="text-align: left;">1231</td>
+<td style="text-align: left;">1126</td>
+<td style="text-align: left;">Salt Lake Community College - South City</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_JD</td>
+<td style="text-align: left;">1776</td>
+<td style="text-align: left;">1493</td>
+<td style="text-align: left;">Salt Lake Community College - Jordan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_Mead</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1206</td>
+<td style="text-align: left;">Salt Lake Community College - Meadbrook (removed)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_ML</td>
+<td style="text-align: left;">1886</td>
+<td style="text-align: left;">1516</td>
+<td style="text-align: left;">Salt Lake Community College - Miller</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_LB</td>
+<td style="text-align: left;">1085</td>
+<td style="text-align: left;">989</td>
+<td style="text-align: left;">Salt Lake Community College - Library (removed)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_HL</td>
+<td style="text-align: left;">1525</td>
+<td style="text-align: left;">1294</td>
+<td style="text-align: left;">Salt Lake Community College - Highland (removed)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_Airp</td>
+<td style="text-align: left;">979</td>
+<td style="text-align: left;">746</td>
+<td style="text-align: left;">Salt Lake Community College - Airport (removed)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_West</td>
+<td style="text-align: left;">959</td>
+<td style="text-align: left;">745</td>
+<td style="text-align: left;">Salt Lake Community College - Westpointe (removed)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SLCC_HM</td>
+<td style="text-align: left;">2031</td>
+<td style="text-align: left;">1607</td>
+<td style="text-align: left;">Salt Lake Community College - Herriman (removed)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAG Colleges</td>
+<td style="text-align: left;">BYU</td>
+<td style="text-align: left;">2939</td>
+<td style="text-align: left;">2384</td>
+<td style="text-align: left;">Brigham Young University - Main</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">UVU_Main</td>
+<td style="text-align: left;">2848</td>
+<td style="text-align: left;">2326</td>
+<td style="text-align: left;">Utah Valley University - Main</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">UVU_Geneva</td>
+<td style="text-align: left;">2882</td>
+<td style="text-align: left;">2280</td>
+<td style="text-align: left;">Utah Valley University - Geneva (removed)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">UVU_Lehi (was UVU_THANKP)</td>
+<td style="text-align: left;">2606</td>
+<td style="text-align: left;">2099</td>
+<td style="text-align: left;">Utah Valley University - Lehi</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">UVU_Vine</td>
+<td style="text-align: left;">2809</td>
+<td style="text-align: left;">2259</td>
+<td style="text-align: left;">Utah Valley University - Vineyard</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">UVU_Payson</td>
+<td style="text-align: left;">3336</td>
+<td style="text-align: left;">2690</td>
+<td style="text-align: left;">Utah Valley University - Payson</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid">
+<div class="g-col-1">
+
+</div>
+<div class="g-col-10">
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div id="tbl-college-renumber-2" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;4: Renumbered College Zones (continued)</caption>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 40%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">v9 Value</th>
+<th style="text-align: left;">v8 Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">colleges</td>
+<td style="text-align: left;">437, 521, 693, 959, 979, 1007, 1029, 1051, 1085, 1231, 1263, 1491, 1525, 1580, 1776, 1886, 2031, 2606, 2809, 2848, 2882, 2939, 3336</td>
+<td style="text-align: left;">290, 383, 525, 897, 950, 989, 1075, 1076, 1126, 1150, 1294, 1493, 1516, 1607, 2099, 2259, 2280, 2326, 2384, 2690</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="zones-with-off-line-trip-tables" class="level3">
+<h3 class="anchored" data-anchor-id="zones-with-off-line-trip-tables">Zones with Off-line Trip Tables</h3>
+<div class="grid">
+<div class="g-col-3">
+
+</div>
+<div class="g-col-6">
+<div class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-offline-renumber" class="anchored">
+<table id="T_f3cf3" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;5: Renumbered Off-line Trip Table Zones</caption>
+<thead>
+<tr class="header">
+<th id="T_f3cf3_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_f3cf3_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9 Value</th>
+<th id="T_f3cf3_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8 Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_f3cf3_row0_col0" class="data row0 col0">Lagoon</td>
+<td id="T_f3cf3_row0_col1" class="data row0 col1">781</td>
+<td id="T_f3cf3_row0_col2" class="data row0 col2">562</td>
+</tr>
+<tr class="even">
+<td id="T_f3cf3_row1_col0" class="data row1 col0">Airport</td>
+<td id="T_f3cf3_row1_col1" class="data row1 col1">965</td>
+<td id="T_f3cf3_row1_col2" class="data row1 col2">742</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="special-generator-zones" class="level3">
+<h3 class="anchored" data-anchor-id="special-generator-zones">Special Generator Zones</h3>
+<div class="grid">
+<div class="g-col-3">
+
+</div>
+<div class="g-col-6">
+<div class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-specgen-renumber" class="anchored">
+<table id="T_43974" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;6: Renumbered Special Generator Zones</caption>
+<thead>
+<tr class="header">
+<th id="T_43974_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_43974_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9 Value</th>
+<th id="T_43974_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8 Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_43974_row0_col0" class="data row0 col0">TempleSquare</td>
+<td id="T_43974_row0_col1" class="data row0 col1">1035</td>
+<td id="T_43974_row0_col2" class="data row0 col2">966</td>
+</tr>
+<tr class="even">
+<td id="T_43974_row1_col0" class="data row1 col0">SLC_Library</td>
+<td id="T_43974_row1_col1" class="data row1 col1">1147</td>
+<td id="T_43974_row1_col2" class="data row1 col2">1015</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exogenous-trip-table-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="exogenous-trip-table-parameters">Exogenous Trip Table Parameters</h2>
+<p>Income break points for the airport exogenous trip table generation were updated to reflect 2019 base year income.</p>
+<div class="grid">
+<div class="g-col-2">
+
+</div>
+<div class="g-col-8">
+<div class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-exogen-income" class="anchored">
+<table id="T_fc136" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;7: Income Break Points for Airport Exogenous Trip Table Generation</caption>
+<thead>
+<tr class="header">
+<th id="T_fc136_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_fc136_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9 Value</th>
+<th id="T_fc136_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8 Value</th>
+<th id="T_fc136_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_fc136_row0_col0" class="data row0 col0">Income_Lo</td>
+<td id="T_fc136_row0_col1" class="data row0 col1">$45,000</td>
+<td id="T_fc136_row0_col2" class="data row0 col2">$35,000</td>
+<td id="T_fc136_row0_col3" class="data row0 col3">breakpoint between Inc1 &amp; Inc2</td>
+</tr>
+<tr class="even">
+<td id="T_fc136_row1_col0" class="data row1 col0">Income_Md</td>
+<td id="T_fc136_row1_col1" class="data row1 col1">$75,000</td>
+<td id="T_fc136_row1_col2" class="data row1 col2">$70,000</td>
+<td id="T_fc136_row1_col3" class="data row1 col3">breakpoint between Inc2 &amp; Inc3</td>
+</tr>
+<tr class="odd">
+<td id="T_fc136_row2_col0" class="data row2 col0">Income_Hi</td>
+<td id="T_fc136_row2_col1" class="data row2 col1">$125,000</td>
+<td id="T_fc136_row2_col2" class="data row2 col2">$100,000</td>
+<td id="T_fc136_row2_col3" class="data row2 col3">breakpoint between Inc3 &amp; Inc4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="household-disaggregation-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="household-disaggregation-parameters">Household Disaggregation Parameters</h2>
+<p>The regional median income was updated using 2019 5-year ACS data and kept in 2019 dollars to reflect 2019 base year. Note, the version 8 value was estimated from 2015 ACS data and deflated to 2010 dollars.</p>
+<div class="grid">
+<div class="g-col-2">
+
+</div>
+<div class="g-col-8">
+<div class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-hh-disagg" class="anchored">
+<table id="T_e3a0b" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;8: Household Disaggregation Parameter Income Update</caption>
+<thead>
+<tr class="header">
+<th id="T_e3a0b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_e3a0b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9 Value</th>
+<th id="T_e3a0b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8 Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_e3a0b_row0_col0" class="data row0 col0">Reg_Median_Inc</td>
+<td id="T_e3a0b_row0_col1" class="data row0 col1">$74,946</td>
+<td id="T_e3a0b_row0_col2" class="data row0 col2">$58,793</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="distribution-mode-choice-and-assignment-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="distribution-mode-choice-and-assignment-parameters">Distribution, Mode Choice, and Assignment Parameters</h2>
+<section id="k-factors" class="level3">
+<h3 class="anchored" data-anchor-id="k-factors">K-Factors</h3>
+<p>K-factor variables were expanded by trip purpose to allow for more flexibility in calibrating the distribution model. However, no K-factors were needed for calibration. All K-factors were reset to 1.</p>
+<div class="grid">
+<div class="g-col-2">
+
+</div>
+<div class="g-col-8">
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div id="tbl-kfactors" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;9: Reset K-Factors</caption>
+<colgroup>
+<col style="width: 37%">
+<col style="width: 23%">
+<col style="width: 11%">
+<col style="width: 18%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Area</th>
+<th style="text-align: left;">v9 Parameter</th>
+<th style="text-align: left;">v9 Value</th>
+<th style="text-align: left;">v8 Parameter</th>
+<th style="text-align: left;">v8 Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">between Salt Lake and Utah counties</td>
+<td style="text-align: left;">SL_UT_KFAC_Wrk</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">SL_UT_KFAC</td>
+<td style="text-align: left;">0.85</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SL_UT_KFAC_Oth</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SL_UT_KFAC_Trk</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SL_UT_KFAC_Ext</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">between Salt Lake and Davis counties</td>
+<td style="text-align: left;">SL_DA_KFAC_Wrk</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">SL_DA_KFAC</td>
+<td style="text-align: left;">0.95</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SL_DA_KFAC_Oth</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SL_DA_KFAC_Trk</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SL_DA_KFAC_Ext</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">between Box Elder and Weber counties</td>
+<td style="text-align: left;">WE_BE_KFAC_Wrk</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">WE_BE_KFAC</td>
+<td style="text-align: left;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">WE_BE_KFAC_Oth</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">WE_BE_KFAC_Trk</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">WE_BE_KFAC_Ext</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="auto-occupancy" class="level3">
+<h3 class="anchored" data-anchor-id="auto-occupancy">Auto Occupancy</h3>
+<p>Auto or vehicle occupancy variables were expanded to include additional trips purposes. New auto-occupancy rates were calculated based on the reprocessed 2012 Household Travel Survey. Values represent average persons per vehicle for just the Wasatch Front model space. External auto-occupancy rates represent the average of internal-external and external-internal trips.</p>
+<div class="grid">
+<div class="g-col-1">
+
+</div>
+<div class="g-col-10">
+<div class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div id="tbl-auto-occ1" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;10: Vehicle Occupancy Rates</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 35%">
+<col style="width: 8%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">v9 Parameter</th>
+<th style="text-align: left;">v9 Value</th>
+<th style="text-align: left;">v8 Parameter</th>
+<th style="text-align: left;">v8 Value</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_HBW</td>
+<td style="text-align: left;">1.1</td>
+<td style="text-align: left;">VEH_OCCUPANCY_HBW</td>
+<td style="text-align: left;">1.1</td>
+<td style="text-align: left;">Home-Based Work</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_HBShp</td>
+<td style="text-align: left;">1.63</td>
+<td style="text-align: left;">VEH_OCCUPANCY_HBSHP</td>
+<td style="text-align: left;">1.58</td>
+<td style="text-align: left;">Home-Based Shopping</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_HBOth</td>
+<td style="text-align: left;">1.68</td>
+<td style="text-align: left;">VEH_OCCUPANCY_HBOTH</td>
+<td style="text-align: left;">1.66</td>
+<td style="text-align: left;">Home-Based Other</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_HBSch</td>
+<td style="text-align: left;">1.76</td>
+<td style="text-align: left;">VEH_OCCUPANCY_HBSCH</td>
+<td style="text-align: left;">2.14</td>
+<td style="text-align: left;">Home-Based School</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_HBC</td>
+<td style="text-align: left;">1.12</td>
+<td style="text-align: left;">VEH_OCCUPANCY_HBC</td>
+<td style="text-align: left;">1.26</td>
+<td style="text-align: left;">Home-Based College</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_NHBW</td>
+<td style="text-align: left;">1.21</td>
+<td style="text-align: left;">VEH_OCCUPANCY_NHBW</td>
+<td style="text-align: left;">1.2</td>
+<td style="text-align: left;">Non-Home-Based Work</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_NHBNW</td>
+<td style="text-align: left;">1.76</td>
+<td style="text-align: left;">VEH_OCCUPANCY_NHBNW</td>
+<td style="text-align: left;">1.7</td>
+<td style="text-align: left;">Non-Home-Based Non-Work</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_Rec</td>
+<td style="text-align: left;">1.68</td>
+<td style="text-align: left;">(Uses HBO)</td>
+<td style="text-align: left;">1.64</td>
+<td style="text-align: left;">Recreation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_HBO</td>
+<td style="text-align: left;">1.67</td>
+<td style="text-align: left;">VEH_OCCUPANCY_HBO</td>
+<td style="text-align: left;">1.64</td>
+<td style="text-align: left;">Home-Based Other (HBShp+HBOth)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_NHB</td>
+<td style="text-align: left;">1.54</td>
+<td style="text-align: left;">VEH_OCCUPANCY_NHB</td>
+<td style="text-align: left;">1.48</td>
+<td style="text-align: left;">Non-Home-Based (NHBW+NHBNW)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_ExtWrk</td>
+<td style="text-align: left;">1.16</td>
+<td style="text-align: left;">(Uses HBW)</td>
+<td style="text-align: left;">1.1</td>
+<td style="text-align: left;">External Work</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_ExtHBO</td>
+<td style="text-align: left;">1.82</td>
+<td style="text-align: left;">(Uses HBO)</td>
+<td style="text-align: left;">1.64</td>
+<td style="text-align: left;">External Home-Based Other</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_ExtNHB</td>
+<td style="text-align: left;">1.73</td>
+<td style="text-align: left;">(Uses NHB)</td>
+<td style="text-align: left;">1.48</td>
+<td style="text-align: left;">Non-Home-Based</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_ExtRec</td>
+<td style="text-align: left;">1.73</td>
+<td style="text-align: left;">(Uses HBO)</td>
+<td style="text-align: left;">1.64</td>
+<td style="text-align: left;">External Recreation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid">
+<div class="g-col-1">
+
+</div>
+<div class="g-col-10">
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div id="tbl-auto-occ2" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;11: Vehicle Occupancy 3+ Rates</caption>
+<colgroup>
+<col style="width: 24%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 8%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">v9 Parameter</th>
+<th style="text-align: left;">v9 Value</th>
+<th style="text-align: left;">v8 Parameter</th>
+<th style="text-align: left;">v8 Value</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_3p_HBW</td>
+<td style="text-align: left;">3.53</td>
+<td style="text-align: left;">VEH_OCC_3P_HBW</td>
+<td style="text-align: left;">3.4</td>
+<td style="text-align: left;">3+ Person Home-Based Work</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_3p_HBShp</td>
+<td style="text-align: left;">3.49</td>
+<td style="text-align: left;">(Uses HBO)</td>
+<td style="text-align: left;">3.55</td>
+<td style="text-align: left;">3+ Person Home-Based Shopping</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_3p_HBOth</td>
+<td style="text-align: left;">3.73</td>
+<td style="text-align: left;">(Uses HBO)</td>
+<td style="text-align: left;">3.55</td>
+<td style="text-align: left;">3+ Person Home-Based Other</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_3p_HBSch</td>
+<td style="text-align: left;">3.88</td>
+<td style="text-align: left;">(Uses HBO)</td>
+<td style="text-align: left;">3.55</td>
+<td style="text-align: left;">3+ Person Home-Based School</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_3p_HBC</td>
+<td style="text-align: left;">3.24</td>
+<td style="text-align: left;">VEH_OCC_3P_HBC</td>
+<td style="text-align: left;">3.53</td>
+<td style="text-align: left;">3+ Person Home-Based College</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_3p_NHBW</td>
+<td style="text-align: left;">3.71</td>
+<td style="text-align: left;">(Uses NHB)</td>
+<td style="text-align: left;">3.51</td>
+<td style="text-align: left;">3+ Person Non-Home-Based Work</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_3p_NHBNW</td>
+<td style="text-align: left;">3.71</td>
+<td style="text-align: left;">(Uses NHB)</td>
+<td style="text-align: left;">3.51</td>
+<td style="text-align: left;">3+ Person Non-Home-Based Non-Work</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_3p_Rec</td>
+<td style="text-align: left;">3.73</td>
+<td style="text-align: left;">(Uses HBO)</td>
+<td style="text-align: left;">3.55</td>
+<td style="text-align: left;">3+ Person Recreation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VehOcc_3p_HBO</td>
+<td style="text-align: left;">3.68</td>
+<td style="text-align: left;">VEH_OCC_3P_HBO</td>
+<td style="text-align: left;">3.55</td>
+<td style="text-align: left;">3+ Person Home-Based Other (HBShp+HBOth)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VehOcc_3p_NHB</td>
+<td style="text-align: left;">3.71</td>
+<td style="text-align: left;">VEH_OCC_3P_NHB</td>
+<td style="text-align: left;">3.51</td>
+<td style="text-align: left;">3+ Person Non-Home-Based (NHBW+NHBNW)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="value-of-time" class="level3">
+<h3 class="anchored" data-anchor-id="value-of-time">Value of Time</h3>
+<p>Value of time parameters were updated using 2019 5-year ACS data and previous model assumptions and are in 2019 dollars. Version 8 parameters were calibrated to 2015 ACS data and deflated to 2010 dollars. Values of time are in cents/minute.</p>
+<div class="grid">
+<div class="g-col-1">
+
+</div>
+<div class="g-col-10">
+<div class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div id="tbl-vot1" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;12: Value of Time Rates</caption>
+<colgroup>
+<col style="width: 24%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 8%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">v9 Parameter</th>
+<th style="text-align: left;">v9 Value</th>
+<th style="text-align: left;">v8 Parameter</th>
+<th style="text-align: left;">v8 Value</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">VOT_Auto_Wrk</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">VOT_Auto_Wrk</td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">work trips (HBW)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VOT_Auto_Per</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">VOT_Auto_Per</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">non-work trips</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VOT_Auto_Ext</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">VOT_Auto_Ext</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">external</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VOT_LT</td>
+<td style="text-align: left;">37</td>
+<td style="text-align: left;">VOT_LT</td>
+<td style="text-align: left;">30</td>
+<td style="text-align: left;">light truck</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VOT_MD</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">VOT_MD</td>
+<td style="text-align: left;">40</td>
+<td style="text-align: left;">medium truck</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VOT_HV</td>
+<td style="text-align: left;">63</td>
+<td style="text-align: left;">VOT_HV</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">heavy truck</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VOT_Toll</td>
+<td style="text-align: left;">63</td>
+<td style="text-align: left;">VOT_Toll</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">all vehicles on tollway</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VOT_HOT_DA</td>
+<td style="text-align: left;">63</td>
+<td style="text-align: left;">VOT_HOT_DA</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">drive alone on HOT</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VOT_Auto_Wrk_Lo</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">work trips - low income (added)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VOT_Auto_Wrk_Hi</td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">work trips - high income (added)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">VOT_Auto_Per_Lo</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">non-work trips - loc income (added)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">VOT_Auto_Per_Hi</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">non-work trips - high income (added)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="auto-operating-costs" class="level3">
+<h3 class="anchored" data-anchor-id="auto-operating-costs">Auto Operating Costs</h3>
+<p>Auto operating costs were updated to reflect 2019 fuel cost, average fuel economy, and cost of vehicle maintenance and are in 2019 dollars. Version 8 parameters were calibrated to 2015 data and deflated to 2010 dollars. Costs are in cents/mile.</p>
+<div class="grid">
+<div class="g-col-3">
+
+</div>
+<div class="g-col-6">
+<div class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-auto-op" class="anchored">
+<table id="T_a939f" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;13: Auto Operating Cost Rates</caption>
+<thead>
+<tr class="header">
+<th id="T_a939f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_a939f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9 Value</th>
+<th id="T_a939f_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8 Value</th>
+<th id="T_a939f_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_a939f_row0_col0" class="data row0 col0">AOC_Auto</td>
+<td id="T_a939f_row0_col1" class="data row0 col1">21.7</td>
+<td id="T_a939f_row0_col2" class="data row0 col2">18.3</td>
+<td id="T_a939f_row0_col3" class="data row0 col3">auto</td>
+</tr>
+<tr class="even">
+<td id="T_a939f_row1_col0" class="data row1 col0">AOC_LT</td>
+<td id="T_a939f_row1_col1" class="data row1 col1">27.3</td>
+<td id="T_a939f_row1_col2" class="data row1 col2">24.6</td>
+<td id="T_a939f_row1_col3" class="data row1 col3">light truck</td>
+</tr>
+<tr class="odd">
+<td id="T_a939f_row2_col0" class="data row2 col0">AOC_MD</td>
+<td id="T_a939f_row2_col1" class="data row2 col1">55.5</td>
+<td id="T_a939f_row2_col2" class="data row2 col2">47.8</td>
+<td id="T_a939f_row2_col3" class="data row2 col3">medium truck</td>
+</tr>
+<tr class="even">
+<td id="T_a939f_row3_col0" class="data row3 col0">AOC_HV</td>
+<td id="T_a939f_row3_col1" class="data row3 col1">74.3</td>
+<td id="T_a939f_row3_col2" class="data row3 col2">63.7</td>
+<td id="T_a939f_row3_col3" class="data row3 col3">heavy truck</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="managed-lane-costs" class="level3">
+<h3 class="anchored" data-anchor-id="managed-lane-costs">Managed Lane Costs</h3>
+<p>Tolls for tollways (FT=40) were updated to reflect approximately a $5.00 toll for work trips and a $3.00 toll for non-work trips. Tolls for HOT (FT=38) and reliability lanes were updated to reflect approximately a $3.50 toll for work trips and $2.20 for non-work trips. Distances of 10.25 miles (length of average work trip) and 6.5 miles (average length of all trips) were used to determine the work/non-work toll costs in cents per mile. Version 9 tolls are in 2019 dollars. Toll costs for version 8 are in 2010 dollars.</p>
+<div class="grid">
+<div class="g-col-3">
+
+</div>
+<div class="g-col-6">
+<div class="cell" data-execution_count="14">
+<div class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<div id="tbl-managed-lane" class="anchored">
+<table id="T_8023b" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table&nbsp;14: Managed Lane Cost Rates</caption>
+<thead>
+<tr class="header">
+<th id="T_8023b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Parameter</th>
+<th id="T_8023b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">v9 Value</th>
+<th id="T_8023b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">v8 Value</th>
+<th id="T_8023b_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_8023b_row0_col0" class="data row0 col0">Cost_Toll_Pk</td>
+<td id="T_8023b_row0_col1" class="data row0 col1">48</td>
+<td id="T_8023b_row0_col2" class="data row0 col2">24</td>
+<td id="T_8023b_row0_col3" class="data row0 col3">Tollways (FT 40) cost - Peak</td>
+</tr>
+<tr class="even">
+<td id="T_8023b_row1_col0" class="data row1 col0">Cost_Toll_Ok</td>
+<td id="T_8023b_row1_col1" class="data row1 col1">48</td>
+<td id="T_8023b_row1_col2" class="data row1 col2">24</td>
+<td id="T_8023b_row1_col3" class="data row1 col3">Tollways (FT 40) cost - Off-peak</td>
+</tr>
+<tr class="odd">
+<td id="T_8023b_row2_col0" class="data row2 col0">Cost_HOT_Pk</td>
+<td id="T_8023b_row2_col1" class="data row2 col1">34</td>
+<td id="T_8023b_row2_col2" class="data row2 col2">10</td>
+<td id="T_8023b_row2_col3" class="data row2 col3">HOT (FT 38) cost - Peak</td>
+</tr>
+<tr class="even">
+<td id="T_8023b_row3_col0" class="data row3 col0">Cost_HOT_Ok</td>
+<td id="T_8023b_row3_col1" class="data row3 col1">17</td>
+<td id="T_8023b_row3_col2" class="data row3 col2">5</td>
+<td id="T_8023b_row3_col3" class="data row3 col3">HOT (FT 38) cost - Off-peak</td>
+</tr>
+<tr class="odd">
+<td id="T_8023b_row4_col0" class="data row4 col0">Cost_REL_Pk</td>
+<td id="T_8023b_row4_col1" class="data row4 col1">34</td>
+<td id="T_8023b_row4_col2" class="data row4 col2">10</td>
+<td id="T_8023b_row4_col3" class="data row4 col3">Reliability lane cost - Peak</td>
+</tr>
+<tr class="even">
+<td id="T_8023b_row5_col0" class="data row5 col0">Cost_REL_Ok</td>
+<td id="T_8023b_row5_col1" class="data row5 col1">17</td>
+<td id="T_8023b_row5_col2" class="data row5 col2">5</td>
+<td id="T_8023b_row5_col3" class="data row5 col3">Reliability lane cost - Off-peak</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="core-bus-constant-multiplier" class="level3">
+<h3 class="anchored" data-anchor-id="core-bus-constant-multiplier">Core Bus Constant Multiplier</h3>
+<p>The parameter used to set the Core Bus constant was renamed and updated.</p>
+<div class="grid">
+<div class="g-col-2">
+
+</div>
+<div class="g-col-8">
+<div class="cell" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div id="tbl-vot2" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;15: Core Bus Constant Multiplier</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 8%">
+<col style="width: 30%">
+<col style="width: 8%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">v9 Parameter</th>
+<th style="text-align: left;">v9 Value</th>
+<th style="text-align: left;">v8 Parameter</th>
+<th style="text-align: left;">v8 Value</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">RAIL2COR_MULTIPLIER</td>
+<td style="text-align: left;">0.33</td>
+<td style="text-align: left;">RAIL2BRT_MULTIPLIER</td>
+<td style="text-align: left;">0.4</td>
+<td style="text-align: left;">factor to set Core Route constant relative to LRT constant</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="crt-adjustment-factors" class="level3">
+<h3 class="anchored" data-anchor-id="crt-adjustment-factors">CRT Adjustment Factors</h3>
+<p>The following parameters were added to adjust CRT ridership for Davis and Utah Counties. The parameters are applied in the mode choice utility calculation and represent a penalty/incentive in equivalent minutes.</p>
+<ul>
+<li>ADJ_CONST_UT = 0 ;place holder</li>
+<li>ADJ_CONST_CRT_UT = -5 ;encourge CRT in UT County</li>
+<li>ADJ_CONST_CRT_DA = 5 ;discourage CRT in Davis County</li>
+<li>ADJ_CONST_BRT = 0 ;place holder</li>
+</ul>
+</section>
+<section id="transit-fare-discount-factor" class="level3">
+<h3 class="anchored" data-anchor-id="transit-fare-discount-factor">Transit Fare Discount Factor</h3>
+<p>Transit fares (in the transit Input folder) were updated in version 9 to represent standard fares. In previous model versions, fares were coded as effective fares, which included discounts for transit passes and other discounts. Effective fares were estimated to be approximately 54% of the standard fare. A transit fare discounting parameter was added in version 9 to adjust standard transit fares back to effective transit fares. Transit fares are in version 9 are in 2019 dollars.</p>
+<ul>
+<li>FARE_DISCOUNT = 0.54</li>
+</ul>
+</section>
+</section>
+<section id="removed-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="removed-parameters">Removed Parameters</h2>
+<p>The following parameters were removed from the 0_GeneralParameters.block file.</p>
+<section id="county-identification-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="county-identification-parameters">County Identification Parameters</h3>
+<p>The following county identification parameters are no longer used in version 9 and were removed:</p>
+<ul>
+<li>CountyRange = ‘1-5’</li>
+<li>CountyName1 = ‘Weber’</li>
+<li>CountyName2 = ‘Davis’</li>
+<li>CountyName3 = ‘SaltLake’</li>
+<li>CountyName4 = ‘Utah’</li>
+<li>CountyName5 = ‘BoxElder’</li>
+<li>CO_Name1 = ‘WE’</li>
+<li>CO_Name2 = ‘DA’</li>
+<li>CO_Name3 = ‘SL’</li>
+<li>CO_Name4 = ‘UT’</li>
+<li>CO_Name5 = ‘BE’</li>
+</ul>
+</section>
+<section id="air-quality-conformity-report-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="air-quality-conformity-report-parameters">Air Quality Conformity Report Parameters</h3>
+<p>The following air quality conformity reporting parameters are no longer used in version 9 and were removed:</p>
+<ul>
+<li>RE_ID = 0 ;Entire region</li>
+<li>WE_ID = 1 ;Weber</li>
+<li>DA_ID = 2 ;Davis</li>
+<li>SL_ID = 3 ;Salt Lake</li>
+<li>UT_ID = 4 ;Utah</li>
+<li>BE_ID = 5 ;BoxElder</li>
+<li>OC_ID = 55980 ;Ogden</li>
+<li>SC_ID = 67000 ;Salt Lake City</li>
+<li>PC_ID = 62470 ;Provo</li>
+</ul>
+</section>
+<section id="bus-speed-ratios" class="level3">
+<h3 class="anchored" data-anchor-id="bus-speed-ratios">Bus Speed Ratios</h3>
+<p>Bus speed ratio parameters in version 9 are read in via an input file (see section 3.1 of this report for more information). As such, the following bus speed ratio parameters were removed from the <code>0_GeneralParameters.block</code> file:</p>
+<ul>
+<li>ratio_fway = 0.95 ;bus speed to auto speed - freeways</li>
+<li>ratio_ramp = 0.75 ;bus speed to auto speed - freeway ramps</li>
+<li>ratio_part = 0.60 ;bus speed to auto speed - principal arterials</li>
+<li>ratio_mart_urbcbd = 0.55 ;bus speed to auto speed - minor arterials, urban/cbd</li>
+<li>ratio_mart_subrur = 0.65 ;bus speed to auto speed - minor arterials, suburban/rural</li>
+<li>ratio_collector = 0.60 ;bus speed to auto speed - collectors</li>
+<li>minimum_bus_speed = 10.0 ;mph</li>
+</ul>
+</section>
+<section id="prefixes-for-transit-skims" class="level3">
+<h3 class="anchored" data-anchor-id="prefixes-for-transit-skims">Prefixes for Transit Skims</h3>
+<p>Prefixes to identify transit skim output files are coded directly into the scripts in version 9. The following transit skim prefix parameters were removed from the <code>0_GeneralParameters.block</code> file:</p>
+<ul>
+<li>W_LCL_skims = ‘skm_w4’ ;walk-to-local skims</li>
+<li>D_LCL_skims = ‘skm_d4’ ;drive-to-local skims</li>
+<li>W_BRT_skims = ‘skm_w5’ ;walk-to-BRT skims</li>
+<li>D_BRT_skims = ‘skm_d5’ ;drive-to-BRT skims</li>
+<li>W_EXP_skims = ‘skm_w6’ ;walk-to-express bus skims</li>
+<li>D_EXP_skims = ‘skm_d6’ ;drive-to-express bus skims</li>
+<li>W_LRT_skims = ‘skm_w7’ ;walk-to-light rail skims</li>
+<li>D_LRT_skims = ‘skm_d7’ ;drive-to-light rail skims</li>
+<li>W_CRT_skims = ‘skm_w8’ ;walk-to-commuter rail skims</li>
+<li>D_CRT_skims = ‘skm_d8’ ;drive-to-commuter rail skims</li>
+<li>W_mode9_skims = ‘skm_w9’</li>
+<li>D_mode9_skims = ‘skm_d9’</li>
+</ul>
+</section>
+<section id="diurnal-factors" class="level3">
+<h3 class="anchored" data-anchor-id="diurnal-factors">Diurnal Factors</h3>
+<p>DDiurnal factor parameters in version 9 are read in via an input file (see section 3.1 of this report for more information). As such, the following diurnal factor parameters were removed from the <code>0_GeneralParameters.block</code> file:</p>
+<p><b><u>% of trips in period</u></b></p>
+<p></p>
+<ul>
+<li>HBW_AM_Pct = 0.3254</li>
+<li>HBW_MD_Pct = 0.1831</li>
+<li>HBW_PM_Pct = 0.3074</li>
+<li>HBW_EV_Pct = 0.1841</li>
+<li>HBC_AM_Pct = 0.2592</li>
+<li>HBC_MD_Pct = 0.3374</li>
+<li>HBC_PM_Pct = 0.1853</li>
+<li>HBC_EV_Pct = 0.2181</li>
+<li>HBSch_AM_Pct = 0.3784</li>
+<li>HBSch_MD_Pct = 0.2931</li>
+<li>HBSch_PM_Pct = 0.2941</li>
+<li>HBSch_EV_Pct = 0.0344</li>
+<li>HBShp_AM_Pct = 0.0192</li>
+<li>HBShp_MD_Pct = 0.4391</li>
+<li>HBShp_PM_Pct = 0.2496</li>
+<li>HBShp_EV_Pct = 0.2921</li>
+<li>HBOth_AM_Pct = 0.0997</li>
+<li>HBOth_MD_Pct = 0.3129</li>
+<li>HBOth_PM_Pct = 0.2367</li>
+<li>HBOth_EV_Pct = 0.3507</li>
+<li>NHBW_AM_Pct = 0.0697</li>
+<li>NHBW_MD_Pct = 0.5582</li>
+<li>NHBW_PM_Pct = 0.2597</li>
+<li>NHBW_EV_Pct = 0.1124</li>
+<li>NHBNW_AM_Pct = 0.0498</li>
+<li>NHBNW_MD_Pct = 0.4752</li>
+<li>NHBNW_PM_Pct = 0.2426</li>
+<li>NHBNW_EV_Pct = 0.2324</li>
+<li>IX_AM_Pct = 0.1786</li>
+<li>IX_MD_Pct = 0.3291</li>
+<li>IX_PM_Pct = 0.2604</li>
+<li>IX_EV_Pct = 0.2319</li>
+<li>XI_AM_Pct = 0.1786</li>
+<li>XI_MD_Pct = 0.3291</li>
+<li>XI_PM_Pct = 0.2604</li>
+<li>XI_EV_Pct = 0.2319</li>
+<li>XX_AM_Pct = 0.1786</li>
+<li>XX_MD_Pct = 0.3291</li>
+<li>XX_PM_Pct = 0.2604</li>
+<li>XX_EV_Pct = 0.2319</li>
+<li>TR_AM_Pct = 0.1590</li>
+<li>TR_MD_Pct = 0.3522</li>
+<li>TR_PM_Pct = 0.2274</li>
+<li>TR_EV_Pct = 0.2614<br>
+</li>
+<li>HBO_AM_Pct = 0.0840</li>
+<li>HBO_MD_Pct = 0.3383</li>
+<li>HBO_PM_Pct = 0.2401</li>
+<li>HBO_EV_Pct = 0.3376</li>
+<li>NHB_AM_Pct = 0.0563</li>
+<li>NHB_MD_Pct = 0.5024</li>
+<li>NHB_PM_Pct = 0.2482</li>
+<li>NHB_EV_Pct = 0.1931</li>
+</ul>
+<p><b><u>% of trips in PA direction</u></b></p>
+<p></p>
+<ul>
+<li>HBW_AM_PA = 0.9706</li>
+<li>HBW_MD_PA = 0.5690</li>
+<li>HBW_PM_PA = 0.0871</li>
+<li>HBW_EV_PA = 0.2891</li>
+<li>HBC_AM_PA = 0.9828</li>
+<li>HBC_MD_PA = 0.5259</li>
+<li>HBC_PM_PA = 0.2420</li>
+<li>HBC_EV_PA = 0.1057</li>
+<li>HBSch_AM_PA = 0.7899</li>
+<li>HBSch_MD_PA = 0.4306</li>
+<li>HBSch_PM_PA = 0.2268</li>
+<li>HBSch_EV_PA = 0.2391</li>
+<li>HBShp_AM_PA = 0.7826</li>
+<li>HBShp_MD_PA = 0.5615</li>
+<li>HBShp_PM_PA = 0.4604</li>
+<li>HBShp_EV_PA = 0.4228</li>
+<li>HBOth_AM_PA = 0.7147</li>
+<li>HBOth_MD_PA = 0.5517</li>
+<li>HBOth_PM_PA = 0.5181</li>
+<li>HBOth_EV_PA = 0.3806</li>
+<li>NHBW_AM_PA = 0.5000</li>
+<li>NHBW_MD_PA = 0.5000</li>
+<li>NHBW_PM_PA = 0.5000</li>
+<li>NHBW_EV_PA = 0.5000</li>
+<li>NHBNW_AM_PA = 0.5000</li>
+<li>NHBNW_MD_PA = 0.5000</li>
+<li>NHBNW_PM_PA = 0.5000</li>
+<li>NHBNW_EV_PA = 0.5000</li>
+<li>IX_AM_PA = 0.8563</li>
+<li>IX_MD_PA = 0.5627</li>
+<li>IX_PM_PA = 0.3288</li>
+<li>IX_EV_PA = 0.3290</li>
+<li>XI_AM_PA = 0.8563</li>
+<li>XI_MD_PA = 0.5627</li>
+<li>XI_PM_PA = 0.3288</li>
+<li>XI_EV_PA = 0.3290</li>
+<li>XX_AM_PA = 0.8563</li>
+<li>XX_MD_PA = 0.5627</li>
+<li>XX_PM_PA = 0.3288</li>
+<li>XX_EV_PA = 0.3290</li>
+<li>TR_AM_PA = 0.5000</li>
+<li>TR_MD_PA = 0.5000</li>
+<li>TR_PM_PA = 0.5000</li>
+<li>TR_EV_PA = 0.5000</li>
+<li>HBO_AM_PA = 0.7283</li>
+<li>HBO_MD_PA = 0.5495</li>
+<li>HBO_PM_PA = 0.5050</li>
+<li>HBo_EV_PA = 0.3901</li>
+<li>NHB_AM_PA = 0.5000</li>
+<li>NHB_MD_PA = 0.5000</li>
+<li>NHB_PM_PA = 0.5000</li>
+<li>NHB_EV_PA = 0.5000</li>
+</ul>
+</section>
+<section id="assignment-type-flag" class="level3">
+<h3 class="anchored" data-anchor-id="assignment-type-flag">Assignment Type Flag</h3>
+<p>The assignment type parameter is no longer used in version 9 and was removed:</p>
+<ul>
+<li>AssignType = ‘managed’</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://wfrc.org"><img src="https://wfrc.org/wp-content/uploads/2021/11/logo.jpg" class="img-fluid" alt="WFRC" width="150"></a> <a href="https://mountainland.org/"><img src="https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg" class="img-fluid" alt="MAG" width="65"></a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,108 @@
+Table,Section,SubHeader,Parameter,v9Parameter,v9Value,v8Parameter,v8Value,%Change,Notes,TableNotes
+TAZ,GP-ZonalParams,,UsedZones,,3629,,2881,,Highest TAZ number used by model,
+TAZ,GP-ZonalParams,,BoxElderRange,,1-153,,1-140,,Box Elder County Range,
+TAZ,GP-ZonalParams,,WeberRange,,154-581,,141-423,,Weber County Range,
+TAZ,GP-ZonalParams,,DavisRange,,582-905,,424-654,,Davis County Range,
+TAZ,GP-ZonalParams,,SLRange,,906-2216,,655-1788,,Salt Lake County Range,
+TAZ,GP-ZonalParams,,UtahRange,,2217-3546,,1789-2881,,Utah County Range,
+TAZ,GP-ZonalParams,,Dummyzones,,3547-3600,,2882-3400,,Placeholder for future TAZ splits,
+TAZ,GP-ZonalParams,,Externalzones,,3601-3629,,"136-140, 421-423, 1782-1788, 2874-2881",,External zones,
+TAZ,GP-ZonalParams,,NorthBC,,3604-3606,,"138, 139, 140",,North Brigham City external zones,
+HighwayNodes,GP-ZonalParams,,HwyNodes,,10000-99999,,3401-999999,,Highway and transit node range,
+CollegeZones1,GP-ZonalParams,WFRC Colleges,Ensign (was LDSBC),,1029,,950,,Ensign College,
+CollegeZones1,GP-ZonalParams,,Westmin,,1263,,1150,,Westminster College,
+CollegeZones1,GP-ZonalParams,,UOFU_Main,,1051,,1075,,University of Utah - Main,
+CollegeZones1,GP-ZonalParams,,UOFU_Med,,1007,,1076,,University of Utah - Medical (removed),
+CollegeZones1,GP-ZonalParams,,WSU_Main (was WSU_OGDEN),,437,,383,,Weber State University - Main,
+CollegeZones1,GP-ZonalParams,,WSU_Davis,,693,,525,,Weber State University - Davis,
+CollegeZones1,GP-ZonalParams,,WSU_West,,521,,290,,Weber State University - West (removed),
+CollegeZones1,GP-ZonalParams,,SLCC_Main (was SLCC_TL),,1580,,897,,Salt Lake Community College - Main,
+CollegeZones1,GP-ZonalParams,,SLCC_SC,,1231,,1126,,Salt Lake Community College - South City,
+CollegeZones1,GP-ZonalParams,,SLCC_JD,,1776,,1493,,Salt Lake Community College - Jordan,
+CollegeZones1,GP-ZonalParams,,SLCC_Mead,,,,1206,,Salt Lake Community College - Meadbrook (removed),
+CollegeZones1,GP-ZonalParams,,SLCC_ML,,1886,,1516,,Salt Lake Community College - Miller,
+CollegeZones1,GP-ZonalParams,,SLCC_LB,,1085,,989,,Salt Lake Community College - Library (removed),
+CollegeZones1,GP-ZonalParams,,SLCC_HL,,1525,,1294,,Salt Lake Community College - Highland (removed),
+CollegeZones1,GP-ZonalParams,,SLCC_Airp,,979,,746,,Salt Lake Community College - Airport (removed),
+CollegeZones1,GP-ZonalParams,,SLCC_West,,959,,745,,Salt Lake Community College - Westpointe (removed),
+CollegeZones1,GP-ZonalParams,,SLCC_HM,,2031,,1607,,Salt Lake Community College - Herriman (removed),
+CollegeZones1,GP-ZonalParams,MAG Colleges,BYU,,2939,,2384,,Brigham Young University - Main,
+CollegeZones1,GP-ZonalParams,,UVU_Main,,2848,,2326,,Utah Valley University - Main,
+CollegeZones1,GP-ZonalParams,,UVU_Geneva,,2882,,2280,,Utah Valley University - Geneva (removed),
+CollegeZones1,GP-ZonalParams,,UVU_Lehi (was UVU_THANKP),,2606,,2099,,Utah Valley University - Lehi,
+CollegeZones1,GP-ZonalParams,,UVU_Vine,,2809,,2259,,Utah Valley University - Vineyard,
+CollegeZones1,GP-ZonalParams,,UVU_Payson,,3336,,2690,,Utah Valley University - Payson,
+CollegeZones2,GP-ZonalParams,,colleges,,"437, 521, 693, 959, 979, 1007, 1029, 1051, 1085, 1231, 1263, 1491, 1525, 1580, 1776, 1886, 2031, 2606, 2809, 2848, 2882, 2939, 3336",,"290, 383, 525, 897, 950, 989, 1075, 1076, 1126, 1150, 1294, 1493, 1516, 1607, 2099, 2259, 2280, 2326, 2384, 2690",,,
+OfflineTripZones,GP-ZonalParams,,Lagoon,,781,,562,,,
+OfflineTripZones,GP-ZonalParams,,Airport,,965,,742,,,
+SpecialGeneratorZones,GP-ZonalParams,,TempleSquare,,1035,,966,,,
+SpecialGeneratorZones,GP-ZonalParams,,SLC_Library,,1147,,1015,,,
+ExogenousTrips,GP-InputProcessing,,Income_Lo,,45000,,35000,,breakpoint between Inc1 & Inc2,
+ExogenousTrips,GP-InputProcessing,,Income_Md,,75000,,70000,,breakpoint between Inc2 & Inc3,
+ExogenousTrips,GP-InputProcessing,,Income_Hi,,125000,,100000,,breakpoint between Inc3 & Inc4,
+HHDisaggParams,GP-InputProcessing,,Reg_Median_Inc,,74946,,58793,,,
+KFactors,GP-DistMCAssign,between Salt Lake and Utah counties,,SL_UT_KFAC_Wrk,1,SL_UT_KFAC,0.85,,,
+KFactors,GP-DistMCAssign,,,SL_UT_KFAC_Oth,1,,,,,
+KFactors,GP-DistMCAssign,,,SL_UT_KFAC_Trk,1,,,,,
+KFactors,GP-DistMCAssign,,,SL_UT_KFAC_Ext,1,,,,,
+KFactors,GP-DistMCAssign,between Salt Lake and Davis counties,,SL_DA_KFAC_Wrk,1,SL_DA_KFAC,0.95,,,
+KFactors,GP-DistMCAssign,,,SL_DA_KFAC_Oth,1,,,,,
+KFactors,GP-DistMCAssign,,,SL_DA_KFAC_Trk,1,,,,,
+KFactors,GP-DistMCAssign,,,SL_DA_KFAC_Ext,1,,,,,
+KFactors,GP-DistMCAssign,between Box Elder and Weber counties,,WE_BE_KFAC_Wrk,1,WE_BE_KFAC,1,,,
+KFactors,GP-DistMCAssign,,,WE_BE_KFAC_Oth,1,,,,,
+KFactors,GP-DistMCAssign,,,WE_BE_KFAC_Trk,1,,,,,
+KFactors,GP-DistMCAssign,,,WE_BE_KFAC_Ext,1,,,,,
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_HBW,1.1,VEH_OCCUPANCY_HBW,1.1,,Home-Based Work,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_HBShp,1.63,VEH_OCCUPANCY_HBSHP,1.58,,Home-Based Shopping,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_HBOth,1.68,VEH_OCCUPANCY_HBOTH,1.66,,Home-Based Other,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_HBSch,1.76,VEH_OCCUPANCY_HBSCH,2.14,,Home-Based School,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_HBC,1.12,VEH_OCCUPANCY_HBC,1.26,,Home-Based College,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_NHBW,1.21,VEH_OCCUPANCY_NHBW,1.2,,Non-Home-Based Work,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_NHBNW,1.76,VEH_OCCUPANCY_NHBNW,1.7,,Non-Home-Based Non-Work,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_Rec,1.68,(Uses HBO),1.64,,Recreation,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_HBO,1.67,VEH_OCCUPANCY_HBO,1.64,,Home-Based Other (HBShp+HBOth),"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_NHB,1.54,VEH_OCCUPANCY_NHB,1.48,,Non-Home-Based (NHBW+NHBNW),"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_ExtWrk,1.16,(Uses HBW),1.1,,External Work,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_ExtHBO,1.82,(Uses HBO),1.64,,External Home-Based Other,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_ExtNHB,1.73,(Uses NHB),1.48,,Non-Home-Based,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy1,GP-DistMCAssign,,,VehOcc_ExtRec,1.73,(Uses HBO),1.64,,External Recreation,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_HBW,3.53,VEH_OCC_3P_HBW,3.4,,3+ Person Home-Based Work,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_HBShp,3.49,(Uses HBO),3.55,,3+ Person Home-Based Shopping,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_HBOth,3.73,(Uses HBO),3.55,,3+ Person Home-Based Other,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_HBSch,3.88,(Uses HBO),3.55,,3+ Person Home-Based School,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_HBC,3.24,VEH_OCC_3P_HBC,3.53,,3+ Person Home-Based College,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_NHBW,3.71,(Uses NHB),3.51,,3+ Person Non-Home-Based Work,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_NHBNW,3.71,(Uses NHB),3.51,,3+ Person Non-Home-Based Non-Work,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_Rec,3.73,(Uses HBO),3.55,,3+ Person Recreation,"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_HBO,3.68,VEH_OCC_3P_HBO,3.55,,3+ Person Home-Based Other (HBShp+HBOth),"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+AutoOccupancy2,GP-DistMCAssign,,,VehOcc_3p_NHB,3.71,VEH_OCC_3P_NHB,3.51,,3+ Person Non-Home-Based (NHBW+NHBNW),"note: these represent average persons per vehicle for just the Wasatch Front model space; external trips (Ext) are average for IX + XI, all other parameters are averages for II trips"
+VOT1,GP-DistMCAssign,,,VOT_Auto_Wrk,22,VOT_Auto_Wrk,18,,work trips (HBW),cent/mile
+VOT1,GP-DistMCAssign,,,VOT_Auto_Per,17,VOT_Auto_Per,14,,non-work trips,cent/mile
+VOT1,GP-DistMCAssign,,,VOT_Auto_Ext,20,VOT_Auto_Ext,16,,external,cent/mile
+VOT1,GP-DistMCAssign,,,VOT_LT,37,VOT_LT,30,,light truck,cent/mile
+VOT1,GP-DistMCAssign,,,VOT_MD,50,VOT_MD,40,,medium truck,cent/mile
+VOT1,GP-DistMCAssign,,,VOT_HV,63,VOT_HV,50,,heavy truck,cent/mile
+VOT1,GP-DistMCAssign,,,VOT_Toll,63,VOT_Toll,50,,all vehicles on tollway,cent/mile
+VOT1,GP-DistMCAssign,,,VOT_HOT_DA,63,VOT_HOT_DA,50,,drive alone on HOT,cent/mile
+VOT1,GP-DistMCAssign,,,VOT_Auto_Wrk_Lo,9,,,,work trips - low income (added),cent/mile
+VOT1,GP-DistMCAssign,,,VOT_Auto_Wrk_Hi,24,,,,work trips - high income (added),cent/mile
+VOT1,GP-DistMCAssign,,,VOT_Auto_Per_Lo,7,,,,non-work trips - loc income (added),cent/mile
+VOT1,GP-DistMCAssign,,,VOT_Auto_Per_Hi,19,,,,non-work trips - high income (added),cent/mile
+VOT2,GP-DistMCAssign,,,RAIL2COR_MULTIPLIER,0.33,RAIL2BRT_MULTIPLIER,0.4,,factor to set Core Route constant relative to LRT constant,
+AutoOperatingCosts,GP-DistMCAssign,,AOC_Auto,,21.7,,18.3,,auto,updated based on 2019 fuel cost & economy and vehicle maintenance; cent/mile
+AutoOperatingCosts,GP-DistMCAssign,,AOC_LT,,27.3,,24.6,,light truck,updated based on 2019 fuel cost & economy and vehicle maintenance; cent/mile
+AutoOperatingCosts,GP-DistMCAssign,,AOC_MD,,55.5,,47.8,,medium truck,updated based on 2019 fuel cost & economy and vehicle maintenance; cent/mile
+AutoOperatingCosts,GP-DistMCAssign,,AOC_HV,,74.3,,63.7,,heavy truck,updated based on 2019 fuel cost & economy and vehicle maintenance; cent/mile
+RatioAOC-VOT,GP-DistMCAssign,,Wrk,,0.986363636,,1.016666667,0.970193741,,"Notes: Distribution Generalized Cost Function -- GC = Time + Dist*AOC/VOT + Tolls/VOT -- The shift in AOC/VOT ratio means person trips are slightly less sensitive to distance and a little more sensitive to time in v9 than v8. Similar trend holds for truck trips, thogh a little more so."
+RatioAOC-VOT,GP-DistMCAssign,,Per,,1.276470588,,1.307142857,0.976534876,,"Notes: Distribution Generalized Cost Function -- GC = Time + Dist*AOC/VOT + Tolls/VOT -- The shift in AOC/VOT ratio means person trips are slightly less sensitive to distance and a little more sensitive to time in v9 than v8. Similar trend holds for truck trips, thogh a little more so."
+RatioAOC-VOT,GP-DistMCAssign,,Ext,,1.085,,1.14375,0.94863388,,"Notes: Distribution Generalized Cost Function -- GC = Time + Dist*AOC/VOT + Tolls/VOT -- The shift in AOC/VOT ratio means person trips are slightly less sensitive to distance and a little more sensitive to time in v9 than v8. Similar trend holds for truck trips, thogh a little more so."
+RatioAOC-VOT,GP-DistMCAssign,,LT,,0.737837838,,0.82,0.899802241,,"Notes: Distribution Generalized Cost Function -- GC = Time + Dist*AOC/VOT + Tolls/VOT -- The shift in AOC/VOT ratio means person trips are slightly less sensitive to distance and a little more sensitive to time in v9 than v8. Similar trend holds for truck trips, thogh a little more so."
+RatioAOC-VOT,GP-DistMCAssign,,MD,,1.11,,1.195,0.928870293,,"Notes: Distribution Generalized Cost Function -- GC = Time + Dist*AOC/VOT + Tolls/VOT -- The shift in AOC/VOT ratio means person trips are slightly less sensitive to distance and a little more sensitive to time in v9 than v8. Similar trend holds for truck trips, thogh a little more so."
+RatioAOC-VOT,GP-DistMCAssign,,HV,,1.179365079,,1.274,0.925718273,,"Notes: Distribution Generalized Cost Function -- GC = Time + Dist*AOC/VOT + Tolls/VOT -- The shift in AOC/VOT ratio means person trips are slightly less sensitive to distance and a little more sensitive to time in v9 than v8. Similar trend holds for truck trips, thogh a little more so."
+ManagedLaneCosts,GP-DistMCAssign,,Cost_Toll_Pk,,48,,24,,Tollways (FT 40) cost - Peak,reflects a toll of ~$5.00 for a 10.25 mi trip (avg work dist) or ~$3.00 for a 6.5 mi trip (avg dist); cent/mile
+ManagedLaneCosts,GP-DistMCAssign,,Cost_Toll_Ok,,48,,24,,Tollways (FT 40) cost - Off-peak,reflects a toll of ~$5.00 for a 10.25 mi trip (avg work dist) or ~$3.00 for a 6.5 mi trip (avg dist); cent/mile
+ManagedLaneCosts,GP-DistMCAssign,,Cost_HOT_Pk,,34,,10,,HOT (FT 38) cost - Peak,reflects a toll of ~$5.00 for a 10.25 mi trip (avg work dist) or ~$3.00 for a 6.5 mi trip (avg dist); cent/mile
+ManagedLaneCosts,GP-DistMCAssign,,Cost_HOT_Ok,,17,,5,,HOT (FT 38) cost - Off-peak,reflects a toll of ~$5.00 for a 10.25 mi trip (avg work dist) or ~$3.00 for a 6.5 mi trip (avg dist); cent/mile
+ManagedLaneCosts,GP-DistMCAssign,,Cost_REL_Pk,,34,,10,,Reliability lane cost - Peak,reflects a toll of ~$5.00 for a 10.25 mi trip (avg work dist) or ~$3.00 for a 6.5 mi trip (avg dist); cent/mile
+ManagedLaneCosts,GP-DistMCAssign,,Cost_REL_Ok,,17,,5,,Reliability lane cost - Off-peak,reflects a toll of ~$5.00 for a 10.25 mi trip (avg work dist) or ~$3.00 for a 6.5 mi trip (avg dist); cent/mile
