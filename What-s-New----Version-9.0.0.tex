@@ -306,7 +306,7 @@
 \maketitle
 \pagestyle{mystyle}
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, breakable, boxrule=0pt, sharp corners, borderline west={3pt}{0pt}{shadecolor}, colback={codebgcolor}, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, boxrule=0pt, breakable, borderline west={3pt}{0pt}{shadecolor}, frame hidden, enhanced, colback={codebgcolor}]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -442,7 +442,7 @@ parameters file as they were not being used in the WF TDM:
 \hypertarget{tbl-highway-renumber}{}
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tbl-highway-renumber}Renumbered Highway
-Nodes}\label{T_b1fb5}\tabularnewline
+Nodes}\label{T_43ff4}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value & Notes \\
 \midrule\noalign{}
@@ -579,7 +579,7 @@ Tables}\label{zones-with-off-line-trip-tables}}
 \hypertarget{tbl-offline-renumber}{}
 \begin{longtable}[]{@{}lll@{}}
 \caption{\label{tbl-offline-renumber}Renumbered Off-line Trip Table
-Zones}\label{T_b41aa}\tabularnewline
+Zones}\label{T_8dc92}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value \\
 \midrule\noalign{}
@@ -600,7 +600,7 @@ Airport & 965 & 742 \\
 \hypertarget{tbl-specgen-renumber}{}
 \begin{longtable}[]{@{}lll@{}}
 \caption{\label{tbl-specgen-renumber}Renumbered Special Generator
-Zones}\label{T_dc81e}\tabularnewline
+Zones}\label{T_43f29}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value \\
 \midrule\noalign{}
@@ -627,7 +627,7 @@ updated to reflect 2019 base year income.
 \hypertarget{tbl-exogen-income}{}
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tbl-exogen-income}Income Break Points for Airport
-Exogenous Trip Table Generation}\label{T_daa27}\tabularnewline
+Exogenous Trip Table Generation}\label{T_f8293}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value & Notes \\
 \midrule\noalign{}
@@ -654,7 +654,7 @@ value was estimated from 2015 ACS data and deflated to 2010 dollars.
 \hypertarget{tbl-hh-disagg}{}
 \begin{longtable}[]{@{}lll@{}}
 \caption{\label{tbl-hh-disagg}Household Disaggregation Parameter Income
-Update}\label{T_527df}\tabularnewline
+Update}\label{T_0b713}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value \\
 \midrule\noalign{}
@@ -935,7 +935,7 @@ dollars. Costs are in cents/mile.
 \hypertarget{tbl-auto-op}{}
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tbl-auto-op}Auto Operating Cost
-Rates}\label{T_1af42}\tabularnewline
+Rates}\label{T_a4d64}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value & Notes \\
 \midrule\noalign{}
@@ -967,7 +967,7 @@ dollars. Toll costs for version 8 are in 2010 dollars.
 \hypertarget{tbl-managed-lane}{}
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tbl-managed-lane}Managed Lane Cost
-Rates}\label{T_8c32b}\tabularnewline
+Rates}\label{T_4c98d}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value & Notes \\
 \midrule\noalign{}
@@ -1567,58 +1567,114 @@ as in the highway network, general parameters block file.
 
 The expanded area and reconfigured TAZs resulted in the addition of 688
 internal zones and 6 external zones. A comparison of zone counts is
-found in Table~\ref{tbl-taz-count}.
+found in Table~\ref{tbl-taz-count-internal} and
+Table~\ref{tbl-taz-count-external}.
 
 \newpage
 
-\begin{table}
+\begin{figure}
 
-\caption{\label{tbl-taz-count}TAZ Count
-Comparisons}\begin{minipage}[t]{0.50\linewidth}
-\subcaption{\label{tbl-internal}Internal}
+\begin{minipage}[t]{0.50\linewidth}
 
 {\centering 
 
-\begin{tabular}[t]{llll}
-\toprule
-County & v9 & v832 & Change\\
-\midrule
-Box Elder & 153 & 135 & 18\\
-Weber & 428 & 280 & 148\\
-Davix & 324 & 231 & 93\\
-Salt Lake & 1311 & 1127 & 184\\
-Utah & 1330 & 1085 & 245\\
-Total & 3546 & 2858 & 688\\
-\bottomrule
-\end{tabular}
+\hypertarget{tbl-taz-count-internal}{}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption{\label{tbl-taz-count-internal}Internal TAZ Count
+Comparison}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+County
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v832
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Change
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+County
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v832
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Change
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Box Elder & 153 & 135 & 18 \\
+Weber & 428 & 280 & 148 \\
+Davis & 324 & 231 & 93 \\
+Salt Lake & 1311 & 1127 & 184 \\
+Utah & 1330 & 1085 & 245 \\
+Total & 3546 & 2858 & 688 \\
+\end{longtable}
 
 }
 
 \end{minipage}%
 %
 \begin{minipage}[t]{0.50\linewidth}
-\subcaption{\label{tbl-external}External}
 
 {\centering 
 
-\begin{tabular}[t]{llll}
-\toprule
-County & v9 & v832 & Change\\
-\midrule
-Box Elder & 6 & 5 & 1\\
-Weber & 3 & 3 & 0\\
-Davix & 0 & 0 & 0\\
-Salt Lake & 6 & 7 & -1\\
-Utah & 14 & 8 & 6\\
-Total & 29 & 23 & 6\\
-\bottomrule
-\end{tabular}
+\hypertarget{tbl-taz-count-external}{}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption{\label{tbl-taz-count-external}External TAZ Count
+Comparison}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+County
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v832
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Change
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+County
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v832
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Change
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Box Elder & 6 & 5 & 1 \\
+Weber & 3 & 3 & 0 \\
+Davis & 0 & 0 & 0 \\
+Salt Lake & 6 & 7 & -1 \\
+Utah & 14 & 8 & 6 \\
+Total & 29 & 23 & 6 \\
+\end{longtable}
 
 }
 
 \end{minipage}%
 
-\end{table}
+\end{figure}
 
 The maps in Figure~\ref{fig-taz-compare-weber-pdf},
 Figure~\ref{fig-taz-compare-davis-pdf},
@@ -1671,52 +1727,102 @@ Utah County}
 \end{figure}
 
 The TAZ numbering was updated to reflect the changes made to the TAZ
-geometry, as depicted in Table~\ref{tbl-new-taz-ranges}.
+geometry, as depicted in Table~\ref{tbl-taz-ranges-internal} and
+Table~\ref{tbl-taz-ranges-external}.
 
-\hypertarget{tbl-new-taz-ranges}{}
+\begin{figure}
+
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\hypertarget{tbl-taz-ranges-internal}{}
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3700}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1600}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1600}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1600}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1600}}@{}}
-\caption{\label{tbl-new-taz-ranges}TAZ Ranges}\tabularnewline
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3300}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3300}}@{}}
+\caption{\label{tbl-taz-ranges-internal}Internal TAZ
+Ranges}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 County
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-v9.0.0 Internal
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-v9.0.0 External
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-v8.3.2 Internal
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-v8.3.2 External
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v832
 \end{minipage} \\
 \midrule\noalign{}
 \endfirsthead
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 County
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-v9.0.0 Internal
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-v9.0.0 External
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-v8.3.2 Internal
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-v8.3.2 External
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v832
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Box Elder County & 1-153 & 3601-3606 & 1-135 & 136-140 \\
-Weber County & 154-581 & 3607-3609 & 141-420 & 421-423 \\
-Davis County & 582-905 & N/A & 424-654 & N/A \\
-Salt Lake County & 906-2216 & 3610-3615 & 655-1781 & 1782-1788 \\
-Utah County & 2217-3546 & 3616-3629 & 1789-2873 & 2874-2881 \\
+Box Elder & 1-153 & 1-135 \\
+Weber & 154-581 & 141-420 \\
+Davis & 582-905 & 424-654 \\
+Salt Lake & 906-2216 & 655-1781 \\
+Utah & 2217-3546 & 1789-2873 \\
+Total & 1-3546 & 1-2873 \\
 \end{longtable}
+
+}
+
+\end{minipage}%
+%
+\begin{minipage}[t]{0.50\linewidth}
+
+{\centering 
+
+\hypertarget{tbl-taz-ranges-external}{}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3300}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3300}}@{}}
+\caption{\label{tbl-taz-ranges-external}External TAZ
+Ranges}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+County
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v832
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+County
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+v832
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Box Elder & 3601-3606 & 136-140 \\
+Weber & 3607-3609 & 421-423 \\
+Davis & N/A & N/A \\
+Salt Lake & 3610-3615 & 1782-1788 \\
+Utah & 3616-3629 & 2874-2881 \\
+Total & 3601-3629 & 137-140, 421-423, 1782-1788, 2874-2881 \\
+\end{longtable}
+
+}
+
+\end{minipage}%
+
+\end{figure}
 
 \hypertarget{taz-attribute-changes}{%
 \subsection{TAZ Attribute Changes}\label{taz-attribute-changes}}
@@ -1728,9 +1834,9 @@ shapefile.
 \subsubsection{REMM Space}\label{remm-space}}
 
 To indicate which TAZs are included in the Real Estate Market Model
-(REMM) space, the \texttt{REMM} field was added with a value of
-\texttt{1} indicating that it is part of REMM and \texttt{0} indicating
-it is not part of REMM, as shown in Figure~\ref{fig-taz-remm-space-pdf}.
+(REMM) area, a \texttt{REMM} field was added with a value of \texttt{1}
+indicating that it is part of REMM and \texttt{0} indicating it is not
+part of REMM, as shown in Figure~\ref{fig-taz-remm-space-pdf}.
 
 \begin{figure}[H]
 
@@ -1745,97 +1851,61 @@ it is not part of REMM, as shown in Figure~\ref{fig-taz-remm-space-pdf}.
 \hypertarget{parking-costs}{%
 \subsubsection{Parking Costs}\label{parking-costs}}
 
-Parking costs were updated based on 2022 parking rates obtained from
-Salt Lake City, web searches, and field visits. A new methodology for
-calculating parking cost was envisioned but not implemented for v9.
-Accordingly, updates to parking data were done in a way to facilitate
-the change to the new methodology in the future. These updates include a
-new polygon source file for downtown and university areas. However,
-since the envisioned methodology removes the use of parking cost fields
-for Lagoon and Salt Lake City International Airport, they were not
-included in this new shapefile.
+The permanent and temporary cost fields (\texttt{PRKCSTPERM} and
+\texttt{PRKCSTTEMP}) were updated to reflect current conditions and are
+in 2019 dollars. Costs for parking in the downtown areas of Salt Lake
+City, Ogden, and Provo and around the universities were based on 2022
+parking rates obtained from Salt Lake City, web searches, and field
+visits.
 
-\hypertarget{downtown-and-university-areas}{%
-\paragraph{Downtown and University
-Areas}\label{downtown-and-university-areas}}
+The Salt Lake City International Airport temporary parking cost was set
+to \$1.25 based on a weighted average of short-term premium and economy
+rates. This represents a \$0.25 (25\%) increase from version 8.3.2
+(version 8.3.2 parking costs were in 2010 dollars). Permanent parking
+costs were kept at \$0 as workers at the airport do not pay for parking.
 
-Parking costs were developed for downtown areas for Ogden, Salt Lake
-City, and Provo, as well as major university areas along the Wasatch
-Front. A new source polygon shapefile was developed to hold rates for
-Home-Based Work (HBW), Home-Based College (HBC), Home-Based Other (HBO),
-and Non-Home-Based (NHB) trip purposes. While rates are included for
-these four purposes, the v9.0.0 model only utilizes HBW for permanent
-parking and HBO for temporary parking. The future methodology will
-incorporate all four purposes.
+The Lagoon temporary parking cost was set to \$6 based on the 2022
+advertised parking rate of \$18 per day by an assumed average occupancy
+of 3 people per vehicle. This represents a \$1 (20\%) increase from
+version 8.3.2. Similar to the airport, the cost of permanent parking at
+Lagoon was set to \$0 as workers at Lagoon do not pay for parking.
 
-\hypertarget{lagoon-and-salt-lake-city-international-airport}{%
-\paragraph{Lagoon and Salt Lake City International
-Airport}\label{lagoon-and-salt-lake-city-international-airport}}
+\hypertarget{districts}{%
+\subsection{Districts}\label{districts}}
 
-The Airport \& Lagoon parking costs were updated based on current
-parking rate information and the assumptions described in this section.
+Large, medium, and small districts were redefined and renamed. There are
+now 26 large districts, 73 medium districts, and 110 small districts.
+Medium districts still nest within large districts. Small districts were
+defined based on city area definitions and do not nest within medium
+districts.
 
-The cost of permanent parking for the Lagoon TAZ was set to \texttt{\$0}
-based on the assumption that workers at Lagoon do not pay for parking.
-The temporary parking was set to \texttt{\$6} as calculated by dividing
-the 2022 advertised parking rate of \$18 per day by an assumed average
-occupancy of 3 people per vehicle. The cost of temporary parking in
-previous models was \$5 in 2010 dollars. The resulting \$1 increase in
-2019 dollars (20\%) over 9 years seems reasonable.
+\hypertarget{additions-to-the-1_inputs1_taz-folder}{%
+\subsection{\texorpdfstring{Additions to the
+\texttt{1\_Inputs\textbackslash{}1\_TAZ}
+Folder}{Additions to the 1\_Inputs\textbackslash1\_TAZ Folder}}\label{additions-to-the-1_inputs1_taz-folder}}
 
-The cost of permanent parking at the Salt Lake City International
-Airport was set to \emph{\$0} based on the assumption that workers at
-the airport do not pay for parking. The cost of temporary parking was
-set to \$1.25 based on a weighted average of short-term premium and
-economy rates and drop offs and a assumed average vehicle occupancy
-rate.
+\texttt{\_Source} was added to the \texttt{1\_TAZ} folder. It includes
+the following shapefile data sets for ease of reference:
 
-The 2022 the cost for the short-term premium parking in the garage is
-\$5.00 per hour. Short-term economy rate is \$2.00 per hour. And for
-drop-offs there is no charge for parking. The assumed occupancy rate of
-2 people per vehicle would result in per-person rates of \$2.50, \$1.00,
-and \$0.00, respectively. The average of the three per-person rates is
-\$1.75. Given the unknown distribution of travelers, but assuming more
-drop-offs than parking, a lower value than \$1.75 should be expected.
-The 2019 cost was chosen to be \$1.25.
+\begin{itemize}
+\tightlist
+\item
+  Cities
+\item
+  Counties
+\item
+  Environmental constraints
+\item
+  Previous TAZ versions.
+\end{itemize}
 
-Compared to the previous temporary parking values of \$1 in 2010
-dollars, the chosen cost represents a 25 cent increase in 2019 dollars
-(25\%) over 9 years. This growth seems reasonable, especially given the
-recent improvements to the airport. Additional justification for the
-chosen increase is the
-\href{https://www.bls.gov/data/inflation_calculator.html}{CPI
-adjustment}, which for the 2010 value of \$1.00 in results in a 2019
-value of \$1.18.
+\texttt{\_ViewTAZDistricts} folder was added containing an ArcGIS Pro
+project with predefined symbology for viewing TAZ and district
+shapefiles.
 
-\hypertarget{small-districts}{%
-\subsection{Small Districts}\label{small-districts}}
-
-There are now 129 total small districts sequentially numbered from
-northwest to southeast in each medium district. The small district name
-field \texttt{DSML\_NAME} includes a prefix of Medium District index
-followed by a colon and then the sequential small district count
-(e.g.~15:1). Districts are shown in Figure~\ref{fig-districts-pdf}. Two
-additional polygon shapefiles were added to the Districts subfolder to
-represent the Wasatch Front sub area and the REMM area.
-
-\begin{figure}[H]
-
-{\centering \includegraphics{v9x/v900/whats-new/2-inputdata_files/figure-pdf/fig-districts-pdf-output-1.pdf}
-
-}
-
-\caption{\label{fig-districts-pdf}Districts}
-
-\end{figure}
-
-\hypertarget{source}{%
-\subsection{Source}\label{source}}
-
-The \texttt{\_Source} subfolder was added and includes the following
-shapefile data sets: Cities, Counties, Districts, and Environmental
-Constraints. Additionally, a ArcGIS Pro project \& mapping files can be
-found in the \texttt{\_\_ViewTAZDistricts} subfolder.
+Shapefiles representing the Wasatch Front subarea and the REMM
+vs.~non-REMM area were added to the
+\texttt{1\_TAZ\textbackslash{}Districts} folder.
 
 \hypertarget{socioeconomic-data}{%
 \section{Socioeconomic Data}\label{socioeconomic-data}}

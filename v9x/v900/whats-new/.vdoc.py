@@ -394,28 +394,47 @@ dfBusSpeedRatios_Previous.to_csv(r'data\bus_speed_ratios_previous.csv', index=Fa
 #
 #
 #
+#| label: tbl-taz-count-internal
+#| tbl-cap: Internal TAZ Count Comparison
+#| tbl-colwidths: [40,15,15,25]
+import pandas as pd
+from IPython.display import Markdown
+from tabulate import tabulate
+table = {
+    'County': ['Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah', 'Total'],
+    'v9': [153, 428, 324, 1311, 1330, 3546],
+    'v832': [135, 280, 231, 1127, 1085, 2858],
+    'Change': [18, 148, 93, 184, 245, 688]
+}
+headers = ['County','v9','v832','Change']
+Markdown(tabulate(table, 
+  headers = headers,
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+#| label: tbl-taz-count-external
+#| tbl-cap: External TAZ Count Comparison
+#| tbl-colwidths: [40,15,15,25]
+import pandas as pd
+from IPython.display import Markdown
+from tabulate import tabulate
+table = {
+    'County': ['Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah', 'Total'],
+    'v9': [6, 3, 0, 6, 14, 29],
+    'v832': [5, 3, 0, 7, 8, 23],
+    'Change': [1, 0, 0, -1, 6, 6]
+}
+headers = ['County','v9','v832','Change']
+Markdown(tabulate(table, 
+  headers = headers,
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
 #
 #
 #
@@ -556,26 +575,44 @@ plot_geo_data_by_fips(data_taz_new, data_taz_old, '49', line_color_new, line_col
 #
 #
 #
-#
-#
-#
-#
-#| label: tbl-new-taz-ranges
-#| tbl-cap: TAZ Ranges
-#| echo: False
+#| label: tbl-taz-ranges-internal
+#| tbl-cap: Internal TAZ Ranges
+#| tbl-colwidths: [30,33,33]
+import pandas as pd
 from IPython.display import Markdown
 from tabulate import tabulate
-table = [  ['Box Elder County',          '1-153',       '3601-3606',          '1-135',         '136-140'],
-           ['Weber County'    ,        '154-581',       '3607-3609',        '141-420',         '421-423'],
-           ['Davis County'    ,        '582-905',             'N/A',        '424-654',             'N/A'],
-           ['Salt Lake County',       '906-2216',       '3610-3615',       '655-1781',       '1782-1788'],
-           ['Utah County'     ,      '2217-3546',       '3616-3629',      '1789-2873',       '2874-2881']
-        ]
-Markdown(tabulate(
-  table, 
-  headers= ['County'          ,'v9.0.0 Internal', 'v9.0.0 External','v8.3.2 Internal','v8.3.2 External'],
-  colalign=('left'            ,'right'          ,'right'           ,'right'          ,'right'           )
-))
+table = {
+    'County': ['Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah', 'Total'],
+    'v9': ['1-153','154-581','582-905','906-2216','2217-3546', '1-3546'],
+    'v832': ['1-135','141-420','424-654','655-1781','1789-2873', '1-2873']
+}
+headers = ['County','v9','v832']
+Markdown(tabulate(table, 
+  headers = headers,
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+#
+#| label: tbl-taz-ranges-external
+#| tbl-cap: External TAZ Ranges
+#| tbl-colwidths: [30,33,33]
+import pandas as pd
+from IPython.display import Markdown
+from tabulate import tabulate
+table = {
+    'County': ['Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah', 'Total'],
+    'v9': ['3601-3606','3607-3609','N/A','3610-3615','3616-3629', '3601-3629'],
+    'v832': [  '136-140','421-423','N/A','1782-1788','2874-2881', '137-140, 421-423, 1782-1788, 2874-2881']
+}
+headers = ['County','v9','v832']
+Markdown(tabulate(table, 
+  headers = headers,
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 #
 #
@@ -634,97 +671,6 @@ plt.show()
 #
 #
 #
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#|label: fig-districts-pdf
-#|fig-cap: Districts
-import geopandas as gpd
-import matplotlib.pyplot as plt
-
-# Read the GeoJSON files
-data_ldst = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\ldst.geojson')
-data_mdst= gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\mdst.geojson')
-data_sdst= gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\sdst.geojson')
-
-# Set the line colors and line width for each GeoDataFrame
-line_color_ldst = '#0B2842'
-line_color_mdst = 'purple'
-line_color_sdst = '#789d4b'
-line_width = 1.5
-
-# Create the figure and axes
-fig, ax = plt.subplots(figsize=(15, 15))
-
-# Plot the GeoDataFrames with different line colors and line width
-data_ldst.plot(ax=ax, facecolor='none', edgecolor=line_color_ldst, linewidth=(line_width + 7))
-data_mdst.plot(ax=ax, facecolor='none', edgecolor=line_color_mdst, linewidth=(line_width + 3))
-data_sdst.plot(ax=ax, facecolor='none', edgecolor=line_color_sdst, linewidth=line_width)
-
-legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1]) 
-legend_elements = [
-    plt.Line2D([0], [0], color=line_color_ldst, linewidth=line_width, label='ldst'),
-    plt.Line2D([0], [0], color=line_color_mdst, linewidth=line_width, label='mdst'),
-    plt.Line2D([0], [0], color=line_color_sdst, linewidth=line_width, label='sdst'),
-]
-legend_ax.legend(handles=legend_elements, loc='center')
-legend_ax.axis('off')
-
-# Display the plot
-plt.show()
-```
 #
 #
 #

@@ -386,34 +386,53 @@ The geographic coverage area of the internal zones was also expanded to encompas
 
 External zones were revised to reflect the changes of the expanded internal zone area. This included an update to the number and location of the external zones. However, external zones are no longer represented in the TAZ shapefile. The arbitrary polygons representing the external zones in previous version of the TAZ shapefile have been removed. External zones are still represented in other parts of the model, such as in the highway network, general parameters block file.
 
-The expanded area and reconfigured TAZs resulted in the addition of  688 internal zones and 6 external zones. A comparison of zone counts is found in @tbl-taz-count.
+The expanded area and reconfigured TAZs resulted in the addition of  688 internal zones and 6 external zones. A comparison of zone counts is found in @tbl-taz-count-internal and @tbl-taz-count-external.
 
 \newpage
 
-::: {#tbl-taz-count layout-ncol=2}
-| County    | v9   | v832 | Change |
-|-----------|------|------|--------|
-| Box Elder | 153  | 135  | 18     |
-| Weber     | 428  | 280  | 148    |
-| Davis     | 324  | 231  | 93     |
-| Salt Lake | 1311 | 1127 | 184    |
-| Utah      | 1330 | 1085 | 245    |
-| Total     | 3546 | 2858 | 688    |
-
-: Internal
-
-| County    | v9   | v832 | Change |
-|-----------|------|------|--------|
-| Box Elder | 6    | 5    | 1      |
-| Weber     | 3    | 3    | 0      |
-| Davis     | 0    | 0    | 0      |
-| Salt Lake | 6    | 7    | -1     |
-| Utah      | 14   | 8    | 6      |
-| Total     | 29   | 23   | 6      |
-
-: External
-
-TAZ Count Comparisons
+::: {layout-ncol=2}
+```{python}
+#| label: tbl-taz-count-internal
+#| tbl-cap: Internal TAZ Count Comparison
+#| tbl-colwidths: [40,15,15,25]
+import pandas as pd
+from IPython.display import Markdown
+from tabulate import tabulate
+table = {
+    'County': ['Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah', 'Total'],
+    'v9': [153, 428, 324, 1311, 1330, 3546],
+    'v832': [135, 280, 231, 1127, 1085, 2858],
+    'Change': [18, 148, 93, 184, 245, 688]
+}
+headers = ['County','v9','v832','Change']
+Markdown(tabulate(table, 
+  headers = headers,
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+```{python}
+#| label: tbl-taz-count-external
+#| tbl-cap: External TAZ Count Comparison
+#| tbl-colwidths: [40,15,15,25]
+import pandas as pd
+from IPython.display import Markdown
+from tabulate import tabulate
+table = {
+    'County': ['Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah', 'Total'],
+    'v9': [6, 3, 0, 6, 14, 29],
+    'v832': [5, 3, 0, 7, 8, 23],
+    'Change': [1, 0, 0, -1, 6, 6]
+}
+headers = ['County','v9','v832','Change']
+Markdown(tabulate(table, 
+  headers = headers,
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
 :::
 
 ::: {.content-hidden when-format="html"}
@@ -504,8 +523,6 @@ plot_geo_data_by_fips(data_taz_new, data_taz_old, '35', line_color_new, line_col
 plot_geo_data_by_fips(data_taz_new, data_taz_old, '49', line_color_new, line_color_old, line_width)
 ```
 
-The TAZ numbering was updated to reflect the changes made to the TAZ geometry, as depicted in @tbl-new-taz-ranges. 
-
 :::
 
 ::: {.content-visible when-format="html"}
@@ -552,31 +569,51 @@ mapTaz = {
 ```
 :::
 
+The TAZ numbering was updated to reflect the changes made to the TAZ geometry, as depicted in @tbl-taz-ranges-internal and @tbl-taz-ranges-external. 
 
-::: {.grid}
-::: {.g-col-1}
-:::
-::: {.g-col-10}
+::: {layout-ncol=2}
 ```{python}
-#| label: tbl-new-taz-ranges
-#| tbl-cap: TAZ Ranges
-#| echo: False
+#| label: tbl-taz-ranges-internal
+#| tbl-cap: Internal TAZ Ranges
+#| tbl-colwidths: [30,33,33]
+import pandas as pd
 from IPython.display import Markdown
 from tabulate import tabulate
-table = [  ['Box Elder County',          '1-153',       '3601-3606',          '1-135',         '136-140'],
-           ['Weber County'    ,        '154-581',       '3607-3609',        '141-420',         '421-423'],
-           ['Davis County'    ,        '582-905',             'N/A',        '424-654',             'N/A'],
-           ['Salt Lake County',       '906-2216',       '3610-3615',       '655-1781',       '1782-1788'],
-           ['Utah County'     ,      '2217-3546',       '3616-3629',      '1789-2873',       '2874-2881']
-        ]
-Markdown(tabulate(
-  table, 
-  headers= ['County'          ,'v9.0.0 Internal', 'v9.0.0 External','v8.3.2 Internal','v8.3.2 External'],
-  colalign=('left'            ,'right'          ,'right'           ,'right'          ,'right'           )
-))
+table = {
+    'County': ['Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah', 'Total'],
+    'v9': ['1-153','154-581','582-905','906-2216','2217-3546', '1-3546'],
+    'v832': ['1-135','141-420','424-654','655-1781','1789-2873', '1-2873']
+}
+headers = ['County','v9','v832']
+Markdown(tabulate(table, 
+  headers = headers,
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+```
+```{python}
+#| label: tbl-taz-ranges-external
+#| tbl-cap: External TAZ Ranges
+#| tbl-colwidths: [30,33,33]
+import pandas as pd
+from IPython.display import Markdown
+from tabulate import tabulate
+table = {
+    'County': ['Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah', 'Total'],
+    'v9': ['3601-3606','3607-3609','N/A','3610-3615','3616-3629', '3601-3629'],
+    'v832': [  '136-140','421-423','N/A','1782-1788','2874-2881', '137-140, 421-423, 1782-1788, 2874-2881']
+}
+headers = ['County','v9','v832']
+Markdown(tabulate(table, 
+  headers = headers,
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
 ```
 :::
-:::
+
 
 ### TAZ Attribute Changes
 This section describes the changes made to the attributes of the TAZ shapefile.
@@ -584,7 +621,7 @@ This section describes the changes made to the attributes of the TAZ shapefile.
 #### REMM Space
 
 ::: {.content-hidden when-format="html"}
-To indicate which TAZs are included in the Real Estate Market Model (REMM) space, the `REMM` field was added with a value of `1` indicating that it is part of REMM and `0` indicating it is not part of REMM, as shown in @fig-taz-remm-space-pdf.
+To indicate which TAZs are included in the Real Estate Market Model (REMM) area, a `REMM` field was added with a value of `1` indicating that it is part of REMM and `0` indicating it is not part of REMM, as shown in @fig-taz-remm-space-pdf.
 
 ```{python}
 #|label: fig-taz-remm-space-pdf
@@ -663,31 +700,26 @@ mapTazRemmSpace = {
 :::
 
 #### Parking Costs
-Parking costs were updated based on 2022 parking rates obtained from Salt Lake City, web searches, and field visits. A new methodology for calculating parking cost was envisioned but not implemented for v9. Accordingly, updates to parking data were done in a way to facilitate the change to the new methodology in the future. These updates include a new polygon source file for downtown and university areas. However, since the envisioned methodology removes the use of parking cost fields for Lagoon and Salt Lake City International Airport, they were not included in this new shapefile.
+The permanent and temporary cost fields (`PRKCSTPERM` and `PRKCSTTEMP`) were updated to reflect current conditions and are in 2019 dollars. Costs for parking in the downtown areas of Salt Lake City, Ogden, and Provo and around the universities were based on 2022 parking rates obtained from Salt Lake City, web searches, and field visits. 
 
-##### Downtown and University Areas
+The Salt Lake City International Airport temporary parking cost was set to $1.25 based on a weighted average of short-term premium and economy rates. This represents a $0.25 (25%) increase from version 8.3.2 (version 8.3.2 parking costs were in 2010 dollars). Permanent parking costs were kept at $0 as workers at the airport do not pay for parking.
 
-Parking costs were developed for downtown areas for Ogden, Salt Lake City, and Provo, as well as major university areas along the Wasatch Front. A new source polygon shapefile was developed to hold rates for Home-Based Work (HBW), Home-Based College (HBC), Home-Based Other (HBO), and Non-Home-Based (NHB) trip purposes. While rates are included for these four purposes, the v9.0.0 model only utilizes HBW for permanent parking and HBO for temporary parking. The future methodology will incorporate all four purposes.
+The Lagoon temporary parking cost was set to $6 based on the 2022 advertised parking rate of $18 per day by an assumed average occupancy of 3 people per vehicle. This represents a $1 (20%) increase from version 8.3.2. Similar to the airport, the cost of permanent parking at Lagoon was set to $0 as workers at Lagoon do not pay for parking.
 
-##### Lagoon and Salt Lake City International Airport
+### Districts
+Large, medium, and small districts were redefined and renamed. There are now 26 large districts, 73 medium districts, and 110 small districts. Medium districts still nest within large districts. Small districts were defined based on city area definitions and do not nest within medium districts.
 
-The Airport & Lagoon parking costs were updated based on current parking rate information and the assumptions described in this section.
+### Additions to the `1_Inputs\1_TAZ` Folder
+`_Source` was added to the `1_TAZ` folder. It includes the following shapefile data sets for ease of reference:
 
-The cost of permanent parking for the Lagoon TAZ was set to `$0` based on the assumption that workers at Lagoon do not pay for parking. The temporary parking was set to `$6` as calculated by dividing the 2022 advertised parking rate of $18 per day by an assumed average occupancy of 3 people per vehicle. The cost of temporary parking in previous models was $5 in 2010 dollars. The resulting $1 increase in 2019 dollars (20%) over 9 years seems reasonable.
+ - Cities
+ - Counties
+ - Environmental constraints
+ - Previous TAZ versions.
 
-The cost of permanent parking at the Salt Lake City International Airport was set to *$0* based on the assumption that workers at the airport do not pay for parking. The cost of temporary parking was set to $1.25 based on a weighted average of short-term premium and economy rates and drop offs and a assumed average vehicle occupancy rate.
+`_ViewTAZDistricts` folder was added containing an ArcGIS Pro project with predefined symbology for viewing TAZ and district shapefiles.
 
-The 2022 the cost for the short-term premium parking in the garage is $5.00 per hour. Short-term economy rate is $2.00 per hour. And for drop-offs there is no charge for parking. The assumed occupancy rate of 2 people per vehicle would result in per-person rates of $2.50, $1.00, and $0.00, respectively. The average of the three per-person rates is $1.75. Given the unknown distribution of travelers, but assuming more drop-offs than parking, a lower value than $1.75 should be expected. The 2019 cost was chosen to be $1.25.
-
-Compared to the previous temporary parking values of $1 in 2010 dollars, the chosen cost represents a 25 cent increase in 2019 dollars (25%) over 9 years. This growth seems reasonable, especially given the recent improvements to the airport. Additional justification for the chosen increase is the [CPI adjustment](https://www.bls.gov/data/inflation_calculator.html), which for the 2010 value of $1.00 in results in a 2019 value of $1.18.
-
-### Small Districts
-
-There are now 129 total small districts sequentially numbered from northwest to southeast in each medium district. The small district name field `DSML_NAME` includes a prefix of Medium District index followed by a colon and then the sequential small district count (e.g. 15:1). 
-
-### Source
-
-The `_Source` subfolder was added and includes the following shapefile data sets: Cities, Counties, Districts, and Environmental Constraints. Additionally, a ArcGIS Pro project & mapping files can be found in the `__ViewTAZDistricts` subfolder.
+Shapefiles representing the Wasatch Front subarea and the REMM vs. non-REMM area were added to the `1_TAZ\Districts` folder.
 
 ## Socioeconomic Data
 

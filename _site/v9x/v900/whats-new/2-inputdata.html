@@ -684,15 +684,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Internal zones were split to increase the model’s geographic resolution. Some zone boundaries were also modified without being split to better align with underlying land uses and planning boundaries.</p>
 <p>The geographic coverage area of the internal zones was also expanded to encompass the entire county. The notable exceptions to this are the portions of Box Elder County and Weber County that are not in the WFRC planning domain. While not expanded to county boundaries, the geographic coverage area of these counties was still changed to encompass the canyon/mountain areas that are part of the Wasatch Front travel shed.</p>
 <p>External zones were revised to reflect the changes of the expanded internal zone area. This included an update to the number and location of the external zones. However, external zones are no longer represented in the TAZ shapefile. The arbitrary polygons representing the external zones in previous version of the TAZ shapefile have been removed. External zones are still represented in other parts of the model, such as in the highway network, general parameters block file.</p>
-<p>The expanded area and reconfigured TAZs resulted in the addition of 688 internal zones and 6 external zones. A comparison of zone counts is found in <a href="#tbl-taz-count">Table&nbsp;1</a>.</p>
-<div id="tbl-taz-count" class="tbl-parent quarto-layout-panel anchored">
-<div class="panel-caption table-caption">
-<p>Table&nbsp;1: TAZ Count Comparisons</p>
-</div>
+<p>The expanded area and reconfigured TAZs resulted in the addition of 688 internal zones and 6 external zones. A comparison of zone counts is found in <a href="#tbl-taz-count-internal">Table&nbsp;1</a> and <a href="#tbl-taz-count-external">Table&nbsp;2</a>.</p>
+<div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-taz-count-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-taz-count" style="flex-basis: 50.0%;justify-content: center;">
-<table class="table">
-<caption>(a) Internal</caption>
+<div class="cell quarto-layout-cell" data-execution_count="4" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="55">
+<div id="tbl-taz-count-internal" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Internal TAZ Count Comparison</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">County</th>
@@ -741,9 +746,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </div>
-<div id="tbl-taz-count-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-taz-count" style="flex-basis: 50.0%;justify-content: center;">
-<table class="table">
-<caption>(b) External</caption>
+</div>
+</div>
+<div class="cell quarto-layout-cell" data-execution_count="5" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="56">
+<div id="tbl-taz-count-external" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;2: External TAZ Count Comparison</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">County</th>
@@ -794,43 +809,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+</div>
 <p>The interactive map in <a href="#fig-taz-compare-map">Figure&nbsp;3</a> can be explored to visualize the difference in version 9 and version 8 TAZs.</p>
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="517" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 516;"><span id="cb8-517"><a href="#cb8-517" aria-hidden="true" tabindex="-1"></a>mapTaz <span class="op">=</span> {</span>
-<span id="cb8-518"><a href="#cb8-518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-519"><a href="#cb8-519" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
-<span id="cb8-520"><a href="#cb8-520" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
-<span id="cb8-521"><a href="#cb8-521" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-522"><a href="#cb8-522" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
-<span id="cb8-523"><a href="#cb8-523" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-524"><a href="#cb8-524" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
-<span id="cb8-525"><a href="#cb8-525" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
-<span id="cb8-526"><a href="#cb8-526" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb8-527"><a href="#cb8-527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-528"><a href="#cb8-528" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lcolors <span class="op">=</span> [<span class="st">'#0000FF'</span>    <span class="op">,</span><span class="st">'red'</span>   ]</span>
-<span id="cb8-529"><a href="#cb8-529" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> llabels <span class="op">=</span> [<span class="st">'v8.3.2 TAZ'</span> <span class="op">,</span><span class="st">'v9.0.0 TAZ'</span>]<span class="op">;</span></span>
-<span id="cb8-530"><a href="#cb8-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-531"><a href="#cb8-531" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZOld <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTazOld<span class="op">,</span> { <span class="dt">weight</span><span class="op">:</span> <span class="fl">3.00</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> lcolors[<span class="dv">0</span>]<span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb8-532"><a href="#cb8-532" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZNew <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTazNew<span class="op">,</span> { <span class="dt">weight</span><span class="op">:</span> <span class="fl">1.50</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> lcolors[<span class="dv">1</span>]<span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb8-533"><a href="#cb8-533" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-534"><a href="#cb8-534" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
-<span id="cb8-535"><a href="#cb8-535" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
-<span id="cb8-536"><a href="#cb8-536" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'legend'</span>)<span class="op">;</span></span>
-<span id="cb8-537"><a href="#cb8-537" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">''</span><span class="op">;</span></span>
-<span id="cb8-538"><a href="#cb8-538" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> llabels<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb8-539"><a href="#cb8-539" aria-hidden="true" tabindex="-1"></a>        div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> lcolors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span> llabels[i] <span class="op">+</span> <span class="st">'&lt;br/&gt;'</span><span class="op">;</span></span>
-<span id="cb8-540"><a href="#cb8-540" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb8-541"><a href="#cb8-541" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-542"><a href="#cb8-542" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add CSS style for the background color</span></span>
-<span id="cb8-543"><a href="#cb8-543" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
-<span id="cb8-544"><a href="#cb8-544" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
-<span id="cb8-545"><a href="#cb8-545" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb8-546"><a href="#cb8-546" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> div<span class="op">;</span></span>
-<span id="cb8-547"><a href="#cb8-547" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
-<span id="cb8-548"><a href="#cb8-548" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb8-549"><a href="#cb8-549" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="534" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 533;"><span id="cb8-534"><a href="#cb8-534" aria-hidden="true" tabindex="-1"></a>mapTaz <span class="op">=</span> {</span>
+<span id="cb8-535"><a href="#cb8-535" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-536"><a href="#cb8-536" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb8-537"><a href="#cb8-537" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb8-538"><a href="#cb8-538" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-539"><a href="#cb8-539" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
+<span id="cb8-540"><a href="#cb8-540" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-541"><a href="#cb8-541" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
+<span id="cb8-542"><a href="#cb8-542" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb8-543"><a href="#cb8-543" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb8-544"><a href="#cb8-544" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-545"><a href="#cb8-545" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lcolors <span class="op">=</span> [<span class="st">'#0000FF'</span>    <span class="op">,</span><span class="st">'red'</span>   ]</span>
+<span id="cb8-546"><a href="#cb8-546" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> llabels <span class="op">=</span> [<span class="st">'v8.3.2 TAZ'</span> <span class="op">,</span><span class="st">'v9.0.0 TAZ'</span>]<span class="op">;</span></span>
+<span id="cb8-547"><a href="#cb8-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-548"><a href="#cb8-548" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZOld <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTazOld<span class="op">,</span> { <span class="dt">weight</span><span class="op">:</span> <span class="fl">3.00</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> lcolors[<span class="dv">0</span>]<span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb8-549"><a href="#cb8-549" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZNew <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTazNew<span class="op">,</span> { <span class="dt">weight</span><span class="op">:</span> <span class="fl">1.50</span><span class="op">,</span> <span class="dt">color</span><span class="op">:</span> lcolors[<span class="dv">1</span>]<span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb8-550"><a href="#cb8-550" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-551"><a href="#cb8-551" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
+<span id="cb8-552"><a href="#cb8-552" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
+<span id="cb8-553"><a href="#cb8-553" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'legend'</span>)<span class="op">;</span></span>
+<span id="cb8-554"><a href="#cb8-554" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">''</span><span class="op">;</span></span>
+<span id="cb8-555"><a href="#cb8-555" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> llabels<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb8-556"><a href="#cb8-556" aria-hidden="true" tabindex="-1"></a>        div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> lcolors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span> llabels[i] <span class="op">+</span> <span class="st">'&lt;br/&gt;'</span><span class="op">;</span></span>
+<span id="cb8-557"><a href="#cb8-557" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb8-558"><a href="#cb8-558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-559"><a href="#cb8-559" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add CSS style for the background color</span></span>
+<span id="cb8-560"><a href="#cb8-560" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
+<span id="cb8-561"><a href="#cb8-561" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
+<span id="cb8-562"><a href="#cb8-562" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-563"><a href="#cb8-563" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb8-564"><a href="#cb8-564" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb8-565"><a href="#cb8-565" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb8-566"><a href="#cb8-566" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-taz-compare-map" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -841,60 +858,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="grid">
-<div class="g-col-1">
-
-</div>
-<div class="g-col-10">
-<div class="cell" data-execution_count="10">
-<div class="cell-output cell-output-display" data-execution_count="113">
-<div id="tbl-new-taz-ranges" class="anchored">
+<p>The TAZ numbering was updated to reflect the changes made to the TAZ geometry, as depicted in <a href="#tbl-taz-ranges-internal">Table&nbsp;3</a> and <a href="#tbl-taz-ranges-external">Table&nbsp;4</a>.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell quarto-layout-cell" data-execution_count="12" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="63">
+<div id="tbl-taz-ranges-internal" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;2: TAZ Ranges</caption>
+<caption>Table&nbsp;3: Internal TAZ Ranges</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">County</th>
-<th style="text-align: right;">v9.0.0 Internal</th>
-<th style="text-align: right;">v9.0.0 External</th>
-<th style="text-align: right;">v8.3.2 Internal</th>
-<th style="text-align: right;">v8.3.2 External</th>
+<th style="text-align: left;">v9</th>
+<th style="text-align: left;">v832</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Box Elder County</td>
-<td style="text-align: right;">1-153</td>
-<td style="text-align: right;">3601-3606</td>
-<td style="text-align: right;">1-135</td>
-<td style="text-align: right;">136-140</td>
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">1-153</td>
+<td style="text-align: left;">1-135</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Weber County</td>
-<td style="text-align: right;">154-581</td>
-<td style="text-align: right;">3607-3609</td>
-<td style="text-align: right;">141-420</td>
-<td style="text-align: right;">421-423</td>
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">154-581</td>
+<td style="text-align: left;">141-420</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Davis County</td>
-<td style="text-align: right;">582-905</td>
-<td style="text-align: right;">N/A</td>
-<td style="text-align: right;">424-654</td>
-<td style="text-align: right;">N/A</td>
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">582-905</td>
+<td style="text-align: left;">424-654</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Salt Lake County</td>
-<td style="text-align: right;">906-2216</td>
-<td style="text-align: right;">3610-3615</td>
-<td style="text-align: right;">655-1781</td>
-<td style="text-align: right;">1782-1788</td>
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">906-2216</td>
+<td style="text-align: left;">655-1781</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Utah County</td>
-<td style="text-align: right;">2217-3546</td>
-<td style="text-align: right;">3616-3629</td>
-<td style="text-align: right;">1789-2873</td>
-<td style="text-align: right;">2874-2881</td>
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">2217-3546</td>
+<td style="text-align: left;">1789-2873</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">1-3546</td>
+<td style="text-align: left;">1-2873</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-cell" data-execution_count="13" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell-output cell-output-display" data-execution_count="64">
+<div id="tbl-taz-ranges-external" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;4: External TAZ Ranges</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">County</th>
+<th style="text-align: left;">v9</th>
+<th style="text-align: left;">v832</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">3601-3606</td>
+<td style="text-align: left;">136-140</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">3607-3609</td>
+<td style="text-align: left;">421-423</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">3610-3615</td>
+<td style="text-align: left;">1782-1788</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">3616-3629</td>
+<td style="text-align: left;">2874-2881</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">3601-3629</td>
+<td style="text-align: left;">137-140, 421-423, 1782-1788, 2874-2881</td>
 </tr>
 </tbody>
 </table>
@@ -913,45 +979,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="621" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 620;"><span id="cb9-621"><a href="#cb9-621" aria-hidden="true" tabindex="-1"></a>mapTazRemmSpace <span class="op">=</span> {</span>
-<span id="cb9-622"><a href="#cb9-622" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-623"><a href="#cb9-623" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
-<span id="cb9-624"><a href="#cb9-624" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
-<span id="cb9-625"><a href="#cb9-625" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-626"><a href="#cb9-626" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
-<span id="cb9-627"><a href="#cb9-627" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-628"><a href="#cb9-628" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
-<span id="cb9-629"><a href="#cb9-629" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
-<span id="cb9-630"><a href="#cb9-630" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb9-631"><a href="#cb9-631" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-632"><a href="#cb9-632" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> remmColors <span class="op">=</span> [<span class="st">'#00887F'</span>   <span class="op">,</span><span class="st">'#BD0026'</span>       ]</span>
-<span id="cb9-633"><a href="#cb9-633" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> remmLabels <span class="op">=</span> [<span class="st">'REMM Space'</span><span class="op">,</span><span class="st">'Non-REMM Space'</span>]<span class="op">;</span></span>
-<span id="cb9-634"><a href="#cb9-634" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-635"><a href="#cb9-635" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZNew <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTazNew<span class="op">,</span> {</span>
-<span id="cb9-636"><a href="#cb9-636" aria-hidden="true" tabindex="-1"></a>                            <span class="dt">style</span><span class="op">:</span> <span class="kw">function</span>(feature) {</span>
-<span id="cb9-637"><a href="#cb9-637" aria-hidden="true" tabindex="-1"></a>                              <span class="kw">var</span> d <span class="op">=</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">REMM</span><span class="op">;</span></span>
-<span id="cb9-638"><a href="#cb9-638" aria-hidden="true" tabindex="-1"></a>                              <span class="cf">return</span> d<span class="op">==</span><span class="dv">1</span> <span class="op">?</span> {<span class="dt">color</span><span class="op">:</span>remmColors[<span class="dv">0</span>]<span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">:</span></span>
-<span id="cb9-639"><a href="#cb9-639" aria-hidden="true" tabindex="-1"></a>                                     d<span class="op">==</span><span class="dv">0</span> <span class="op">?</span> {<span class="dt">color</span><span class="op">:</span>remmColors[<span class="dv">1</span>]<span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">:</span> </span>
-<span id="cb9-640"><a href="#cb9-640" aria-hidden="true" tabindex="-1"></a>                                            {<span class="dt">color</span><span class="op">:</span>    <span class="st">'#000000'</span><span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">;</span></span>
-<span id="cb9-641"><a href="#cb9-641" aria-hidden="true" tabindex="-1"></a>                            }</span>
-<span id="cb9-642"><a href="#cb9-642" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb9-643"><a href="#cb9-643" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-644"><a href="#cb9-644" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
-<span id="cb9-645"><a href="#cb9-645" aria-hidden="true" tabindex="-1"></a>  legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
-<span id="cb9-646"><a href="#cb9-646" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'legend'</span>)<span class="op">;</span></span>
-<span id="cb9-647"><a href="#cb9-647" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">''</span><span class="op">;</span></span>
-<span id="cb9-648"><a href="#cb9-648" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> remmLabels<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb9-649"><a href="#cb9-649" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> remmColors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span> remmLabels[i] <span class="op">+</span> <span class="st">'&lt;br/&gt;'</span><span class="op">;</span></span>
-<span id="cb9-650"><a href="#cb9-650" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb9-651"><a href="#cb9-651" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-652"><a href="#cb9-652" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add CSS style for the background color</span></span>
-<span id="cb9-653"><a href="#cb9-653" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
-<span id="cb9-654"><a href="#cb9-654" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
-<span id="cb9-655"><a href="#cb9-655" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-656"><a href="#cb9-656" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
-<span id="cb9-657"><a href="#cb9-657" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb9-658"><a href="#cb9-658" aria-hidden="true" tabindex="-1"></a>  legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb9-659"><a href="#cb9-659" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="658" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 657;"><span id="cb9-658"><a href="#cb9-658" aria-hidden="true" tabindex="-1"></a>mapTazRemmSpace <span class="op">=</span> {</span>
+<span id="cb9-659"><a href="#cb9-659" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-660"><a href="#cb9-660" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb9-661"><a href="#cb9-661" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb9-662"><a href="#cb9-662" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-663"><a href="#cb9-663" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
+<span id="cb9-664"><a href="#cb9-664" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-665"><a href="#cb9-665" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
+<span id="cb9-666"><a href="#cb9-666" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb9-667"><a href="#cb9-667" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb9-668"><a href="#cb9-668" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-669"><a href="#cb9-669" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> remmColors <span class="op">=</span> [<span class="st">'#00887F'</span>   <span class="op">,</span><span class="st">'#BD0026'</span>       ]</span>
+<span id="cb9-670"><a href="#cb9-670" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> remmLabels <span class="op">=</span> [<span class="st">'REMM Space'</span><span class="op">,</span><span class="st">'Non-REMM Space'</span>]<span class="op">;</span></span>
+<span id="cb9-671"><a href="#cb9-671" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-672"><a href="#cb9-672" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZNew <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTazNew<span class="op">,</span> {</span>
+<span id="cb9-673"><a href="#cb9-673" aria-hidden="true" tabindex="-1"></a>                            <span class="dt">style</span><span class="op">:</span> <span class="kw">function</span>(feature) {</span>
+<span id="cb9-674"><a href="#cb9-674" aria-hidden="true" tabindex="-1"></a>                              <span class="kw">var</span> d <span class="op">=</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">REMM</span><span class="op">;</span></span>
+<span id="cb9-675"><a href="#cb9-675" aria-hidden="true" tabindex="-1"></a>                              <span class="cf">return</span> d<span class="op">==</span><span class="dv">1</span> <span class="op">?</span> {<span class="dt">color</span><span class="op">:</span>remmColors[<span class="dv">0</span>]<span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">:</span></span>
+<span id="cb9-676"><a href="#cb9-676" aria-hidden="true" tabindex="-1"></a>                                     d<span class="op">==</span><span class="dv">0</span> <span class="op">?</span> {<span class="dt">color</span><span class="op">:</span>remmColors[<span class="dv">1</span>]<span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">:</span> </span>
+<span id="cb9-677"><a href="#cb9-677" aria-hidden="true" tabindex="-1"></a>                                            {<span class="dt">color</span><span class="op">:</span>    <span class="st">'#000000'</span><span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">;</span></span>
+<span id="cb9-678"><a href="#cb9-678" aria-hidden="true" tabindex="-1"></a>                            }</span>
+<span id="cb9-679"><a href="#cb9-679" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb9-680"><a href="#cb9-680" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb9-681"><a href="#cb9-681" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
+<span id="cb9-682"><a href="#cb9-682" aria-hidden="true" tabindex="-1"></a>  legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
+<span id="cb9-683"><a href="#cb9-683" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'legend'</span>)<span class="op">;</span></span>
+<span id="cb9-684"><a href="#cb9-684" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">''</span><span class="op">;</span></span>
+<span id="cb9-685"><a href="#cb9-685" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> remmLabels<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb9-686"><a href="#cb9-686" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> remmColors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span> remmLabels[i] <span class="op">+</span> <span class="st">'&lt;br/&gt;'</span><span class="op">;</span></span>
+<span id="cb9-687"><a href="#cb9-687" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-688"><a href="#cb9-688" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-689"><a href="#cb9-689" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add CSS style for the background color</span></span>
+<span id="cb9-690"><a href="#cb9-690" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
+<span id="cb9-691"><a href="#cb9-691" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
+<span id="cb9-692"><a href="#cb9-692" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-693"><a href="#cb9-693" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb9-694"><a href="#cb9-694" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb9-695"><a href="#cb9-695" aria-hidden="true" tabindex="-1"></a>  legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb9-696"><a href="#cb9-696" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-taz-remm-space" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -998,9 +1064,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="707" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 706;"><span id="cb10-707"><a href="#cb10-707" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="width: 765px; height: 680px; transform: scale(0.85); transform-origin: 0 0;"&gt;</span></span>
-<span id="cb10-708"><a href="#cb10-708" aria-hidden="true" tabindex="-1"></a><span class="vs">         &lt;iframe width="900" height="800" src="https://wfrc.org/household-job-forecast-map/" title="Household and Job Forecast"&gt;&lt;/iframe&gt;</span></span>
-<span id="cb10-709"><a href="#cb10-709" aria-hidden="true" tabindex="-1"></a><span class="vs">     &lt;/div&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="744" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 743;"><span id="cb10-744"><a href="#cb10-744" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="width: 765px; height: 680px; transform: scale(0.85); transform-origin: 0 0;"&gt;</span></span>
+<span id="cb10-745"><a href="#cb10-745" aria-hidden="true" tabindex="-1"></a><span class="vs">         &lt;iframe width="900" height="800" src="https://wfrc.org/household-job-forecast-map/" title="Household and Job Forecast"&gt;&lt;/iframe&gt;</span></span>
+<span id="cb10-746"><a href="#cb10-746" aria-hidden="true" tabindex="-1"></a><span class="vs">     &lt;/div&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-household-job-forecast-map" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -1018,42 +1084,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="755" data-source-offset="-17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 754;"><span id="cb11-755"><a href="#cb11-755" aria-hidden="true" tabindex="-1"></a>faControlTotals <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/controltotal.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
-<span id="cb11-756"><a href="#cb11-756" aria-hidden="true" tabindex="-1"></a>faCounties      <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/counties.csv"</span>    )<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
-<span id="cb11-757"><a href="#cb11-757" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-758"><a href="#cb11-758" aria-hidden="true" tabindex="-1"></a>cats <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Total Population'</span>               <span class="op">,</span> <span class="st">'TOTPOP'</span>    ]<span class="op">,</span></span>
-<span id="cb11-759"><a href="#cb11-759" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Group Quarter Population'</span>       <span class="op">,</span> <span class="st">'GQ_Pop'</span>    ]<span class="op">,</span></span>
-<span id="cb11-760"><a href="#cb11-760" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Household Population'</span>           <span class="op">,</span> <span class="st">'HH_Pop'</span>    ]<span class="op">,</span></span>
-<span id="cb11-761"><a href="#cb11-761" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Households'</span>                     <span class="op">,</span> <span class="st">'HH'</span>        ]<span class="op">,</span></span>
-<span id="cb11-762"><a href="#cb11-762" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Household Size'</span>                 <span class="op">,</span> <span class="st">'HH_Size'</span>   ]<span class="op">,</span></span>
-<span id="cb11-763"><a href="#cb11-763" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Population 0-17'</span>                <span class="op">,</span> <span class="st">'POP_00_17'</span> ]<span class="op">,</span></span>
-<span id="cb11-764"><a href="#cb11-764" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Population 18-64'</span>               <span class="op">,</span> <span class="st">'POP_18_64'</span> ]<span class="op">,</span></span>
-<span id="cb11-765"><a href="#cb11-765" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Population 65+'</span>                 <span class="op">,</span> <span class="st">'POP_65P'</span>   ]<span class="op">,</span></span>
-<span id="cb11-766"><a href="#cb11-766" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'All Employment'</span>                 <span class="op">,</span> <span class="st">'ALLEMP'</span>    ]<span class="op">,</span></span>
-<span id="cb11-767"><a href="#cb11-767" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Retail Employment'</span>              <span class="op">,</span> <span class="st">'RETL'</span>      ]<span class="op">,</span></span>
-<span id="cb11-768"><a href="#cb11-768" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Food Employment'</span>                <span class="op">,</span> <span class="st">'FOOD'</span>      ]<span class="op">,</span></span>
-<span id="cb11-769"><a href="#cb11-769" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Manufacturing Employment'</span>       <span class="op">,</span> <span class="st">'MANU'</span>      ]<span class="op">,</span></span>
-<span id="cb11-770"><a href="#cb11-770" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Wholesale Employment'</span>           <span class="op">,</span> <span class="st">'WSLE'</span>      ]<span class="op">,</span></span>
-<span id="cb11-771"><a href="#cb11-771" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Office Employment'</span>              <span class="op">,</span> <span class="st">'OFFI'</span>      ]<span class="op">,</span></span>
-<span id="cb11-772"><a href="#cb11-772" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Government/Education Employment'</span><span class="op">,</span> <span class="st">'GVED'</span>      ]<span class="op">,</span></span>
-<span id="cb11-773"><a href="#cb11-773" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Health Employment'</span>              <span class="op">,</span> <span class="st">'HLTH'</span>      ]<span class="op">,</span></span>
-<span id="cb11-774"><a href="#cb11-774" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Other Employment'</span>               <span class="op">,</span> <span class="st">'OTHR'</span>      ]<span class="op">,</span></span>
-<span id="cb11-775"><a href="#cb11-775" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Agriculture Employment'</span>         <span class="op">,</span> <span class="st">'AGRI'</span>      ]<span class="op">,</span></span>
-<span id="cb11-776"><a href="#cb11-776" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Mining Employment'</span>              <span class="op">,</span> <span class="st">'MING'</span>      ]<span class="op">,</span></span>
-<span id="cb11-777"><a href="#cb11-777" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Construction Employment'</span>        <span class="op">,</span> <span class="st">'CONS'</span>      ]<span class="op">,</span></span>
-<span id="cb11-778"><a href="#cb11-778" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Home-Based Job Employment'</span>      <span class="op">,</span> <span class="st">'HBJ'</span>       ]<span class="op">,</span></span>
-<span id="cb11-779"><a href="#cb11-779" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Jobs per Household'</span>             <span class="op">,</span> <span class="st">'Job_HH'</span>    ]<span class="op">,</span></span>
-<span id="cb11-780"><a href="#cb11-780" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Working Population per Job'</span>     <span class="op">,</span> <span class="st">'WrkPop_Job'</span>]])</span>
-<span id="cb11-781"><a href="#cb11-781" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-782"><a href="#cb11-782" aria-hidden="true" tabindex="-1"></a>viewof selectCounty   <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(faCounties<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {<span class="cf">return</span> d<span class="op">.</span><span class="at">CO_NAME</span>})<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'Salt Lake'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">'County: '</span>})<span class="op">;</span></span>
-<span id="cb11-783"><a href="#cb11-783" aria-hidden="true" tabindex="-1"></a>viewof selectCategory <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(cats<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'HH_Pop'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">'Category: '</span>})<span class="op">;</span></span>
-<span id="cb11-784"><a href="#cb11-784" aria-hidden="true" tabindex="-1"></a><span class="co">// FILTER DATA</span></span>
-<span id="cb11-785"><a href="#cb11-785" aria-hidden="true" tabindex="-1"></a>filteredControlTotals <span class="op">=</span> faControlTotals<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(ct) {</span>
-<span id="cb11-786"><a href="#cb11-786" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> selectCounty   <span class="op">==</span> ct<span class="op">.</span><span class="at">CO_NAME</span> <span class="op">&amp;&amp;</span></span>
-<span id="cb11-787"><a href="#cb11-787" aria-hidden="true" tabindex="-1"></a>         selectCategory <span class="op">==</span> ct<span class="op">.</span><span class="at">Category</span><span class="op">;</span></span>
-<span id="cb11-788"><a href="#cb11-788" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
-<span id="cb11-789"><a href="#cb11-789" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-790"><a href="#cb11-790" aria-hidden="true" tabindex="-1"></a>maxY <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>filteredControlTotals<span class="op">.</span><span class="fu">map</span>(item <span class="kw">=&gt;</span> item<span class="op">.</span><span class="at">ControlTotal</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="792" data-source-offset="-17"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 791;"><span id="cb11-792"><a href="#cb11-792" aria-hidden="true" tabindex="-1"></a>faControlTotals <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/controltotal.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
+<span id="cb11-793"><a href="#cb11-793" aria-hidden="true" tabindex="-1"></a>faCounties      <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/counties.csv"</span>    )<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })<span class="op">;</span></span>
+<span id="cb11-794"><a href="#cb11-794" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-795"><a href="#cb11-795" aria-hidden="true" tabindex="-1"></a>cats <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Total Population'</span>               <span class="op">,</span> <span class="st">'TOTPOP'</span>    ]<span class="op">,</span></span>
+<span id="cb11-796"><a href="#cb11-796" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Group Quarter Population'</span>       <span class="op">,</span> <span class="st">'GQ_Pop'</span>    ]<span class="op">,</span></span>
+<span id="cb11-797"><a href="#cb11-797" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Household Population'</span>           <span class="op">,</span> <span class="st">'HH_Pop'</span>    ]<span class="op">,</span></span>
+<span id="cb11-798"><a href="#cb11-798" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Households'</span>                     <span class="op">,</span> <span class="st">'HH'</span>        ]<span class="op">,</span></span>
+<span id="cb11-799"><a href="#cb11-799" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Household Size'</span>                 <span class="op">,</span> <span class="st">'HH_Size'</span>   ]<span class="op">,</span></span>
+<span id="cb11-800"><a href="#cb11-800" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Population 0-17'</span>                <span class="op">,</span> <span class="st">'POP_00_17'</span> ]<span class="op">,</span></span>
+<span id="cb11-801"><a href="#cb11-801" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Population 18-64'</span>               <span class="op">,</span> <span class="st">'POP_18_64'</span> ]<span class="op">,</span></span>
+<span id="cb11-802"><a href="#cb11-802" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Population 65+'</span>                 <span class="op">,</span> <span class="st">'POP_65P'</span>   ]<span class="op">,</span></span>
+<span id="cb11-803"><a href="#cb11-803" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'All Employment'</span>                 <span class="op">,</span> <span class="st">'ALLEMP'</span>    ]<span class="op">,</span></span>
+<span id="cb11-804"><a href="#cb11-804" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Retail Employment'</span>              <span class="op">,</span> <span class="st">'RETL'</span>      ]<span class="op">,</span></span>
+<span id="cb11-805"><a href="#cb11-805" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Food Employment'</span>                <span class="op">,</span> <span class="st">'FOOD'</span>      ]<span class="op">,</span></span>
+<span id="cb11-806"><a href="#cb11-806" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Manufacturing Employment'</span>       <span class="op">,</span> <span class="st">'MANU'</span>      ]<span class="op">,</span></span>
+<span id="cb11-807"><a href="#cb11-807" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Wholesale Employment'</span>           <span class="op">,</span> <span class="st">'WSLE'</span>      ]<span class="op">,</span></span>
+<span id="cb11-808"><a href="#cb11-808" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Office Employment'</span>              <span class="op">,</span> <span class="st">'OFFI'</span>      ]<span class="op">,</span></span>
+<span id="cb11-809"><a href="#cb11-809" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Government/Education Employment'</span><span class="op">,</span> <span class="st">'GVED'</span>      ]<span class="op">,</span></span>
+<span id="cb11-810"><a href="#cb11-810" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Health Employment'</span>              <span class="op">,</span> <span class="st">'HLTH'</span>      ]<span class="op">,</span></span>
+<span id="cb11-811"><a href="#cb11-811" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Other Employment'</span>               <span class="op">,</span> <span class="st">'OTHR'</span>      ]<span class="op">,</span></span>
+<span id="cb11-812"><a href="#cb11-812" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Agriculture Employment'</span>         <span class="op">,</span> <span class="st">'AGRI'</span>      ]<span class="op">,</span></span>
+<span id="cb11-813"><a href="#cb11-813" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Mining Employment'</span>              <span class="op">,</span> <span class="st">'MING'</span>      ]<span class="op">,</span></span>
+<span id="cb11-814"><a href="#cb11-814" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Construction Employment'</span>        <span class="op">,</span> <span class="st">'CONS'</span>      ]<span class="op">,</span></span>
+<span id="cb11-815"><a href="#cb11-815" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Home-Based Job Employment'</span>      <span class="op">,</span> <span class="st">'HBJ'</span>       ]<span class="op">,</span></span>
+<span id="cb11-816"><a href="#cb11-816" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Jobs per Household'</span>             <span class="op">,</span> <span class="st">'Job_HH'</span>    ]<span class="op">,</span></span>
+<span id="cb11-817"><a href="#cb11-817" aria-hidden="true" tabindex="-1"></a>                [<span class="st">'Working Population per Job'</span>     <span class="op">,</span> <span class="st">'WrkPop_Job'</span>]])</span>
+<span id="cb11-818"><a href="#cb11-818" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-819"><a href="#cb11-819" aria-hidden="true" tabindex="-1"></a>viewof selectCounty   <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(faCounties<span class="op">.</span><span class="fu">map</span>(<span class="kw">function</span>(d) {<span class="cf">return</span> d<span class="op">.</span><span class="at">CO_NAME</span>})<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'Salt Lake'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">'County: '</span>})<span class="op">;</span></span>
+<span id="cb11-820"><a href="#cb11-820" aria-hidden="true" tabindex="-1"></a>viewof selectCategory <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(cats<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'HH_Pop'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">'Category: '</span>})<span class="op">;</span></span>
+<span id="cb11-821"><a href="#cb11-821" aria-hidden="true" tabindex="-1"></a><span class="co">// FILTER DATA</span></span>
+<span id="cb11-822"><a href="#cb11-822" aria-hidden="true" tabindex="-1"></a>filteredControlTotals <span class="op">=</span> faControlTotals<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(ct) {</span>
+<span id="cb11-823"><a href="#cb11-823" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> selectCounty   <span class="op">==</span> ct<span class="op">.</span><span class="at">CO_NAME</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb11-824"><a href="#cb11-824" aria-hidden="true" tabindex="-1"></a>         selectCategory <span class="op">==</span> ct<span class="op">.</span><span class="at">Category</span><span class="op">;</span></span>
+<span id="cb11-825"><a href="#cb11-825" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb11-826"><a href="#cb11-826" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-827"><a href="#cb11-827" aria-hidden="true" tabindex="-1"></a>maxY <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="op">...</span>filteredControlTotals<span class="op">.</span><span class="fu">map</span>(item <span class="kw">=&gt;</span> item<span class="op">.</span><span class="at">ControlTotal</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1108,20 +1174,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="796" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 795;"><span id="cb12-796"><a href="#cb12-796" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb12-797"><a href="#cb12-797" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb12-798"><a href="#cb12-798" aria-hidden="true" tabindex="-1"></a>  <span class="dt">aspectRatio</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
-<span id="cb12-799"><a href="#cb12-799" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">'Year'</span><span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> d}<span class="op">,</span></span>
-<span id="cb12-800"><a href="#cb12-800" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">'Control Total'</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> maxY]}<span class="op">,</span></span>
-<span id="cb12-801"><a href="#cb12-801" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">"categorical"</span><span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">legendStyle</span><span class="op">:</span> { <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span> } }<span class="op">,</span></span>
-<span id="cb12-802"><a href="#cb12-802" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
-<span id="cb12-803"><a href="#cb12-803" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
-<span id="cb12-804"><a href="#cb12-804" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span></span>
-<span id="cb12-805"><a href="#cb12-805" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb12-806"><a href="#cb12-806" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb12-807"><a href="#cb12-807" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(filteredControlTotals<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">'YEAR'</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">'ControlTotal'</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">'ModelVersion'</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span>})<span class="op">,</span></span>
-<span id="cb12-808"><a href="#cb12-808" aria-hidden="true" tabindex="-1"></a>  ]</span>
-<span id="cb12-809"><a href="#cb12-809" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="833" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 832;"><span id="cb12-833"><a href="#cb12-833" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb12-834"><a href="#cb12-834" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb12-835"><a href="#cb12-835" aria-hidden="true" tabindex="-1"></a>  <span class="dt">aspectRatio</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb12-836"><a href="#cb12-836" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">'Year'</span><span class="op">,</span> <span class="dt">tickFormat</span><span class="op">:</span> d <span class="kw">=&gt;</span> d}<span class="op">,</span></span>
+<span id="cb12-837"><a href="#cb12-837" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">'Control Total'</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> maxY]}<span class="op">,</span></span>
+<span id="cb12-838"><a href="#cb12-838" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">"categorical"</span><span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span> <span class="dt">legendStyle</span><span class="op">:</span> { <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">16</span> } }<span class="op">,</span></span>
+<span id="cb12-839"><a href="#cb12-839" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">60</span><span class="op">,</span></span>
+<span id="cb12-840"><a href="#cb12-840" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb12-841"><a href="#cb12-841" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">12</span></span>
+<span id="cb12-842"><a href="#cb12-842" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb12-843"><a href="#cb12-843" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb12-844"><a href="#cb12-844" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(filteredControlTotals<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">'YEAR'</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">'ControlTotal'</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">'ModelVersion'</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">3</span>})<span class="op">,</span></span>
+<span id="cb12-845"><a href="#cb12-845" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb12-846"><a href="#cb12-846" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-county-control-totals-by-category" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -1139,106 +1205,106 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="825" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 824;"><span id="cb13-825"><a href="#cb13-825" aria-hidden="true" tabindex="-1"></a>mapK12Enroll <span class="op">=</span> {</span>
-<span id="cb13-826"><a href="#cb13-826" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-827"><a href="#cb13-827" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
-<span id="cb13-828"><a href="#cb13-828" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
-<span id="cb13-829"><a href="#cb13-829" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-830"><a href="#cb13-830" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
-<span id="cb13-831"><a href="#cb13-831" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-832"><a href="#cb13-832" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
-<span id="cb13-833"><a href="#cb13-833" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
-<span id="cb13-834"><a href="#cb13-834" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb13-835"><a href="#cb13-835" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-836"><a href="#cb13-836" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cHigh <span class="op">=</span> <span class="st">"#FF0000"</span></span>
-<span id="cb13-837"><a href="#cb13-837" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cMidl <span class="op">=</span> <span class="st">"#00FF00"</span></span>
-<span id="cb13-838"><a href="#cb13-838" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cElem <span class="op">=</span> <span class="st">"#0000FF"</span></span>
-<span id="cb13-839"><a href="#cb13-839" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-840"><a href="#cb13-840" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geojsonMarkerOptions_High <span class="op">=</span> {</span>
-<span id="cb13-841"><a href="#cb13-841" aria-hidden="true" tabindex="-1"></a>      <span class="dt">radius</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
-<span id="cb13-842"><a href="#cb13-842" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillColor</span><span class="op">:</span> cHigh<span class="op">,</span></span>
-<span id="cb13-843"><a href="#cb13-843" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cHigh<span class="op">,</span></span>
-<span id="cb13-844"><a href="#cb13-844" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb13-845"><a href="#cb13-845" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb13-846"><a href="#cb13-846" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
-<span id="cb13-847"><a href="#cb13-847" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb13-848"><a href="#cb13-848" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-849"><a href="#cb13-849" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geojsonMarkerOptions_Midl <span class="op">=</span> {</span>
-<span id="cb13-850"><a href="#cb13-850" aria-hidden="true" tabindex="-1"></a>      <span class="dt">radius</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
-<span id="cb13-851"><a href="#cb13-851" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillColor</span><span class="op">:</span> cMidl<span class="op">,</span></span>
-<span id="cb13-852"><a href="#cb13-852" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cMidl<span class="op">,</span></span>
-<span id="cb13-853"><a href="#cb13-853" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb13-854"><a href="#cb13-854" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb13-855"><a href="#cb13-855" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
-<span id="cb13-856"><a href="#cb13-856" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb13-857"><a href="#cb13-857" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geojsonMarkerOptions_Elem <span class="op">=</span> {</span>
-<span id="cb13-858"><a href="#cb13-858" aria-hidden="true" tabindex="-1"></a>      <span class="dt">radius</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
-<span id="cb13-859"><a href="#cb13-859" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillColor</span><span class="op">:</span> cElem<span class="op">,</span></span>
-<span id="cb13-860"><a href="#cb13-860" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cElem<span class="op">,</span></span>
-<span id="cb13-861"><a href="#cb13-861" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb13-862"><a href="#cb13-862" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb13-863"><a href="#cb13-863" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
-<span id="cb13-864"><a href="#cb13-864" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb13-865"><a href="#cb13-865" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb13-866"><a href="#cb13-866" aria-hidden="true" tabindex="-1"></a>  <span class="co">// function to use different icons based on number of stations</span></span>
-<span id="cb13-867"><a href="#cb13-867" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">markerByEnrollment</span>(feature) {</span>
-<span id="cb13-868"><a href="#cb13-868" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_High</span> <span class="op">&gt;=</span> <span class="dv">100</span>) {</span>
-<span id="cb13-869"><a href="#cb13-869" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geojsonMarkerOptions_High</span>
-<span id="cb13-870"><a href="#cb13-870" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_Midl</span> <span class="op">&gt;=</span> <span class="dv">100</span>){</span>
-<span id="cb13-871"><a href="#cb13-871" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geojsonMarkerOptions_Midl<span class="op">;</span></span>
-<span id="cb13-872"><a href="#cb13-872" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
-<span id="cb13-873"><a href="#cb13-873" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geojsonMarkerOptions_Elem<span class="op">;</span></span>
-<span id="cb13-874"><a href="#cb13-874" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb13-875"><a href="#cb13-875" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="862" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 861;"><span id="cb13-862"><a href="#cb13-862" aria-hidden="true" tabindex="-1"></a>mapK12Enroll <span class="op">=</span> {</span>
+<span id="cb13-863"><a href="#cb13-863" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-864"><a href="#cb13-864" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb13-865"><a href="#cb13-865" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb13-866"><a href="#cb13-866" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-867"><a href="#cb13-867" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
+<span id="cb13-868"><a href="#cb13-868" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-869"><a href="#cb13-869" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
+<span id="cb13-870"><a href="#cb13-870" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb13-871"><a href="#cb13-871" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb13-872"><a href="#cb13-872" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-873"><a href="#cb13-873" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cHigh <span class="op">=</span> <span class="st">"#FF0000"</span></span>
+<span id="cb13-874"><a href="#cb13-874" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cMidl <span class="op">=</span> <span class="st">"#00FF00"</span></span>
+<span id="cb13-875"><a href="#cb13-875" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cElem <span class="op">=</span> <span class="st">"#0000FF"</span></span>
 <span id="cb13-876"><a href="#cb13-876" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-877"><a href="#cb13-877" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">getColor</span>(c) {</span>
-<span id="cb13-878"><a href="#cb13-878" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (c<span class="op">==</span><span class="st">'High School'</span>) {</span>
-<span id="cb13-879"><a href="#cb13-879" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cHigh<span class="op">;</span></span>
-<span id="cb13-880"><a href="#cb13-880" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Middle School'</span>) {</span>
-<span id="cb13-881"><a href="#cb13-881" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cMidl<span class="op">;</span></span>
-<span id="cb13-882"><a href="#cb13-882" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Elementary School'</span>) {</span>
-<span id="cb13-883"><a href="#cb13-883" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cElem<span class="op">;</span></span>
-<span id="cb13-884"><a href="#cb13-884" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb13-885"><a href="#cb13-885" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb13-886"><a href="#cb13-886" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb13-887"><a href="#cb13-887" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
-<span id="cb13-888"><a href="#cb13-888" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> layerSchools <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(geojsonK12Enroll<span class="op">,</span>  {</span>
-<span id="cb13-889"><a href="#cb13-889" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pointToLayer</span><span class="op">:</span> <span class="kw">function</span> (feature<span class="op">,</span> latlng) {</span>
-<span id="cb13-890"><a href="#cb13-890" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mypopup <span class="op">=</span> L<span class="op">.</span><span class="fu">popup</span>()<span class="op">.</span><span class="fu">setContent</span>(<span class="st">"&lt;b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">SchoolName</span> <span class="op">+</span> <span class="st">" Enrollment&lt;/b&gt;"</span> <span class="op">+</span></span>
-<span id="cb13-891"><a href="#cb13-891" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"&lt;br&gt;&lt;b&gt;High School: &lt;/b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_High</span> <span class="op">+</span></span>
-<span id="cb13-892"><a href="#cb13-892" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"&lt;br&gt;&lt;b&gt;Middle School: &lt;/b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_Midl</span> <span class="op">+</span></span>
-<span id="cb13-893"><a href="#cb13-893" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"&lt;br&gt;&lt;b&gt;Elementary School: &lt;/b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_Elem</span>)<span class="op">;</span></span>
-<span id="cb13-894"><a href="#cb13-894" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mymarker <span class="op">=</span> L<span class="op">.</span><span class="fu">circleMarker</span>(latlng<span class="op">,</span> <span class="fu">markerByEnrollment</span>(feature))<span class="op">;</span></span>
-<span id="cb13-895"><a href="#cb13-895" aria-hidden="true" tabindex="-1"></a>      mymarker<span class="op">.</span><span class="fu">bindPopup</span>(mypopup)<span class="op">;</span></span>
-<span id="cb13-896"><a href="#cb13-896" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> mymarker<span class="op">;</span></span>
-<span id="cb13-897"><a href="#cb13-897" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb13-898"><a href="#cb13-898" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb13-899"><a href="#cb13-899" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-900"><a href="#cb13-900" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
-<span id="cb13-901"><a href="#cb13-901" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
-<span id="cb13-902"><a href="#cb13-902" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'info legend'</span>)<span class="op">;</span></span>
-<span id="cb13-903"><a href="#cb13-903" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> labelsBill <span class="op">=</span> []<span class="op">;</span> <span class="co">// legend title</span></span>
-<span id="cb13-904"><a href="#cb13-904" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> lcategories <span class="op">=</span> [<span class="st">'High School'</span><span class="op">,</span><span class="st">'Middle School'</span><span class="op">,</span><span class="st">'Elementary School'</span>]<span class="op">;</span></span>
-<span id="cb13-905"><a href="#cb13-905" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-906"><a href="#cb13-906" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> lcategories<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb13-907"><a href="#cb13-907" aria-hidden="true" tabindex="-1"></a>        div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> </span>
-<span id="cb13-908"><a href="#cb13-908" aria-hidden="true" tabindex="-1"></a>          labelsBill<span class="op">.</span><span class="fu">push</span>(</span>
-<span id="cb13-909"><a href="#cb13-909" aria-hidden="true" tabindex="-1"></a>            <span class="st">'&lt;i class="bi bi-circle-fill" style="color:'</span> <span class="op">+</span> <span class="fu">getColor</span>(lcategories[i]) <span class="op">+</span> <span class="st">'"&gt;&lt;/i&gt; '</span> <span class="op">+</span></span>
-<span id="cb13-910"><a href="#cb13-910" aria-hidden="true" tabindex="-1"></a>          (lcategories[i] <span class="op">?</span> lcategories[i] <span class="op">:</span> <span class="st">'+'</span>))<span class="op">;</span></span>
-<span id="cb13-911"><a href="#cb13-911" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb13-912"><a href="#cb13-912" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> labelsBill<span class="op">.</span><span class="fu">join</span>(<span class="st">'&lt;br&gt;'</span>)<span class="op">;</span></span>
+<span id="cb13-877"><a href="#cb13-877" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geojsonMarkerOptions_High <span class="op">=</span> {</span>
+<span id="cb13-878"><a href="#cb13-878" aria-hidden="true" tabindex="-1"></a>      <span class="dt">radius</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb13-879"><a href="#cb13-879" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillColor</span><span class="op">:</span> cHigh<span class="op">,</span></span>
+<span id="cb13-880"><a href="#cb13-880" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cHigh<span class="op">,</span></span>
+<span id="cb13-881"><a href="#cb13-881" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb13-882"><a href="#cb13-882" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb13-883"><a href="#cb13-883" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
+<span id="cb13-884"><a href="#cb13-884" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-885"><a href="#cb13-885" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-886"><a href="#cb13-886" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geojsonMarkerOptions_Midl <span class="op">=</span> {</span>
+<span id="cb13-887"><a href="#cb13-887" aria-hidden="true" tabindex="-1"></a>      <span class="dt">radius</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb13-888"><a href="#cb13-888" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillColor</span><span class="op">:</span> cMidl<span class="op">,</span></span>
+<span id="cb13-889"><a href="#cb13-889" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cMidl<span class="op">,</span></span>
+<span id="cb13-890"><a href="#cb13-890" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb13-891"><a href="#cb13-891" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb13-892"><a href="#cb13-892" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
+<span id="cb13-893"><a href="#cb13-893" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-894"><a href="#cb13-894" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geojsonMarkerOptions_Elem <span class="op">=</span> {</span>
+<span id="cb13-895"><a href="#cb13-895" aria-hidden="true" tabindex="-1"></a>      <span class="dt">radius</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb13-896"><a href="#cb13-896" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillColor</span><span class="op">:</span> cElem<span class="op">,</span></span>
+<span id="cb13-897"><a href="#cb13-897" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cElem<span class="op">,</span></span>
+<span id="cb13-898"><a href="#cb13-898" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb13-899"><a href="#cb13-899" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb13-900"><a href="#cb13-900" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span></span>
+<span id="cb13-901"><a href="#cb13-901" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-902"><a href="#cb13-902" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb13-903"><a href="#cb13-903" aria-hidden="true" tabindex="-1"></a>  <span class="co">// function to use different icons based on number of stations</span></span>
+<span id="cb13-904"><a href="#cb13-904" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">markerByEnrollment</span>(feature) {</span>
+<span id="cb13-905"><a href="#cb13-905" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_High</span> <span class="op">&gt;=</span> <span class="dv">100</span>) {</span>
+<span id="cb13-906"><a href="#cb13-906" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geojsonMarkerOptions_High</span>
+<span id="cb13-907"><a href="#cb13-907" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_Midl</span> <span class="op">&gt;=</span> <span class="dv">100</span>){</span>
+<span id="cb13-908"><a href="#cb13-908" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geojsonMarkerOptions_Midl<span class="op">;</span></span>
+<span id="cb13-909"><a href="#cb13-909" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
+<span id="cb13-910"><a href="#cb13-910" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geojsonMarkerOptions_Elem<span class="op">;</span></span>
+<span id="cb13-911"><a href="#cb13-911" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-912"><a href="#cb13-912" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
 <span id="cb13-913"><a href="#cb13-913" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-914"><a href="#cb13-914" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add CSS style for the background color</span></span>
-<span id="cb13-915"><a href="#cb13-915" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
-<span id="cb13-916"><a href="#cb13-916" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
-<span id="cb13-917"><a href="#cb13-917" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb13-918"><a href="#cb13-918" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> div<span class="op">;</span></span>
-<span id="cb13-919"><a href="#cb13-919" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
-<span id="cb13-920"><a href="#cb13-920" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb13-921"><a href="#cb13-921" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-922"><a href="#cb13-922" aria-hidden="true" tabindex="-1"></a>  <span class="co">//let lyrK12Enroll = L.geoJson(geojsonK12Enroll, { size: 5, color: '#FFFFFF'}).addTo(map);</span></span>
-<span id="cb13-923"><a href="#cb13-923" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-924"><a href="#cb13-924" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-914"><a href="#cb13-914" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">getColor</span>(c) {</span>
+<span id="cb13-915"><a href="#cb13-915" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (c<span class="op">==</span><span class="st">'High School'</span>) {</span>
+<span id="cb13-916"><a href="#cb13-916" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cHigh<span class="op">;</span></span>
+<span id="cb13-917"><a href="#cb13-917" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Middle School'</span>) {</span>
+<span id="cb13-918"><a href="#cb13-918" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cMidl<span class="op">;</span></span>
+<span id="cb13-919"><a href="#cb13-919" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Elementary School'</span>) {</span>
+<span id="cb13-920"><a href="#cb13-920" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cElem<span class="op">;</span></span>
+<span id="cb13-921"><a href="#cb13-921" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-922"><a href="#cb13-922" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb13-923"><a href="#cb13-923" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb13-924"><a href="#cb13-924" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
+<span id="cb13-925"><a href="#cb13-925" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> layerSchools <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(geojsonK12Enroll<span class="op">,</span>  {</span>
+<span id="cb13-926"><a href="#cb13-926" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pointToLayer</span><span class="op">:</span> <span class="kw">function</span> (feature<span class="op">,</span> latlng) {</span>
+<span id="cb13-927"><a href="#cb13-927" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mypopup <span class="op">=</span> L<span class="op">.</span><span class="fu">popup</span>()<span class="op">.</span><span class="fu">setContent</span>(<span class="st">"&lt;b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">SchoolName</span> <span class="op">+</span> <span class="st">" Enrollment&lt;/b&gt;"</span> <span class="op">+</span></span>
+<span id="cb13-928"><a href="#cb13-928" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"&lt;br&gt;&lt;b&gt;High School: &lt;/b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_High</span> <span class="op">+</span></span>
+<span id="cb13-929"><a href="#cb13-929" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"&lt;br&gt;&lt;b&gt;Middle School: &lt;/b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_Midl</span> <span class="op">+</span></span>
+<span id="cb13-930"><a href="#cb13-930" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"&lt;br&gt;&lt;b&gt;Elementary School: &lt;/b&gt;"</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">Enrol_Elem</span>)<span class="op">;</span></span>
+<span id="cb13-931"><a href="#cb13-931" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mymarker <span class="op">=</span> L<span class="op">.</span><span class="fu">circleMarker</span>(latlng<span class="op">,</span> <span class="fu">markerByEnrollment</span>(feature))<span class="op">;</span></span>
+<span id="cb13-932"><a href="#cb13-932" aria-hidden="true" tabindex="-1"></a>      mymarker<span class="op">.</span><span class="fu">bindPopup</span>(mypopup)<span class="op">;</span></span>
+<span id="cb13-933"><a href="#cb13-933" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> mymarker<span class="op">;</span></span>
+<span id="cb13-934"><a href="#cb13-934" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-935"><a href="#cb13-935" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb13-936"><a href="#cb13-936" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-937"><a href="#cb13-937" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
+<span id="cb13-938"><a href="#cb13-938" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
+<span id="cb13-939"><a href="#cb13-939" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'info legend'</span>)<span class="op">;</span></span>
+<span id="cb13-940"><a href="#cb13-940" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> labelsBill <span class="op">=</span> []<span class="op">;</span> <span class="co">// legend title</span></span>
+<span id="cb13-941"><a href="#cb13-941" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> lcategories <span class="op">=</span> [<span class="st">'High School'</span><span class="op">,</span><span class="st">'Middle School'</span><span class="op">,</span><span class="st">'Elementary School'</span>]<span class="op">;</span></span>
+<span id="cb13-942"><a href="#cb13-942" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-943"><a href="#cb13-943" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> lcategories<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb13-944"><a href="#cb13-944" aria-hidden="true" tabindex="-1"></a>        div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> </span>
+<span id="cb13-945"><a href="#cb13-945" aria-hidden="true" tabindex="-1"></a>          labelsBill<span class="op">.</span><span class="fu">push</span>(</span>
+<span id="cb13-946"><a href="#cb13-946" aria-hidden="true" tabindex="-1"></a>            <span class="st">'&lt;i class="bi bi-circle-fill" style="color:'</span> <span class="op">+</span> <span class="fu">getColor</span>(lcategories[i]) <span class="op">+</span> <span class="st">'"&gt;&lt;/i&gt; '</span> <span class="op">+</span></span>
+<span id="cb13-947"><a href="#cb13-947" aria-hidden="true" tabindex="-1"></a>          (lcategories[i] <span class="op">?</span> lcategories[i] <span class="op">:</span> <span class="st">'+'</span>))<span class="op">;</span></span>
+<span id="cb13-948"><a href="#cb13-948" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb13-949"><a href="#cb13-949" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> labelsBill<span class="op">.</span><span class="fu">join</span>(<span class="st">'&lt;br&gt;'</span>)<span class="op">;</span></span>
+<span id="cb13-950"><a href="#cb13-950" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-951"><a href="#cb13-951" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add CSS style for the background color</span></span>
+<span id="cb13-952"><a href="#cb13-952" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
+<span id="cb13-953"><a href="#cb13-953" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
+<span id="cb13-954"><a href="#cb13-954" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb13-955"><a href="#cb13-955" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb13-956"><a href="#cb13-956" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb13-957"><a href="#cb13-957" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb13-958"><a href="#cb13-958" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-959"><a href="#cb13-959" aria-hidden="true" tabindex="-1"></a>  <span class="co">//let lyrK12Enroll = L.geoJson(geojsonK12Enroll, { size: 5, color: '#FFFFFF'}).addTo(map);</span></span>
+<span id="cb13-960"><a href="#cb13-960" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-961"><a href="#cb13-961" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-school-locations" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -1260,17 +1326,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The highway network was expanded to incorporate the new model areas. See <a href="#geographies">TAZ Geographies</a>. The 2023 RTP fields have been updated to reflect the adopted 2023 RTP.</p>
 <section id="highway-node-numbering-schema" class="level3">
 <h3 class="anchored" data-anchor-id="highway-node-numbering-schema">Highway Node Numbering Schema</h3>
-<p>Updates to the highway node numbering schema are shown in <a href="#tbl-master-network-node-numbering-schema">Table&nbsp;3</a>. An additional reference file called <code>_Node Definition - v832 &amp; v9.xlsx</code> is found in the <code>3_Highway</code> folder.</p>
+<p>Updates to the highway node numbering schema are shown in <a href="#tbl-master-network-node-numbering-schema">Table&nbsp;5</a>. An additional reference file called <code>_Node Definition - v832 &amp; v9.xlsx</code> is found in the <code>3_Highway</code> folder.</p>
 <div class="grid">
 <div class="g-col-2">
 
 </div>
 <div class="g-col-8">
-<div class="cell" data-execution_count="13">
-<div class="cell-output cell-output-display" data-execution_count="116">
+<div class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="67">
 <div id="tbl-master-network-node-numbering-schema" class="anchored">
 <table class="table table-sm table-striped small">
-<caption>Table&nbsp;3: Master Network Node Numbering Schema</caption>
+<caption>Table&nbsp;5: Master Network Node Numbering Schema</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">MPO</th>
@@ -1353,9 +1419,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="1054" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1053;"><span id="cb14-1054"><a href="#cb14-1054" aria-hidden="true" tabindex="-1"></a>geojsonExternalOld   <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/externalold.geojson"</span>  )<span class="op">.</span><span class="fu">json</span>()</span>
-<span id="cb14-1055"><a href="#cb14-1055" aria-hidden="true" tabindex="-1"></a>geojsonExternalNew   <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/externalnew.geojson"</span>  )<span class="op">.</span><span class="fu">json</span>()</span>
-<span id="cb14-1056"><a href="#cb14-1056" aria-hidden="true" tabindex="-1"></a>geojsonMasterNetLink <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/masternetlink.geojson"</span>)<span class="op">.</span><span class="fu">json</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="1091" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1090;"><span id="cb14-1091"><a href="#cb14-1091" aria-hidden="true" tabindex="-1"></a>geojsonExternalOld   <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/externalold.geojson"</span>  )<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb14-1092"><a href="#cb14-1092" aria-hidden="true" tabindex="-1"></a>geojsonExternalNew   <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/externalnew.geojson"</span>  )<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb14-1093"><a href="#cb14-1093" aria-hidden="true" tabindex="-1"></a>geojsonMasterNetLink <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/masternetlink.geojson"</span>)<span class="op">.</span><span class="fu">json</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1382,122 +1448,122 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="hidden">
 <summary>Code</summary>
-<div class="sourceCode cell-code hidden" id="cb15" data-startfrom="1062" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1061;"><span id="cb15-1062"><a href="#cb15-1062" aria-hidden="true" tabindex="-1"></a>mapExternals <span class="op">=</span> {</span>
-<span id="cb15-1063"><a href="#cb15-1063" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1064"><a href="#cb15-1064" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
-<span id="cb15-1065"><a href="#cb15-1065" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
-<span id="cb15-1066"><a href="#cb15-1066" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb15-1067"><a href="#cb15-1067" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
-<span id="cb15-1068"><a href="#cb15-1068" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1069"><a href="#cb15-1069" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> osmLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'</span><span class="op">,</span> {</span>
-<span id="cb15-1070"><a href="#cb15-1070" aria-hidden="true" tabindex="-1"></a>      <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
-<span id="cb15-1071"><a href="#cb15-1071" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span> </span>
-<span id="cb15-1072"><a href="#cb15-1072" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1073"><a href="#cb15-1073" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cNew <span class="op">=</span> <span class="st">"#FF0000"</span><span class="op">;</span></span>
-<span id="cb15-1074"><a href="#cb15-1074" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cOld <span class="op">=</span> <span class="st">"#00FF00"</span><span class="op">;</span></span>
-<span id="cb15-1075"><a href="#cb15-1075" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1076"><a href="#cb15-1076" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> squareIcon_New <span class="op">=</span> L<span class="op">.</span><span class="fu">icon</span>({</span>
-<span id="cb15-1077"><a href="#cb15-1077" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconUrl</span><span class="op">:</span> <span class="st">'https://wfrc.org/wftdm-docs/_pictures/square_green.png'</span><span class="op">,</span>  <span class="co">// Replace with the path to your square-like icon image</span></span>
-<span id="cb15-1078"><a href="#cb15-1078" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconSize</span><span class="op">:</span> [<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">,</span>          <span class="co">// Adjust the size of the square-like icon</span></span>
-<span id="cb15-1079"><a href="#cb15-1079" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconAnchor</span><span class="op">:</span> [<span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span>          <span class="co">// Adjust the anchor point if needed</span></span>
-<span id="cb15-1080"><a href="#cb15-1080" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb15-1081"><a href="#cb15-1081" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1082"><a href="#cb15-1082" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> squareIcon_Old <span class="op">=</span> L<span class="op">.</span><span class="fu">icon</span>({</span>
-<span id="cb15-1083"><a href="#cb15-1083" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconUrl</span><span class="op">:</span> <span class="st">'https://wfrc.org/wftdm-docs/_pictures/square_red.png'</span><span class="op">,</span>       <span class="co">// Replace with the path to your square-like icon image</span></span>
-<span id="cb15-1084"><a href="#cb15-1084" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconSize</span><span class="op">:</span> [<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">,</span>          <span class="co">// Adjust the size of the square-like icon</span></span>
-<span id="cb15-1085"><a href="#cb15-1085" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconAnchor</span><span class="op">:</span> [<span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span>          <span class="co">// Adjust the anchor point if needed</span></span>
-<span id="cb15-1086"><a href="#cb15-1086" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
-<span id="cb15-1087"><a href="#cb15-1087" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1088"><a href="#cb15-1088" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cCommon <span class="op">=</span> <span class="st">"#FF0000"</span></span>
-<span id="cb15-1089"><a href="#cb15-1089" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cAdded  <span class="op">=</span> <span class="st">"#00FF00"</span></span>
-<span id="cb15-1090"><a href="#cb15-1090" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cOther  <span class="op">=</span> <span class="st">"#888888"</span></span>
-<span id="cb15-1091"><a href="#cb15-1091" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1092"><a href="#cb15-1092" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geolineCommon <span class="op">=</span> {</span>
-<span id="cb15-1093"><a href="#cb15-1093" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cCommon<span class="op">,</span></span>
-<span id="cb15-1094"><a href="#cb15-1094" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb15-1095"><a href="#cb15-1095" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb15-1096"><a href="#cb15-1096" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb15-1097"><a href="#cb15-1097" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1098"><a href="#cb15-1098" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geoLineAdded <span class="op">=</span> {</span>
-<span id="cb15-1099"><a href="#cb15-1099" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cAdded<span class="op">,</span></span>
-<span id="cb15-1100"><a href="#cb15-1100" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb15-1101"><a href="#cb15-1101" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb15-1102"><a href="#cb15-1102" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb15-1103"><a href="#cb15-1103" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geoLineOther <span class="op">=</span> {</span>
-<span id="cb15-1104"><a href="#cb15-1104" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cOther<span class="op">,</span></span>
-<span id="cb15-1105"><a href="#cb15-1105" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb15-1106"><a href="#cb15-1106" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb15-1107"><a href="#cb15-1107" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb15-1108"><a href="#cb15-1108" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb15-1109"><a href="#cb15-1109" aria-hidden="true" tabindex="-1"></a>  <span class="co">// function to use different icons based on number of stations</span></span>
-<span id="cb15-1110"><a href="#cb15-1110" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">markerByNewNet</span>(feature) {</span>
-<span id="cb15-1111"><a href="#cb15-1111" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">FLG_NEWNET</span><span class="op">==</span><span class="dv">3</span>) {</span>
-<span id="cb15-1112"><a href="#cb15-1112" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geolineCommon<span class="op">;</span></span>
-<span id="cb15-1113"><a href="#cb15-1113" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">FLG_NEWNET</span><span class="op">==</span><span class="dv">23</span>){</span>
-<span id="cb15-1114"><a href="#cb15-1114" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geoLineAdded<span class="op">;</span></span>
-<span id="cb15-1115"><a href="#cb15-1115" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
-<span id="cb15-1116"><a href="#cb15-1116" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geoLineOther<span class="op">;</span></span>
-<span id="cb15-1117"><a href="#cb15-1117" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb15-1118"><a href="#cb15-1118" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb15-1119"><a href="#cb15-1119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1120"><a href="#cb15-1120" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">getColor</span>(c) {</span>
-<span id="cb15-1121"><a href="#cb15-1121" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>        (c<span class="op">==</span><span class="st">'Common'</span>) {</span>
-<span id="cb15-1122"><a href="#cb15-1122" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cCommon<span class="op">;</span></span>
-<span id="cb15-1123"><a href="#cb15-1123" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Added'</span>) {</span>
-<span id="cb15-1124"><a href="#cb15-1124" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cAdded<span class="op">;</span></span>
-<span id="cb15-1125"><a href="#cb15-1125" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Other'</span>) {</span>
-<span id="cb15-1126"><a href="#cb15-1126" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cOther<span class="op">;</span></span>
-<span id="cb15-1127"><a href="#cb15-1127" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb15-1128"><a href="#cb15-1128" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
-<span id="cb15-1129"><a href="#cb15-1129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1130"><a href="#cb15-1130" aria-hidden="true" tabindex="-1"></a>  <span class="co">//let lyrNetwork = L.geoJson(geojsonMasterNetLink, { weight: 0.75, color: "#888888", fillOpacity: 0}).addTo(map);</span></span>
-<span id="cb15-1131"><a href="#cb15-1131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1132"><a href="#cb15-1132" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
-<span id="cb15-1133"><a href="#cb15-1133" aria-hidden="true" tabindex="-1"></a><span class="co">//  var lyrNetwork = L.geoJson(geojsonMasterNetLink,  { function (markerByNewNet(feature))}).addTo(map);</span></span>
+<div class="sourceCode cell-code hidden" id="cb15" data-startfrom="1099" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1098;"><span id="cb15-1099"><a href="#cb15-1099" aria-hidden="true" tabindex="-1"></a>mapExternals <span class="op">=</span> {</span>
+<span id="cb15-1100"><a href="#cb15-1100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1101"><a href="#cb15-1101" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb15-1102"><a href="#cb15-1102" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb15-1103"><a href="#cb15-1103" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-1104"><a href="#cb15-1104" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
+<span id="cb15-1105"><a href="#cb15-1105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1106"><a href="#cb15-1106" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> osmLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'</span><span class="op">,</span> {</span>
+<span id="cb15-1107"><a href="#cb15-1107" aria-hidden="true" tabindex="-1"></a>      <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb15-1108"><a href="#cb15-1108" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span> </span>
+<span id="cb15-1109"><a href="#cb15-1109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1110"><a href="#cb15-1110" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cNew <span class="op">=</span> <span class="st">"#FF0000"</span><span class="op">;</span></span>
+<span id="cb15-1111"><a href="#cb15-1111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cOld <span class="op">=</span> <span class="st">"#00FF00"</span><span class="op">;</span></span>
+<span id="cb15-1112"><a href="#cb15-1112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1113"><a href="#cb15-1113" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> squareIcon_New <span class="op">=</span> L<span class="op">.</span><span class="fu">icon</span>({</span>
+<span id="cb15-1114"><a href="#cb15-1114" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconUrl</span><span class="op">:</span> <span class="st">'https://wfrc.org/wftdm-docs/_pictures/square_green.png'</span><span class="op">,</span>  <span class="co">// Replace with the path to your square-like icon image</span></span>
+<span id="cb15-1115"><a href="#cb15-1115" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconSize</span><span class="op">:</span> [<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">,</span>          <span class="co">// Adjust the size of the square-like icon</span></span>
+<span id="cb15-1116"><a href="#cb15-1116" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconAnchor</span><span class="op">:</span> [<span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span>          <span class="co">// Adjust the anchor point if needed</span></span>
+<span id="cb15-1117"><a href="#cb15-1117" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb15-1118"><a href="#cb15-1118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1119"><a href="#cb15-1119" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> squareIcon_Old <span class="op">=</span> L<span class="op">.</span><span class="fu">icon</span>({</span>
+<span id="cb15-1120"><a href="#cb15-1120" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconUrl</span><span class="op">:</span> <span class="st">'https://wfrc.org/wftdm-docs/_pictures/square_red.png'</span><span class="op">,</span>       <span class="co">// Replace with the path to your square-like icon image</span></span>
+<span id="cb15-1121"><a href="#cb15-1121" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconSize</span><span class="op">:</span> [<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">,</span>          <span class="co">// Adjust the size of the square-like icon</span></span>
+<span id="cb15-1122"><a href="#cb15-1122" aria-hidden="true" tabindex="-1"></a>    <span class="dt">iconAnchor</span><span class="op">:</span> [<span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span>          <span class="co">// Adjust the anchor point if needed</span></span>
+<span id="cb15-1123"><a href="#cb15-1123" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb15-1124"><a href="#cb15-1124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1125"><a href="#cb15-1125" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cCommon <span class="op">=</span> <span class="st">"#FF0000"</span></span>
+<span id="cb15-1126"><a href="#cb15-1126" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cAdded  <span class="op">=</span> <span class="st">"#00FF00"</span></span>
+<span id="cb15-1127"><a href="#cb15-1127" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> cOther  <span class="op">=</span> <span class="st">"#888888"</span></span>
+<span id="cb15-1128"><a href="#cb15-1128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1129"><a href="#cb15-1129" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geolineCommon <span class="op">=</span> {</span>
+<span id="cb15-1130"><a href="#cb15-1130" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cCommon<span class="op">,</span></span>
+<span id="cb15-1131"><a href="#cb15-1131" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb15-1132"><a href="#cb15-1132" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb15-1133"><a href="#cb15-1133" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
 <span id="cb15-1134"><a href="#cb15-1134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1135"><a href="#cb15-1135" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
-<span id="cb15-1136"><a href="#cb15-1136" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> externalNewLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(geojsonExternalNew<span class="op">,</span> {</span>
-<span id="cb15-1137"><a href="#cb15-1137" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pointToLayer</span><span class="op">:</span> <span class="kw">function</span> (feature<span class="op">,</span> latlng) {</span>
-<span id="cb15-1138"><a href="#cb15-1138" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mypopup <span class="op">=</span> L<span class="op">.</span><span class="fu">popup</span>()<span class="op">.</span><span class="fu">setContent</span>(<span class="st">"&lt;b&gt;Node: "</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">N</span> <span class="op">+</span> <span class="st">"&lt;/b&gt;"</span>)<span class="op">;</span></span>
-<span id="cb15-1139"><a href="#cb15-1139" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mymarker <span class="op">=</span> L<span class="op">.</span><span class="fu">marker</span>(latlng<span class="op">,</span> { <span class="dt">icon</span><span class="op">:</span> squareIcon_New })<span class="op">;</span></span>
-<span id="cb15-1140"><a href="#cb15-1140" aria-hidden="true" tabindex="-1"></a>      mymarker<span class="op">.</span><span class="fu">bindPopup</span>(mypopup)<span class="op">;</span></span>
-<span id="cb15-1141"><a href="#cb15-1141" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> mymarker<span class="op">;</span></span>
-<span id="cb15-1142"><a href="#cb15-1142" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb15-1143"><a href="#cb15-1143" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb15-1144"><a href="#cb15-1144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1145"><a href="#cb15-1145" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
-<span id="cb15-1146"><a href="#cb15-1146" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> externalOldLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(geojsonExternalOld<span class="op">,</span> {</span>
-<span id="cb15-1147"><a href="#cb15-1147" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pointToLayer</span><span class="op">:</span> <span class="kw">function</span> (feature<span class="op">,</span> latlng) {</span>
-<span id="cb15-1148"><a href="#cb15-1148" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mypopup <span class="op">=</span> L<span class="op">.</span><span class="fu">popup</span>()<span class="op">.</span><span class="fu">setContent</span>(<span class="st">"&lt;b&gt;Node: "</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">N</span> <span class="op">+</span> <span class="st">"&lt;/b&gt;"</span>)<span class="op">;</span></span>
-<span id="cb15-1149"><a href="#cb15-1149" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mymarker <span class="op">=</span> L<span class="op">.</span><span class="fu">marker</span>(latlng<span class="op">,</span> { <span class="dt">icon</span><span class="op">:</span> squareIcon_Old })<span class="op">;</span></span>
-<span id="cb15-1150"><a href="#cb15-1150" aria-hidden="true" tabindex="-1"></a>      mymarker<span class="op">.</span><span class="fu">bindPopup</span>(mypopup)<span class="op">;</span></span>
-<span id="cb15-1151"><a href="#cb15-1151" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> mymarker<span class="op">;</span></span>
-<span id="cb15-1152"><a href="#cb15-1152" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb15-1153"><a href="#cb15-1153" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb15-1154"><a href="#cb15-1154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1155"><a href="#cb15-1155" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
-<span id="cb15-1156"><a href="#cb15-1156" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
-<span id="cb15-1157"><a href="#cb15-1157" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'info legend'</span>)<span class="op">;</span></span>
-<span id="cb15-1158"><a href="#cb15-1158" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> labelsBill <span class="op">=</span> []<span class="op">;</span> <span class="co">// legend title</span></span>
-<span id="cb15-1159"><a href="#cb15-1159" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> lcategories <span class="op">=</span> [<span class="st">'v8.3.2'</span><span class="op">,</span><span class="st">'v9.0.0'</span>]<span class="op">;</span></span>
-<span id="cb15-1160"><a href="#cb15-1160" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> lcolors     <span class="op">=</span> [cOld    <span class="op">,</span>cNew    ]<span class="op">;</span></span>
-<span id="cb15-1161"><a href="#cb15-1161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1162"><a href="#cb15-1162" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> lcategories<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb15-1163"><a href="#cb15-1163" aria-hidden="true" tabindex="-1"></a>        div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> </span>
-<span id="cb15-1164"><a href="#cb15-1164" aria-hidden="true" tabindex="-1"></a>          labelsBill<span class="op">.</span><span class="fu">push</span>(</span>
-<span id="cb15-1165"><a href="#cb15-1165" aria-hidden="true" tabindex="-1"></a>            <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> lcolors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span></span>
-<span id="cb15-1166"><a href="#cb15-1166" aria-hidden="true" tabindex="-1"></a>          (lcategories[i] <span class="op">?</span> lcategories[i] <span class="op">:</span> <span class="st">'+'</span>))<span class="op">;</span></span>
-<span id="cb15-1167"><a href="#cb15-1167" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb15-1168"><a href="#cb15-1168" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> labelsBill<span class="op">.</span><span class="fu">join</span>(<span class="st">'&lt;br&gt;'</span>)<span class="op">;</span></span>
-<span id="cb15-1169"><a href="#cb15-1169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-1170"><a href="#cb15-1170" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add CSS style for the background color</span></span>
-<span id="cb15-1171"><a href="#cb15-1171" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
-<span id="cb15-1172"><a href="#cb15-1172" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
-<span id="cb15-1173"><a href="#cb15-1173" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb15-1174"><a href="#cb15-1174" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> div<span class="op">;</span></span>
-<span id="cb15-1175"><a href="#cb15-1175" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
-<span id="cb15-1176"><a href="#cb15-1176" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span>  </span>
-<span id="cb15-1177"><a href="#cb15-1177" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-1135"><a href="#cb15-1135" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geoLineAdded <span class="op">=</span> {</span>
+<span id="cb15-1136"><a href="#cb15-1136" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cAdded<span class="op">,</span></span>
+<span id="cb15-1137"><a href="#cb15-1137" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb15-1138"><a href="#cb15-1138" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb15-1139"><a href="#cb15-1139" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-1140"><a href="#cb15-1140" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> geoLineOther <span class="op">=</span> {</span>
+<span id="cb15-1141"><a href="#cb15-1141" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> cOther<span class="op">,</span></span>
+<span id="cb15-1142"><a href="#cb15-1142" aria-hidden="true" tabindex="-1"></a>      <span class="dt">weight</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb15-1143"><a href="#cb15-1143" aria-hidden="true" tabindex="-1"></a>      <span class="dt">opacity</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb15-1144"><a href="#cb15-1144" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-1145"><a href="#cb15-1145" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb15-1146"><a href="#cb15-1146" aria-hidden="true" tabindex="-1"></a>  <span class="co">// function to use different icons based on number of stations</span></span>
+<span id="cb15-1147"><a href="#cb15-1147" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">markerByNewNet</span>(feature) {</span>
+<span id="cb15-1148"><a href="#cb15-1148" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">FLG_NEWNET</span><span class="op">==</span><span class="dv">3</span>) {</span>
+<span id="cb15-1149"><a href="#cb15-1149" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geolineCommon<span class="op">;</span></span>
+<span id="cb15-1150"><a href="#cb15-1150" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">FLG_NEWNET</span><span class="op">==</span><span class="dv">23</span>){</span>
+<span id="cb15-1151"><a href="#cb15-1151" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geoLineAdded<span class="op">;</span></span>
+<span id="cb15-1152"><a href="#cb15-1152" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>{</span>
+<span id="cb15-1153"><a href="#cb15-1153" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> geoLineOther<span class="op">;</span></span>
+<span id="cb15-1154"><a href="#cb15-1154" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-1155"><a href="#cb15-1155" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-1156"><a href="#cb15-1156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1157"><a href="#cb15-1157" aria-hidden="true" tabindex="-1"></a>  <span class="kw">function</span> <span class="fu">getColor</span>(c) {</span>
+<span id="cb15-1158"><a href="#cb15-1158" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>        (c<span class="op">==</span><span class="st">'Common'</span>) {</span>
+<span id="cb15-1159"><a href="#cb15-1159" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cCommon<span class="op">;</span></span>
+<span id="cb15-1160"><a href="#cb15-1160" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Added'</span>) {</span>
+<span id="cb15-1161"><a href="#cb15-1161" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cAdded<span class="op">;</span></span>
+<span id="cb15-1162"><a href="#cb15-1162" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (c<span class="op">==</span><span class="st">'Other'</span>) {</span>
+<span id="cb15-1163"><a href="#cb15-1163" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> cOther<span class="op">;</span></span>
+<span id="cb15-1164"><a href="#cb15-1164" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-1165"><a href="#cb15-1165" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb15-1166"><a href="#cb15-1166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1167"><a href="#cb15-1167" aria-hidden="true" tabindex="-1"></a>  <span class="co">//let lyrNetwork = L.geoJson(geojsonMasterNetLink, { weight: 0.75, color: "#888888", fillOpacity: 0}).addTo(map);</span></span>
+<span id="cb15-1168"><a href="#cb15-1168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1169"><a href="#cb15-1169" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
+<span id="cb15-1170"><a href="#cb15-1170" aria-hidden="true" tabindex="-1"></a><span class="co">//  var lyrNetwork = L.geoJson(geojsonMasterNetLink,  { function (markerByNewNet(feature))}).addTo(map);</span></span>
+<span id="cb15-1171"><a href="#cb15-1171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1172"><a href="#cb15-1172" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
+<span id="cb15-1173"><a href="#cb15-1173" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> externalNewLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(geojsonExternalNew<span class="op">,</span> {</span>
+<span id="cb15-1174"><a href="#cb15-1174" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pointToLayer</span><span class="op">:</span> <span class="kw">function</span> (feature<span class="op">,</span> latlng) {</span>
+<span id="cb15-1175"><a href="#cb15-1175" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mypopup <span class="op">=</span> L<span class="op">.</span><span class="fu">popup</span>()<span class="op">.</span><span class="fu">setContent</span>(<span class="st">"&lt;b&gt;Node: "</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">N</span> <span class="op">+</span> <span class="st">"&lt;/b&gt;"</span>)<span class="op">;</span></span>
+<span id="cb15-1176"><a href="#cb15-1176" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mymarker <span class="op">=</span> L<span class="op">.</span><span class="fu">marker</span>(latlng<span class="op">,</span> { <span class="dt">icon</span><span class="op">:</span> squareIcon_New })<span class="op">;</span></span>
+<span id="cb15-1177"><a href="#cb15-1177" aria-hidden="true" tabindex="-1"></a>      mymarker<span class="op">.</span><span class="fu">bindPopup</span>(mypopup)<span class="op">;</span></span>
+<span id="cb15-1178"><a href="#cb15-1178" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> mymarker<span class="op">;</span></span>
+<span id="cb15-1179"><a href="#cb15-1179" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-1180"><a href="#cb15-1180" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb15-1181"><a href="#cb15-1181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1182"><a href="#cb15-1182" aria-hidden="true" tabindex="-1"></a>  <span class="co">// create the GeoJSON layer and call the styling function with each marker</span></span>
+<span id="cb15-1183"><a href="#cb15-1183" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> externalOldLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(geojsonExternalOld<span class="op">,</span> {</span>
+<span id="cb15-1184"><a href="#cb15-1184" aria-hidden="true" tabindex="-1"></a>    <span class="dt">pointToLayer</span><span class="op">:</span> <span class="kw">function</span> (feature<span class="op">,</span> latlng) {</span>
+<span id="cb15-1185"><a href="#cb15-1185" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mypopup <span class="op">=</span> L<span class="op">.</span><span class="fu">popup</span>()<span class="op">.</span><span class="fu">setContent</span>(<span class="st">"&lt;b&gt;Node: "</span> <span class="op">+</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">N</span> <span class="op">+</span> <span class="st">"&lt;/b&gt;"</span>)<span class="op">;</span></span>
+<span id="cb15-1186"><a href="#cb15-1186" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> mymarker <span class="op">=</span> L<span class="op">.</span><span class="fu">marker</span>(latlng<span class="op">,</span> { <span class="dt">icon</span><span class="op">:</span> squareIcon_Old })<span class="op">;</span></span>
+<span id="cb15-1187"><a href="#cb15-1187" aria-hidden="true" tabindex="-1"></a>      mymarker<span class="op">.</span><span class="fu">bindPopup</span>(mypopup)<span class="op">;</span></span>
+<span id="cb15-1188"><a href="#cb15-1188" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> mymarker<span class="op">;</span></span>
+<span id="cb15-1189"><a href="#cb15-1189" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb15-1190"><a href="#cb15-1190" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb15-1191"><a href="#cb15-1191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1192"><a href="#cb15-1192" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
+<span id="cb15-1193"><a href="#cb15-1193" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
+<span id="cb15-1194"><a href="#cb15-1194" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'info legend'</span>)<span class="op">;</span></span>
+<span id="cb15-1195"><a href="#cb15-1195" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> labelsBill <span class="op">=</span> []<span class="op">;</span> <span class="co">// legend title</span></span>
+<span id="cb15-1196"><a href="#cb15-1196" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> lcategories <span class="op">=</span> [<span class="st">'v8.3.2'</span><span class="op">,</span><span class="st">'v9.0.0'</span>]<span class="op">;</span></span>
+<span id="cb15-1197"><a href="#cb15-1197" aria-hidden="true" tabindex="-1"></a>      <span class="kw">var</span> lcolors     <span class="op">=</span> [cOld    <span class="op">,</span>cNew    ]<span class="op">;</span></span>
+<span id="cb15-1198"><a href="#cb15-1198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1199"><a href="#cb15-1199" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> lcategories<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb15-1200"><a href="#cb15-1200" aria-hidden="true" tabindex="-1"></a>        div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> </span>
+<span id="cb15-1201"><a href="#cb15-1201" aria-hidden="true" tabindex="-1"></a>          labelsBill<span class="op">.</span><span class="fu">push</span>(</span>
+<span id="cb15-1202"><a href="#cb15-1202" aria-hidden="true" tabindex="-1"></a>            <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> lcolors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span></span>
+<span id="cb15-1203"><a href="#cb15-1203" aria-hidden="true" tabindex="-1"></a>          (lcategories[i] <span class="op">?</span> lcategories[i] <span class="op">:</span> <span class="st">'+'</span>))<span class="op">;</span></span>
+<span id="cb15-1204"><a href="#cb15-1204" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb15-1205"><a href="#cb15-1205" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> labelsBill<span class="op">.</span><span class="fu">join</span>(<span class="st">'&lt;br&gt;'</span>)<span class="op">;</span></span>
+<span id="cb15-1206"><a href="#cb15-1206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-1207"><a href="#cb15-1207" aria-hidden="true" tabindex="-1"></a>      <span class="co">// Add CSS style for the background color</span></span>
+<span id="cb15-1208"><a href="#cb15-1208" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
+<span id="cb15-1209"><a href="#cb15-1209" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
+<span id="cb15-1210"><a href="#cb15-1210" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb15-1211"><a href="#cb15-1211" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb15-1212"><a href="#cb15-1212" aria-hidden="true" tabindex="-1"></a>    }<span class="op">;</span></span>
+<span id="cb15-1213"><a href="#cb15-1213" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span>  </span>
+<span id="cb15-1214"><a href="#cb15-1214" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div id="fig-externals" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
