@@ -746,12 +746,14 @@ html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-
 
 ### Control Totals
 ::: {.content-hidden when-format="html"}
-Updates to the county control totals were made based on projections from the Gardner Policy Institute.
+Updates to the county control totals were made based on projections from the Gardner Policy Institute. The v8.3.2 model used a base year of 2015 for controls totals. v9.0 uses a base year of 2019.
 :::
 
-
 ::: {.content-visible when-format="html"}
-Updates to the county control totals were made based on projections from the Gardner Policy Institute. See @fig-county-control-totals-by-category for a comparison between v8 and v9 by county for any given socioeconomic category.
+Updates to the county control totals were made based on projections from the Gardner Policy Institute. The v8.3.2 model used a base year of 2015 for controls totals. v9.0 uses a base year of 2019. @fig-county-control-total-differences-by-category shows the 2050 differences in county control totals for any given socioeconomic category. Further trends for the selected socioeconomic category for a specific county is shown in @fig-county-control-trends-by-county-by-category.
+
+Utah County displays the largest decrease in control totals in the v9.0 model as compared to v8.3.2 with 107,937 lower population, 21,799 fewer households, and 47,977 fewer jobs (all employment). The largest job decreases are in office employment (14,923), government/education employment (16,982), and other employment (18,194). Utah County also has a significant drop in household size relative to other counties.
+
 
 ```{python}
 #| echo: false
@@ -778,7 +780,28 @@ dfConTot_melt = pd.melt(dfConTot, id_vars=('CO_NAME','YEAR','ModelVersion'), val
 dfConTot_melt.to_csv('data/controltotal.csv',index=False)
 dfConTot_melt.groupby(['CO_NAME'],as_index=False).agg(COUNT=('YEAR','size')).to_csv('data/counties.csv',index=False)
 
+# creat diff data
+_df = dfConTot_melt[dfConTot_melt['YEAR']==2050]
+_df = _df.pivot_table(index=['CO_NAME','Category'],columns='ModelVersion',values='ControlTotal')
+_df = _df.dropna()
+_df.reset_index(inplace=True)
+_df['Difference'] = _df['v9.0.0'] - _df['v8.3.2']
+_df['DifferencePct'] = _df['Difference'] / _df['v8.3.2']
+
+_df_long = pd.melt(_df,
+                   id_vars =['CO_NAME','Category'],
+                   value_vars = ['Difference','DifferencePct'],
+                   var_name = 'View',
+                   value_name = 'ViewValue')    
+
+#display(_df_long)
 ```
+
+```{python}
+#variable for ojs
+ojs_define(diffConTot2050long = _df_long)
+```
+
 
 ```{ojs}
 //|echo: false
@@ -787,14 +810,14 @@ dfConTot_melt.groupby(['CO_NAME'],as_index=False).agg(COUNT=('YEAR','size')).to_
 faControlTotals = FileAttachment("data/controltotal.csv").csv({ typed: true });
 faCounties      = FileAttachment("data/counties.csv"    ).csv({ typed: true });
 
-cats = new Map([['Total Population'               , 'TOTPOP'    ],
-                ['Group Quarter Population'       , 'GQ_Pop'    ],
-                ['Household Population'           , 'HH_Pop'    ],
+cats = new Map([//['Total Population'               , 'TOTPOP'    ],
+                //['Group Quarter Population'       , 'GQ_Pop'    ],
+                ['Population'                     , 'HH_Pop'    ],
                 ['Households'                     , 'HH'        ],
                 ['Household Size'                 , 'HH_Size'   ],
-                ['Population 0-17'                , 'POP_00_17' ],
-                ['Population 18-64'               , 'POP_18_64' ],
-                ['Population 65+'                 , 'POP_65P'   ],
+                //['Population 0-17'                , 'POP_00_17' ],
+                //['Population 18-64'               , 'POP_18_64' ],
+                //['Population 65+'                 , 'POP_65P'   ],
                 ['All Employment'                 , 'ALLEMP'    ],
                 ['Retail Employment'              , 'RETL'      ],
                 ['Food Employment'                , 'FOOD'      ],
@@ -804,27 +827,75 @@ cats = new Map([['Total Population'               , 'TOTPOP'    ],
                 ['Government/Education Employment', 'GVED'      ],
                 ['Health Employment'              , 'HLTH'      ],
                 ['Other Employment'               , 'OTHR'      ],
-                ['Agriculture Employment'         , 'AGRI'      ],
-                ['Mining Employment'              , 'MING'      ],
-                ['Construction Employment'        , 'CONS'      ],
+                //['Agriculture Employment'         , 'AGRI'      ],
+                //['Mining Employment'              , 'MING'      ],
+                //['Construction Employment'        , 'CONS'      ],
                 ['Home-Based Job Employment'      , 'HBJ'       ],
-                ['Jobs per Household'             , 'Job_HH'    ],
-                ['Working Population per Job'     , 'WrkPop_Job']])
+                //['Jobs per Household'             , 'Job_HH'    ],
+                //['Working Population per Job'     , 'WrkPop_Job']
+                ])
+```
 
-viewof selectCounty   = Inputs.select(faCounties.map(function(d) {return d.CO_NAME}), {value: 'Salt Lake', label: 'County: '});
-viewof selectCategory = Inputs.select(cats, {value: 'HH_Pop', label: 'Category: '});
+```{ojs}
 // FILTER DATA
 filteredControlTotals = faControlTotals.filter(function(ct) {
   return selectCounty   == ct.CO_NAME &&
          selectCategory == ct.Category;
 });
+viewof selectCategory = Inputs.select(cats, {value: 'HH_Pop', label: 'Category: '});
 
 maxY = Math.max(...filteredControlTotals.map(item => item.ControlTotal));
+
+viewof metric = Inputs.radio(new Map([["Difference", "Difference"], ["Percent Difference", "DifferencePct"]]), {value: "Difference", label: "Display:"})
 ```
 
 ```{ojs}
-//|label: fig-county-control-totals-by-category
-//|fig-cap: County Control Totals by Category
+dataCTDiff50 = transpose(diffConTot2050long)
+filtered_dataCTDiff50 = dataCTDiff50.filter(function(dataL) {
+    return selectCategory == dataL.Category  &&
+           metric == dataL.View;
+})
+```
+
+```{ojs}
+//https://observablehq.com/@d3/diverging-bar-chart
+import {DivergingBarChart} from "@d3/diverging-bar-chart"
+
+function getXFormat() {
+  if (metric === "DifferencePct") {
+    return "+%";
+  } else if (selectCategory === 'HH_Size' && metric === "Difference") {
+    return ".2f";
+  } else {
+    return "+,d";
+  }
+}
+
+```
+
+```{ojs}
+//|label: fig-county-control-total-differences-by-category
+//|fig-cap: 2050 Differences in Control Totals for Selected Category (v9.0 vs v8.3.2)
+//|echo: false
+
+chart3 = DivergingBarChart(filtered_dataCTDiff50, {
+    x: d => d.ViewValue,
+    y: d => d.CO_NAME,
+    xFormat: getXFormat(),
+    xLabel: "2050 Difference",
+    aspectRatio: 0.5,
+    colors: d3.schemeRdBu[3],
+    yDomain: ['Weber','Davis','Salt Lake','Utah']
+})
+```
+
+```{ojs}
+viewof selectCounty = Inputs.select(new Map(['Weber', 'Davis', 'Salt Lake', 'Utah'].map(county => [county, county])), {value: 'Salt Lake', label: 'County Trends: '});
+```
+
+```{ojs}
+//|label: fig-county-control-trends-by-county-by-category
+//|fig-cap: Control Total Trends for Selected County for Selected Category
 //|echo: false
 
 Plot.plot({
