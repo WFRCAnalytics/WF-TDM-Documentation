@@ -164,7 +164,9 @@ dfBusSpeedRatios_Previous.to_csv(r'data\bus_speed_ratios_previous.csv', index=Fa
 ```
 
 ::: {.content-hidden when-format="html"}
-The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the *General Parameters* section, and included in a new bus speed ratios file `bus_speed_ratios.csv`. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes. @fig-pdf-old-bus-speeds-plot shows the old bus speed ratios and @fig-pdf-bus-speeds-plot shows the updated bus speed ratios.
+The bus speed ratios in the model were removed from the model scripts, as detailed in the *General Parameters* section, and were moved into a new file, `bus_speed_ratios.csv`.
+
+In addtion to moving the location of the bus speed ratios, the ratios were further categorized and refined using real world bus speed data. Previously in version 8.3.2, bus speed ratios differed by functional type. A total of only 6 bus speed ratios existed, as shown in @fig-pdf-old-bus-speeds-plot. Now however in version 9, bus speed ratios differ by functional type, area type, and time of day. A total of 75 bus speed ratios now exist, as shown in @fig-pdf-bus-speeds-plot. The observed data used to develop the new bus speed ratios is the 2019 General Transit Feed Specification (GTFS) data, which includes schedules time and stop locations for all bus routes.
 
 ![Bus Speeds Plot - Version 8.3.2](_pictures/old_bus_speeds.png){#fig-pdf-old-bus-speeds-plot}
 
@@ -172,7 +174,9 @@ The bus speed ratios in the model were further categorized and refined using act
 :::
 
 ::: {.content-visible when-format="html"}
-The bus speed ratios in the model were further categorized and refined using actual bus speed data. The resulting bus speeds ratios were removed from the model scripts, as detailed in the *General Parameters* section, and included in a new bus speed ratios file `bus_speed_ratios.csv`. The ratios were estimated based on 2019 General Transit Feed Specification (GTFS) data, which includes scheduled time and stop locations for all bus routes.
+The bus speed ratios in the model were removed from the model scripts, as detailed in the *General Parameters* section, and were moved into a new file, `bus_speed_ratios.csv`.
+
+In addtion to moving the location of the bus speed ratios, the ratios were further categorized and refined using real world bus speed data as shown in @fig-bus-speed-ratios. Previously in version 8.3.2, bus speed ratios differed by functional type. A total of only 6 bus speed ratios existed. Now however in version 9, bus speed ratios differ by functional type, area type, and time of day. A total of 75 bus speed ratios now exist The observed data used to develop the new bus speed ratios is the 2019 General Transit Feed Specification (GTFS) data, which includes schedules time and stop locations for all bus routes.
 
 ::: {.panel-tabset}
 
@@ -368,7 +372,58 @@ Plot.plot({
 \newpage
 
 ### Assignment
-As described in the *General Parameters* section, diurnal and production/attraction factors were moved out of the `0_GeneralParameters.block` file to an input file. The factors are now found in the `Diurnal & PA factors.csv` file. 
+As described in the *General Parameters* section, diurnal and production/attraction factors were moved out of the `0_GeneralParameters.block` file to an input file. The factors are now found in the `Time Of Day Factors.csv` file.
+
+Most of the factors remained the same between model versions, except for the external trip purpose factors, as shown in @tbl-factor-change.
+
+The new factors file also contains factors for more purposes, including home-based college purposes. Though the code has not been modified yet to account for these new purposes.
+
+```{python}
+#| echo: False
+#| include: False
+dfTodV832 = pd.read_csv('data/timeofdayfactors-v832-genparam.csv')
+dfTodV832.rename(columns={'VALUE':'v832'}, inplace=True)
+
+dfTodV832['FACTOR'] = dfTodV832['FACTOR'].str.upper()
+
+# v9 factors
+dfTodV900 = pd.read_csv(tdmNew + '/1_Inputs/0_GlobalData/5_Assignment/Time Of Day Factors.csv')
+dfTodV900 = dfTodV900.melt(id_vars=[';ID','PURP'], var_name='SUFFIX',value_name='VALUE')
+dfTodV900['FACTOR'] = dfTodV900['PURP'] + '_' + dfTodV900['SUFFIX']
+
+dfTodV900 = dfTodV900[['FACTOR','VALUE']]
+dfTodV900.rename(columns={'VALUE':'v900'}, inplace=True)
+
+display(dfTodV900)
+
+dfTod = pd.DataFrame.merge(dfTodV832,dfTodV900,on='FACTOR', how='outer')
+dfTod['Difference'] = dfTod['v900'] - dfTod['v832']
+
+dfTodWDiff = dfTod[dfTod['Difference']!=0].dropna()
+
+dfTod.fillna('',inplace=True)
+
+#display(dfTod)
+dfTod.to_csv('test.csv')
+#display(dfTodWDiff)
+```
+```{python}
+#| label: tbl-factor-change
+#| tbl-cap: Time Of Day Factors with Changes
+#| tbl-colwidths: [40,15,15,25]
+from IPython.display import Markdown
+from tabulate import tabulate
+table = dfTodWDiff[['FACTOR','v900','v832','Difference']]
+headers = ['Factor','v9 Value','v832 Value','Change']
+Markdown(tabulate(table, 
+  headers = headers,
+  tablefmt="pipe", 
+  colalign=['left','right','right','right'], 
+  showindex=False,
+  floatfmt=".4f" # Format for floating-point numbers
+  )
+)
+```
 
 ## Traffic Analysis Zones (TAZ)
 
@@ -436,7 +491,7 @@ Markdown(tabulate(table,
 :::
 
 ::: {.content-hidden when-format="html"}
-The maps in @fig-taz-compare-weber-pdf, @fig-taz-compare-davis-pdf, @fig-taz-compare-sl-pdf, and @fig-taz-compare-utah-pdf show the difference in version 9 and version 8 TAZs.
+The maps in @fig-taz-compare-weber-pdf, @fig-taz-compare-davis-pdf, @fig-taz-compare-sl-pdf, and @fig-taz-compare-utah-pdf show the difference in version 9 and version 8.3.2 TAZs.
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -727,11 +782,11 @@ Forecasts and control totals were updated based on new census data, updated base
 
 ###  Forecasts
 ::: {.content-hidden when-format="html"}
-The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9.0.0.
+The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9.
 :::
 
 ::: {.content-visible when-format="html"}
-The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9.0.0. You can explore the data in the embedded web application in @fig-household-job-forecast-map
+The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9. You can explore the data in the embedded web application in @fig-household-job-forecast-map
 
 ```{ojs}
 //|label: fig-household-job-forecast-map
@@ -746,12 +801,23 @@ html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-
 
 ### Control Totals
 ::: {.content-hidden when-format="html"}
-Updates to the county control totals were made based on projections from the Gardner Policy Institute.
+Updates to the county control totals were made based on projections from the Gardner Policy Institute. The v8.3.2 model used a base year of 2015 for controls totals. v9 uses a base year of 2019. @fig-pdf-res-control and @fig-pdf-emp-control shows the differences between 2020 and 2060 in residential and employment control totals for the Wasatch Front as a whole.  In addition @fig-pdf-bus-rat-control shows control total ratios for the Wasatch Front as a whole between the same years. For specific county by county breakdowns, please visit the [online documentation](https://wfrc.org/wftdm-docs/v9x/v900/whats-new/2-inputdata.html). 
+
+Although not displayed here, it is important to note that Utah County showed the largest decrease in control totals in the v9 model as compared to v8.3.2 with 107,937 lower population, 21,799 fewer households, and 47,977 fewer jobs (all employment). The largest job decreases are in office employment (14,923), government/education employment (16,982), and other employment (18,194). Utah County also has a significant drop in household size relative to other counties.
+
+![Residential Control Total: Wasatch Front](_pictures/pdf-residential-control.png){#fig-pdf-res-control}
+
+![Employment Control Total: Wasatch Front](_pictures/pdf-employment-control.png){#fig-pdf-emp-control}
+
+![Control Total Ratios: Wasatch Front](_pictures/pdf-ratio-control.png){#fig-pdf-bus-rat-control}
+
 :::
 
-
 ::: {.content-visible when-format="html"}
-Updates to the county control totals were made based on projections from the Gardner Policy Institute. See @fig-county-control-totals-by-category for a comparison between v8 and v9 by county for any given socioeconomic category.
+Updates to the county control totals were made based on projections from the Gardner Policy Institute. The v8.3.2 model used a base year of 2015 for controls totals. v9 uses a base year of 2019. @fig-county-control-total-differences-by-category shows the 2050 differences in county control totals for any given socioeconomic category. Further trends for the selected socioeconomic category for a specific county is shown in @fig-county-control-trends-by-county-by-category.
+
+Utah County displays the largest decrease in control totals in the v9 model as compared to v8.3.2 with 107,937 lower population, 21,799 fewer households, and 47,977 fewer jobs (all employment). The largest job decreases are in office employment (14,923), government/education employment (16,982), and other employment (18,194). Utah County also has a significant drop in household size relative to other counties.
+
 
 ```{python}
 #| echo: false
@@ -778,7 +844,28 @@ dfConTot_melt = pd.melt(dfConTot, id_vars=('CO_NAME','YEAR','ModelVersion'), val
 dfConTot_melt.to_csv('data/controltotal.csv',index=False)
 dfConTot_melt.groupby(['CO_NAME'],as_index=False).agg(COUNT=('YEAR','size')).to_csv('data/counties.csv',index=False)
 
+# creat diff data
+_df = dfConTot_melt[dfConTot_melt['YEAR']==2050]
+_df = _df.pivot_table(index=['CO_NAME','Category'],columns='ModelVersion',values='ControlTotal')
+_df = _df.dropna()
+_df.reset_index(inplace=True)
+_df['Difference'] = _df['v9.0.0'] - _df['v8.3.2']
+_df['DifferencePct'] = _df['Difference'] / _df['v8.3.2']
+
+_df_long = pd.melt(_df,
+                   id_vars =['CO_NAME','Category'],
+                   value_vars = ['Difference','DifferencePct'],
+                   var_name = 'View',
+                   value_name = 'ViewValue')    
+
+#display(_df_long)
 ```
+
+```{python}
+#variable for ojs
+ojs_define(diffConTot2050long = _df_long)
+```
+
 
 ```{ojs}
 //|echo: false
@@ -787,14 +874,14 @@ dfConTot_melt.groupby(['CO_NAME'],as_index=False).agg(COUNT=('YEAR','size')).to_
 faControlTotals = FileAttachment("data/controltotal.csv").csv({ typed: true });
 faCounties      = FileAttachment("data/counties.csv"    ).csv({ typed: true });
 
-cats = new Map([['Total Population'               , 'TOTPOP'    ],
-                ['Group Quarter Population'       , 'GQ_Pop'    ],
-                ['Household Population'           , 'HH_Pop'    ],
+cats = new Map([//['Total Population'               , 'TOTPOP'    ],
+                //['Group Quarter Population'       , 'GQ_Pop'    ],
+                ['Population'                     , 'HH_Pop'    ],
                 ['Households'                     , 'HH'        ],
                 ['Household Size'                 , 'HH_Size'   ],
-                ['Population 0-17'                , 'POP_00_17' ],
-                ['Population 18-64'               , 'POP_18_64' ],
-                ['Population 65+'                 , 'POP_65P'   ],
+                //['Population 0-17'                , 'POP_00_17' ],
+                //['Population 18-64'               , 'POP_18_64' ],
+                //['Population 65+'                 , 'POP_65P'   ],
                 ['All Employment'                 , 'ALLEMP'    ],
                 ['Retail Employment'              , 'RETL'      ],
                 ['Food Employment'                , 'FOOD'      ],
@@ -804,27 +891,75 @@ cats = new Map([['Total Population'               , 'TOTPOP'    ],
                 ['Government/Education Employment', 'GVED'      ],
                 ['Health Employment'              , 'HLTH'      ],
                 ['Other Employment'               , 'OTHR'      ],
-                ['Agriculture Employment'         , 'AGRI'      ],
-                ['Mining Employment'              , 'MING'      ],
-                ['Construction Employment'        , 'CONS'      ],
+                //['Agriculture Employment'         , 'AGRI'      ],
+                //['Mining Employment'              , 'MING'      ],
+                //['Construction Employment'        , 'CONS'      ],
                 ['Home-Based Job Employment'      , 'HBJ'       ],
-                ['Jobs per Household'             , 'Job_HH'    ],
-                ['Working Population per Job'     , 'WrkPop_Job']])
+                //['Jobs per Household'             , 'Job_HH'    ],
+                //['Working Population per Job'     , 'WrkPop_Job']
+                ])
+```
 
-viewof selectCounty   = Inputs.select(faCounties.map(function(d) {return d.CO_NAME}), {value: 'Salt Lake', label: 'County: '});
-viewof selectCategory = Inputs.select(cats, {value: 'HH_Pop', label: 'Category: '});
+```{ojs}
 // FILTER DATA
 filteredControlTotals = faControlTotals.filter(function(ct) {
   return selectCounty   == ct.CO_NAME &&
          selectCategory == ct.Category;
 });
+viewof selectCategory = Inputs.select(cats, {value: 'HH_Pop', label: 'Category: '});
 
 maxY = Math.max(...filteredControlTotals.map(item => item.ControlTotal));
+
+viewof metric = Inputs.radio(new Map([["Difference", "Difference"], ["Percent Difference", "DifferencePct"]]), {value: "Difference", label: "Display:"})
 ```
 
 ```{ojs}
-//|label: fig-county-control-totals-by-category
-//|fig-cap: County Control Totals by Category
+dataCTDiff50 = transpose(diffConTot2050long)
+filtered_dataCTDiff50 = dataCTDiff50.filter(function(dataL) {
+    return selectCategory == dataL.Category  &&
+           metric == dataL.View;
+})
+```
+
+```{ojs}
+//https://observablehq.com/@d3/diverging-bar-chart
+import {DivergingBarChart} from "@d3/diverging-bar-chart"
+
+function getXFormat() {
+  if (metric === "DifferencePct") {
+    return "+%";
+  } else if (selectCategory === 'HH_Size' && metric === "Difference") {
+    return ".2f";
+  } else {
+    return "+,d";
+  }
+}
+
+```
+
+```{ojs}
+//|label: fig-county-control-total-differences-by-category
+//|fig-cap: 2050 Differences in Control Totals for Selected Category (v9.0 vs v8.3.2)
+//|echo: false
+
+chart3 = DivergingBarChart(filtered_dataCTDiff50, {
+    x: d => d.ViewValue,
+    y: d => d.CO_NAME,
+    xFormat: getXFormat(),
+    xLabel: "2050 Difference",
+    aspectRatio: 0.5,
+    colors: d3.schemeRdBu[3],
+    yDomain: ['Weber','Davis','Salt Lake','Utah']
+})
+```
+
+```{ojs}
+viewof selectCounty = Inputs.select(new Map(['Weber', 'Davis', 'Salt Lake', 'Utah'].map(county => [county, county])), {value: 'Salt Lake', label: 'County Trends: '});
+```
+
+```{ojs}
+//|label: fig-county-control-trends-by-county-by-category
+//|fig-cap: Control Total Trends for Selected County for Selected Category
 //|echo: false
 
 Plot.plot({

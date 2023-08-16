@@ -306,7 +306,11 @@
 \maketitle
 \pagestyle{mystyle}
 
+<<<<<<< HEAD
 \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, sharp corners, colback={codebgcolor}, borderline west={3pt}{0pt}{shadecolor}, enhanced, frame hidden, boxrule=0pt]}{\end{tcolorbox}}\fi
+=======
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, borderline west={3pt}{0pt}{shadecolor}, colback={codebgcolor}, breakable, enhanced, boxrule=0pt, sharp corners]}{\end{tcolorbox}}\fi
+>>>>>>> v9-docs
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -1480,16 +1484,21 @@ block group data, and 2019 ACS population by age group data.
 \hypertarget{mode-choice}{%
 \subsection{Mode Choice}\label{mode-choice}}
 
-The bus speed ratios in the model were further categorized and refined
-using actual bus speed data. The resulting bus speeds ratios were
-removed from the model scripts, as detailed in the \emph{General
-Parameters} section, and included in a new bus speed ratios file
-\texttt{bus\_speed\_ratios.csv}. The ratios were estimated based on 2019
-General Transit Feed Specification (GTFS) data, which includes scheduled
-time and stop locations for all bus routes.
-Figure~\ref{fig-pdf-old-bus-speeds-plot} shows the old bus speed ratios
-and Figure~\ref{fig-pdf-bus-speeds-plot} shows the updated bus speed
-ratios.
+The bus speed ratios in the model were removed from the model scripts,
+as detailed in the \emph{General Parameters} section, and were moved
+into a new file, \texttt{bus\_speed\_ratios.csv}.
+
+In addtion to moving the location of the bus speed ratios, the ratios
+were further categorized and refined using real world bus speed data.
+Previously in version 8.3.2, bus speed ratios differed by functional
+type. A total of only 6 bus speed ratios existed, as shown in
+Figure~\ref{fig-pdf-old-bus-speeds-plot}. Now however in version 9, bus
+speed ratios differ by functional type, area type, and time of day. A
+total of 75 bus speed ratios now exist, as shown in
+Figure~\ref{fig-pdf-bus-speeds-plot}. The observed data used to develop
+the new bus speed ratios is the 2019 General Transit Feed Specification
+(GTFS) data, which includes schedules time and stop locations for all
+bus routes.
 
 \begin{figure}[H]
 
@@ -1521,7 +1530,68 @@ ratios.
 As described in the \emph{General Parameters} section, diurnal and
 production/attraction factors were moved out of the
 \texttt{0\_GeneralParameters.block} file to an input file. The factors
-are now found in the \texttt{Diurnal\ \&\ PA\ factors.csv} file.
+are now found in the \texttt{Time\ Of\ Day\ Factors.csv} file.
+
+Most of the factors remained the same between model versions, except for
+the external trip purpose factors, as shown in
+Table~\ref{tbl-factor-change}.
+
+The new factors file also contains factors for more purposes, including
+home-based college purposes. Though the code has not been modified yet
+to account for these new purposes.
+
+\hypertarget{tbl-factor-change}{}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4000}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1500}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1500}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\caption{\label{tbl-factor-change}Time Of Day Factors with
+Changes}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Factor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+v9 Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+v832 Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Change
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Factor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+v9 Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+v832 Value
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Change
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+IX\_AM\_PCT & 0.1909 & 0.1786 & 0.0123 \\
+IX\_MD\_PCT & 0.3136 & 0.3291 & -0.0155 \\
+IX\_PM\_PCT & 0.2567 & 0.2604 & -0.0037 \\
+IX\_EV\_PCT & 0.2388 & 0.2319 & 0.0069 \\
+XI\_AM\_PCT & 0.1969 & 0.1786 & 0.0183 \\
+XI\_MD\_PCT & 0.3263 & 0.3291 & -0.0028 \\
+XI\_PM\_PCT & 0.2617 & 0.2604 & 0.0013 \\
+XI\_EV\_PCT & 0.2151 & 0.2319 & -0.0168 \\
+IX\_AM\_PA & 0.6604 & 0.8563 & -0.1959 \\
+IX\_MD\_PA & 0.5593 & 0.5627 & -0.0034 \\
+IX\_PM\_PA & 0.4044 & 0.3288 & 0.0756 \\
+IX\_EV\_PA & 0.3968 & 0.3290 & 0.0678 \\
+XI\_AM\_PA & 0.7709 & 0.8563 & -0.0854 \\
+XI\_MD\_PA & 0.6087 & 0.5627 & 0.0460 \\
+XI\_PM\_PA & 0.3111 & 0.3288 & -0.0177 \\
+XI\_EV\_PA & 0.3170 & 0.3290 & -0.0120 \\
+XX\_AM\_PA & 0.8562 & 0.8563 & -0.0001 \\
+\end{longtable}
 
 \hypertarget{traffic-analysis-zones-taz}{%
 \section{Traffic Analysis Zones
@@ -1680,7 +1750,7 @@ The maps in Figure~\ref{fig-taz-compare-weber-pdf},
 Figure~\ref{fig-taz-compare-davis-pdf},
 Figure~\ref{fig-taz-compare-sl-pdf}, and
 Figure~\ref{fig-taz-compare-utah-pdf} show the difference in version 9
-and version 8 TAZs.
+and version 8.3.2 TAZs.
 
 \begin{figure}[H]
 
@@ -1924,13 +1994,63 @@ Forecasts Web App}. This map only contains the latest forecast and not
 any iterative step, such as the SE datasets in the model folder. Click
 on the \emph{View Advanced Version} link in the header to enable the
 ``Changes'' option where you can see the change in forecasts between
-v8.3.2 and v9.0.0.
+v8.3.2 and v9.
 
 \hypertarget{control-totals}{%
 \subsection{Control Totals}\label{control-totals}}
 
 Updates to the county control totals were made based on projections from
-the Gardner Policy Institute.
+the Gardner Policy Institute. The v8.3.2 model used a base year of 2015
+for controls totals. v9 uses a base year of 2019.
+Figure~\ref{fig-pdf-res-control} and Figure~\ref{fig-pdf-emp-control}
+shows the differences between 2020 and 2060 in residential and
+employment control totals for the Wasatch Front as a whole. In addition
+Figure~\ref{fig-pdf-bus-rat-control} shows control total ratios for the
+Wasatch Front as a whole between the same years. For specific county by
+county breakdowns, please visit the
+\href{https://wfrc.org/wftdm-docs/v9x/v900/whats-new/2-inputdata.html}{online
+documentation}.
+
+Although not displayed here, it is important to note that Utah County
+showed the largest decrease in control totals in the v9 model as
+compared to v8.3.2 with 107,937 lower population, 21,799 fewer
+households, and 47,977 fewer jobs (all employment). The largest job
+decreases are in office employment (14,923), government/education
+employment (16,982), and other employment (18,194). Utah County also has
+a significant drop in household size relative to other counties.
+
+\begin{figure}[H]
+
+{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-residential-control.png}
+
+}
+
+\caption{\label{fig-pdf-res-control}Residential Control Total: Wasatch
+Front}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-employment-control.png}
+
+}
+
+\caption{\label{fig-pdf-emp-control}Employment Control Total: Wasatch
+Front}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-ratio-control.png}
+
+}
+
+\caption{\label{fig-pdf-bus-rat-control}Control Total Ratios: Wasatch
+Front}
+
+\end{figure}
 
 \hypertarget{school-enrollment}{%
 \subsection{School Enrollment}\label{school-enrollment}}
@@ -2420,7 +2540,7 @@ highway inputs folder.
 \chapter{Model Results - Comparison with
 v8.3.2}\label{model-results---comparison-with-v8.3.2}}
 
-This section compares the model results between v9.0 and v8.3.2 for
+This section compares the model results between v9 and v8.3.2 for
 roadway volumes and transit.
 
 \hypertarget{road-volume-comparisons}{%
@@ -2428,7 +2548,7 @@ roadway volumes and transit.
 
 The comparison between daily volumes at the segment level can be found
 in Figure~\ref{fig-pdf-volume-comparison} for 2019 and 2050. Decreases
-in volume in v9.0 compared to v8.3.2 are shown in blue, while increases
+in volume in v9 compared to v8.3.2 are shown in blue, while increases
 are shown in red.
 
 For 2019, Salt Lake and northern Davis counties display a drop in
@@ -2496,7 +2616,7 @@ volumes decreased in the northwest portion of Salt Lake County.
 \end{minipage}%
 
 \caption{\label{fig-pdf-volume-comparison}Model Daily Volumes Comparison
-- All Vehicles (v9.0 vs v8.3.2)}
+- All Vehicles (v9 vs v8.3.2)}
 
 \end{figure}
 
@@ -2547,7 +2667,7 @@ volumes decreased in the northwest portion of Salt Lake County.
 \end{minipage}%
 
 \caption{\label{fig-pdf-volume-truck-comparison}Model Daily Volumes
-Comparison - Trucks (v9.0 vs v8.3.2)}
+Comparison - Trucks (v9 vs v8.3.2)}
 
 \end{figure}
 
@@ -2555,16 +2675,16 @@ Comparison - Trucks (v9.0 vs v8.3.2)}
 \section{Transit Comparisons}\label{transit-comparisons}}
 
 Transit comparisons were done with ridership, trips mode share, and
-boardings mode share. Overall ridership increases significantly in v9.0,
+boardings mode share. Overall ridership increases significantly in v9,
 and Core Bus ridership takes a larger share of trips and boardings than
 in v8.3.2.
 
 \hypertarget{transit-ridership}{%
 \subsection{Transit Ridership}\label{transit-ridership}}
 
-Transit ridership in v9.0 compared to v8.3.2 shows significant increase
-in 2032, 2042, and 2050. See Figure~\ref{fig-pdf-hy-tr-all}. The total
-ridership in 2050 for v9.0 is 327,000 daily trips compared to the v8.3.2
+Transit ridership in v9 compared to v8.3.2 shows significant increase in
+2032, 2042, and 2050. See Figure~\ref{fig-pdf-hy-tr-all}. The total
+ridership in 2050 for v9 is 327,000 daily trips compared to the v8.3.2
 model that showed 258,000 daily trips, which equates to 26\% more trips.
 The additional trips is largely due to the improvements in commuter rail
 with increased frequency and speed together with the change in the model
@@ -2656,9 +2776,9 @@ A comparison of the share of trips amongst the various modes of transit
 was done for both Trips and Boardings.
 
 The transit ridership trip shares by mode can be found in
-Figure~\ref{fig-pdf-shr-tr-all-9} for v9.0 and
+Figure~\ref{fig-pdf-shr-tr-all-9} for v9 and
 Figure~\ref{fig-pdf-shr-tr-all-832} for v8.3.2. The main difference in
-v9.0 trip share by mode is the large increase in Core Bus trips in 2032
+v9 trip share by mode is the large increase in Core Bus trips in 2032
 from almost nothing in 2028, while in v8.3.2 the increase in Core Bus
 trips is spread out between 2024 and 2030. This large increase is
 consistent with the transit inputs into the model with a large number of
@@ -2667,10 +2787,10 @@ bus service. The new Core Buy takes most of the local bus ridership it
 is replacing, but also quite a lot of ridership from Light Rail Transit
 (Mode 7).
 
-Transit boardings for v9.0 are found in Figure~\ref{fig-pdf-brd-9} and
-for v8.3.2 are found in Figure~\ref{fig-pdf-brd-832}. Boardings follow
-the same pattern as trips, but boardings are able to differentiate
-between modes better than trips that are categorized hierarchically.
+Transit boardings for v9 are found in Figure~\ref{fig-pdf-brd-9} and for
+v8.3.2 are found in Figure~\ref{fig-pdf-brd-832}. Boardings follow the
+same pattern as trips, but boardings are able to differentiate between
+modes better than trips that are categorized hierarchically.
 
 \begin{figure}[H]
 
@@ -2678,7 +2798,7 @@ between modes better than trips that are categorized hierarchically.
 
 }
 
-\caption{\label{fig-pdf-shr-tr-all-9}Transit Trips Share by Mode - v9.0}
+\caption{\label{fig-pdf-shr-tr-all-9}Transit Trips Share by Mode - v9}
 
 \end{figure}
 
@@ -2699,7 +2819,7 @@ v8.3.2}
 
 }
 
-\caption{\label{fig-pdf-brd-9}Transit Boardings Share by Mode - v9.0}
+\caption{\label{fig-pdf-brd-9}Transit Boardings Share by Mode - v9}
 
 \end{figure}
 
