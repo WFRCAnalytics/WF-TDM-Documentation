@@ -11,16 +11,16 @@ modelNew = 'WF TDM v9.0 - 2023-06-30'
 modelOld = 'WF TDM v8.3.2 - 2022-02-04a'
 ```
 
-This section compares the model results between v9.0 and v8.3.2 for roadway volumes and transit.
+This section compares the model results between v9 and v8.3.2 for roadway volumes and transit.
 
 ## Road Volume Comparisons
 
 ::: {.content-visible when-format="html"}
-The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in v9.0 compared to v8.3.2 are shown in blue, while increases are shown in red.
+The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in v9 compared to v8.3.2 are shown in blue, while increases are shown in red.
 :::
 
 ::: {.content-hidden when-format="html"}
-The comparison between daily volumes at the segment level can be found in @fig-pdf-volume-comparison for 2019 and 2050. Decreases in volume in v9.0 compared to v8.3.2 are shown in blue, while increases are shown in red.
+The comparison between daily volumes at the segment level can be found in @fig-pdf-volume-comparison for 2019 and 2050. Decreases in volume in v9 compared to v8.3.2 are shown in blue, while increases are shown in red.
 :::
 
 For 2019, Salt Lake and northern Davis counties display a drop in roadway volumes, most apparent on I-15. Weber, southern Davis, and Utah Counties show increases. Most of the changes are relatively minor, with the largest decreases occurring on the freeways in Salt Lake County. However, given the large daily volume for these roadways, the percent change is relatively low.
@@ -42,7 +42,7 @@ The comparison of daily medium and heavy truck volumes is found in @fig-volume-t
 
 ![](data/map_pngs/vol-legend-cropped.png)
 
-Model Daily Volumes Comparison - All Vehicles (v9.0 vs v8.3.2)
+Model Daily Volumes Comparison - All Vehicles (v9 vs v8.3.2)
 :::
 
 ### Volume Change - Truck
@@ -55,7 +55,7 @@ Model Daily Volumes Comparison - All Vehicles (v9.0 vs v8.3.2)
 
 ![](data/map_pngs/vol-truck-legend-cropped.png)
 
-Model Daily Volumes Comparison - Trucks (v9.0 vs v8.3.2)
+Model Daily Volumes Comparison - Trucks (v9 vs v8.3.2)
 :::
 
 <!--
@@ -70,7 +70,7 @@ Model Daily Volumes Comparison - Trucks (v9.0 vs v8.3.2)
 
 ![](data/map_pngs/vol_percentchange-legend.png)
 
-Model Daily Volumes Comparison - Percent Change (v9.0 vs v8.3.2)
+Model Daily Volumes Comparison - Percent Change (v9 vs v8.3.2)
 :::
 -->
 :::
@@ -88,7 +88,7 @@ The comparison of daily medium and heavy truck volumes is found in @fig-pdf-volu
 
 ![](data/map_pngs/vol-legend-cropped.png)
 
-Model Daily Volumes Comparison - All Vehicles (v9.0 vs v8.3.2)
+Model Daily Volumes Comparison - All Vehicles (v9 vs v8.3.2)
 :::
 
 ::: {#fig-pdf-volume-truck-comparison layout-ncol=3}
@@ -99,7 +99,7 @@ Model Daily Volumes Comparison - All Vehicles (v9.0 vs v8.3.2)
 
 ![](data/map_pngs/vol-truck-legend-cropped.png)
 
-Model Daily Volumes Comparison - Trucks (v9.0 vs v8.3.2)
+Model Daily Volumes Comparison - Trucks (v9 vs v8.3.2)
 :::
 
 :::
@@ -410,16 +410,16 @@ py.offline.init_notebook_mode(connected=True)
 :::
 
 
-Transit comparisons were done with ridership, trips mode share, and boardings mode share. Overall ridership increases significantly in v9.0, and Core Bus ridership takes a larger share of trips and boardings than in v8.3.2.
+Transit comparisons were done with ridership, trips mode share, and boardings mode share. Overall ridership increases significantly in v9, and Core Bus ridership takes a larger share of trips and boardings than in v8.3.2.
 
 ### Transit Ridership
 
 ::: {.content-visible when-format="html"}
-Transit ridership in v9.0 compared to v8.3.2 shows significant increase in 2032, 2042, and 2050. See @fig-hy-tr-all. The total ridership in 2050 for v9.0 is 327,000 daily trips compared to the v8.3.2 model that showed 258,000 daily trips, which equates to 26% more trips. The additional trips is largely due to the improvements in commuter rail with increased frequency and speed together with the change in the model sensitivity to changes in headway.
+Transit ridership in v9 compared to v8.3.2 shows significant increase in 2032, 2042, and 2050. See @fig-hy-tr-all. The total ridership in 2050 for v9 is 327,000 daily trips compared to the v8.3.2 model that showed 258,000 daily trips, which equates to 26% more trips. The additional trips is largely due to the improvements in commuter rail with increased frequency and speed together with the change in the model sensitivity to changes in headway.
 :::
 
 ::: {.content-hidden when-format="html"}
-Transit ridership in v9.0 compared to v8.3.2 shows significant increase in 2032, 2042, and 2050. See @fig-pdf-hy-tr-all. The total ridership in 2050 for v9.0 is 327,000 daily trips compared to the v8.3.2 model that showed 258,000 daily trips, which equates to 26% more trips. The additional trips is largely due to the improvements in commuter rail with increased frequency and speed together with the change in the model sensitivity to changes in headway.
+Transit ridership in v9 compared to v8.3.2 shows significant increase in 2032, 2042, and 2050. See @fig-pdf-hy-tr-all. The total ridership in 2050 for v9 is 327,000 daily trips compared to the v8.3.2 model that showed 258,000 daily trips, which equates to 26% more trips. The additional trips is largely due to the improvements in commuter rail with increased frequency and speed together with the change in the model sensitivity to changes in headway.
 :::
 
 Transit ridership by modes are shown in the following set of figures. Light-Rail Transit sees an increase through 2028 and then a large decrease in 2032. This large decrease can be explained by the shift of riders from Light Rail to Core Bus routes, with a large number of core routes coming online in 2032.
@@ -564,17 +564,17 @@ update_plot(
 
 A comparison of the share of trips amongst the various modes of transit was done for both Trips and Boardings.
 
-The transit ridership trip shares by mode can be found in @fig-shr-tr-all-9 for v9.0 and @fig-shr-tr-all-832 for v8.3.2. The main difference in v9.0 trip share by mode is the large increase in Core Bus trips in 2032 from almost nothing in 2028, while in v8.3.2 the increase in Core Bus trips is spread out between 2024 and 2030. This large increase is consistent with the transit inputs into the model with a large number of Core Bus routes coming into production in 2032, replacing mostly local bus service. The new Core Buy takes most of the local bus ridership it is replacing, but also quite a lot of ridership from Light Rail Transit (Mode 7).
+The transit ridership trip shares by mode can be found in @fig-shr-tr-all-9 for v9 and @fig-shr-tr-all-832 for v8.3.2. The main difference in v9 trip share by mode is the large increase in Core Bus trips in 2032 from almost nothing in 2028, while in v8.3.2 the increase in Core Bus trips is spread out between 2024 and 2030. This large increase is consistent with the transit inputs into the model with a large number of Core Bus routes coming into production in 2032, replacing mostly local bus service. The new Core Buy takes most of the local bus ridership it is replacing, but also quite a lot of ridership from Light Rail Transit (Mode 7).
 
-Transit boardings for v9.0 are found in @fig-brd-9 and for v8.3.2 are found in @fig-brd-832. Boardings follow the same pattern as trips, but boardings are able to differentiate between modes better than trips that are categorized hierarchically.
+Transit boardings for v9 are found in @fig-brd-9 and for v8.3.2 are found in @fig-brd-832. Boardings follow the same pattern as trips, but boardings are able to differentiate between modes better than trips that are categorized hierarchically.
 
 ::: {.panel-tabset}
 
-#### Trips - v9.0
+#### Trips - v9
 
 ```{python}
 #| label: fig-shr-tr-all-9
-#| fig-cap: "Transit Trips Share by Mode - v9.0"
+#| fig-cap: "Transit Trips Share by Mode - v9"
 #| cap-location: margin
 
 update_plot_stackedarea(
@@ -602,11 +602,11 @@ update_plot_stackedarea(
 )
 ```
 
-#### Boardings - v9.0
+#### Boardings - v9
 
 ```{python}
 #| label: fig-brd-9
-#| fig-cap: "Transit Boardings Share by Mode - v9.0"
+#| fig-cap: "Transit Boardings Share by Mode - v9"
 #| cap-location: margin
 
 update_plot_stackedarea_boardings(modelNew, 'RTP')
@@ -630,15 +630,15 @@ update_plot_stackedarea_boardings(modelOld, 'RTP')
 
 A comparison of the share of trips amongst the various modes of transit was done for both Trips and Boardings.
 
-The transit ridership trip shares by mode can be found in @fig-pdf-shr-tr-all-9 for v9.0 and @fig-pdf-shr-tr-all-832 for v8.3.2. The main difference in v9.0 trip share by mode is the large increase in Core Bus trips in 2032 from almost nothing in 2028, while in v8.3.2 the increase in Core Bus trips is spread out between 2024 and 2030. This large increase is consistent with the transit inputs into the model with a large number of Core Bus routes coming into production in 2032, replacing mostly local bus service. The new Core Buy takes most of the local bus ridership it is replacing, but also quite a lot of ridership from Light Rail Transit (Mode 7).
+The transit ridership trip shares by mode can be found in @fig-pdf-shr-tr-all-9 for v9 and @fig-pdf-shr-tr-all-832 for v8.3.2. The main difference in v9 trip share by mode is the large increase in Core Bus trips in 2032 from almost nothing in 2028, while in v8.3.2 the increase in Core Bus trips is spread out between 2024 and 2030. This large increase is consistent with the transit inputs into the model with a large number of Core Bus routes coming into production in 2032, replacing mostly local bus service. The new Core Buy takes most of the local bus ridership it is replacing, but also quite a lot of ridership from Light Rail Transit (Mode 7).
 
-Transit boardings for v9.0 are found in @fig-pdf-brd-9 and for v8.3.2 are found in @fig-pdf-brd-832. Boardings follow the same pattern as trips, but boardings are able to differentiate between modes better than trips that are categorized hierarchically.
+Transit boardings for v9 are found in @fig-pdf-brd-9 and for v8.3.2 are found in @fig-pdf-brd-832. Boardings follow the same pattern as trips, but boardings are able to differentiate between modes better than trips that are categorized hierarchically.
 
-![Transit Trips Share by Mode - v9.0](_pictures/pdf-shr-tr-all-9.png){#fig-pdf-shr-tr-all-9}
+![Transit Trips Share by Mode - v9](_pictures/pdf-shr-tr-all-9.png){#fig-pdf-shr-tr-all-9}
 
 ![Transit Trips Share by Mode - v8.3.2](_pictures/pdf-shr-tr-all-832.png){#fig-pdf-shr-tr-all-832}
 
-![Transit Boardings Share by Mode - v9.0](_pictures/pdf-brd-9.png){#fig-pdf-brd-9}
+![Transit Boardings Share by Mode - v9](_pictures/pdf-brd-9.png){#fig-pdf-brd-9}
 
 ![Transit Boardings Share by Mode - v8.3.2](_pictures/pdf-brd-832.png){#fig-pdf-brd-832}
 
