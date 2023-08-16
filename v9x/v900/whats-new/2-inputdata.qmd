@@ -370,13 +370,16 @@ Plot.plot({
 ### Assignment
 As described in the *General Parameters* section, diurnal and production/attraction factors were moved out of the `0_GeneralParameters.block` file to an input file. The factors are now found in the `Time Of Day Factors.csv` file.
 
-Most of the factors remained the same between model versions, except for the external trip purposes production-attraction factors, as shown in @tbl-factor-change.
+Most of the factors remained the same between model versions, except for the external trip purpose factors, as shown in @tbl-factor-change.
 
 The new factors file also contains factors for more purposes, including home-based college purposes. Though the code has not been modified yet to account for these new purposes.
 
 ```{python}
 dfTodV832 = pd.read_csv('data/timeofdayfactors-v832-genparam.csv')
 dfTodV832.rename(columns={'VALUE':'v832'}, inplace=True)
+
+dfTodV832['FACTOR'] = dfTodV832['FACTOR'].str.upper()
+
 
 #display(dfTodV832)
 
@@ -388,7 +391,7 @@ dfTodV900['FACTOR'] = dfTodV900['PURP'] + '_' + dfTodV900['SUFFIX']
 dfTodV900 = dfTodV900[['FACTOR','VALUE']]
 dfTodV900.rename(columns={'VALUE':'v900'}, inplace=True)
 
-#display(dfTodV900)
+display(dfTodV900)
 
 dfTod = pd.DataFrame.merge(dfTodV832,dfTodV900,on='FACTOR', how='outer')
 dfTod['Difference'] = dfTod['v900'] - dfTod['v832']
@@ -398,7 +401,7 @@ dfTodWDiff = dfTod[dfTod['Difference']!=0].dropna()
 dfTod.fillna('',inplace=True)
 
 #display(dfTod)
-#dfTod.to_csv('test.csv')
+dfTod.to_csv('test.csv')
 #display(dfTodWDiff)
 ```
 ```{python}
