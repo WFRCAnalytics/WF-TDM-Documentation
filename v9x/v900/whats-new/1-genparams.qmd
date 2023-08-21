@@ -46,6 +46,8 @@ The following TAZ parameters ranges were removed from the general parameters fil
  - WFRCRange
  - MAGRange
 
+\newpage
+
 ### Highway Nodes
 ::: {.grid}
 ::: {.g-col-3}
@@ -152,8 +154,6 @@ display(table.style.hide_index())
 ## Exogenous Trip Table Parameters
 Income break points for the airport exogenous trip table generation were updated to reflect 2019 base year income.
 
-\newpage
-
 ::: {.grid}
 ::: {.g-col-2}
 :::
@@ -197,6 +197,8 @@ display(table.style.hide_index())
 ## Distribution, Mode Choice, and Assignment Parameters
 ### K-Factors
 K-factor variables were expanded by trip purpose to allow for more flexibility in calibrating the distribution model. However, no K-factors were needed for calibration. All K-factors were reset to 1.
+
+\newpage
 
 ::: {.grid}
 ::: {.g-col-2}

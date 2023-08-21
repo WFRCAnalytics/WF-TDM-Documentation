@@ -304,7 +304,7 @@
 \maketitle
 \pagestyle{mystyle}
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, borderline west={3pt}{0pt}{shadecolor}, frame hidden, colback={codebgcolor}, sharp corners, breakable, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, boxrule=0pt, frame hidden, colback={codebgcolor}, borderline west={3pt}{0pt}{shadecolor}, sharp corners, breakable]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of contents}
 {
@@ -434,13 +434,15 @@ parameters file as they were not being used in the WF TDM:
   MAGRange
 \end{itemize}
 
+\newpage
+
 \hypertarget{highway-nodes}{%
 \subsection{Highway Nodes}\label{highway-nodes}}
 
 \hypertarget{tbl-highway-renumber}{}
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tbl-highway-renumber}Renumbered Highway
-Nodes}\label{T_43ff4}\tabularnewline
+Nodes}\label{T_779ae}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value & Notes \\
 \midrule\noalign{}
@@ -577,7 +579,7 @@ Tables}\label{zones-with-off-line-trip-tables}}
 \hypertarget{tbl-offline-renumber}{}
 \begin{longtable}[]{@{}lll@{}}
 \caption{\label{tbl-offline-renumber}Renumbered Off-line Trip Table
-Zones}\label{T_8dc92}\tabularnewline
+Zones}\label{T_ca026}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value \\
 \midrule\noalign{}
@@ -598,7 +600,7 @@ Airport & 965 & 742 \\
 \hypertarget{tbl-specgen-renumber}{}
 \begin{longtable}[]{@{}lll@{}}
 \caption{\label{tbl-specgen-renumber}Renumbered Special Generator
-Zones}\label{T_43f29}\tabularnewline
+Zones}\label{T_8accc}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value \\
 \midrule\noalign{}
@@ -620,12 +622,10 @@ Parameters}\label{exogenous-trip-table-parameters}}
 Income break points for the airport exogenous trip table generation were
 updated to reflect 2019 base year income.
 
-\newpage
-
 \hypertarget{tbl-exogen-income}{}
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tbl-exogen-income}Income Break Points for Airport
-Exogenous Trip Table Generation}\label{T_f8293}\tabularnewline
+Exogenous Trip Table Generation}\label{T_7af4f}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value & Notes \\
 \midrule\noalign{}
@@ -652,7 +652,7 @@ value was estimated from 2015 ACS data and deflated to 2010 dollars.
 \hypertarget{tbl-hh-disagg}{}
 \begin{longtable}[]{@{}lll@{}}
 \caption{\label{tbl-hh-disagg}Household Disaggregation Parameter Income
-Update}\label{T_0b713}\tabularnewline
+Update}\label{T_85d43}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value \\
 \midrule\noalign{}
@@ -676,6 +676,8 @@ Parameters}\label{distribution-mode-choice-and-assignment-parameters}}
 K-factor variables were expanded by trip purpose to allow for more
 flexibility in calibrating the distribution model. However, no K-factors
 were needed for calibration. All K-factors were reset to 1.
+
+\newpage
 
 \hypertarget{tbl-kfactors}{}
 \begin{longtable}[]{@{}
@@ -933,7 +935,7 @@ dollars. Costs are in cents/mile.
 \hypertarget{tbl-auto-op}{}
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tbl-auto-op}Auto Operating Cost
-Rates}\label{T_a4d64}\tabularnewline
+Rates}\label{T_3f69f}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value & Notes \\
 \midrule\noalign{}
@@ -965,7 +967,7 @@ dollars. Toll costs for version 8 are in 2010 dollars.
 \hypertarget{tbl-managed-lane}{}
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tbl-managed-lane}Managed Lane Cost
-Rates}\label{T_4c98d}\tabularnewline
+Rates}\label{T_86291}\tabularnewline
 \toprule\noalign{}
 Parameter & v9 Value & v8 Value & Notes \\
 \midrule\noalign{}
@@ -1516,8 +1518,6 @@ bus routes.
 
 \end{figure}
 
-\newpage
-
 \hypertarget{assignment}{%
 \subsection{Assignment}\label{assignment}}
 
@@ -1996,53 +1996,69 @@ v8.3.2 and v9.
 Updates to the county control totals were made based on projections from
 the Gardner Policy Institute. The v8.3.2 model used a base year of 2015
 for controls totals. v9 uses a base year of 2019.
-Figure~\ref{fig-pdf-res-control} and Figure~\ref{fig-pdf-emp-control}
-shows the differences between 2020 and 2060 in residential and
-employment control totals for the Wasatch Front as a whole. In addition
-Figure~\ref{fig-pdf-bus-rat-control} shows control total ratios for the
-Wasatch Front as a whole between the same years. For specific county by
-county breakdowns, please visit the
-\href{https://wfrc.org/wftdm-docs/v9x/v900/whats-new/2-inputdata.html}{online
-documentation}.
+Figure~\ref{fig-pdf-control-wf}, Figure~\ref{fig-pdf-control-weber},
+Figure~\ref{fig-pdf-control-davis}, Figure~\ref{fig-pdf-control-sl}, and
+Figure~\ref{fig-pdf-control-utah} show trends for control totals for
+residential and employment categories as well as and their control
+ratios. Various projections and historic data are plotted on the charts
+including household population, employment, average household size, jobs
+per houshold, worker population, etc.
 
-Although not displayed here, it is important to note that Utah County
-showed the largest decrease in control totals in the v9 model as
-compared to v8.3.2 with 107,937 lower population, 21,799 fewer
-households, and 47,977 fewer jobs (all employment). The largest job
-decreases are in office employment (14,923), government/education
-employment (16,982), and other employment (18,194). Utah County also has
-a significant drop in household size relative to other counties.
+As shown in Figure~\ref{fig-pdf-control-utah}, Utah County showed the
+largest decrease in control totals in the v9 model as compared to v8.3.2
+with 107,937 lower population, 21,799 fewer households, and 47,977 fewer
+jobs (all employment). The largest job decreases are in office
+employment (14,923), government/education employment (16,982), and other
+employment (18,194). Utah County also has a significant drop in
+household size relative to other counties.
 
 \begin{figure}[H]
 
-{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-residential-control.png}
+{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-control-wf.png}
 
 }
 
-\caption{\label{fig-pdf-res-control}Residential Control Total: Wasatch
-Front}
+\caption{\label{fig-pdf-control-wf}Control Total: Wasatch Front}
 
 \end{figure}
 
 \begin{figure}[H]
 
-{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-employment-control.png}
+{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-control-weber.png}
 
 }
 
-\caption{\label{fig-pdf-emp-control}Employment Control Total: Wasatch
-Front}
+\caption{\label{fig-pdf-control-weber}Control Total: Weber County}
 
 \end{figure}
 
 \begin{figure}[H]
 
-{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-ratio-control.png}
+{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-control-davis.png}
 
 }
 
-\caption{\label{fig-pdf-bus-rat-control}Control Total Ratios: Wasatch
-Front}
+\caption{\label{fig-pdf-control-davis}Control Total: Davis County}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-control-sl.png}
+
+}
+
+\caption{\label{fig-pdf-control-sl}Control Total: Salt Lake County}
+
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{v9x/v900/whats-new/_pictures/pdf-control-utah.png}
+
+}
+
+\caption{\label{fig-pdf-control-utah}Control Total: Utah County}
 
 \end{figure}
 
