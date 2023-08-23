@@ -405,6 +405,11 @@ dfTod.fillna('',inplace=True)
 dfTod.to_csv('test.csv')
 #display(dfTodWDiff)
 ```
+
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-factor-change
 #| tbl-cap: Time Of Day Factors with Changes
@@ -422,7 +427,8 @@ Markdown(tabulate(table,
   )
 )
 ```
-
+:::
+:::
 ## Traffic Analysis Zones (TAZ)
 
 ### Taz Geometry & Geographic Changes
@@ -816,17 +822,19 @@ As shown in @fig-pdf-control-utah, Utah County showed the largest decrease in co
 :::
 
 ::: {.content-visible when-format="html"}
-Updates to the county control totals were made based on projections from the Gardner Policy Institute. The v8.3.2 model used a base year of 2015 for controls totals. v9 uses a base year of 2019. @fig-county-control-total-differences-by-category shows the 2050 differences in county control totals for any given socioeconomic category. Further trends for the selected socioeconomic category for a specific county is shown in @fig-county-control-trends-by-county-by-category.
+Updates to the county control totals were made based on projections from the Gardner Policy Institute. The v8.3.2 model used a base year of 2015 for controls totals. v9 uses a base year of 2019.
 
-Utah County displays the largest decrease in control totals in the v9 model as compared to v8.3.2 with 107,937 lower population, 21,799 fewer households, and 47,977 fewer jobs (all employment). The largest job decreases are in office employment (14,923), government/education employment (16,982), and other employment (18,194). Utah County also has a significant drop in household size relative to other counties.
+@fig-county-control-total-differences-by-category shows the 2050 differences in county control totals for any given socioeconomic category. 
 
 
 ```{python}
 #| echo: false
 import pandas as pd
+import numpy as np
 
 # County Control Totals
 fnConTotOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_WF.csv"
+fnConTotAgeOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_Age.csv"
 fnConTotNew = tdmNew + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
 
 dfConTotOld = pd.read_csv(fnConTotOld)
@@ -834,14 +842,44 @@ dfConTotOld = dfConTotOld.rename(columns={'CoName':'CO_NAME'})
 dfConTotOld['CO_NAME'] = dfConTotOld['CO_NAME'].str.replace(' County','')
 dfConTotOld['ModelVersion'] = 'v8.3.2'
 
+dfConTotAgeOld = pd.read_csv(fnConTotAgeOld)
+dfConTotAgeOld = dfConTotAgeOld[['YEAR','CO_NAME','POP_18_64']]
+dfConTotAgeOld['CO_NAME'] = dfConTotAgeOld['CO_NAME'].apply(lambda x: ' '.join([word.capitalize() for word in x.split()]))
+dfConTotOld = pd.merge(dfConTotOld,dfConTotAgeOld, how = 'left', on = ['CO_NAME','YEAR'])
+dfConTotOld['Job_HH'] = dfConTotOld['ALLEMP'] / dfConTotOld['HH']
+dfConTotOld['WrkPop_Job'] = dfConTotOld['POP_18_64'] / dfConTotOld['ALLEMP']
+
 dfConTotNew = pd.read_csv(fnConTotNew)
 dfConTotNew = dfConTotNew[dfConTotNew['Subarea']=='1 - Wasatch Front'] # only WF area
 dfConTotNew['ModelVersion'] = 'v9.0.0'
 
-dfConTot = pd.concat([dfConTotOld,dfConTotNew])
+dfConTotCo = pd.concat([dfConTotOld,dfConTotNew])
 
-#display(dfConTot)
-dfConTot_melt = pd.melt(dfConTot, id_vars=('CO_NAME','YEAR','ModelVersion'), value_name='ControlTotal', var_name='Category', value_vars=('TOTPOP','GQ_Pop','HH_Pop','HH','HH_Size','POP_00_17','POP_18_64','POP_65P','ALLEMP','RETL','FOOD','MANU','WSLE','OFFI','GVED','HLTH','OTHR','AGRI','MING','CONS','HBJ','Job_HH','WrkPop_Job'))
+dfConTotWF = pd.read_csv('data/wf-controltotal.csv')
+dfConTotWF['ModelVersion'] = np.where(dfConTotWF['Source'] == ' CT_2022 ', 'v9.0.0','v8.3.2')
+dfConTotWF = dfConTotWF.drop(columns={'Source'})
+dfConTotWF['CO_NAME'] = 'Wasatch Front'
+dfConTotWF['CO_FIPS'] = 00
+
+sum_columns = dfConTotWF.columns[6:32]
+grouped_df = dfConTotWF.groupby(['Subarea', 'CO_FIPS', 'CO_NAME', 'ModelVersion', 'YEAR'])[sum_columns].sum().reset_index()
+ave_hh = dfConTotWF.groupby(['Subarea', 'CO_FIPS', 'CO_NAME', 'ModelVersion', 'YEAR'])['HH_Size'].mean().reset_index()
+grouped_df['Job_HH'] = grouped_df['ALLEMP'] / grouped_df['HH']
+grouped_df['WrkPop_Job'] = grouped_df['POP_18_64'] / grouped_df['ALLEMP']
+grouped_df = grouped_df.drop(columns={'HH_Size'})
+grouped_df = pd.merge(grouped_df,ave_hh, how='left')
+
+dfConTot = pd.concat([dfConTotCo, grouped_df])
+```
+
+```{python}
+dfConTot2 = dfConTot.fillna(0)
+dfConTot2['Retail'] = dfConTot2['RETL'] + dfConTot2['FOOD']
+dfConTot2['Industrial'] = dfConTot2['WSLE'] + dfConTot2['MANU']
+dfConTot2['Other'] = dfConTot2['GVED'] + dfConTot2['HLTH'] + dfConTot2['OFFI'] + dfConTot2['OTHR']
+dfConTot2['Typical'] = dfConTot2['Retail'] + dfConTot2['Industrial'] + dfConTot2['Other']
+
+dfConTot_melt = pd.melt(dfConTot2, id_vars=('CO_NAME','YEAR','ModelVersion'), value_name='ControlTotal', var_name='Category', value_vars=('TOTPOP','GQ_Pop','HH_Pop','HH','HH_Size','POP_00_17','POP_18_64','POP_65P','ALLEMP','RETL','FOOD','MANU','WSLE','OFFI','GVED','HLTH','OTHR','AGRI','MING','CONS','HBJ','Job_HH','WrkPop_Job', 'Typical','Retail','Industrial','Other'))
 
 dfConTot_melt.to_csv('data/controltotal.csv',index=False)
 dfConTot_melt.groupby(['CO_NAME'],as_index=False).agg(COUNT=('YEAR','size')).to_csv('data/counties.csv',index=False)
@@ -880,7 +918,7 @@ cats = new Map([//['Total Population'               , 'TOTPOP'    ],
                 //['Group Quarter Population'       , 'GQ_Pop'    ],
                 ['Population'                     , 'HH_Pop'    ],
                 ['Households'                     , 'HH'        ],
-                ['Household Size'                 , 'HH_Size'   ],
+                //['Household Size'                 , 'HH_Size'   ],
                 //['Population 0-17'                , 'POP_00_17' ],
                 //['Population 18-64'               , 'POP_18_64' ],
                 //['Population 65+'                 , 'POP_65P'   ],
@@ -896,11 +934,12 @@ cats = new Map([//['Total Population'               , 'TOTPOP'    ],
                 //['Agriculture Employment'         , 'AGRI'      ],
                 //['Mining Employment'              , 'MING'      ],
                 //['Construction Employment'        , 'CONS'      ],
-                ['Home-Based Job Employment'      , 'HBJ'       ],
+                ['Home-Based Job Employment'      , 'HBJ'       ]
                 //['Jobs per Household'             , 'Job_HH'    ],
                 //['Working Population per Job'     , 'WrkPop_Job']
                 ])
 ```
+
 
 ```{ojs}
 // FILTER DATA
@@ -909,8 +948,6 @@ filteredControlTotals = faControlTotals.filter(function(ct) {
          selectCategory == ct.Category;
 });
 viewof selectCategory = Inputs.select(cats, {value: 'HH_Pop', label: 'Category: '});
-
-maxY = Math.max(...filteredControlTotals.map(item => item.ControlTotal));
 
 viewof metric = Inputs.radio(new Map([["Difference", "Difference"], ["Percent Difference", "DifferencePct"]]), {value: "Difference", label: "Display:"})
 ```
@@ -951,32 +988,193 @@ chart3 = DivergingBarChart(filtered_dataCTDiff50, {
     xLabel: "2050 Difference",
     aspectRatio: 0.5,
     colors: d3.schemeRdBu[3],
-    yDomain: ['Weber','Davis','Salt Lake','Utah']
+    yDomain: ['Weber','Davis','Salt Lake','Utah', 'Wasatch Front']
 })
 ```
 
+Utah County displays the largest decrease in control totals in the v9 model as compared to v8.3.2 with 107,937 lower population, 21,799 fewer households, and 47,977 fewer jobs (all employment). The largest job decreases are in office employment (14,923), government/education employment (16,982), and other employment (18,194). Utah County also has a significant drop in household size relative to other counties.
+
+Further trends for county specific residential and employment control totals as well as control total ratios are shown in @fig-county-control-trends-by-county-by-category.
+
 ```{ojs}
-viewof selectCounty = Inputs.select(new Map(['Weber', 'Davis', 'Salt Lake', 'Utah'].map(county => [county, county])), {value: 'Salt Lake', label: 'County Trends: '});
+viewof selectCounty = Inputs.select(new Map(['Wasatch Front', 'Weber', 'Davis', 'Salt Lake', 'Utah'].map(county => [county, county])), {value: 'Wasatch Front', label: 'County: '});
+
+// FILTER DATA
+filteredCTPlot = faControlTotals.filter(function(ct) {
+  return selectCounty   == ct.CO_NAME; //&&
+         //selectCategoryPlot == ct.Category;
+});
+maxY1 = Math.max(...filteredCTPlot.map(item => item.ControlTotal));
+
+// FILTER DATA for employment control totals
+filteredCTPlot2 = faControlTotals.filter(function(ct) {
+  return selectCounty   == ct.CO_NAME &&
+         ["Typical", "Retail", "Industrial", "Other"].includes(ct.Category);
+});
+maxY2 = Math.max(...filteredCTPlot2.map(item => item.ControlTotal));
+
+// FILTER DATA for control totals ratios
+filteredCTPlot3 = faControlTotals.filter(function(ct) {
+  return selectCounty   == ct.CO_NAME &&
+         ["HH_Size", "Job_HH", "WrkPop_Job"].includes(ct.Category);
+});
+maxY3 = Math.max(...filteredCTPlot3.map(item => item.ControlTotal));
+```
+
+
+```{ojs}
+// data for the residential control totals
+hhPopData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH_Pop" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+hhPopData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH_Pop" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+hhData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH" == ct.Category && 'v8.3.2' == ct.ModelVersion  && ct.YEAR > 2020;})
+hhData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH" == ct.Category && 'v9.0.0' == ct.ModelVersion;})
+
+// data for the employment control totals
+typicalData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Typical" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+typicalData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Typical" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+retailData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Retail" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+retailData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Retail" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+industrialData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Industrial" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+industrialData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Industrial" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+otherData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Other" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+otherData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Other" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+
+// data for control total ratios
+hhsize8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH_Size" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+hhsize9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH_Size" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+jobhh8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Job_HH" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+jobhh9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Job_HH" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+wrkpop8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "WrkPop_Job" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+wrkpop9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "WrkPop_Job" == ct.Category && "v9.0.0" == ct.ModelVersion;})
 ```
 
 ```{ojs}
 //|label: fig-county-control-trends-by-county-by-category
 //|fig-cap: Control Total Trends for Selected County for Selected Category
+//|fig-subcap:
+//|   - "Residential Control Total"
+//|   - "Employment Control Total"
+//|   - "Control Total Ratios"
 //|echo: false
 
 Plot.plot({
   grid: true,
   aspectRatio: 0.5,
   x: {label: 'Year', tickFormat: d => d},
-  y: {label: 'Control Total', domain: [0, maxY]},
-  color: { type: "categorical", legend: true, legendStyle: { fontSize: 16 } },
+  y: {label: 'Control Total', domain: [0, maxY1]},
+  marginRight:60,
   marginLeft: 60,
   style: {
-    fontSize: 12
+    fontSize: 15
   },
+  marginTop: 60,
+  marginBottom: 60,
   marks: [
-    Plot.line(filteredControlTotals, {x: 'YEAR', y: 'ControlTotal', stroke: 'ModelVersion', strokeWidth: 3}),
-  ]
+    Plot.line(
+      hhPopData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e', strokeWidth: 2, strokeDasharray: '5,5'}),
+    Plot.line(
+      hhPopData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 2, text: ['yo momma']}),
+    Plot.text(
+      hhPopData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+    
+    Plot.line(
+      hhData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      hhData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 2}),
+    Plot.text(
+      hhData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+    
+    Plot.frame({strokeOpacity: 0.2}),
+    [
+      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 14})
+  ]]
+})
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: {label: 'Year', tickFormat: d => d},
+  y: {label: 'Control Total', domain: [0, maxY2]},
+  marginRight:80,
+  marginLeft: 60,
+  style: {
+    fontSize: 15
+  },
+  marginTop: 60,
+  marginBottom: 60,
+  marks: [
+    Plot.line(
+      typicalData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF6666', strokeWidth: 2, strokeDasharray: '5,5'}),
+    Plot.line(
+      typicalData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF0000', strokeWidth: 2}),
+    Plot.text(
+      typicalData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      retailData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      retailData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 2}),
+    Plot.text(
+      retailData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      industrialData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#A0A0A0', strokeWidth: 2, strokeDasharray: '5,5'}),
+    Plot.line(
+      industrialData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#606060', strokeWidth: 2}),
+    Plot.text(
+      industrialData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      otherData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      otherData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f',strokeWidth: 2}),
+    Plot.text(
+      otherData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.frame({strokeOpacity: 0.2}),
+    [
+      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 14})
+  ]]
+})
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: {label: 'Year', tickFormat: d => d},
+  y: {label: 'Control Total', domain: [0, maxY3]},
+  marginRight:85,
+  marginLeft: 60,
+  style: {
+    fontSize: 15
+  },
+  marginTop: 60,
+  marginBottom: 60,
+  marks: [
+    Plot.line(
+      hhsize8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e', strokeWidth: 2, strokeDasharray: '5,5'}),
+    Plot.line(
+      hhsize9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 2}),
+    Plot.text(
+      hhsize9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      jobhh8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      jobhh9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 2}),
+    Plot.text(
+      jobhh9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      wrkpop8, {x: 'YEAR', y: 'ControlTotal', stroke: '#FFB266',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      wrkpop9, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF8000',strokeWidth: 2}),
+    Plot.text(
+      wrkpop9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.frame({strokeOpacity: 0.2}),
+    [
+      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 14})
+  ]]
 })
 ```
 :::
