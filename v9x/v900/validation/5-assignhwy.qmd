@@ -6,245 +6,397 @@ message: false
 ---
 
 
-The validation results for the Highway Assignment portion of the model are shown in this section. The observed data comes from the Utah Transit Authority 2019 On-Board Survey. 
+The validation results for the Highway Assignment portion of the model are shown in this section.The observed data for 2019 volumes is taken from the Utah Department of Transportation (UDOT) [Average Annual Daily Traffic (AADT) History](https://drive.google.com/file/d/1rDXm0ObugGR1zXgWUuVbzWHNt-Xs1xru/view) and associated with their respective model segments. The traffic model data is taken from segment summary report for the 2019 base year model: `v9_SE19_Net19_Summary_SEGID.csv`.
+
+Validation is summarized by volume and Vehicle-Miles Traveled (VMT) through the comparison of model and observed data facility type by region. Additional comparisons by county are also provided. The model vs observed comparisons are shown in six different types of charts and tables:
+
+- Average Volume by Roadway Class
+- Total VMT by Roadway Class
+- Model vs Count Segment Volume
+- Segment Percent Error
+
+The interactive @fig-assign-validation allows for the visual comparison of model and observed values for the region and each county for all vehicles, cars, medium trucks, and heavy trucks.
+
 
 ::: {.content-visible when-format="html"}
-
-## Table Summaries
 
 ```{python}
 import pandas as pd
 import numpy as np
 allveh_valid = pd.read_csv("data/5-assignhwy/wf-validation-06-30-2023-AllVeh.csv")
-value_vars = ['Valid_FC', 'Valid_All']
-allveh_melted = allveh_valid.melt(id_vars=['CO_FIPS', 'SEGID', 'ATYPENAME', 'Mod_AWDT', 'Obs_AWDT', 'Diff', 'Pct_Dev', 'Diff_Sq',
-                                   'Mod_Car', 'Obs_Car', 'Diff_Car', 'Pct_Dev_Car', 'Diff_Sq_Car', 'Mod_MD', 'Obs_MD',
-                                   'Diff_MD', 'Pct_Dev_MD', 'Diff_Sq_MD', 'Mod_HV', 'Obs_HV', 'Diff_HV', 'Pct_Dev_HV',
-                                   'Diff_Sq_HV', 'DY_VMT','DY_VMT.1'], value_vars=value_vars, var_name='Valid_Type', value_name='Valid')
-allveh_melted = allveh_melted[['CO_FIPS', 'SEGID', 'Valid', 'ATYPENAME', 'Mod_AWDT', 'Obs_AWDT', 'Diff', 'Pct_Dev', 'Diff_Sq',
-                 'Mod_Car', 'Obs_Car', 'Diff_Car', 'Pct_Dev_Car', 'Diff_Sq_Car', 'Mod_MD', 'Obs_MD', 'Diff_MD',
-                 'Pct_Dev_MD', 'Diff_Sq_MD', 'Mod_HV', 'Obs_HV', 'Diff_HV', 'Pct_Dev_HV', 'Diff_Sq_HV', 'DY_VMT','DY_VMT.1']]
-allveh_melted = allveh_melted.rename(columns = {'DY_VMT':'ModelVMT', 'DY_VMT.1':'ObserveVMT'})
-#allveh_melted
+
+allveh = allveh_valid[['SEGID','CO_FIPS','DISTANCE','Valid_FC',
+                       'Mod_AWDT', 'Obs_AWDT', 
+                       'Mod_Car' , 'Obs_Car' ,
+                       'Mod_MD'  , 'Obs_MD'  ,
+                       'Mod_HV'  , 'Obs_HV'  ]].copy()
+
+allveh.rename(columns={'Valid_FC':'funcClass'}, inplace=True)
+
+# create a copy for 'All Roadways' category
+_allfc = allveh.copy()
+_allfc['funcClass'] = 'All Roadways'
+
+allveh = pd.concat([allveh,_allfc])
+
+# manually 'melt' veh type
+_dfPC = allveh[['SEGID', 'DISTANCE', 'CO_FIPS', 'funcClass', 'Mod_Car' ,'Obs_Car' ]].rename(columns={'Mod_Car' :'volMod', 'Obs_Car' :'volObs', 'CO_FIPS':'coFips'})
+_dfMD = allveh[['SEGID', 'DISTANCE', 'CO_FIPS', 'funcClass', 'Mod_MD'  ,'Obs_MD'  ]].rename(columns={'Mod_MD'  :'volMod', 'Obs_MD'  :'volObs', 'CO_FIPS':'coFips'})
+_dfHV = allveh[['SEGID', 'DISTANCE', 'CO_FIPS', 'funcClass', 'Mod_HV'  ,'Obs_HV'  ]].rename(columns={'Mod_HV'  :'volMod', 'Obs_HV'  :'volObs', 'CO_FIPS':'coFips'})
+_dfAl = allveh[['SEGID', 'DISTANCE', 'CO_FIPS', 'funcClass', 'Mod_AWDT','Obs_AWDT']].rename(columns={'Mod_AWDT':'volMod', 'Obs_AWDT':'volObs', 'CO_FIPS':'coFips'})
+
+# add vehicle types
+_dfPC['vehType'] = 'Passenger Cars'
+_dfMD['vehType'] = 'Medium Trucks'
+_dfHV['vehType'] = 'Heavy Trucks'
+_dfAl['vehType'] = 'All Vehicles'
+
+# combine
+allveh = pd.concat([_dfPC, _dfMD, _dfHV, _dfAl])
+
+# calc diffSquare
+allveh['volDiffSq'] = (allveh['volMod'] - allveh['volObs']) ** 2 #squared
+
+# recalc VMT
+allveh['vmtMod'] = allveh['volMod'] * allveh['DISTANCE']
+allveh['vmtObs'] = allveh['volObs'] * allveh['DISTANCE']
+
+# remove nulls
+allveh.dropna(inplace=True)
+#allvehfc
+
+allveh2 = allveh.copy()
+allveh2['coFips'] = 'Region'
+allveh = pd.concat([allveh, allveh2])
+#allveh
 ```
 
 ```{python}
-allveh_melted2 = allveh_melted.copy()
-allveh_melted2['CO_FIPS'] = 'All'
-allveh = pd.concat([allveh_melted, allveh_melted2])
-```
+agg_functions = {'SEGID'     : 'count',
+                 'volMod'    : 'mean',
+                 'volObs'    : 'mean',
+                 'volDiffSq' : lambda x: np.sqrt(np.sum(x) / (x.nunique() - 1)),# this is right, excel is wrong (excel is only using sum at county level)
+                 'vmtMod'    : 'sum',
+                 'vmtObs'    : 'sum'} 
 
-```{python}
-agg_functions = {'SEGID'   : 'count',
-                 'Mod_AWDT': 'mean',
-                 'Obs_AWDT': 'mean',
-                 'Diff_Sq' : lambda x: np.sqrt(np.sum(x) / (x.nunique() - 1)),# this is right, excel is wrong (excel is only using sum at county level)
-                 'ModelVMT': 'sum',
-                 'ObserveVMT': 'sum'} 
+#summarize allveh to create daily comparison by coFips, funcClass, vehType tables
+allveh_sum = allveh.groupby(['coFips','funcClass','vehType']).agg(agg_functions).reset_index()
+allveh_sum = allveh_sum.rename(columns={'SEGID':'numSegs','volDiffSq':'volRmse'})
 
-#summarize allveh_melted to create daily comparison by facility type tables
-allveh_sum = allveh.groupby(['CO_FIPS','Valid']).agg(agg_functions).reset_index()
-allveh_sum = allveh_sum.rename(columns={'SEGID':'NumberOfSegs', 'Mod_AWDT':'ModelVolume', 'Obs_AWDT':'CountVolume', 'Valid':'FunctionalType'})
+allveh_sum['volDiff'   ] = allveh_sum['volMod'] - allveh_sum['volObs']
+allveh_sum['vmtDiff'   ] = allveh_sum['vmtMod'] - allveh_sum['vmtObs']
 
-allveh_sum['VolDiff'] = allveh_sum['ModelVolume'] - allveh_sum['CountVolume']
-allveh_sum['VolPctDiff'] = (allveh_sum['ModelVolume'] / allveh_sum['CountVolume'] - 1) * 100
-allveh_sum['RMSE'] = allveh_sum['Diff_Sq']
-allveh_sum = allveh_sum.drop(columns={'Diff_Sq'})
-allveh_sum['PctRMSE'] = (allveh_sum['RMSE'] / allveh_sum['CountVolume']) * 100
-allveh_sum['VMTDiff'] = allveh_sum['ModelVMT'] - allveh_sum['ObserveVMT']
-allveh_sum['VMTPctDiff'] = (allveh_sum['VMTDiff'] / allveh_sum['ObserveVMT']) * 100
+allveh_sum['volDiffPct'] = allveh_sum['volDiff'] / allveh_sum['volObs']
+allveh_sum['vmtDiffPct'] = allveh_sum['vmtDiff'] / allveh_sum['vmtObs']
+
+allveh_sum['volRmsePct'   ] = (allveh_sum['volRmse'] / allveh_sum['volObs'])
+
 allveh_sum_copy = allveh_sum.copy()
-
-number_columns = allveh_sum.select_dtypes(include=['float64', 'int64']).columns
-allveh_sum[number_columns] = allveh_sum[number_columns].round().astype(int)
-allveh_sum['VolPctDiff'] = allveh_sum['VolPctDiff'].astype(str) + '%'
-allveh_sum['PctRMSE'] = allveh_sum['PctRMSE'].astype(str) + '%'
-allveh_sum['VMTPctDiff'] = allveh_sum['VMTPctDiff'].astype(str) + '%'
+#allveh_sum_copy
 ```
 
 ```{python}
-allveh_vol = allveh_sum[['CO_FIPS','FunctionalType','NumberOfSegs','ModelVolume','CountVolume', 'VolDiff', 'VolPctDiff', 'RMSE', 'PctRMSE']]
-allveh_vmt = allveh_sum[['CO_FIPS','FunctionalType','NumberOfSegs','ModelVMT','ObserveVMT', 'VMTDiff', 'VMTPctDiff']]
-```
-
-
-### Regional Summaries 
-```{python}
-allveh_pct = allveh_sum[['CO_FIPS','FunctionalType','VolPctDiff','VMTPctDiff']]
-allveh_pct = allveh_pct.rename(columns={'VolPctDiff':'Volume', 'VMTPctDiff':'VMT'})
-allveh_pct = allveh_pct.melt(id_vars = ['CO_FIPS','FunctionalType'], value_vars = ['Volume', 'VMT'], var_name = 'Variable',value_name = 'Value')
-allveh_pct = allveh_pct.pivot(index=['FunctionalType','Variable'], columns='CO_FIPS', values='Value').reset_index()
-allveh_pct = allveh_pct.rename(columns={3:'Box Elder', 11: 'Davis', 35: 'Salt Lake', 49: 'Utah', 57: 'Weber'})
-allveh_pct = allveh_pct.sort_values(by = ['Variable','FunctionalType'], ascending =[False,False])
-allveh_pct = allveh_pct[['Variable', 'FunctionalType','All', 'Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah']]
+allveh_vol = allveh_sum[['coFips','funcClass','vehType','numSegs','volMod','volObs','volDiff','volDiffPct','volRmse','volRmsePct']]
+allveh_vmt = allveh_sum[['coFips','funcClass','vehType','numSegs','vmtMod','vmtObs','vmtDiff','vmtDiffPct']]
 ```
 
 ```{python}
-allveh_pct_exact = allveh_sum_copy[['CO_FIPS','FunctionalType','VolPctDiff','VMTPctDiff']]
-allveh_pct_exact = allveh_pct_exact.rename(columns={'VolPctDiff':'Volume', 'VMTPctDiff':'VMT'})
-allveh_pct_exact = allveh_pct_exact.melt(id_vars = ['CO_FIPS','FunctionalType'], value_vars = ['Volume', 'VMT'], var_name = 'Variable',value_name = 'Value')
-allveh_pct_exact = allveh_pct_exact.pivot(index=['FunctionalType','Variable'], columns='CO_FIPS', values='Value').reset_index()
-allveh_pct_exact = allveh_pct_exact.rename(columns={3:'Box Elder', 11: 'Davis', 35: 'Salt Lake', 49: 'Utah', 57: 'Weber'})
-allveh_pct_exact = allveh_pct_exact.sort_values(by = ['Variable','FunctionalType'], ascending =[False,False])
-allveh_pct_exact = allveh_pct_exact[['Variable', 'FunctionalType','All', 'Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah']]
-allveh_pct_exact = allveh_pct_exact.melt(id_vars = ['FunctionalType', 'Variable'], value_vars = ['All', 'Box Elder', 'Weber', 'Davis', 'Salt Lake', 'Utah'], value_name = 'Value', var_name = 'Region')
+allveh_pct = allveh_sum[['coFips','funcClass','vehType','volDiffPct','vmtDiffPct']]
+allveh_pct = allveh_pct.melt(id_vars=['coFips','funcClass','vehType'], value_vars=['volDiffPct','vmtDiffPct'], var_name='Variable', value_name='Value')
+allveh_pct = allveh_pct.pivot(index=['funcClass','vehType','Variable'], columns='coFips', values='Value').reset_index()
+allveh_pct = allveh_pct[['Variable', 'funcClass','vehType', 'Region', 3, 57, 11, 35, 49]]
 ```
 
 ```{python}
-allveh_abs_exact = allveh_sum_copy[['CO_FIPS', 'FunctionalType', 'ModelVolume', 'CountVolume', 'ModelVMT', 'ObserveVMT']]
-allveh_abs_exact = allveh_abs_exact.melt(id_vars = ['CO_FIPS','FunctionalType'], value_vars = ['ModelVolume', 'CountVolume', 'ModelVMT', 'ObserveVMT'], var_name = 'DataSource',value_name = 'Value')
+allveh_pct_exact = allveh_sum_copy[['coFips','funcClass','vehType','volDiffPct','vmtDiffPct']]
+allveh_pct_exact = allveh_pct_exact.melt(id_vars=['coFips','funcClass','vehType'], value_vars=['volDiffPct','vmtDiffPct'], var_name='Variable', value_name='Value')
+allveh_pct_exact = allveh_pct_exact.pivot(index=['funcClass','vehType','Variable'], columns='coFips', values='Value').reset_index()
+allveh_pct_exact = allveh_pct_exact[['Variable','funcClass','vehType','Region',3,57,11,35,49]]
+allveh_pct_exact = allveh_pct_exact.melt(id_vars = ['funcClass','vehType', 'Variable'], value_vars = ['Region',3,57,11,35,49], value_name='Value', var_name='Region')
+```
+
+```{python}
+allveh_abs_exact = allveh_sum_copy[['coFips', 'funcClass', 'volMod', 'volObs', 'vmtMod', 'vmtObs']]
+allveh_abs_exact = allveh_abs_exact.melt(id_vars = ['coFips','funcClass'], value_vars = ['volMod', 'volObs', 'vmtMod', 'vmtObs'], var_name = 'DataSource',value_name = 'Value')
 allveh_abs_exact['Variable'] = allveh_abs_exact['DataSource'].apply(lambda x: 'Volume' if 'Volume' in x else 'VMT')
 allveh_abs_exact['DataSource'] = allveh_abs_exact['DataSource'].apply(lambda x: 'Model' if 'Model' in x else 'Observed')
-allveh_abs_region = allveh_abs_exact[allveh_abs_exact['CO_FIPS'] == 'All']
+allveh_abs_region = allveh_abs_exact[allveh_abs_exact['coFips'] == 'Region']
 ```
 
 ```{python}
+allveh_vol_long = allveh_vol.rename(columns={'volMod':'Model','volObs':'Observed'})
+allveh_vol_long = pd.melt(allveh_vol_long,
+                          id_vars =['coFips','funcClass','vehType'],
+                          value_vars = ['Model', 'Observed'],
+                          var_name = 'DataSource',
+                          value_name = 'ViewValue')
+allveh_vol_long['ViewValue'] = allveh_vol_long['ViewValue'] / 1000
+allveh_vmt_long = allveh_vmt.rename(columns={'vmtMod':'Model','vmtObs':'Observed'})
+allveh_vmt_long = pd.melt(allveh_vmt_long,
+                          id_vars =['coFips','funcClass','vehType'],
+                          value_vars = ['Model', 'Observed'],
+                          var_name = 'DataSource',
+                          value_name = 'ViewValue')     
+allveh_vmt_long['ViewValue'] = allveh_vmt_long['ViewValue'] / 1000000
+
+allvehplot = allveh[['SEGID','coFips','funcClass','vehType','volMod','volObs']].copy()
+allvehplot['volMod'] = allvehplot['volMod'] / 1000
+allvehplot['volObs'] = allvehplot['volObs'] / 1000
+```
+
+```{python}
+# save as ojs objects
+ojs_define(allvehplot = allvehplot)
+ojs_define(vol = allveh_vol)
+ojs_define(volLong = allveh_vol_long)
+ojs_define(vmt = allveh_vmt)
+ojs_define(vmtLong = allveh_vmt_long)
 ojs_define(vvpct = allveh_pct)
 ojs_define(vvpctLong = allveh_pct_exact)
 ojs_define(vvabsLong = allveh_abs_exact)
 ojs_define(vvabsLongR = allveh_abs_region)
 ```
 
+
 ```{ojs}
-viewof vvSelect = Inputs.select(new Map([['Volume','Volume'], ['VMT','VMT']]), {value: 'Variable', label: "Select Summary Variable:"})
-//viewof bCountySelect2 = Inputs.select(new Map([['Box Elder',3], ['Weber',57], ['Davis',11], ['Salt Lake',35], ['Utah',49], ['Region', 'All']]), {value: 'CO_FIPS', label: "Select Region:"})
+viewof bCountySelect = Inputs.select(new Map([['Region', 'Region'], ['Box Elder County - WFRC',3], ['Weber County - WFRC',57], ['Davis County',11], ['Salt Lake County',35], ['Utah County',49]]), {value: 'All', label: "Geography:"})
+viewof bVehType = Inputs.select(new Map([['All Vehicles','All Vehicles'], ['Passenger Cars', 'Passenger Cars'], ['Medium Trucks','Medium Trucks'], ['Heavy Trucks','Heavy Trucks']]), {value: 'All Vehicles', label: "Vehicle Type:"})
+
+sortOrder = ['Freeway', 'Principal', 'Minor', 'Collector', 'All Roadways'];
+
+volT = transpose(vol)
+vmtT = transpose(vmt)
+filtered_volData = volT.filter(function(dataL) {
+    return bCountySelect == dataL.coFips &&
+           bVehType == dataL.vehType;
+}).sort((a, b) => sortOrder.indexOf(a.funcClass) - sortOrder.indexOf(b.funcClass));
+filtered_vmtData = vmtT.filter(function(dataL){
+    return bCountySelect == dataL.coFips &&
+           bVehType == dataL.vehType;
+}).sort((a, b) => sortOrder.indexOf(a.funcClass) - sortOrder.indexOf(b.funcClass));
+
+volTL = transpose(volLong)
+vmtTL = transpose(vmtLong)
+filtered_volDataL = volTL.filter(function(dataL) {
+    return bCountySelect == dataL.coFips &&
+           bVehType == dataL.vehType;
+}).sort((a, b) => sortOrder.indexOf(a.funcClass) - sortOrder.indexOf(b.funcClass));
+filtered_vmtDataL = vmtTL.filter(function(dataL){
+    return bCountySelect == dataL.coFips &&
+           bVehType == dataL.vehType;
+}).sort((a, b) => sortOrder.indexOf(a.funcClass) - sortOrder.indexOf(b.funcClass));
+
+
+allvehplotT = transpose(allvehplot)
+filtered_allvehplotData = allvehplotT.filter(function(dataL) {
+    return bCountySelect == dataL.coFips &&
+           bVehType == dataL.vehType;
+});
+
+```
+
+
+:::: {.columns}
+::: {.column width="65%"}
+
+```{ojs}
+//| echo: false
+function formatNumber(value, isPercentage=false) {
+    if (typeof value === 'undefined') {
+        return '';  // or return a default value or message
+    }
+    
+    if (isPercentage) {
+        return (Number(value) * 100).toFixed(1) + '%';
+    }
+    return Number(value.toFixed(0)).toLocaleString();
+}
+
+widthsVol = ['100px', '52px', '70px', '70px', '73px', '73px', '63px', '63px']; // Define the widths
+widthsVmt = ['100px', '88px', '88px', '88px', '88px']; // Define the widths
 ```
 
 ```{ojs}
-vvp = transpose(vvpct)
-vvpL = transpose(vvpctLong)
-vvaL = transpose(vvabsLong)
-vvaLR = transpose(vvabsLongR)
-table_vvData = vvp.filter(function(dataL) {
-    return vvSelect == dataL.Variable;
-})
-stack_vvaData = vvaLR.filter(function(dataL) {
-    return vvSelect == dataL.Variable; //&&
-           //bCountySelect2 == dataL.CO_FIPS;
-})
+//| echo: false
+html`
+<h3>Average Daily Volume</h3>
+<table>
+    <thead>
+    <tr>
+        ${["Roadway Class", "# Segs", "Volume", "Observed", "Difference", "Percent Difference", "RMSE", "% RMSE"].map((d, i) => {
+            return html`<th style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; width: ${widthsVol[i]};'>${d}</th>`;
+        })}
+    </tr>
+    </thead>
+    <tbody>
+        ${filtered_volData.map(row => {
+            const isBold = row['funcClass'] === 'All Roadways';
+            return html`<tr style='border-bottom: 1px solid lightgrey;'>
+                ${["funcClass", "numSegs", "volMod", "volObs", "volDiff", "volDiffPct", "volRmse", "volRmsePct"].map((d, i) => {
+                    // Check if the current cell is one of the numeric columns that need formatting
+                    let formattedValue;
+                    if (i === 5 || i === 7) {
+                        formattedValue = formatNumber(row[d], true);  // True for percentage formatting
+                    } else if ((i >= 1 && i <= 4) || i==6) {
+                        formattedValue = formatNumber(row[d]);
+                    } else {
+                        formattedValue = row[d];
+                    }
+                    return html`<td style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; font-weight: ${isBold ? 'bold' : 'normal'};'>${formattedValue}</td>`;
+                })}
+            </tr>`;
+        })}
+    </tbody>
+</table>`
 ```
 
-::: {.panel-tabset}
-### Regional Summary Chart
-```{ojs}
-import {GroupedBarChart} from "@d3/grouped-bar-chart"
-import {Legend, Swatches} from "@d3/color-legend"
-import {howto, altplot} from "@d3/example-components"
-```
+:::
+::: {.column width="35%"}
 
 ```{ojs}
-//|label: fig-reg-sum
-//|fig-cap: Regional Summary Comparison
-chart2 = GroupedBarChart(stack_vvaData, {
-    x: d => d.FunctionalType,
-    y: d => d.Value,
+html`<h3>&nbsp;</h3>`
+keyVol = Legend(bChartVol.scales.color, {title: "Data Source"})
+
+bChartVol = GroupedBarChart(filtered_volDataL, {
+    x: d => d.funcClass,
+    y: d => d.ViewValue,
     z: d => d.DataSource,
-    yLabel: "Value",
+    xDomain: ['Freeway','Principal','Minor','Collector','All Roadways'],
+    yLabel: "Volume (thousands)",
     zDomain: ['Model','Observed'],
-    width,
-    height: 500,
+    width: 320,
+    height: 175,
     colors: ["#376092", "#77933c"]
 })
 ```
 
-### Regional Summary Table
-```{ojs}
-//| echo: false
-Inputs.table(table_vvData, {
-  style: {
-    fontSize: 16,
-  },
-  columns: [
-    "FunctionalType",
-    "All",
-    "Box Elder",
-    "Weber",
-    'Davis',
-    'Salt Lake',
-    'Utah'
-  ],
-  header: {
-    FunctionalType:"FT",
-    All: 'Region'
-  }})
-```
 :::
+::::
 
-### Average Daily Comparison
-```{python}
-ojs_define(vol = allveh_vol)
-ojs_define(vmt = allveh_vmt)
-```
+:::: {.columns}
+::: {.column width="65%"}
 
 ```{ojs}
-viewof bCountySelect = Inputs.select(new Map([['Box Elder',3], ['Weber',57], ['Davis',11], ['Salt Lake',35], ['Utah',49], ['Region', 'All']]), {value: 'CO_FIPS', label: "Select Region:"})
+html`
+<h3>Total Daily VMT</h3>
+<table>
+    <thead>
+    <tr>
+        ${["Roadway Class", "Model", "Observed", "Difference", "Percent Difference"].map((d, i) => {
+            return html`<th style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; width: ${widthsVmt[i]};'>${d}</th>`;
+        })}
+    </tr>
+    </thead>
+    <tbody>
+        ${filtered_vmtData.map(row => {
+            const isBold = row['funcClass'] === 'All Roadways';
+            return html`<tr style='border-bottom: 1px solid lightgrey;'>
+                ${["funcClass", "vmtMod", "vmtObs", "vmtDiff", "vmtDiffPct"].map((d, i) => {
+                    // Check if the current cell is one of the numeric columns that need formatting
+                    let formattedValue;
+                    if (i === 4 || i === 6) {
+                        formattedValue = formatNumber(row[d], true);  // True for percentage formatting
+                    } else if ((i >= 1 && i <= 3) || i==5) {
+                        formattedValue = formatNumber(row[d]);
+                    } else {
+                        formattedValue = row[d];
+                    }
+                    return html`<td style='text-align: ${i === 0 ? "left" : "right"}; padding: 5px; font-weight: ${isBold ? 'bold' : 'normal'};'>${formattedValue}</td>`;
+                })}
+            </tr>`;
+        })}
+    </tbody>
+</table>`
 ```
 
+:::
+::: {.column width="35%"}
+
 ```{ojs}
-volT = transpose(vol)
-vmtT = transpose(vmt)
-filtered_volData = volT.filter(function(dataL) {
-    return bCountySelect == dataL.CO_FIPS;
+html`<h3>&nbsp;</h3>`
+keyVmt = Legend(bChartVmt.scales.color, {title: "Data Source"})
+
+bChartVmt = GroupedBarChart(filtered_vmtDataL, {
+    x: d => d.funcClass,
+    y: d => d.ViewValue,
+    z: d => d.DataSource,
+    xDomain: ['Freeway','Principal','Minor','Collector','All Roadways'],
+    yLabel: "VMT (millions)",
+    zDomain: ['Model','Observed'],
+    width: 320,
+    height: 175,
+    colors: ["#376092", "#77933c"]
 })
-filtered_vmtData = vmtT.filter(function(dataL){
-    return bCountySelect == dataL.CO_FIPS;
+```
+
+:::
+::::
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{ojs}
+
+import {max} from 'd3-array';
+
+maxVal = {
+  return Math.max(
+    d3.max(filtered_allvehplotData, d => d.volObs),
+    d3.max(filtered_allvehplotData, d => d.volMod)
+  );
+}
+```
+
+```{ojs}
+Plot.plot({
+  grid: true,
+  width: 460,
+  x: {
+    label: "Observed Volume (thousands)",
+    domain: [0, maxVal]
+  },
+  y: {
+    label: "Model Volume (thousands)",
+    domain: [0, maxVal]
+  },
+  marks: [
+    Plot.dot(filtered_allvehplotData, {
+      x: "volObs",
+      y: "volMod",
+      r: 1,
+      fill: "blue"
+    }),
+    Plot.line([
+      {x: 0, y: 0},
+      {x: maxVal, y: maxVal}
+    ], {
+      stroke: "red"
+    })
+  ]
 })
 ```
 
-*Average Daily Comparison by Facility Type (Volume).*
-```{ojs}
-//| echo: false
-Inputs.table(filtered_volData, {
-  style: {
-    fontSize: 16,
-  },
-  columns: [
-    "FunctionalType",
-    "NumberOfSegs",
-    "ModelVolume",
-    "CountVolume",
-    'VolDiff',
-    'VolPctDiff',
-    'RMSE',
-    'PctRMSE'
-  ],
-  header: {
-    FunctionalType:"FT",
-    NumberOfSegs:"NumSegs",
-    ModelVolume:"Model",
-    CountVolume:"Observe",
-    VolDiff:'Diff',
-    VolPctDiff:'PctDiff',
-    RMSE:'RMSE',
-    PctRMS:'PctRMSE'
-  }})
 
+:::
+::: {.column width="35%"}
+
+
+:::
+::::
+
+```{ojs}
+//|label: fig-assign-validation
+//|fig-cap: Highway Assignment Validation Comparison
+tbEmptyCell = 1
 ```
 
-*Average Daily Comparison by Facility Type (VMT).*
-```{ojs}
-//| echo: false
-Inputs.table(filtered_vmtData, {
-  style: {
-    fontSize: 16,
-  },
-  columns: [
-    "FunctionalType",
-    "NumberOfSegs",
-    "ModelVMT",
-    "ObserveVMT",
-    'VMTDiff',
-    'VMTPctDiff'
-  ],
-  header: {
-    FunctionalType:"FT",
-    NumberOfSegs:"NumSegs",
-    ModelVMT:"Model",
-    ObserveVMT:"Observe",
-    VMTDiff:'Diff',
-    VMTPctDiff:'PctDiff'
-  }})
-```
+
+
+
+
+
+
+
 
 :::
 
@@ -273,57 +425,71 @@ Write some words here.
 
 ![Volume Comparison -- Heavy Trucks.](_pictures/7-plot6.png){#fig-hv-trucks}
 
-## ATO Analysis 
-Access to opportunities, also referred to as accessibility or ATO, is a way to measure how well people can connect to jobs, or vice versa. ATO metrics quantify how well the current and future transportation system work with land use.  Both shorter travel times and an increased presence of employment and other opportunities result in higher accessibility scores.  
 
-A script to calculate ATO metrics, `1_Access_to_Opportunity.s` located in the `2_ModelScripts\7_PostProcessing` folder, has been added to the model’s `_HailMary.s` batch script and runs automatically with every model run. The script sums the number of jobs and households that are within a typical commute travel shed (in minutes) by auto and transit. The typical commute travel shed is defined using a distance decay curve estimated from the 2012 household travel survey. Metrics that combine the jobs and households are also calculated.  
 
-Results from the ATO script are output into <br>  
-`7_PostProcessing\Access_to_Opportunity_@DemographicYear@.dbf`. Results can be joined with the TAZ shapefile to visualize the data, such as is shown in @fig-ato1 and @fig-ato2. 
-
-<mark>??? Using the CompJobHHByTran and CompJobHHByAuto fields...is that right???</mark>
-
-```{python}
-import json
-import pandas as pd
-import geopandas as gpd
-import matplotlib.pyplot as plt #if using matplotlib
-ato_data = pd.read_csv('data/5-assignhwy/Access_to_Opportunity_2019.csv')
-geojson_path = r'data/5-assignhwy/tazNew.geojson'
+```{ojs}
+viewof vvSelect = Inputs.select(new Map([['Volume','Volume'], ['VMT','VMT']]), {value: 'Variable', label: "Select Summary Variable:"})
+//viewof bCountySelect2 = Inputs.select(new Map([['Box Elder',3], ['Weber',57], ['Davis',11], ['Salt Lake',35], ['Utah',49], ['Region', 'Region']]), {value: 'coFips', label: "Select Region:"})
 ```
 
-```{python}
-geojson_data = gpd.read_file(geojson_path)
-gdf = gpd.GeoDataFrame(ato_data, geometry=geojson_data.geometry)
+```{ojs}
+vvp = transpose(vvpct)
+vvpL = transpose(vvpctLong)
+vvaL = transpose(vvabsLong)
+vvaLR = transpose(vvabsLongR)
+table_vvData = vvp.filter(function(dataL) {
+    return vvSelect == dataL.Variable;
+})
+stack_vvaData = vvaLR.filter(function(dataL) {
+    return vvSelect == dataL.Variable; //&&
+           //bCountySelect2 == dataL.coFips;
+})
 ```
 
-```{python}
-#|label: fig-ato1
-#|fig-cap: Access to opportunity by auto mode.
 
-fig, ax = plt.subplots(1, figsize=(16,10))
-gdf.plot(column='CompJobHHByAuto', cmap='YlOrRd', linewidth=.1, ax=ax, edgecolor='black', legend=False)
-ax.axis('off')
 
-# Add legend at the bottom
-cbar = plt.colorbar(ax.get_children()[0], ax=ax, orientation='vertical', pad=0.05, shrink=0.3)
-cbar.set_label('Composite ATO Score')
-
-plt.show()
+::: {.panel-tabset}
+### Regional Summary Chart
+```{ojs}
+import {GroupedBarChart} from "@d3/grouped-bar-chart"
+import {Legend, Swatches} from "@d3/color-legend"
+import {howto, altplot} from "@d3/example-components"
 ```
 
-```{python}
-#|label: fig-ato2
-#|fig-cap: Access to opportunity by transit mode.
-
-fig, ax = plt.subplots(1, figsize=(16,10))
-gdf.plot(column='CompJobHHByTran', cmap='YlOrRd', linewidth=.1, ax=ax, edgecolor='black', legend=False)
-ax.axis('off')
-
-# Add legend at the bottom
-cbar = plt.colorbar(ax.get_children()[0], ax=ax, orientation='vertical', pad=0.05, shrink=0.3)
-cbar.set_label('Composite ATO Score')
-
-plt.show()
+```{ojs}
+//|label: fig-reg-sum
+//|fig-cap: Regional Summary Comparison
+chart2 = GroupedBarChart(stack_vvaData, {
+    x: d => d.funcClass,
+    y: d => d.Value,
+    z: d => d.DataSource,
+    yLabel: "Value",
+    zDomain: ['Model','Observed'],
+    width,
+    height: 500,
+    colors: ["#376092", "#77933c"]
+})
 ```
 
+### Regional Summary Table
+```{ojs}
+//| echo: false
+Inputs.table(table_vvData, {
+  style: {
+    fontSize: 16,
+  },
+  columns: [
+    "funcClass",
+    "All",
+    "Box Elder",
+    "Weber",
+    'Davis',
+    'Salt Lake',
+    'Utah'
+  ],
+  header: {
+    funcClass:"FT",
+    All: 'Region'
+  }})
+```
+:::
