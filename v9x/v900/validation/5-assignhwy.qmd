@@ -157,7 +157,6 @@ ojs_define(vvabsLong = allveh_abs_exact)
 ojs_define(vvabsLongR = allveh_abs_region)
 ```
 
-
 ```{ojs}
 viewof bCountySelect = Inputs.select(new Map([['Region', 'Region'], ['Box Elder County - WFRC',3], ['Weber County - WFRC',57], ['Davis County',11], ['Salt Lake County',35], ['Utah County',49]]), {value: 'All', label: "Geography:"})
 viewof bVehType = Inputs.select(new Map([['All Vehicles','All Vehicles'], ['Passenger Cars', 'Passenger Cars'], ['Medium Trucks','Medium Trucks'], ['Heavy Trucks','Heavy Trucks']]), {value: 'All Vehicles', label: "Vehicle Type:"})
@@ -336,8 +335,10 @@ bChartVmt = GroupedBarChart(filtered_vmtDataL, {
 ::: {.column width="50%"}
 
 ```{ojs}
-
 import {max} from 'd3-array';
+```
+
+```{ojs}
 
 maxVal = {
   return Math.max(
@@ -345,12 +346,15 @@ maxVal = {
     d3.max(filtered_allvehplotData, d => d.volMod)
   );
 }
+
 ```
 
 ```{ojs}
 Plot.plot({
   grid: true,
   width: 460,
+  height: 300,
+  marginRight: 40,
   x: {
     label: "Observed Volume (thousands)",
     domain: [0, maxVal]
@@ -364,19 +368,34 @@ Plot.plot({
       x: "volObs",
       y: "volMod",
       r: 1,
-      fill: "blue"
+      fill: "rgb(80, 116, 230)",
+      fillOpacity: 0.5,
+      stroke: "none"
     }),
-    Plot.line([
-      {x: 0, y: 0},
-      {x: maxVal, y: maxVal}
-    ], {
+    Plot.link([0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4], {
+      x1: 0,
+      y1: 0,
+      x2: maxVal,
+      y2: (k) => maxVal * k,
+      strokeOpacity: (k) => k === 1 ? 1 : 0.2,
       stroke: "red"
+    }),
+    Plot.text([0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4], {
+      x: maxVal,
+      y: (k) => maxVal * k,
+      text: ((f) => (k) => k === 1 ? "Equal" : f(k - 1))(d3.format("+.0%")),
+      textAnchor: "start",
+      dx: 6
+    }),
+    Plot.linearRegressionY(filtered_allvehplotData, {
+        x: "volObs",
+        y: "volMod",
+        stroke: "rgb(80, 116, 230)",
+        strokeDasharray: "4 4"  // This creates a dashed line pattern
     })
   ]
 })
 ```
-
-
 :::
 ::: {.column width="35%"}
 
