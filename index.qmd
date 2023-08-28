@@ -10,6 +10,6 @@ Documentation of the Wasatch Front Travel Demand Model (WF TDM) has been separat
 These reports will be available as PDF documents in the "_Notes" folder in the WF TDM’s root directory. However, it is expected that the primary means of accessing the model’s documentation will be online at the following links:
 
  - [What’s New](https://wfrc.org/wftdm-docs/v9x/v900/whats-new/1-genparams.html)
- - [Validation Report](https://wfrc.org/wftdm-docs/v9x/v900/validation/1-hhdisag-autoown.html)
+ - [Validation Report](https://wfrc.org/wftdm-docs/v9x/v900/validation/3-distribute.html)
  - Model Process Report (in progress)
  - Previous Versions (in progress)

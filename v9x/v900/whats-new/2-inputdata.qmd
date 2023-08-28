@@ -545,8 +545,8 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 
 # Read the GeoJSON files
-data_taz_new = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
-data_taz_old = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazOld.geojson')
+data_taz_new = gpd.read_file(r'E:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
+data_taz_old = gpd.read_file(r'E:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazOld.geojson')
 
 # Apply the function to create the CO_FIPS attribute
 data_taz_new['CO_FIPS'] = data_taz_new['CO_TAZID'].apply(assign_fips)
@@ -687,7 +687,7 @@ To indicate which TAZs are included in the Real Estate Market Model (REMM) area,
 #|fig-cap: TAZ REMM Space
 # Read the GeoJSON files
 import matplotlib.colors as colors
-data_taz_new = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
+data_taz_new = gpd.read_file(r'E:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
 remm_values = data_taz_new['REMM'].astype(int)
 cmap = 'Accent_r'
 

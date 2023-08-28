@@ -669,8 +669,8 @@ bChart = GroupedBarChart(filtered_bDataC, {
     xDomain: ['Local Bus', 'Core Bus', 'Express Bus', 'BRT', 'LRT', 'CRT'],
     yLabel: "Value",
     zDomain: ['Model','Observed'],
-    width,
-    height: 500,
+    width: 500,
+    height: 225,
     colors: ["#376092", "#77933c"]
 })
 ```
@@ -693,7 +693,6 @@ chart3 = DivergingBarChart(filtered_bData2, {
     y: d => d.Mode,
     xFormat: metric === "Difference" ? "+,d" : "+%",
     xLabel: "Model vs Observed Differences",
-    width,
     height: 200,
     colors: d3.schemeRdBu[3]
 })
