@@ -168,9 +168,9 @@ The bus speed ratios in the model were removed from the model scripts, as detail
 
 In addtion to moving the location of the bus speed ratios, the ratios were further categorized and refined using real world bus speed data. Previously in version 8.3.2, bus speed ratios differed by functional type. A total of only 6 bus speed ratios existed, as shown in @fig-pdf-old-bus-speeds-plot. Now however in version 9, bus speed ratios differ by functional type, area type, and time of day. A total of 75 bus speed ratios now exist, as shown in @fig-pdf-bus-speeds-plot. The observed data used to develop the new bus speed ratios is the 2019 General Transit Feed Specification (GTFS) data, which includes schedules time and stop locations for all bus routes.
 
-![Bus Speeds Plot - Version 8.3.2](_pictures/old_bus_speeds.png){#fig-pdf-old-bus-speeds-plot}
+![Bus Speeds Plot - Version 8.3.2](_pictures/old_bus_speeds.png){#fig-pdf-old-bus-speeds-plot width=80%}
 
-![Bus Speeds Plot - Version 9.0.0.](_pictures/pdf-bus-speeds-plot.png){#fig-pdf-bus-speeds-plot}
+![Bus Speeds Plot - Version 9.0.0.](_pictures/pdf-bus-speeds-plot.png){#fig-pdf-bus-speeds-plot width=80%}
 :::
 
 ::: {.content-visible when-format="html"}
@@ -447,8 +447,6 @@ External zones were revised to reflect the changes of the expanded internal zone
 
 The expanded area and reconfigured TAZs resulted in the addition of  688 internal zones and 6 external zones. A comparison of zone counts is found in @tbl-taz-count-internal and @tbl-taz-count-external.
 
-\newpage
-
 ::: {layout-ncol=2}
 ```{python}
 #| label: tbl-taz-count-internal
@@ -537,7 +535,8 @@ def plot_geo_data_by_fips(data_taz_new, data_taz_old, co_fips_value, line_color_
     legend_ax.axis('off')
     
     # Display the plot
-    plt.show()
+    plt.savefig("".join(['_pictures/pdf-taz-',co_fips_value]), bbox_inches='tight')
+    #plt.show()
 ```
 
 ```{python}
@@ -559,28 +558,19 @@ line_width = 0.5
 ```
 
 ```{python}
-#| label: fig-taz-compare-weber-pdf
-#| fig-cap: TAZ Geography Comparison Map -- Weber County
-plot_geo_data_by_fips(data_taz_new, data_taz_old, '57', line_color_new, line_color_old, line_width)
+#plot_geo_data_by_fips(data_taz_new, data_taz_old, '57', line_color_new, line_color_old, line_width)
+#plot_geo_data_by_fips(data_taz_new, data_taz_old, '11', line_color_new, line_color_old, line_width)
+#plot_geo_data_by_fips(data_taz_new, data_taz_old, '35', line_color_new, line_color_old, line_width)
+#plot_geo_data_by_fips(data_taz_new, data_taz_old, '49', line_color_new, line_color_old, line_width)
 ```
 
-```{python}
-#| label: fig-taz-compare-davis-pdf
-#| fig-cap: TAZ Geography Comparison Map -- Davis County
-plot_geo_data_by_fips(data_taz_new, data_taz_old, '11', line_color_new, line_color_old, line_width)
-```
+![TAZ Geography Comparison Map -- Weber County.](_pictures/pdf-taz-57.png){#fig-taz-compare-weber-pdf width=75%}
 
-```{python}
-#| label: fig-taz-compare-sl-pdf
-#| fig-cap: TAZ Geography Comparison Map -- Salt Lake County
-plot_geo_data_by_fips(data_taz_new, data_taz_old, '35', line_color_new, line_color_old, line_width)
-```
+![TAZ Geography Comparison Map -- Davix County.](_pictures/pdf-taz-11.png){#fig-taz-compare-davis-pdf width=75%}
 
-```{python}
-#| label: fig-taz-compare-utah-pdf
-#| fig-cap: TAZ Geography Comparison Map -- Utah County
-plot_geo_data_by_fips(data_taz_new, data_taz_old, '49', line_color_new, line_color_old, line_width)
-```
+![TAZ Geography Comparison Map -- Salt Lake County.](_pictures/pdf-taz-35.png){#fig-taz-compare-sl-pdf width=75%}
+
+![TAZ Geography Comparison Map -- Utah County.](_pictures/pdf-taz-49.png){#fig-taz-compare-utah-pdf width=75%}
 
 :::
 
@@ -683,29 +673,30 @@ This section describes the changes made to the attributes of the TAZ shapefile.
 To indicate which TAZs are included in the Real Estate Market Model (REMM) area, a `REMM` field was added with a value of `1` indicating that it is part of REMM and `0` indicating it is not part of REMM, as shown in @fig-taz-remm-space-pdf.
 
 ```{python}
-#|label: fig-taz-remm-space-pdf
-#|fig-cap: TAZ REMM Space
 # Read the GeoJSON files
-import matplotlib.colors as colors
-data_taz_new = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
-remm_values = data_taz_new['REMM'].astype(int)
-cmap = 'Accent_r'
+#import matplotlib.colors as colors
+#data_taz_new = gpd.read_file(r'D:\GitHub\TDM-Documentation\v9x\v900\whats-new\data\tazNew.geojson')
+#remm_values = data_taz_new['REMM'].astype(int)
+#cmap = 'Accent_r'
 
-fig, ax = plt.subplots(figsize=(10, 10))
-data_taz_new.plot(column=remm_values, cmap=cmap, linewidth=0.5, ax=ax)
+#fig, ax = plt.subplots(figsize=(10, 10))
+#data_taz_new.plot(column=remm_values, cmap=cmap, linewidth=0.5, ax=ax)
 
-legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1]) 
-legend_elements = [
-    plt.Line2D([0], [0], color='green', linewidth=line_width, label='REMM Space'),
-    plt.Line2D([0], [0], color='gray', linewidth=line_width, label='Non-REMM Space')
-]
-legend_ax.legend(handles=legend_elements, loc='center')
-legend_ax.axis('off')
+#legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1]) 
+#legend_elements = [
+#    plt.Line2D([0], [0], color='green', linewidth=line_width, label='REMM Space'),
+#    plt.Line2D([0], [0], color='gray', linewidth=line_width, label='Non-REMM Space')
+#]
+#legend_ax.legend(handles=legend_elements, loc='center')
+#legend_ax.axis('off')
 
 # Display the plot
-plt.show()
-
+#plt.show()
+#plt.savefig('_pictures/pdf-remm', bbox_inches='tight')
 ```
+
+![TAZ REMM Space.](_pictures/pdf-remm.png){#fig-taz-remm-space-pdf width=76%}
+
 :::
 
 ::: {.content-visible when-format="html"}
@@ -1409,7 +1400,7 @@ if not os.path.isfile('data/externalnew.geojson'):
 ::: {.content-hidden when-format="html"}
 External locations and forecasts were updated. The locations of the former and updated location of externals is shown in @fig-externals-pdf. Forecasts through 2060 were generated for the updated external locations using historical data through 2019.
 
-![v9 External Description.](_pictures/externals.png){#fig-externals-pdf}
+![v9 External Description.](_pictures/externals.png){#fig-externals-pdf width=76%}
 
 :::
 
@@ -1547,13 +1538,35 @@ mapExternals = {
 ```
 :::
 
-The updated numbering scheme can be found in  @fig-descrip1, @fig-descrip2, and @fig-descrip3.
+The updated numbering scheme can be found in @tbl-externals.
 
-![v9 External Description.](_pictures/ex_descrip1.png){#fig-descrip1}
+<!--![v9 External Description.](_pictures/ex_descrip1.png){#fig-descrip1}
 
 ![v8.3.2 External Description.](_pictures/ex_descrip2.png){#fig-descrip2}
 
-![v9 & v8.3.2 External Description.](_pictures/ex_descrip3.png){#fig-descrip3 width='50%'}
+![v9 & v8.3.2 External Description.](_pictures/ex_descrip3.png){#fig-descrip3 width='50%'}-->
+
+```{python}
+#| label: tbl-externals
+#| tbl-cap: v9 & v8.3.2 External Description
+#| tbl-colwidths: [10,10,10,40,30]
+import pandas as pd
+import numpy as np
+from IPython.display import Markdown
+from tabulate import tabulate
+table = pd.read_csv('tables/2-externals.csv')
+table['v9Value'] = table['v9Value'].astype(str)
+table['v8Value'] =table['v8Value'].astype(str)
+table = table.replace(np. nan,'',regex=True) 
+headers = ['County','v9 Value','v8 Value', 'Location','Notes']
+Markdown(tabulate(table, 
+  headers=headers, 
+  tablefmt="pipe", 
+  colalign=("left",)*len(headers), 
+  showindex=False)
+)
+
+```
 
 ## Segment
 
