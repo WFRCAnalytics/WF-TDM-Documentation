@@ -859,10 +859,33 @@ for f in files['filename'].unique():
             concat_df['Period']="obsEV"
             
     df1 = pd.concat([df1, concat_df[pd.notnull(concat_df[" DODistance"])]])
-    
-#display(df1)
+```
+
+```{python}
+df1['O_Coordinate'] = df1[' O_Coordinate'].astype(str)
+df1['D_Coordinate'] = df1[' D_Coordinate'].astype(str)
+df1[['O_Coordinate_X', 'O_Coordinate_Y']] = df1['O_Coordinate'].str.strip('()').str.split(',', expand=True).astype(float)
+df1[['D_Coordinate_X', 'D_Coordinate_Y']] = df1['D_Coordinate'].str.strip('()').str.split(',', expand=True).astype(float)
+df1 = df1.drop(columns=['O_Coordinate',' O_Coordinate', 'D_Coordinate', ' D_Coordinate', 'O_TAZID',' D_TAZID'])
+```
 
 
+```{python}
+import geopandas as gpd
+from shapely.geometry import Point
+
+geojson_file = 'data/5-assignhwy/tazNew.geojson'
+gdf_polygons  = gpd.read_file(geojson_file)
+
+geometry_o = [Point(xy[::-1]) for xy in zip(df1['O_Coordinate_X'], df1['O_Coordinate_Y'])]
+gdf_o = gpd.GeoDataFrame(df1, geometry=geometry_o, crs='EPSG:4326')
+o_taz_ids = gpd.sjoin(gdf_o, gdf_polygons, how='left', op='within')['TAZID']
+df1['O_TAZID'] = o_taz_ids
+
+geometry_d = [Point(xy[::-1]) for xy in zip(df1['D_Coordinate_X'], df1['D_Coordinate_Y'])]
+gdf_d = gpd.GeoDataFrame(df1, geometry=geometry_d, crs='EPSG:4326')
+d_taz_ids = gpd.sjoin(gdf_d, gdf_polygons, how='left', op='within')['TAZID']
+df1[' D_TAZID'] = d_taz_ids
 ```
 
 ```{python}
@@ -981,22 +1004,6 @@ Plot.plot({
       fill: "rgb(80, 116, 230)",
       fillOpacity: 0.5,
       stroke: "none"
-    }),
-    Plot.link([0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4], {
-      x1: 0,
-      y1: 0,
-      x2: 70,
-      y2: (k) => 70 * k,
-      strokeOpacity: (k) => k === 1 ? 1 : 0.2,
-      stroke: "red",
-      strokeWidth: (k) => k === 1 ? 2 : 1.5
-    }),
-    Plot.text([0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4], {
-      x: 70,
-      y: (k) => 70 * k,
-      text: ((f) => (k) => k === 1 ? "Equal" : f(k - 1))(d3.format("+.0%")),
-      textAnchor: "start",
-      dx: 6
     }),
     Plot.linearRegressionY(speedT_filtered, {
         x: "spdObs",
