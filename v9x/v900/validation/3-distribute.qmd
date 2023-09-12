@@ -5,13 +5,15 @@ warning: false
 message: false40
 ---
 
-The validation for the Trip Distribution are shown in this section. The model and observed data are compared for Generalized Cost, Distance, and Time. The model was validated using the following measures: 
+Modeled average trip lengths for the base year were compared to the 2012 Household Travel Survey. The model was validated for  for distance, time, and generalized cost using the following measures: 
 
 - Average Trip Lengths
 - Trip Length Frequencies
 
 
 ## Average Trip Lengths
+
+The following figure shows the average trip lengths the modeled and observed time, distance, and generalized cost.
 
 ::: {.content-visible when-format="html"}
 ```{python}
@@ -318,7 +320,7 @@ ojs_define(freq = dfObsModelMerge)
 
 ## Trip Length Frequencies
 
-
+Modeled trip lengths for the base year were compared to the 2012 Household Travel Survey. The following figures shows the modeled and observed time and distance average trip lengths and trip length frequencies.
 
 
 ```{ojs}
