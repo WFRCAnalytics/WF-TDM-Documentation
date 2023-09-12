@@ -370,15 +370,20 @@ freqT_filtered_Mod = freqT.filter(function(freqData) {
 })
 ```
 
+```{ojs}
+key2 = Legend(chart.scales.color, {title: "Data Source"})
+```
 
 ```{ojs}
-
+//|label: fig-trip-length-freq
+//|fig-cap: Trip Length Frequencies between Model and Observed.
+//|echo: False
 Plot.plot({
   grid: true,
   aspectRatio: 0.5,
-  x: {label: 'Distance/Time/Cost', tickFormat: d => d, domain:[0,100]},
+  x: {label: 'Distance/Time/Cost', tickFormat: d => d},
   y: {label: 'Frequency', tickFormat: f => `${Math.round(f * 100)}%`},
-  marginRight:60,
+  marginRight: 60,
   marginLeft: 60,
   style: {
     fontSize: 15
@@ -389,10 +394,8 @@ Plot.plot({
     Plot.line(
       freqT_filtered_Mod, {x: 'BIN', y: 'freq', stroke: "#376092", strokeWidth: 4}),
     Plot.line(
-      freqT_filtered_Obs, {x: 'BIN', y: 'freq', stroke:  "#77933c",strokeWidth: 4}),
+      freqT_filtered_Obs, {x: 'BIN', y: 'freq', stroke:  "#77933c", strokeWidth: 4}),
     Plot.frame({strokeOpacity: 0.2}),
-    [
-      Plot.text([`\n<font color="blue">   ——   Current Projection</font> \n\n   —  — Previous Projection`], {frameAnchor: "top-right", fontSize: 14})
-    ]]
-})
+    ]
+});
 ```

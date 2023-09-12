@@ -113,7 +113,7 @@ website:
         - section: "<span style=\"color: #3E6682;\">**Model Validation**</span>"
           contents:
         #    - v9x/v900/validation/1-hhdisag-autoown.qmd
-        #    - v9x/v900/validation/2-tripgen.qmd
+            - v9x/v900/validation/2-tripgen.qmd
             - v9x/v900/validation/3-distribute.qmd
             - v9x/v900/validation/4-modechoice.qmd
             - v9x/v900/validation/5-assignhwy.qmd
