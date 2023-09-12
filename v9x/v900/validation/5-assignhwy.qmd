@@ -5,8 +5,11 @@ warning: false
 message: false
 ---
 
+Validation of final highway assignment was done comparing model outputs from the final loaded networks with observed data. The comparisons were done with volumes and speeds.
 
-The validation results for the Highway Assignment portion of the model are shown in this section.The observed data for 2019 volumes is taken from the Utah Department of Transportation (UDOT) [Average Annual Daily Traffic (AADT) History](https://drive.google.com/file/d/1rDXm0ObugGR1zXgWUuVbzWHNt-Xs1xru/view) and associated with their respective model segments. The traffic model data is taken from segment summary report for the 2019 base year model: `v9_SE19_Net19_Summary_SEGID.csv`. The results are divided into three sections:
+## Volumes
+
+The validation results for the Highway Assignment portion of the model are shown in this section. The observed data for 2019 volumes is taken from the Utah Department of Transportation (UDOT) [Average Annual Daily Traffic (AADT) History](https://drive.google.com/file/d/1rDXm0ObugGR1zXgWUuVbzWHNt-Xs1xru/view) and associated with their respective model segments. The traffic model data is taken from segment summary report for the 2019 base year model: `v9_SE19_Net19_Summary_SEGID.csv`. The results are divided into three sections:
 
 - Summary Comparison
 - Detailed Comparison
@@ -215,7 +218,7 @@ ojs_define(max_abs_value_vmtDiffPct = max_abs_value_vmtDiffPct)
 
 ```
 
-## Summary Comparison
+### Summary Comparison
 
 The summary comparison shows region and county-wide differences between model and observed for *Average Daily Volume* and *Vehicle-Miles Traveled (VMT)* by vehicle type. The values for Box Elder and Weber counties are only the portions within the MPO planning area. Validation was checked comparing the average daily volume at the region and county levels. @fig-assign-summary, below, contains an interactive view of model vs observed differences by roadway class and vehicle type.
 
@@ -322,7 +325,7 @@ One important observation at the *Collector* and *All Vehicles* level is that Ut
 The largest differences in model vs observed volumes occur in the Medium Truck and Heavy Truck vehicle types. A good amount of time was spent attempting to bring model truck volumes closer to observed. However, due to the limited data sources for truck information, further need to investigate observed truck volumes, and a desire to not over-calibrate the model, further calibration was stopped. Truck modeling remains a future priority for model improvement.
 
 
-## Detailed Comparison
+### Detailed Comparison
 
 The model vs observed details in this section are presented by volume and Vehicle-Miles Traveled (VMT) through the comparison of model and observed data facility type by region and also by county. @fig-assign-validation allows for the interactive visual comparison of model and observed values for the region and each county for all vehicles, cars, medium trucks, and heavy trucks. The comparisons are shown in four different types of charts and tables:
 
@@ -785,7 +788,7 @@ tbEmptyCell2 = 1
 ![Average Daily Comparison by Facility Type by Region.](_pictures/7-plot1.png){#fig-pdf-ave-ft}
 
 
-## Validation Charts
+### Validation Charts
 Write some words here.
 
 ![Volume Comparison -- All Vehicles.](_pictures/7-plot2.png){#fig-allvehicles height="60%"}
@@ -799,7 +802,7 @@ Write some words here.
 
 :::
 
-## Map Comparison
+### Map Comparison
 
 The maps in @fig-map shows a comparison of segment level model vs observed volumes by vehicle types. Blue represents model lower than observed and red represent model volume higher than observed.
 
@@ -809,3 +812,200 @@ Looking at the *All Vehicles* map, the model volumes are lower than observed for
 
 The lower arterial model vs observed volumes of *Heavy Trucks* on 9000 South in Salt Lake County was further investigated. The *Heavy Truck* observed volume for this roadway seemed much higher than expected for this roadway. The lower volumes are likely due to the observed data and not anything in the model.
 
+
+## Speeds
+
+Comparisons were made between model and observed for a sample of OD pairs. Observed speeds come from sampled data at various time periods in 2019 for the WFRC area using the Google API for reported travel times between coordinates for an origin and destination. Model speeds come from the final network skims that report travel times between all TAZs in the model for each period of the day. The two data sets were matched using a coordinate to TAZ definition table.
+
+
+```{python}
+import glob
+import pandas as pd
+
+# https://drive.google.com/drive/folders/1u2CED6eGywgYnONSHTF1_xyWy4jU1cL9
+# copied to data/5-assignhwy/google-api-speeds
+
+# Use glob module to return all csv files under root directory. Create DF from this.
+files = pd.DataFrame([file for file in glob.glob("data/5-assignhwy/google-api-speeds/both_time_*_2019.csv")], columns=["fullpath"])
+#display(files)
+
+files_split = files['fullpath'].str.rsplit("/", 1, expand=True).rename(columns={0: 'path', 1:'filename'})
+files = files.join(files_split)
+
+```
+
+```{python}
+df1 = pd.DataFrame()
+       
+for f in files['filename'].unique():
+    paths = files[files['filename'] == f]['fullpath']
+    dfs = [pd.read_csv(path) for path in paths] 
+    concat_df = pd.concat(dfs)
+    test_AM = ['both_time_6', 'both_time_7', 'both_time_8', 'both_time_9']
+    for field in test_AM:
+        if field in f:
+            concat_df['Period']="obsAM"
+    test_MD = ['both_time_11', 'both_time_12', 'both_time_13']
+    for field in test_MD:
+        if field in f:
+            concat_df['Period']="obsMD"            
+    test_PM = ['both_time_16', 'both_time_17', 'both_time_18', 'both_time_15']
+    for field in test_PM:
+        if field in f:
+            concat_df['Period']="obsPM"            
+    test_EV = ['both_time_5']
+    for field in test_EV:
+        if field in f:
+            concat_df['Period']="obsEV"
+            
+    df1 = pd.concat([df1, concat_df[pd.notnull(concat_df[" DODistance"])]])
+    
+#display(df1)
+
+
+```
+
+```{python}
+
+dfa=df1[['O_TAZID',' D_TAZID','Period',' ODDistance',' ODTime']].copy()
+dfa['Speed']=(dfa[' ODDistance']/ dfa[' ODTime'])*3600/1609.34
+dfb=df1[['O_TAZID',' D_TAZID','Period',' DODistance',' DOTime']].copy()
+dfb.rename(columns={'O_TAZID':' D_TAZID',' D_TAZID':'O_TAZID',' DODistance':' ODDistance',' DOTime':' ODTime'}, inplace=True)
+dfb['Speed']=(dfb[' ODDistance']/ dfb[' ODTime'])*3600/1609.34
+dfa=pd.concat([dfa,dfb])
+dfx=dfa[['O_TAZID',' D_TAZID','Period','Speed']]
+
+#display(dfx)
+
+```
+
+```{python}
+xy=dfa.groupby(['O_TAZID', ' D_TAZID','Period']).agg({' ODDistance': 'median',' ODTime':'median'})
+#display(xy)
+
+# Speed Result
+xx=dfx.groupby(['O_TAZID', ' D_TAZID','Period']).agg({'Speed': 'median'}).unstack().Speed.rename_axis([None], axis=1).reset_index()
+#display(xx)
+
+# Speed Result Count
+xx2=dfx.groupby(['O_TAZID', ' D_TAZID','Period']).agg({'Speed': 'count'}).unstack().Speed.rename_axis([None], axis=1).reset_index()
+#display (xx2)
+```
+
+```{python}
+_path = "//10.0.0.114/ModelAce-D/1 - TDM/3 - Model Dev/1 - WF/1 - Official Release/v9x/v9.0/WF TDM v9.0 - official/Scenarios/BY_2019/5_AssignHwy/5_FinalNetSkims/"
+
+import openmatrix as omx
+import pandas as pd
+
+def extract_values_from_omx(omx_file_path, column_name):
+    """
+    Extract values from the 'G_IVT' matrix in an OMX file given a set of IJ pairs.
+
+    :param omx_file_path: Path to the OMX file
+    :param column_name: Name of the column in which to store the extracted values
+    :return: DataFrame with an additional column containing the extracted values
+    """
+    
+    with omx.open_file(omx_file_path, 'r') as f:
+        ivt_matrix = f['GP_IVT'][:] / 60.0  # Convert minutes to hours
+        dist_matrix = f['GP_Dist'][:]
+    
+    xx[column_name] = [dist_matrix[i-1, j-1] / ivt_matrix[i-1, j-1] if ivt_matrix[i-1, j-1] != 0 else 0 for i, j in zip(xx['O_TAZID'], xx[' D_TAZID'])]
+    
+    
+    return xx
+
+# List of OMX files and corresponding column names
+omx_files = ['Skm_AM.omx', 'Skm_MD.omx', 'Skm_PM.omx', 'Skm_EV.omx']
+columns = ['modAM', 'modMD', 'modPM', 'modEV']
+
+for omx_file, column_name in zip(omx_files, columns):
+    xx = extract_values_from_omx(_path + omx_file, column_name)
+
+#display(xx)
+
+```
+
+```{python}
+
+obdSpd = xx.melt(id_vars=('O_TAZID',' D_TAZID'),var_name='Period',value_vars=('obsAM','obsMD','obsPM','obsEV'), value_name='spdObs')
+obdSpd['Period'] = obdSpd['Period'].str[3:]
+#display(obdSpd)
+
+modSpd = xx.melt(id_vars=('O_TAZID',' D_TAZID'),var_name='Period',value_vars=('modAM','modMD','modPM','modEV'), value_name='spdMod')
+modSpd['Period'] = modSpd['Period'].str[3:]
+#display(modSpd)
+
+dfSpd = pd.DataFrame.merge(obdSpd, modSpd, on=('O_TAZID',' D_TAZID','Period'))
+#display(dfSpd)
+```
+
+```{python}
+ojs_define(speed = dfSpd) 
+
+```
+
+```{ojs}
+html`<br/>`
+viewof vPeriod = Inputs.select(new Map([['AM','AM'], ['Midday','MD'], ['PM','PM'], ['Evening', 'EV']]), {value: 'AM', label: "Period:"})
+
+speedT = transpose(speed)
+
+speedT_filtered = speedT.filter(function(dataSpd) {
+    return vPeriod == dataSpd.Period;
+})
+
+```
+
+```{ojs}
+html`<h4>Model vs Observed Speeds</h4>`
+Plot.plot({
+  grid: true,
+  width: 460,
+  height: 300,
+  marginRight: 40,
+  x: {
+    label: "Observed Speed (mph)",
+    domain: [0, 70]
+  },
+  y: {
+    label: "Model Speed (mph)",
+    domain: [0, 70]
+  },
+  marks: [
+    Plot.dot(speedT_filtered, {
+      x: "spdObs",
+      y: "spdMod",
+      r: 1,
+      fill: "rgb(80, 116, 230)",
+      fillOpacity: 0.5,
+      stroke: "none"
+    }),
+    Plot.link([0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4], {
+      x1: 0,
+      y1: 0,
+      x2: 70,
+      y2: (k) => 70 * k,
+      strokeOpacity: (k) => k === 1 ? 1 : 0.2,
+      stroke: "red",
+      strokeWidth: (k) => k === 1 ? 2 : 1.5
+    }),
+    Plot.text([0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4], {
+      x: 70,
+      y: (k) => 70 * k,
+      text: ((f) => (k) => k === 1 ? "Equal" : f(k - 1))(d3.format("+.0%")),
+      textAnchor: "start",
+      dx: 6
+    }),
+    Plot.linearRegressionY(speedT_filtered, {
+        x: "spdObs",
+        y: "spdMod",
+        stroke: "rgb(80, 116, 230)",
+        strokeDasharray: "4 4",  // This creates a dashed line pattern,
+        strokeWidth: 2 
+    })
+  ]
+})
+```
+:::
