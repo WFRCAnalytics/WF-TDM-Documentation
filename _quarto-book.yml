@@ -3,49 +3,49 @@
 #v9-v900-whats-new
 #==================
 
-project:
-  type: book
-  output-dir: _book/v9x-v900-whats-new-pdf 
-  #output-dir: _book/v9x-v900-whats-new-doc
-
-book:
-  title: "What's New? - Version 9.0.0"
-  author: "WFRC / MAG"
-  date: "Aug 1, 2023"
-  date-format: long
-  chapters:
-    - index.qmd
-    - v9x/v900/whats-new/1-genparams.qmd
-    - v9x/v900/whats-new/2-inputdata.qmd
-    - v9x/v900/whats-new/3-inputprocessing.qmd
-    - v9x/v900/whats-new/4-hhdisag.qmd
-    - v9x/v900/whats-new/6-distribution.qmd
-    - v9x/v900/whats-new/7-mc.qmd
-    - v9x/v900/whats-new/8-assign.qmd
-    - v9x/v900/whats-new/10-modelresults.qmd
+#project:
+#  type: book
+#  output-dir: _book/v9x-v900-whats-new-pdf 
+#  #output-dir: _book/v9x-v900-whats-new-doc
+#
+#book:
+#  title: "What's New? - Version 9.0.0"
+#  author: "WFRC / MAG"
+#  date: "Aug 1, 2023"
+#  date-format: long
+#  chapters:
+#    - index.qmd
+#    - v9x/v900/whats-new/1-genparams.qmd
+#    - v9x/v900/whats-new/2-inputdata.qmd
+#    - v9x/v900/whats-new/3-inputprocessing.qmd
+#    - v9x/v900/whats-new/4-hhdisag.qmd
+#    - v9x/v900/whats-new/6-distribution.qmd
+#    - v9x/v900/whats-new/7-mc.qmd
+#    - v9x/v900/whats-new/8-assign.qmd
+#    - v9x/v900/whats-new/10-modelresults.qmd
 
 
 #===================
 #v9-v900-validation
 #===================
   
-#project:
-#  type: book
-#  #output-dir: _book/v9x-v900-validation-pdf
-#  output-dir: _book/v9x-v900-validation-doc#
-#book:
-#  title: "Validation Report - Version 9.0.0"
-#  author: "WFRC / MAG"
-#  date: "Aug 1, 2023"
-#  date-format: long
-#  chapters:
-#    - index.qmd
-#    - v9x/v900/validation/1-hhdisag-autoown.qmd
-#    - v9x/v900/validation/2-tripgen.qmd
-#    - v9x/v900/validation/3-distribute.qmd
-#    - v9x/v900/validation/4-modechoice.qmd
-#    - v9x/v900/validation/5-assignhwy.qmd
-#    - v9x/v900/validation/A-sensitivity.qmd
+project:
+  type: book
+  #output-dir: _book/v9x-v900-validation-pdf
+  output-dir: _book/v9x-v900-validation-doc
+book:
+  title: "Validation Report - Version 9.0.0"
+  author: "WFRC / MAG"
+  date: "Aug 1, 2023"
+  date-format: long
+  chapters:
+    - index.qmd
+    - v9x/v900/validation/1-hhdisag-autoown.qmd
+    - v9x/v900/validation/2-tripgen.qmd
+    - v9x/v900/validation/3-distribute.qmd
+    - v9x/v900/validation/4-modechoice.qmd
+    - v9x/v900/validation/5-assignhwy.qmd
+    - v9x/v900/validation/A-sensitivity.qmd
 
 
 #======================
@@ -73,16 +73,16 @@ book:
 
 
 format:
-  RtpPDF-pdf:
-    toc: true
-    lot: true
-    lof: true
-    keep-tex: true
-    fig-pos: 'H'
-    number-sections: true
-    colorlinks: true
-    tbl-colwidths: [70, 30] 
+  #RtpPDF-pdf:
+  #  toc: true
+  #  lot: true
+  #  lof: true
+  #  keep-tex: true
+  #  fig-pos: 'H'
+  #  number-sections: true
+  #  colorlinks: true
+  #  tbl-colwidths: [70, 30] 
     
-  #docx: 
-  #  reference-doc: _extensions/cday/template-rtp.docx
+  docx: 
+    reference-doc: _extensions/cday/template-rtp.docx
   

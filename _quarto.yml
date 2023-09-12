@@ -1,17 +1,17 @@
 # Uncomment the following code to create the master website
-#project:
-#  type: website
-#
-#profile:
-#  group:
-#    - ['website','book']
-#  default: website
-
-# Uncomment the following code, as well as adjust the quarto-book.yaml to create specific pdf files
 project:
-  type: book
+  type: website
 
 profile:
   group:
     - ['website','book']
-  default: book
+  default: website
+
+# Uncomment the following code, as well as adjust the quarto-book.yaml to create specific pdf files
+#project:
+#  type: book
+#
+#profile:
+#  group:
+#    - ['website','book']
+#  default: book
