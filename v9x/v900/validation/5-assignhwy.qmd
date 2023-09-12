@@ -815,7 +815,7 @@ The lower arterial model vs observed volumes of *Heavy Trucks* on 9000 South in 
 
 ## Speeds
 
-Comparisons were made between model and observed for a sample of OD pairs. Observed speeds come from sampled data at various time periods in 2019 for the WFRC area using the Google API for reported travel times between coordinates for an origin and destination. Model speeds come from the final network skims that report travel times between all TAZs in the model for each period of the day. The two data sets were matched using a coordinate to TAZ definition table.
+Comparisons were made between model and observed for a sample of OD pairs. Observed speeds come from sampled data at various time periods in 2019 for the WFRC area using the Google API for reported travel times between coordinates for an origin and destination. Model speeds come from the final network skims that report travel times between all TAZs in the model for each period of the day. The two data sets were joined using a coordinate to TAZ spatial join to locate Google end points to match their respective TAZ.
 
 
 ```{python}
