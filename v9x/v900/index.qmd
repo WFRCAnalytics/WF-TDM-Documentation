@@ -5,7 +5,8 @@ title: Preface
 This is the documentation for the Wasatch Front Travel Demand Model Version 9.0. The documentation includes the following reports:
 
  - [What's New Document](whats-new/1-genparams.qmd)
- - [Model Validation Report](validation/4-modechoice.qmd)
+ - [Model Validation Report](validation/2-tripgen.qmd)
+ - [Model Process Report](model-process/emptylink) (still in development)
 
 <!--For static versions of the documentation reports, please download the following files:
 
