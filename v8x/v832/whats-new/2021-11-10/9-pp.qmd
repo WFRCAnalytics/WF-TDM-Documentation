@@ -1,7 +1,0 @@
----
-margin-header: Version 8.3.2 - What's New?
----
-
-# Post Processing
-
-The TDM2MOVES folder was removed.

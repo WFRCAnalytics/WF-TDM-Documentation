@@ -44,48 +44,6 @@ website:
         - text: "Version 8.3.0"
           href: v8x/v830/index.qmd
           id: v830-preface
-        #- text: "Version 8.1.0"
-        #  href: v8x/v810/index.qmd
-        #  id: v810-preface
-        #- text: "Version 7.0.2"
-        #  href: v7x/v702/index.qmd
-        #  id: v702-preface
-        #- text: "Version 7.0.1"
-        #  href: v7x/v701/index.qmd
-        #  id: v701-preface
-        #- text: "Version 7.0.0"
-        #  href: v7x/v700/index.qmd
-        #  id: v700-preface
-        #- text: "Version 6.1.0"
-        #  href: v6x/v610/index.qmd
-        #  id: v610-preface
-        #- text: "Version 6.0.0"
-        #  href: v6x/v600/index.qmd
-        #  id: v620-preface
-        #- text: "Version 5.0.0"
-        #  href: v5x/v500/index.qmd
-        #  id: v500-preface
-        #- text: "Version 4.3.0"
-        #  href: v4x/v430/index.qmd
-        #  id: v430-preface
-        #- text: "Version 4.2.0"
-        #  href: v4x/v420/index.qmd
-        #  id: v420-preface
-        #- text: "Version 4.0.0"
-        #  href: v4x/v400/index.qmd
-        #  id: v400-preface
-        #- text: "Version 3.2.0"
-        #  href: v3x/v320/index.qmd
-        #  id: v320-preface
-        #- text: "Version 3.1.0"
-        #  href: v3x/v310/index.qmd
-        #  id: v310-preface
-        #- text: "Version 3.0.0"
-        #  href: v3x/v300/index.qmd
-        #  id: v300-preface
-        #- text: "Version 2.1.0"
-        #  href: v2x/v210/index.qmd
-        #  id: v210-preface
           
   sidebar:
     - id: v900-preface
@@ -93,13 +51,15 @@ website:
       collapse-level: 4
       border: true
       background: white
-      contents: #items:
-        - text: "<span style=\"color: #3E6682;\">**Preface**</span>"
-          href: v9x/v900/index.qmd
+      contents:
+        - section: "<span style=\"color: #3E6682;font-size: 25px;\">**Version 9.0.0**</span>"
+          contents:
+            - "---"
+            - v9x/v900/index.qmd
         #- text: "**Downloads**"
         #  href: v9x/v900/downloads.qmd
         - "---"
-        - section: "<span style=\"color: #3E6682;\">**Whats New?**</span>"
+        - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
           contents:
             - v9x/v900/whats-new/1-genparams.qmd  
             - v9x/v900/whats-new/2-inputdata.qmd
@@ -110,7 +70,7 @@ website:
             - v9x/v900/whats-new/8-assign.qmd
             - v9x/v900/whats-new/10-modelresults.qmd  
         - "---"
-        - section: "<span style=\"color: #3E6682;\">**Model Validation**</span>"
+        - section: "<span style=\"color: #3E6682;\">**Model Validation Report**</span>"
           contents:
         #    - v9x/v900/validation/1-hhdisag-autoown.qmd
             - v9x/v900/validation/2-tripgen.qmd
@@ -129,400 +89,92 @@ website:
         #    - v9x/v900/model-process/A-sensitivity.qmd
         #- "---"
     - id: v832-preface
-      title: "Version 8.3.2"
+      style: "docked"
+      collapse-level: 4
+      border: true
+      background: white
       contents:
-        - text: "Preface"
-          href: v8x/v832/index.qmd  
-        - text: "Downloads"
-          href: v8x/v832/downloads.qmd
-        - section: 'Whats New?'
+        - section: "<span style=\"color: #3E6682;font-size: 25px;\">**Version 8.3.2**</span>"
           contents:
-          - section: '2022-02-04'
-            contents:
-            - text: "2022-02-04 Update"
-              href: v8x/v832/whats-new/2022-02-04/1-20220204-update.qmd
-          - section: '2021-11-10'
-            contents:
-            - text: "General Parameters"
-              href: v8x/v832/whats-new/2021-11-10/1-genparams.qmd
-            - text: "Input Data"
-              href: v8x/v832/whats-new/2021-11-10/2-inputdata.qmd
-            - text: "Input Processing"
-              href: v8x/v832/whats-new/2021-11-10/3-inputprocessing.qmd
-            - text: "Household Disaggregation and Auto Ownership"
-              href: v8x/v832/whats-new/2021-11-10/4-hhdisag.qmd
-            - text: "Trip Generation"
-              href: v8x/v832/whats-new/2021-11-10/5-tripgen.qmd
-            - text: "Distribution"
-              href: v8x/v832/whats-new/2021-11-10/6-distribution.qmd
-            - text: "Mode Choice"
-              href: v8x/v832/whats-new/2021-11-10/7-mc.qmd
-            - text: "Highway Assignment"
-              href: v8x/v832/whats-new/2021-11-10/8-assign.qmd
-            - text: "Post Processing"
-              href: v8x/v832/whats-new/2021-11-10/9-pp.qmd
-            - text: "Model Results - Comparison with v8.3.1"
-              href: v8x/v832/whats-new/2021-11-10/10-modelresults.qmd
-        - section: "Inputs"
+          - "---"
+          - text: "Preface"
+            href: v8x/v832/index.qmd
+          - text: "Downloads"
+            href: v8x/v832/downloads.qmd
+        - "---"
+        - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
           contents:
-            - section: '2022-02-04'
-              contents:
-                - text: "Downloads"
-                  href: v8x/v832/downloads.qmd
-        - section: "Calibration/Validation"
-          contents:
-            - section: '2022-02-04'
-              contents:
-                - text: "Downloads"
-                  href: v8x/v832/downloads.qmd
-            - section: '2021-10-17'
-              contents:
-                - text: "Downloads"
-                  href: v8x/v832/downloads.qmd
+          - text: "2022-02-04 Update"
+            href: v8x/v832/whats-new/1-20220204-update.qmd
+          - text: "General Parameters"
+            href: v8x/v832/whats-new/1-genparams.qmd
+          - text: "Input Data"
+            href: v8x/v832/whats-new/2-inputdata.qmd
+          - text: "Input Processing"
+            href: v8x/v832/whats-new/3-inputprocessing.qmd
+          - text: "Household Disaggregation and Auto Ownership"
+            href: v8x/v832/whats-new/4-hhdisag.qmd
+          - text: "Trip Generation"
+            href: v8x/v832/whats-new/5-tripgen.qmd
+          - text: "Distribution"
+            href: v8x/v832/whats-new/6-distribution.qmd
+          - text: "Mode Choice"
+            href: v8x/v832/whats-new/7-mc.qmd
+          - text: "Highway Assignment"
+            href: v8x/v832/whats-new/8-assign.qmd
+          - text: "Post Processing"
+            href: v8x/v832/whats-new/9-pp.qmd
+          - text: "Model Results - Comparison with v8.3.1"
+            href: v8x/v832/whats-new/10-modelresults.qmd
+          - "---"
     - id: v831-preface
-      title: Version 8.3.1
+      style: "docked"
+      collapse-level: 4
+      border: true
+      background: white
       contents:
-      - text: "Preface"
-        href: v8x/v831/index.qmd  
-      - text: "Downloads"
-        href: v8x/v831/downloads.qmd
-      - section: 'Whats New?'
-        contents:
-          - section: '2020-08-17'
-            contents:
-              - text: '2020-08-17 Update'
-                href: v8x/v831/whats-new/2020-08-17/1-20200817-update.qmd
-          - section: '2020-05-08'
-            contents:
-              - text: 'Input Data'
-                href: v8x/v831/whats-new/2020-05-08/1-inputdata.qmd
-              - text: 'Update for Cube 6.4.5'
-                href: v8x/v831/whats-new/2020-05-08/2-cube-update.qmd
-              - text: 'Segment Summary'
-                href: v8x/v831/whats-new/2020-05-08/3-segsum.qmd
-              - text: 'Assignment Output Folder'
-                href: v8x/v831/whats-new/2020-05-08/4-assign.qmd
-              - text: 'Access to Opportunity'
-                href: v8x/v831/whats-new/2020-05-08/5-ato.qmd
-              - text: 'Miscellaneous Changes'
-                href: v8x/v831/whats-new/2020-05-08/6-misc.qmd
-      - section: "Inputs"
-        contents:
-          - section: '2020-05-08'
-            contents:
-              - text: "Downloads"
-                href: v8x/v831/downloads.qmd
-      - section: "Calibration/Validation"
-        contents:
-          - section: '2020-10-23'
-            contents:
-              - text: "Downloads"
-                href: v8x/v831/downloads.qmd
+        - section: "<span style=\"color: #3E6682;font-size: 25px;\">**Version 8.3.1**</span>"
+          contents:
+          - "---"
+          - text: "Preface"
+            href: v8x/v831/index.qmd
+          - text: "Downloads"
+            href: v8x/v831/downloads.qmd
+        - "---"
+        - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
+          contents:
+            - text: '2020-08-17 Update'
+              href: v8x/v831/whats-new/1-20200817-update.qmd
+            - text: 'Input Data'
+              href: v8x/v831/whats-new/1-inputdata.qmd
+            - text: 'Update for Cube 6.4.5'
+              href: v8x/v831/whats-new/2-cube-update.qmd
+            - text: 'Segment Summary'
+              href: v8x/v831/whats-new/3-segsum.qmd
+            - text: 'Assignment Output Folder'
+              href: v8x/v831/whats-new/4-assign.qmd
+            - text: 'Access to Opportunity'
+              href: v8x/v831/whats-new/5-ato.qmd
+            - text: 'Miscellaneous Changes'
+              href: v8x/v831/whats-new/6-misc.qmd
+            - "---"
     - id: v830-preface
-      title: Version 8.3.0
+      style: "docked"
+      collapse-level: 4
+      border: true
+      background: white
       contents:
-      - text: "Preface"
-        href: v8x/v830/index.qmd  
-      - text: "Downloads"
-        href: v8x/v830/downloads.qmd
-      - section: 'Inputs'
-        contents:
-          - section: '2019-06-18'
-            contents:
-              - text: "Downloads"
-                href: v8x/v830/downloads.qmd
-    #- id: v810-preface
-    #  title: Version 8.1.0
-    #  contents:
-    #  - text: "Preface"
-    #    href: v8x/v810/index.qmd  
-    #  - text: "Downloads"
-    #    href: v8x/v810/downloads.qmd
-    #  - section: 'Calibration/Validation'
-    #    contents:
-    #    - section: '2016-11-01'
-    #      contents:
-    #        - text: 'Downloads'
-    #          href: v8x/v810/downloads.qmd
-    #- id: v702-preface
-    #  title: Version 7.0.2
-    #  contents:
-    #  - text: "Preface"
-    #    href: v7x/v702/index.qmd
-    #  - text: "Downloads"
-    #    href: v7x/v702/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents:
-    #     - section: '2012-06'
-    #       contents:
-    #        - text: "2012-06 Update"
-    #          href:  v7x/v702/whats-new/1-201206-update.qmd 
-    #        - text: "BRT Modes"
-    #          href: v7x/v702/whats-new/2-modes.qmd
-    #        - text: "Hand Coded Access Links"
-    #          href: v7x/v702/whats-new/3-accesslinks.qmd
-    #        - text: "Other Modifications"
-    #          href: v7x/v702/whats-new/4-other.qmd
-    #- id: v701-preface
-    #  title: Version 7.0.1
-    #  contents:
-    #  - text: "Preface"
-    #    href: v7x/v701/index.qmd
-    #  - text: "Downloads"
-    #    href: v7x/v701/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents:
-    #    - section: '2012-05'
-    #      contents:
-    #        - text: "Hail Mary" 
-    #          href: v7x/v701/whats-new/1-hailmary.qmd
-    #        - text: "Elapsed Time" 
-    #          href: v7x/v701/whats-new/2-etime.qmd
-    #        - text: "Model Notification" 
-    #          href: v7x/v701/whats-new/3-notification.qmd
-    #        - text: "Input/Output File Names" 
-    #          href: v7x/v701/whats-new/4-inputoutput.qmd
-    #        - text: "Voyager Module References" 
-    #          href: v7x/v701/whats-new/5-module.qmd
-    #        - text: "General Updates" 
-    #          href: v7x/v701/whats-new/6-general.qmd
-    #- id: v700-preface
-    #  title: Version 7.0.0
-    #  contents:
-    #  - text: "Preface"
-    #    href: v7x/v700/index.qmd
-    #  - text: "Downloads"
-    #    href: v7x/v700/downloads.qmd
-    #  - section: "Model Documentation"
-    #    contents:
-    #    - section: '2011-05-11'
-    #      contents:
-    #        - text: "Downloads"
-    #          href: v7x/v700/downloads.qmd
-    #- id: v610-preface
-    #  title: Version 6.1.0
-    #  contents:
-    #  - text: "Preface"
-    #    href: v6x/v610/index.qmd
-    #  - text: "Downloads"
-    #    href: v6x/v610/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents: 
-    #    - section: '2009'
-    #      contents:
-    #        - text: "Overview"
-    #          href: v6x/v610/whats-new/1-overview.qmd
-    #- id: v600-preface
-    #  title: Version 6.0.0
-    #  contents:
-    #  - text: "Preface"
-    #    href: v6x/v600/index.qmd
-    #  - text: "Downloads"
-    #    href: v6x/v600/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents: 
-    #    - section: '2007'
-    #      contents:
-    #        - text: "Introduction"
-    #          href: v6x/v600/whats-new/v6-intro.qmd
-    #        - text: "When to Use Improvements"
-    #          href: v6x/v600/whats-new/v6-when.qmd
-    #        - text: "What's New Summary"
-    #          href: v6x/v600/whats-new/v6-wn.qmd
-    #        - text: "Development Plans"
-    #          href: v6x/v600/whats-new/v6-improvements.qmd
-    #  - section: "Model Documentation"
-    #    contents:
-    #    - section: '2007'
-    #      contents:
-    #        - text: Downloads
-    #          href: v6x/v600/downloads.qmd
-    #  - section: "Users Guide"
-    #    contents:
-    #    - section: '02/01/2007'
-    #      contents:
-    #        - text: Downloads
-    #          href: v6x/v600/downloads.qmd
-    #- id: v500-preface
-    #  title: "Version 5.0.0"
-    #  contents:
-    #  - text: "Preface"
-    #    href: v5x/v500/index.qmd
-    #  - text: "Downloads"
-    #    href: v5x/v500/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents:
-    #      - section: "12/12/2005"
-    #        contents:
-    #        - text: "Introduction"
-    #          href: v5x/v500/whats-new/v5-intro.qmd
-    #        - text: "When to Use Improvements"
-    #          href: v5x/v500/whats-new/v5-when.qmd
-    #        - text: "What's New Summary"
-    #          href: v5x/v500/whats-new/v5-wn.qmd
-    #        - text: "Development Plans"
-    #          href: v5x/v500/whats-new/v5-improvements.qmd
-    #  - section: "Users Guide"
-    #    contents:
-    #      - section: "12/01/2006"
-    #        contents:
-    #        - text: "Downloads"
-    #          href: v5x/v500/downloads.qmd
-    #- id: v430-preface
-    #  title: "Version 4.3.0"
-    #  contents:
-    #  - text: "Preface"
-    #    href: v4x/v430/index.qmd
-    #  - text: "Downloads"
-    #    href: v4x/v430/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents:
-    #      - section: "04/05/2005"
-    #        contents:
-    #        - text: "Introduction"
-    #          href: v4x/v430/whats-new/v43-intro.qmd
-    #        - text: "When to Use Improvements"
-    #          href: v4x/v430/whats-new/v43-when.qmd
-    #        - text: "What's New Summary"
-    #          href: v4x/v430/whats-new/v43-wn.qmd
-    #        - text: "Development Plans"
-    #          href: v4x/v430/whats-new/v43-improvements.qmd
-    #- id: v420-preface
-    #  title: "Version 4.2.0"
-    #  contents:
-    #  - text: "Preface"
-    #    href: v4x/v420/index.qmd
-    #  - text: "Downloads"
-    #    href: v4x/v420/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents:
-    #      - section: "08/30/2004"
-    #        contents:
-    #        - text: "Introduction"
-    #          href: v4x/v420/whats-new/v42-intro.qmd
-    #        - text: "When to Use Improvements"
-    #          href: v4x/v420/whats-new/v42-when.qmd
-    #        - text: "Why v4.0 and v4.1 were Necessary"
-    #          href: v4x/v420/whats-new/v42-necessary.qmd 
-    #        - text: "What's New Summary"
-    #          href: v4x/v420/whats-new/v42-wn.qmd
-    #        - text: "New Features"
-    #          href: v4x/v420/whats-new/v42-new-features.qmd
-    #        - text: "Development Plans"
-    #          href: v4x/v420/whats-new/v42-improvements.qmd
-    #        - text: "Terms and Abbreviations"
-    #          href: v4x/v420/whats-new/v42-terms.qmd
-    #- id: v400-preface
-    #  title: "Version 4.0.0"
-    #  contents:
-    #  - text: "Preface"
-    #    href: v4x/v400/index.qmd
-    #  - text: "Downloads"
-    #    href: v4x/v400/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents:
-    #      - section: "05/01/2004"
-    #        contents:
-    #        - text: "Overview"
-    #          href: v4x/v400/whats-new/v40-overview.qmd
-    #- id: v320-preface
-    #  title: "Version 3.2.0"
-    #  contents:
-    #  - text: "Preface"
-    #    href: v3x/v320/index.qmd
-    #  - text: "Downloads"
-    #    href: v3x/v320/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents:
-    #      - section: "02/10/2004"
-    #        contents:
-    #        - text: "Introduction"
-    #          href: v3x/v320/whats-new/v32-intro.qmd
-    #        - text: "Why v3.2 was Necessary"
-    #          href: v3x/v320/whats-new/v32-necessary.qmd
-    #        - text: "Input Preparation"
-    #          href: v3x/v320/whats-new/v32-input-prep.qmd
-    #        - text: "Mode Choice"
-    #          href: v3x/v320/whats-new/v32-mode-choice.qmd
-    #        - text: "District Analysis Tool"
-    #          href: v3x/v320/whats-new/v32-district-analysis.qmd
-    #        - text: "Highway Analysis Tool"
-    #          href: v3x/v320/whats-new/v32-hway-analysis.qmd
-    #        - text: "Terms and Abbreviations"
-    #          href: v3x/v320/whats-new/v32-terms.qmd
-    #- id: v310-preface
-    #  title: "Version 3.1.0"
-    #  contents:
-    #  - text: "Preface"
-    #    href: v3x/v310/index.qmd
-    #  - text: "Downloads"
-    #    href: v3x/v310/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents:
-    #      - section: "07/23/2003"
-    #        contents:
-    #        - text: "Introduction"
-    #          href: v3x/v310/whats-new/v31-intro.qmd
-    #        - text: "Input Preparation"
-    #          href: v3x/v310/whats-new/v31-input-prep.qmd
-    #        - text: "Mode Choice"
-    #          href: v3x/v310/whats-new/v31-mode-choice.qmd
-    #- id: v300-preface
-    #  title: "Version 3.0.0"
-    #  contents:
-    #  - text: "Preface"
-    #    href: v3x/v300/index.qmd
-    #  - text: "Downloads"
-    #    href: v3x/v300/downloads.qmd
-    #  - section: "Whats New?"
-    #    contents:
-    #      - section: "06/25/2003"
-    #        contents:
-    #        - text: "Documentation & Source Files"
-    #          href: v3x/v300/whats-new/v30-doc.qmd
-    #        - text: "Input Preparation"
-    #          href: v3x/v300/whats-new/v30-input-prep.qmd
-    #        - text: "Modeling Process"
-    #          href: v3x/v300/whats-new/v30-modeling-process.qmd
-    #        - text: "Auto Ownership Model"
-    #          href: v3x/v300/whats-new/v30-auto-own.qmd
-    #        - text: "Trip Generation"
-    #          href: v3x/v300/whats-new/v30-trip-gen.qmd
-    #        - text: "Trip Distribution"
-    #          href: v3x/v300/whats-new/v30-distribution.qmd
-    #        - text: "Mode Choice"
-    #          href: v3x/v300/whats-new/v30-mode-choice.qmd
-    #        - text: "Highway Assignment"
-    #          href: v3x/v300/whats-new/v30-assign.qmd
-    #        - text: "Reports, Post Processors, Data Management"
-    #          href: v3x/v300/whats-new/v30-reports.qmd
-    #        - text: "Terms and Abbreviations"
-    #          href: v3x/v300/whats-new/v30-terms.qmd
-    #- id: v210-preface
-    #  title: "Version 2.1.0"
-    #  contents:
-    #  - text: "Preface"
-    #    href: v2x/v210/index.qmd
-    #  - text: "Downloads"
-    #    href: v2x/v210/downloads.qmd
-    #  - section: "Users Guide"
-    #    contents:
-    #      - section: "2000?"
-    #        contents:
-    #        - text: "Downloads"
-    #          href: v2x/v210/downloads.qmd
-#
-    #- id: testing-index
-    #  title: "Testing Environment"
-    #  contents:
-    #    - text: "Jupyter Widgets"
-    #      href: testing/jupyter-widgets.qmd
-    #    - text: "Example OJS"
-    #      href: testing/ojs-test.qmd
+        - section: "<span style=\"color: #3E6682;font-size: 25px;\">**Version 8.3.0**</span>"
+          contents:
+          - "---"
+          - text: "Preface"
+            href: v8x/v830/index.qmd
+          - text: "Downloads"
+            href: v8x/v830/downloads.qmd
+          - "---"
 
 format:
   html:
-    #margin-top: 20px
     grid:
       sidebar-width: 380px
       gutter-width: 40px
@@ -535,7 +187,6 @@ format:
     mainfont: "Ebrima"
     fontsize: 11.5pt
     linkcolor: "#789d4b"
-    #monobackgroundcolor: "#789d4b"
 
     theme:
       - cerulean

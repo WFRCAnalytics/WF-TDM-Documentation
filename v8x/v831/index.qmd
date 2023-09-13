@@ -1,12 +1,10 @@
 ---
-margin-header: Version 8.3.1 - Preface
 title: Preface
 ---
 
-This is the documentation for the Wasatch Front Travel Demand Model for Version 8.3.1. The documentation includes:
+This is the documentation for the Wasatch Front Travel Demand Model for Version 8.3.1. The documentation includes the following reports:
 
- - [What's New Document](whats-new/2020-08-17/1-20200817-update.qmd)
+ - [What's New Document](whats-new/1-20200817-update.qmd)
+ - [Model Validation Report](downloads.qmd)
  - [Inputs Document](downloads.qmd)
- - [Calibration & Validation Report](downloads.qmd)
 
-For access to this version of the TDM visit .

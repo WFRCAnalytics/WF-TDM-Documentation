@@ -1,12 +1,14 @@
 ---
-margin-header: Version 8.3.2 - Preface
 title: Preface
 ---
 
-This is the documentation for the Wasatch Front Travel Demand Model for Version 8.3.2. The documentation includes:
+This is the documentation for the Wasatch Front Travel Demand Model for Version 8.3.2. The documentation includes the following reports::
 
- - [What's New Document](whats-new/2022-02-04/1-20220204-update.qmd)
+ - [What's New Document](whats-new/1-20220204-update.qmd)
+ - [Model Validation Report](downloads.qmd) 
  - [Inputs Document](downloads.qmd)
- - [Calibration & Validation Report](downloads.qmd)
 
-For access to this version of the TDM visit <https://github.com/WFRCAnalytics/WF-TDM-v8.3.2>.
+For access to this version of the TDM visit please contact the following persons:
+
+ - Suzie Swim (WFRC): sswim@wfrc.org
+ - Matt DeLora (MAG): mdelora@magutah.org

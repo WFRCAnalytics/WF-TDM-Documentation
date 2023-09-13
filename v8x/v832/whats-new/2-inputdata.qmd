@@ -1,0 +1,183 @@
+# Input Data
+
+## Highway Network
+Speed factor changes were made to the following locations:
+
+- US-89 North Davis County SFAC_BASE adjusted to 0.82
+- Legacy Pkwy South of Parrish SFAC_BASE and SFAC_FUT set to 0.95
+- University Avenue from 300 South to 700 N SFAC_BASE and SFAC_FUT set to 0.85
+- Freedom Boulevard from 300 South to 500 N SFAC_BASE and SFAC_FUT set to 0.85
+- Provo Center Street from 500 West to University Ave SFAC_BASE and SFAC_FUT set to 0.60
+
+Capacity factors changes were made to the following locations:
+
+- Provo Center Street from 500 West to University Ave CFAC_BASE and CFAC_FUT set to 0.85
+
+### Amendment 3
+The highway network was updated in the MAG and WFRC areas to reflect the third round of Regional Transportation Plan (RTP) amendments.  Additional edits were made in the MAG area to conform with more recent project clarification. @fig-lane-change shows where lanes were added (green) or were taken away (orange) between versions 8.3 and 8.3.1 highway networks.
+
+![Lane Change between 2019 and 2050 for Model v8.3.2 2022-02-04.](_pictures/lane-change.png){#fig-lane-change}
+
+### Light Rail Transit Speed
+The speed of rail transit is coded onto rail-only links within the master highway network. Transit speed for LRT were updated to reflect 2019 operations. Most of the speed changes were less than 5 mph. @fig-transit-speed-change shows where light rail speeds were changed. 
+
+![Change in Transit Speeds for LRT in Salt Lake County. Green: Increase in Speeds — Red: Decrease in Speeds.](_pictures/transit-speed-change.png){#fig-transit-speed-change}
+
+tbl-lrt-speed shows the resulting average speeds along entire light rail routes. The net effect of the update was generally lower speeds, with the TRAX-Blue line and the S-Line having the largest drops in speed with a drop of 8.2% and 14.5%, respectively.
+
+```{python}
+#| label: tbl-lrt-speed
+#| tbl-cap: Average Travel Speed (MPH) by Route for LRT
+
+from IPython.display import Markdown
+from tabulate import tabulate
+table = [["TRAX-Blue" ,'24.4','22.4','-2.0','-8.2% '],
+         ["TRAX-Green",'19.2','18.6','-0.6','-3.1% '],
+         ["TRAX-Red"  ,'24.4','23.6','-0.8','-3.3% '],
+         ["S-Line"    ,'13.8','11.8','-2.0','-14.5%']]
+Markdown(tabulate(
+  table, 
+  headers=["Route","Before Updates", "After Updates", "Difference", "% Difference"]
+))
+```
+
+
+Additional changes include the following:
+
+- FrontRunner speeds were adjusted to match the 2019 schedule
+- Several SEGID changes to match UDOT 2019 Segment shapefile
+- Corrected I-15 SB to include lane drop north of Lehi 2100 North interchange and lane add south of interchange to match constructefacility
+- Updated GIS link & node shapefiles
+
+## Transit Network
+
+### Hand-Coded Walk-Access Links
+Hand-coded walk-access links are an additional input for transit beyond the automatically generated walk-access links. Auto-generated walk-access links are created between zone centroids and transit stops within a certain distance as defined by area of the zone, as long as they do not cross barriers as defined by functional type. Hand-coded walk-access links are user-defined, supplemental walk access where an auto-generated link would not be created or where walk access is more attractive than the TAZ structure and auto-generated links would suggest.
+
+The update process removed a majority of the general hand-coded walk access links, reducing the number from 234 to 31 links. Areas that retained or added hand-coded links include SLC International Airport, Hill Air Force Base, University of Utah, and Utah Valley University. @fig-walk-access-links shows hand-coded walk-access links before and after the updates.
+
+![Hand-Coded Walk Access Links.](_pictures/walk-access-links.png){#fig-walk-access-links}
+
+### Park-And-Ride
+Park-and-Ride lots are coded onto nodes within the master highway network and are defined by what transit mode they service. To be used by the travel model, park-and-ride nodes need to be coded at nodes that serve as rail or bus stops. @fig-pnr-changes shows what changes were made to park-and-ride lots, which include 17 additional locations, 49 removed locations, and 14 locations that were modified by changing the mode they service. Most of the park-and-ride lots removals were due to redundancy on highway nodes adjacent to another park-and-ride lot at a rail node. The park-and-ride lots additions mostly included new lots along express bus routes. The resulting park-and-ride lot locations, including ones that were not edited, are shown in @fig-pnr-after.
+
+::: {#fig-park-ride-lots layout-ncol=2}
+
+![Park-And-Ride Lot Changes](_pictures/pnr-changes.png){#fig-pnr-changes}
+
+![Park-And-Ride Lots After Updates](_pictures/pnr-after.png){#fig-pnr-after}
+
+Park-And-Ride Lots. *Red: Removed — Green: Added — Blue: Modified*
+:::
+
+### Transit Line Changes
+Transit line files were updated based on actual 2019 route configuration. Transit line files include route alignments, stop locations, and peak/off-peak headway designation. Additionally, 2024, 2030, 2040, 2050, 2030UF, 2040UF, 2050UF transit was updated to reflect 2019 input changes.
+
+A general edit that was made to all lines that connect directly to rail was the removal of bus stops on a roadway node directly adjacent to a stop at a rail node. Only the rail node stop remains. Due to the amount of lines affected by this change, they are not listed individually in the line details below.
+There were also a couple of highway network edits made in relation to transit line changes: 
+
+- At the Blue Line end-of-line in Draper, the centroid connector for the rail station connection to the highway network moved offintersection of Pioneer Road / 1300 East intersection and connected directly to Pioneer Drive.
+- A connection between 24th Street and Wall Avenue in Ogden was added to represent the existing connection on each side of theviaduct. The associated transit-only link was removed.
+
+The line file changes are shown in the lists below, arranged by file and route name. Only lines that have changes, other than those listed above, are included.
+
+**mag_brt_2019.lin**
+
+- BRT_ProOrm:
+    - stops removed:
+        - 24779 - Geneva Road
+        - 26400 - 900 E/Campus Ln
+        - 26487 - 750 S/100 W
+    - Stops moved:
+        - 22881 to 26206 (from intersection of University Pkwy/900 E to the west)
+        - 25972 to 23019 (moved further west to intersection of 400 E/700 N)
+        - 23069 to 26203 (moved further north off of intersection of 200 N/Univ Ave)
+        - 23066 to 26202 (moved further south off of intersection of 300 S/Univ Ave)
+        - 26184 to 26192 (moved off University Ave and onto Town Centre Blvd)
+        - 23160 to 24332 (moved west of intersection East Bay Blvd/1860 S)
+    - Alignment changed: Off of University Avenue between 920 S and Town Centre Drive and onto Town Centre Blvd
+
+**mag_exp_2019.lin**
+
+- M807_NoCnty: Many stops removed.  Realignment changed at each end of route.  Reverse direction removed.
+- M806_EglMtn: Headway changed from 30/0 to 45/0. Many stops removed. Realignment changed at Eagle Mtn end-of-line and to stay on freeway through American Fork. Reverse direction removed.
+
+**mag_lcl_2019.lin**
+
+- M805_Santaquin: Headway 1/2 changed from 30/0 to 45/60. Stop added: 23552 (Santaquin end of line moved one node to west). Three stops removed in SF, only 25321 remains. Three stops removed in Provo: 26487, 26488, 23152.
+- M809_AM-PG: Changed from two-way route to one-way route. Stops removed: 24769, 22358, 24162, 25729, 22389, 25727, 25513, 22514, 22390, 25726, 22392, 22394. Stops added: 24189, 22395.
+- M821_Psn: Various stops removed.
+- M822_Psn: Various stops removed.
+- M831_WPr: Alignment changed around UVU. Various stops removed.
+- M833_CntrPr: Various stops removals.
+- M834_EstPr: Alignment changed at Univ Pkwy/2230 N. Various stops removed.
+- M841_UVU: UVU main campus end-of-line moved one further node to 26601. Various stops removed.
+- M850_StateStreet: Alignment Changed: Ashton Blvd & 2100 N, PG downtown, which required addition of reverse direction and change to one-way route due to one-way links. Various stops removals.
+- M862_Orem: Alignment changed around UVU to use campus circulator roadway. Various stops removed.
+- M864_Thanksgiving Point: Various stops removed.
+- M871_SLtoUtahCnty: Northern end-of-line alignment changed to match updated highway network connection to Blue Line Draper Station.
+
+**rail_2019.lin**
+
+- OGPNShuttle: Route removed, since service to Pleasant View discontinued in 2015.
+
+**wfrc_og_lcl_2019.lin**
+
+- O601: Connection to Wall Avenue was removed from transit-only link and put on new highway network connection.
+- O603: Southern end-of-line moved to McKay Dee Hospital.
+- O606: Northern end-of-line moved from Harrison Blvd to Monroe Blvd.
+- O608: Northern end-of-line moved from Harrison Blvd to Monroe Blvd.
+- O628: Southern end-of-line extended to match southern circulation around Layton IHC.
+- O630: Southern end-of-line moved from Weber State University to Ogden FrontRunner Station.
+- O645: Northern end-of-line extended to US-89.
+- OF618: Headway2 changed from 30 to 60.
+- S470: Connection to Clearfield Station CRT added.
+- S455: One stop removed in University of Utah area.
+
+**wfrc_sl_exp_2019.lin**
+
+- S2X: Changed to two-way route. Two stops removed on 200 South near Gateway. Two stops added in University of Utah area.
+- S307X: Headway 1 changed from 30 to 47.
+- S313X: Alignment through Fort Union area changed.
+- S354X: Extended north end-of-line to Red Line station.
+- S451X: Reverse direction removed.
+- S454: Stop added at Green Line airport stop. Some stops along Green Line and North Temple moved to rail stop locations.
+- S456: Stop added at Farmington Station CRT. Some stops along Green Line and North Temple moved to rail stop locations. 
+- S471: Alignment through Bountiful modified.
+- S473X: Extended southern end-of-line further to Research Park.
+- S902: Headway changed from 15/0 to 60/90. Some stops added.
+
+**wfrc_sl_lcl_2019.lin**
+
+- D461: Some stop in Woods Cross Station CRT area removed.
+- S11: Eastern end-of-line shortened to stop at University of Utah Medical Center and not Red Line.
+- S201: Southern end-of-line extended to South Jordan Station CRT.
+- S217: Alignment changed near green line (N Temple), route removed from 2200 West.
+- S218: S218 - changed ONEWAY=F to become two-way route
+- S240: Alignment changed at Pieper Blvd.
+- S41: West end-of-line extended one node down 5600 West.
+- S463: Connection to Wood Cross Station CRT.
+- S509: Alignment changed around SR-201.
+- S519/520 - added ONEWAY=F to explicitly define two-way route
+- S526: Headway changed from 40/40 to 60/0.
+- S551: Headway 1 changed from 30 to 40. Some stops along Green Line and North Temple moved to rail stop locations.
+- SF453: Eastern EOL brought to rail node 20053.
+- SF514: Stop added at SoJo Station CRT.
+- SF546: Connection added to Draper Town Center Station CRT.
+- SF94: Eastern end-of-line extended one more node to east.
+
+## Segments and Factors
+The Master Segments shapefile was updated with the following changes:
+
+- Day-of-week, season, and month factors were updated using 2015-2019 data from UDOT Continuous Count Stations (CCS). To be consistent with the UDOT AADT process, any year of data without a full week of data from each month was excluded from the factor creation.
+- Created single grouping of CCS for all factors (previously weekday and month/season factors were based on separate groupings).
+- Changed average weekday factor (FAC_WDAVG) to represent Tuesday through Thursday (previously Monday through Thursday).
+- Changed average and max weekend factors (FAC_WEAVG, FAC_WEMAX) to represent Saturday and Sunday (previously Friday through Sunday).
+
+## Other Changes
+The following were additional changes made to the model: 
+
+- An additional districting grouping ('DISTSUPER' and 'DSUP_NAME') was added to the TAZ shapefile using definitions from UDOT’s recent work on the long distance model. 
+- The toll zone shapefile was also modified to correct a few instances where the HOT lane links were crossing into the opposing direction HOT zone.
+- The '1_Inputs\\0_GlobalData\\UbanizationMap' folder name was changed to '1_Inputs\\0_GlobalData\\ArcMap_mxd. The '_Urbanization_ArcMap103.mxd' file was saved as ArcMap version 10.3 and the ArcMap version was added to the filename
+- The TDM script '_CreateOutputFolders.s' in '3_CreateScenarios' folder was modified to account for the changed folder and file names for the urbanization.mxd.
