@@ -58,7 +58,6 @@ fig2.update_traces(textposition='inside', textangle = 0, textfont=dict(color='wh
 
 ## Population by Age Group and County
 
-::: {.content-visible when-format="html"}
 The 2020 model base year population by county and Age Group was compared to the 2020 GPI county-level population by Age Group, shown in the following charts. The model’s estimate of the population in each Age Group mirrors the GPI county-level projections.
 
 ```{python}
@@ -74,7 +73,6 @@ co_age_sum['Percent_65Plus'] = co_age_sum['TotPop_65Plus'] / co_age_sum['Total']
 co_age_sum = co_age_sum.fillna(0)
 ```
 
-
 ```{python}
 county_map = {3: 'Box Elder', 11: 'Davis', 35: 'Salt Lake', 49: 'Utah', 57: 'Weber'}
 def get_county_name(county_id):
@@ -83,7 +81,6 @@ co_age_sum['Region'] = co_age_sum['CountyID'].apply(get_county_name)
 
 co_age_long = co_age_sum.melt(id_vars=['Region'], value_vars=['Percent_0-17','Percent_18-64','Percent_65Plus'], var_name='AgeGroup', value_name='Percent')
 ```
-
 
 ```{python}
 import numpy as np
@@ -97,7 +94,6 @@ co_age_long['AgeGroup'] = np.select(conditions,values)
 co_age_long['Year'] = 2020
 ```
 
-
 ```{python}
 gpi_age_long_c = gpi_age_long
 gpi_age_long_c['Source'] = 'Observed'
@@ -107,7 +103,6 @@ co_age_long_c['Source'] = 'Modeled'
 life_compare = pd.concat([gpi_age_long_c, co_age_long_c], axis=0)
 life_compare = life_compare[life_compare['Region'].isin(['Utah','Weber','Salt Lake','Davis'])]
 ```
-
 
 ```{python}
 #| include: False
@@ -127,27 +122,17 @@ fig3.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', 
 fig3.update_traces(textposition='inside', textangle = 0, texttemplate='%{text}%', textfont=dict(color='white'))
 ```
 
-
 ```{python}
 #| label: fig-age-comp
 #| fig-cap: "2020 Model vs. 2020 GPI – % Population by Age Group and County."
 #| cap-location: margin
 fig3.show()
 ```
-:::
-
-::: {.content-hidden when-format="html"}
-The 2020 model base year population by county and Age Group was compared to the 2020 GPI county-level population by Age Group, shown in @fig-pdf-age-comp.  The model’s estimate of the population in each Age Group mirrors the GPI county-level projections.
-
-![2020 Model vs. 2020 GPI – % Population by Age Group and County.](_pictures/1-plot3.png){#fig-pdf-age-comp}
-:::
-
 
 ## Population by Life Cycle
 
 The shares of the modeled 2019 base year population by Life Cycle were compared to the 2012 Household Survey at the county level. The model’s estimate of population by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 4% of the observed data.
 
-::: {.content-visible when-format="html"}
 ```{python}
 #| include: False
 hhts = pd.read_csv(r'data/1-hhdisag-autoown/2012_HHSurvey-HHData_2022-09-29.csv')[['record_ID','h_CO_FIPS_v30','h_CO_NAME_v30','weight','hhsize','life_cycle']]
@@ -195,12 +180,10 @@ lf_model_pop = lf_model_groupsum[['Region','LifeCycle','Percent']]
 lf_model_pop['Source'] = 'Modeled'
 ```
 
-
 ```{python}
 #| include: False
 lf_pop_both = pd.concat([lf_control_pop,lf_model_pop],axis=0)
 ```
-
 
 ```{python}
 #| include: False
@@ -224,17 +207,11 @@ fig4.update_traces(textposition='inside', textangle = 0, texttemplate='%{text}%'
 #| cap-location: margin
 fig4.show()
 ```
-:::
-
-::: {.content-hidden when-format="html"}
-![2019 Model vs. 2012 Household Survey – % Population by Life Cycle and County.](_pictures/1-plot4.png){#fig-pdf-lc-pop}
-:::
 
 ## Households by Life Cycle
 
 The shares of the modeled 2019 base year households by Life Cycle were compared to the 2012 Household Survey at the county level. The model’s estimate of households by Life Cycle category seemed reasonable at this level of geography with all modeled comparison points falling within 1.5% of the observed data.
 
-::: {.content-visible when-format="html"}
 ```{python}
 #| include: False
 hhts = pd.read_csv(r'data/1-hhdisag-autoown/2012_HHSurvey-HHData_2022-09-29.csv')[['record_ID','h_CO_FIPS_v30','h_CO_NAME_v30','weight','hhsize','life_cycle']]
@@ -304,11 +281,6 @@ fig5.update_traces(textposition='inside', textangle = 0, texttemplate='%{text}%'
 #| cap-location: margin
 fig5.show()
 ```
-:::
-
-::: {.content-hidden when-format="html"}
-![2019 Model vs. 2012 Household Survey – % Households by Life Cycle and County.](_pictures/1-plot5.png){#fig-pdf-lc-hh}
-:::
 
 ## Household Disaggregation
 
@@ -324,7 +296,6 @@ The shares of the modeled 2015 base year households by Household Size category w
 
 <mark>???Update to use 2019 Model???</mark>>>
 
-::: {.content-visible when-format="html"}
 ```{python}
 import pandas as pd
 hhsizevalid_csv = pd.read_csv('data/1-hhdisag-autoown/HHSizeValidation.csv')
@@ -356,11 +327,6 @@ fig3 = px.bar(hhsizevalid,
 fig3.update_xaxes(title=None, tickangle=0, showticklabels=True, ticks='inside', ticklen=10)
 fig3.show()
 ```
-:::
-
-::: {.content-hidden when-format="html"}
-![2015 Model vs. 2010 Census & 2016 ACS – % Households by Household Size.](_pictures/2-plot7.png){#fig-pdf-hh-modobs height='90%'}
-:::
 
 ### Income
 

@@ -13,8 +13,6 @@ Validation for production ratios looked at three sets of measures: productions-t
 
 The model shows an average 4.01 trips per person which is slightly higher than the 2017 NHTS - Mountain average of 3.54. The model also shows an average 12.4 trips per household which is higher than the 2017 NHTS - Mountain average of 9.1. Utah, including the Wasatch Front, has a significantly higher average household size of 3.09 persons per household when compared to the Mountain Census Division average of 2.58, which accounts for the differences when compared to the 2017 NHTS - Mountain averages. 
 
-
-::: {.content-visible when-format="html"}
 ```{python}
 debug = False
 
@@ -249,7 +247,6 @@ fig3
 #| cap-location: margin
 fig3
 ```
-:::
 
 ## Relative Shares
 

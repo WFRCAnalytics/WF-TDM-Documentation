@@ -334,9 +334,6 @@ The model vs observed details in this section are presented by volume and Vehicl
 - *Model vs Count Segment Volume (2c)*: This is a scatter plot of segment daily volume with the x-axis as the observed volume and the y-axis as the model volume. The red line shows the location of where model and observed volumes are equal. The dashed blue line shows a least-squares linear regression. The further the blue line moved away from the red line, the further the model is from observed.
 - *Segment Percent Error (2d)*: This is a scatter plot showing the amount of error (percent difference) between the observed volume and the model volume. The observed volume is the x-axis and the percent error is the y-axis. The red lines are a bounding box that shows the control target. As volume increases, it is expected that the percent error should decrease.
 
-
-::: {.content-visible when-format="html"}
-
 ```{ojs}
 html`<br/>`
 viewof bCountySelect = Inputs.select(new Map([['Region', 'Region'], ['Box Elder County - WFRC',3], ['Weber County - WFRC',57], ['Davis County',11], ['Salt Lake County',35], ['Utah County',49]]), {value: 'All', label: "Geography:"})
@@ -780,33 +777,11 @@ tbEmptyCell2 = 1
 ```
 
 
-:::
-
-
-::: {.content-hidden when-format="html"}
-
-![Average Daily Comparison by Facility Type by Region.](_pictures/7-plot1.png){#fig-pdf-ave-ft}
-
-
-### Validation Charts
-Write some words here.
-
-![Volume Comparison -- All Vehicles.](_pictures/7-plot2.png){#fig-allvehicles height="60%"}
-
-![Volume Comparison -- Passenger Cars.](_pictures/7-plot3.png){#fig-pc height="60%"}
-
-![Volume Comparison -- Medium Trucks.](_pictures/7-plot4.png){#fig-md-trucks height="60%"}
-
-![Volume Comparison -- Heavy Trucks.](_pictures/7-plot5.png){#fig-hv-trucks height="60%"}
-
-
-:::
-
 ### Map Comparison
 
 The maps in @fig-map shows a comparison of segment level model vs observed volumes by vehicle types. Blue represents model lower than observed and red represent model volume higher than observed.
 
-![Segment-Level Model vs Observed Volume Comparison by Vehicle Type](_pictures/7-plot6.png){#fig-map}
+![Segment-Level Model vs Observed Volume Comparison by Vehicle Type](_pictures/5-assignhwy-map.png){#fig-map}
 
 Looking at the *All Vehicles* map, the model volumes are lower than observed for by more than 15,000 vehicles per day for the east side of I-215 and for I-15 through northern Utah County. Model volumes are higher than observed volumes by more than than 15,000 vehicles for I-15 in southern Salt lake County and for I-15 in Utah County between Springville and Spanish Fork. When looking at these areas by vehicle type, the drop in *Cars and Light Trucks* are actual greater since the *Medium Trucks* and *Heavy Trucks* in these areas are greater in the model vs observed. Outside of these areas, the volume differences between model and observed are relatively minor.
 

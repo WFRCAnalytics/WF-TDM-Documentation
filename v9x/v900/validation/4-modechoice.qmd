@@ -867,24 +867,3 @@ html`<br/><br/>`
 The Motorized / Non-motorized grouping of model shares are within 0.1% of the observed data for the daily time period and all trip purposes with non-motorized shares being slightly higher than observed and motorized shares being slightly lower. The model shares for additional combinations of time period and purpose are all within 0.5%.
 
 The Transit Mode group of model shares are also close to observed with all modes for all time periods and trip purposes. At the Daily time period for all purposes, Local Bus has slightly higher share at 1.7% compared to observed than other modes, such as CRT that is 0.5% lower than observed and LRT that is 0.3% lower than observed. Nearly all the model shares for Transit Mode combinations of time period and are within 5% of observed. The one exception is Home-Based Other which in the peak period for Local Bus is 5.8% higher than observed. Transit Access Mode model shares are all within 5% of observed shares.
-
-
-::: {.content-hidden when-format="html"}
-## Boardings
-@fig-pdf-boardings show validation charts to understand the transit boardings, linked trips, transfer ratios, and mode surveyed between modeled and observed. 
-
-![Mode Choice boardings.](_pictures/6-plot1.png){#fig-pdf-boardings}
-
-:::
-
-::: {.content-hidden when-format="html"}
-## Mode Share
-@fig-pdf-trips-dy, @fig-pdf-trips-pk, and @fig-pdf-trips-ok show validation charts by modes, periods, and purposes.
-
-![Total Trips - Daily.](_pictures/6-plot2.png){#fig-pdf-trips-dy}
-
-![Total Trips - Daily.](_pictures/6-plot2.png){#fig-pdf-trips-pk}
-
-![Total Trips - Daily.](_pictures/6-plot4.png){#fig-pdf-trips-ok}
-
-:::
