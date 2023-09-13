@@ -58,7 +58,6 @@ if not os.path.isfile('data/tazmedincome.geojson'):
   gdfTazMedIncome.to_file('data/tazmedincome.geojson', driver='GeoJSON')
 ```
 
-::: {.content-visible when-format="html"}
 ```{ojs}
 //|echo: false
 // setup mapping and layers
@@ -73,7 +72,6 @@ geojsonSDst      = FileAttachment("data/sdst.geojson"     ).json()
 geojsonMDst      = FileAttachment("data/mdst.geojson"     ).json()
 geojsonLDst      = FileAttachment("data/ldst.geojson"     ).json()
 ```
-:::
 
 ## Global Data
 This section includes the changes made within the `0_GlobalData` subfolder.
@@ -163,17 +161,6 @@ dfBusSpeedRatios_Previous = pd.DataFrame([
 dfBusSpeedRatios_Previous.to_csv(r'data\bus_speed_ratios_previous.csv', index=False)
 ```
 
-::: {.content-hidden when-format="html"}
-The bus speed ratios in the model were removed from the model scripts, as detailed in the *General Parameters* section, and were moved into a new file, `bus_speed_ratios.csv`.
-
-In addtion to moving the location of the bus speed ratios, the ratios were further categorized and refined using real world bus speed data. Previously in version 8.3.2, bus speed ratios differed by functional type. A total of only 6 bus speed ratios existed, as shown in @fig-pdf-old-bus-speeds-plot. Now however in version 9, bus speed ratios differ by functional type, area type, and time of day. A total of 75 bus speed ratios now exist, as shown in @fig-pdf-bus-speeds-plot. The observed data used to develop the new bus speed ratios is the 2019 General Transit Feed Specification (GTFS) data, which includes schedules time and stop locations for all bus routes.
-
-![Bus Speeds Plot - Version 8.3.2](_pictures/old_bus_speeds.png){#fig-pdf-old-bus-speeds-plot width=80%}
-
-![Bus Speeds Plot - Version 9.0.0.](_pictures/pdf-bus-speeds-plot.png){#fig-pdf-bus-speeds-plot width=80%}
-:::
-
-::: {.content-visible when-format="html"}
 The bus speed ratios in the model were removed from the model scripts, as detailed in the *General Parameters* section, and were moved into a new file, `bus_speed_ratios.csv`.
 
 In addtion to moving the location of the bus speed ratios, the ratios were further categorized and refined using real world bus speed data as shown in @fig-bus-speed-ratios. Previously in version 8.3.2, bus speed ratios differed by functional type. A total of only 6 bus speed ratios existed. Now however in version 9, bus speed ratios differ by functional type, area type, and time of day. A total of 75 bus speed ratios now exist The observed data used to develop the new bus speed ratios is the 2019 General Transit Feed Specification (GTFS) data, which includes schedules time and stop locations for all bus routes.
@@ -367,8 +354,6 @@ Plot.plot({
 
 :::
 
-:::
-
 ### Assignment
 As described in the *General Parameters* section, diurnal and production/attraction factors were moved out of the `0_GeneralParameters.block` file to an input file. The factors are now found in the `Time Of Day Factors.csv` file.
 
@@ -492,89 +477,6 @@ Markdown(tabulate(table,
 ```
 :::
 
-::: {.content-hidden when-format="html"}
-The maps in @fig-taz-compare-weber-pdf, @fig-taz-compare-davis-pdf, @fig-taz-compare-sl-pdf, and @fig-taz-compare-utah-pdf show the difference in version 9 and version 8.3.2 TAZs.
-
-```{python}
-import matplotlib.pyplot as plt
-import geopandas as gpd
-# Define a function to generate CO_FIPS attribute based on CO_TAZID
-def assign_fips(co_tazid):
-    co_tazid_str = str(co_tazid)
-    if co_tazid_str.startswith('30'):
-        return '3'
-    elif co_tazid_str.startswith('11'):
-        return '11'
-    elif co_tazid_str.startswith('35'):
-        return '35'
-    elif co_tazid_str.startswith('57'):
-        return '57'
-    elif co_tazid_str.startswith('49'):
-        return '49'
-    else:
-        return None  # Handle other cases if needed
-
-def plot_geo_data_by_fips(data_taz_new, data_taz_old, co_fips_value, line_color_new, line_color_old, line_width):    
-    # Create the figure and axes
-    fig, ax = plt.subplots(figsize=(15, 15))
-    
-    # Filter GeoDataFrames based on CO_FIPS value
-    data_taz_new_filtered = data_taz_new.loc[data_taz_new['CO_FIPS'] == co_fips_value]
-    data_taz_old_filtered = data_taz_old.loc[data_taz_old['CO_FIPS'] == co_fips_value]
-    
-    # Plot the filtered GeoDataFrames with different line colors and line width
-    data_taz_new_filtered.plot(ax=ax, facecolor='none', edgecolor=line_color_new, linewidth=line_width)
-    data_taz_old_filtered.plot(ax=ax, facecolor='none', edgecolor=line_color_old, linewidth=line_width)
-    
-    legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1])
-    legend_elements = [
-        plt.Line2D([0], [0], color=line_color_new, linewidth=line_width, label='v9.0.0'),
-        plt.Line2D([0], [0], color=line_color_old, linewidth=line_width, label='v8.3.2')
-    ]
-    legend_ax.legend(handles=legend_elements, loc='center')
-    legend_ax.axis('off')
-    
-    # Display the plot
-    plt.savefig("".join(['_pictures/pdf-taz-',co_fips_value]), bbox_inches='tight')
-    #plt.show()
-```
-
-```{python}
-import geopandas as gpd
-import matplotlib.pyplot as plt
-
-# Read the GeoJSON files
-data_taz_new = gpd.read_file(r'data\tazNew.geojson')
-data_taz_old = gpd.read_file(r'data\tazOld.geojson')
-
-# Apply the function to create the CO_FIPS attribute
-data_taz_new['CO_FIPS'] = data_taz_new['CO_TAZID'].apply(assign_fips)
-data_taz_old['CO_FIPS'] = data_taz_old['CO_TAZID'].apply(assign_fips)
-
-# Set the line colors and line width
-line_color_new = '#0B2842'
-line_color_old = '#789d4b'
-line_width = 0.5
-```
-
-```{python}
-#plot_geo_data_by_fips(data_taz_new, data_taz_old, '57', line_color_new, line_color_old, line_width)
-#plot_geo_data_by_fips(data_taz_new, data_taz_old, '11', line_color_new, line_color_old, line_width)
-#plot_geo_data_by_fips(data_taz_new, data_taz_old, '35', line_color_new, line_color_old, line_width)
-#plot_geo_data_by_fips(data_taz_new, data_taz_old, '49', line_color_new, line_color_old, line_width)
-```
-
-![TAZ Geography Comparison Map -- Weber County.](_pictures/pdf-taz-57.png){#fig-taz-compare-weber-pdf width=75%}
-
-![TAZ Geography Comparison Map -- Davix County.](_pictures/pdf-taz-11.png){#fig-taz-compare-davis-pdf width=75%}
-
-![TAZ Geography Comparison Map -- Salt Lake County.](_pictures/pdf-taz-35.png){#fig-taz-compare-sl-pdf width=75%}
-
-![TAZ Geography Comparison Map -- Utah County.](_pictures/pdf-taz-49.png){#fig-taz-compare-utah-pdf width=75%}
-
-:::
-
-::: {.content-visible when-format="html"}
 The interactive map in @fig-taz-compare-map can be explored to visualize the difference in version 9 and version 8 TAZs.
 
 ```{ojs}
@@ -616,7 +518,6 @@ mapTaz = {
     legend.addTo(map);
 }
 ```
-:::
 
 The TAZ numbering was updated to reflect the changes made to the TAZ geometry, as depicted in @tbl-taz-ranges-internal and @tbl-taz-ranges-external. 
 
@@ -668,38 +569,6 @@ Markdown(tabulate(table,
 This section describes the changes made to the attributes of the TAZ shapefile.
 
 #### REMM Space
-
-::: {.content-hidden when-format="html"}
-To indicate which TAZs are included in the Real Estate Market Model (REMM) area, a `REMM` field was added with a value of `1` indicating that it is part of REMM and `0` indicating it is not part of REMM, as shown in @fig-taz-remm-space-pdf.
-
-```{python}
-# Read the GeoJSON files
-import matplotlib.colors as colors
-data_taz_new = gpd.read_file(r'data\tazNew.geojson')
-remm_values = data_taz_new['REMM'].astype(int)
-cmap = 'Accent_r'
-
-#fig, ax = plt.subplots(figsize=(10, 10))
-#data_taz_new.plot(column=remm_values, cmap=cmap, linewidth=0.5, ax=ax)
-
-#legend_ax = fig.add_axes([0.85, 0.5, 0.1, 0.1]) 
-#legend_elements = [
-#    plt.Line2D([0], [0], color='green', linewidth=line_width, label='REMM Space'),
-#    plt.Line2D([0], [0], color='gray', linewidth=line_width, label='Non-REMM Space')
-#]
-#legend_ax.legend(handles=legend_elements, loc='center')
-#legend_ax.axis('off')
-
-# Display the plot
-#plt.show()
-#plt.savefig('_pictures/pdf-remm', bbox_inches='tight')
-```
-
-![TAZ REMM Space.](_pictures/pdf-remm.png){#fig-taz-remm-space-pdf width=76%}
-
-:::
-
-::: {.content-visible when-format="html"}
 To indicate which TAZs are included in the Real Estate Market Model (REMM) space, the `REMM` field was added with a value of `1` indicating that it is part of REMM and `0` indicating it is not part of REMM, as shown in @fig-taz-remm-space.
 
 ```{ojs}
@@ -747,7 +616,6 @@ mapTazRemmSpace = {
   legend.addTo(map);
 }
 ```
-:::
 
 #### Parking Costs
 The permanent and temporary cost fields (`PRKCSTPERM` and `PRKCSTTEMP`) were updated to reflect current conditions and are in 2019 dollars. Costs for parking in the downtown areas of Salt Lake City, Ogden, and Provo and around the universities were based on 2022 parking rates obtained from Salt Lake City, web searches, and field visits. 
@@ -776,11 +644,6 @@ Shapefiles representing the Wasatch Front subarea and the REMM vs. non-REMM area
 Forecasts and control totals were updated based on new census data, updated base year parcel data, and the results of the REMM Model.
 
 ###  Forecasts
-::: {.content-hidden when-format="html"}
-The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9.
-:::
-
-::: {.content-visible when-format="html"}
 The SE forecasts were updated for the WFRC areas. Box Elder updates were taken from the UDOT SE Forecasts from June 8, 2022. The updated SE forecasts can be found using the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map). This map only contains the latest forecast and not any iterative step, such as the SE datasets in the model folder. Click on the *View Advanced Version* link in the header to enable the "Changes" option where you can see the change in forecasts between v8.3.2 and v9. You can explore the data in the embedded web application in @fig-household-job-forecast-map
 
 ```{ojs}
@@ -792,31 +655,11 @@ html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-
          <iframe width="900" height="800" src="https://wfrc.org/household-job-forecast-map/" title="Household and Job Forecast"></iframe>
      </div>`
 ```
-:::
 
 ### Control Totals
-::: {.content-hidden when-format="html"}
-Updates to the county control totals were made based on projections from the Gardner Policy Institute. The v8.3.2 model used a base year of 2015 for controls totals. v9 uses a base year of 2019. @fig-pdf-control-wf, @fig-pdf-control-weber, @fig-pdf-control-davis, @fig-pdf-control-sl, and @fig-pdf-control-utah show trends for control totals for residential and employment categories as well as and their control ratios. Various projections and historic data are plotted on the charts including household population, employment, average household size, jobs per houshold, worker population, etc.
-
-As shown in @fig-pdf-control-utah, Utah County showed the largest decrease in control totals in the v9 model as compared to v8.3.2 with 107,937 lower population, 21,799 fewer households, and 47,977 fewer jobs (all employment). The largest job decreases are in office employment (14,923), government/education employment (16,982), and other employment (18,194). Utah County also has a significant drop in household size relative to other counties.
-
-![Control Total: Wasatch Front](_pictures/pdf-control-wf.png){#fig-pdf-control-wf}
-
-![Control Total: Weber County](_pictures/pdf-control-weber.png){#fig-pdf-control-weber}
-
-![Control Total: Davis County](_pictures/pdf-control-davis.png){#fig-pdf-control-davis}
-
-![Control Total: Salt Lake County](_pictures/pdf-control-sl.png){#fig-pdf-control-sl}
-
-![Control Total: Utah County](_pictures/pdf-control-utah.png){#fig-pdf-control-utah}
-
-:::
-
-::: {.content-visible when-format="html"}
 Updates to the county control totals were made based on projections from the Gardner Policy Institute. The v8.3.2 model used a base year of 2015 for controls totals. v9 uses a base year of 2019.
 
 @fig-county-control-total-differences-by-category shows the 2050 differences in county control totals for any given socioeconomic category. 
-
 
 ```{python}
 #| echo: false
@@ -1168,14 +1011,8 @@ Plot.plot({
   ]]
 })
 ```
-:::
 
 ### School Enrollment
-::: {.content-hidden when-format="html"}
-The Kindergarten through 12th grade (K-12) enrollment data was updated using the 2019 statewide school enrollment database. This was done at the state-wide level and then applied to the Wasatch Front. 
-:::
-
-::: {.content-visible when-format="html"}
 The Kindergarten through 12th grade (K-12) enrollment data was updated using the 2019 statewide school enrollment database. This was done at the state-wide level and then applied to the Wasatch Front. Additionally, a point shapefile of the state-wide dataset is included with the TDM, as shown in @fig-school-locations.
 ```{ojs}
 //|label: fig-school-locations
@@ -1283,7 +1120,6 @@ mapK12Enroll = {
   
 }
 ```
-:::
 
 ### Median Income
 
@@ -1396,15 +1232,6 @@ if not os.path.isfile('data/externalnew.geojson'):
 ```
 
 ## Externals
-
-::: {.content-hidden when-format="html"}
-External locations and forecasts were updated. The locations of the former and updated location of externals is shown in @fig-externals-pdf. Forecasts through 2060 were generated for the updated external locations using historical data through 2019.
-
-![v9 External Description.](_pictures/externals.png){#fig-externals-pdf width=76%}
-
-:::
-
-::: {.content-visible when-format="html"}
 External locations and forecasts were updated. The locations of the former and updated location of externals is shown in @fig-externals. Forecasts through 2060 were generated for the updated external locations using historical data through 2019.
 
 ```{ojs}
@@ -1536,15 +1363,8 @@ mapExternals = {
     legend.addTo(map);  
 }
 ```
-:::
 
 The updated numbering scheme can be found in @tbl-externals.
-
-<!--![v9 External Description.](_pictures/ex_descrip1.png){#fig-descrip1}
-
-![v8.3.2 External Description.](_pictures/ex_descrip2.png){#fig-descrip2}
-
-![v9 & v8.3.2 External Description.](_pictures/ex_descrip3.png){#fig-descrip3 width='50%'}-->
 
 ```{python}
 #| label: tbl-externals
