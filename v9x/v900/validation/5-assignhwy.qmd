@@ -26,7 +26,7 @@ import numpy as np
 ```
 
 ```{python}
-allveh_valid = pd.read_csv("data/5-assignhwy/wf-validation-06-30-2023-AllVeh.csv")
+allveh_valid = pd.read_csv("data/5-assignhwy/wf-validation-09-18-2023-AllVeh.csv")
 
 allveh = allveh_valid[['SEGID','CO_FIPS','DISTANCE','Valid_FC',
                        'Mod_AWDT', 'Obs_AWDT', 
@@ -318,7 +318,7 @@ tbEmptyCell1 = 1
 ```
 
 
-At the region level model volume is 0.2% lower than observed volume. The four more urban counties (Weber, Davis, Salt Lake, and Davis) were all within 5% of observed volumes with Salt Lake County being the closest. Weber and Davis were slightly lower and Utah County was slightly higher. Box Elder County is more rural than the other counties. Box Elder model volumes are about 10% lower than observed. Time did not allow for further calibration of the volumes in Box Elder area to account for the larger differences.
+At the region level model volume is 0.4% lower than observed volume. The four more urban counties (Weber, Davis, Salt Lake, and Davis) were all within 5% of observed volumes with Salt Lake County being the closest. Weber and Davis were slightly lower and Utah County was slightly higher. Box Elder County is more rural than the other counties. Box Elder model volumes are about 10% lower than observed. Time did not allow for further calibration of the volumes in Box Elder area to account for the larger differences.
 
 One important observation at the *Collector* and *All Vehicles* level is that Utah County shows a much higher difference than the other counties. Upon further investigation of observed *Collector* volumes in Utah County, many roadway segments had very low volumes compared to what was expected. Utah County is one of the highest growth areas in the region. For this reason, we expect that the observed count data may be underrepresenting actual volumes. We also anticipate observed volumes in Utah County to improve in the near-term. Within the last several years, a large investment in continuous count station in Utah County has been made. The new counters will add additional information to generate observed volumes for all roadway segments.
 
