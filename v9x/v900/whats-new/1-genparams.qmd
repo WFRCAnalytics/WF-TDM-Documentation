@@ -198,8 +198,6 @@ display(table.style.hide_index())
 ### K-Factors
 K-factor variables were expanded by trip purpose to allow for more flexibility in calibrating the distribution model. However, no K-factors were needed for calibration. All K-factors were reset to 1.
 
-\newpage
-
 ::: {.grid}
 ::: {.g-col-2}
 :::

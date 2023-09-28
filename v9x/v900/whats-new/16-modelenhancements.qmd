@@ -1,0 +1,223 @@
+---
+title: Model Enhancements
+warning: false
+message: false
+echo: false
+---
+
+## Distribution
+
+### Distribution Convergence
+
+The convergence criteria in the `1_Distribution.s` script was updated.
+
+**Trip Table Convergence**
+
+For trip table convergence, the percent change threshold was tightened from 10% to 7.5%. For each iteration, only cells where the trips in the current iterations are greater than zero are considered. Also, cells with trips greater than zero are counted as significant trips and form the denominator in the percent converged calculation. A cell in the trip matrix is now considered converged if either of the following conditions is met:
+
+ - The percent change from previous iteration is within 7.5%.
+ - Trips from the current iteration are less than 1, except when trips from the current iteration are greater than zero and the trips from the previous iteration equals zero.
+
+**Link Convergence**
+
+For link volume convergence, the percent change threshold was loosened from 5% to 7.5%. Centroid connectors were removed from consideration when determining convergence. Only cells where the trips in the current iterations are greater than zero are considered and are counted as significant trips forming the denominator in the percent converged calculation. A link is now considered converged if either of the following conditions is met:
+
+ - The percent change from previous iteration is within 7.5%.
+ - Volume from current iteration equals zero and volume from previous iteration equals zero, except when the volume from the current iteration is greater than zero and the volume from the previous iteration equals zero, or the volume from the current iteration is zero and the volume from the previous iteration is greater than zero.
+
+**Check Criteria**
+
+The requirement for a minimum of 5 iterations was removed from the check convergence criteria. 
+
+**Check Network**
+
+A loaded network file (`@unloadednetprefix@_@n@_convg.net`) was added to `Temp\3_Distribute` folder to track link convergence between the distribution feedback loop iterations. A network is output for each distribution feedback loop iteration after the first iteration. The link attributes include the volume changes from the current and previous iteration for each time period.
+
+### RGAP in Distribution
+
+The `RelGapCriteria` parameter was moved from `block\4pd_mainbody_distribution.block` to `1_Distribution.s` and placed before each assignment call in order to accommodate a stricter RGAP threshold for the evening period. For the evening period, the RGAP parameter value is now divided by 10 increasing the network assignment stability and reducing the RMSE for the evening period.
+
+### Reports
+
+The following reports were added to the scenarios `3_Distribute` output folder to better track convergence in the model:
+
+ - `_Stats - Distrib Assign - @RID@.csv` – Combines the highway assignment convergence reports for each feedback loop iteration, time period, and assignment iteration into one file.
+ - `_Stats - Distrib Loaded Net - @RID@.csv` – Provides summary statistics of the number and percent of converged links in the assigned network as well as the total VMT, VHT, and average speed by major functional class (freeways, arterials, and total).
+ - `_Stats - Distrib Trip Table - @RID@.csv` -- Provides summary statistics of the number and percent of converged trip table cells as well as the total number of trips by purpose for each feedback loop iteration.
+
+## Mode Choice
+
+### Mode Name Change
+
+In version 9, names for the following modes were changed:
+
+ - Mode 5
+    - LONGNAME: from 'Bus Rapid Transit' to 'Core Bus'
+    - NAME: from 'BRT' to 'CoreBus'
+ - Mode 9
+    - LONGNAME: from 'Mode 9 Bus Rapid Transit' to 'Bus Rapid Transit'
+    - NAME: from 'BRT9' to 'BRT'
+
+### Prefixes for Transit Skims
+
+Prefixes to identify transit skim output files have been coded directly into the scripts in version 9. As such, the following parameters were removed from the `0_GeneralParameters.block` file.
+
+ - W_LCL_skims = 'skm_w4' ;walk-to-local skims
+ - D_LCL_skims = 'skm_d4' ;drive-to-local skims
+ - W_BRT_skims = 'skm_w5' ;walk-to-BRT skims
+ - D_BRT_skims = 'skm_d5' ;drive-to-BRT skims
+ - W_EXP_skims = 'skm_w6' ;walk-to-express bus skims
+ - D_EXP_skims = 'skm_d6' ;drive-to-express bus skims
+ - W_LRT_skims = 'skm_w7' ;walk-to-light rail skims
+ - D_LRT_skims = 'skm_d7' ;drive-to-light rail skims
+ - W_CRT_skims = 'skm_w8' ;walk-to-commuter rail skims
+ - D_CRT_skims = 'skm_d8' ;drive-to-commuter rail skims
+ - W_mode9_skims = 'skm_w9'
+ - D_mode9_skims = 'skm_d9'
+
+## Assignment
+
+### Diurnal Factors
+
+Diurnal (time-of-day) factors were updated in version 9 for the internal-external (IX) and external-internal (XI) trip purposes based on 2019 StreetLight origin-destination data. IX and XI diurnal factors in version 8 were inherited from previous model versions which were derived using observed truck count data and an averaged factor was used for IX and XI. A comparison of version 8 and 9 IX and XI diurnal factors can be seen in @tbl-diurnal-fcts.
+
+```{python}
+#| label: tbl-diurnal-fcts
+#| tbl-cap: IX & XI Diurnal Factors
+# Define the data
+import pandas as pd
+from tabulate import tabulate
+from IPython.display import Markdown
+import numpy as np
+data = [
+    ['IX_AM_PCT',	0.1909,	0.1786,	0.0123],
+    ['IX_MD_PCT',	0.3136,	0.3291,	-0.0155],
+    ['IX_PM_PCT',	0.2567,	0.2604,	-0.0037],
+    ['IX_EV_PCT',	0.2388,	0.2319,	0.0069],
+    ['XI_AM_PCT',	0.1969,	0.1786,	0.0183],
+    ['XI_MD_PCT',	0.3263,	0.3291,	-0.0028],
+    ['XI_PM_PCT',	0.2617,	0.2604,	0.0013],
+    ['XI_EV_PCT',	0.2151,	0.2319,	-0.0168],
+    ['IX_AM_PA',	0.6604,	0.8563,	-0.1959],
+    ['IX_MD_PA',	0.5593,	0.5627,	-0.0034],
+    ['IX_PM_PA',	0.4044,	0.3288,	0.0756],
+    ['IX_EV_PA',	0.3968,	0.3290,	0.0678],
+    ['XI_AM_PA',	0.7709,	0.8563,	-0.0854],
+    ['XI_MD_PA',	0.6087,	0.5627,	0.0460],
+    ['XI_PM_PA',	0.3111,	0.3288,	-0.0177],
+    ['XI_EV_PA',	0.3170,	0.3290,	-0.0120]
+]
+
+# Create a pandas DataFrame
+df = pd.DataFrame(data, columns=['Factor','v9 Value','v8 Value','Change'])
+
+# Convert the DataFrame to a markdown table
+headers = ['Factor','v9 Value','v8 Value','Change']
+Markdown(tabulate(df, headers=headers, tablefmt="pipe", colalign=("left",)*len(headers), showindex=False)) 
+```
+
+Diurnal factors were removed from the `0_GeneralParameters.block` file in version 9 and are now read in via an input file (`1_Inputs\0_GlobalData\5_Assignment\Time Of Day Factors.csv`). A source spreadsheet (`_source - Time Of Day Factors.xlsb`) is also included in the input folder. The new factors file includes factors for additional trip purposes (e.g. home-based college stratified by campus), although the model code has not yet been modified to account for the additional factors. 
+
+A new script (`2_ModelScripts\0_InputProcessing\e_TimeOfDayFactors\1_CalculateTimeOfDayFac.s`) was added to the model stream, which included an update to the “HailMary.s” script. This script reads in the `Time Of Day Factors.csv` file and writes out a text file (`0_InputProcessing\_TimeOfDayFactors.txt`) containing the diurnal factors expressed as parameters for use in the model. Scripts that use diurnal parameters in version 9 were updated to read in the text file containing the diurnal parameters.
+
+### RGAP in Assignment
+
+The "RelGapCriteria” parameter was moved from the `block\4pd_mainbody_managedlanes.block` and `4pd_mainbody_managedlanes_SelectLink.block` files and placed in the `02_Assign_AM_MD_PM_EV.s` and `03_Assign_PM1Hr.s` scripts to accommodate a stricter RGAP threshold for the evening period. For the evening period, the RGAP parameter value is now divided by 10 increasing the network assignment stability and reducing the RMSE for the evening period.
+
+### Assigned Network
+
+Medium and heavy truck speed and time and buffer time index (BTI) calculations were added to the `04_SummarizeLoadedNetworks.s` script (calculations were previously in the `5_AssignHwy\07_PerformFinalNetSkim.s` script). Weighted average daily summaries were also added. The following fields were added to the assigned output network:
+
+ - Weighted average daily values for:
+    - Ramp Penalties (DY_RAMPPEN)
+    - Buffer Time Index (DY_BTI_TME)
+ - Medium Truck Speed
+    - FF_TKSPD_M
+    - AM_TKSPD_M
+    - MD_TKSPD_M
+    - PM_TKSPD_M
+    - EV_TKSPD_M
+    - DY_TKSPD_M
+ - Medium Truck Time
+    - FF_TKTME_M
+    - AM_TKTME_M
+    - MD_TKTME_M
+    - PM_TKTME_M
+    - EV_TKTME_M
+    - DY_TKTME_M
+ - Heavy Truck Speed
+    - FF_TKSPD_H
+    - AM_TKSPD_H
+    - MD_TKSPD_H
+    - PM_TKSPD_H
+    - EV_TKSPD_H
+    - DY_TKSPD_H
+ - Heavy Truck Time
+    - FF_TKTME_H
+    - AM_TKTME_H
+    - MD_TKTME_H
+    - PM_TKTME_H
+    - EV_TKTME_H
+    - DY_TKTME_H
+
+The following fields were removed from the assigned output network:
+
+ - lw_Spd_Auto_1
+ - lw_TrkSpd_MD_1
+ - lw_TrkSpd_HV_1
+ - lw_Time_Auto_1
+ - lw_TrkTime_MD_1
+ - lw_TrkTime_HV_1
+
+### Final Skims
+
+The `5_AssignHwy\07_PerformFinalNetSkim.s` script was updated in version 9 to include ramp penalty information for general purpose (GP), managed lane (ML), medium truck (MD), and heavy truck (HV) for each time period. The version 9 script also produces a daily skim matrix with the same attributes as the period skim matrices.
+
+### Reports
+
+The following report was added to the scenarios `5_AssignHwy\0_ConvergeReports` output folder to better track convergence in the model:
+
+ - `_Stats - Final Assign - @RID@.csv` – Combines the highway assignment convergence reports for each time period and assignment iteration into one file.
+
+## Miscellaneous Updates
+
+The following changes were also made to the model in version 9:
+
+ - The following parameters were removed from the `0_GeneralParameters.block` file in version 9 because they were no longer being used in the model. These are in addition to the other parameter changes identified in other sections of this report.
+    - County Identification Parameters
+        - CountyRange = ‘1-5’
+        - CountyName1 = ‘Weber’
+        - CountyName2 = ‘Davis’
+        - CountyName3 = ‘SaltLake’
+        - CountyName4 = ‘Utah’
+        - CountyName5 = ‘BoxElder’
+        - CO_Name1 = ‘WE’
+        - CO_Name2 = ‘DA’
+        - CO_Name3 = ‘SL’
+        - CO_Name4 = ‘UT’
+        - CO_Name5 = ‘BE’
+    - Air Quality Conformity Report Parameters
+        - RE_ID = 0 ;Entire region
+        - WE_ID = 1 ;Weber
+        - DA_ID = 2 ;Davis
+        - SL_ID = 3 ;Salt Lake
+        - UT_ID = 4 ;Utah
+        - BE_ID = 5 ;BoxElder
+        - OC_ID = 55980 ;Ogden
+        - SC_ID = 67000 ;Salt Lake City
+        - PC_ID = 62470 ;Provo
+    - Assignment Type Flag
+        - AssignType = ‘managed’
+ - The folder setup routine was integrated into the `HailMary.s` script to run automatically. It is no longer necessary to copy empty folders or run the `_CreateOutputFolders.s` prior to running the model.
+ - The `3_Distribute\1_Distribution.s` script was updated so that initializing the summary statistics variables that will be printed to the log file is no longer needed and the section to initialize these variables was removed. In addition, the trip table and link convergence reports in the log file were updated based on information generated in the new summary statistics reports. 
+ - The `04_SummarizeLoadedNetworks.s` script was modified to point the geometry input reference to the input processing output folder instead of the highway inputs folder.
+ - The `PrintProgress` code block found in various scripts throughout the model was updated to account for multithread processing. This code block provides percent complete progress updates for specific, matrix-based Voyager modules.
+
+### Bug Fixes
+
+ - A bug in the Connected and Autonomous Vehicle (CAV) calculation was fixed where the column index needed to be incremented by 1 to link up with lookup tables.
+ - A bug was fixed in the portion of the “04_SummarizeLoadedNetworks.s” script that consolidates the select link trip tables. The total trips were being summarized into a matrix that was not being assigned to the output matrix. The correct working matrices have been updated with the correct index for the output file.
+
+
+
+

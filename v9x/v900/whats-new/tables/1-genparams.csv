@@ -1,34 +1,35 @@
 Table,Section,SubHeader,Parameter,v9Parameter,v9Value,v8Parameter,v8Value,%Change,Notes,TableNotes
+UsedZones,GP-ZonalParams,,UsedZones,,3629,,2881,,Highest TAZ number used by model,
 TAZ,GP-ZonalParams,,UsedZones,,3629,,2881,,Highest TAZ number used by model,
 TAZ,GP-ZonalParams,,BoxElderRange,,1-153,,1-140,,Box Elder County Range,
 TAZ,GP-ZonalParams,,WeberRange,,154-581,,141-423,,Weber County Range,
 TAZ,GP-ZonalParams,,DavisRange,,582-905,,424-654,,Davis County Range,
 TAZ,GP-ZonalParams,,SLRange,,906-2216,,655-1788,,Salt Lake County Range,
 TAZ,GP-ZonalParams,,UtahRange,,2217-3546,,1789-2881,,Utah County Range,
-TAZ,GP-ZonalParams,,Dummyzones,,3547-3600,,2882-3400,,Placeholder for future TAZ splits,
+TAZ,GP-ZonalParams,,Dummyzones,,3547-3600,,2882-3400 (note these are outside of UsedZones),,Placeholder for future TAZ splits,
 TAZ,GP-ZonalParams,,Externalzones,,3601-3629,,"136-140, 421-423, 1782-1788, 2874-2881",,External zones,
 TAZ,GP-ZonalParams,,NorthBC,,3604-3606,,"138, 139, 140",,North Brigham City external zones,
 HighwayNodes,GP-ZonalParams,,HwyNodes,,10000-99999,,3401-999999,,Highway and transit node range,
 CollegeZones1,GP-ZonalParams,WFRC Colleges,Ensign (was LDSBC),,1029,,950,,Ensign College,
 CollegeZones1,GP-ZonalParams,,Westmin,,1263,,1150,,Westminster College,
 CollegeZones1,GP-ZonalParams,,UOFU_Main,,1051,,1075,,University of Utah - Main,
-CollegeZones1,GP-ZonalParams,,UOFU_Med,,1007,,1076,,University of Utah - Medical (removed),
+CollegeZones1,GP-ZonalParams,,UOFU_Med,,(removed),,1076,,University of Utah - Medical ,
 CollegeZones1,GP-ZonalParams,,WSU_Main (was WSU_OGDEN),,437,,383,,Weber State University - Main,
 CollegeZones1,GP-ZonalParams,,WSU_Davis,,693,,525,,Weber State University - Davis,
-CollegeZones1,GP-ZonalParams,,WSU_West,,521,,290,,Weber State University - West (removed),
+CollegeZones1,GP-ZonalParams,,WSU_West,,(removed),,290,,Weber State University - West ,
 CollegeZones1,GP-ZonalParams,,SLCC_Main (was SLCC_TL),,1580,,897,,Salt Lake Community College - Main,
 CollegeZones1,GP-ZonalParams,,SLCC_SC,,1231,,1126,,Salt Lake Community College - South City,
 CollegeZones1,GP-ZonalParams,,SLCC_JD,,1776,,1493,,Salt Lake Community College - Jordan,
-CollegeZones1,GP-ZonalParams,,SLCC_Mead,,,,1206,,Salt Lake Community College - Meadbrook (removed),
+CollegeZones1,GP-ZonalParams,,SLCC_Mead,,(removed),,1206,,Salt Lake Community College - Meadbrook ,
 CollegeZones1,GP-ZonalParams,,SLCC_ML,,1886,,1516,,Salt Lake Community College - Miller,
-CollegeZones1,GP-ZonalParams,,SLCC_LB,,1085,,989,,Salt Lake Community College - Library (removed),
-CollegeZones1,GP-ZonalParams,,SLCC_HL,,1525,,1294,,Salt Lake Community College - Highland (removed),
-CollegeZones1,GP-ZonalParams,,SLCC_Airp,,979,,746,,Salt Lake Community College - Airport (removed),
-CollegeZones1,GP-ZonalParams,,SLCC_West,,959,,745,,Salt Lake Community College - Westpointe (removed),
-CollegeZones1,GP-ZonalParams,,SLCC_HM,,2031,,1607,,Salt Lake Community College - Herriman (removed),
+CollegeZones1,GP-ZonalParams,,SLCC_LB,,(removed),,989,,Salt Lake Community College - Library ,
+CollegeZones1,GP-ZonalParams,,SLCC_HL,,(removed),,1294,,Salt Lake Community College - Highland ,
+CollegeZones1,GP-ZonalParams,,SLCC_Airp,,(removed),,746,,Salt Lake Community College - Airport ,
+CollegeZones1,GP-ZonalParams,,SLCC_West,,(removed),,745,,Salt Lake Community College - Westpointe ,
+CollegeZones1,GP-ZonalParams,,SLCC_HM,,(removed),,1607,,Salt Lake Community College - Herriman ,
 CollegeZones1,GP-ZonalParams,MAG Colleges,BYU,,2939,,2384,,Brigham Young University - Main,
 CollegeZones1,GP-ZonalParams,,UVU_Main,,2848,,2326,,Utah Valley University - Main,
-CollegeZones1,GP-ZonalParams,,UVU_Geneva,,2882,,2280,,Utah Valley University - Geneva (removed),
+CollegeZones1,GP-ZonalParams,,UVU_Geneva,,(removed),,2280,,Utah Valley University - Geneva,
 CollegeZones1,GP-ZonalParams,,UVU_Lehi (was UVU_THANKP),,2606,,2099,,Utah Valley University - Lehi,
 CollegeZones1,GP-ZonalParams,,UVU_Vine,,2809,,2259,,Utah Valley University - Vineyard,
 CollegeZones1,GP-ZonalParams,,UVU_Payson,,3336,,2690,,Utah Valley University - Payson,
@@ -85,10 +86,6 @@ VOT1,GP-DistMCAssign,,,VOT_MD,50,VOT_MD,40,,medium truck,cent/mile
 VOT1,GP-DistMCAssign,,,VOT_HV,63,VOT_HV,50,,heavy truck,cent/mile
 VOT1,GP-DistMCAssign,,,VOT_Toll,63,VOT_Toll,50,,all vehicles on tollway,cent/mile
 VOT1,GP-DistMCAssign,,,VOT_HOT_DA,63,VOT_HOT_DA,50,,drive alone on HOT,cent/mile
-VOT1,GP-DistMCAssign,,,VOT_Auto_Wrk_Lo,9,,,,work trips - low income (added),cent/mile
-VOT1,GP-DistMCAssign,,,VOT_Auto_Wrk_Hi,24,,,,work trips - high income (added),cent/mile
-VOT1,GP-DistMCAssign,,,VOT_Auto_Per_Lo,7,,,,non-work trips - loc income (added),cent/mile
-VOT1,GP-DistMCAssign,,,VOT_Auto_Per_Hi,19,,,,non-work trips - high income (added),cent/mile
 VOT2,GP-DistMCAssign,,,RAIL2COR_MULTIPLIER,0.33,RAIL2BRT_MULTIPLIER,0.4,,factor to set Core Route constant relative to LRT constant,
 AutoOperatingCosts,GP-DistMCAssign,,AOC_Auto,,21.7,,18.3,,auto,updated based on 2019 fuel cost & economy and vehicle maintenance; cent/mile
 AutoOperatingCosts,GP-DistMCAssign,,AOC_LT,,27.3,,24.6,,light truck,updated based on 2019 fuel cost & economy and vehicle maintenance; cent/mile

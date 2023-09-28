@@ -59,6 +59,16 @@ website:
         #- text: "**Downloads**"
         #  href: v9x/v900/downloads.qmd
         - "---"
+        - section: "<span style=\"color: #3E6682;\">**Chads Whats New Document**</span>"
+          contents:
+            - v9x/v900/whats-new/11-overview.qmd  
+            - v9x/v900/whats-new/12-taz.qmd
+            - v9x/v900/whats-new/13-sedata.qmd
+            - v9x/v900/whats-new/14-networks.qmd
+            - v9x/v900/whats-new/15-baseyear.qmd
+            - v9x/v900/whats-new/16-modelenhancements.qmd
+            - v9x/v900/whats-new/17-modelresults.qmd
+        - "---"
         - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
           contents:
             - v9x/v900/whats-new/1-genparams.qmd  

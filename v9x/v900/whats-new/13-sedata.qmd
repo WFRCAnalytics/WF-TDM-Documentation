@@ -1,0 +1,411 @@
+---
+title: Socioeconomic Data Updates
+warning: false
+message: false
+echo: false
+---
+
+## Control Totals
+
+### Changes to County Socioeconomic Data
+
+The WF TDM version 9's socioeconomic county control totals were updated based on the Gardner Policy Institute (GPI) 2021 release of the state's residential and employment county forecasts. Significant changes were made relative to the 2017 release. A comparison between version 9 and version 8 of the model's socioeconomic control totals can be found in @fig-county-control-trends-by-county-by-category.
+
+```{python}
+#|echo: false
+# model folder
+tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
+tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v9x\v9.0\WF TDM v9.0 - official"
+```
+
+```{python}
+#| echo: false
+import pandas as pd
+import numpy as np
+
+# County Control Totals
+fnConTotOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_WF.csv"
+fnConTotAgeOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_Age.csv"
+fnConTotNew = tdmNew + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
+
+dfConTotOld = pd.read_csv(fnConTotOld)
+dfConTotOld = dfConTotOld.rename(columns={'CoName':'CO_NAME'})
+dfConTotOld['CO_NAME'] = dfConTotOld['CO_NAME'].str.replace(' County','')
+dfConTotOld['ModelVersion'] = 'v8.3.2'
+
+dfConTotAgeOld = pd.read_csv(fnConTotAgeOld)
+dfConTotAgeOld = dfConTotAgeOld[['YEAR','CO_NAME','POP_18_64']]
+dfConTotAgeOld['CO_NAME'] = dfConTotAgeOld['CO_NAME'].apply(lambda x: ' '.join([word.capitalize() for word in x.split()]))
+dfConTotOld = pd.merge(dfConTotOld,dfConTotAgeOld, how = 'left', on = ['CO_NAME','YEAR'])
+dfConTotOld['Job_HH'] = dfConTotOld['ALLEMP'] / dfConTotOld['HH']
+dfConTotOld['WrkPop_Job'] = dfConTotOld['POP_18_64'] / dfConTotOld['ALLEMP']
+
+dfConTotNew = pd.read_csv(fnConTotNew)
+dfConTotNew = dfConTotNew[dfConTotNew['Subarea']=='1 - Wasatch Front'] # only WF area
+dfConTotNew['ModelVersion'] = 'v9.0.0'
+
+dfConTotCo = pd.concat([dfConTotOld,dfConTotNew])
+
+dfConTotWF = pd.read_csv('data/wf-controltotal.csv')
+dfConTotWF['ModelVersion'] = np.where(dfConTotWF['Source'] == ' CT_2022 ', 'v9.0.0','v8.3.2')
+dfConTotWF = dfConTotWF.drop(columns={'Source'})
+dfConTotWF['CO_NAME'] = 'Wasatch Front'
+dfConTotWF['CO_FIPS'] = 00
+
+sum_columns = dfConTotWF.columns[6:32]
+grouped_df = dfConTotWF.groupby(['Subarea', 'CO_FIPS', 'CO_NAME', 'ModelVersion', 'YEAR'])[sum_columns].sum().reset_index()
+ave_hh = dfConTotWF.groupby(['Subarea', 'CO_FIPS', 'CO_NAME', 'ModelVersion', 'YEAR'])['HH_Size'].mean().reset_index()
+grouped_df['Job_HH'] = grouped_df['ALLEMP'] / grouped_df['HH']
+grouped_df['WrkPop_Job'] = grouped_df['POP_18_64'] / grouped_df['ALLEMP']
+grouped_df = grouped_df.drop(columns={'HH_Size'})
+grouped_df = pd.merge(grouped_df,ave_hh, how='left')
+
+dfConTot = pd.concat([dfConTotCo, grouped_df])
+```
+
+```{python}
+dfConTot2 = dfConTot.fillna(0)
+dfConTot2['Retail'] = dfConTot2['RETL'] + dfConTot2['FOOD']
+dfConTot2['Industrial'] = dfConTot2['WSLE'] + dfConTot2['MANU']
+dfConTot2['Other'] = dfConTot2['GVED'] + dfConTot2['HLTH'] + dfConTot2['OFFI'] + dfConTot2['OTHR']
+dfConTot2['Typical'] = dfConTot2['Retail'] + dfConTot2['Industrial'] + dfConTot2['Other']
+
+dfConTot_melt = pd.melt(dfConTot2, id_vars=('CO_NAME','YEAR','ModelVersion'), value_name='ControlTotal', var_name='Category', value_vars=('TOTPOP','GQ_Pop','HH_Pop','HH','HH_Size','POP_00_17','POP_18_64','POP_65P','ALLEMP','RETL','FOOD','MANU','WSLE','OFFI','GVED','HLTH','OTHR','AGRI','MING','CONS','HBJ','Job_HH','WrkPop_Job', 'Typical','Retail','Industrial','Other'))
+
+dfConTot_melt.to_csv('data/controltotal.csv',index=False)
+dfConTot_melt.groupby(['CO_NAME'],as_index=False).agg(COUNT=('YEAR','size')).to_csv('data/counties.csv',index=False)
+
+# creat diff data
+_df = dfConTot_melt[dfConTot_melt['YEAR']==2050]
+_df = _df.pivot_table(index=['CO_NAME','Category'],columns='ModelVersion',values='ControlTotal')
+_df = _df.dropna()
+_df.reset_index(inplace=True)
+_df['Difference'] = _df['v9.0.0'] - _df['v8.3.2']
+_df['DifferencePct'] = _df['Difference'] / _df['v8.3.2']
+
+_df_long = pd.melt(_df,
+                   id_vars =['CO_NAME','Category'],
+                   value_vars = ['Difference','DifferencePct'],
+                   var_name = 'View',
+                   value_name = 'ViewValue')    
+
+#display(_df_long)
+```
+
+```{python}
+#variable for ojs
+ojs_define(diffConTot2050long = _df_long)
+```
+
+
+```{ojs}
+//|echo: false
+
+// read in CSVs
+faControlTotals = FileAttachment("data/controltotal.csv").csv({ typed: true });
+faCounties      = FileAttachment("data/counties.csv"    ).csv({ typed: true });
+
+cats = new Map([//['Total Population'               , 'TOTPOP'    ],
+                //['Group Quarter Population'       , 'GQ_Pop'    ],
+                ['Population'                     , 'HH_Pop'    ],
+                ['Households'                     , 'HH'        ],
+                //['Household Size'                 , 'HH_Size'   ],
+                //['Population 0-17'                , 'POP_00_17' ],
+                //['Population 18-64'               , 'POP_18_64' ],
+                //['Population 65+'                 , 'POP_65P'   ],
+                ['All Employment'                 , 'ALLEMP'    ],
+                ['Retail Employment'              , 'RETL'      ],
+                ['Food Employment'                , 'FOOD'      ],
+                ['Manufacturing Employment'       , 'MANU'      ],
+                ['Wholesale Employment'           , 'WSLE'      ],
+                ['Office Employment'              , 'OFFI'      ],
+                ['Government/Education Employment', 'GVED'      ],
+                ['Health Employment'              , 'HLTH'      ],
+                ['Other Employment'               , 'OTHR'      ],
+                //['Agriculture Employment'         , 'AGRI'      ],
+                //['Mining Employment'              , 'MING'      ],
+                //['Construction Employment'        , 'CONS'      ],
+                ['Home-Based Job Employment'      , 'HBJ'       ]
+                //['Jobs per Household'             , 'Job_HH'    ],
+                //['Working Population per Job'     , 'WrkPop_Job']
+                ])
+```
+
+```{ojs}
+viewof selectCounty = Inputs.select(new Map(['Wasatch Front', 'Weber', 'Davis', 'Salt Lake', 'Utah'].map(county => [county, county])), {value: 'Wasatch Front', label: 'County: '});
+
+// FILTER DATA
+filteredCTPlot = faControlTotals.filter(function(ct) {
+  return selectCounty   == ct.CO_NAME; //&&
+         //selectCategoryPlot == ct.Category;
+});
+maxY1 = Math.max(...filteredCTPlot.map(item => item.ControlTotal));
+
+// FILTER DATA for employment control totals
+filteredCTPlot2 = faControlTotals.filter(function(ct) {
+  return selectCounty   == ct.CO_NAME &&
+         ["Typical", "Retail", "Industrial", "Other"].includes(ct.Category);
+});
+maxY2 = Math.max(...filteredCTPlot2.map(item => item.ControlTotal));
+
+// FILTER DATA for control totals ratios
+filteredCTPlot3 = faControlTotals.filter(function(ct) {
+  return selectCounty   == ct.CO_NAME &&
+         ["HH_Size", "Job_HH", "WrkPop_Job"].includes(ct.Category);
+});
+maxY3 = Math.max(...filteredCTPlot3.map(item => item.ControlTotal));
+```
+
+
+```{ojs}
+// data for the residential control totals
+hhPopData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH_Pop" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+hhPopData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH_Pop" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+hhData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH" == ct.Category && 'v8.3.2' == ct.ModelVersion  && ct.YEAR > 2020;})
+hhData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH" == ct.Category && 'v9.0.0' == ct.ModelVersion;})
+
+// data for the employment control totals
+typicalData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Typical" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+typicalData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Typical" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+retailData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Retail" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+retailData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Retail" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+industrialData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Industrial" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+industrialData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Industrial" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+otherData8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Other" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+otherData9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Other" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+
+// data for control total ratios
+hhsize8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH_Size" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+hhsize9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "HH_Size" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+jobhh8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Job_HH" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+jobhh9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "Job_HH" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+wrkpop8 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "WrkPop_Job" == ct.Category && "v8.3.2" == ct.ModelVersion  && ct.YEAR > 2020;})
+wrkpop9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAME && "WrkPop_Job" == ct.Category && "v9.0.0" == ct.ModelVersion;})
+```
+
+```{ojs}
+//|label: fig-county-control-trends-by-county-by-category
+//|fig-cap: Control Total Trends for Selected County for Selected Category
+//|fig-subcap:
+//|   - "Residential Control Total"
+//|   - "Employment Control Total"
+//|   - "Control Total Ratios"
+//|echo: false
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: {label: 'Year', tickFormat: d => d},
+  y: {label: 'Control Total', domain: [0, maxY1]},
+  marginRight:60,
+  marginLeft: 60,
+  style: {
+    fontSize: 15
+  },
+  marginTop: 60,
+  marginBottom: 60,
+  marks: [
+    Plot.line(
+      hhPopData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e', strokeWidth: 2, strokeDasharray: '5,5'}),
+    Plot.line(
+      hhPopData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 2, text: ['yo momma']}),
+    Plot.text(
+      hhPopData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+    
+    Plot.line(
+      hhData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      hhData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 2}),
+    Plot.text(
+      hhData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+    
+    Plot.frame({strokeOpacity: 0.2}),
+    [
+      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 14})
+  ]]
+})
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: {label: 'Year', tickFormat: d => d},
+  y: {label: 'Control Total', domain: [0, maxY2]},
+  marginRight:80,
+  marginLeft: 60,
+  style: {
+    fontSize: 15
+  },
+  marginTop: 60,
+  marginBottom: 60,
+  marks: [
+    Plot.line(
+      typicalData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF6666', strokeWidth: 2, strokeDasharray: '5,5'}),
+    Plot.line(
+      typicalData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF0000', strokeWidth: 2}),
+    Plot.text(
+      typicalData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      retailData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      retailData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 2}),
+    Plot.text(
+      retailData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      industrialData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#A0A0A0', strokeWidth: 2, strokeDasharray: '5,5'}),
+    Plot.line(
+      industrialData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#606060', strokeWidth: 2}),
+    Plot.text(
+      industrialData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      otherData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      otherData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f',strokeWidth: 2}),
+    Plot.text(
+      otherData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.frame({strokeOpacity: 0.2}),
+    [
+      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 14})
+  ]]
+})
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: {label: 'Year', tickFormat: d => d},
+  y: {label: 'Control Total', domain: [0, maxY3]},
+  marginRight:85,
+  marginLeft: 60,
+  style: {
+    fontSize: 15
+  },
+  marginTop: 60,
+  marginBottom: 60,
+  marks: [
+    Plot.line(
+      hhsize8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e', strokeWidth: 2, strokeDasharray: '5,5'}),
+    Plot.line(
+      hhsize9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 2}),
+    Plot.text(
+      hhsize9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      jobhh8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      jobhh9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 2}),
+    Plot.text(
+      jobhh9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.line(
+      wrkpop8, {x: 'YEAR', y: 'ControlTotal', stroke: '#FFB266',strokeWidth: 2,strokeDasharray: '5,5'}),
+    Plot.line(
+      wrkpop9, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF8000',strokeWidth: 2}),
+    Plot.text(
+      wrkpop9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
+
+    Plot.frame({strokeOpacity: 0.2}),
+    [
+      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 14})
+  ]]
+})
+```
+
+**Household Population**
+
+The 2021 forecasted household population of the combined, 4-county Wasatch Front remained relatively consistent relative to the 2017 projection, with the exception of a slight decrease in forecasted population in the later part of the forecast (-0.7% in 2050). County population, however, is quite different in the 2021 forecast. By 2050:
+
+ - Utah County saw a significant decrease (-8.7%) in household population with approximately 120,000 fewer people. 
+ - Salt Lake county saw a moderate increase (2.7%) and Davis County saw a significant increase (7.4%) in population of approximately 40,000 people in each county.
+ - Weber County showed a modest increase (2.6%) of approximately 9,000 people.
+The forecasted age make-up of each county shifted to older populations in the 2021 projections compared to the 2017 projections. By 2050:
+ - Children aged population (age 0-17) in Salt Lake and Utah counties decreased significantly, with Salt Lake County having 40,000 fewer people and Utah County having 120,000 fewer people.
+ - Adult aged population (age 18-64) increased in Weber County by 11,000, Davis County by 24,000, and Salt Lake County by 47,000, while Utah County decreased by 50,000.
+ - Senior aged population (age 65+) increased in all counites with the most significant increase in Salt Lake County of just less than 28,000.
+ - Overall, the new projection forecasts approximately 113,000 fewer children, 30,000 more adults, and 56,000 more seniors. 
+
+**Households**
+
+The 2021 projections show an initial decrease over the 2017 projections of 43,000 households along the Wasatch Front in 2020, which then transitions to be a net increase of 18,000 households by 2050. Weber, Davis, and Salt Lake counties follow a similar pattern in the 2021 projections where each has a net increase in households between 2035 and 2045 ending with 2,500 more households in Weber County, 15,000 more households in Davis County, and 23,000 more households in Salt Lake County. Utah County shows a further decrease in households beginning in 2030 trending to 23,000 fewer households by 2050.
+
+**Population-Housing Balance**
+
+The initial population/housing balance, as shown by the average household size, was higher in the 2021 projections relative to the 2017 projections, but quickly trends down to where the average household size is similar to the 2050 projections for Weber, Salt Lake, and Davis counites. The trend in the average household size in Utah County is considerably lower. This may be due to the dramatic drop in child-age population in Utah County which tend to live in households with higher household sizes and the increase in senior population which tend to live in households with lower household sizes. 
+
+**Employment**
+
+The 2021 projections show an initial increase over the 2017 projections of 65,000 jobs along the Wasatch Front after a rebound from Covid. The new projections then transition to a slight decrease of 16,000 jobs by 2050. The differences in employment forecasts are most notable between Utah and Salt Lake counties. By 2050, the 2021 projections show an increase of 37,000 jobs (3.1%) in Salt Lake County and a decrease of 50,000 jobs (-8.5%) in Utah County. By 2050, Weber and Davis counites have little change from the previous forecast. The biggest change in employment was in the “other” employment category.
+
+**Employment Ratios**
+
+The 2021 projections showed a slight increase in working population per job in Weber and Davis counties compared to the 2017 projections. The working population per jobs ratio in Salt Lake and Utah counties remained fairly constant. 
+
+**Impact of Control Total Changes on Travel Demand Model Forecasts**
+
+The impact on the travel demand model of the socioeconomic control total changes will be most notable in the future volume forecasts in Utah and Salt Lake counties. Utah County has significantly fewer people and jobs in 2050 which translates to fewer trips and less traffic volume than in the previous model. Similarly, Salt Lake County saw an increase in the forecasted people and jobs which translates to more trips and volume. The impact will be more noticeable in Utah County than in Salt Lake County as the socioeconomic difference represents a much higher percent change of the total socioeconomic data. Also, the shift in jobs between Utah and Salt Lake counties is primarily in the "other" employment category, which averages longer commute distances and may cause the commuting pattern between Utah and Salt Lake counties to be different than in the previous model. 
+
+In addition, because the average household size control total in Utah County is lower in the later years than the previous socioeconomic projection, it will require more housing units to house a comparable amount of people, implying that the new Utah County socioeconomic forecast could exhibit slightly more sprawl and longer trip lengths per capita than the previous model. 
+
+The overall shift to more seniors and less children in the new control totals will have an effect in the future forecasted trip generation. Seniors typically have lower trip rates per household than households with children, with work and school trip purposes being most impacted.
+
+### Changes to Model Control Total Input Files
+
+Many changes were made to the control total source spreadsheet in the `1_Inputs\2_SEData\_ControlTotals` folder, including:
+
+ - The new control total spreadsheet combines several processes that previously were in separate source files or that are needed to create new files required by the models:
+    - County SE control totals
+    - County Age Group control totals
+    - County Work-At-Home control totals
+    - County SE by 3-digit NAICS (needed for freight model)
+    - Separating Weber County data into Wasatch Front and Ogden Valley datasets
+    - Separating Weber, Davis, Salt Lake, and Utah counties into REMM and non-REMM datasets
+ - The order and number of the output variables were changed in the model input files to make them more consistent with how the socioeconomic data is processed in the current travel and land use models.
+ - Historical data going back to 1990 was added. The control total source spreadsheet now contains a nice, consistent database that allows a look back 30 years as well as a look ahead 40+ years.
+    - Note, some of the historical data had to be estimated to fill in data gaps and convert employment from SIC to NAICS for data prior to 2001. 
+ - Functionality was added to visualize and check the data.
+ - The Work-At-Home (WAH) control total calculations now include information to siphon off the home-based jobs (HBJ) from each of the 23 GPI employment categories to become the HBJ category in the travel model. With WF TDM version 9, the process now includes county-specific HBJ rates rather than one set of rates for the whole state. HBJ rates were also updated to represent 2019 data.
+ - Similarly, the Work-At-Home (WAH) control total calculations now include telecommuting information for all travel demand models in the state. The telecommuting rates pivot off of historic data from the 5-year 2019 ACS and the telecommuting forecasting work done for the WF TDM v8.3.2. County-specific telecommuting rates were generated for the following counties: 
+    - Weber
+    - Davis
+    - Salt Lake
+    - Utah
+    - Cache
+    - Washington
+    - Summit
+    - Wasatch
+    - Box Elder
+    - Tooele
+    - Iron
+
+    The remaining rural counties had insufficient data in the ACS to generate unique rates.  These counties were grouped together to generate a composite rate to reduce the sampling margin of error.  
+ - Weber County contains two sets of data: one for all of Weber County, the other that separates the Weber County data for the UDOT planning domain (index=9057) and the Wasatch Front planning domain (index=9157).
+
+In addition, the `ControlTotal_Age.csv` model input file in the `1_Inputs\2_SEData\_ControlTotals` folder was combined with `ControlTotal_SE_WF.csv` file and renamed `ControlTotal_SE_AllCounties.csv`. The `1_DemographicsAnalysis.s` script was updated to read `ControlTotal_SE_AllCounties.csv`.  
+
+## TAZ-Level Forecasts
+
+A new TAZ-level distribution of the updated county socioeconomic control totals was performed for WF TDM version 9. Updates to Weber, Davis, Salt Lake, and Utah counties TAZ-level socioeconomic forecasts were generated by REMM and included the following:
+
+ - Base and future year land use capacities based on updated city/county general plans, zoning, and centers (vision) location details.
+ - Base year residential dwelling units by type (single family, multi-family), household allocation, and population synthesis
+ - Base year commercial building square foot and employment allocation by employment category
+
+A detailed review of the TAZ-level socioeconomic forecasts was performed by an independent consultant. In addition, knowledgeable parties provided feedback for major development areas, including Falcon Hill, Day Break, Olympia Hills, and Point of the Mountain. A high-level review was also performed by local governments.
+Updates to socioeconomic data in Box Elder were provided by UDOT which included similar base year data updates and local review. 
+The updated TAZ socioeconomic forecasts can be visualized with the [Household and Job Forecasts Web App](https://wfrc.org/household-job-forecast-map/). Changes in the forecasts between versions 8 and 9 can be seen by clicking on *View Advanced Version* in the header and then selecting *New vs. Old*. You can explore the data in the embedded web application in @fig-household-job-forecast-map.
+
+```{ojs}
+//|label: fig-household-job-forecast-map
+//|fig-cap: Household and Job Forecast WebApp
+//|echo: false
+
+html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-origin: 0 0;">
+         <iframe width="900" height="800" src="https://wfrc.org/household-job-forecast-map/" title="Household and Job Forecast"></iframe>
+     </div>`
+```
+
+## Base-Year TAZ Age Percent Lookup File
+
+The TAZ-level age percent parameters were updated using 2020 Census block and 2020 ACS block group data. This update was done statewide by UDOT and provided for use in each travel model area in Utah. The Wasatch Front updated parameters are found in the `1_Inputs\0_GlobalData\1_HHDisag_AutoOwn \Lookup - BYTAZAgePct - AllCo.csv` lookup file.
