@@ -58,7 +58,7 @@ The household disaggregation income lookup curves and seed table were re-estimat
 
 The version 9 calibrated curves show a slight shift in the proportion of households toward the highest income groups from the middle two income groups relative to version 8. The lowest income group was very similar between versions 8 and 9. As the model currently groups the top three income groups into the “high income” category, the impact to the model is minimal.
 
-![Comparison of Wasatch Front Income Lookup Curves](_pictures/lookup-curves.png){#fig-lookup}
+![Comparison of Wasatch Front Income Lookup Curves](_pictures/lookup-curves.png){#fig-lookup width=80%}
 
 ### Value of Time
 
@@ -717,9 +717,121 @@ The college student base-year distribution located in `1_Inputs\0_GlobalData\0_T
 
 **Enrollment Forecast**
 
-The future-year college enrollment control totals located in `1_Inputs\0_GlobalData\0_TripTables\TripTableControlTotal.csv` were updated to reflect current USHE and other college enrollment data. Colleges that were “removed” in version 9 had the college enrollment control total set to zero. A comparison of the version 9 and version 8 (specifically, version 8.3.2) college enrollment control totals can be seen in @figure-next-figures.
+The future-year college enrollment control totals located in `1_Inputs\0_GlobalData\0_TripTables\TripTableControlTotal.csv` were updated to reflect current USHE and other college enrollment data. Colleges that were “removed” in version 9 had the college enrollment control total set to zero. A comparison of the version 9 and version 8 (specifically, version 8.3.2) college enrollment control totals can be seen in @fig-college-enrollment.
 
-# PUT ENROLLMENT CHARTS HERE
+```{python}
+import pandas as pd
+df_college_base = pd.read_csv('data/college-enrollment-forecast.csv')
+df_college_long = pd.melt(df_college_base, id_vars=['Version','Year'], var_name='College', value_name = 'Enrollment')
+
+```
+```{python}
+ojs_define(dfcollege = df_college_long)
+```
+
+```{ojs}
+collegeT = transpose(dfcollege)
+
+optionsColleges = 
+[
+  ['LDS Business College', 'LDSBC'],
+  ['Westminster', 'Westmin'],
+  ['UofU Main Campus', 'UofU_Main'],
+  ['UofU Medical', 'UofU_Med'],
+  ['WSU Main Campus', 'WSU_Ogden'],
+  ['WSU Davis', 'WSU_Davis'],
+  ['WSU West Campus', 'WSU_West'],
+  ['SLCC Main Campus', 'SLCC_TL'],
+  ['SLCC South City', 'SLCC_SC'],
+  ['SLCC Jordan', 'SLCC_JD'],
+  ['SLCC Meadowbrook', 'SLCC_Mead'],
+  ['SLCC Miller', 'SLCC_ML'],
+  ['SLCC Library', 'SLCC_LB'],
+  ['SLCC Hiland', 'SLCC_HL'],
+  ['SLCC Airport', 'SLCC_Airp'],
+  ['SLCC Westpoint', 'SLCC_West'],
+  ['SLCC Herriman', 'SLCC_HM'],
+  ['BYU', 'BYU'],
+  ['UVU Main Campus', 'UVU_main'],
+  ['UVU Geneva', 'UVU_Geneva'],
+  ['UVU Lehi', 'UVU_ThankP'],
+  ['UVU Vineyard', 'UVU_VINE'],
+  ['UVU Payson', 'UVU_PAYSON']]
+
+viewof selectCollege = Inputs.select(new Map(optionsColleges), {value: 'LDSBC', label: 'College: '});
+
+// FILTER DATA
+college_v98= collegeT.filter(function(collegeData) {
+  return selectCollege   == collegeData.College
+});
+
+college_v9= collegeT.filter(function(collegeData) {
+  return selectCollege   == collegeData.College &&
+  'v9' == collegeData.Version; 
+});
+
+college_v8= collegeT.filter(function(collegeData) {
+  return selectCollege   == collegeData.College &&
+  'v832' == collegeData.Version; 
+});
+
+maxY1 = Math.max(...college_v98.map(item => item.Enrollment));
+```
+
+```{ojs}
+html`<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version Display</title>
+    <style>
+        .green-text {
+            color: green;
+            font-size: 12px;
+            font-weight: bold;
+            padding-left: 60px;
+        }
+
+        .blue-text {
+            color: #376092;
+            font-size: 12px;
+            font-weight: bold;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <span class="green-text"> —— Version 8</span>
+    <span class="blue-text"> —— Version 9</span>
+</body>
+</html>`
+```
+
+```{ojs}
+//|label: fig-college-enrollment
+//|fig-cap: College Enrollment Forecasts
+//|echo: False
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: { label: 'Year', tickFormat: d => d },
+  y: { label: 'Enrollment', tickFormat: f => f, domain: [0, maxY1] },
+  marginRight: 60,
+  marginLeft: 60,
+  style: {
+    fontSize: 15
+  },
+  marginTop: 10,
+  marginBottom: 60,
+  marks: [
+    Plot.line(
+      college_v9, { x: 'Year', y: 'Enrollment', stroke: "#376092", strokeWidth: 4, color: { legend: 'Version' } }),
+    Plot.line(
+      college_v8, { x: 'Year', y: 'Enrollment', stroke: "#77933c", strokeWidth: 4, color: { legend: 'Version' } }),
+    Plot.frame({ strokeOpacity: 0.2 }),
+  ]
+});
+```
 
 **College Enrollment Factors**
 
@@ -779,21 +891,21 @@ Markdown(tabulate(df, headers=headers, tablefmt="pipe", colalign=("left",)*len(h
 
 ### Trip Generation Rates
 
-Trip generation rates were updated in version 9 as part of the model’s base year calibration. Person-trip production rates (e.g. HBW, HBShp, HBOth, etc.) were increased in the model script by approximately 5% over version 8 rates resulting in a regional increase of both productions and attractions of 5% (see @figxx). County-level adjustments were left the same as the previous model. When combined with the changes in the 2019 socioeconomic data, the total person-trip productions and attractions in individual counites was slightly different with the most notable differences in Weber, Salt Lake, and Utah counties. The county production/attraction balance stayed fairly consistent.
+Trip generation rates were updated in version 9 as part of the model’s base year calibration. Person-trip production rates (e.g. HBW, HBShp, HBOth, etc.) were increased in the model script by approximately 5% over version 8 rates resulting in a regional increase of both productions and attractions of 5% (see @fig-pa-person). County-level adjustments were left the same as the previous model. When combined with the changes in the 2019 socioeconomic data, the total person-trip productions and attractions in individual counites was slightly different with the most notable differences in Weber, Salt Lake, and Utah counties. The county production/attraction balance stayed fairly consistent.
 
-# PUT TRIP GEN CHARTS HERE
+![Person-Trip Productions & Attractions by County](_pictures/person-trip-pa-county.png){#fig-pa-person width=56%}
 
-Short haul tuck calculations were revamped and simplified mirroring changes made to truck trip calculations in USTM. The moving people, goods, and services by light, medium, and heavy truck detailed calculations were collapsed to just light, medium, and heavy categories. (Note, the trip generation script still includes code for the more detailed calculations, however most of this code is not being used.) The new short haul truck trip variables and coefficients were combined based on the original code structure. The short haul truck trip rates were then adjusted by county. Significant changes were made to the county light, medium, and heavy truck adjustment factors resulting in a 34% increase in overall short haul truck productions and attractions. Light trucks accounted for the majority of this change with a regional increase of 50%. Medium trucks saw a regional increase of 29%. Heavy trucks decreased by 1%. In addition to the changes in regional truck trip ends and vehicle classification makeup, significant changes occurred in the county-level distribution of the trip ends with Salt Lake County truck trip ends held constant yielding more than twice the regional change in the other counties (see @figxx). 
+Short haul tuck calculations were revamped and simplified mirroring changes made to truck trip calculations in USTM. The moving people, goods, and services by light, medium, and heavy truck detailed calculations were collapsed to just light, medium, and heavy categories. (Note, the trip generation script still includes code for the more detailed calculations, however most of this code is not being used.) The new short haul truck trip variables and coefficients were combined based on the original code structure. The short haul truck trip rates were then adjusted by county. Significant changes were made to the county light, medium, and heavy truck adjustment factors resulting in a 34% increase in overall short haul truck productions and attractions. Light trucks accounted for the majority of this change with a regional increase of 50%. Medium trucks saw a regional increase of 29%. Heavy trucks decreased by 1%. In addition to the changes in regional truck trip ends and vehicle classification makeup, significant changes occurred in the county-level distribution of the trip ends with Salt Lake County truck trip ends held constant yielding more than twice the regional change in the other counties (see @fig-pa-truck). 
 
-# PUT TRUCK CHARTS HERE
+![Short Haul Truck Productions & Attractions by County](_pictures/short-haul-pa-county.png){#fig-pa-truck width=56%}
 
 The changes to the short haul trip end calculations constitute a new behavioral model.
 
 ### Distribution Friction Factors
 
-The observed time, distance, and generalized cost trip length frequencies and average trip lengths, which serve as the targets for friction factor calibration and validation, were updated in version 9 to reflect the 2019 base year network and refreshed data processing. The updated average trip length frequencies are found in @figxx.
+The observed time, distance, and generalized cost trip length frequencies and average trip lengths, which serve as the targets for friction factor calibration and validation, were updated in version 9 to reflect the 2019 base year network and refreshed data processing. The updated average trip length frequencies are found in @fig-ave-trip-length.
 
-# PUT AVERAGE TRIP LENGTH HERE
+![Observed Average Trip Length](_pictures/ave-trip-length.png){#fig-ave-trip-length width=56%}
 
 Trip distribution friction factors were updated in version 9 as part of the model’s base year calibration. Six new external-truck friction factors were added: IX_LT, IX_MD, IX_HV, XI_LT, XI_MD, and XI_HV. Note however that IX_LT and XI_LT friction factors were set equal to IX and XI, respectively. StreetLight truck origin-destination data was used to help calibrate the internal truck and external friction factors. A comparison of the version 9 and version 8 friction factors is found in @figxx.
 
