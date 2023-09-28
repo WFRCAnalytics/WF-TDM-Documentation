@@ -9,13 +9,16 @@ echo: false
 
 ### Changes to County Socioeconomic Data
 
-The WF TDM version 9's socioeconomic county control totals were updated based on the Gardner Policy Institute (GPI) 2021 release of the state's residential and employment county forecasts. Significant changes were made relative to the 2017 release. A comparison between version 9 and version 8 of the model's socioeconomic control totals can be found in @fig-county-control-trends-by-county-by-category.
+The WF TDM version 9's socioeconomic county control totals were updated based on the Gardner Policy Institute (GPI) 2021 release of the state's residential and employment county forecasts. Significant changes were made relative to the 2017 release. A comparison between version 9 and version 8 of the model's socioeconomic control totals can be found in @fig-county-control-total-differences-by-category and @fig-county-control-trends-by-county-by-category.
 
 ```{python}
 #|echo: false
 # model folder
 tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
 tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v9x\v9.0\WF TDM v9.0 - official"
+fnConTotOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_WF.csv"
+fnConTotAgeOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_Age.csv"
+fnConTotNew = tdmNew + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
 ```
 
 ```{python}
@@ -129,6 +132,58 @@ cats = new Map([//['Total Population'               , 'TOTPOP'    ],
                 //['Jobs per Household'             , 'Job_HH'    ],
                 //['Working Population per Job'     , 'WrkPop_Job']
                 ])
+```
+
+
+```{ojs}
+// FILTER DATA
+filteredControlTotals = faControlTotals.filter(function(ct) {
+  return selectCounty   == ct.CO_NAME &&
+         selectCategory == ct.Category;
+});
+viewof selectCategory = Inputs.select(cats, {value: 'HH_Pop', label: 'Category: '});
+
+viewof metric = Inputs.radio(new Map([["Difference", "Difference"], ["Percent Difference", "DifferencePct"]]), {value: "Difference", label: "Display:"})
+```
+
+```{ojs}
+dataCTDiff50 = transpose(diffConTot2050long)
+filtered_dataCTDiff50 = dataCTDiff50.filter(function(dataL) {
+    return selectCategory == dataL.Category  &&
+           metric == dataL.View;
+})
+```
+
+```{ojs}
+//https://observablehq.com/@d3/diverging-bar-chart
+import {DivergingBarChart} from "@d3/diverging-bar-chart"
+
+function getXFormat() {
+  if (metric === "DifferencePct") {
+    return "+%";
+  } else if (selectCategory === 'HH_Size' && metric === "Difference") {
+    return ".2f";
+  } else {
+    return "+,d";
+  }
+}
+
+```
+
+```{ojs}
+//|label: fig-county-control-total-differences-by-category
+//|fig-cap: 2050 Differences in Control Totals for Selected Category (v9.0 vs v8.3.2)
+//|echo: false
+
+chart3 = DivergingBarChart(filtered_dataCTDiff50, {
+    x: d => d.ViewValue,
+    y: d => d.CO_NAME,
+    xFormat: getXFormat(),
+    xLabel: "2050 Difference",
+    aspectRatio: 0.5,
+    colors: d3.schemeRdBu[3],
+    yDomain: ['Weber','Davis','Salt Lake','Utah', 'Wasatch Front']
+})
 ```
 
 ```{ojs}

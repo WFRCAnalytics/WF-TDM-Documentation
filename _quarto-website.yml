@@ -59,26 +59,22 @@ website:
         #- text: "**Downloads**"
         #  href: v9x/v900/downloads.qmd
         - "---"
-        - section: "<span style=\"color: #3E6682;\">**Chads Whats New Document**</span>"
-          contents:
-            - v9x/v900/whats-new/11-overview.qmd  
-            - v9x/v900/whats-new/12-taz.qmd
-            - v9x/v900/whats-new/13-sedata.qmd
-            - v9x/v900/whats-new/14-networks.qmd
-            - v9x/v900/whats-new/15-baseyear.qmd
-            - v9x/v900/whats-new/16-modelenhancements.qmd
-            - v9x/v900/whats-new/17-modelresults.qmd
-        - "---"
         - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
           contents:
-            - v9x/v900/whats-new/1-genparams.qmd  
-            - v9x/v900/whats-new/2-inputdata.qmd
-            - v9x/v900/whats-new/3-inputprocessing.qmd
-            - v9x/v900/whats-new/4-hhdisag.qmd
-            - v9x/v900/whats-new/6-distribution.qmd
-            - v9x/v900/whats-new/7-mc.qmd
-            - v9x/v900/whats-new/8-assign.qmd
-            - v9x/v900/whats-new/10-modelresults.qmd  
+            - text: "1 Overview"
+              href: v9x/v900/whats-new/11-overview.qmd  
+            - text: "2 Traffic Analysis Zone Updates"
+              href: v9x/v900/whats-new/12-taz.qmd
+            - text: "3 Socioeconomic Data Updates"
+              href: v9x/v900/whats-new/13-sedata.qmd
+            - text: "4 Highway & Transit Networks Updates"
+              href: v9x/v900/whats-new/14-networks.qmd
+            - text: "5 Model 2019 Base-Year Updates"
+              href: v9x/v900/whats-new/15-baseyear.qmd
+            - text: "6 Model Enhancements"
+              href: v9x/v900/whats-new/16-modelenhancements.qmd
+            - text: "7 Compare Model Results"
+              href: v9x/v900/whats-new/17-modelresults.qmd
         - "---"
         - section: "<span style=\"color: #3E6682;\">**Model Validation Report**</span>"
           contents:

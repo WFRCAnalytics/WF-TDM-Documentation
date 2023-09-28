@@ -15,6 +15,10 @@ Major changes were made to the version 9 Traffic Analysis Zones (TAZ), including
 
 The changes resulted in the addition of 688 internal TAZ. The new internal TAZID range for each county was updated to account for the new zone configuration. A buffer of 54 zones was inserted after the last internal TAZ to allow for future internal TAZ expansion within the max used-zone value. 
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-internal-taz-comparison
 #| tbl-cap: Internal TAZ Comparison
@@ -37,9 +41,15 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 The locations and numbering of the external TAZ gateways were revised to reflect the changes of the expanded internal TAZ coverage area and new internal numbering. The external TAZ numbering was grouped and placed after the internal TAZ and a unused zone buffer. For reference, version 8 external TAZ were ordered by county and shuffled in the internal TAZ range, (e.g. Box Elder externals TAZ following after the Box Elder internal TAZ, Weber external TAZ following the Weber internal TAZ, etc.). The external TAZ changes resulted in the addition of 6 external TAZ. (See [Changes to External Location and Numbering](https://wfrc.org/wftdm-docs/v9x/v900/whats-new/14-networks.html#changes-to-external-location-and-numbering) for more information on external zones.)
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-external-taz-comparison
 #| tbl-cap: External TAZ Comparison
@@ -62,6 +72,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 In addition, the following changes were made to the TAZ shapefile:
 
@@ -177,6 +189,11 @@ mapTaz = {
 The following TAZ-related parameters, located in the`0_GeneralParameters.block` file, were changed to reflect the version 9 TAZ updates. For comparison purposes, version 8 parameters are also presented.
 
 **Used Zones**
+
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-updated-used-zones
 #| tbl-cap: Updated Used Zones
@@ -196,6 +213,8 @@ Markdown(tabulate(table,
   showindex=False)
 )
 ```
+:::
+:::
 
 **TAZ Ranges**
 

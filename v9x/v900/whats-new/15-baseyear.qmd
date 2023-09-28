@@ -15,9 +15,9 @@ Median income parameters for the model were updated using 2019 5-year ACS data a
 
 
 ::: {.grid}
-::: {.g-col-2}
+::: {.g-col-3}
 :::
-::: {.g-col-8}
+::: {.g-col-6}
 ```{python}
 #| label: tbl-hh-disagg
 #| tbl-cap: Regional Median Income
@@ -95,6 +95,10 @@ Markdown(tabulate(table,
 
 To better understand the relative change in the value of time parameters, the parameters were normalized by the work-trip parameter and the percent difference in the ratios was compared. The percent differences show that the relative change between the variables in versions 8 and version 9 is very similar, indicating there isn’t a strong behavioral change due to the update of this parameter.
 
+::: {.grid}
+::: {.g-col-2}
+:::
+::: {.g-col-8}
 ```{python}
 #| label: tbl-relative-vot-ratios
 #| tbl-cap: Relative Value of Time Ratios
@@ -115,6 +119,8 @@ df = pd.DataFrame(data, columns=['Category', 'v9 Value Relative to Work Trips', 
 headers = ['Category', 'v9 Value Relative to Work Trips', 'v8 Value Relative to Work Trips', '% Difference']
 Markdown(tabulate(df, headers=headers, tablefmt="pipe", colalign=("left",)*len(headers), showindex=False)) 
 ```
+:::
+:::
 
 ### Auto Operating Costs
 
@@ -139,6 +145,10 @@ display(table.style.hide_index())
 
 The auto operating cost parameters in versions 8 and 9 were normalized by the auto-cost parameter. The percent differences between the version 8 and 9 ratios indicate that the relative cost to operate trucks compared to autos is slightly less in version 9 than in version 8.
 
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-auto-cost
 #| tbl-cap: Relative Auto Operating Cost Ratios
@@ -157,9 +167,15 @@ df = pd.DataFrame(data, columns=['Category', 'v9 Value', 'v8 Value', '% Differen
 headers = ['Category', 'v9 Value', 'v8 Value', '% Difference']
 Markdown(tabulate(df, headers=headers, tablefmt="pipe", colalign=("left",)*len(headers), showindex=False)) 
 ```
+:::
+:::
 
 The relationship (ratio) between the auto operating costs and the value of time affects the distance term in the best-path functions in the distribution and assignment models. The higher the ratio, the more influence the distance term will exhibit on path choice and the more the model will be sensitive to shortest path vs. shortest time. A comparison of the ratios suggests that, while the overall pattern looks similar, distance will have slightly less influence on path choice for person trips in version 9 than in version 8, meaning person trips will be slightly more sensitive to congestion (i.e. travel time). This slight difference, however, should not be large enough to fundamentally change the behavior in the model. There is a more significant difference in the ratio for truck trips suggesting that truck trips (in particular light trucks) will be a little more sensitive to the influence of congestion in version 9 than in version 8.
 
+::: {.grid}
+::: {.g-col-3}
+:::
+::: {.g-col-6}
 ```{python}
 #| label: tbl-auto-vot
 #| tbl-cap: Auto Operating Cost / Value of Time Ratios
@@ -181,6 +197,8 @@ df = pd.DataFrame(data, columns=['Category', 'v9 Value', 'v8 Value', '% Differen
 headers = ['Category', 'v9 Value', 'v8 Value', '% Difference']
 Markdown(tabulate(df, headers=headers, tablefmt="pipe", colalign=("left",)*len(headers), showindex=False)) 
 ```
+:::
+:::
 
 ### Managed Lane Costs 
 
@@ -505,7 +523,7 @@ The version 9 initial wait time parameter was set based on research given to UTA
 
 The new initial wait time curve in version 9 had the effect of increasing transit ridership relative to version 8 in scenarios where an investment in more frequent transit was projected. Early testing showed this increase to be on the order of magnitude of 8-12% based on a comparison of 2019 RTP and draft 2023 RTP transportation investments. However, the actual change in ridership would vary depending on the initial starting point and the magnitude of change in transit frequency. 
 
-![Initial Wait Time Curve](_pictures/initial-wait-time.png){#fig-initial-wait-time}
+![Initial Wait Time Curve](_pictures/initial-wait-time.png){#fig-initial-wait-time width=60%}
 
 ### Auto Occupancy
 
@@ -713,6 +731,10 @@ The college enrollment factors located in `1_Inputs\0_GlobalData\0_TripTables\Co
 
 A comparison of the version 9 and version 8 (specifically, version 8.3.2) college enrollment control totals can be seen in @tbl-college-enrollment-fcts.
 
+::: {.grid}
+::: {.g-col-1}
+:::
+::: {.g-col-10}
 ```{python}
 #| label: tbl-college-enrollment-fcts
 #| tbl-cap: College Enrollment Factors
@@ -750,6 +772,8 @@ df = pd.DataFrame(data, columns=['Areas', 'Campus', ' % Removed v9 Value', '% Re
 headers = ['Areas', 'Campus', ' % Removed <br> v9 Value', '% Removed <br> v8 Value', 'FTE Rate <br> v9 Value', 'FTE Rate <br> v8 Value', 'HBC Trip Rate <br> v9 Value', 'HBC Trip Rate <br> v8 Value', 'Notes']
 Markdown(tabulate(df, headers=headers, tablefmt="pipe", colalign=("left",)*len(headers), showindex=False)) 
 ```
+:::
+:::
 
 ## Calibration
 
