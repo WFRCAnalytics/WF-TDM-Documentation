@@ -1,5 +1,0 @@
----
-title: Household Disaggregation and Auto Ownership
----
-
-The `1_LifeCycle.s` script was modified to account for removal of the `COUNTY` field from the TAZ shapefile and for the removal of county-specific id variables from `0_GeneralParameters.block`.

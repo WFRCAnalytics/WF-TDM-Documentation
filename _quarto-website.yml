@@ -48,7 +48,7 @@ website:
   sidebar:
     - id: v900-preface
       style: "docked"
-      collapse-level: 4
+      collapse-level: 1
       border: true
       background: white
       contents:
@@ -56,44 +56,48 @@ website:
           contents:
             - "---"
             - v9x/v900/index.qmd
-        #- text: "**Downloads**"
-        #  href: v9x/v900/downloads.qmd
-        - "---"
-        - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
-          contents:
-            - text: "1 Overview"
-              href: v9x/v900/whats-new/11-overview.qmd  
-            - text: "2 Traffic Analysis Zone Updates"
-              href: v9x/v900/whats-new/12-taz.qmd
-            - text: "3 Socioeconomic Data Updates"
-              href: v9x/v900/whats-new/13-sedata.qmd
-            - text: "4 Highway & Transit Networks Updates"
-              href: v9x/v900/whats-new/14-networks.qmd
-            - text: "5 Model 2019 Base-Year Updates"
-              href: v9x/v900/whats-new/15-baseyear.qmd
-            - text: "6 Model Enhancements"
-              href: v9x/v900/whats-new/16-modelenhancements.qmd
-            - text: "7 Compare Model Results"
-              href: v9x/v900/whats-new/17-modelresults.qmd
-        - "---"
-        - section: "<span style=\"color: #3E6682;\">**Model Validation Report**</span>"
-          contents:
-        #    - v9x/v900/validation/1-hhdisag-autoown.qmd
-            - v9x/v900/validation/2-tripgen.qmd
-            - v9x/v900/validation/3-distribute.qmd
-            - v9x/v900/validation/4-modechoice.qmd
-            - v9x/v900/validation/5-assignhwy.qmd
-        #    - v9x/v900/validation/A-sensitivity.qmd
-        - "---"
-        #- section: "<span style=\"color: #3E6682;\">**Model Process**</span>"
-        #  contents:
-        #    - v9x/v900/model-process/1-hhdisag-autoown.qmd
-        #    - v9x/v900/model-process/2-tripgen.qmd
-        #    - v9x/v900/model-process/3-distribute.qmd
-        #    - v9x/v900/model-process/4-modechoice.qmd
-        #    - v9x/v900/model-process/5-assignhwy.qmd
-        #    - v9x/v900/model-process/A-sensitivity.qmd
-        #- "---"
+            #- text: "**Downloads**"
+            #  href: v9x/v900/downloads.qmd
+            - "---"
+            - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
+              contents:
+                - text: "1 Overview"
+                  href: v9x/v900/whats-new/1-overview.qmd  
+                - text: "2 Traffic Analysis Zone Updates"
+                  href: v9x/v900/whats-new/2-taz.qmd
+                - text: "3 Socioeconomic Data Updates"
+                  href: v9x/v900/whats-new/3-sedata.qmd
+                - text: "4 Highway & Transit Networks Updates"
+                  href: v9x/v900/whats-new/4-networks.qmd
+                - text: "5 Model 2019 Base-Year Updates"
+                  href: v9x/v900/whats-new/5-baseyear.qmd
+                - text: "6 Model Enhancements"
+                  href: v9x/v900/whats-new/6-modelenhancements.qmd
+                - text: "7 Compare Model Results"
+                  href: v9x/v900/whats-new/7-modelresults.qmd
+            - "---"
+            - section: "<span style=\"color: #3E6682;\">**Model Validation Report**</span>"
+              contents:
+            #    - v9x/v900/validation/1-hhdisag-autoown.qmd
+                - text: "1 Trip Generation"
+                  href: v9x/v900/validation/1-tripgen.qmd
+                - text: "2 Distribution"
+                  href: v9x/v900/validation/2-distribute.qmd
+                - text: "3 Mode Choice"
+                  href: v9x/v900/validation/3-modechoice.qmd
+                - text: "4 Highway Assignment"
+                  href: v9x/v900/validation/4-assignhwy.qmd
+            #    - v9x/v900/validation/A-sensitivity.qmd
+            - "---"
+            #- section: "<span style=\"color: #3E6682;\">**Model Process**</span>"
+            #  contents:
+            #    - v9x/v900/model-process/1-hhdisag-autoown.qmd
+            #    - v9x/v900/model-process/2-tripgen.qmd
+            #    - v9x/v900/model-process/3-distribute.qmd
+            #    - v9x/v900/model-process/4-modechoice.qmd
+            #    - v9x/v900/model-process/5-assignhwy.qmd
+            #    - v9x/v900/model-process/A-sensitivity.qmd
+            #- "---"
     - id: v832-preface
       style: "docked"
       collapse-level: 4

@@ -1,5 +1,0 @@
----
-title: Highway Assignment
----
-
-The summarize loaded networks script was modified to point the geometry input reference to the input processing output folder instead of the highway inputs folder.
