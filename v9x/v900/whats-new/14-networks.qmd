@@ -7,7 +7,7 @@ echo: false
 
 ## Highway Network
 
-### Changes to Network Field Attributes
+### Highway Network Project Coding
 
 The highway network in version 9 was updated to reflect the 2023-2050 RTP and the 2023-2028 TIP.  The updated projects were coded into a set of fields in the Master highway network using the same field naming convention[^1]  as version 8, but field names were updated to reflect the new 2023 RTP:
 
@@ -41,6 +41,52 @@ The highway network in version 9 was updated to reflect the 2023-2050 RTP and th
  - 23_50UF – 2023 RTP end-of-phase 3 (2050), unfunded need
  - 23_50UFM - 2023 RTP end-of-phase 3 (2050), unfunded need MAG alternate (includes different assumption related to Lehi freeway project at the Point of the Mountain), currently only includes “LN” attribute
  - Note, TSPD unfunded need scenario fields use “U” instead of “UF” due to the 10-character field width limitation.
+
+Changes to the number of lanes in version 9 can be seen in @fig-phase1, @fig-phase2, and @fig-phase3.
+
+::: {.panel-tabset}
+
+### Phase 1
+
+::: {#fig-phase1 layout-ncol=3}
+![](data\map_pngs\comparisons/white-box.png)
+
+![](data\map_pngs\comparisons/RTP_2032_2030_Lane_MAP.png)
+
+![](data\map_pngs\comparisons/LEGEND.png)
+
+Changes to Highway Project List (Phase 1)
+:::
+
+### Phase 2
+
+::: {#fig-phase2 layout-ncol=3}
+
+![](data\map_pngs\comparisons/white-box.png)
+
+![](data\map_pngs\comparisons/RTP_2042_2040_Lane_MAP.png)
+
+![](data\map_pngs\comparisons/LEGEND.png)
+
+Changes to Highway Project List (Phase 2)
+:::
+
+### Phase 3
+
+::: {#fig-phase3 layout-ncol=3}
+
+![](data\map_pngs\comparisons/white-box.png)
+
+![](data\map_pngs\comparisons/RTP_2050_Lane_MAP.png)
+
+![](data\map_pngs\comparisons/LEGEND.png)
+
+Changes to Highway Project List (Phase 3)
+:::
+
+:::
+
+### Other Changes to Network Field Attributes
 
 In addition, the following edits were made to the highway network:
 

@@ -781,20 +781,31 @@ ojs_define(dfcollege = df_college_long)
 #
 #
 #
-html`<script>
-
-// select the svg area
-var svg = d3.select("#my_dataviz")
-
-// Handmade legend
-svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "#69b3a2")
-svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "#404080")
-svg.append("text").attr("x", 220).attr("y", 130).text("variable A").style("font-size", "15px").attr("alignment-baseline","middle")
-svg.append("text").attr("x", 220).attr("y", 160).text("variable B").style("font-size", "15px").attr("alignment-baseline","middle")`
-
-html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-origin: 0 0;">
-         <iframe width="900" height="800" src="https://wfrc.org/household-job-forecast-map/" title="Household and Job Forecast"></iframe>
-     </div>`
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 #
 #
 #
@@ -845,25 +856,25 @@ html`<div style="width: 765px; height: 680px; transform: scale(0.85); transform-
 data = [
     ['WFRC Colleges', 'Ensign'	        ,  0.101,	0.101,	1.179,	1.179,	0.930,	0.930, ''         ],
     [''             , 'Westminster'	    ,  0.012,	0.012,	1.098,	1.098,	0.930,	0.930, ''         ],
-    [''             , 'UofU Main'	    ,  0.026,	0.026,	1.025,	1.210,	0.930,	0.930, ''         ],
-    [''             , 'UofU Med'	    ,  0	 ,  0.026,	1	 ,  1.210,	0	 ,  0.930, '(removed)'],
-    [''             , 'WSU Main'	    ,  0.215,	0.215,	1.038,	1.588,	0.830,	0.830, ''         ],
-    [''             , 'WSU Davis'	    ,  0.309,	0.309,	1.038,	1.588,	0.677,	0.677, ''         ],
-    [''             , 'WSU West'	    ,  0	 ,  0.309,	1	 ,  1.588,	0	 ,  0.677, '(removed)'],
-    [''             , 'SLCC Main'	    ,  0.341,	0.341,	1.208,	2.005,	0.622,	0.622, ''         ],
+    [''             , 'UofU Main'	      ,  0.026,	0.026,	1.025,	1.210,	0.930,	0.930, ''         ],
+    [''             , 'UofU Med'	      ,  0	  , 0.026,	1	 ,  1.210,	0	 ,  0.930, '(removed)'],
+    [''             , 'WSU Main'	      ,  0.215,	0.215,	1.038,	1.588,	0.830,	0.830, ''         ],
+    [''             , 'WSU Davis'	      ,  0.309,	0.309,	1.038,	1.588,	0.677,	0.677, ''         ],
+    [''             , 'WSU West'	      ,  0	  , 0.309,	1	 ,  1.588,	0	 ,  0.677, '(removed)'],
+    [''             , 'SLCC Main'	      ,  0.341,	0.341,	1.208,	2.005,	0.622,	0.622, ''         ],
     [''             , 'SLCC South City' ,  0.341,	0.341,	1.208,	2.005,	0.642,	0.642, ''         ],
     [''             , 'SLCC Jordan'	    ,  0.341,	0.341,	1.208,	2.005,	0.569,	0.569, ''         ],
-    [''             , 'SLCC Meadowbrook',  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.569, '(removed)'],
+    [''             , 'SLCC Meadowbrook',  0	  , 0.341,	1	 ,  2.005,	0	 ,  0.569, '(removed)'],
     [''             , 'SLCC Miller'	    ,  0.341,	0.341,	1.208,	2.005,	0.616,	0.616, ''         ],
-    [''             , 'SLCC Library'    ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
-    [''             , 'SLCC Highland'   ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
-    [''             , 'SLCC Airport'    ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
-    [''             , 'SLCC Westpointe' ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
-    [''             , 'SLCC Herriman'   ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Library'    ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Highland'   ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Airport'    ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Westpointe' ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Herriman'   ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
     ['MAG Colleges' , 'BYU'             ,  0.026,	0.026,	1.025,	1.210,	0.930,	0.930, ''         ],
-    [''             , 'UVU Main'	    ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
-    [''             , 'UVU Geneva'	    ,  0	 ,  0.270,	1	 ,  1.400,	0	 ,  0.945, '(removed)'],
-    [''             , 'UVU Lehi'	    ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
+    [''             , 'UVU Main'	      ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
+    [''             , 'UVU Geneva'	    ,  0	  , 0.270,	1	 ,  1.400,	0	 ,  0.945, '(removed)'],
+    [''             , 'UVU Lehi'	      ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
     [''             ,' UVU Vineyard'    ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
     [''             , 'UVU Payson'	    ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ]
 ]

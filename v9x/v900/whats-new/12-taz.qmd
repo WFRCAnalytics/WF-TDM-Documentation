@@ -13,6 +13,50 @@ Major changes were made to the version 9 Traffic Analysis Zones (TAZ), including
  - TAZ boundaries were modified to better align with underlying land uses and planning boundaries.
  - The geographic coverage area was expanded to encompass the entire county for Davis, Salt Lake, and Utah counties. Weber County was expanded up to the ridgeline of the east canyon/mountain areas of the WFRC planning domain but does not include the Ogden Valley area. Box Elder was expanded to encompass up to the ridgeline of the east canyon/mountain areas of the WFRC planning domain.
 
+@fig-expanded-areas and @fig-taz-compare-map show the expanded geographic area and the difference in TAZ boundaries between version 9 and version 8.
+
+![Version 9 Expanded Geographic Area](_pictures/expanded-area.png){#fig-expanded-areas width=40%}
+
+```{ojs}
+//|label: fig-taz-compare-map
+//|fig-cap: TAZ Geography Comparison Map
+//|echo: false
+
+mapTaz = {
+
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
+  yield container;
+  
+  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
+
+  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  let lcolors = ['#0000FF'    ,'red'   ]
+  let llabels = ['v8.3.2 TAZ' ,'v9.0.0 TAZ'];
+
+  let lyrTAZOld = L.geoJson(geojsonTazOld, { weight: 3.00, color: lcolors[0], fillOpacity: 0}).addTo(map);
+  let lyrTAZNew = L.geoJson(geojsonTazNew, { weight: 1.50, color: lcolors[1], fillOpacity: 0}).addTo(map);
+
+  var legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function (map) {
+      var div = L.DomUtil.create('div', 'legend');
+      div.innerHTML = '';
+      for (var i = 0; i < llabels.length; i++) {
+        div.innerHTML += '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' + llabels[i] + '<br/>';
+      }
+
+      // Add CSS style for the background color
+      div.style.backgroundColor = 'lightgray';
+      div.style.padding = '10px';
+      
+      return div;
+    };
+    legend.addTo(map);
+}
+```
+
 The changes resulted in the addition of 688 internal TAZ. The new internal TAZID range for each county was updated to account for the new zone configuration. A buffer of 54 zones was inserted after the last internal TAZ to allow for future internal TAZ expansion within the max used-zone value. 
 
 ::: {.grid}
@@ -139,48 +183,6 @@ mapTazRemmSpace = {
     return div;
   };
   legend.addTo(map);
-}
-```
-
-The interactive map in @fig-taz-compare-map show the difference in TAZ boundaries between version 9 and version 8.
-
-```{ojs}
-//|label: fig-taz-compare-map
-//|fig-cap: TAZ Geography Comparison Map
-//|echo: false
-
-mapTaz = {
-
-  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });
-  yield container;
-  
-  let map = L.map(container).setView([40.7608, -111.8910], 8.25);
-
-  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  let lcolors = ['#0000FF'    ,'red'   ]
-  let llabels = ['v8.3.2 TAZ' ,'v9.0.0 TAZ'];
-
-  let lyrTAZOld = L.geoJson(geojsonTazOld, { weight: 3.00, color: lcolors[0], fillOpacity: 0}).addTo(map);
-  let lyrTAZNew = L.geoJson(geojsonTazNew, { weight: 1.50, color: lcolors[1], fillOpacity: 0}).addTo(map);
-
-  var legend = L.control({position: 'bottomleft'});
-    legend.onAdd = function (map) {
-      var div = L.DomUtil.create('div', 'legend');
-      div.innerHTML = '';
-      for (var i = 0; i < llabels.length; i++) {
-        div.innerHTML += '<i style="background:' + lcolors[i] + '">&nbsp;</i> ' + llabels[i] + '<br/>';
-      }
-
-      // Add CSS style for the background color
-      div.style.backgroundColor = 'lightgray';
-      div.style.padding = '10px';
-      
-      return div;
-    };
-    legend.addTo(map);
 }
 ```
 

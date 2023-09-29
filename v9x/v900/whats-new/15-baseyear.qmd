@@ -854,25 +854,25 @@ A comparison of the version 9 and version 8 (specifically, version 8.3.2) colleg
 data = [
     ['WFRC Colleges', 'Ensign'	        ,  0.101,	0.101,	1.179,	1.179,	0.930,	0.930, ''         ],
     [''             , 'Westminster'	    ,  0.012,	0.012,	1.098,	1.098,	0.930,	0.930, ''         ],
-    [''             , 'UofU Main'	    ,  0.026,	0.026,	1.025,	1.210,	0.930,	0.930, ''         ],
-    [''             , 'UofU Med'	    ,  0	 ,  0.026,	1	 ,  1.210,	0	 ,  0.930, '(removed)'],
-    [''             , 'WSU Main'	    ,  0.215,	0.215,	1.038,	1.588,	0.830,	0.830, ''         ],
-    [''             , 'WSU Davis'	    ,  0.309,	0.309,	1.038,	1.588,	0.677,	0.677, ''         ],
-    [''             , 'WSU West'	    ,  0	 ,  0.309,	1	 ,  1.588,	0	 ,  0.677, '(removed)'],
-    [''             , 'SLCC Main'	    ,  0.341,	0.341,	1.208,	2.005,	0.622,	0.622, ''         ],
+    [''             , 'UofU Main'	      ,  0.026,	0.026,	1.025,	1.210,	0.930,	0.930, ''         ],
+    [''             , 'UofU Med'	      ,  0	  , 0.026,	1	 ,  1.210,	0	 ,  0.930, '(removed)'],
+    [''             , 'WSU Main'	      ,  0.215,	0.215,	1.038,	1.588,	0.830,	0.830, ''         ],
+    [''             , 'WSU Davis'	      ,  0.309,	0.309,	1.038,	1.588,	0.677,	0.677, ''         ],
+    [''             , 'WSU West'	      ,  0	  , 0.309,	1	 ,  1.588,	0	 ,  0.677, '(removed)'],
+    [''             , 'SLCC Main'	      ,  0.341,	0.341,	1.208,	2.005,	0.622,	0.622, ''         ],
     [''             , 'SLCC South City' ,  0.341,	0.341,	1.208,	2.005,	0.642,	0.642, ''         ],
     [''             , 'SLCC Jordan'	    ,  0.341,	0.341,	1.208,	2.005,	0.569,	0.569, ''         ],
-    [''             , 'SLCC Meadowbrook',  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.569, '(removed)'],
+    [''             , 'SLCC Meadowbrook',  0	  , 0.341,	1	 ,  2.005,	0	 ,  0.569, '(removed)'],
     [''             , 'SLCC Miller'	    ,  0.341,	0.341,	1.208,	2.005,	0.616,	0.616, ''         ],
-    [''             , 'SLCC Library'    ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
-    [''             , 'SLCC Highland'   ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
-    [''             , 'SLCC Airport'    ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
-    [''             , 'SLCC Westpointe' ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
-    [''             , 'SLCC Herriman'   ,  0	 ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Library'    ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Highland'   ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Airport'    ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Westpointe' ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
+    [''             , 'SLCC Herriman'   ,  0	  ,  0.341,	1	 ,  2.005,	0	 ,  0.616, '(removed)'],
     ['MAG Colleges' , 'BYU'             ,  0.026,	0.026,	1.025,	1.210,	0.930,	0.930, ''         ],
-    [''             , 'UVU Main'	    ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
-    [''             , 'UVU Geneva'	    ,  0	 ,  0.270,	1	 ,  1.400,	0	 ,  0.945, '(removed)'],
-    [''             , 'UVU Lehi'	    ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
+    [''             , 'UVU Main'	      ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
+    [''             , 'UVU Geneva'	    ,  0	  , 0.270,	1	 ,  1.400,	0	 ,  0.945, '(removed)'],
+    [''             , 'UVU Lehi'	      ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
     [''             ,' UVU Vineyard'    ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ],
     [''             , 'UVU Payson'	    ,  0.270,	0.270,	1.097,	1.400,	0.945,	0.945, ''         ]
 ]
@@ -909,7 +909,206 @@ The observed time, distance, and generalized cost trip length frequencies and av
 
 Trip distribution friction factors were updated in version 9 as part of the model’s base year calibration. Six new external-truck friction factors were added: IX_LT, IX_MD, IX_HV, XI_LT, XI_MD, and XI_HV. Note however that IX_LT and XI_LT friction factors were set equal to IX and XI, respectively. StreetLight truck origin-destination data was used to help calibrate the internal truck and external friction factors. A comparison of the version 9 and version 8 friction factors is found in @figxx.
 
-# PUT FRICTION FACTORS HERE
+
+```{python}
+import pandas as pd
+df_ff_base = pd.read_csv('data/ff-v9-v832.csv')
+df_ff_long = pd.melt(df_ff_base, id_vars=['Version','Bin'], var_name='Purpose', value_name = 'Distribution')
+```
+```{python}
+ojs_define(dff = df_ff_long)
+```
+
+```{ojs}
+ffT = transpose(dff)
+
+optionsFF = 
+[
+  ['HBW', 'HBW'],	
+  ['HBShp', 'HBShp'],
+  ['HBOth', 'HBOth'],
+  ['HBSch_Pr', 'HBSch_Pr'],
+  ['HBSch_Sc', 'HBSch_Sc'],
+  ['NHBW', 'NHBW'],
+  ['NHBNW', 'NHBNW'],
+  ['LT', 'LT'],
+  ['MD', 'MD'],
+  ['HV', 'HV'],
+  ['IX', 'IX'],
+  ['IX_LT', 'IX_LT'],
+  ['IX_MD', 'IX_MD'],
+  ['IX_HV', 'IX_HV'],
+  ['XI',	'XI'],
+  ['XI_LT', 'XI_LT'],
+  ['XI_MD', 'XI_MD'],
+  ['XI_HV', 'XI_HV']
+]
+ 
+viewof selectFF = Inputs.select(new Map(optionsFF), {value: 'HBW', label: 'Purpose: '});
+
+// FILTER DATA
+ff_v98= ffT.filter(function(ffData) {
+  return selectFF == ffData.Purpose;
+});
+
+ff_v9= ffT.filter(function(ffData) {
+  return selectFF == ffData.Purpose &&
+  'v9' == ffData.Version; 
+});
+
+ff_v8= ffT.filter(function(ffData) {
+  return selectFF   == ffData.Purpose &&
+  'v832' == ffData.Version; 
+});
+```
+
+```{ojs}
+domainVals = [
+    {Purpose: 'HBW',      X1MAX: 30, X2MIN: 20, X2MAX: 80 , X3MIN: 80 , X3MAX: 260, Y2MAX: .060, Y3MAX: .002  },
+    {Purpose: 'HBShp',    X1MAX: 16, X2MIN: 15, X2MAX: 50 , X3MIN: 40 , X3MAX: 150, Y2MAX: .020, Y3MAX: .0003 },
+    {Purpose: 'HBOth',    X1MAX: 16, X2MIN: 15, X2MAX: 50 , X3MIN: 40 , X3MAX: 150, Y2MAX: .020, Y3MAX: .0003 },
+    {Purpose: 'HBSch_Pr', X1MAX: 10, X2MIN: 10, X2MAX: 40 , X3MIN: 40 , X3MAX: 100, Y2MAX: .003, Y3MAX: .00003},
+    {Purpose: 'HBSch_Sc', X1MAX: 10, X2MIN: 10, X2MAX: 40 , X3MIN: 40 , X3MAX: 100, Y2MAX: .003, Y3MAX: .00003},
+    {Purpose: 'NHBW',     X1MAX: 20, X2MIN: 20, X2MAX: 100, X3MIN: 100, X3MAX: 230, Y2MAX: .040, Y3MAX: .001  },
+    {Purpose: 'NHBNW',    X1MAX: 20, X2MIN: 20, X2MAX: 100, X3MIN: 100, X3MAX: 230, Y2MAX: .040, Y3MAX: .001  },
+    {Purpose: 'LT',       X1MAX: 10, X2MIN: 10, X2MAX: 60 , X3MIN: 60 , X3MAX: 120, Y2MAX: .040, Y3MAX: .001  },
+    {Purpose: 'MD',       X1MAX: 10, X2MIN: 10, X2MAX: 60 , X3MIN: 60 , X3MAX: 120, Y2MAX: .040, Y3MAX: .001  },
+    {Purpose: 'HV',       X1MAX: 10, X2MIN: 10, X2MAX: 60 , X3MIN: 60 , X3MAX: 120, Y2MAX: .040, Y3MAX: .001  },
+    {Purpose: 'IX',       X1MAX: 80, X2MIN: 80, X2MAX: 200, X3MIN: 200, X3MAX: 300, Y2MAX: .060, Y3MAX: .03   },
+    {Purpose: 'IX_LT',    X1MAX: 80, X2MIN: 80, X2MAX: 200, X3MIN: 200, X3MAX: 300, Y2MAX: .060, Y3MAX: .03   },
+    {Purpose: 'IX_MD',    X1MAX: 80, X2MIN: 80, X2MAX: 200, X3MIN: 200, X3MAX: 300, Y2MAX: .060, Y3MAX: .03   },
+    {Purpose: 'IX_HV',    X1MAX: 80, X2MIN: 80, X2MAX: 200, X3MIN: 200, X3MAX: 300, Y2MAX: .060, Y3MAX: .03   },
+    {Purpose: 'XI',       X1MAX: 25, X2MIN: 20, X2MAX: 120, X3MIN: 80 , X3MAX: 280, Y2MAX: .080, Y3MAX: .008  },
+    {Purpose: 'XI_LT',    X1MAX: 25, X2MIN: 20, X2MAX: 120, X3MIN: 80 , X3MAX: 280, Y2MAX: .080, Y3MAX: .008  },
+    {Purpose: 'XI_MD',    X1MAX: 25, X2MIN: 20, X2MAX: 120, X3MIN: 80 , X3MAX: 280, Y2MAX: .080, Y3MAX: .008  },
+    {Purpose: 'XI_HV',    X1MAX: 25, X2MIN: 20, X2MAX: 120, X3MIN: 80 , X3MAX: 280, Y2MAX: .080, Y3MAX: .008  }
+]
+
+domainFilter= domainVals.filter(function(data) {
+  return selectFF == data.Purpose; 
+});
+
+x1max = domainFilter[0].X1MAX;
+x2min = domainFilter[0].X2MIN;
+x2max = domainFilter[0].X2MAX;
+x3min = domainFilter[0].X3MIN;
+x3max = domainFilter[0].X3MAX;
+y2max = domainFilter[0].Y2MAX;
+y3max = domainFilter[0].Y3MAX;
+
+//{return(x1max)}
+```
+
+```{ojs}
+html`<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version Display</title>
+    <style>
+        .green-text {
+            color: green;
+            font-size: 12px;
+            font-weight: bold;
+            padding-left: 60px;
+        }
+
+        .blue-text {
+            color: #376092;
+            font-size: 12px;
+            font-weight: bold;
+            padding-left: -20px;
+        }
+    </style>
+</head>
+<body>
+    <span class="green-text"> —— Version 8</span>
+    <span class="blue-text"> —— Version 9</span>
+</body>
+</html>`
+```
+
+```{ojs}
+//|label: fig-ff-diff
+//|fig-cap: Friction Factors
+//|fig-subcap:
+//|   - "Beginning of Curve"
+//|   - "Middle of Curve"
+//|   - "End of Curve"
+//|layout-ncol: 3
+//|echo: False
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: { label: 'Bin', tickFormat: d => d , domain:[0,x1max]},
+  y: { label: 'Distribution', tickFormat: f => f, domain: [0, 1] },
+  marginRight: 60,
+  marginLeft: 60,
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 23 } },
+  style: {
+    fontSize: 23
+  },
+  marginTop: 10,
+  marginBottom: 60,
+  height: 700,
+  marks: [
+    Plot.line(
+      ff_v9, { x: 'Bin', y: 'Distribution', stroke: "#376092", strokeWidth: 4, color: { legend: 'Version' } }),
+    Plot.line(
+      ff_v8, { x: 'Bin', y: 'Distribution', stroke: "#77933c", strokeWidth: 4, color: { legend: 'Version' } }),
+    Plot.frame({ strokeOpacity: 0.2 }),
+      [
+      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-right", fontSize: 24})
+  ]]
+});
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: { label: 'Bin', tickFormat: d => d , domain:[x2min,x2max]},
+  y: { label: 'Distribution', tickFormat: f => f, domain: [0, y2max] },
+  marginRight: 60,
+  marginLeft: 60,
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 23 } },
+  style: {
+    fontSize: 23
+  },
+  marginTop: 10,
+  marginBottom: 60,
+  height: 700,
+  marks: [
+    Plot.line(
+      ff_v9, { x: 'Bin', y: 'Distribution', stroke: "#376092", strokeWidth: 4, color: { legend: 'Version' } }),
+    Plot.line(
+      ff_v8, { x: 'Bin', y: 'Distribution', stroke: "#77933c", strokeWidth: 4, color: { legend: 'Version' } }),
+    Plot.frame({ strokeOpacity: 0.2 }),
+  ]
+});
+
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: { label: 'Bin', tickFormat: d => d , domain:[x3min,x3max]},
+  y: { label: 'Distribution', tickFormat: f => f, domain: [0, y3max] },
+  marginRight: 60,
+  marginLeft: 60,
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 23 } },
+  style: {
+    fontSize: 23
+  },
+  marginTop: 10,
+  marginBottom: 60,
+  height: 700,
+  marks: [
+    Plot.line(
+      ff_v9, { x: 'Bin', y: 'Distribution', stroke: "#376092", strokeWidth: 4, color: { legend: 'Version' } }),
+    Plot.line(
+      ff_v8, { x: 'Bin', y: 'Distribution', stroke: "#77933c", strokeWidth: 4, color: { legend: 'Version' } }),
+    Plot.frame({ strokeOpacity: 0.2 }),
+  ]
+});
+```
+
 
 ### K-Factors
 

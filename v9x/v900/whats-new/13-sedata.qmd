@@ -245,6 +245,7 @@ wrkpop9 = faControlTotals.filter(function(ct) { return selectCounty == ct.CO_NAM
 //|   - "Residential Control Total"
 //|   - "Employment Control Total"
 //|   - "Control Total Ratios"
+//|layout-ncol: 3
 //|echo: false
 
 Plot.plot({
@@ -252,31 +253,33 @@ Plot.plot({
   aspectRatio: 0.5,
   x: {label: 'Year', tickFormat: d => d},
   y: {label: 'Control Total', domain: [0, maxY1]},
-  marginRight:60,
-  marginLeft: 60,
+  marginRight:140,
+  marginLeft: 140,
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 24 } },
   style: {
-    fontSize: 15
+    fontSize: 24
   },
   marginTop: 60,
   marginBottom: 60,
+  height: 1300,
   marks: [
     Plot.line(
-      hhPopData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e', strokeWidth: 2, strokeDasharray: '5,5'}),
+      hhPopData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e', strokeWidth: 3, strokeDasharray: '5,5'}),
     Plot.line(
-      hhPopData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 2, text: ['yo momma']}),
+      hhPopData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 3, text: ['yo momma']}),
     Plot.text(
       hhPopData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
     
     Plot.line(
-      hhData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 2,strokeDasharray: '5,5'}),
+      hhData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 3,strokeDasharray: '5,5'}),
     Plot.line(
-      hhData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 2}),
+      hhData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 3}),
     Plot.text(
       hhData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
     
     Plot.frame({strokeOpacity: 0.2}),
     [
-      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 14})
+      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 24})
   ]]
 })
 
@@ -285,46 +288,46 @@ Plot.plot({
   aspectRatio: 0.5,
   x: {label: 'Year', tickFormat: d => d},
   y: {label: 'Control Total', domain: [0, maxY2]},
-  marginRight:80,
-  marginLeft: 60,
+  marginRight:140,
+  marginLeft: 140,
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 24 } },
   style: {
-    fontSize: 15
+    fontSize: 24
   },
   marginTop: 60,
   marginBottom: 60,
+  height: 1300,
   marks: [
     Plot.line(
-      typicalData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF6666', strokeWidth: 2, strokeDasharray: '5,5'}),
+      typicalData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF6666', strokeWidth: 3, strokeDasharray: '5,5'}),
     Plot.line(
-      typicalData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF0000', strokeWidth: 2}),
+      typicalData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF0000', strokeWidth: 3}),
     Plot.text(
       typicalData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
 
     Plot.line(
-      retailData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 2,strokeDasharray: '5,5'}),
+      retailData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 3,strokeDasharray: '5,5'}),
     Plot.line(
-      retailData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 2}),
+      retailData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 3}),
     Plot.text(
       retailData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
 
     Plot.line(
-      industrialData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#A0A0A0', strokeWidth: 2, strokeDasharray: '5,5'}),
+      industrialData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#A0A0A0', strokeWidth: 3, strokeDasharray: '5,5'}),
     Plot.line(
-      industrialData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#606060', strokeWidth: 2}),
+      industrialData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#606060', strokeWidth: 3}),
     Plot.text(
       industrialData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
 
     Plot.line(
-      otherData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e',strokeWidth: 2,strokeDasharray: '5,5'}),
+      otherData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e',strokeWidth: 3,strokeDasharray: '5,5'}),
     Plot.line(
-      otherData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f',strokeWidth: 2}),
+      otherData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f',strokeWidth: 3}),
     Plot.text(
       otherData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
 
-    Plot.frame({strokeOpacity: 0.2}),
-    [
-      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 14})
-  ]]
+    Plot.frame({strokeOpacity: 0.2})
+  ]
 })
 
 Plot.plot({
@@ -332,39 +335,39 @@ Plot.plot({
   aspectRatio: 0.5,
   x: {label: 'Year', tickFormat: d => d},
   y: {label: 'Control Total', domain: [0, maxY3]},
-  marginRight:85,
-  marginLeft: 60,
+  marginRight:140,
+  marginLeft: 140,
+  color: { type: "categorical", legend: true, legendStyle: { fontSize: 24 } },
   style: {
-    fontSize: 15
+    fontSize: 24
   },
   marginTop: 60,
   marginBottom: 60,
+  height: 1300,
   marks: [
     Plot.line(
-      hhsize8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e', strokeWidth: 2, strokeDasharray: '5,5'}),
+      hhsize8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e', strokeWidth: 3, strokeDasharray: '5,5'}),
     Plot.line(
-      hhsize9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 2}),
+      hhsize9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 3}),
     Plot.text(
       hhsize9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
 
     Plot.line(
-      jobhh8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 2,strokeDasharray: '5,5'}),
+      jobhh8, {x: 'YEAR', y: 'ControlTotal', stroke: '#75884b',strokeWidth: 3,strokeDasharray: '5,5'}),
     Plot.line(
-      jobhh9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 2}),
+      jobhh9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e5a46',strokeWidth: 3}),
     Plot.text(
       jobhh9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
 
     Plot.line(
-      wrkpop8, {x: 'YEAR', y: 'ControlTotal', stroke: '#FFB266',strokeWidth: 2,strokeDasharray: '5,5'}),
+      wrkpop8, {x: 'YEAR', y: 'ControlTotal', stroke: '#FFB266',strokeWidth: 3,strokeDasharray: '5,5'}),
     Plot.line(
-      wrkpop9, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF8000',strokeWidth: 2}),
+      wrkpop9, {x: 'YEAR', y: 'ControlTotal', stroke: '#FF8000',strokeWidth: 3}),
     Plot.text(
       wrkpop9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
 
-    Plot.frame({strokeOpacity: 0.2}),
-    [
-      Plot.text([`\n   ——   Current Projection \n\n   —  — Previous Projection`], {frameAnchor: "top-left", fontSize: 14})
-  ]]
+    Plot.frame({strokeOpacity: 0.2})
+  ]
 })
 ```
 
