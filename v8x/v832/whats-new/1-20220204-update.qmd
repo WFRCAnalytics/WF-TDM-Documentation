@@ -16,9 +16,9 @@ Additionally the Scenario Folder was updated with updated default ControlCenter.
 ## Model Results
 @fig-total-dif and @fig-truck-dif contain a daily total volume comparison and a daily truck volume comparison. Daily total volumes are very similar between the two models. There is a slight shift of volume off of I-15 and onto parallel corridors. The largest volume shifts in 2050 are between I-215 and Bangerter Highway. @fig-total-dif shows one-way volumes.
 
-![Daily Total Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10.](../2021-11-10/_pictures/daily_total_volume_dif.png){#fig-total-dif}
+![Daily Total Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10.](_pictures/daily_total_volume_dif.png){#fig-total-dif}
 
 Daily truck volumes show more differences with volumes dropping between the two models. The drop in volumes is less than a 1,500 trucks per day on freeways but is widespread throughout the region. @fig-truck-dif shows one-way volumes.
 
-![Daily Truck Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10.](../2021-11-10/_pictures/daily_total_volume_dif.png){#fig-truck-dif}
+![Daily Truck Volume Difference v8.3.2 2022-02-04 vs v8.3.2 2021-11-10.](_pictures/daily_total_volume_dif.png){#fig-truck-dif}
 

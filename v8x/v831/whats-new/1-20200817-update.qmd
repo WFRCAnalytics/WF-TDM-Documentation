@@ -4,6 +4,6 @@ The 'WF TDM v8.3.1 - 2020-05-08' model version included most but not all of the 
 
 @fig-0-lanes shows where lanes were added (green) or were taken away (orange) between 'WF TDM v8.3.1 - 2020-05-08' and 'WF TDM v8.3.1 - 2020-08-17' highway networks.  Express bus routes were also removed from the MAG line files in the 2030, 2040 & 2050 Funded & Needed Transit folders .
 
-![Added lanes between v8.3.1 2020-05-08 and v8.3.1 2020-08-17](../2020-05-08/_pictures/0-update.png){#fig-0-lanes}
+![Added lanes between v8.3.1 2020-05-08 and v8.3.1 2020-08-17](_pictures/0-update.png){#fig-0-lanes}
 
 
