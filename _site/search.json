@@ -1306,7 +1306,7 @@
     "href": "v9x/v900/index.html",
     "title": "Preface",
     "section": "",
-    "text": "This is the documentation for the Wasatch Front Travel Demand Model Version 9.0. The documentation includes the following reports:\n\nWhat’s New Document\nModel Validation Report\nModel Process Report (in progress)\n\n\nFor access to this version of the TDM visit please contact the following persons:\n\nSuzie Swim (WFRC): sswim@wfrc.org\nMatt DeLora (MAG): mdelora@magutah.org"
+    "text": "This is the documentation for the Wasatch Front Travel Demand Model Version 9.0. The documentation includes the following reports:\n\nWhat’s New Document\nModel Validation Report\nModel Process Report (in progress)\n\n\nFor access to this version of the TDM visit please contact the following persons:\n\nSuzie Swim (WFRC): sswim@wfrc.org\nTim Hereth (MAG): thereth@magutah.org"
   },
   {
     "objectID": "v9x/v900/model-process/1-hhdisag-autoown.html",
@@ -1727,5 +1727,12 @@
     "title": "WFTDM Documentation",
     "section": "",
     "text": "Code\nfrom PIL import Image\n\n\n\n\nCode\n# 150%, Home button, zoom out once, F11, change basemap to non-labeled --- Windows+Shift+S click upright screen\n# legend: expand legend window all the way to bottom of screen\nim = Image.open('map_pngs/comparisons/uncropped_2028_2024_MAP.png')\nim_crop = im.crop((400, 400, 800, 1600))\nim_crop.save('map_pngs/comparisons/2028_2028_MAP.png', quality=1000)\n\n\n\n\nCode\nim = Image.open('map_pngs/comparisons/uncropped_2019_LEGEND.png')\nim_crop = im.crop((480, 370, 830, 920))\nim_crop.save('map_pngs/comparisons/2019_LEGEND.png', quality=1000)\n\n\n\n\nCode\n#def cropImage(pngName):\n#    im = Image.open('map_pngs/' + pngName + '.png')\n#    im_crop = im.crop((400, 400, 800, 1600))\n#    im_crop.save('map_pngs/' + pngName + '-cropped.png', quality=1000)\n#\n#def cropLegend(pngName):\n#    im = Image.open('map_pngs/' + pngName + '.png')\n#    im_crop = im.crop((480, 370, 830, 920))\n#    im_crop.save('map_pngs/' + pngName + '-cropped.png', quality=1000)\n\n\n\n\nCode\n#cropImage('vol19')\n#cropImage('vol50')\n#cropImage('vol19-truck')\n#cropImage('vol50-truck')\n#cropLegend('vol-legend')\n#cropLegend('vol-truck-legend')"
+  },
+  {
+    "objectID": "v9x/v900/downloads.html",
+    "href": "v9x/v900/downloads.html",
+    "title": "Downloads",
+    "section": "",
+    "text": "The downloads for the Version 9.0 documentation is shown below by category.\n\nWhat’s New Document\n\n What’s New (Word) \n What’s New (Pdf) \n What’s New (PowerPoint) \n\n\n\nModel Validation Report\n\n Model Validation (Pdf)"
   }
 ]

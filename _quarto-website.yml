@@ -56,8 +56,8 @@ website:
           contents:
             - "---"
             - v9x/v900/index.qmd
-            #- text: "**Downloads**"
-            #  href: v9x/v900/downloads.qmd
+            - text: "Downloads"
+              href: v9x/v900/downloads.qmd
             - "---"
             - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
               contents:
