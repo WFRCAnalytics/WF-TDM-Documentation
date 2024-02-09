@@ -6,9 +6,6 @@ The downloads for the Version 9.0 documentation is shown below by category.
 
 ### What's New Document
 
- - {{< downloadthis "downloads/v900 official - Whats New - 2023-09-19.docx"
-label="What's New (Word)" dname=v900-2023-09-19-whats-new id=download-btn >}}
-
  - {{< downloadthis "downloads/v900 official - Whats New - 2023-09-19.pdf"
 label="What's New (Pdf)" dname=v900-2023-09-19-whats-new2 id=download-btn >}}
 
