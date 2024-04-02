@@ -55,7 +55,7 @@ dfConTotWF = dfConTotWF.drop(columns={'Source'})
 dfConTotWF['CO_NAME'] = 'Wasatch Front'
 dfConTotWF['CO_FIPS'] = 00
 
-sum_columns = dfConTotWF.columns[6:32]
+sum_columns = dfConTotWF.columns[6:31]
 grouped_df = dfConTotWF.groupby(['Subarea', 'CO_FIPS', 'CO_NAME', 'ModelVersion', 'YEAR'])[sum_columns].sum().reset_index()
 ave_hh = dfConTotWF.groupby(['Subarea', 'CO_FIPS', 'CO_NAME', 'ModelVersion', 'YEAR'])['HH_Size'].mean().reset_index()
 grouped_df['Job_HH'] = grouped_df['ALLEMP'] / grouped_df['HH']

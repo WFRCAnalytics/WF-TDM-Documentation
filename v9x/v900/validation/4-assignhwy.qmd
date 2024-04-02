@@ -853,12 +853,12 @@ geojson_file = 'data/5-assignhwy/tazNew.geojson'
 gdf_polygons  = gpd.read_file(geojson_file)
 
 geometry_o = [Point(xy[::-1]) for xy in zip(df1['O_Coordinate_X'], df1['O_Coordinate_Y'])]
-gdf_o = gpd.GeoDataFrame(df1, geometry=geometry_o, crs='EPSG:4326')
+gdf_o = gpd.GeoDataFrame(df1, geometry=geometry_o)
 o_taz_ids = gpd.sjoin(gdf_o, gdf_polygons, how='left', op='within')['TAZID']
 df1['O_TAZID'] = o_taz_ids
 
 geometry_d = [Point(xy[::-1]) for xy in zip(df1['D_Coordinate_X'], df1['D_Coordinate_Y'])]
-gdf_d = gpd.GeoDataFrame(df1, geometry=geometry_d, crs='EPSG:4326')
+gdf_d = gpd.GeoDataFrame(df1, geometry=geometry_d)
 d_taz_ids = gpd.sjoin(gdf_d, gdf_polygons, how='left', op='within')['TAZID']
 df1[' D_TAZID'] = d_taz_ids
 ```
