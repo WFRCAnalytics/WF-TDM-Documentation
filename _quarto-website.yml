@@ -62,23 +62,15 @@ website:
             - text: "Downloads"
               href: v9x/v901/downloads.qmd
             - "---"
-            #- section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
-            #  contents:
-            #    - text: "1 Overview"
-            #      href: v9x/v900/whats-new/1-overview.qmd  
-            #    - text: "2 Traffic Analysis Zone Updates"
-            #      href: v9x/v900/whats-new/2-taz.qmd
-            #    - text: "3 Socioeconomic Data Updates"
-            #      href: v9x/v900/whats-new/3-sedata.qmd
-            #    - text: "4 Highway & Transit Networks Updates"
-            #      href: v9x/v900/whats-new/4-networks.qmd
-            #    - text: "5 Model 2019 Base-Year Updates"
-            #      href: v9x/v900/whats-new/5-baseyear.qmd
-            #    - text: "6 Model Enhancements"
-            #      href: v9x/v900/whats-new/6-modelenhancements.qmd
-            #    - text: "7 Compare Model Results"
-            #      href: v9x/v900/whats-new/7-modelresults.qmd
-            #- "---"
+            - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
+              contents:
+                - text: "1 Overview"
+                  href: v9x/v901/whats-new/1-overview.qmd  
+                - text: "2 Changes to Input Files"
+                  href: v9x/v901/whats-new/2-input-files.qmd
+                - text: "3 Model Enhancements"
+                  href: v9x/v901/whats-new/3-model-enhancements.qmd
+            - "---"
             - section: "<span style=\"color: #3E6682;\">**Model Validation Report**</span>"
               contents:
                 - text: "1 Trip Generation"

@@ -7,4 +7,3 @@ This is the documentation for the Wasatch Front Travel Demand Model for Version 
 
  - [Calibration & Validation Report](downloads.qmd)
 
-For access to this version of the TDM visit .

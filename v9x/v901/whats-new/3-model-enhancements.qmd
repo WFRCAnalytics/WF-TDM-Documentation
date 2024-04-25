@@ -1,0 +1,97 @@
+---
+title: Model Enhancements
+---
+
+## Miscellaneous Script Edits & Bug Fixes
+
+The following sections highlight the scripts that were edited in version 9.0.1 and why those edits were made. These changes were primarily to fix issues in data and calculations or to further enhance the model’s capability or reporting. The changes made to the model scripts are minor and should not affect project decisions.
+
+### 0_InputProcessing
+
+<b>a_Setup\1_InputSetup.s</b>
+
+ - Updated checking code block to look for **SegIdField** and **SegIdExField** variables from control center
+ - Fixed spelling error in log file reporting
+
+<b>c_NetworkProcessing\1_NetProcessor.s</b>
+
+ - Added code block to use **SegIdField** and **SegIdExField** variables from control center to populate SEGID link field
+ - Fixed error in operational project capacity calculation to use 10% increase in capacity if **Run_Op_Proj** control center variable is on and the **Op_Proj** link field is greater than zero (previous script used the value in the **Op_Proj** field as a multiplier on capacity)
+ - Fixed error in the **HOV_LYEAR** usage so calculation is performed on the general purpose links where there is an adjacent HOV/HOT lane (previous script was coded to process HOV/HOT links)
+ - Miscellaneous edits to clean up script
+
+<b>c_NetworkProcessing\4_Create_walk_xfer_access_links.s</b>
+
+ - Updated code to point to `@ScenarioDir@0_InputProcessing\UpdatedMasterNet\@MasterPrefix@.net` instead of master network from the input folder
+ - Updated code to process only internal zones (i.e. exclude external and dummy zones) to fix an error where walk access links were being generated to external/dummy zones
+ - Added SEGID, including code to process SEGID exception field, to the rail network export
+
+### 3_Distribute
+
+<b>2_estimateHOTspeedtoll.s</b>
+
+ - Updated code so period speeds and times are not greater than free flow (some locations in the assigned output networks displayed HOT speeds greater than free flow)
+ - Rounded free flow and daily speed to 1 decimal and rounded all times to 3 decimals
+ - Note, similar edits were made in `5_AssignHwy\04_SummarizeLoadedNetworks.s`
+
+### 4_ModeChoice
+
+<b>11-13_MC_HBW_HBO_NHB_HBC.s</b>
+
+ - Appended the content of `13_DailyModeSplit.s` script to the end of `11_12_MC_HBW_HBO_NHB_HBC.s` script
+ - Renamed `11_12_MC_HBW_HBO_NHB_HBC.s` script to `11-13_MC_HBW_HBO_NHB_HBC.s`
+ - Deleted `13_DailyModeSplit.s`
+ - Updated script references in `_HailMary.s`, `__HailMary_1Subfolder.s`, and `__HailMary_2Subfolders.s` in the `Scenarios\_default` folder
+
+### 5_AssignHwy
+
+<b>02_Assign_AM_MD_PM_EV and 04_SummarizeLoadedNetworks.s</b>
+
+ - Scripts were updated to create additional select link summary statistics and to provide enhanced reporting
+ - Select link information are reported for a summary of trip purposes and vehicle classes and time period
+ - Like other select link data, new select link files are only created if the Use_SelLinkGrp parameter in the control center is set to 1
+ - `02_Assign_AM_MD_PM_EV.s` edits:
+    - Added code to output daily origin-destination (OD) vehicle trip matrices
+    - Added code to create a new report, `@unloadednetprefix@_SL_Summary.csv` located in the scenario `5_AssignHwy\3_SelectLink` folder, that lists row and column sums from the period OD vehicle trips
+ - `04_SummarizeLoadedNetworks.s`
+    - Added code to create two new networks, `@unloadednetprefix@__SL_TotVolume.net` and `@unloadednetprefix@__SL_MaxVolume.net` located in the scenario `_AssignHwy\2a_Networks` folder:
+        - `SL_TotVolume.net` – shows the percentage of select link volume of each link to total roadway volume of each link
+        - `SL_MaxVolume.net` – shows the percent of select link volume of each link to the total (or max) volume of the selected link
+
+<b>07_PerformFinalNetSkim.s</b>
+
+ - Code was modified to report no-access time and distance values to be 9999 (previously was 10000)
+ - Code was updated so in-vehicle times and distances and terminal times are no longer reported for unconnected zones
+
+<b>08_Access_to_Opportunity.s</b>
+
+ - Renamed output to `@RID@_Access_to_Opportunity.csv` (was `Access_to_Opportunity_@DemographicYear@.csv`)
+ - Output report moved to `5_AssignHwy\4_Summaries` (was `7_PostProcessing`)
+ - Read in scenario network node file and changed straight line distance calculation to use highway network zone centroid locations
+ - Updated script to not report data for unused (dummy) zones and externals 
+ - Performed miscellaneous edits for general clean up
+
+<b>7_PostProcessing</b>
+
+ - The `Compare_2Assignments.s` and `Compare_2MasterNet.s` postprocessing scripts were adjusted to change the input network variables from **net_compare** and **net_base** to **net_1** and **net_2**, respectively
+ - `Compare_2MasterNet.s` fields updated to reflect RTP 2023 scenario years
+
+### Scenarios\_default
+
+<b>1ControlCenter - XXXX.block</b>
+
+ - Modified references to model version from v9.0 or v9 to v9.0.1 or v901, respectively
+ - Updated input variable references to TAZ shapefile, master highway network, and master link shapefile
+ - Added **SEGIDField** and **SEGIDExField** variables
+
+<b>_HailMary.s, _HailMary_1Subfolder.s, and _HailMary_2Subfolders.s</b>
+
+ - Renamed `11_12_MC_HBW_HBO_NHB_HBC.s` script to `11-13_MC_HBW_HBO_NHB_HBC.s`
+ - Deleted `13_DailyModeSplit.s`
+
+
+
+
+
+
+

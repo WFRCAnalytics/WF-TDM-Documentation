@@ -13,7 +13,7 @@ This is the documentation for the Wasatch Front Travel Demand Model Version 9.0.
  - (download link here)
  - (download link here) -->
 
-For access to this version of the TDM visit please contact the following persons:
+For access to this version of the TDM please contact the following persons:
 
  - Suzie Swim (WFRC): sswim@wfrc.org
  - Tim Hereth (MAG): thereth@magutah.org

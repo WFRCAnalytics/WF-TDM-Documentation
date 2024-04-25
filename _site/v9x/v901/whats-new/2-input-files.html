@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WFTDM Documentation - Changes to Input Files</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../_pictures/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="module" src="../../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://wfrc.org" class="navbar-brand navbar-brand-logo">
+    <img src="../../../_pictures/wf-logo-new-white-t.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9-series" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9 Series</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v901/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0.1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.2 - Draft Release</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v831/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.1 - Draft Release</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v830/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.0 - Draft Release</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="mailto:sswim@wfrc.org" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><span style="color: #3E6682;font-size: 25px;">**Version 9.0.1**</span></li><li class="breadcrumb-item"><a href="../../../v9x/v901/whats-new/1-overview.html"><span style="color: #3E6682;">**Whats New Document**</span></a></li><li class="breadcrumb-item"><a href="../../../v9x/v901/whats-new/2-input-files.html">2 Changes to Input Files</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text"><span style="color: #3E6682;font-size: 25px;"><strong>Version 9.0.1</strong></span></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="px-0"><hr class="sidebar-divider hi "></li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v901/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v901/downloads.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Downloads</span></a>
+  </div>
+</li>
+          <li class="px-0"><hr class="sidebar-divider hi "></li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text"><span style="color: #3E6682;"><strong>Whats New Document</strong></span></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v901/whats-new/1-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v901/whats-new/2-input-files.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2 Changes to Input Files</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v901/whats-new/3-model-enhancements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Model Enhancements</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="px-0"><hr class="sidebar-divider hi "></li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text"><span style="color: #3E6682;"><strong>Model Validation Report</strong></span></span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v901/validation/1-tripgen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1 Trip Generation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v901/validation/2-distribute.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2 Distribution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v901/validation/3-modechoice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Mode Choice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v901/validation/4-assignhwy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4 Highway Assignment</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
+   
+  <ul class="collapse">
+  <li><a href="#traffic-analysis-zone" id="toc-traffic-analysis-zone" class="nav-link active" data-scroll-target="#traffic-analysis-zone">Traffic Analysis Zone</a></li>
+  <li><a href="#highway-network" id="toc-highway-network" class="nav-link" data-scroll-target="#highway-network">Highway Network</a></li>
+  <li><a href="#transit-networks" id="toc-transit-networks" class="nav-link" data-scroll-target="#transit-networks">Transit Networks</a></li>
+  <li><a href="#segment-shapefile" id="toc-segment-shapefile" class="nav-link" data-scroll-target="#segment-shapefile">Segment Shapefile</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Changes to Input Files</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="traffic-analysis-zone" class="level2">
+<h2 class="anchored" data-anchor-id="traffic-analysis-zone">Traffic Analysis Zone</h2>
+<section id="changes-to-taz-attributes" class="level3">
+<h3 class="anchored" data-anchor-id="changes-to-taz-attributes">Changes to TAZ Attributes</h3>
+<p>The following attributes in the TAZ shapefile were updated (note, TAZ geometry and numbering were unchanged).</p>
+<p><strong>City Name</strong></p>
+<ul>
+<li>The value “Mill Creek” was replaced with “Millcreek” in the <strong>CITY_NAME</strong> field</li>
+<li>The <strong>CITY_UGRC</strong> and <strong>CITY_FIPS</strong> fields were updated to be consistent with <strong>CITY_NAME</strong></li>
+<li>A new City district shapefile was created based on updated the city name and ID fields</li>
+</ul>
+<p><strong>Developable Acres</strong></p>
+<ul>
+<li>The <strong>DEVACRES</strong> and <strong>DEVPBLEPCT</strong> fields were set to 0 in TAZs with no developable land. A new point shapefile, <code>undevelopable-points_WF.shp</code>, was added to the <code>1_Inputs\1_TAZ\_Source\EnvConstraints</code> folder to keep track of these override undevelopable TAZs. <a href="#fig-undvp-tazes">Figure&nbsp;1</a> shows which TAZs had their fields set to 0.</li>
+</ul>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="24" data-source-offset="-28"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 23;"><span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="pp">require</span>(<span class="st">'leaflet@1.2.0'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;link href='</span><span class="sc">${</span><span class="fu">resolve</span>(<span class="st">'leaflet@1.2.0/dist/leaflet.css'</span>)<span class="sc">}</span><span class="vs">' rel='stylesheet' /&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="27" data-source-offset="-142"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 26;"><span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>geojsonTaz    <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/WFv901_TAZ_20240412.geojson"</span>   )<span class="op">.</span><span class="fu">json</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="33" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 32;"><span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>mapTazUndvp<span class="op">=</span> {</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">40.7608</span><span class="op">,</span> <span class="op">-</span><span class="fl">111.8910</span>]<span class="op">,</span> <span class="fl">8.25</span>)<span class="op">;</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> greyLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'</span><span class="op">,</span> {</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> tazColors <span class="op">=</span> [<span class="st">'#00887F'</span>   <span class="op">,</span><span class="st">'#BD0026'</span>       ]</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> tazLabels <span class="op">=</span> [<span class="st">'Developable Space'</span><span class="op">,</span><span class="st">'Undevelopable Space'</span>]<span class="op">;</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> lyrTAZNew <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJson</span>(geojsonTaz<span class="op">,</span> {</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>                            <span class="dt">style</span><span class="op">:</span> <span class="kw">function</span>(feature) {</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>                              <span class="kw">var</span> d <span class="op">=</span> feature<span class="op">.</span><span class="at">properties</span><span class="op">.</span><span class="at">DEVPBLEPCT</span><span class="op">;</span></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>                              <span class="cf">return</span> d<span class="op">&gt;</span><span class="dv">0</span>  <span class="op">?</span> {<span class="dt">color</span><span class="op">:</span>tazColors[<span class="dv">0</span>]<span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">:</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>                                     d<span class="op">==</span><span class="dv">0</span> <span class="op">?</span> {<span class="dt">color</span><span class="op">:</span>tazColors[<span class="dv">1</span>]<span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">:</span> </span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>                                            {<span class="dt">color</span><span class="op">:</span>    <span class="st">'#000000'</span><span class="op">,</span> <span class="dt">weight</span><span class="op">:</span><span class="dv">1</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span><span class="fl">0.95</span>} <span class="op">;</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>                            }</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> legend <span class="op">=</span> L<span class="op">.</span><span class="fu">control</span>({<span class="dt">position</span><span class="op">:</span> <span class="st">'bottomleft'</span>})<span class="op">;</span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>  legend<span class="op">.</span><span class="at">onAdd</span> <span class="op">=</span> <span class="kw">function</span> (map) {</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> div <span class="op">=</span> L<span class="op">.</span><span class="at">DomUtil</span><span class="op">.</span><span class="fu">create</span>(<span class="st">'div'</span><span class="op">,</span> <span class="st">'legend'</span>)<span class="op">;</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">=</span> <span class="st">''</span><span class="op">;</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> tazLabels<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>      div<span class="op">.</span><span class="at">innerHTML</span> <span class="op">+=</span> <span class="st">'&lt;i style="background:'</span> <span class="op">+</span> tazColors[i] <span class="op">+</span> <span class="st">'"&gt;&amp;nbsp;&lt;/i&gt; '</span> <span class="op">+</span> tazLabels[i] <span class="op">+</span> <span class="st">'&lt;br/&gt;'</span><span class="op">;</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Add CSS style for the background color</span></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">backgroundColor</span> <span class="op">=</span> <span class="st">'lightgray'</span><span class="op">;</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>    div<span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">'10px'</span><span class="op">;</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>  legend<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-undvp-tazes" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;1: TAZs with Undevelopable Acres</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="rename-taz-shapefile" class="level3">
+<h3 class="anchored" data-anchor-id="rename-taz-shapefile">Rename TAZ Shapefile</h3>
+<p>The TAZ shapefile was renamed from <code>TAZ.shp</code> to <code>WFv901_TAZ_{date-stamp}.shp</code> to comply with the new model file naming convention determined by the Interagency Modeling Technical Committee (IMTC). The <strong>TAZ_DBF</strong> variable was updated in the <code>Scenarios\_default\ControlCenter.block</code> files.</p>
+</section>
+</section>
+<section id="highway-network" class="level2">
+<h2 class="anchored" data-anchor-id="highway-network">Highway Network</h2>
+<section id="network-changes-due-to-segment-shapefile-updates" class="level3">
+<h3 class="anchored" data-anchor-id="network-changes-due-to-segment-shapefile-updates">Network Changes due to Segment Shapefile Updates</h3>
+<p>The highway network was updated to coincide with the updates made to the segment shapefile (see the <a href="https://wfrc.org/wftdm-docs/v9x/v901/whats-new/2-input-files.html#segment-shapefile">Segment Shapefile</a> section of this report). Primarily, these changes consisted of adding nodes, splitting links, and updating the <strong>SEGID</strong> link field. However, a few new corridors were added to the network and some link/nodes positions were changed to better align with the segment shapefile. The edits made to the network node and link geometry to accommodate desired segment updates constitute the vast majority of the geometric changes made to the network in version 9.0.1. Because of the large number of edits made to the highway link-node structure, the version 9.0.1 highway network is not backward compatible with version 9.0.0 highway network.</p>
+<p>The complexity of the frontage road system in the highway network in future scenarios caused the value in the <strong>SEGID</strong> field to not be unique for all scenarios. To allow for a link’s SEGID to change between scenarios, a set of SEGID exception fields were added to the Master Network. When SEGID changes in a scenario, the new SEGID is coded into the scenario’s corresponding SEGID exception field. This will trigger an override of the SEGID calculation in the network processor script. Blank values use the primary SEGID field, i.e.&nbsp;no override. The field names for the SEGID exception field set follow the naming convention used for the lane and functional type field set:</p>
+<ul>
+<li>Base and TIP years
+<ul>
+<li>SGX_2019</li>
+<li>SGX_2023</li>
+</ul></li>
+<li>SGX_2028
+<ul>
+<li>Fiscally Constrained Plan years</li>
+<li>SGX23_32</li>
+<li>SGX23_42</li>
+<li>SGX23_50</li>
+</ul></li>
+<li>Unfunded Need Plan years
+<ul>
+<li>SGX23_32UF</li>
+<li>SGX23_42UF</li>
+<li>SGX23_50UF</li>
+</ul></li>
+</ul>
+<p>A new variable, <strong>SegIdExField</strong>, was added to the <code>1ControlCenter.block</code> file to select which SEGID exception field to use in the scenario.</p>
+</section>
+<section id="general-maintenance-corrections" class="level3">
+<h3 class="anchored" data-anchor-id="general-maintenance-corrections">General Maintenance &amp; Corrections</h3>
+<p>Clean up work was done to the highway network to fix errors or to do general maintenance. Below is a list of specific changes made to the highway network. Note that the project list coded into the v9.0.1 highway network represents the Regional Transportation Plans adopted May 2023.</p>
+<p><u>Nodes</u></p>
+<ul>
+<li><strong>MAG_NODE</strong> field was corrected for 16 nodes</li>
+<li><strong>GEOGKEY</strong> field was corrected in 10 instances</li>
+<li>The <strong>PNR</strong> fields were updated for two nodes at the Tooele express bus park and ride location where PNR values were set to 0.</li>
+</ul>
+<p><u>Links</u></p>
+<ul>
+<li>Updated connections to TAZ 90 and removed 1500 S in Brigham City between 775 W and Hwy 89 (not yet existing or planned in future phases)</li>
+<li>Connected 4600 S from Harrison Blvd to Skyline Drive south of Weber St Campus</li>
+<li>Updated connection for West Weber Corridor to Hwy 89 and corrected some centroid connections</li>
+<li>Removed Arsenal Rd in HAFB from 2015-2028 and left connections in TAZs 647, 632, and 655 to the base to the east only</li>
+<li>Updated I-15 Northbound from Park Ln to 200 N to reflect 4 lanes</li>
+<li>Updated West Davis/West Weber corridor north of SR 193 to a functional type of 12</li>
+<li>Fixed Shephard Ln disconnect</li>
+<li>Turned off link for 400 N / North St where it does not yet cross the rail tracks</li>
+<li>Removed floating link on 700 S just west of 3000 W in West Pointe</li>
+<li>Updated 4700 S westbound from 4000 W to 4800 to reflect 2 lanes</li>
+<li>Adjusted the 7400 South from Oquirrh Blvd to MVC RTP Project to be a grade separated crossing at MVC instead of at-grade</li>
+<li>Turned on Herriman Phase 1 project at Silver Sky Dr</li>
+<li>Added in 520 W (Seg ID 3440_005.8) between 400 N and 2nd St</li>
+<li>Added in 3200 W from 2100 N to 3500 N and 3500 N from 3200 W to 2200 W (Scannell Swaner development)</li>
+<li>Added in 4420 W between 4700 W and 5400 S (used Seg ID from UDOT)</li>
+<li>Turned on links for 3800 S between 220 W and 1700 W</li>
+<li>Added in 3785 S between 6400 W and 7200 W</li>
+<li>Added in 6000 W between 3500 S and 4100 S</li>
+<li>Removed local connection between 11800 S and Lake Ave at MVC</li>
+<li>Removed local connection between 14600 S and 14400 S at Redwood Rd</li>
+<li>Aligned Doubleday and Sunrise Ranch in Mapleton with existing roads</li>
+<li>Turned on Ring Road links in Saratoga Springs to match existing conditions</li>
+<li>Turned off 2023 road between Pony Express Parkway and Temple Area (non-foothill)</li>
+<li>Fixed network in Saratoga and Eagle Mountain to match existing roadway network</li>
+<li>Extended Foothill frontage roads down to Lariat Blvd in Saratoga Springs</li>
+<li>Turned on Sunset Drive in Eagle Mountain for 2019, 2023, and 2028</li>
+<li>Turned on Mt Airey Drive in Eagle Mountain for 2019, 2023, and 2028</li>
+<li>Fixed centroid connection to TAZs 42, 260, 1992, 1993, 2005, and 2006 and edited other centroid connectors to fix unconnected zones</li>
+<li>Connected centroid to TAZ 931 to unfunded network</li>
+<li>Realigned links and added links based on UDOT LRS updates on the following corridors:
+<ul>
+<li>500 W / 3700 W between Bluff Ridge Blvd and Antelope Dr</li>
+<li>Station Pkwy / Burke Ln between 1525 W and Park Ln</li>
+<li>1525 W between Station Pkwy / Burke Ln and Clark Ln</li>
+<li>North Frontage Rd / 8000 W / 1400 N between 7200 W and Utah State Prison and Correctional Facility</li>
+<li>Gordon Ave</li>
+<li>Cherry Ln</li>
+<li>13200 S between 1300 W and Highland</li>
+<li>Herriman Main St</li>
+<li>Porter Rockwell Blvd</li>
+<li>Layton Pkwy</li>
+<li>Hill Field Rd</li>
+<li>2700 W between WDC and Hill Field Rd</li>
+<li>2200 W between Layton Pkwy and 700 S</li>
+<li>1800 S to 2100 S Connector between SR-126 and 2700 W</li>
+<li>3600 S to 3300 S Connector between 2700 W and 3600 W</li>
+<li>Depot St between 700 S and 1000 E</li>
+<li>Shadow Valley between SR-203 and Skyline Pkwy</li>
+<li>Frontage Rd between Shepard Ln and Burton Ln</li>
+<li>Petunia Wy, 9800 S, 17000 E collector roads between 9400 S and Sego Lily Dr and 1300 E and Eastdell Dr</li>
+<li>Lincoln Ln and 2000 E collector roads between Highland Dr and 2700 E and 3900 S and 4500 S</li>
+</ul></li>
+<li>Fixed <strong>HOT23_32</strong> through <strong>HOT23_50UF</strong> fields to correctly reflect the RTP projects from Farmington to the Utah/Salt Lake County line</li>
+</ul>
+<p>Between the edits made to the highway network for the segment shapefile update and the general network maintenance, approximately 150 nodes and 900 links were added to the highway network in version 9.0.1, the bulk of which occurred in Saratoga Springs, Eagle Mountain, Weber County, Holladay, Sandy, and Draper. <a href="#fig-new-link-nodes">Figure&nbsp;2</a> highlights the locations of the new nodes and links added to the version 9.0.1 network.</p>
+<div id="fig-new-link-nodes" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/new-link-nodes.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: New Highway Nodes &amp; Links (blue)</figcaption>
+</figure>
+</div>
+</section>
+<section id="rename-master-network" class="level3">
+<h3 class="anchored" data-anchor-id="rename-master-network">Rename Master Network</h3>
+<p>The master network was renamed from <code>MasterNet_v9 – {date-stamp}.net</code> to <code>WFv901_MasterNet_{date-stamp}.net</code> to comply with the new model file naming convention determined by the Interagency Modeling Technical Committee (IMTC). The <strong>MasterPrefix</strong> variable was updated in the <code>Scenarios\_default\ControlCenter.block</code> files.</p>
+</section>
+</section>
+<section id="transit-networks" class="level2">
+<h2 class="anchored" data-anchor-id="transit-networks">Transit Networks</h2>
+<section id="changes-to-transit-line-files" class="level3">
+<h3 class="anchored" data-anchor-id="changes-to-transit-line-files">Changes to Transit Line Files</h3>
+<p>The changes made to the transit line files were to make the line files compatible with the highway network geometry edits, primarily where links were split along a transit route. The project list coded into the v9.0.1 transit network represents the Regional Transportation Plans adopted May 2023.</p>
+</section>
+</section>
+<section id="segment-shapefile" class="level2">
+<h2 class="anchored" data-anchor-id="segment-shapefile">Segment Shapefile</h2>
+<section id="changes-to-segment-attributes-and-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="changes-to-segment-attributes-and-geometry">Changes to Segment Attributes and Geometry</h3>
+<p>The segment shapefile was updated extensively to allow for future segment-level processing of the transit results, to develop a more accurate <a href="https://unifiedplan.org/traffic-volume-map/">traffic volume forecast</a>, and to correct for compatibility issues with the highway network. Hundreds of new segments were added and many were deleted or adjusted to better reflect the current and future physical roadway. Because of the large number of edits made to the segments, the segment shapefile and any segment reporting in version 9.0.1 are not backward compatible with version 9.0.0.</p>
+<p>Overall, there were approximately 5000 changes to the <strong>SEGID</strong> value between version 9.0.0 and version 9.0.1. This includes the addition of around 3000 new SEGID values and the renaming of around 2000 SEGID values. SEGID shapefile edits were also reflected in the highway network. <a href="#tbl-segid-changes">Table&nbsp;1</a> gives the percentage of SEGID changes by county. The majority of SEGID updates occurred in Utah County followed by Salt Lake County.</p>
+<div class="grid">
+<div class="g-col-3">
+
+</div>
+<div class="g-col-6">
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="tbl-segid-changes" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Percentage of SEGID Changes by County</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">County</th>
+<th style="text-align: left;">Change in SEGID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Box Elder</td>
+<td style="text-align: left;">1%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weber</td>
+<td style="text-align: left;">3%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Davis</td>
+<td style="text-align: left;">6%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salt Lake</td>
+<td style="text-align: left;">21%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utah</td>
+<td style="text-align: left;">69%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Eagle Mountain saw the most SEGID changes (22%), followed by Saratoga Springs (8%), Santaquin (6%), West Jordan (5%), and Payson (5%).</p>
+<p><a href="#fig-hwy-link-segid">Figure&nbsp;3</a> shows where SEGIDs changes occurred between versions 9.0.0 and 9.0.1 in the model network. This provides a representation of where new and adjusted segments are located in segment shapefile.</p>
+<div id="fig-hwy-link-segid" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="_pictures/hwy-link-segid.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Highway Links and New or Adjusted SEGID Value (blue)</figcaption>
+</figure>
+</div>
+</section>
+<section id="renamed-segment-shapefile" class="level3">
+<h3 class="anchored" data-anchor-id="renamed-segment-shapefile">Renamed Segment Shapefile</h3>
+<p>The segment shapefile was renamed from <code>Segments_WF – {date-stamp}.shp</code> to <code>WFv901_Segments_{date-stamp}.shp</code> to comply with statewide naming standards as determined by the Interagency Modeling Technical Committee (IMTC).</p>
+</section>
+<section id="added-_segment-processing-tools-folder" class="level3">
+<h3 class="anchored" data-anchor-id="added-_segment-processing-tools-folder">Added <code>_Segment Processing Tools</code> Folder</h3>
+<p>A new methodology was developed and utilized for updating the segment shapefile. This process is documented in a Jupyter notebook file <code>0-How-to-Prep-Segments-for-TDM.ipynb</code> located in a new folder <code>1_Inputs\6_Segment\_Segment Processing Tools</code>. In short, this script outlines five steps to be followed when developing new and updated segments.</p>
+<ol type="1">
+<li>Ensure consistency between the master network and segment shapefile.
+<ol type="a">
+<li>Unique <strong>SEGIDs</strong> in shapefile.</li>
+<li>Correct <strong>DISTANCE</strong>.</li>
+<li>Correct LRS Segments <strong>BMP</strong>, <strong>EMP</strong>, and <strong>DISTANCE</strong>.</li>
+<li>TDM Network includes all <strong>SEGIDs</strong>.</li>
+<li>Segment Shapefile includes all <strong>SEGIDs</strong>.</li>
+<li>Correct geographic coordinate system.</li>
+</ol></li>
+<li>Add Geographic Keys onto Segments (<strong>SUBAREAID</strong>, <strong>PLANAREA</strong>, <strong>CO_FIPS</strong>).</li>
+<li>Add AADTs onto Segments.</li>
+<li>Add Factors from Continuous Count Station groups.</li>
+<li>Add final forecasts from forecasts process.</li>
+</ol>
+<p>This new process ensures the segment shapefile is ready for the traffic volume forecasts map, as well as ensures only the needed and relevant attributes are included.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"// setup mapping and layers\nL = require('leaflet@1.2.0')\nhtml`<link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' />`\n\ngeojsonTaz    = FileAttachment(\"data/WFv901_TAZ_20240412.geojson\"   ).json()\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"\nmapTazUndvp= {\n\n  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n  yield container;\n  \n  let map = L.map(container).setView([40.7608, -111.8910], 8.25);\n\n  let greyLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {\n    attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\n  }).addTo(map);\n\n  let tazColors = ['#00887F'   ,'#BD0026'       ]\n  let tazLabels = ['Developable Space','Undevelopable Space'];\n  \n  let lyrTAZNew = L.geoJson(geojsonTaz, {\n                            style: function(feature) {\n                              var d = feature.properties.DEVPBLEPCT;\n                              return d>0  ? {color:tazColors[0], weight:1, opacity:0.95} :\n                                     d==0 ? {color:tazColors[1], weight:1, opacity:0.95} : \n                                            {color:    '#000000', weight:1, opacity:0.95} ;\n                            }\n  }).addTo(map);\n  \n  var legend = L.control({position: 'bottomleft'});\n  legend.onAdd = function (map) {\n    var div = L.DomUtil.create('div', 'legend');\n    div.innerHTML = '';\n    for (var i = 0; i < tazLabels.length; i++) {\n      div.innerHTML += '<i style=\"background:' + tazColors[i] + '\">&nbsp;</i> ' + tazLabels[i] + '<br/>';\n    }\n\n    // Add CSS style for the background color\n    div.style.backgroundColor = 'lightgray';\n    div.style.padding = '10px';\n    \n    return div;\n  };\n  legend.addTo(map);\n}\n"}]}
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../v9x/v901/whats-new";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://wfrc.org"><img src="https://wfrc.org/wp-content/uploads/2021/11/logo.jpg" class="img-fluid" alt="WFRC" width="150"></a> <a href="https://mountainland.org/"><img src="https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg" class="img-fluid" alt="MAG" width="65"></a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

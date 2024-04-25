@@ -1,0 +1,11 @@
+---
+title: Overview
+---
+
+Version 9.0.1 is a minor update to the Wasatch Front Travel Demand Model. The model processes and parameters are the same as version 9.0.0. Minor changes were made to a few of the primary input files and to the model scripts. These changes were primarily to fix issues in data and calculations or to further enhance the model’s capability or reporting. It is not anticipated that the changes made to the model would affect project decisions. However, model users should verify this for individual projects.
+
+Changes to the model inputs in version 9.0.1 include minor updates made to the TAZ shapefile and transit networks. More significant updates were made to the highway network and segment shapefile. The updates to the highway network include changing the network geometry and link/node structure to align with the updated planning segments, correcting issues in project coding and zone connection, and general maintenance. The updates to the segment shapefile include additional segments, deleted segments, field reordering, and various segment realignments. Because of the large number of edits made to the highway network link/node structure and to the segment shapefile, network and segment related reporting in version 9.0.1 are not backward compatible with version 9.0.0.
+
+Changes made to the model scripts in version 9.0.1 include edits for minor issue resolution, file renaming, and various cleanup items meant to improve the model’s capability and cleanliness. 
+
+

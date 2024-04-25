@@ -2,18 +2,15 @@
 title: Downloads
 ---
 
-The downloads for the Version 9.0 documentation is shown below by category.
+The downloads for the Version 9.0.1 documentation is shown below by category.
 
 ### What's New Document
 
- - {{< downloadthis "downloads/v901 official - Whats New - 2023-09-19.pdf"
-label="What's New (Pdf)" dname=v901-2023-09-19-whats-new1 id=download-btn >}}
-
- - {{< downloadthis "downloads/v901 official - Whats New - 2023-09-19.pptx"
-label="What's New (PowerPoint)" dname=v901-2023-09-19-whats-new2 id=download-btn >}}
+ - {{< downloadthis "downloads/v901 - What's New - 2024-04-23.pdf"
+label="What's New (Pdf)" dname=v901-2024-04-23-whats-new id=download-btn >}}
 
 
 ### Model Validation Report
 
- - {{< downloadthis "downloads/v901 official - Model Validation - 2023-09-19.pdf"
-label="Model Validation (Pdf)" dname=v901-2023-09-19-validation id=download-btn >}}
+ - {{< downloadthis "downloads/v901 - Model Validation - 2024-04-23.pdf"
+label="Model Validation (Pdf)" dname=v901-2024-04-23-validation id=download-btn >}}

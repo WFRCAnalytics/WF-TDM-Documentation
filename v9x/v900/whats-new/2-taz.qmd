@@ -125,7 +125,7 @@ In addition, the following changes were made to the TAZ shapefile:
  - All TAZ boundaries were realigned to county boundaries from the most recent UGRC county dataset.
  - All internal TAZ topology was checked and corrected to exclude slivers, gaps, and overlaps.
  - External zone polygons (i.e. the arbitrary polygons representing the external zones) were removed in the TAZ shapefile.
- - **PRKCSTPERM** and **PRKCSTTEMP** fields were updated (see [Parking Costs](https://wfrc.org/wftdm-docs/v9x/v900/whats-new/15-baseyear.html#parking-costs) for additional information)
+ - **PRKCSTPERM** and **PRKCSTTEMP** fields were updated (see [Parking Costs](https://wfrc.org/wftdm-docs/v9x/v900/whats-new/5-baseyear.html#parking-costs) for additional information)
  - Large, medium, and small district definitions were updated. There are now 26 large districts, 73 medium districts, and 110 small districts. Medium districts still nest within large districts. Small districts were defined based on city area definitions and do not nest within medium districts. All districts were renamed and no longer include commas in the text string.
  - **CITY**, **COUNTY**, and **EXTERNAL** fields were removed. All model scripts referencing **CITY** and **COUNTY** were updated to use **CITY_FIPS** and **CO_FIPS**. 
  - A **REMM** field was added to indicate which TAZs are included in the Real Estate Market Model (REMM), as shown in @fig-taz-remm-space. A value of `1` indicates that the TAZ is part of the REMM area.

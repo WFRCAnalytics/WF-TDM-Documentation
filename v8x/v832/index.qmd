@@ -8,7 +8,7 @@ This is the documentation for the Wasatch Front Travel Demand Model for Version 
  - [Model Validation Report](downloads.qmd) 
  - [Inputs Document](downloads.qmd)
 
-For access to this version of the TDM visit please contact the following persons:
+For access to this version of the TDM please contact the following persons:
 
  - Suzie Swim (WFRC): sswim@wfrc.org
  - Matt DeLora (MAG): mdelora@magutah.org
