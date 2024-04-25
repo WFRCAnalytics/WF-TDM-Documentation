@@ -29,6 +29,9 @@ website:
 
       - text: "Version 9 Series"
         menu:
+        - text: "Version 9.0.1"
+          href: v9x/v901/index.qmd
+          id: v901-preface
         - text: "Version 9.0.0" 
           href: v9x/v900/index.qmd
           id: v900-preface
@@ -46,6 +49,46 @@ website:
           id: v830-preface
           
   sidebar:
+    - id: v901-preface
+      style: "docked"
+      collapse-level: 1
+      border: true
+      background: white
+      contents:
+        - section: "<span style=\"color: #3E6682;font-size: 25px;\">**Version 9.0.1**</span>"
+          contents:
+            - "---"
+            - v9x/v901/index.qmd
+            - text: "Downloads"
+              href: v9x/v901/downloads.qmd
+            - "---"
+            #- section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
+            #  contents:
+            #    - text: "1 Overview"
+            #      href: v9x/v900/whats-new/1-overview.qmd  
+            #    - text: "2 Traffic Analysis Zone Updates"
+            #      href: v9x/v900/whats-new/2-taz.qmd
+            #    - text: "3 Socioeconomic Data Updates"
+            #      href: v9x/v900/whats-new/3-sedata.qmd
+            #    - text: "4 Highway & Transit Networks Updates"
+            #      href: v9x/v900/whats-new/4-networks.qmd
+            #    - text: "5 Model 2019 Base-Year Updates"
+            #      href: v9x/v900/whats-new/5-baseyear.qmd
+            #    - text: "6 Model Enhancements"
+            #      href: v9x/v900/whats-new/6-modelenhancements.qmd
+            #    - text: "7 Compare Model Results"
+            #      href: v9x/v900/whats-new/7-modelresults.qmd
+            #- "---"
+            - section: "<span style=\"color: #3E6682;\">**Model Validation Report**</span>"
+              contents:
+                - text: "1 Trip Generation"
+                  href: v9x/v901/validation/1-tripgen.qmd
+                - text: "2 Distribution"
+                  href: v9x/v901/validation/2-distribute.qmd
+                - text: "3 Mode Choice"
+                  href: v9x/v901/validation/3-modechoice.qmd
+                - text: "4 Highway Assignment"
+                  href: v9x/v901/validation/4-assignhwy.qmd
     - id: v900-preface
       style: "docked"
       collapse-level: 1
