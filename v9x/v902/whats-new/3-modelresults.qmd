@@ -14,7 +14,7 @@ modelOld = 'WF TDM v9.0.1 - official - patch 2'
 This section compares the model results between version 9.0.2 and version 9.0.1-patch2.
 
 ## Road Volume Comparisons
-The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in version 9 compared to version 8 are shown in blue, while increases are shown in red.
+The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in version 9.0.2 compared to version 8 are shown in blue, while increases are shown in red.
 
 For 2019, Salt Lake and northern Davis counties display a drop in roadway volumes, most apparent on I-15. Weber, southern Davis, and Utah Counties show increases. Most of the changes are relatively minor, with the largest decreases occurring on the freeways in Salt Lake County. However, given the large daily volume for these roadways, the percent change is relatively low.
 
@@ -34,7 +34,7 @@ The comparison of daily medium and heavy truck volumes is found in @fig-volume-t
 
 ![](data/map_pngs/vol-legend-cropped.png)
 
-Model Daily Volumes Comparison - All Vehicles (version 9 vs version 8)
+Model Daily Volumes Comparison - All Vehicles (version 9.0.2 vs version 9.0.1-patch2)
 :::
 
 ### Volume Change - Truck
@@ -47,7 +47,7 @@ Model Daily Volumes Comparison - All Vehicles (version 9 vs version 8)
 
 ![](data/map_pngs/vol-truck-legend-cropped.png)
 
-Model Daily Volumes Comparison - Trucks (version 9 vs version 8)
+Model Daily Volumes Comparison - Trucks (version 9.0.2 vs version 9.0.1-patch2)
 :::
 
 <!--
@@ -79,80 +79,22 @@ from scipy import special
 import time
 import math as msi
 import sys
-
-sys.path.insert(0, '..\..\..\..\Resources\Python-Functions')
-import BigQuery
- 
-client = BigQuery.getBigQueryClient_TDMScenarios()
 ```
 
 ```{python}
 # include in all scenario groups
 lstIncludeInAll = ['BY','TIP']
-
-# dataframe to create subcategories
-dfModeGroups = pd.DataFrame([
-    ['Walk'     ,'1: Non-Motorized'         ],
-    ['Bike'     ,'1: Non-Motorized'         ],
-    ['Walk'     ,'1a: Walk'                 ],
-    ['Bike'     ,'1b: Bike'                 ],
-    ['Auto'     ,'2: Auto'                  ],
-    ['SchoolBus','3: SchoolBus'             ],
-    ['LCL'      ,'4: Transit'               ],
-    ['COR'      ,'4: Transit'               ],
-    ['EXP'      ,'4: Transit'               ],
-    ['BRT'      ,'4: Transit'               ],
-    ['LRT'      ,'4: Transit'               ],
-    ['CRT'      ,'4: Transit'               ],
-    ['LCL'      ,'4a: Local Bus'            ],
-    ['COR'      ,'4b: Core Bus'             ],
-    ['EXP'      ,'4c: Express Bus'          ],
-    ['BRT'      ,'4d: Bus-Rapid Transit'    ],
-    ['LRT'      ,'4e: Light-Rail Transit'   ],
-    ['CRT'      ,'4f: Commuter-Rail Transit'],
-    ['Walk'     ,'0: Total'                 ],
-    ['Bike'     ,'0: Total'                 ],
-    ['Auto'     ,'0: Total'                 ],
-    ['SchoolBus','0: Total'                 ],
-    ['LCL'      ,'0: Total'                 ],
-    ['COR'      ,'0: Total'                 ],
-    ['EXP'      ,'0: Total'                 ],
-    ['BRT'      ,'0: Total'                 ],
-    ['LRT'      ,'0: Total'                 ],
-    ['CRT'      ,'0: Total'                 ]]
-,columns=('MODE','modeGroup'))
-#dfModeGroups
 ```
 
+
 ```{python}
-# FILTER
-#strSQLWhere = ' WHERE NOT (t.scenarioID = 33)'
-strSQLWhere = ''
-
-# merge scenario data onto transit share data
-
-# read transit summary from biq query
-dfTransitSummary = client.query("SELECT * FROM tdm-scenarios.tdm_scenarios_output.transit_share AS t" + strSQLWhere).to_dataframe()
-#display(dfTransitSummary)
-
-dfRouteSummary = client.query("SELECT * FROM tdm-scenarios.tdm_scenarios_output.route_summary AS t" + strSQLWhere).to_dataframe()
-#display(dfRouteSummary)
-
-# read scenarios data biq query
-dfScenarios = client.query("SELECT * FROM tdm-scenarios.tdm_scenarios_output.scenarios AS t" + strSQLWhere).to_dataframe()
-#display(dfScenarios)
-
-# merge two dataframes
-dfTransitSummaryWithScenarioData = pd.DataFrame.merge(dfScenarios,dfTransitSummary,on='scenarioID')
-#display(dfTransitSummaryWithScenarioData)
-
-# merge two dataframes
-dfRouteSummaryWithScenarioData = pd.DataFrame.merge(dfScenarios,dfRouteSummary,on='scenarioID')
-#display(dfTransitSummaryWithScenarioData)
-
-# merge to mode groupings dataframe
-dfTransitSummaryPlotData = pd.DataFrame.merge(dfTransitSummaryWithScenarioData,dfModeGroups,on='MODE')
-#dfTransitSummaryPlotData
+# Read the CSV files into DataFrames
+dfTransitSummary = pd.read_csv('intermediate/dfTransitSummary.csv')
+dfRouteSummary = pd.read_csv('intermediate/dfRouteSummary.csv')
+dfScenarios = pd.read_csv('intermediate/dfScenarios.csv')
+dfTransitSummaryWithScenarioData = pd.read_csv('intermediate/dfTransitSummaryWithScenarioData.csv')
+dfRouteSummaryWithScenarioData = pd.read_csv('intermediate/dfRouteSummaryWithScenarioData.csv')
+dfTransitSummaryPlotData = pd.read_csv('intermediate/dfTransitSummaryPlotData.csv')
 ```
 
 ```{python}
