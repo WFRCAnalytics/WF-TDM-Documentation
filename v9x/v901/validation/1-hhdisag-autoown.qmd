@@ -1,6 +1,7 @@
 ---
 title: Household Disaggregation and Auto Ownership
 echo: false
+jupyter-kernel: python3
 ---
 
 ## Life Cycle

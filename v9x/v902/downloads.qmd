@@ -1,0 +1,14 @@
+---
+title: Downloads
+---
+
+The downloads for the Version 9.0.2 documentation is shown below by category.
+
+### What's New Document
+
+ - {{< downloadthis "downloads/v902_whatsnew_20240624.pdf" label="What's New (Pdf)" dname=v902-2024-06-24-whats-new id=download-btn >}}
+
+
+### Model Validation Report
+
+ - {{< downloadthis "downloads/v902_modelvalidation_20240624.pdf" label="Model Validation (Pdf)" dname=v902-2024-06-24-validation id=download-btn >}}

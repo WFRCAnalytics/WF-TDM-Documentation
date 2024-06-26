@@ -893,7 +893,7 @@ xx2=dfx.groupby(['O_TAZID', ' D_TAZID','Period']).agg({'Speed': 'count'}).unstac
 ```
 
 ```{python}
-_path = "//10.0.0.114/ModelAce-D/1 - TDM/3 - Model Dev/1 - WF/1 - Official Release/v9x/v9.0/WF TDM v9.0 - official/Scenarios/BY_2019/5_AssignHwy/5_FinalNetSkims/"
+_path = r"../../../_large_files/v901/5_FinalNetSkims/"
 
 import openmatrix as omx
 import pandas as pd

@@ -305,7 +305,7 @@ dfFunctionalClasses = pd.DataFrame([
 ], columns=('FC','FunctionalClass','FunctionalClassName'))
 
 # read in bus speed ratios
-dfBusSpeedRatios = pd.read_csv(r"\\modelace\ModelAce-E\1 - TDM\2 - Sandbox\v9_Development\WF TDM v9.0 - 2023-04-28\1_Inputs\0_GlobalData\4_ModeChoice\bus_speed_ratios.csv").rename(columns={';FC':'FC'})
+dfBusSpeedRatios = pd.read_csv(r"data\bus_speed_ratios.csv").rename(columns={';FC':'FC'})
 
 # create a list of column names to use as variable names
 varCols = dfBusSpeedRatios.columns.to_list()

@@ -1,4 +1,7 @@
 /.quarto/
+
+_large_files
+
 v832-whats-new/.quarto/
 v832-whats-new/._book/
 v9-whats-new/.quarto/
@@ -24,3 +27,5 @@ v9x/v901/validation\data/4-modechoice/2019 Final Weighted UTA OD Data - 2022-07-
 v9x/v901/validation\data/4-modechoice/TripData_June19_2013.csv
 
 /.luarc.json
+
+/env/

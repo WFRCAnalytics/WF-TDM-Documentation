@@ -1,0 +1,16 @@
+---
+title: v901-patch1 Update (2024-04-30)
+---
+
+## Changes to Input Files
+
+An update to v9.0.1 related to SEGID and the SEGID exception fields was accidentally left out of the
+version published on April 23, 2024, causing the model to crash. The updated scripts were added
+back into the model.
+
+A few minor edits were made to the highway network to correct the direction of a oneway frontage
+road link and to add a few nodes/links to make the network more consistent with v9.0.2. The transit
+line files were edited to reflect the updated highway network added nodes/links. No changes were
+made to the RTP project list.
+
+

@@ -1,0 +1,29 @@
+---
+title: v901-patch2 Update (2024-06-24)
+---
+
+## Changes to Input Files
+
+ - Changes to v9.0.1-patch 2 include: Minor edits to the segment shapefile
+ - Minor edits to the highway & transit networks
+ - Rename input files
+
+**Segment Shapefile Edits**
+
+The segment shapefile was edited to better visualize bus ridership around rail stations and to fix
+minor errors. Edits include splitting and adjusting segment geometry and updating related fields in
+the attribute table.
+
+**Highway & Transit Network Edits**
+
+Two rail station connector links in the highway network (Farmington commuter rail station and
+Jordan Valley light rail station on the Red Line) were updated to better reflect station access.
+Subsequent edits were made to the transit line node strings in the transit line files to ensure the
+transit network compiled on the highway network. The transit network was also updated for model
+years 2028 and beyond to better reflect the stops and alignment of the 5600 West core bus route.
+
+**Rename Input Files**
+
+The filenames of the TAZ, Segments, Factor Geographies, and Highway Network were renamed
+slightly to comply with the updated model file naming convention determined by the IMTC. In
+addition, the Control Center files were updated to match any filename changes
