@@ -16,7 +16,7 @@ This section compares the model results between version 9.0.2 and version 9.0.1-
 ## Road Volume Comparisons
 The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in version 9.0.2 compared to version 8 are shown in blue, while increases are shown in red.
 
-For 2019, Salt Lake and northern Davis counties display a drop in roadway volumes, most apparent on I-15. Weber, southern Davis, and Utah Counties show increases. Most of the changes are relatively minor, with the largest decreases occurring on the freeways in Salt Lake County. However, given the large daily volume for these roadways, the percent change is relatively low.
+For 2019, the differences are negligible in all vehicle and truck volumes between the model versions.
 
 For 2050, there are decreases in volumes on I-15 in Salt Lake and northern Davis counties. Weber and northern Davis counties show overall increase in roadway volumes. Utah County shows the most change with the two Utah Lake crossings not part of the 2050 fiscally constrained scenario. The resulting drop in volumes is evident with increases on I-15.
 
