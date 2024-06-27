@@ -2,3 +2,294 @@
 title: Changes to Input Files
 ---
 
+Commuter rail inputs were adjusted as follows:
+
+ - Point of the Mountain Station was added between Lehi and Draper Stations
+ - FrontRunner speeds were adjusted to match UTA's FrontRunner Forward study
+
+In 2032 and 2042, the difference in speeds results in a savings of 10 to 15 minutes along the entire route. In 2050, the difference in speeds results in a time savings of 26 to 33 minutes.
+
+```{python}
+#|echo: false
+# model folder
+import pandas as pd
+from dbfread import DBF
+
+lst_filter_modes = [7,8] # filtering to rail, since rail speeds are asserted rather than other modes, so looking at output is an easy way to summarize input rather than going through model links
+
+lst_columns = ['MODE','NAME','LINKSEQ1','A','DIST','PK_TIME1','PK_TIME2','PK_SPEED1','PK_SPEED2']
+
+# Example DataFrame
+df_transit_data_for_speeds = pd.DataFrame([
+    ["v901-patch2", 2050, "_v901_RTP_SE50_Net50_2_OD_Station.dbf"],
+    ["v901-patch2", 2042, "_v901_SE42_Net42_2_OD_Station.dbf"],
+    ["v901-patch2", 2032, "_v901_SE32_Net32_2_OD_Station.dbf"],
+    ["v902", 2050, "_v902_RTP_SE50_Net50_2_OD_Station.dbf"],
+    ["v902", 2042, "_v902_RTP_SE42_Net42_2_OD_Station.dbf"],
+    ["v902", 2032, "_v902_RTP_SE32_Net32_2_OD_Station.dbf"]
+], columns=('modVersion', 'modYear', 'paStationReportFilename'))
+
+# Initialize an empty list to store DataFrames
+dataframes = []
+
+# Loop through each record in the DataFrame
+for index, row in df_transit_data_for_speeds.iterrows():
+    # Read the DBF file
+    dbf = DBF('data/transit-speeds/' + row['modVersion'] + '/' + row['paStationReportFilename'])
+    _df = pd.DataFrame(iter(dbf))
+
+    _df = _df[_df['NAME']=='RCRT_OGPN']
+    _df = _df[_df['MODE'].isin(lst_filter_modes)]
+
+    _df = _df[lst_columns]
+
+    # Add modVersion and modYear columns
+    _df['modVersion'] = row['modVersion']
+    _df['modYear'] = row['modYear']
+    
+    # Append the DataFrame to the list
+    dataframes.append(_df)
+
+# Concatenate all DataFrames into a single DataFrame
+df_od_station_data = pd.concat(dataframes, ignore_index=True)
+
+# aDD LARGE NUMBER IF LINKSEQ1=0
+df_od_station_data.loc[df_od_station_data['LINKSEQ1'] == 0, 'LINKSEQ1'] = 99
+
+# Display the combined DataFrame
+#display(df_od_station_data)
+
+```
+
+
+```{python}
+#|echo: false
+
+df_dist = df_od_station_data.pivot(index=['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear'],
+                                 columns='modVersion', values='DIST').reset_index()
+
+# Add a total row based on 'MODE' and 'NAME'
+total_rows = df_dist.groupby(['MODE', 'NAME', 'modYear']).sum(numeric_only=True).reset_index()
+total_rows['LINKSEQ1'] = 100
+total_rows['A'] = 99999
+
+# Concatenate the total rows to the original dataframe
+df_dist = pd.concat([df_dist, total_rows], ignore_index=True)
+df_dist['Variable'] = 'Distance'
+#display(df_dist)
+
+
+df_pktime1 = df_od_station_data.pivot(index=['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear'],
+                                 columns='modVersion', values='PK_TIME1').reset_index()
+
+# Add a total row based on 'MODE' and 'NAME'
+total_rows = df_pktime1.groupby(['MODE', 'NAME', 'modYear']).sum(numeric_only=True).reset_index()
+total_rows['LINKSEQ1'] = 100
+total_rows['A'] = 99999
+
+# Concatenate the total rows to the original dataframe
+df_pktime1 = pd.concat([df_pktime1, total_rows], ignore_index=True)
+
+df_pktime1['Variable'] = 'PkTimeDir1'
+#display(df_pktime1)
+
+
+df_pktime2 = df_od_station_data.pivot(index=['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear'],
+                                 columns='modVersion', values='PK_TIME2').reset_index()
+
+# Add a total row based on 'MODE' and 'NAME'
+total_rows = df_pktime2.groupby(['MODE', 'NAME', 'modYear']).sum(numeric_only=True).reset_index()
+total_rows['LINKSEQ1'] = 100
+total_rows['A'] = 99999
+
+
+# Concatenate the total rows to the original dataframe
+df_pktime2 = pd.concat([df_pktime2, total_rows], ignore_index=True)
+df_pktime2['Variable'] = 'PkTimeDir2'
+#display(df_pktime2)
+
+#df_speed1 = df_od_station_data.pivot(index=['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear'],
+#                                 columns='modVersion', values='PK_SPEED1').reset_index
+
+
+df_speed1 = df_od_station_data[['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear', 'modVersion', 'PK_SPEED1']]
+
+df_distweight = df_od_station_data[['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear', 'modVersion', 'DIST']]
+
+# Merge with distance DataFrame
+df_merged = pd.merge(df_speed1, df_distweight, on=['MODE', 'NAME', 'LINKSEQ1', 'modYear', 'modVersion','A'], how='left')
+
+# Define a function to calculate the weighted average
+def weighted_avg(df, value_cols, weight_col):
+    result = {}
+    for col in value_cols:
+        result[col] = (df[col] * df[weight_col]).sum() / df[weight_col].sum()
+    return pd.Series(result)
+
+
+#display(df_merged)
+
+weighted_totals = df_merged.groupby(['MODE', 'NAME', 'modYear', 'modVersion']).apply(lambda x: weighted_avg(x, ['PK_SPEED1'], 'DIST')).reset_index()
+
+# Add constant columns for the total row
+weighted_totals['LINKSEQ1'] = 100
+weighted_totals['A'] = 99999
+
+# Concatenate the weighted totals to the original dataframe
+df_speed1 = pd.concat([df_speed1, weighted_totals], ignore_index=True)
+df_speed1 = df_speed1.pivot(index=['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear'],
+                                 columns='modVersion', values='PK_SPEED1').reset_index()
+
+df_speed1['Variable'] = 'PkSpeedDir1'
+#display(df_speed1)
+
+
+
+
+
+df_speed2 = df_od_station_data[['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear', 'modVersion', 'PK_SPEED2']]
+
+df_distweight = df_od_station_data[['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear', 'modVersion', 'DIST']]
+
+# Merge with distance DataFrame
+df_merged = pd.merge(df_speed2, df_distweight, on=['MODE', 'NAME', 'LINKSEQ1', 'modYear', 'modVersion','A'], how='left')
+
+# Define a function to calculate the weighted average
+def weighted_avg(df, value_cols, weight_col):
+    result = {}
+    for col in value_cols:
+        result[col] = (df[col] * df[weight_col]).sum() / df[weight_col].sum()
+    return pd.Series(result)
+
+
+#display(df_merged)
+
+weighted_totals = df_merged.groupby(['MODE', 'NAME', 'modYear', 'modVersion']).apply(lambda x: weighted_avg(x, ['PK_SPEED2'], 'DIST')).reset_index()
+
+# Add constant columns for the total row
+weighted_totals['LINKSEQ1'] = 100
+weighted_totals['A'] = 99999
+
+# Concatenate the weighted totals to the original dataframe
+df_speed2 = pd.concat([df_speed2, weighted_totals], ignore_index=True)
+df_speed2 = df_speed2.pivot(index=['MODE', 'NAME', 'LINKSEQ1', 'A', 'modYear'],
+                                 columns='modVersion', values='PK_SPEED2').reset_index()
+
+df_speed2['Variable'] = 'PkSpeedDir2'
+#display(df_speed2)
+
+
+
+
+
+df_data = pd.concat([df_pktime1, df_pktime2, df_speed1, df_speed2, df_dist])
+
+df_data.fillna(0,inplace=True)
+
+df_data['Difference'] = df_data['v902'] - df_data['v901-patch2']
+
+#display(df_data)
+```
+
+
+
+
+```{python}
+#|echo: false
+df_station_names = pd.read_csv("E:/GitHub/Resources/TDM/Node-Station-Names/nodestationnames.csv",usecols=['N','NODENAME'])
+
+# Append a new row
+df_station_names.loc[len(df_station_names)] = [10060, 'Point of the Mountain']
+df_station_names.loc[len(df_station_names)] = [99999, 'Total']
+
+#display(df_station_names)
+
+df_linkseq1_names = pd.DataFrame(
+[
+    [1, 'Payson North to SF'],
+    [3, 'SF to Springville'],
+    [10, 'Springville to Provo'],
+    [17, 'Provo to Orem'],
+    [23, 'Orem to Vineyard'],
+    [24, 'Vineyard to AF'],
+    [29, 'AF to Lehi'],
+    [36, 'Lehi to Point of the Mountain'],
+    [46, 'Point of the Mountain to Draper'],
+    [48, 'Draper to South Jordan'],
+    [50, 'South Jordan to Murray Central'],
+    [56, 'Murray Central to Salt Lake Central'],
+    [59, 'Salt Lake Central to North Temple Bridge'],
+    [61, 'North Temple Bridge to Woods Cross'],
+    [65, 'Woods Cross to Farmington'],
+    [71, 'Farmington to Layton'],
+    [74, 'Layton to Clearfield'],
+    [76, 'Clearfield to Roy'],
+    [82, 'Roy to Ogden'],
+    [100, 'Total']
+], columns=['LINKSEQ1','Segment'])
+#display(df_linkseq1_names)
+
+```
+
+```{python}
+#|echo: false
+df_data_with_names = pd.merge(df_data, df_linkseq1_names, on='LINKSEQ1')
+df_data_with_names.rename(columns={'NODENAME':'Station', 'LINKSEQ1':'Seq'},inplace=True)
+
+#display(df_data_with_names)
+```
+
+```{python}
+#|echo: false
+
+# save as ojs objects
+ojs_define(odstationdata = df_data_with_names)
+```
+
+```{ojs}
+//| echo: false
+odstationdata_t = transpose(odstationdata);
+```
+
+```{ojs}
+//| echo: false
+html`<br/><h4>FrontRunner Distance, Time, and Speed Differences</h4>`;
+viewof bVariable = Inputs.select(new Map([
+  ['Distance (miles)', 'Distance'],
+  ['NB Travel Time (minutes)', 'PkTimeDir1'],
+  ['SB Travel Time (minutes)', 'PkTimeDir2'],
+  ['NB Travel Speed (mph)', 'PkSpeedDir1'],
+  ['SB Travel Speed (mph)', 'PkSpeedDir2']
+]), { value: 'Distance', label: "Variable:" });
+viewof bYear = Inputs.select(new Map([[2032, 2032], [2042, 2042], [2050, 2050]]), { value: '2050', label: "Year:" });
+
+filtered_odstationdata_t = odstationdata_t.filter(function(dataL) {
+  return bVariable == dataL.Variable &&
+         bYear == dataL.modYear;
+});
+
+// Define columns based on the first item in filtered_odstationdata_t
+columns = ['Seq', 'Segment', 'v901-patch2', 'v902', 'Difference'];
+
+// Display the filtered data as a table
+html`
+<table>
+  <thead>
+    <tr>
+      ${columns.map((col, index) => html`<th style="text-align: center; ${index === 0 ? 'display: none;' : ''}">${col}</th>`)}
+    </tr>
+  </thead>
+  <tbody>
+    ${filtered_odstationdata_t.map((row, rowIndex) => html`
+      <tr style="background-color: ${rowIndex % 2 === 0 ? '#f2f2f2' : 'white'}; ${rowIndex === filtered_odstationdata_t.length - 1 ? 'font-weight: bold;' : ''}">
+        ${columns.map((col, index) => html`
+          <td style="text-align: ${index >= 2 && index <= 4 ? 'right' : 'left'}; width: ${index >= 2 && index <= 4 ? '80px' : 'auto'}; ${index === 0 ? 'display: none;' : ''}">
+            ${index >= 2 && index <= 4 ? parseFloat(row[col]).toFixed(1) : row[col]}
+          </td>`)}
+      </tr>`)}
+  </tbody>
+</table>`;
+
+
+```
+
