@@ -14,22 +14,18 @@ The WF TDM version 9's socioeconomic county control totals were updated based on
 ```{python}
 #|echo: false
 # model folder
-tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
-tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v9x\v9.0\WF TDM v9.0 - official"
+tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
+tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v9x\v9.0\v9.0.0\WF TDM v9.0 - official"
 fnConTotOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_WF.csv"
 fnConTotAgeOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_Age.csv"
 fnConTotNew = tdmNew + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
+print(fnConTotNew)
 ```
 
 ```{python}
 #| echo: false
 import pandas as pd
 import numpy as np
-
-# County Control Totals
-fnConTotOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_WF.csv"
-fnConTotAgeOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_Age.csv"
-fnConTotNew = tdmNew + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
 
 dfConTotOld = pd.read_csv(fnConTotOld)
 dfConTotOld = dfConTotOld.rename(columns={'CoName':'CO_NAME'})
