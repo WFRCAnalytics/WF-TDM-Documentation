@@ -2,6 +2,80 @@
 title: Changes to Input Files
 ---
 
+Highway Network changes due to Ammendment 1:
+
+
+The following figures show the differences in the lanes and functional types at the segment level for the base year and each phase year.
+
+::: {.panel-tabset}
+
+### 2019
+
+::: {#fig-lanes1932-comparison layout-ncol=4}
+
+![Lanes](data/map_pngs/lanes19-cropped.png){#fig-lanes19}
+
+![](data/map_pngs/lanes-legend-cropped.png)
+
+![Functional Type](data/map_pngs/ft19-cropped.png){#fig-ft19}
+
+![](data/map_pngs/ft-legend-cropped.png)
+
+2019 Model Differences (version 9.0.2 vs version 9.0.1 Patch 2)
+
+::: 
+
+### 2032
+
+::: {#fig-lanes1932-comparison layout-ncol=4}
+
+![Lanes](data/map_pngs/lanes50-cropped.png){#fig-lanes50}
+
+![](data/map_pngs/lanes-legend-cropped.png)
+
+![Functional Type](data/map_pngs/ft32-cropped.png){#fig-ft50}
+
+![](data/map_pngs/ft-legend-cropped.png)
+
+2032 Model Differences (version 9.0.2 vs version 9.0.1 Patch 2)
+
+::: 
+
+### 2042
+
+::: {#fig-lanes1932-comparison layout-ncol=4}
+
+![Lanes](data/map_pngs/lanes42-cropped.png){#fig-ft19}
+
+![](data/map_pngs/lanes-legend-cropped.png)
+
+![Functional Type](data/map_pngs/ft42-cropped.png){#fig-ft19}
+
+![](data/map_pngs/ft-legend-cropped.png)
+
+2042 Model Differences (version 9.0.2 vs version 9.0.1 Patch 2)
+
+::: 
+
+### 2050
+
+::: {#fig-lanes1932-comparison layout-ncol=4}
+
+![Lanes](data/map_pngs/lanes50-cropped.png){#fig-ft50}
+
+![](data/map_pngs/lanes-legend-cropped.png)
+
+![Functional Type](data/map_pngs/ft50-cropped.png){#fig-ft50}
+
+![](data/map_pngs/ft-legend-cropped.png)
+
+2050 Model Differences (version 9.0.2 vs version 9.0.1 Patch 2)
+
+:::
+
+:::
+
+
 Commuter rail inputs were adjusted as follows:
 
  - Point of the Mountain Station was added between Lehi and Draper Stations
