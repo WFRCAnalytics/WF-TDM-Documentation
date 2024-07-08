@@ -14,13 +14,12 @@ modelOld = 'WF TDM v9.0.1 - official - patch 2'
 This section compares the model results between version 9.0.2 and version 9.0.1-patch2.
 
 ## Road Volume Comparisons
-The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in version 9.0.2 compared to version 8 are shown in blue, while increases are shown in red.
+The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in version 9.0.2 compared to version 9.0.1-patch2 are shown in blue, while increases are shown in red. @fig-volume-truck-comparison shows a similar comparison, displaying medium plus heavy truck volumes.
 
-For 2019, the differences are negligible in all vehicle and truck volumes between the model versions.
+For 2019, the differences are negligible in all vehicle and truck volumes between the model versions. 
 
-For 2050, there are decreases in volumes on I-15 in Salt Lake and northern Davis counties. Weber and northern Davis counties show overall increase in roadway volumes. Utah County shows the most change with the two Utah Lake crossings not part of the 2050 fiscally constrained scenario. The resulting drop in volumes is evident with increases on I-15.
+For 2050, there are increases in both all vehicle and truck volumes on I-15 in Davis County due to increased general purpose capacity. Other differences are negligible.
 
-The comparison of daily medium and heavy truck volumes is found in @fig-volume-truck-comparison for 2019 and 2050. Truck volumes decreased in the northwest portion of Salt Lake County.
 
 ::: {.panel-tabset}
 
@@ -34,7 +33,7 @@ The comparison of daily medium and heavy truck volumes is found in @fig-volume-t
 
 ![](data/map_pngs/vol-legend-cropped.png)
 
-Model Daily Volumes Comparison - All Vehicles (version 9.0.2 vs version 9.0.1-patch2)
+Daily Volume Comparison – All Vehicles
 :::
 
 ### Volume Change - Truck
@@ -47,7 +46,7 @@ Model Daily Volumes Comparison - All Vehicles (version 9.0.2 vs version 9.0.1-pa
 
 ![](data/map_pngs/vol-truck-legend-cropped.png)
 
-Model Daily Volumes Comparison - Trucks (version 9.0.2 vs version 9.0.1-patch2)
+Daily Volume Comparison – Medium+Heavy Truck
 :::
 
 <!--
@@ -310,12 +309,12 @@ def update_plot_stackedarea_boardings(tdmVersionWithDate, scenarioGroup):
 py.offline.init_notebook_mode(connected=True)
 ```
 
-Transit comparisons were done with ridership, trips mode share, and boardings mode share. Overall ridership increases significantly in version 9, and Core Bus ridership takes a larger share of trips and boardings than in version 8.
+Version 9.0.2 showed a slight increase in transit trips in 2042 and 2050 compared to version 9.0.1-patch2 (see @fig-hy-tr-all through @fig-hy-tr-lcl). The total transit trips in 2050 for version 9.0.2 is 337,000 daily trips compared to the version 9.0.1-patch2 model that showed 320,000 daily trips, which equates to 5% more trips. 
 
-### Transit Ridership
-Transit ridership in version 9 compared to version 8 shows significant increase in 2032, 2042, and 2050. See @fig-hy-tr-all through @fig-hy-tr-lcl. The total ridership in 2050 for version 9 is 327,000 daily trips compared to the version 8 model that showed 258,000 daily trips, which equates to 26% more trips. The additional trips is largely due to the improvements in commuter rail with increased frequency and speed together with the change in the model sensitivity to changes in headway.
+Commuter Rail saw the greatest increase in trips, some of which were new trips and some that had shifted from Express Bus to Commuter Rail. The shift from Express Bus to Commuter Rail is primarily due to the improvements in commuter rail speeds and to the additional stop in Bluffdale. These improvements make Commuter Rail more attractive and accessible which draws trips away from Express Bus since they compete for trips in similar markets.
 
-Transit ridership by modes are shown in the following set of figures. Light-Rail Transit sees an increase through 2028 and then a large decrease in 2032. This large decrease can be explained by the shift of riders from Light Rail to Core Bus routes, with a large number of core routes coming online in 2032.
+BRT saw a slight increase in future trips. Light Rail, Core Route, and Local Bus trips remained relatively unchanged.
+
 
 ::: {.panel-tabset}
 
@@ -427,91 +426,3 @@ update_plot(
 ```
 
 :::
-
-### Transit Share
-A comparison of the share of trips amongst the various modes of transit was done for both Trips and Boardings.
-
-The transit ridership trip shares by mode can be found in @fig-shr-tr-all-9 for version 9 and @fig-shr-tr-all-832 for version 8. The main difference in version 9 trip share by mode is the large increase in Core Bus trips in 2032 from almost nothing in 2028, while in version 8 the increase in Core Bus trips is spread out between 2024 and 2030. This large increase is consistent with the transit inputs into the model with a large number of Core Bus routes coming into production in 2032, replacing mostly local bus service. The new Core Buy takes most of the local bus ridership it is replacing, but also quite a lot of ridership from Light Rail Transit (Mode 7).
-
-Transit boardings for version 9 are found in @fig-brd-9 and for version 8 are found in @fig-brd-832. Boardings follow the same pattern as trips, but boardings are able to differentiate between modes better than trips that are categorized hierarchically.
-
-::: {.panel-tabset}
-
-#### Trips - version 9.0.2
-
-```{python}
-#| label: fig-shr-tr-all-9
-#| fig-cap: "Transit Trips Share by Mode - Version 9.0.2"
-#| cap-location: margin
-
-update_plot_stackedarea(
-    modelNew, 
-    'RTP', 
-    ['4a: Local Bus','4b: Core Bus','4c: Express Bus','4d: Bus-Rapid Transit','4e: Light-Rail Transit','4f: Commuter-Rail Transit'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
-)
-```
-
-#### Trips - version 9.0.1 - patch 2
-
-```{python}
-#| label: fig-shr-tr-all-832
-#| fig-cap: "Transit Trips Share by Mode - Version 9.0.1 - Patch 2"
-#| cap-location: margin
-
-update_plot_stackedarea(
-    modelOld, 
-    'RTP', 
-    ['4a: Local Bus','4b: Core Bus','4c: Express Bus','4d: Bus-Rapid Transit','4e: Light-Rail Transit','4f: Commuter-Rail Transit'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
-)
-```
-
-#### Boardings - version 9.0.2
-
-```{python}
-#| label: fig-brd-9
-#| fig-cap: "Transit Boardings Share by Mode - Version 9.0.2"
-#| cap-location: margin
-
-update_plot_stackedarea_boardings(modelNew, 'RTP')
-```
-
-#### Boardings - version 9.0.1 - patch 2
-
-```{python}
-#| label: fig-brd-832
-#| fig-cap: "Transit Boardings Share by Mode - Version 9.0.1 - Patch 2"
-#| cap-location: margin
-
-update_plot_stackedarea_boardings(modelOld, 'RTP')
-```
-
-:::
-
-#### Commuter Rail Station Boardings
-The comparison of base year (2019) station-level boardings for commuter-rail transit (CRT) is found in @fig-fr-brd. CRT boardings were found to be higher than observed for Davis County and lower than observed for Utah County. An adjustment of 5 additional minutes to in-vehicle-time for trips to/from Davis County and 5 fewer minute to in-vehicle-time for Utah County was made to attempt to bring the model more in-line with observations.
-
-Additional investigation was conducted into why Provo and Lehi were particularly low in the model. The findings did not turn up any obvious errors in the transit or model network. So, the conclusion is that further adjustments to CRT will be possible in the Mode Choice Update project that is currently being undertaken for the next release of the model.
-
-```{python}
-#| label: fig-fr-brd
-#| fig-cap: "2019 Daily CRT Boardings by Station - Model vs Observed"
-#| cap-location: margin
-
-#boardings_barchart = pd.read_csv#(r'data\frontrunner-summary-comparison-v832-v9.csv')
-#import plotly.express as px
-#df = px.data.tips()
-#fig = px.histogram(boardings_barchart, x="Stop_Name", y="Boardings", #text_auto='.2s',
-#             color='Model_Name', barmode='group',
-#             height=400)
-#fig.update_layout(
-#    xaxis_title="Station Name",
-#    yaxis_title="Average Boardings",
-#    legend_title="Model Version"
-#)
-##fig.update_xaxes(tickangle=90)
-#fig.show()
-```

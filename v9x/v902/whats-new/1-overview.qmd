@@ -2,4 +2,10 @@
 title: Overview
 ---
 
+Version 9.0.2 reflects the Amendment #1 changes to the WFRC & MAG Regional Transportation Plans (adopted May/June 2024).
 
+The model processes and parameters in version 9.0.2 are the same as version 9.0.0 and version 9.0.1. Version 9.0.2 includes all the highway, transit, and segment maintenance and clean-up work completed up through version 9.0.1-patch2 (06-24-2024).
+
+Changes to the model inputs in version 9.0.2 include updates to the highway and transit networks, as well as the creation of a few new folders and files that serve as resources.
+
+Model comparisons between version 9.0.2 and version 9.0.1-patch2 were created to demonstrate the location and magnitude of roadway volume and transit ridership differences.

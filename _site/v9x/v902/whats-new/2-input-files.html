@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -59,6 +93,11 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script type="module" src="../../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -191,6 +230,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">2 Changes to Input Files</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../v9x/v902/whats-new/3-modelresults.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3 Compare Model Results</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -201,7 +246,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
+   
+  <ul class="collapse">
+  <li><a href="#highway-network" id="toc-highway-network" class="nav-link active" data-scroll-target="#highway-network">Highway Network</a></li>
+  <li><a href="#transit-networks" id="toc-transit-networks" class="nav-link" data-scroll-target="#transit-networks">Transit Networks</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -223,10 +275,378 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="highway-network" class="level2">
+<h2 class="anchored" data-anchor-id="highway-network">Highway Network</h2>
+<section id="changes-to-highway-network-due-to-amendment-1" class="level3">
+<h3 class="anchored" data-anchor-id="changes-to-highway-network-due-to-amendment-1">Changes to Highway Network Due to Amendment #1:</h3>
+<p>The following edits were made to the highway network to account for Amendment #1:</p>
+<ul>
+<li>A HOT Lane on I-15 from Farmington to 2600 S was converted to a general-purpose lane (4 GP + 2 HOT  5 GP + 1 HOT) as a direct result of the EIS (section R-D-45)</li>
+<li>Highway network attributes were also updated in all phases of the plan to accommodate additional passing lanes for the operational project on I-15 in Box Elder from US-91 North to 3000 N</li>
+<li>Updated 12600 S from 6400 W to Bacchus Highway to 5 lanes</li>
+<li>Added Freedom Point Way from 100 W to Pony Express Rd (3 lanes)</li>
+<li>Removed lanes in 2023 and 2028 from Granville Ave from Old Bingham Highway to 10200 S</li>
+<li>Fixed <strong>HOT23_32</strong> through <strong>HOT23_50UF</strong> fields to correctly reflect the RTP projects and Amendment from Farmington to the Utah/Salt Lake County Line</li>
+<li>Fixed auxiliary lane <strong>FT</strong> on I-15 from Farmington to 400 S in Salt Lake</li>
+<li>Added new underpass north of 2600 S in North Salt Lake/Bountiful</li>
+<li>Added new configuration at 1000 N to 600 N interchanges on I-15</li>
+<li>Altered Davis-SLC Community Connector from 400 W to 300 W</li>
+<li>Added Maker Way to accommodate for the Farmington Station circulator</li>
+</ul>
+<p>A summary of the specific edits done to the link and nodes (in comparison to v901-patch2) are shown below:</p>
+<p><strong>Links</strong></p>
+<ul>
+<li>No new links were added to the highway network</li>
+<li>Over 300 links had at least one field variable updated (i.e.&nbsp;lanes, functional type, street name distance, direction)</li>
+<li>30 links where the <strong>LINK_ID</strong> attribute was renamed to point to a different node (24 in Salt Lake County, 4 in Utah County, 2 in Weber County)</li>
+</ul>
+<p><strong>Nodes</strong></p>
+<ul>
+<li>No new nodes were added to the highway network</li>
+<li>7 nodes were repositioned (5 in Salt Lake County, 1 in Utah County, 1 in Davis County)</li>
+</ul>
+<p>The following figures show the lane and functional type coding differences between version 9.0.2 and version 9.0.1-patch2. Differences are shown at the segment level.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">2019</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2032</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">2042</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">2050</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div id="fig-lanes1932-comparison" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 25.0%;justify-content: center;">
+<div id="fig-lanes19" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data/map_pngs/lanes19-cropped.png" class="img-fluid figure-img" data-ref-parent="fig-lanes1932-comparison"></p>
+<figcaption class="figure-caption">(a) Lanes</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img src="data/map_pngs/lanes-legend-cropped.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 25.0%;justify-content: center;">
+<div id="fig-ft19" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data/map_pngs/ft19-cropped.png" class="img-fluid figure-img" data-ref-parent="fig-lanes1932-comparison"></p>
+<figcaption class="figure-caption">(b) Functional Type</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img src="data/map_pngs/ft-legend-cropped.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Lanes and Functional Type Model Differences – 2019</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div id="fig-lanes1932-comparison" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 25.0%;justify-content: center;">
+<div id="fig-lanes50" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data/map_pngs/lanes50-cropped.png" class="img-fluid figure-img" data-ref-parent="fig-lanes1932-comparison"></p>
+<figcaption class="figure-caption">(a) Lanes</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img src="data/map_pngs/lanes-legend-cropped.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 25.0%;justify-content: center;">
+<div id="fig-ft50" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data/map_pngs/ft32-cropped.png" class="img-fluid figure-img" data-ref-parent="fig-lanes1932-comparison"></p>
+<figcaption class="figure-caption">(b) Functional Type</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img src="data/map_pngs/ft-legend-cropped.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Lanes and Functional Type Model Differences – 2032</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div id="fig-lanes1932-comparison" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 25.0%;justify-content: center;">
+<div id="fig-ft19" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data/map_pngs/lanes42-cropped.png" class="img-fluid figure-img" data-ref-parent="fig-lanes1932-comparison"></p>
+<figcaption class="figure-caption">(a) Lanes</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img src="data/map_pngs/lanes-legend-cropped.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 25.0%;justify-content: center;">
+<div id="fig-ft19" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data/map_pngs/ft42-cropped.png" class="img-fluid figure-img" data-ref-parent="fig-lanes1932-comparison"></p>
+<figcaption class="figure-caption">(b) Functional Type</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img src="data/map_pngs/ft-legend-cropped.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Lanes and Functional Type Model Differences – 2042</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div id="fig-lanes1932-comparison" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 25.0%;justify-content: center;">
+<div id="fig-ft50" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data/map_pngs/lanes50-cropped.png" class="img-fluid figure-img" data-ref-parent="fig-lanes1932-comparison"></p>
+<figcaption class="figure-caption">(a) Lanes</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img src="data/map_pngs/lanes-legend-cropped.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 25.0%;justify-content: center;">
+<div id="fig-ft50" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data/map_pngs/ft50-cropped.png" class="img-fluid figure-img" data-ref-parent="fig-lanes1932-comparison"></p>
+<figcaption class="figure-caption">(b) Functional Type</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<p><img src="data/map_pngs/ft-legend-cropped.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Lanes and Functional Type Model Differences – 2050</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="changes-to-the-highway-network-rail-component" class="level3">
+<h3 class="anchored" data-anchor-id="changes-to-the-highway-network-rail-component">Changes to the Highway Network Rail Component</h3>
+<p>Amendment #1 led to the following updates to the highway network’s rail component:</p>
+<ul>
+<li><p>A new Bluffdale commuter rail station was added at the former point of the mountain prison site (this included updating the rail speeds to/from this station)</p></li>
+<li><p>FrontRunner speeds were adjusted to match UTA’s FrontRunner Forward study. Phases and speed changes are outlined in <a href="#tbl-fr-study">Table&nbsp;1</a>.</p></li>
+<li><p>The following 6 transit speed fields corresponding to the 6 phases of the FrontRunner Speed Study were added to the highway network as a reference (information regarding the process for determining the transit speeds based on the FrontRunner Speed study can be found in the <code>CRTSpeedSummaryFile.xlsx</code> located in the <code>Inputs/Transit</code> folder):</p>
+<ul>
+<li><strong>TRNSPD_FF1</strong></li>
+<li><strong>TRNSPD_FF2</strong></li>
+<li><strong>TRNSPD_FF3</strong></li>
+<li><strong>TRNSPD_FF4</strong></li>
+<li><strong>TRNSPD_FF5</strong></li>
+<li><strong>TRNSPD_FF6</strong></li>
+</ul></li>
+</ul>
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="tbl-fr-study" class="anchored">
+<table class="table table-sm table-striped small">
+<caption>Table&nbsp;1: Version 9.0.2 Transit Speed Field Correspondence to UTA FrontRunner Study Reference Fields</caption>
+<colgroup>
+<col style="width: 19%">
+<col style="width: 36%">
+<col style="width: 16%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Plan Phase (2023-2050)</th>
+<th style="text-align: left;">Assumptions</th>
+<th style="text-align: left;">Field Calculation</th>
+<th style="text-align: left;">Field Calculation (Additional)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Phase 1 Fiscally Constrained</td>
+<td style="text-align: left;">15/30, POTM Station, Payson Extension</td>
+<td style="text-align: left;">TSPD23_32 = TRNSPD_FF1</td>
+<td style="text-align: left;">Provo to Payson (TSPD23_32 = TRNSPD_FF2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Phase 1 Needed</td>
+<td style="text-align: left;">15/30, POTM Station, Payson Extension</td>
+<td style="text-align: left;">TSPD23_32U = TRNSPD_FF1</td>
+<td style="text-align: left;">Provo to Payson (TSPD23_32U = TRNSPD_FF2)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phase 2 Fiscally Constrained</td>
+<td style="text-align: left;">15/30, POTM Station, Payson Extension</td>
+<td style="text-align: left;">TSPD23_42 = TRNSPD_FF1</td>
+<td style="text-align: left;">Provo to Payson (TSPD23_42 = TRNSPD_FF2)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Phase 2 Needed</td>
+<td style="text-align: left;">15/30, POTM Station, Payson Extension, Electrification</td>
+<td style="text-align: left;">TSPD23_42U = TRNSPD_FF3</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Phase 3 Fiscally Constrained</td>
+<td style="text-align: left;">15/30, POTM Station, Payson Extension, Electrification</td>
+<td style="text-align: left;">TSPD23_50 = TRNSPD_FF3</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Phase 3 Needed</td>
+<td style="text-align: left;">15/30, POTM Station, Payson Extension, Electrification</td>
+<td style="text-align: left;">TSPD23_50U = TRNSPD_FF3</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>A comparison of the FrontRunner speeds and travel time savings between versions 9.0.2 and 9.0.1-patch2 are found in <a href="#fig-fr-spd-tbl">Figure&nbsp;5</a>. The difference in speeds results in a savings of 10 to 15 minutes along the entire route in 2032 and 2042. In 2050, the difference in speeds results in a time savings of 26 to 33 minutes.</p>
+<div class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "odstationdata", "value": {"MODE": [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8], "NAME": ["RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN", "RCRT_OGPN"], "Seq": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 46, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 59, 59, 59, 59, 59, 59, 59, 59, 59, 59, 59, 59, 59, 59, 59, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 65, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 71, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 74, 76, 76, 76, 76, 76, 76, 76, 76, 76, 76, 76, 76, 76, 76, 76, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 82, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100], "A": [50014, 50014, 50014, 50014, 50014, 50014, 50014, 50014, 50014, 50014, 50014, 50014, 50014, 50014, 50014, 50016, 50016, 50016, 50016, 50016, 50016, 50016, 50016, 50016, 50016, 50016, 50016, 50016, 50016, 50016, 50019, 50019, 50019, 50019, 50019, 50019, 50019, 50019, 50019, 50019, 50019, 50019, 50019, 50019, 50019, 50024, 50024, 50024, 50024, 50024, 50024, 50024, 50024, 50024, 50024, 50024, 50024, 50024, 50024, 50024, 50029, 50029, 50029, 50029, 50029, 50029, 50029, 50029, 50029, 50029, 50029, 50029, 50029, 50029, 50029, 50030, 50030, 50030, 50030, 50030, 50030, 50030, 50030, 50030, 50030, 50030, 50030, 50030, 50030, 50030, 50035, 50035, 50035, 50035, 50035, 50035, 50035, 50035, 50035, 50035, 50035, 50035, 50035, 50035, 50035, 50040, 50040, 50040, 50040, 50040, 50040, 50040, 50040, 50040, 50040, 50040, 50040, 50040, 50040, 50040, 10060, 10060, 10060, 10060, 10060, 10060, 10060, 10060, 10060, 10060, 10060, 10060, 10060, 10060, 10060, 10008, 10008, 10008, 10008, 10008, 10008, 10008, 10008, 10008, 10008, 10008, 10008, 10008, 10008, 10008, 10010, 10010, 10010, 10010, 10010, 10010, 10010, 10010, 10010, 10010, 10010, 10010, 10010, 10010, 10010, 10016, 10016, 10016, 10016, 10016, 10016, 10016, 10016, 10016, 10016, 10016, 10016, 10016, 10016, 10016, 10019, 10019, 10019, 10019, 10019, 10019, 10019, 10019, 10019, 10019, 10019, 10019, 10019, 10019, 10019, 10021, 10021, 10021, 10021, 10021, 10021, 10021, 10021, 10021, 10021, 10021, 10021, 10021, 10021, 10021, 10025, 10025, 10025, 10025, 10025, 10025, 10025, 10025, 10025, 10025, 10025, 10025, 10025, 10025, 10025, 10031, 10031, 10031, 10031, 10031, 10031, 10031, 10031, 10031, 10031, 10031, 10031, 10031, 10031, 10031, 10035, 10035, 10035, 10035, 10035, 10035, 10035, 10035, 10035, 10035, 10035, 10035, 10035, 10035, 10035, 10036, 10036, 10036, 10036, 10036, 10036, 10036, 10036, 10036, 10036, 10036, 10036, 10036, 10036, 10036, 10042, 10042, 10042, 10042, 10042, 10042, 10042, 10042, 10042, 10042, 10042, 10042, 10042, 10042, 10042, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999, 99999], "modYear": [2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050, 2032, 2042, 2050], "v901-patch2": [4.52, 4.52, 4.52, 4.7, 4.7, 4.7, 50.0, 50.0, 50.0, 48.1, 48.1, 48.1, 3.77, 3.77, 3.77, 6.66, 6.66, 6.66, 7.2, 7.2, 7.2, 38.8, 38.8, 38.8, 35.9, 35.9, 35.9, 4.31, 4.31, 4.31, 8.71, 8.71, 8.71, 10.52, 10.52, 10.52, 34.9, 34.9, 34.9, 28.9, 28.9, 28.9, 5.07, 5.07, 5.07, 8.08, 8.08, 8.08, 8.08, 8.08, 8.08, 38.9, 38.9, 38.9, 38.9, 38.9, 38.9, 5.24, 5.24, 5.24, 4.5, 4.5, 4.5, 5.66, 5.66, 5.66, 34.0, 34.0, 34.0, 27.0, 27.0, 27.0, 2.55, 2.55, 2.55, 8.83, 8.83, 8.83, 7.53, 7.53, 7.53, 40.0, 40.0, 40.0, 46.9, 46.9, 46.9, 5.89, 5.89, 5.89, 8.74, 8.74, 8.74, 8.52, 8.52, 8.52, 39.0, 39.0, 39.0, 40.0, 40.0, 40.0, 5.68, 5.68, 5.68, 9.69, 9.69, 9.69, 10.26, 10.26, 10.26, 46.1, 46.1, 46.1, 43.5, 43.5, 43.5, 7.44, 7.44, 7.44, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 5.73, 5.73, 5.73, 5.56, 5.56, 5.56, 33.9, 33.9, 33.9, 35.0, 35.0, 35.0, 3.24, 3.24, 3.24, 8.67, 8.67, 8.67, 9.26, 9.26, 9.26, 46.9, 46.9, 46.9, 43.9, 43.9, 43.9, 6.78, 6.78, 6.78, 13.01, 13.01, 13.01, 11.93, 11.93, 11.93, 33.0, 33.0, 33.0, 36.0, 36.0, 36.0, 7.16, 7.16, 7.16, 4.73, 4.73, 4.73, 4.29, 4.29, 4.29, 9.9, 9.9, 9.9, 10.9, 10.9, 10.9, 0.78, 0.78, 0.78, 12.14, 12.14, 12.14, 14.35, 14.35, 14.35, 39.0, 39.0, 39.0, 33.0, 33.0, 33.0, 7.9, 7.9, 7.9, 10.89, 10.89, 10.89, 9.95, 9.95, 9.95, 42.0, 42.0, 42.0, 45.9, 45.9, 45.9, 7.62, 7.62, 7.62, 8.81, 8.81, 8.81, 7.83, 7.83, 7.83, 40.0, 40.0, 40.0, 45.1, 45.1, 45.1, 5.88, 5.88, 5.88, 5.98, 5.98, 5.98, 6.91, 6.91, 6.91, 36.9, 36.9, 36.9, 32.0, 32.0, 32.0, 3.68, 3.68, 3.68, 8.65, 8.65, 8.65, 9.22, 9.22, 9.22, 48.0, 48.0, 48.0, 45.0, 45.0, 45.0, 6.92, 6.92, 6.92, 7.84, 7.84, 7.84, 9.25, 9.25, 9.25, 33.1, 33.1, 33.1, 28.0, 28.0, 28.0, 4.32, 4.32, 4.32, 146.18, 146.18, 146.18, 151.02, 151.02, 151.02, 40.0022816513, 40.0022816513, 40.0022816513, 39.1109625385, 39.1109625385, 39.1109625385, 94.23, 94.23, 94.23], "v902": [4.81, 4.81, 4.81, 4.01, 4.01, 3.21, 47.0, 47.0, 47.0, 56.4, 56.4, 70.5, 3.77, 3.77, 3.77, 5.88, 5.88, 4.89, 4.89, 4.89, 5.88, 44.0, 44.0, 52.9, 52.9, 52.9, 44.0, 4.31, 4.31, 4.31, 5.07, 5.07, 5.07, 7.1, 7.1, 6.09, 60.0, 60.0, 60.0, 42.8, 42.8, 50.0, 5.07, 5.07, 5.07, 6.93, 6.93, 5.96, 5.96, 5.96, 4.95, 45.4, 45.4, 52.8, 52.8, 52.8, 63.5, 5.24, 5.24, 5.24, 5.1, 5.1, 4.08, 5.1, 5.1, 4.08, 30.0, 30.0, 37.5, 30.0, 30.0, 37.5, 2.55, 2.55, 2.55, 6.88, 6.88, 5.89, 7.86, 7.86, 6.88, 51.4, 51.4, 60.0, 45.0, 45.0, 51.4, 5.89, 5.89, 5.89, 9.15, 9.15, 9.15, 9.15, 9.15, 8.12, 37.2, 37.2, 37.2, 37.2, 37.2, 42.0, 5.68, 5.68, 5.68, 7.88, 7.88, 5.9, 7.88, 7.88, 6.89, 43.3, 43.3, 57.9, 43.3, 43.3, 49.6, 5.69, 5.69, 5.69, 4.13, 4.13, 4.13, 4.13, 4.13, 3.09, 25.4, 25.4, 25.4, 25.4, 25.4, 34.0, 1.75, 1.75, 1.75, 5.9, 5.9, 4.92, 5.9, 5.9, 4.92, 32.9, 32.9, 39.5, 32.9, 32.9, 39.5, 3.24, 3.24, 3.24, 8.99, 8.99, 6.99, 8.99, 8.99, 7.99, 45.3, 45.3, 58.2, 45.3, 45.3, 50.9, 6.78, 6.78, 6.78, 10.92, 10.92, 9.94, 8.95, 8.95, 7.95, 39.3, 39.3, 43.2, 48.0, 48.0, 54.0, 7.16, 7.16, 7.16, 4.37, 4.37, 3.49, 5.24, 5.24, 4.37, 10.7, 10.7, 13.4, 8.9, 8.9, 10.7, 0.78, 0.78, 0.78, 11.13, 11.13, 10.11, 12.14, 12.14, 9.1, 42.6, 42.6, 46.9, 39.0, 39.0, 52.1, 7.9, 7.9, 7.9, 9.02, 9.02, 7.03, 8.02, 8.02, 8.02, 50.7, 50.7, 65.0, 57.0, 57.0, 57.0, 7.62, 7.62, 7.62, 7.96, 7.96, 6.96, 7.96, 7.96, 6.96, 44.3, 44.3, 50.7, 44.3, 44.3, 50.7, 5.88, 5.88, 5.88, 5.98, 5.98, 7.96, 5.98, 5.98, 4.99, 36.9, 36.9, 27.7, 36.9, 36.9, 44.2, 3.68, 3.68, 3.68, 9.04, 9.04, 7.04, 9.04, 9.04, 7.04, 45.9, 45.9, 59.0, 45.9, 45.9, 59.0, 6.92, 6.92, 6.92, 6.86, 6.86, 5.89, 7.84, 7.84, 7.84, 37.8, 37.8, 44.0, 33.1, 33.1, 33.1, 4.32, 4.32, 4.32, 136.0, 136.0, 120.21, 136.14, 136.14, 118.37, 43.4451130213, 43.4451130213, 50.1628462273, 43.9526265521, 43.9526265521, 50.3699671018, 94.23, 94.23, 94.23], "Variable": ["PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance", "PkTimeDir1", "PkTimeDir1", "PkTimeDir1", "PkTimeDir2", "PkTimeDir2", "PkTimeDir2", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir1", "PkSpeedDir2", "PkSpeedDir2", "PkSpeedDir2", "Distance", "Distance", "Distance"], "Difference": [0.29, 0.29, 0.29, -0.69, -0.69, -1.49, -3.0, -3.0, -3.0, 8.3, 8.3, 22.4, 0.0, 0.0, 0.0, -0.78, -0.78, -1.77, -2.31, -2.31, -1.32, 5.2, 5.2, 14.1, 17.0, 17.0, 8.1, 0.0, 0.0, 0.0, -3.64, -3.64, -3.64, -3.42, -3.42, -4.43, 25.1, 25.1, 25.1, 13.9, 13.9, 21.1, 0.0, 0.0, 0.0, -1.15, -1.15, -2.12, -2.12, -2.12, -3.13, 6.5, 6.5, 13.9, 13.9, 13.9, 24.6, 0.0, 0.0, 0.0, 0.6, 0.6, -0.42, -0.56, -0.56, -1.58, -4.0, -4.0, 3.5, 3.0, 3.0, 10.5, 0.0, 0.0, 0.0, -1.95, -1.95, -2.94, 0.33, 0.33, -0.65, 11.4, 11.4, 20.0, -1.9, -1.9, 4.5, 0.0, 0.0, 0.0, 0.41, 0.41, 0.41, 0.63, 0.63, -0.4, -1.8, -1.8, -1.8, -2.8, -2.8, 2.0, 0.0, 0.0, 0.0, -1.81, -1.81, -3.79, -2.38, -2.38, -3.37, -2.8, -2.8, 11.8, -0.2, -0.2, 6.1, -1.75, -1.75, -1.75, 4.13, 4.13, 4.13, 4.13, 4.13, 3.09, 25.4, 25.4, 25.4, 25.4, 25.4, 34.0, 1.75, 1.75, 1.75, 0.17, 0.17, -0.81, 0.34, 0.34, -0.64, -1.0, -1.0, 5.6, -2.1, -2.1, 4.5, 0.0, 0.0, 0.0, 0.32, 0.32, -1.68, -0.27, -0.27, -1.27, -1.6, -1.6, 11.3, 1.4, 1.4, 7.0, 0.0, 0.0, 0.0, -2.09, -2.09, -3.07, -2.98, -2.98, -3.98, 6.3, 6.3, 10.2, 12.0, 12.0, 18.0, 0.0, 0.0, 0.0, -0.36, -0.36, -1.24, 0.95, 0.95, 0.08, 0.8, 0.8, 3.5, -2.0, -2.0, -0.2, 0.0, 0.0, 0.0, -1.01, -1.01, -2.03, -2.21, -2.21, -5.25, 3.6, 3.6, 7.9, 6.0, 6.0, 19.1, 0.0, 0.0, 0.0, -1.87, -1.87, -3.86, -1.93, -1.93, -1.93, 8.7, 8.7, 23.0, 11.1, 11.1, 11.1, 0.0, 0.0, 0.0, -0.85, -0.85, -1.85, 0.13, 0.13, -0.87, 4.3, 4.3, 10.7, -0.8, -0.8, 5.6, 0.0, 0.0, 0.0, 0.0, 0.0, 1.98, -0.93, -0.93, -1.92, 0.0, 0.0, -9.2, 4.9, 4.9, 12.2, 0.0, 0.0, 0.0, 0.39, 0.39, -1.61, -0.18, -0.18, -2.18, -2.1, -2.1, 11.0, 0.9, 0.9, 14.0, 0.0, 0.0, 0.0, -0.98, -0.98, -1.95, -1.41, -1.41, -1.41, 4.7, 4.7, 10.9, 5.1, 5.1, 5.1, 0.0, 0.0, 0.0, -10.18, -10.18, -25.97, -14.88, -14.88, -32.65, 3.4428313701, 3.4428313701, 10.160564576, 4.8416640136, 4.8416640136, 11.2590045633, 0.0, 0.0, 0.0], "Segment": ["Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "Payson North to SF", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "SF to Springville", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Springville to Provo", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Provo to Orem", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Orem to Vineyard", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "Vineyard to AF", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "AF to Lehi", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Lehi to Point of the Mountain", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Point of the Mountain to Draper", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "Draper to South Jordan", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "South Jordan to Murray Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Murray Central to Salt Lake Central", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "Salt Lake Central to North Temple Bridge", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "North Temple Bridge to Woods Cross", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Woods Cross to Farmington", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Farmington to Layton", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Layton to Clearfield", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Clearfield to Roy", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Roy to Ogden", "Total", "Total", "Total", "Total", "Total", "Total", "Total", "Total", "Total", "Total", "Total", "Total", "Total", "Total", "Total"]}}]}</script>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="381" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 380;"><span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>odstationdata_t <span class="op">=</span> <span class="fu">transpose</span>(odstationdata)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="387" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 386;"><span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a>viewof bVariable <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([</span>
+<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a>  [<span class="st">'Distance (miles)'</span><span class="op">,</span> <span class="st">'Distance'</span>]<span class="op">,</span></span>
+<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a>  [<span class="st">'NB Travel Time (minutes)'</span><span class="op">,</span> <span class="st">'PkTimeDir1'</span>]<span class="op">,</span></span>
+<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a>  [<span class="st">'SB Travel Time (minutes)'</span><span class="op">,</span> <span class="st">'PkTimeDir2'</span>]<span class="op">,</span></span>
+<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a>  [<span class="st">'NB Travel Speed (mph)'</span><span class="op">,</span> <span class="st">'PkSpeedDir1'</span>]<span class="op">,</span></span>
+<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a>  [<span class="st">'SB Travel Speed (mph)'</span><span class="op">,</span> <span class="st">'PkSpeedDir2'</span>]</span>
+<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a>])<span class="op">,</span> { <span class="dt">value</span><span class="op">:</span> <span class="st">'Distance'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Variable:"</span> })<span class="op">;</span></span>
+<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a>viewof bYear <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="dv">2032</span><span class="op">,</span> <span class="dv">2032</span>]<span class="op">,</span> [<span class="dv">2042</span><span class="op">,</span> <span class="dv">2042</span>]<span class="op">,</span> [<span class="dv">2050</span><span class="op">,</span> <span class="dv">2050</span>]])<span class="op">,</span> { <span class="dt">value</span><span class="op">:</span> <span class="st">'2050'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Year:"</span> })<span class="op">;</span></span>
+<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a>filtered_odstationdata_t <span class="op">=</span> odstationdata_t<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataL) {</span>
+<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> bVariable <span class="op">==</span> dataL<span class="op">.</span><span class="at">Variable</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a>         bYear <span class="op">==</span> dataL<span class="op">.</span><span class="at">modYear</span><span class="op">;</span></span>
+<span id="cb2-399"><a href="#cb2-399" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-401"><a href="#cb2-401" aria-hidden="true" tabindex="-1"></a><span class="co">// Define columns based on the first item in filtered_odstationdata_t</span></span>
+<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> [<span class="st">'Seq'</span><span class="op">,</span> <span class="st">'Segment'</span><span class="op">,</span> <span class="st">'v901-patch2'</span><span class="op">,</span> <span class="st">'v902'</span><span class="op">,</span> <span class="st">'Difference'</span>]<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="407" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 406;"><span id="cb3-407"><a href="#cb3-407" aria-hidden="true" tabindex="-1"></a><span class="co">// Display the filtered data as a table</span></span>
+<span id="cb3-408"><a href="#cb3-408" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-409"><a href="#cb3-409" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;table&gt;</span></span>
+<span id="cb3-410"><a href="#cb3-410" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;thead&gt;</span></span>
+<span id="cb3-411"><a href="#cb3-411" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
+<span id="cb3-412"><a href="#cb3-412" aria-hidden="true" tabindex="-1"></a><span class="vs">      </span><span class="sc">${</span>columns<span class="op">.</span><span class="fu">map</span>((col<span class="op">,</span> index) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;th style="text-align: center; </span><span class="sc">${</span>index <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">'display: none;'</span> <span class="op">:</span> <span class="st">''</span><span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>col<span class="sc">}</span><span class="vs">&lt;/th&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb3-413"><a href="#cb3-413" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
+<span id="cb3-414"><a href="#cb3-414" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/thead&gt;</span></span>
+<span id="cb3-415"><a href="#cb3-415" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;tbody&gt;</span></span>
+<span id="cb3-416"><a href="#cb3-416" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>filtered_odstationdata_t<span class="op">.</span><span class="fu">map</span>((row<span class="op">,</span> rowIndex) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-417"><a href="#cb3-417" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;tr style="background-color: </span><span class="sc">${</span>rowIndex <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">'#f2f2f2'</span> <span class="op">:</span> <span class="st">'white'</span><span class="sc">}</span><span class="vs">; </span><span class="sc">${</span>rowIndex <span class="op">===</span> filtered_odstationdata_t<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">'font-weight: bold;'</span> <span class="op">:</span> <span class="st">''</span><span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb3-418"><a href="#cb3-418" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>columns<span class="op">.</span><span class="fu">map</span>((col<span class="op">,</span> index) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-419"><a href="#cb3-419" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;td style="text-align: </span><span class="sc">${</span>index <span class="op">&gt;=</span> <span class="dv">2</span> <span class="op">&amp;&amp;</span> index <span class="op">&lt;=</span> <span class="dv">4</span> <span class="op">?</span> <span class="st">'right'</span> <span class="op">:</span> <span class="st">'left'</span><span class="sc">}</span><span class="vs">; width: </span><span class="sc">${</span>index <span class="op">&gt;=</span> <span class="dv">2</span> <span class="op">&amp;&amp;</span> index <span class="op">&lt;=</span> <span class="dv">4</span> <span class="op">?</span> <span class="st">'80px'</span> <span class="op">:</span> <span class="st">'auto'</span><span class="sc">}</span><span class="vs">; </span><span class="sc">${</span>index <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">'display: none;'</span> <span class="op">:</span> <span class="st">''</span><span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb3-420"><a href="#cb3-420" aria-hidden="true" tabindex="-1"></a><span class="vs">            </span><span class="sc">${</span>index <span class="op">&gt;=</span> <span class="dv">2</span> <span class="op">&amp;&amp;</span> index <span class="op">&lt;=</span> <span class="dv">4</span> <span class="op">?</span> <span class="pp">parseFloat</span>(row[col])<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">:</span> row[col]<span class="sc">}</span></span>
+<span id="cb3-421"><a href="#cb3-421" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;/td&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb3-422"><a href="#cb3-422" aria-hidden="true" tabindex="-1"></a><span class="vs">      &lt;/tr&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb3-423"><a href="#cb3-423" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/tbody&gt;</span></span>
+<span id="cb3-424"><a href="#cb3-424" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/table&gt;`</span><span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-fr-spd-tbl" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;5: FrontRunner Distance, Travel Time, adn Speed Differences by Year</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="added-network-qa-qc-folder" class="level3">
+<h3 class="anchored" data-anchor-id="added-network-qa-qc-folder">Added Network QA-QC Folder</h3>
+<p>In the <code>1_Inputs/3_Highway/_Network Processing Tools</code> folder, the <code>Network QA-QC</code> folder was added containing new Jupyter Notebook files. The <code>0-Network-QA-QC-Process.ipynb</code> describes a process for verifying the quality of the highway network, segment shapefile, and transit networks before running/releasing a new version of the model. The <code>1-Network-QA-QC-Checks.ipynb</code> is a placeholder for the future checks that will be programmatically made. However, for now, this file is empty.</p>
+</section>
+</section>
+<section id="transit-networks" class="level2">
+<h2 class="anchored" data-anchor-id="transit-networks">Transit Networks</h2>
+<section id="changes-to-transit-line-files-due-to-amendment-1" class="level3">
+<h3 class="anchored" data-anchor-id="changes-to-transit-line-files-due-to-amendment-1">Changes to Transit Line Files Due to Amendment #1</h3>
+<p>The following edits were made to the transit network to account for Amendment #1:</p>
+<ul>
+<li>Added a shuttle service at the Point of the Mountain in Phase 1 of the RTP</li>
+<li>Replaced BRT with LRT through the Point of the Mountain in Phase 2 of the RTP</li>
+<li>Added a new shuttle service at the Farmington Transit Station</li>
+<li>Added Bluffdale commuter rail station</li>
+</ul>
+<p>With the Amendment #1 edits, transit projects crossing the border between Salt Lake and Utah counties are now consistent between WFRC and MAG’s unfunded need project lists.</p>
+<p>Minor edits were made to the transit line files to ensure consistency with the changes made to the highway network.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
+
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"odstationdata_t = transpose(odstationdata);\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"viewof bVariable = Inputs.select(new Map([\n  ['Distance (miles)', 'Distance'],\n  ['NB Travel Time (minutes)', 'PkTimeDir1'],\n  ['SB Travel Time (minutes)', 'PkTimeDir2'],\n  ['NB Travel Speed (mph)', 'PkSpeedDir1'],\n  ['SB Travel Speed (mph)', 'PkSpeedDir2']\n]), { value: 'Distance', label: \"Variable:\" });\nviewof bYear = Inputs.select(new Map([[2032, 2032], [2042, 2042], [2050, 2050]]), { value: '2050', label: \"Year:\" });\n\nfiltered_odstationdata_t = odstationdata_t.filter(function(dataL) {\n  return bVariable == dataL.Variable &&\n         bYear == dataL.modYear;\n});\n\n// Define columns based on the first item in filtered_odstationdata_t\ncolumns = ['Seq', 'Segment', 'v901-patch2', 'v902', 'Difference'];\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"// Display the filtered data as a table\nhtml`\n<table>\n  <thead>\n    <tr>\n      ${columns.map((col, index) => html`<th style=\"text-align: center; ${index === 0 ? 'display: none;' : ''}\">${col}</th>`)}\n    </tr>\n  </thead>\n  <tbody>\n    ${filtered_odstationdata_t.map((row, rowIndex) => html`\n      <tr style=\"background-color: ${rowIndex % 2 === 0 ? '#f2f2f2' : 'white'}; ${rowIndex === filtered_odstationdata_t.length - 1 ? 'font-weight: bold;' : ''}\">\n        ${columns.map((col, index) => html`\n          <td style=\"text-align: ${index >= 2 && index <= 4 ? 'right' : 'left'}; width: ${index >= 2 && index <= 4 ? '80px' : 'auto'}; ${index === 0 ? 'display: none;' : ''}\">\n            ${index >= 2 && index <= 4 ? parseFloat(row[col]).toFixed(1) : row[col]}\n          </td>`)}\n      </tr>`)}\n  </tbody>\n</table>`;\n"},{"methodName":"interpretQuiet","source":"shinyInput('bVariable')"},{"methodName":"interpretQuiet","source":"shinyInput('bYear')"}]}
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../v9x/v902/whats-new";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
