@@ -12,21 +12,39 @@ echo: false
 The WF TDM version 9's socioeconomic county control totals were updated based on the Gardner Policy Institute (GPI) 2021 release of the state's residential and employment county forecasts. Significant changes were made relative to the 2017 release. A comparison between version 9 and version 8 of the model's socioeconomic control totals can be found in @fig-county-control-total-differences-by-category and @fig-county-control-trends-by-county-by-category.
 
 ```{python}
-#|echo: false
-# model folder
-tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
-tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v9x\v9.0\v9.0.0\WF TDM v9.0 - official"
-fnConTotOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_WF.csv"
-fnConTotAgeOld = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_Age.csv"
-fnConTotNew = tdmNew + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
-print(fnConTotNew)
+##|echo: false
+import pandas as pd
+import numpy as np
+```
+
+```{python}
+## model folder
+#tdmOld = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v8x\v8.3\v8.3.2\WF TDM v8.3.2 - 2022-02-04a"
+#tdmNew = r"A:\1 - TDM\3 - Model Dev\1 - WF\1 - Official Release\v9x\v9.0\v9.0.0\WF TDM v9.0 - official"
+#fnConTotOld_path = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_WF.csv"
+#fnConTotAgeOld_path = tdmOld + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_Age.csv"
+#fnConTotNew_path = tdmNew + r"\1_Inputs\2_SEData\_ControlTotals\ControlTotal_SE_AllCounties.csv"
+#print(fnConTotNew_path)
+```
+
+```{python}
+#int1 = pd.read_csv(fnConTotOld_path)
+#int2 = pd.read_csv(fnConTotAgeOld_path)
+#int3 = pd.read_csv(fnConTotNew_path)
+#
+#int1.to_csv('data/intermediate/ControlTotal_SE_WF.csv', index=False)
+#int2.to_csv('data/intermediate/ControlTotal_Age.csv', index=False)
+#int3.to_csv('data/intermediate/ControlTotal_SE_AllCounties.csv', index=False)
+```
+
+```{python}
+fnConTotOld = r'data/intermediate/ControlTotal_SE_WF.csv'
+fnConTotAgeOld = r'data/intermediate/ControlTotal_Age.csv'
+fnConTotNew = r'data/intermediate/ControlTotal_SE_AllCounties.csv'
 ```
 
 ```{python}
 #| echo: false
-import pandas as pd
-import numpy as np
-
 dfConTotOld = pd.read_csv(fnConTotOld)
 dfConTotOld = dfConTotOld.rename(columns={'CoName':'CO_NAME'})
 dfConTotOld['CO_NAME'] = dfConTotOld['CO_NAME'].str.replace(' County','')

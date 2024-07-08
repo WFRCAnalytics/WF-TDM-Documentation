@@ -164,16 +164,34 @@ Array indices found in the `5_AssignHwy\05_RemoveManagedLanes.s` script were als
 Details on the location and numbering of the new external nodes on the master highway network are shown in @fig-externals and @tbl-externals. (See [Changes to TAZ Geometry and Attributes](https://wfrc.org/wftdm-docs/v9x/v900/whats-new/12-taz.html#changes-to-taz-geometry-and-attributes) and [Changes to TAZ Parameters](https://wfrc.org/wftdm-docs/v9x/v900/whats-new/12-taz.html#changes-to-taz-parameters) for more information on external zones.)
 
 ```{python}
-#|echo: false
-# get externals mapping layers
-
 import os
 import pandas as pd
 import geopandas as gpd
 import topojson as tp
+```
 
+```{python}
+#gdfpath1 = r"A:\1 - TDM\1 - Input Dev\5 - External\_GIS_Layers\Master Net\MasterNet - 2022-07-29_Link.shp"
+#gdfpath2 = r"A:\1 - TDM\1 - Input Dev\5 - External\_GIS_Layers\Master Net\MasterNet - 2022-07-29_Node.shp"
+#
+#gdf1 = gpd.read_file(gdfpath1)
+#gdf2 = gpd.read_file(gdfpath2)
+#
+#gdf1.to_file('data/intermediate/MasterNet - 2022-07-29_Link.shp')
+#gdf2.to_file('data/intermediate/MasterNet - 2022-07-29_Node.shp')
+```
+
+```{python}
+gdfintpath1 = r'data/intermediate/MasterNet - 2022-07-29_Link.shp'
+gdfintpath2 = r'data/intermediate/MasterNet - 2022-07-29_Node.shp'
+```
+
+
+```{python}
+#|echo: false
+# get externals mapping layers
 if not os.path.isfile('data/masternetlink.geojson'):
-  gdfMasterNetLink = gpd.read_file(r"A:\1 - TDM\1 - Input Dev\5 - External\_GIS_Layers\Master Net\MasterNet - 2022-07-29_Link.shp")
+  gdfMasterNetLink = gpd.read_file(gdfintpath1)
   gdfMasterNetLink = gdfMasterNetLink.to_crs({'init': 'epsg:4326'}) 
   gdfMasterNetLink = gdfMasterNetLink[gdfMasterNetLink['FT_2019']>1]
   gdfMasterNetLink = gdfMasterNetLink[['LINKID','FLG_NEWNET','geometry']]
@@ -182,7 +200,7 @@ if not os.path.isfile('data/masternetlink.geojson'):
   gdfMasterNetLink.to_file('data/masternetlink.geojson', driver='GeoJSON')
 
 if not os.path.isfile('data/masternetnode.geojson'):
-  gdfMasterNetNode = gpd.read_file(r"A:\1 - TDM\1 - Input Dev\5 - External\_GIS_Layers\Master Net\MasterNet - 2022-07-29_Node.shp")
+  gdfMasterNetNode = gpd.read_file(gdfintpath2)
   gdfMasterNetNode = gdfMasterNetNode.to_crs({'init': 'epsg:4326'}) 
   gdfMasterNetNode = gdfMasterNetNode[['N','EXTERNAL','EXT_V9','geometry']]
   topo = tp.Topology(gdfMasterNetNode, prequantize=False)

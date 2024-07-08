@@ -88,12 +88,12 @@ lstIncludeInAll = ['BY','TIP']
 
 ```{python}
 # Read the CSV files into DataFrames
-dfTransitSummary = pd.read_csv('intermediate/dfTransitSummary.csv')
-dfRouteSummary = pd.read_csv('intermediate/dfRouteSummary.csv')
-dfScenarios = pd.read_csv('intermediate/dfScenarios.csv')
-dfTransitSummaryWithScenarioData = pd.read_csv('intermediate/dfTransitSummaryWithScenarioData.csv')
-dfRouteSummaryWithScenarioData = pd.read_csv('intermediate/dfRouteSummaryWithScenarioData.csv')
-dfTransitSummaryPlotData = pd.read_csv('intermediate/dfTransitSummaryPlotData.csv')
+dfTransitSummary = pd.read_csv('data/intermediate/dfTransitSummary.csv')
+dfRouteSummary = pd.read_csv('data/intermediate/dfRouteSummary.csv')
+dfScenarios = pd.read_csv('data/intermediate/dfScenarios.csv')
+dfTransitSummaryWithScenarioData = pd.read_csv('data/intermediate/dfTransitSummaryWithScenarioData.csv')
+dfRouteSummaryWithScenarioData = pd.read_csv('data/intermediate/dfRouteSummaryWithScenarioData.csv')
+dfTransitSummaryPlotData = pd.read_csv('data/intermediate/dfTransitSummaryPlotData.csv')
 ```
 
 ```{python}
