@@ -9,6 +9,9 @@ execute:
 ```{python}
 modelNew = 'WF TDM v9.0 - official'
 modelOld = 'WF TDM v8.3.2 - 2022-02-04a'
+
+# include in all scenario groups
+lstIncludeInAll = ['BY','TIP']
 ```
 
 This section compares the model results between version 9 and version 8.
@@ -79,81 +82,87 @@ from scipy import special
 import time
 import math as msi
 import sys
-
-sys.path.insert(0, '..\..\..\..\Resources\Python-Functions')
-import BigQuery
- 
-client = BigQuery.getBigQueryClient_TDMScenarios()
+#
+#sys.path.insert(0, '..\..\..\..\Resources\Python-Functions')
+#import BigQuery
+#
+#client = BigQuery.getBigQueryClient_TDMScenarios()
 ```
 
 ```{python}
-# include in all scenario groups
-lstIncludeInAll = ['BY','TIP']
-
-# dataframe to create subcategories
-dfModeGroups = pd.DataFrame([
-    ['Walk'     ,'1: Non-Motorized'         ],
-    ['Bike'     ,'1: Non-Motorized'         ],
-    ['Walk'     ,'1a: Walk'                 ],
-    ['Bike'     ,'1b: Bike'                 ],
-    ['Auto'     ,'2: Auto'                  ],
-    ['SchoolBus','3: SchoolBus'             ],
-    ['LCL'      ,'4: Transit'               ],
-    ['COR'      ,'4: Transit'               ],
-    ['EXP'      ,'4: Transit'               ],
-    ['BRT'      ,'4: Transit'               ],
-    ['LRT'      ,'4: Transit'               ],
-    ['CRT'      ,'4: Transit'               ],
-    ['LCL'      ,'4a: Local Bus'            ],
-    ['COR'      ,'4b: Core Bus'             ],
-    ['EXP'      ,'4c: Express Bus'          ],
-    ['BRT'      ,'4d: Bus-Rapid Transit'    ],
-    ['LRT'      ,'4e: Light-Rail Transit'   ],
-    ['CRT'      ,'4f: Commuter-Rail Transit'],
-    ['Walk'     ,'0: Total'                 ],
-    ['Bike'     ,'0: Total'                 ],
-    ['Auto'     ,'0: Total'                 ],
-    ['SchoolBus','0: Total'                 ],
-    ['LCL'      ,'0: Total'                 ],
-    ['COR'      ,'0: Total'                 ],
-    ['EXP'      ,'0: Total'                 ],
-    ['BRT'      ,'0: Total'                 ],
-    ['LRT'      ,'0: Total'                 ],
-    ['CRT'      ,'0: Total'                 ]]
-,columns=('MODE','modeGroup'))
-#dfModeGroups
+## dataframe to create subcategories
+#dfModeGroups = pd.DataFrame([
+#    ['Walk'     ,'1: Non-Motorized'         ],
+#    ['Bike'     ,'1: Non-Motorized'         ],
+#    ['Walk'     ,'1a: Walk'                 ],
+#    ['Bike'     ,'1b: Bike'                 ],
+#    ['Auto'     ,'2: Auto'                  ],
+#    ['SchoolBus','3: SchoolBus'             ],
+#    ['LCL'      ,'4: Transit'               ],
+#    ['COR'      ,'4: Transit'               ],
+#    ['EXP'      ,'4: Transit'               ],
+#    ['BRT'      ,'4: Transit'               ],
+#    ['LRT'      ,'4: Transit'               ],
+#    ['CRT'      ,'4: Transit'               ],
+#    ['LCL'      ,'4a: Local Bus'            ],
+#    ['COR'      ,'4b: Core Bus'             ],
+#    ['EXP'      ,'4c: Express Bus'          ],
+#    ['BRT'      ,'4d: Bus-Rapid Transit'    ],
+#    ['LRT'      ,'4e: Light-Rail Transit'   ],
+#    ['CRT'      ,'4f: Commuter-Rail Transit'],
+#    ['Walk'     ,'0: Total'                 ],
+#    ['Bike'     ,'0: Total'                 ],
+#    ['Auto'     ,'0: Total'                 ],
+#    ['SchoolBus','0: Total'                 ],
+#    ['LCL'      ,'0: Total'                 ],
+#    ['COR'      ,'0: Total'                 ],
+#    ['EXP'      ,'0: Total'                 ],
+#    ['BRT'      ,'0: Total'                 ],
+#    ['LRT'      ,'0: Total'                 ],
+#    ['CRT'      ,'0: Total'                 ]]
+#,columns=('MODE','modeGroup'))
+##dfModeGroups
 ```
 
 ```{python}
-# FILTER
-#strSQLWhere = ' WHERE NOT (t.scenarioID = 33)'
-strSQLWhere = ''
-
-# merge scenario data onto transit share data
-
-# read transit summary from biq query
-dfTransitSummary = client.query("SELECT * FROM tdm-scenarios.tdm_scenarios_output.transit_share AS t" + strSQLWhere).to_dataframe()
-#display(dfTransitSummary)
-
-dfRouteSummary = client.query("SELECT * FROM tdm-scenarios.tdm_scenarios_output.route_summary AS t" + strSQLWhere).to_dataframe()
-#display(dfRouteSummary)
-
-# read scenarios data biq query
-dfScenarios = client.query("SELECT * FROM tdm-scenarios.tdm_scenarios_output.scenarios AS t" + strSQLWhere).to_dataframe()
-#display(dfScenarios)
-
-# merge two dataframes
-dfTransitSummaryWithScenarioData = pd.DataFrame.merge(dfScenarios,dfTransitSummary,on='scenarioID')
-#display(dfTransitSummaryWithScenarioData)
-
-# merge two dataframes
-dfRouteSummaryWithScenarioData = pd.DataFrame.merge(dfScenarios,dfRouteSummary,on='scenarioID')
-#display(dfTransitSummaryWithScenarioData)
-
-# merge to mode groupings dataframe
-dfTransitSummaryPlotData = pd.DataFrame.merge(dfTransitSummaryWithScenarioData,dfModeGroups,on='MODE')
-#dfTransitSummaryPlotData
+## FILTER
+##strSQLWhere = ' WHERE NOT (t.scenarioID = 33)'
+#strSQLWhere = ''
+#
+## merge scenario data onto transit share data
+#
+## read transit summary from biq query
+#dfTransitSummary = client.query("SELECT * FROM tdm-scenarios.tdm_scenarios_output.transit_share AS t" + strSQLWhere).to_dataframe()
+##display(dfTransitSummary)
+#
+#dfRouteSummary = client.query("SELECT * FROM tdm-scenarios.tdm_scenarios_output.route_summary AS t" + strSQLWhere).to_dataframe()
+##display(dfRouteSummary)
+#
+## read scenarios data biq query
+#dfScenarios = client.query("SELECT * FROM tdm-scenarios.tdm_scenarios_output.scenarios AS t" + strSQLWhere).to_dataframe()
+##display(dfScenarios)
+#
+## merge two dataframes
+#dfTransitSummaryWithScenarioData = pd.DataFrame.merge(dfScenarios,dfTransitSummary,on='scenarioID')
+##display(dfTransitSummaryWithScenarioData)
+#
+## merge two dataframes
+#dfRouteSummaryWithScenarioData = pd.DataFrame.merge(dfScenarios,dfRouteSummary,on='scenarioID')
+##display(dfTransitSummaryWithScenarioData)
+#
+## merge to mode groupings dataframe
+#dfTransitSummaryPlotData = pd.DataFrame.merge(dfTransitSummaryWithScenarioData,dfModeGroups,on='MODE')
+#
 ```
+
+
+```{python}
+# read in intermediate data files
+dfRouteSummaryWithScenarioData = pd.read_csv("data/intermediate/routesummaryresults.csv")
+dfTransitSummaryPlotData = pd.read_csv("data/intermediate/transitsummaryresults.csv")
+dfV8RouteSummaryResults = pd.read_csv("data/intermediate/v832-boardings.csv")
+```
+
 
 ```{python}
 #Transit Ridership Plotting Function
@@ -305,24 +314,24 @@ py.offline.init_notebook_mode(connected=True)
 
 import math
 
-def update_plot_stackedarea_boardings(tdmVersionWithDate, scenarioGroup):
+def update_plot_stackedarea_boardings(df, tdmVersionWithDate, scenarioGroup):
 
     data = []
 
     modes = [4,5,6,9,7,8] #put modes in sorted order
-    #modes = sorted(dfRouteSummaryWithScenarioData['MODE'].unique())
+    #modes = sorted(df['MODE'].unique())
     modeNames = ['Local Bus','Core Bus','Express Bus','Bus Rapid Transit','Light-Rail Transit','Commuter-Rail Transit']
 
     for m in modes: 
         # only do if data in dataframe since BY data is concatonated later
-        if dfRouteSummaryWithScenarioData[(dfRouteSummaryWithScenarioData['tdmVersionWithDate']==tdmVersionWithDate) &
-                                          (dfRouteSummaryWithScenarioData['scenarioGroup'     ]==scenarioGroup     ) &
-                                          (dfRouteSummaryWithScenarioData['MODE'              ]==m                 )].shape[0]>1:
+        if df[(df['tdmVersionWithDate']==tdmVersionWithDate) &
+                                          (df['scenarioGroup'     ]==scenarioGroup     ) &
+                                          (df['MODE'              ]==m                 )].shape[0]>1:
 
             # data for plotting from filtered dataframe}
-            plotdata = dfRouteSummaryWithScenarioData[(dfRouteSummaryWithScenarioData['tdmVersionWithDate']==tdmVersionWithDate                    ) &
-                                                      (dfRouteSummaryWithScenarioData['scenarioGroup'     ].isin(lstIncludeInAll + [scenarioGroup])) &
-                                                      (dfRouteSummaryWithScenarioData['MODE'              ]==m                                     )]
+            plotdata = df[(df['tdmVersionWithDate']==tdmVersionWithDate                    ) &
+                                                      (df['scenarioGroup'     ].isin(lstIncludeInAll + [scenarioGroup])) &
+                                                      (df['MODE'              ]==m                                     )]
 
             #display(plotdata)
 
@@ -389,8 +398,8 @@ update_plot(
     [modelOld, modelNew], 
     ['RTP'], 
     ['4: Transit'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB', 'ALL'],  #'ALL' is just for v832
+    ['Pk','Ok', 'DY'] #'DY' is just for v832
 )
 ```
 
@@ -404,8 +413,8 @@ update_plot(
     [modelOld, modelNew], 
     ['RTP'], 
     ['4f: Commuter-Rail Transit'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB', 'ALL'],  #'ALL' is just for v832
+    ['Pk','Ok', 'DY'] #'DY' is just for v832
 )
 ```
 
@@ -419,8 +428,8 @@ update_plot(
     [modelOld, modelNew], 
     ['RTP'], 
     ['4e: Light-Rail Transit'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB', 'ALL'],  #'ALL' is just for v832
+    ['Pk','Ok', 'DY'] #'DY' is just for v832
 )
 ```
 
@@ -434,8 +443,8 @@ update_plot(
     [modelOld, modelNew], 
     ['RTP'], 
     ['4d: Bus-Rapid Transit'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB', 'ALL'],  #'ALL' is just for v832
+    ['Pk','Ok', 'DY'] #'DY' is just for v832
 )
 ```
 
@@ -449,8 +458,8 @@ update_plot(
     [modelOld, modelNew], 
     ['RTP'], 
     ['4c: Express Bus'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB', 'ALL'],  #'ALL' is just for v832
+    ['Pk','Ok', 'DY'] #'DY' is just for v832
 )
 ```
 
@@ -464,8 +473,8 @@ update_plot(
     [modelOld, modelNew], 
     ['RTP'], 
     ['4b: Core Bus'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB', 'ALL'],  #'ALL' is just for v832
+    ['Pk','Ok', 'DY'] #'DY' is just for v832
 )
 ```
 
@@ -479,8 +488,8 @@ update_plot(
     [modelOld, modelNew], 
     ['RTP'], 
     ['4a: Local Bus'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB', 'ALL'],  #'ALL' is just for v832
+    ['Pk','Ok', 'DY'] #'DY' is just for v832
 )
 ```
 
@@ -522,8 +531,8 @@ update_plot_stackedarea(
     modelOld, 
     'RTP', 
     ['4a: Local Bus','4b: Core Bus','4c: Express Bus','4d: Bus-Rapid Transit','4e: Light-Rail Transit','4f: Commuter-Rail Transit'], 
-    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
-    ['Pk','Ok']
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB', 'ALL'],  #'ALL' is just for v832
+    ['Pk','Ok', 'DY'] #'DY' is just for v832
 )
 ```
 
@@ -534,7 +543,7 @@ update_plot_stackedarea(
 #| fig-cap: "Transit Boardings Share by Mode - Version 9"
 #| cap-location: margin
 
-update_plot_stackedarea_boardings(modelNew, 'RTP')
+update_plot_stackedarea_boardings(dfRouteSummaryWithScenarioData, modelNew, 'RTP')
 ```
 
 #### Boardings - version 8
@@ -544,7 +553,7 @@ update_plot_stackedarea_boardings(modelNew, 'RTP')
 #| fig-cap: "Transit Boardings Share by Mode - Version 8"
 #| cap-location: margin
 
-update_plot_stackedarea_boardings(modelOld, 'RTP')
+update_plot_stackedarea_boardings(dfV8RouteSummaryResults, modelOld, 'RTP')
 ```
 
 :::
