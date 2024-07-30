@@ -31,3 +31,5 @@ v9x/v901/validation\data/4-modechoice/TripData_June19_2013.csv
 /.luarc.json
 
 /env/
+
+/_*.local

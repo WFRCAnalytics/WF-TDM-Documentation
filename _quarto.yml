@@ -2,6 +2,9 @@
 project:
   type: website
 
+# specify kernel to use to render jupyter notebooks
+jupyter: wftdm-docs
+
 profile:
   group:
     - ['website','book']
