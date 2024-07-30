@@ -215,7 +215,7 @@ The shares of the modeled 2019 base year households by Life Cycle were compared 
 
 ```{python}
 #| include: False
-hhts = pd.read_csv(r'data/1-hhdisag-autoown/2012_HHSurvey-HHData_2022-09-29.csv')[['record_ID','h_CO_FIPS_v30','h_CO_NAME_v30','weight','hhsize','life_cycle']]
+hhts = pd.read_csv(r'../../../_large_files/v900/2012_HHSurvey-HHData_2022-09-29.csv')[['record_ID','h_CO_FIPS_v30','h_CO_NAME_v30','weight','hhsize','life_cycle']]
 hhts_lf_hh = hhts
 hhts_lf_hh['number'] = hhts_lf_hh['weight']
 hhts_lf_hh = (hhts_lf_hh

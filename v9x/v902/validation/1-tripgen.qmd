@@ -23,7 +23,7 @@ nameNHTS = '2017 NHTS - Mountain'
 import pandas as pd
 import numpy as np
 # calculate the total number of houses in the household travel survey
-hh_house_csv = pd.read_csv('data/1-hhdisag-autoown/2012_HHSurvey-HHData_2022-09-29.csv', low_memory=False)
+hh_house_csv = pd.read_csv('../../../_large_files/v900/2012_HHSurvey-HHData_2022-09-29.csv', low_memory=False)
 hh_house = hh_house_csv[['password','weight', 'h_CO_NAME_v30', 'h_SUBAREA_v30']]
 hh_house = hh_house[hh_house['h_SUBAREA_v30'] == 1]
 hh_houses_sum = hh_house.groupby(['h_CO_NAME_v30'])['weight'].agg('sum').reset_index()
@@ -38,7 +38,7 @@ hh_survey_tot_pop = sum(hh_peeps['Pop_2010'])
 if debug: print('HTS Total Population: ' + str(hh_survey_tot_pop))
 
 # calculate the number of II productions in the Household Travel Survey
-hh_trips_csv = pd.read_csv('data/1-hhdisag-autoown/2012_HHSurvey-TripData_2022-11-21.csv', low_memory=False)
+hh_trips_csv = pd.read_csv('../../../_large_files/v900/2012_HHSurvey-TripData_2022-11-21.csv', low_memory=False)
 hh_trips_purps = hh_trips_csv[['password','weight','h_CO_NAME_v30','h_SUBAREA_v30','p_SUBAREA_v30','a_SUBAREA_v30','PURP7_t']]
 hh_ii = hh_trips_purps[hh_trips_purps['h_SUBAREA_v30'] == 1]
 hh_ii = hh_ii[hh_ii['p_SUBAREA_v30'] == 1]

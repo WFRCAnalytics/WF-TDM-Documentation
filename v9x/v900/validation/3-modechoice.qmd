@@ -27,8 +27,8 @@ dirCalibConst = [r"data/calib_const/"]
 # GLOBAL VARIABLES
 
 # file names for data tables
-fnObs        = 'data/4-modechoice/2019 Final Weighted UTA OD Data - 2022-07-07.csv'
-fnHhs        = 'data/4-modechoice/TripData_June19_2013.csv'
+fnObs        = '../../../_large_files/v901/2019 Final Weighted UTA OD Data - 2022-07-07.csv'
+fnHhs        = '../../../_large_files/v901/TripData_June19_2013.csv'
 fnTdmPk      = 'data/4-modechoice/v9_SE19_Net19_RegionShares_Pk.csv'
 fnTdmOk      = 'data/4-modechoice/v9_SE19_Net19_RegionShares_Ok.csv'
 fnTdmPaRoute = 'data/4-modechoice/_v9_SE19_Net19_1_PA_Route.dbf'
