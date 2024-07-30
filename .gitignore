@@ -1,6 +1,7 @@
 /.quarto/
 
-_large_files
+_large_files/*
+!_large_files/download-large-files.py
 
 v832-whats-new/.quarto/
 v832-whats-new/._book/
