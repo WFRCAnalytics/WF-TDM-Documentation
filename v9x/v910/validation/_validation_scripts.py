@@ -7,8 +7,8 @@ import contextily as ctx
 
 
 def plot_volume_diff(segSum, varOption, segShp):
-    scenario1 = 'Observed'
-    scenario2 = 'Modeled'
+    scenario1 = 'Modeled'
+    scenario2 = 'Observed'
 
     lstScenario = list(set(segSum.data.tolist()))
     segSum = segSum[['SEGID', 'FTCLASS', 'data', varOption]]
@@ -31,7 +31,7 @@ def plot_volume_diff(segSum, varOption, segShp):
         (sdfSegSumDiff['diff'].ge(3000) & sdfSegSumDiff['diff'].le(10000)),
         (sdfSegSumDiff['diff'].gt(10000)),
     ]
-    choices = [4,3,2,1,2,3,4]
+    choices = [2.4,2,1.7,1.7,1.7,2,2.4]
     sdfSegSumDiff["lw"] = np.select(conditions, choices)
     sdfSegSumDiff['lwf'] = np.where(sdfSegSumDiff['FTCLASS'] == 'Freeway', sdfSegSumDiff['lw'], sdfSegSumDiff['lw'] - 1.6)
 

@@ -4,12 +4,39 @@ echo: false
 warning: false
 message: false
 ---
+```{python}
+#libraries
+import os
+import pandas as pd
+import geopandas as gpd
+import numpy as np
+import matplotlib.pyplot as plt
+import contextily as ctx
+import _validation_scripts as vs
+import openmatrix as omx
+import geopandas as gpd
+from shapely.geometry import Point
+import math
+import glob
+
+# inputs
+df_obs_path = r"data/5-assignhwy/observed-volumes.csv"
+df_mod_path = r"data/5-assignhwy/WFv910_BY_2019_Summary_SEGID.csv"
+omx_path = r"../../../_large_files/v910/5_FinalNetSkims/"
+geojson_file = r'data/5-assignhwy/tazNew.geojson'
+
+# read segment shapefile into spatial enabled dataframe
+dirSegShp = r'data/5-assignhwy/seg_shp/WFv910_Segments.shp'
+segShp = gpd.read_file(dirSegShp)
+segShp.head()
+segShp = segShp[['SEGID','geometry']]
+```
 
 Validation of final highway assignment was done comparing model outputs from the final loaded networks with observed data. The comparisons were done with volumes and speeds.
 
 ## Volumes
 
-The validation results for the Highway Assignment portion of the model are shown in this section. The observed data for 2019 volumes is taken from the Utah Department of Transportation (UDOT) [Average Annual Daily Traffic (AADT) History](https://drive.google.com/file/d/1rDXm0ObugGR1zXgWUuVbzWHNt-Xs1xru/view) and associated with their respective model segments. The traffic model data is taken from segment summary report for the 2019 base year model: `v902_SE19_Net19_Summary_SEGID.csv`. The results are divided into three sections:
+The validation results for the Highway Assignment portion of the model are shown in this section. The observed data for 2019 volumes is taken from the Utah Department of Transportation (UDOT) [Average Annual Daily Traffic (AADT) History](https://drive.google.com/file/d/1rDXm0ObugGR1zXgWUuVbzWHNt-Xs1xru/view) and associated with their respective model segments. The traffic model data is taken from segment summary report for the 2019 base year model: `WFv910_BY_2019_Summary_SEGID.csv`. The results are divided into three sections:
 
 - Summary Comparison
 - Detailed Comparison
@@ -20,31 +47,15 @@ import {GroupedBarChart} from "@d3/grouped-bar-chart"
 import {Legend, Swatches} from "@d3/color-legend"
 import {howto, altplot} from "@d3/example-components"
 ```
-```{python}
-import os
-import pandas as pd
-import geopandas as gpd
-import numpy as np
-import matplotlib.pyplot as plt
-import contextily as ctx
-import _validation_scripts as vs
-```
+
 
 ```{python}
-# read in inputs
-df_obs = pd.read_csv("data/5-assignhwy/observed-volumes.csv")
-df_mod = pd.read_csv("data/5-assignhwy/WFv910_OY_2023_Summary_SEGID.csv")
+#read in model/observed data
+df_obs = pd.read_csv(df_obs_path)
+df_mod = pd.read_csv(df_mod_path)
 df_ft = df_mod[['SEGID','FTCLASS']]
 df_fc = df_obs[['SEGID','Valid_FC']]
 
-# read segment shapefile into spatial enabled dataframe
-dirSegShp = r'D:\GitHub\WF-TDM-v9x\1_Inputs\6_Segment\WFv910_Segments.shp'
-segShp = gpd.read_file(dirSegShp)
-segShp.head()
-segShp = segShp[['SEGID','geometry']]
-```
-
-```{python}
 # prep comparison dfs for ojs volume summary comparisons
 df_mod1 = df_mod.copy()
 df_mod1['Mod_Car'] = df_mod1['DY_Vol_PC'] + df_mod1['DY_Vol_LT']
@@ -236,8 +247,6 @@ fips_mapping = {
 # Use the `replace` method on the 'coFips' column
 allveh_vol_diff_long['coFips'] = allveh_vol_diff_long['coFips'].replace(fips_mapping)
 allveh_vmt_diff_long['coFips'] = allveh_vmt_diff_long['coFips'].replace(fips_mapping)
-
-import math
 
 def round_up_to_next_significant(value):
     if value == 0 or np.isinf(value) or np.isnan(value):
@@ -890,9 +899,6 @@ Comparisons were made between model and observed for a sample of OD pairs. Obser
 
 
 ```{python}
-import glob
-import pandas as pd
-
 # https://drive.google.com/drive/folders/1u2CED6eGywgYnONSHTF1_xyWy4jU1cL9
 # copied to data/5-assignhwy/google-api-speeds
 
@@ -942,10 +948,6 @@ df1 = df1.drop(columns=['O_Coordinate',' O_Coordinate', 'D_Coordinate', ' D_Coor
 
 
 ```{python}
-import geopandas as gpd
-from shapely.geometry import Point
-
-geojson_file = 'data/5-assignhwy/tazNew.geojson'
 gdf_polygons  = gpd.read_file(geojson_file)
 
 geometry_o = [Point(xy[::-1]) for xy in zip(df1['O_Coordinate_X'], df1['O_Coordinate_Y'])]
@@ -987,11 +989,6 @@ xx2=dfx.groupby(['O_TAZID', ' D_TAZID','Period']).agg({'Speed': 'count'}).unstac
 ```
 
 ```{python}
-_path = r"../../../_large_files/v902/5_FinalNetSkims/"
-
-import openmatrix as omx
-import pandas as pd
-
 def extract_values_from_omx(omx_file_path, column_name):
     """
     Extract values from the 'G_IVT' matrix in an OMX file given a set of IJ pairs.
@@ -1015,7 +1012,7 @@ omx_files = ['Skm_AM.omx', 'Skm_MD.omx', 'Skm_PM.omx', 'Skm_EV.omx']
 columns = ['modAM', 'modMD', 'modPM', 'modEV']
 
 for omx_file, column_name in zip(omx_files, columns):
-    xx = extract_values_from_omx(_path + omx_file, column_name)
+    xx = extract_values_from_omx(omx_path + omx_file, column_name)
 
 #display(xx)
 

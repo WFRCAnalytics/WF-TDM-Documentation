@@ -5,6 +5,7 @@ import gdown
 # put the large files in this directory on google drive: https://drive.google.com/drive/folders/1dM1S724CtgTI_d2Kr6R5LpZvopW4fL8l
 # following the instructions in the link in order to create the download url: https://sites.google.com/site/gdocs2direct/
 # add the file id from the download url and update the destination below
+# comment out any files that you already have on your desktop as to not re-download them
 
 # List of files to download
 file_list = [
@@ -28,7 +29,12 @@ file_list = [
     {"file_id": "1bsEkl75vhhtZwpKpAZI53ecWR8vUPf1f", "destination": "_large_files/v902/5_FinalNetSkims/Skm_AM.omx"                        },
     {"file_id": "16QviQTBegYpUOGgrl4D0nRY-RxAH_wcQ", "destination": "_large_files/v902/5_FinalNetSkims/Skm_MD.omx"                        },
     {"file_id": "1WcbOoQoWLE-ME-NWC6dI2UPwFrKfXxoR", "destination": "_large_files/v902/5_FinalNetSkims/Skm_PM.omx"                        },
-    {"file_id": "1RPDsPT0XKNAuWDtPnSEeoXX8eaS-PdlG", "destination": "_large_files/v902/5_FinalNetSkims/Skm_EV.omx"                        }
+    {"file_id": "1RPDsPT0XKNAuWDtPnSEeoXX8eaS-PdlG", "destination": "_large_files/v902/5_FinalNetSkims/Skm_EV.omx"                        },
+    # v910
+    {"file_id": "1wUlAsFOCgE5m3A3Rs7QWoq9vH01NGgf_", "destination": "_large_files/v910/5_FinalNetSkims/Skm_AM.omx"                        },
+    {"file_id": "1vH_c3KZezefIRtVBAeDjySmhTKQpUnvG", "destination": "_large_files/v910/5_FinalNetSkims/Skm_MD.omx"                        },
+    {"file_id": "1wysb3X8DXsOZTYHJDVHYrWxWVveFfcMm", "destination": "_large_files/v910/5_FinalNetSkims/Skm_PM.omx"                        },
+    {"file_id": "1QhR8AjLXTkc--HP_6W0ANKuId0MNPb27", "destination": "_large_files/v910/5_FinalNetSkims/Skm_EV.omx"                        }
 ]
 
 def download_file_from_google_drive(file_id, destination):
