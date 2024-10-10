@@ -29,6 +29,8 @@ website:
 
       - text: "Version 9 Series"
         menu:
+        - text: "Version 9.1.0"
+          href: v9x/v910/index.qmd
         - text: "Version 9.0.2"
           href: v9x/v902/index.qmd
           id: v902-preface
@@ -52,6 +54,38 @@ website:
           id: v830-preface
           
   sidebar:
+    - id: v910-preface
+      style: "docked"
+      collapse-level: 1
+      border: true
+      background: white
+      contents:
+        - section: "<span style=\"color: #3E6682;font-size: 25px;\">**Version 9.1.0**</span>"
+          contents:
+            - "---"
+            - v9x/v910/index.qmd
+            - text: "Downloads"
+              href: v9x/v910/downloads.qmd
+            - "---"
+            - section: "<span style=\"color: #3E6682;\">**Whats New Document**</span>"
+              #contents:
+              #  - text: "1 Overview"
+              #    href: v9x/v910/whats-new/1-overview.qmd  
+              #  - text: "2 Changes to Input Files"
+              #    href: v9x/v910/whats-new/2-input-files.qmd
+              #  - text: "3 Compare Model Results"
+              #    href: v9x/v910/whats-new/3-modelresults.qmd
+            - "---"
+            - section: "<span style=\"color: #3E6682;\">**Model Validation Report**</span>"
+              contents:
+                - text: "1 Trip Generation"
+                  href: v9x/v910/validation/1-tripgen.qmd
+                - text: "2 Distribution"
+                  href: v9x/v910/validation/2-distribute.qmd
+                - text: "3 Mode Choice"
+                  href: v9x/v910/validation/3-modechoice.qmd
+                - text: "4 Highway Assignment"
+                  href: v9x/v910/validation/4-assignhwy.qmd
     - id: v902-preface
       style: "docked"
       collapse-level: 1

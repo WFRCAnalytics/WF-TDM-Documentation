@@ -280,7 +280,7 @@ Plot.plot({
     Plot.line(
       hhPopData8, {x: 'YEAR', y: 'ControlTotal', stroke: '#5b859e', strokeWidth: 3, strokeDasharray: '5,5'}),
     Plot.line(
-      hhPopData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 3, text: ['yo momma']}),
+      hhPopData9, {x: 'YEAR', y: 'ControlTotal', stroke: '#1e395f', strokeWidth: 3, text: ['']}),
     Plot.text(
       hhPopData9, Plot.selectLast({x: "YEAR", y: "ControlTotal", text: "Category", textAnchor: "start", dx: 3})),
     
