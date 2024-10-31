@@ -1,0 +1,38 @@
+---
+title: Input Updates
+warning: false
+message: false
+echo: false
+---
+
+## Highway Network
+
+The highway network was updated minorly to accommodate projects from WFRC’s adopted Amendment #2 and MAG’s draft Amendment #2 of the 2023-2050 RTP. @fig-v910-net shows the areas that were updated for Amendment #2.
+
+![Updated Lane and Operational Lane Fields (blue)](_pictures/v910-network-changes.png){#fig-v910-net width=55%}
+
+The **SEGID** field along with other fields were updated as part of regular network maintenance (See @fig-v910-seg).
+
+![Updated SEGID Field (blue)](_pictures/v910-segment-changes.png){#fig-v910-seg width=55%}
+
+## Transit Networks
+
+The transit networks were updated to reflect changes in the highway network.
+
+OGX and MVX routes were updated to better align with current conditions and assumptions.
+
+## Segment Shapefile
+
+A **DIRECTION** field was added onto the segment shapefile where each segment was assigned NB/SB for a segment in the northbound or southbound direction, and EB/WB for a segment in the eastbound or westbound direction to support the segment-based link direction calculation (See [Segment Direction](https://wfrc.org/wftdm-docs/v9x/v910/whats-new/4-other-updates.html#segment-direction)). The Jupyter Notebooks within the `1_Inputs/6_Segment/_Segment Processing Tools` folder were updated to account for the new **DIRECTION** field. 
+
+A new folder called `Corridors` was added to the `1_Inputs/6_Segment` directory. This folder includes various shapefiles and geojsons files describing corridors (highway, transit, freight, etc.) to support data aggregation and visualize in the vizTool.
+
+## TAZ Shapefile
+
+The `TAZ.shp` was updated by renumbering the small districts as well as including two new fields: **PLANAREA** and **CITYGRP**. **PLANAREA** describes which modeling region the TAZ falls in and **CITYGRP** represents city groups (a new geographic definition to describe groupings of cities). 
+
+The renumbering of the small districts was also reflected in the `Small_Districts.shp`. The small district geographies were also updated.
+
+
+
+

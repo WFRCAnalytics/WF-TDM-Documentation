@@ -1,0 +1,50 @@
+---
+title: Other Model Updates
+warning: false
+message: false
+echo: false
+---
+
+## Provo Airport
+
+Version 9.1.0 inserts travel to/from the Provo Airport (PVU) by updating the `2_ModelScripts/0_InputProcessing/d_TripTable/1_TripTable.s` and `2_ModelScripts/2_TripGen/1_TripGen.s` scripts. The `0GeneralParameters.block` file was also updated to include the PVU zone number parameter.
+
+The `TripTableControlTotal.csv` file, located in the `1_Inputs/0_GlobalData/0_TripTables` folder, was expanded to include trip totals by year for the Provo Airport. @fig-v910-airport shows the calculated control total for the number of trips attracted to the Provo Airport compared to those attracted to the Salt Lake City Airport (SLC). The number of trips attracted to the Provo Airport were estimated using a ratio calculated from the SLC control totals as well as data from the Federal Aviation Administration (FAA). 
+
+![Number of Trips by Airport and Year](_pictures/v910-provo-airport.png){#fig-v910-airport width=65%}
+
+The `BaseDistribution.csv` file, located in the `1_Inputs/0_GlobalData/0_TripTables` folder, was also expanded to include trip totals produced by zone for the Provo Airport. @fig-pvu-airport shows the base distribution of trips going to/from the Provo airport. This distribution was calculated using trip data from StreetLight.
+
+![Base Trip Distribution by Zone for PVU](_pictures/pvu.png){#fig-pvu-airport width=80%}
+
+## "1_NetProcessor" Script
+
+The `1_NetProcessor.s` script was adjusted to accommodate new Python scripts, segment direction updates, reliability lane updates, and other bug fixes. 
+
+### Segment Direction
+
+The link direction logic was updated to align with segment direction. All links that fall within a segment adopt the cardinal direction of the overarching segment. For example, in @fig-seg-dir the segment (orange) has a northbound/southbound direction. All model links (blue) associated with this segment will also have a northbound/southbound despite several links within the segment being oriented more east/west. 
+
+![Segment and Link Direction Alignment](_pictures/seg-dir.png){#fig-seg-dir width=40%}
+
+The segment direction code was added to the `ip_UpdateNetwork_WalkBuffers.py` script where it creates a temp scenario network with the **DIRECTION** field calculated. The temp scenario network is then read in for reference downstream.
+
+### Reliability Lanes
+
+Reliability lane capacity calculations were moved to the `1_NetProcessor.s` script. The link level outputs were updated to include the **RelCap1Hr** field as well as fields for period specific capacities.  A new parameter **Rel_LN_Toggle** was added to the `0GeneralParameters.block` file that acts as a switch to allow the user to determine if using reversible lanes adds lanes for the peak direction or repurposes off-peak direction lanes. Downstream scripts were updated to reflect these changes.
+
+### Bug Fixes
+
+The `1_NetProcessor` script was updated to fix minor errors in the following calculations:
+
+ - Charge point code was updated to ensure that links were tagged with the correct charge point ID. 
+ - Fixed a minor bug in the general purpose ramp ID classification. 
+ - FT 39 was removed from the HOT speed calculation.
+
+## Other Minor Updates
+
+Various inputs and outputs were renamed to comply with the new model file naming convention determined by the Interagency Modeling Technical Committee (IMTC). 
+
+
+
+

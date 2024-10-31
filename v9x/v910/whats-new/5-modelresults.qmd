@@ -1,0 +1,210 @@
+---
+title: Compare Model Results
+execute:
+    echo: false
+    message: false
+    warning: false
+---
+
+```{python}
+modelNew = 'WF TDM v9.1.0 - official'
+modelOld = 'WF TDM v9.0.2 - official'
+```
+
+This section compares the model results between version 9.1.0 and version 9.0.2.
+
+## Road Volume Comparisons
+The comparison between daily volumes at the segment level can be found in @fig-volume-comparison for 2019 and 2050. Decreases in volume in version 9.1.0 compared to version 9.0.2 are shown in blue, while increases are shown in red. @fig-volume-truck-comparison shows a similar comparison, displaying medium plus heavy truck volumes.
+
+For 2019, there are a few volume differences for all vehicles and trucks due to segment fixes. Other differences are negligible.
+
+For 2050, there are a few volume differences for all vehicles and trucks due to segment fixes and project updates. Other differences are negligible.
+
+::: {.panel-tabset}
+
+### Volume Change - All Vehicles
+
+::: {#fig-volume-comparison layout-ncol=3}
+
+![2019](_pictures/all2019_v910_v902.png){#fig-vol19}
+
+![2050 Fiscally Constrained](_pictures/all2050_v910_v902.png){#fig-vol50}
+
+![](_pictures/legend.png)
+
+Daily Volume Comparison – All Vehicles
+:::
+
+### Volume Change - Truck
+
+::: {#fig-volume-truck-comparison layout-ncol=3}
+
+![2019](_pictures/trucks2019_v910_v902.png){#fig-vol19}
+
+![2050 Fiscally Constrained](_pictures/trucks2050_v910_v902.png){#fig-vol50}
+
+![](_pictures/legend.png)
+
+Daily Volume Comparison – Medium+Heavy Truck
+:::
+
+<!--
+
+### Percent Volume Change
+
+::: {#fig-percent-volume-comparison layout-ncol=3}
+
+![2019](data/map_pngs/vol19_percentchange-cropped.png){#fig-vol19}
+
+![2050](data/map_pngs/vol50_percentchange-cropped.png){#fig-vol50}
+
+![](data/map_pngs/vol_percentchange-legend.png)
+
+Model Daily Volumes Comparison - Percent Change (v9 vs v8.3.2)
+:::
+-->
+:::
+
+## Transit Comparisons
+```{python}
+import os
+import pandas as pd
+import _whats_new_scripts as wn
+lstIncludeInAll = ['BY','OY','TIP','RTP']
+
+# Read the CSV files into DataFrames
+dfTransitSummary = pd.read_csv('data/intermediate/dfTransitShareAll.csv')
+```
+
+Version 9.1.0 showed a slight increase in transit trips compared to version 9.0.2 in 2032, 2042, and 2050 (see @fig-hy-tr-all through @fig-hy-tr-lcl). The total transit trips in 2050 for version 9.1.0 is 342,000 daily trips compared to the version 9.0.2 model that showed 337,000 daily trips, which equates to 1.5% more trips. 
+
+Commuter Rail saw the greatest increase in trips, likely due to project updates. Express Bus saw a slight decrease in future trips, most likely due to the increase in trips to Commuter Rail since they compete for trips in similar markets. BRT, Core Route, and Local Bus trips remained relatively unchanged.
+
+
+::: {.panel-tabset}
+
+#### All Modes
+```{python}
+#| label: fig-hy-tr-all
+#| fig-cap: "Daily Transit Ridership - All Modes"
+#| cap-location: margin
+
+wn.update_plot(
+    lstIncludeInAll,
+    dfTransitSummary,
+    [modelOld, modelNew], 
+    ['RTP'], 
+    ['Transit'], 
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
+    ['Pk','Ok', 'pk', 'ok']
+)
+```
+
+#### Commuter Rail
+```{python}
+#| label: fig-hy-tr-crt
+#| fig-cap: "Daily Transit Ridership - Commuter-Rail Transit"
+#| cap-location: margin
+
+wn.update_plot(
+    lstIncludeInAll,
+    dfTransitSummary,
+    [modelOld, modelNew], 
+    ['RTP'], 
+    ['CRT'], 
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
+    ['Pk','Ok', 'pk', 'ok']
+)
+```
+
+#### Light Rail
+```{python}
+#| label: fig-hy-tr-lrt
+#| fig-cap: "Daily Transit Ridership - Light-Rail Transit"
+#| cap-location: margin
+
+wn.update_plot(
+    lstIncludeInAll,
+    dfTransitSummary,
+    [modelOld, modelNew], 
+    ['RTP'], 
+    ['LRT'], 
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
+    ['Pk','Ok', 'pk', 'ok']
+)
+```
+
+#### Bus Rapid Transit
+```{python}
+#| label: fig-hy-tr-brt
+#| fig-cap: "Daily Transit Ridership - Bus Rapid Transit"
+#| cap-location: margin
+
+wn.update_plot(
+    lstIncludeInAll,
+    dfTransitSummary,
+    [modelOld, modelNew], 
+    ['RTP'], 
+    ['BRT'], 
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
+    ['Pk','Ok', 'pk', 'ok']
+)
+```
+
+#### Express Bus
+```{python}
+#| label: fig-hy-tr-exp
+#| fig-cap: "Daily Transit Ridership - Express Bus"
+#| cap-location: margin
+
+wn.update_plot(
+    lstIncludeInAll,
+    dfTransitSummary,
+    [modelOld, modelNew], 
+    ['RTP'], 
+    ['EXP'], 
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
+    ['Pk','Ok', 'pk', 'ok']
+)
+```
+
+#### Core Bus
+```{python}
+#| label: fig-hy-tr-cor
+#| fig-cap: "Daily Transit Ridership - Core Bus"
+#| cap-location: margin
+
+wn.update_plot(
+    lstIncludeInAll,
+    dfTransitSummary,
+    [modelOld, modelNew], 
+    ['RTP'], 
+    ['COR'], 
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
+    ['Pk','Ok', 'pk', 'ok']
+)
+```
+
+#### Local Bus
+```{python}
+#| label: fig-hy-tr-lcl
+#| fig-cap: "Daily Transit Ridership - Local Bus"
+#| cap-location: margin
+
+wn.update_plot(
+    lstIncludeInAll,
+    dfTransitSummary,
+    [modelOld, modelNew], 
+    ['RTP'], 
+    ['LCL'], 
+    ['HBC', 'HBO', 'HBS', 'HBW', 'NHB'], 
+    ['Pk','Ok', 'pk', 'ok']
+)
+```
+
+:::
+
+
+
+
+

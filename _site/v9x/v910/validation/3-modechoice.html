@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.340">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WFTDM Documentation - Mode Choice</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../_pictures/favicon.ico" rel="icon">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="module" src="../../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="https://wfrc.org" class="navbar-brand navbar-brand-logo">
+    <img src="../../../_pictures/wf-logo-new-white-t.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-version-9-series" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Version 9 Series</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-version-9-series">    
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v910/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.1.0</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v902/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0.2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v901/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0.1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v9x/v900/index.html" rel="" target="">
+ <span class="dropdown-text">Version 9.0.0</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-past-versions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Past Versions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-past-versions">    
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v832/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.2 - Draft Release</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v831/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.1 - Draft Release</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../v8x/v830/index.html" rel="" target="">
+ <span class="dropdown-text">Version 8.3.0 - Draft Release</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/WFRCAnalytics/TDM-Documentation/tree/gh-pages" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="mailto:sswim@wfrc.org" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-envelope"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title"><strong>Section Contents</strong><br>__________________</h2>
+   
+  <ul class="collapse">
+  <li><a href="#transit-trips-and-boardings" id="toc-transit-trips-and-boardings" class="nav-link active" data-scroll-target="#transit-trips-and-boardings">Transit Trips and Boardings</a></li>
+  <li><a href="#mode-share" id="toc-mode-share" class="nav-link" data-scroll-target="#mode-share">Mode Share</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mode Choice</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>The validation results for the Mode Choice portion of the model are shown in this section. Mode Choice was validated against the Utah Transit Authority 2019 On-Board Survey as well as the 2012 Household Travel Survey. Validation is summarized by the following categories:</p>
+<ul>
+<li>Transit Trips and Boardings</li>
+<li>Mode Share</li>
+</ul>
+<div class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "dataLong", "value": {"Period": ["OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "OK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "OK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK"], "TripPurpose": ["HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "HBC", "HBO", "HBW", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBC", "HBC", "HBC", "HBC", "HBO", "HBO", "HBO", "HBO", "HBO", "HBO", "HBW", "HBW", "HBW", "HBW", "HBW", "HBW", "NHB", "NHB", "NHB", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "HBC", "HBO", "HBW", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBC", "HBC", "HBC", "HBC", "HBO", "HBO", "HBO", "HBO", "HBO", "HBO", "HBW", "HBW", "HBW", "HBW", "HBW", "HBW", "NHB", "NHB", "NHB", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All"], "Group": ["Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode"], "Mode": ["Motorized", "Motorized", "Motorized", "Motorized", "Motorized", "Motorized", "Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Auto", "Auto", "Auto", "Auto", "Auto", "Auto", "Auto", "Transit", "Transit", "Transit", "Transit", "Transit", "Transit", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "BRT", "BRT", "BRT", "BRT", "BRT", "BRT", "BRT", "CRT", "CRT", "CRT", "CRT", "CRT", "CRT", "CRT", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Express Bus", "Express Bus", "Express Bus", "Express Bus", "Express Bus", "LRT", "LRT", "LRT", "LRT", "LRT", "LRT", "LRT", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "Drive", "Drive", "Drive", "Drive", "Drive", "Drive", "Drive", "Walk", "Walk", "Walk", "Walk", "Walk", "Walk", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Motorized", "Motorized", "Motorized", "Motorized", "Motorized", "Motorized", "Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Auto", "Auto", "Auto", "Auto", "Auto", "Auto", "Auto", "Transit", "Transit", "Transit", "Transit", "Transit", "Transit", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "BRT", "BRT", "BRT", "BRT", "BRT", "BRT", "BRT", "CRT", "CRT", "CRT", "CRT", "CRT", "CRT", "CRT", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Express Bus", "Express Bus", "Express Bus", "Express Bus", "Express Bus", "LRT", "LRT", "LRT", "LRT", "LRT", "LRT", "LRT", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "Drive", "Drive", "Drive", "Drive", "Drive", "Drive", "Drive", "Walk", "Walk", "Walk", "Walk", "Walk", "Walk", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk"], "DataSource": ["Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed"], "Percent": [0.8861439166, 0.9485211402, 0.9254562841, 0.8154171154, 0.9047720859, 0.9596130062, 0.9569682185, 0.1138560834, 0.0514788598, 0.0745437159, 0.1845828846, 0.0952279141, 0.0403869938, 0.0430317815, 0.8154171154, 0.1845828846, 0.8921665383, 0.1078334617, 0.9555763078, 0.0444236922, 0.9350739016, 0.0649260984, 0.9149186927, 0.0850813073, 0.9053228464, 0.0946771536, 0.9300484904, 0.0699515096, 0.9910297427, 0.9738491211, 0.9938751999, 0.7995306261, 0.9890459687, 0.9693051658, 0.9932315019, 0.0089702573, 0.0261508789, 0.0061248001, 0.2004693739, 0.0109540313, 0.0306948342, 0.0067684981, 0.7995306261, 0.2004693739, 0.9903793123, 0.0096206877, 0.9709466525, 0.0290533475, 0.9936741397, 0.0063258603, 0.9850461438, 0.0149538562, 0.9898495823, 0.0101504177, 0.9776738954, 0.0223261046, 0.3469645624, 0.8696537431, 0.4245644573, 0.7507147668, 0.327155302, 0.8293820524, 0.4392214586, 0.6530354376, 0.1303462569, 0.5754355427, 0.2492852332, 0.672844698, 0.1706179476, 0.5607785414, 0.7507147668, 0.2492852332, 0.3404783398, 0.6595216602, 0.8439735374, 0.1560264626, 0.4291405587, 0.5708594413, 0.469279434, 0.530720566, 0.4332186283, 0.5667813717, 0.5253143, 0.4746857, 0.3956744153, 0.6776313159, 0.4489340831, 0.6514935264, 0.4037708674, 0.6089595242, 0.4304768781, 0.6043255847, 0.3223686841, 0.5510659169, 0.3485064736, 0.5962291326, 0.3910404758, 0.5695231219, 0.6514935264, 0.3485064736, 0.398379022, 0.601620978, 0.6297458779, 0.3702541221, 0.4432732722, 0.5567267278, 0.426477403, 0.573522597, 0.4203115582, 0.5796884418, 0.4379173741, 0.5620826259, 0.0381410256, 0.0627753304, 0.0848090463, 0.2308238276, 0.0619361788, 0.0370867124, 0.0799228627, 0.1268830128, 0.1600803317, 0.1025176019, 0.1786565272, 0.1442709035, 0.2237991266, 0.1124919649, 0.0101362179, 0.0051179062, 0.0057606145, 0.0011153359, 0.0090211391, 0.0047723019, 0.005785301, 0.0, 0.0, 0.0036501901, 0.002019658, 0.0259513412, 0.4323717949, 0.4192796061, 0.565393642, 0.2921673004, 0.4292446479, 0.3939800374, 0.5421041354, 0.3924679487, 0.3527468256, 0.2415190954, 0.2935868188, 0.3535074727, 0.3144104803, 0.259695736, 0.2308238276, 0.1786565272, 0.0011153359, 0.0036501901, 0.2921673004, 0.2935868188, 0.0470186367, 0.1333701713, 0.0097201989, 0.0007535038, 0.4312051037, 0.3779323856, 0.0454354051, 0.2030907866, 0.0048846219, 0.0175172646, 0.4022022907, 0.3268696311, 0.0831849583, 0.1058329179, 0.0057688199, 0.5576525888, 0.247560715, 0.0805361921, 0.164904688, 0.0059631967, 0.007714163, 0.4118404969, 0.3290412633, 0.0545710267, 0.1325899136, 0.0077556761, 0.0, 0.4533654812, 0.3517179024, 0.0986592994, 0.1874596808, 0.0047120859, 0.013098477, 0.3828569826, 0.3132134743, 0.1036858974, 0.2235034983, 0.063153403, 0.340278834, 0.173084691, 0.3423268871, 0.0679237197, 0.8963141026, 0.7764965017, 0.936846597, 0.659721166, 0.826915309, 0.6576731129, 0.9320762803, 0.340278834, 0.659721166, 0.1295775355, 0.8704224645, 0.3037097861, 0.6962902139, 0.0647389787, 0.9352610213, 0.2246935809, 0.7753064191, 0.1332127788, 0.8667872212, 0.2885451435, 0.7114548565, 0.8884541907, 0.9446123375, 0.9290815959, 0.8141852702, 0.9061585867, 0.9590730088, 0.9593515909, 0.1115458093, 0.0553876625, 0.0709184041, 0.1858147298, 0.0938414133, 0.0409269912, 0.0406484091, 0.8141852702, 0.1858147298, 0.894168859, 0.105831141, 0.9538402812, 0.0461597188, 0.9382821378, 0.0617178622, 0.9161660855, 0.0838339145, 0.9071214818, 0.0928785182, 0.9305132049, 0.0694867951, 0.9922543169, 0.9685788059, 0.9870524415, 0.8249220242, 0.9901209364, 0.946292994, 0.9728278983, 0.0077456831, 0.0314211941, 0.0129475585, 0.1750779758, 0.0098790636, 0.053707006, 0.0271721017, 0.8249220242, 0.1750779758, 0.9915564656, 0.0084435344, 0.9542793027, 0.0457206973, 0.9826318159, 0.0173681841, 0.9796919716, 0.0203080284, 0.9878855555, 0.0121144445, 0.9670215231, 0.0329784769, 0.3487342288, 0.8674754036, 0.4246507054, 0.7436643713, 0.3285095917, 0.8204021386, 0.436329591, 0.6512657712, 0.1325245964, 0.5753492946, 0.2563356287, 0.6714904083, 0.1795978614, 0.563670409, 0.7436643713, 0.2563356287, 0.342128114, 0.657871886, 0.837524017, 0.162475983, 0.4282439933, 0.5717560067, 0.4648200947, 0.5351799053, 0.4313383035, 0.5686616965, 0.5177129801, 0.4822870199, 0.3956062524, 0.6775894655, 0.4488858128, 0.6515450108, 0.4037308636, 0.6090281509, 0.4304065824, 0.6043937476, 0.3224105345, 0.5511141872, 0.3484549892, 0.5962691364, 0.3909718491, 0.5695934176, 0.6515450108, 0.3484549892, 0.398314987, 0.601685013, 0.6293687406, 0.3706312594, 0.4432806403, 0.5567193597, 0.4262944442, 0.5737055558, 0.419935535, 0.580064465, 0.4381390224, 0.5618609776, 0.0418235882, 0.0677369904, 0.0894192776, 0.2293667759, 0.075896686, 0.0350267669, 0.0865532752, 0.1155677796, 0.1502032315, 0.0874090348, 0.189417104, 0.1454185274, 0.2486717449, 0.106276302, 0.0101487669, 0.0141790348, 0.0016786337, 0.0005450119, 0.0221358579, 0.0047582192, 0.0016363824, 0.0002207307, 0.0044306477, 0.0026579514, 0.0016718637, 0.0220304874, 0.4259321166, 0.4143525712, 0.552567509, 0.2884058861, 0.4255949021, 0.386631068, 0.5235595428, 0.406307018, 0.3490975243, 0.2689255448, 0.2896072707, 0.3292821628, 0.3028817135, 0.2819744975, 0.2293667759, 0.189417104, 0.0005450119, 0.0026579514, 0.2884058861, 0.2896072707, 0.0540508485, 0.1262798336, 0.0144503799, 0.0007414753, 0.4258111059, 0.3786663568, 0.0467416224, 0.2134061832, 0.0081321947, 0.0157272722, 0.3965592608, 0.3194334667, 0.0884725122, 0.0936417149, 0.0016646763, 0.5429849145, 0.2732361822, 0.0903171374, 0.1728296848, 0.0073370479, 0.0075515501, 0.3999142267, 0.3220503531, 0.0620806225, 0.1233919869, 0.0099697959, 0.0018434135, 0.4479051439, 0.3548090373, 0.1085857164, 0.2048150942, 0.0056337015, 0.0112446243, 0.3688648615, 0.300856002, 0.1389044934, 0.224483422, 0.0820478997, 0.34756429, 0.1976048655, 0.3894768418, 0.0937108594, 0.8610955066, 0.775516578, 0.9179521003, 0.65243571, 0.8023951345, 0.6105231582, 0.9062891406, 0.34756429, 0.65243571, 0.1599693445, 0.8400306555, 0.3303860174, 0.6696139826, 0.0859006832, 0.9140993168, 0.2626341629, 0.7373658371, 0.1609049948, 0.8390950052, 0.3284513272, 0.6715486728]}}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+
+<script type="ojs-define">{"contents": [{"name": "dataTable", "value": {"Period": ["OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "OK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "OK", "OK", "OK", "PK", "PK", "PK", "PK", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "DY", "OK", "OK", "PK", "PK"], "TripPurpose": ["HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "HBC", "HBO", "HBW", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBC", "HBC", "HBC", "HBC", "HBO", "HBO", "HBO", "HBO", "HBO", "HBO", "HBW", "HBW", "HBW", "HBW", "HBW", "HBW", "NHB", "NHB", "NHB", "NHB", "NHB", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "All", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBO", "HBW", "NHB", "HBC", "HBO", "HBW", "NHB", "HBC", "HBC", "HBO", "HBO", "HBW", "HBW", "NHB", "NHB", "All", "All", "All", "All", "All", "All"], "Group": ["Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Motorized / Non-Motorized", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Auto / Transit", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Drive Alone / Shared Ride", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Shared Ride # of Occupants", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode", "Transit Access Mode"], "Mode": ["Motorized", "Motorized", "Motorized", "Motorized", "Motorized", "Motorized", "Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Motorized", "Non-Motorized", "Auto", "Auto", "Auto", "Auto", "Auto", "Auto", "Auto", "Transit", "Transit", "Transit", "Transit", "Transit", "Transit", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Auto", "Transit", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Drive Alone", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Drive Alone", "Shared Ride", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "Shared Ride 2 Occupants", "Shared Ride 3+ Occupants", "BRT", "BRT", "BRT", "BRT", "BRT", "BRT", "BRT", "CRT", "CRT", "CRT", "CRT", "CRT", "CRT", "CRT", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Core Bus", "Express Bus", "Express Bus", "Express Bus", "Express Bus", "Express Bus", "LRT", "LRT", "LRT", "LRT", "LRT", "LRT", "LRT", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "Drive", "Drive", "Drive", "Drive", "Drive", "Drive", "Drive", "Walk", "Walk", "Walk", "Walk", "Walk", "Walk", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk", "Drive", "Walk"], "Model": ["88.6%", "94.9%", "92.5%", "81.5%", "90.5%", "96.0%", "95.7%", "11.4%", "5.1%", "7.5%", "18.5%", "9.5%", "4.0%", "4.3%", "81.5%", "18.5%", "89.2%", "10.8%", "95.6%", "4.4%", "93.5%", "6.5%", "91.5%", "8.5%", "90.5%", "9.5%", "93.0%", "7.0%", "99.1%", "97.4%", "99.4%", "80.0%", "98.9%", "96.9%", "99.3%", "0.9%", "2.6%", "0.6%", "20.0%", "1.1%", "3.1%", "0.7%", "80.0%", "20.0%", "99.0%", "1.0%", "97.1%", "2.9%", "99.4%", "0.6%", "98.5%", "1.5%", "99.0%", "1.0%", "97.8%", "2.2%", "34.7%", "87.0%", "42.5%", "75.1%", "32.7%", "82.9%", "43.9%", "65.3%", "13.0%", "57.5%", "24.9%", "67.3%", "17.1%", "56.1%", "75.1%", "24.9%", "34.0%", "66.0%", "84.4%", "15.6%", "42.9%", "57.1%", "46.9%", "53.1%", "43.3%", "56.7%", "52.5%", "47.5%", "39.6%", "67.8%", "44.9%", "65.1%", "40.4%", "60.9%", "43.0%", "60.4%", "32.2%", "55.1%", "34.9%", "59.6%", "39.1%", "57.0%", "65.1%", "34.9%", "39.8%", "60.2%", "63.0%", "37.0%", "44.3%", "55.7%", "42.6%", "57.4%", "42.0%", "58.0%", "43.8%", "56.2%", "3.8%", "6.3%", "8.5%", "23.1%", "6.2%", "3.7%", "8.0%", "12.7%", "16.0%", "10.3%", "17.9%", "14.4%", "22.4%", "11.2%", "1.0%", "0.5%", "0.6%", "0.1%", "0.9%", "0.5%", "0.6%", "0.0%", "0.0%", "0.4%", "0.2%", "2.6%", "43.2%", "41.9%", "56.5%", "29.2%", "42.9%", "39.4%", "54.2%", "39.2%", "35.3%", "24.2%", "29.4%", "35.4%", "31.4%", "26.0%", "23.1%", "17.9%", "0.1%", "0.4%", "29.2%", "29.4%", "4.7%", "13.3%", "1.0%", "0.1%", "43.1%", "37.8%", "4.5%", "20.3%", "0.5%", "1.8%", "40.2%", "32.7%", "8.3%", "10.6%", "0.6%", "55.8%", "24.8%", "8.1%", "16.5%", "0.6%", "0.8%", "41.2%", "32.9%", "5.5%", "13.3%", "0.8%", "0.0%", "45.3%", "35.2%", "9.9%", "18.7%", "0.5%", "1.3%", "38.3%", "31.3%", "10.4%", "22.4%", "6.3%", "34.0%", "17.3%", "34.2%", "6.8%", "89.6%", "77.6%", "93.7%", "66.0%", "82.7%", "65.8%", "93.2%", "34.0%", "66.0%", "13.0%", "87.0%", "30.4%", "69.6%", "6.5%", "93.5%", "22.5%", "77.5%", "13.3%", "86.7%", "28.9%", "71.1%"], "Observed": ["88.8%", "94.5%", "92.9%", "81.4%", "90.6%", "95.9%", "95.9%", "11.2%", "5.5%", "7.1%", "18.6%", "9.4%", "4.1%", "4.1%", "81.4%", "18.6%", "89.4%", "10.6%", "95.4%", "4.6%", "93.8%", "6.2%", "91.6%", "8.4%", "90.7%", "9.3%", "93.1%", "6.9%", "99.2%", "96.9%", "98.7%", "82.5%", "99.0%", "94.6%", "97.3%", "0.8%", "3.1%", "1.3%", "17.5%", "1.0%", "5.4%", "2.7%", "82.5%", "17.5%", "99.2%", "0.8%", "95.4%", "4.6%", "98.3%", "1.7%", "98.0%", "2.0%", "98.8%", "1.2%", "96.7%", "3.3%", "34.9%", "86.7%", "42.5%", "74.4%", "32.9%", "82.0%", "43.6%", "65.1%", "13.3%", "57.5%", "25.6%", "67.1%", "18.0%", "56.4%", "74.4%", "25.6%", "34.2%", "65.8%", "83.8%", "16.2%", "42.8%", "57.2%", "46.5%", "53.5%", "43.1%", "56.9%", "51.8%", "48.2%", "39.6%", "67.8%", "44.9%", "65.2%", "40.4%", "60.9%", "43.0%", "60.4%", "32.2%", "55.1%", "34.8%", "59.6%", "39.1%", "57.0%", "65.2%", "34.8%", "39.8%", "60.2%", "62.9%", "37.1%", "44.3%", "55.7%", "42.6%", "57.4%", "42.0%", "58.0%", "43.8%", "56.2%", "4.2%", "6.8%", "8.9%", "22.9%", "7.6%", "3.5%", "8.7%", "11.6%", "15.0%", "8.7%", "18.9%", "14.5%", "24.9%", "10.6%", "1.0%", "1.4%", "0.2%", "0.1%", "2.2%", "0.5%", "0.2%", "0.0%", "0.4%", "0.3%", "0.2%", "2.2%", "42.6%", "41.4%", "55.3%", "28.8%", "42.6%", "38.7%", "52.4%", "40.6%", "34.9%", "26.9%", "29.0%", "32.9%", "30.3%", "28.2%", "22.9%", "18.9%", "0.1%", "0.3%", "28.8%", "29.0%", "5.4%", "12.6%", "1.4%", "0.1%", "42.6%", "37.9%", "4.7%", "21.3%", "0.8%", "1.6%", "39.7%", "31.9%", "8.8%", "9.4%", "0.2%", "54.3%", "27.3%", "9.0%", "17.3%", "0.7%", "0.8%", "40.0%", "32.2%", "6.2%", "12.3%", "1.0%", "0.2%", "44.8%", "35.5%", "10.9%", "20.5%", "0.6%", "1.1%", "36.9%", "30.1%", "13.9%", "22.4%", "8.2%", "34.8%", "19.8%", "38.9%", "9.4%", "86.1%", "77.6%", "91.8%", "65.2%", "80.2%", "61.1%", "90.6%", "34.8%", "65.2%", "16.0%", "84.0%", "33.0%", "67.0%", "8.6%", "91.4%", "26.3%", "73.7%", "16.1%", "83.9%", "32.8%", "67.2%"], "Difference": ["-0.2%", "0.4%", "-0.4%", "0.1%", "-0.1%", "0.1%", "-0.2%", "0.2%", "-0.4%", "0.4%", "-0.1%", "0.1%", "-0.1%", "0.2%", "0.1%", "-0.1%", "-0.2%", "0.2%", "0.2%", "-0.2%", "-0.3%", "0.3%", "-0.1%", "0.1%", "-0.2%", "0.2%", "-0.0%", "0.0%", "-0.1%", "0.5%", "0.7%", "-2.5%", "-0.1%", "2.3%", "2.0%", "0.1%", "-0.5%", "-0.7%", "2.5%", "0.1%", "-2.3%", "-2.0%", "-2.5%", "2.5%", "-0.1%", "0.1%", "1.7%", "-1.7%", "1.1%", "-1.1%", "0.5%", "-0.5%", "0.2%", "-0.2%", "1.1%", "-1.1%", "-0.2%", "0.2%", "-0.0%", "0.7%", "-0.1%", "0.9%", "0.3%", "0.2%", "-0.2%", "0.0%", "-0.7%", "0.1%", "-0.9%", "-0.3%", "0.7%", "-0.7%", "-0.2%", "0.2%", "0.6%", "-0.6%", "0.1%", "-0.1%", "0.4%", "-0.4%", "0.2%", "-0.2%", "0.8%", "-0.8%", "0.0%", "0.0%", "0.0%", "-0.0%", "0.0%", "-0.0%", "0.0%", "-0.0%", "-0.0%", "-0.0%", "0.0%", "-0.0%", "0.0%", "-0.0%", "-0.0%", "0.0%", "0.0%", "-0.0%", "0.0%", "-0.0%", "-0.0%", "0.0%", "0.0%", "-0.0%", "0.0%", "-0.0%", "-0.0%", "0.0%", "-0.4%", "-0.5%", "-0.5%", "0.1%", "-1.4%", "0.2%", "-0.7%", "1.1%", "1.0%", "1.5%", "-1.1%", "-0.1%", "-2.5%", "0.6%", "-0.0%", "-0.9%", "0.4%", "0.1%", "-1.3%", "0.0%", "0.4%", "-0.0%", "-0.4%", "0.1%", "0.0%", "0.4%", "0.6%", "0.5%", "1.3%", "0.4%", "0.4%", "0.7%", "1.9%", "-1.4%", "0.4%", "-2.7%", "0.4%", "2.4%", "1.2%", "-2.2%", "0.1%", "-1.1%", "0.1%", "0.1%", "0.4%", "0.4%", "-0.7%", "0.7%", "-0.5%", "0.0%", "0.5%", "-0.1%", "-0.1%", "-1.0%", "-0.3%", "0.2%", "0.6%", "0.7%", "-0.5%", "1.2%", "0.4%", "1.5%", "-2.6%", "-1.0%", "-0.8%", "-0.1%", "0.0%", "1.2%", "0.7%", "-0.8%", "0.9%", "-0.2%", "-0.2%", "0.5%", "-0.3%", "-1.0%", "-1.7%", "-0.1%", "0.2%", "1.4%", "1.2%", "-3.5%", "-0.1%", "-1.9%", "-0.7%", "-2.5%", "-4.7%", "-2.6%", "3.5%", "0.1%", "1.9%", "0.7%", "2.5%", "4.7%", "2.6%", "-0.7%", "0.7%", "-3.0%", "3.0%", "-2.7%", "2.7%", "-2.1%", "2.1%", "-3.8%", "3.8%", "-2.8%", "2.8%", "-4.0%", "4.0%"]}}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "nameModeMnMShare", "value": "Motorized / Non-Motorized"}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "nameModeATShare", "value": "Auto / Transit"}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "nameModeDAShare", "value": "Drive Alone / Shared Ride"}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "nameMode23Share", "value": "Shared Ride # of Occupants"}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "nameModeTransit", "value": "Transit Mode"}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "nameModeAccess", "value": "Transit Access Mode"}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "namePeriod", "value": "Period"}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "nameGroup", "value": "Group"}]}</script>
+</div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="cell-output cell-output-display">
+<script type="ojs-define">{"contents": [{"name": "boardChart", "value": {"Mode": ["BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus"], "DataSource": ["Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed", "Model", "Model", "Model", "Model", "Model", "Model", "Observed", "Observed", "Observed", "Observed", "Observed", "Observed"], "Title": ["Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed"], "View": ["Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Value", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference", "% Difference"], "ViewValue": [9772.0, 19966.0, 737.0, 949.0, 49864.0, 39839.0, 10470.6561894022, 20266.1783604356, 860.5528319573, 874.7856592583, 47419.144697447, 39384.6822614997, 10387.73, 34162.17, 968.46, 1014.87, 65054.34, 44110.92, 11456.1317733165, 33546.3180147314, 1126.4165016005, 909.5833772907, 64149.0097653406, 45773.5405677203, 1.0630096193, 1.7110172293, 1.3140569878, 1.0694099052, 1.3046354083, 1.1072295991, 1.0941178438, 1.6552858372, 1.3089452033, 1.0397785648, 1.3528082418, 1.16221683, 11202.92, 19966.5, 2184.57, 968.95, 60271.1, 61104.45, 12821.1895920889, 20386.8520713964, 1754.4932539874, 1170.1465963435, 58896.9737189247, 61931.344767259, -698.6561894022, -300.1783604356, -123.5528319573, 74.2143407417, 2444.855302553, 454.3177385003, -698.6561894022, -300.1783604356, -123.5528319573, 74.2143407417, 2444.855302553, 454.3177385003, -1068.4017733165, 615.8519852686, -157.9565016005, 105.2866227093, 905.3302346594, -1662.6205677203, -1068.4017733165, 615.8519852686, -157.9565016005, 105.2866227093, 905.3302346594, -1662.6205677203, -0.0311082245, 0.0557313921, 0.0051117845, 0.0296313404, -0.0481728335, -0.0549872308, -0.0311082245, 0.0557313921, 0.0051117845, 0.0296313404, -0.0481728335, -0.0549872308, -1618.2695920889, -420.3520713964, 430.0767460126, -201.1965963435, 1374.1262810753, -826.8947672591, -1618.2695920889, -420.3520713964, 430.0767460126, -201.1965963435, 1374.1262810753, -826.8947672591, -0.0667251581, -0.0148117891, -0.1435737904, 0.0848371712, 0.0515584015, 0.0115353917, -0.0667251581, -0.0148117891, -0.1435737904, 0.0848371712, 0.0515584015, 0.0115353917, -0.0932602552, 0.0183582587, -0.1402292148, 0.1157525801, 0.0141129261, -0.0363227434, -0.0932602552, 0.0183582587, -0.1402292148, 0.1157525801, 0.0141129261, -0.0363227434, -0.0284322431, 0.0336687422, 0.00390527, 0.0284977411, -0.0356095062, -0.0473123684, -0.0284322431, 0.0336687422, 0.00390527, 0.0284977411, -0.0356095062, -0.0473123684, -0.1262183653, -0.0206187826, 0.2451287544, -0.1719413593, 0.0233310168, -0.0133517974, -0.1262183653, -0.0206187826, 0.2451287544, -0.1719413593, 0.0233310168, -0.0133517974]}}]}</script>
+</div>
+<div class="cell-output cell-output-display">
+
+<script type="ojs-define">{"contents": [{"name": "boardTable", "value": {"index": [0, 1, 2, 3, 4, 5, 0, 0, 1, 2, 3, 4, 5, 0, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 0], "Mode": ["BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "Total", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "Total", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "Total", "BRT", "CRT", "Core Bus", "Express Bus", "LRT", "Local Bus", "Total"], "Model": ["9,772", "19,966", "737", "949", "49,864", "39,839", "121,127", "10,388", "34,162", "968", "1,015", "65,054", "44,111", "155,698", "1.06", "1.71", "1.31", "1.07", "1.30", "1.11", "1.29", "11,203", "19,966", "2,185", "969", "60,271", "61,104", "155,698"], "Observed": ["10,471", "20,266", "861", "875", "47,419", "39,385", "119,276", "11,456", "33,546", "1,126", "910", "64,149", "45,774", "156,961", "1.09", "1.66", "1.31", "1.04", "1.35", "1.16", "1.32", "12,821", "20,387", "1,754", "1,170", "58,897", "61,931", "156,961"], "Difference": ["-699", "-300", "-124", "74", "2,445", "454", "1,851", "-1,068", "616", "-158", "105", "905", "-1,663", "-1,263", "-0.03", "0.06", "0.01", "0.03", "-0.05", "-0.05", "-0.03", "-1,618", "-420", "430", "-201", "1,374", "-827", "-1,263"], "% Difference": ["-6.7%", "-1.5%", "-14.4%", "8.5%", "5.2%", "1.2%", "1.6%", "-9.3%", "1.8%", "-14.0%", "11.6%", "1.4%", "-3.6%", "-0.8%", "-2.8%", "3.4%", "0.4%", "2.8%", "-3.6%", "-4.7%", "-2.3%", "-12.6%", "-2.1%", "24.5%", "-17.2%", "2.3%", "-1.3%", "-0.8%"], "Title": ["Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Trips by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Boardings by Hierarchical Mode", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Transfer Ratio", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed", "Boardings by Mode Surveyed"]}}]}</script>
+</div>
+</div>
+<section id="transit-trips-and-boardings" class="level2">
+<h2 class="anchored" data-anchor-id="transit-trips-and-boardings">Transit Trips and Boardings</h2>
+<p>The validation of daily transit trips and boardings is shown through the comparison of model and observed data by mode. The model was validated by the following measures:</p>
+<ul>
+<li>Trips by Hierarchical Mode</li>
+<li>Boardings by Hierarchical Mode</li>
+<li>Transfer Ratio by Hierarchical Mode</li>
+<li>Boardings by Surveyed Mode (for comparison only)</li>
+</ul>
+<p>The three hierarchical mode measures are summarized by the highest hierarchy mode in a given trip with local bus being the lowest on the hierarchy and commuter rail being the highest. For example, if a trip uses Local Bus and then transfers to LRT, the trip is stored as a LRT trip. <em>Trips by Hierarchical Mode</em> represent each trip as a single number, regardless of the number of transfer or different modes that were used on a trip.</p>
+<p><em>Boardings by Hierarchical Mode</em> represent each boarding separately but summarized at the highest hierarchical mode of the trip. For example, for one transfer from Local Bus to LRT there are two boardings, one on each mode, but they are both stored in the highest hierarchal mode of LRT. The Transfer Ratio by <em>Hierarchical Mode</em> is the ratio between boardings and trips for any given mode.</p>
+<p>The final measure <em>Boardings by Surveyed Mode</em> represents the total boardings on each mode individually. They are not summarize at the highest hierarchical mode of the trip but rather at the mode on which the boarding actually occurred. For example, the Local Bus to LRT trip mentioned previously would be summarized in this measure as one boarding on Local Bus and one boarding one LRT. This measure is for comparison use only, since the structure of the Mode Choice model does not consider this measure during calibration.</p>
+<p>The total number of boardings are the same between hierarchical mode and surveyed mode, but depending on the make-up of the trips, their totals by mode will vary.</p>
+<p>The model data for hierarchical mode measures is taken from the shares reports <code>WFv910_BY_2019_RegionShares_Pk.csv</code> and <code>WFv910_BY_2019_RegionShares_Ok.csv</code>. The model data for the surveyed mode comparison is taken from <code>WFv910_BY_2019_transit_brding_summary_node.csv</code>.</p>
+<p>The interactive <a href="#fig-mc-boardings">Figure&nbsp;1</a> allows for the visual comparison of model and observed values for each <em>Transit Trips and Boardings</em> category.</p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="641" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 640;"><span id="cb1-641"><a href="#cb1-641" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;br/&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="642" data-source-offset="-12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 641;"><span id="cb2-642"><a href="#cb2-642" aria-hidden="true" tabindex="-1"></a>viewof bPlotSelect <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Trips by Hierarchical Mode'</span><span class="op">,</span> <span class="st">'Trips by Hierarchical Mode'</span>]<span class="op">,</span> [<span class="st">'Boardings by Hierarchical Mode'</span><span class="op">,</span> <span class="st">'Boardings by Hierarchical Mode'</span>]<span class="op">,</span> [<span class="st">'Transfer Ratio by Hierarchical Mode'</span><span class="op">,</span><span class="st">'Transfer Ratio'</span>]<span class="op">,</span> [<span class="st">'Boardings by Mode Surveyed'</span><span class="op">,</span><span class="st">'Boardings by Mode Surveyed'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> nameGroup<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Category"</span>})</span>
+<span id="cb2-643"><a href="#cb2-643" aria-hidden="true" tabindex="-1"></a>viewof metric <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">"Difference"</span><span class="op">,</span> <span class="st">"Difference"</span>]<span class="op">,</span> [<span class="st">"% Difference"</span><span class="op">,</span> <span class="st">"% Difference"</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">"Difference"</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"View:"</span>})</span>
+<span id="cb2-644"><a href="#cb2-644" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-645"><a href="#cb2-645" aria-hidden="true" tabindex="-1"></a>dataBLC <span class="op">=</span> <span class="fu">transpose</span>(boardChart)</span>
+<span id="cb2-646"><a href="#cb2-646" aria-hidden="true" tabindex="-1"></a>filtered_bDataC <span class="op">=</span> dataBLC<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataBLC) {</span>
+<span id="cb2-647"><a href="#cb2-647" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bPlotSelect <span class="op">==</span> dataBLC<span class="op">.</span><span class="at">Title</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb2-648"><a href="#cb2-648" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Value"</span> <span class="op">==</span> dataBLC<span class="op">.</span><span class="at">View</span><span class="op">;</span></span>
+<span id="cb2-649"><a href="#cb2-649" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-650"><a href="#cb2-650" aria-hidden="true" tabindex="-1"></a>dataBTT <span class="op">=</span> <span class="fu">transpose</span>(boardTable)</span>
+<span id="cb2-651"><a href="#cb2-651" aria-hidden="true" tabindex="-1"></a>filtered_bDataT <span class="op">=</span> dataBTT<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataBTT) {</span>
+<span id="cb2-652"><a href="#cb2-652" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bPlotSelect <span class="op">==</span> dataBTT<span class="op">.</span><span class="at">Title</span><span class="op">;</span></span>
+<span id="cb2-653"><a href="#cb2-653" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:43%;">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="660" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 659;"><span id="cb3-660"><a href="#cb3-660" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-661"><a href="#cb3-661" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;br/&gt;</span></span>
+<span id="cb3-662"><a href="#cb3-662" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;table&gt;</span></span>
+<span id="cb3-663"><a href="#cb3-663" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;thead&gt;</span></span>
+<span id="cb3-664"><a href="#cb3-664" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
+<span id="cb3-665"><a href="#cb3-665" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>[<span class="st">"Mode"</span><span class="op">,</span> <span class="st">"Model"</span><span class="op">,</span> <span class="st">"Observed"</span><span class="op">,</span> <span class="st">"Difference"</span><span class="op">,</span> <span class="st">"% Difference"</span>]<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb3-666"><a href="#cb3-666" aria-hidden="true" tabindex="-1"></a>            <span class="kw">const</span> widths <span class="op">=</span> [<span class="st">'90px'</span><span class="op">,</span> <span class="st">'60px'</span><span class="op">,</span> <span class="st">'70px'</span><span class="op">,</span> <span class="st">'75px'</span><span class="op">,</span> <span class="st">'90px'</span>]<span class="op">;</span> <span class="co">// Define the widths</span></span>
+<span id="cb3-667"><a href="#cb3-667" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;th style='text-align: </span><span class="sc">${</span>i <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"left"</span> <span class="op">:</span> <span class="st">"right"</span><span class="sc">}</span><span class="vs">; padding: 5px; width: </span><span class="sc">${</span>widths[i]<span class="sc">}</span><span class="vs">;'&gt;</span><span class="sc">${</span>d<span class="sc">}</span><span class="vs">&lt;/th&gt;`</span><span class="op">;</span></span>
+<span id="cb3-668"><a href="#cb3-668" aria-hidden="true" tabindex="-1"></a>        })<span class="sc">}</span></span>
+<span id="cb3-669"><a href="#cb3-669" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
+<span id="cb3-670"><a href="#cb3-670" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/thead&gt;</span></span>
+<span id="cb3-671"><a href="#cb3-671" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tbody&gt;</span></span>
+<span id="cb3-672"><a href="#cb3-672" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>filtered_bDataT<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> {</span>
+<span id="cb3-673"><a href="#cb3-673" aria-hidden="true" tabindex="-1"></a>            <span class="kw">const</span> isBold <span class="op">=</span> row[<span class="st">'Mode'</span>] <span class="op">===</span> <span class="st">'Total'</span><span class="op">;</span></span>
+<span id="cb3-674"><a href="#cb3-674" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;tr style='border-bottom: 1px solid lightgrey;'&gt;</span></span>
+<span id="cb3-675"><a href="#cb3-675" aria-hidden="true" tabindex="-1"></a><span class="vs">                </span><span class="sc">${</span>[<span class="st">"Mode"</span><span class="op">,</span> <span class="st">"Model"</span><span class="op">,</span> <span class="st">"Observed"</span><span class="op">,</span> <span class="st">"Difference"</span><span class="op">,</span> <span class="st">"% Difference"</span>]<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb3-676"><a href="#cb3-676" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">const</span> widths <span class="op">=</span> [<span class="st">'90px'</span><span class="op">,</span> <span class="st">'60px'</span><span class="op">,</span> <span class="st">'70px'</span><span class="op">,</span> <span class="st">'75px'</span><span class="op">,</span> <span class="st">'90px'</span>]<span class="op">;</span> <span class="co">// Define the widths</span></span>
+<span id="cb3-677"><a href="#cb3-677" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;td style='text-align: </span><span class="sc">${</span>i <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"left"</span> <span class="op">:</span> <span class="st">"right"</span><span class="sc">}</span><span class="vs">; padding: 5px; width: </span><span class="sc">${</span>widths[i]<span class="sc">}</span><span class="vs">; font-weight: </span><span class="sc">${</span>isBold <span class="op">?</span> <span class="st">'bold'</span> <span class="op">:</span> <span class="st">'normal'</span><span class="sc">}</span><span class="vs">;'&gt;</span><span class="sc">${</span>row[d]<span class="sc">}</span><span class="vs">&lt;/td&gt;`</span><span class="op">;</span></span>
+<span id="cb3-678"><a href="#cb3-678" aria-hidden="true" tabindex="-1"></a>                })<span class="sc">}</span></span>
+<span id="cb3-679"><a href="#cb3-679" aria-hidden="true" tabindex="-1"></a><span class="vs">            &lt;/tr&gt;`</span><span class="op">;</span></span>
+<span id="cb3-680"><a href="#cb3-680" aria-hidden="true" tabindex="-1"></a>        })<span class="sc">}</span></span>
+<span id="cb3-681"><a href="#cb3-681" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tbody&gt;</span></span>
+<span id="cb3-682"><a href="#cb3-682" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/table&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div><div class="column" style="width:57%;">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="690" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 689;"><span id="cb4-690"><a href="#cb4-690" aria-hidden="true" tabindex="-1"></a>key2 <span class="op">=</span> <span class="fu">Legend</span>(bChart<span class="op">.</span><span class="at">scales</span><span class="op">.</span><span class="at">color</span><span class="op">,</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">"Data Source"</span>})</span>
+<span id="cb4-691"><a href="#cb4-691" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-692"><a href="#cb4-692" aria-hidden="true" tabindex="-1"></a>bChart <span class="op">=</span> <span class="fu">GroupedBarChart</span>(filtered_bDataC<span class="op">,</span> {</span>
+<span id="cb4-693"><a href="#cb4-693" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Mode</span><span class="op">,</span></span>
+<span id="cb4-694"><a href="#cb4-694" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">ViewValue</span><span class="op">,</span></span>
+<span id="cb4-695"><a href="#cb4-695" aria-hidden="true" tabindex="-1"></a>    <span class="dt">z</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">DataSource</span><span class="op">,</span></span>
+<span id="cb4-696"><a href="#cb4-696" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xDomain</span><span class="op">:</span> [<span class="st">'Local Bus'</span><span class="op">,</span> <span class="st">'Core Bus'</span><span class="op">,</span> <span class="st">'Express Bus'</span><span class="op">,</span> <span class="st">'BRT'</span><span class="op">,</span> <span class="st">'LRT'</span><span class="op">,</span> <span class="st">'CRT'</span>]<span class="op">,</span></span>
+<span id="cb4-697"><a href="#cb4-697" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"Value"</span><span class="op">,</span></span>
+<span id="cb4-698"><a href="#cb4-698" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zDomain</span><span class="op">:</span> [<span class="st">'Model'</span><span class="op">,</span><span class="st">'Observed'</span>]<span class="op">,</span></span>
+<span id="cb4-699"><a href="#cb4-699" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb4-700"><a href="#cb4-700" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">225</span><span class="op">,</span></span>
+<span id="cb4-701"><a href="#cb4-701" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colors</span><span class="op">:</span> [<span class="st">"#376092"</span><span class="op">,</span> <span class="st">"#77933c"</span>]</span>
+<span id="cb4-702"><a href="#cb4-702" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="709" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 708;"><span id="cb5-709"><a href="#cb5-709" aria-hidden="true" tabindex="-1"></a>filtered_bData2 <span class="op">=</span> dataBLC<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataBLC) {</span>
+<span id="cb5-710"><a href="#cb5-710" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bPlotSelect <span class="op">==</span> dataBLC<span class="op">.</span><span class="at">Title</span>  <span class="op">&amp;&amp;</span></span>
+<span id="cb5-711"><a href="#cb5-711" aria-hidden="true" tabindex="-1"></a>           metric <span class="op">==</span> dataBLC<span class="op">.</span><span class="at">View</span><span class="op">;</span></span>
+<span id="cb5-712"><a href="#cb5-712" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-713"><a href="#cb5-713" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-714"><a href="#cb5-714" aria-hidden="true" tabindex="-1"></a><span class="co">//https://observablehq.com/@d3/diverging-bar-chart</span></span>
+<span id="cb5-715"><a href="#cb5-715" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {DivergingBarChart} <span class="im">from</span> <span class="st">"@d3/diverging-bar-chart"</span></span>
+<span id="cb5-716"><a href="#cb5-716" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-717"><a href="#cb5-717" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;br/&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="718" data-source-offset="-258"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 717;"><span id="cb6-718"><a href="#cb6-718" aria-hidden="true" tabindex="-1"></a>chart3 <span class="op">=</span> <span class="fu">DivergingBarChart</span>(filtered_bData2<span class="op">,</span> {</span>
+<span id="cb6-719"><a href="#cb6-719" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">ViewValue</span><span class="op">,</span></span>
+<span id="cb6-720"><a href="#cb6-720" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Mode</span><span class="op">,</span></span>
+<span id="cb6-721"><a href="#cb6-721" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xFormat</span><span class="op">:</span> metric <span class="op">===</span> <span class="st">"Difference"</span> <span class="op">?</span> <span class="st">"+,d"</span> <span class="op">:</span> <span class="st">"+%"</span><span class="op">,</span></span>
+<span id="cb6-722"><a href="#cb6-722" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xLabel</span><span class="op">:</span> <span class="st">"Model vs Observed Differences"</span><span class="op">,</span></span>
+<span id="cb6-723"><a href="#cb6-723" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb6-724"><a href="#cb6-724" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colors</span><span class="op">:</span> d3<span class="op">.</span><span class="at">schemeRdBu</span>[<span class="dv">3</span>]</span>
+<span id="cb6-725"><a href="#cb6-725" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="731" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 730;"><span id="cb7-731"><a href="#cb7-731" aria-hidden="true" tabindex="-1"></a>tbEmptyCell <span class="op">=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-mc-boardings" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-5" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;1: Transit Trips and Boardings Model vs Observed Comparison</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="735" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 734;"><span id="cb8-735"><a href="#cb8-735" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;br/&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>When considering <em>Trips by Hierarchical Mode</em>, the calibration routine of the model results in the total number of transit trips in the model being very close to the observed. For this model the model trips are only 1.6% higher than observed for the total number of trips. By mode the differences are within reasonable ranges for the higher trip modes. For example, LRT is 5.2% high and CRT is only 1.5% low.</p>
+<p>Due to the very low number of trips for Core Bus and Express Bus, their differences are acceptable. Currently, Core Bus for example has only one route. In future phases of the RTP, additional Core Bus service is planned. While further calibration could have brought the Core Bus validation more in line with observed, over-calibrating the model was not desired.</p>
+<p><em>Boardings by Hierarchical Mode</em> show a similar pattern. Overall boardings are only 0.8% lower in model compared to observed, and the modes Local Bus, LRT, and CRT all within 5%. Core Bus and Express Bus are the furthest away, but they have a lower number of boardings as compared to the higher boarding modes.</p>
+<p>The <em>Transfer Ratio by Hierarchical Mode</em> shows the relationship between the trips and the boardings. While the model was only slightly higher in trips, the boardings were low. This results in a lower transfer ratio, which is still acceptable with all values being within about 5%.</p>
+<p>And for comparison, <em>Boardings by Mode Surveyed</em> shows acceptable differences. The Core Bus and Express Bus values show much larger differences; but again given their low volumes, these are reasonable differences.</p>
+</section>
+<section id="mode-share" class="level2">
+<h2 class="anchored" data-anchor-id="mode-share">Mode Share</h2>
+<p>Mode Share validation is shown through the comparison by groups of mode, time period, and trip purpose. For model and observed shares, the total percent for each combination of mode group, time period, and trip purpose adds up to 100%.</p>
+<p>Mode groups compared include groupings of auto, transit, vehicle occupancy, and transit modes. The highest nest is motorized and non-motorized down to lower nests of individual transit modes and transit access modes. Shares were calculated for the following mode groupings:</p>
+<ul>
+<li>Motorized / Non-Motorized</li>
+<li>Auto / Transit</li>
+<li>Drive Alone / Shared Ride</li>
+<li>Shared Ride # of Occupants</li>
+<li>Transit Mode</li>
+<li>Transit Access Mode</li>
+</ul>
+<p>Additionally, the shares were compared by the following time period groupings:</p>
+<ul>
+<li>Daily</li>
+<li>Peak</li>
+<li>Off-peak</li>
+</ul>
+<p>Finally, the shares were further compared for each of the following trip purposes:</p>
+<ul>
+<li>All Purposes</li>
+<li>Home-Based Work</li>
+<li>Home-Based College</li>
+<li>Home-Based Other</li>
+<li>Non-Home Based</li>
+</ul>
+<p>In the model, Home-Based College is the only trip purpose that does not include trips in the off-peak time period. So, any trips with this purpose in the observed data were moved to the peak time period for comparison.</p>
+<p>The interactive <a href="#fig-mode-share">Figure&nbsp;2</a> allows for selecting of different combinations to visualize the comparisons. The observed data comes from a combination of the Household Travel Survey and the 2019 Transit On-Board Survey.</p>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="782" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 781;"><span id="cb9-782"><a href="#cb9-782" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;br/&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-1" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="783" data-source-offset="-12"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 782;"><span id="cb10-783"><a href="#cb10-783" aria-hidden="true" tabindex="-1"></a>viewof plotSelect    <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[nameModeMnMShare<span class="op">,</span>nameModeMnMShare]<span class="op">,</span></span>
+<span id="cb10-784"><a href="#cb10-784" aria-hidden="true" tabindex="-1"></a>                                              [nameModeATShare <span class="op">,</span>nameModeATShare ]<span class="op">,</span></span>
+<span id="cb10-785"><a href="#cb10-785" aria-hidden="true" tabindex="-1"></a>                                              [nameModeDAShare <span class="op">,</span>nameModeDAShare ]<span class="op">,</span></span>
+<span id="cb10-786"><a href="#cb10-786" aria-hidden="true" tabindex="-1"></a>                                              [nameMode23Share <span class="op">,</span>nameMode23Share ]<span class="op">,</span></span>
+<span id="cb10-787"><a href="#cb10-787" aria-hidden="true" tabindex="-1"></a>                                              [nameModeTransit <span class="op">,</span>nameModeTransit ]<span class="op">,</span></span>
+<span id="cb10-788"><a href="#cb10-788" aria-hidden="true" tabindex="-1"></a>                                              [nameModeAccess  <span class="op">,</span>nameModeAccess  ]</span>
+<span id="cb10-789"><a href="#cb10-789" aria-hidden="true" tabindex="-1"></a>                                             ])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> nameGroup<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Mode Group:"</span>})</span>
+<span id="cb10-790"><a href="#cb10-790" aria-hidden="true" tabindex="-1"></a>viewof periodSelect  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'Daily'</span><span class="op">,</span> <span class="st">'DY'</span>]<span class="op">,</span> [<span class="st">'Peak'</span><span class="op">,</span> <span class="st">'PK'</span>]<span class="op">,</span> [<span class="st">'Off-Peak'</span><span class="op">,</span> <span class="st">'OK'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> namePeriod<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Time Period:"</span>})<span class="op">;</span></span>
+<span id="cb10-791"><a href="#cb10-791" aria-hidden="true" tabindex="-1"></a>viewof purposeSelect <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>(<span class="kw">new</span> <span class="bu">Map</span>([[<span class="st">'All Purposes'</span><span class="op">,</span> <span class="st">'All'</span>]<span class="op">,</span> [<span class="st">'Home-Based Work'</span><span class="op">,</span> <span class="st">'HBW'</span>]<span class="op">,</span> [<span class="st">'Home-Based College'</span><span class="op">,</span> <span class="st">'HBC'</span>]<span class="op">,</span> [<span class="st">'Home-Based Other'</span><span class="op">,</span> <span class="st">'HBO'</span>]<span class="op">,</span> [<span class="st">'Non-Home Based'</span><span class="op">,</span> <span class="st">'NHB'</span>]])<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="st">'TripPurpose'</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Trip Purpose:"</span>})<span class="op">;</span></span>
+<span id="cb10-792"><a href="#cb10-792" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-793"><a href="#cb10-793" aria-hidden="true" tabindex="-1"></a>dataLT <span class="op">=</span> <span class="fu">transpose</span>(dataLong)</span>
+<span id="cb10-794"><a href="#cb10-794" aria-hidden="true" tabindex="-1"></a>dataTT <span class="op">=</span> <span class="fu">transpose</span>(dataTable)</span>
+<span id="cb10-795"><a href="#cb10-795" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-796"><a href="#cb10-796" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> dataLT<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataL) {</span>
+<span id="cb10-797"><a href="#cb10-797" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> plotSelect <span class="op">==</span> dataL<span class="op">.</span><span class="at">Group</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb10-798"><a href="#cb10-798" aria-hidden="true" tabindex="-1"></a>           periodSelect <span class="op">==</span> dataL<span class="op">.</span><span class="at">Period</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb10-799"><a href="#cb10-799" aria-hidden="true" tabindex="-1"></a>           purposeSelect <span class="op">==</span> dataL<span class="op">.</span><span class="at">TripPurpose</span><span class="op">;</span></span>
+<span id="cb10-800"><a href="#cb10-800" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-801"><a href="#cb10-801" aria-hidden="true" tabindex="-1"></a>table_filtered_data <span class="op">=</span> dataTT<span class="op">.</span><span class="fu">filter</span>(<span class="kw">function</span>(dataTT) {</span>
+<span id="cb10-802"><a href="#cb10-802" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> plotSelect <span class="op">==</span> dataTT<span class="op">.</span><span class="at">Group</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb10-803"><a href="#cb10-803" aria-hidden="true" tabindex="-1"></a>           periodSelect <span class="op">==</span> dataTT<span class="op">.</span><span class="at">Period</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb10-804"><a href="#cb10-804" aria-hidden="true" tabindex="-1"></a>           purposeSelect <span class="op">==</span> dataTT<span class="op">.</span><span class="at">TripPurpose</span><span class="op">;</span></span>
+<span id="cb10-805"><a href="#cb10-805" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-806"><a href="#cb10-806" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-807"><a href="#cb10-807" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {GroupedBarChart} <span class="im">from</span> <span class="st">"@d3/grouped-bar-chart"</span></span>
+<span id="cb10-808"><a href="#cb10-808" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {Legend<span class="op">,</span> Swatches} <span class="im">from</span> <span class="st">"@d3/color-legend"</span></span>
+<span id="cb10-809"><a href="#cb10-809" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {howto<span class="op">,</span> altplot} <span class="im">from</span> <span class="st">"@d3/example-components"</span></span>
+<span id="cb10-810"><a href="#cb10-810" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-811"><a href="#cb10-811" aria-hidden="true" tabindex="-1"></a>xDomain <span class="op">=</span> {</span>
+<span id="cb10-812"><a href="#cb10-812" aria-hidden="true" tabindex="-1"></a>    <span class="cf">switch</span>(plotSelect) {  <span class="co">// assuming all data points have the same Mode</span></span>
+<span id="cb10-813"><a href="#cb10-813" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dt">nameModeMnMShare</span><span class="op">:</span></span>
+<span id="cb10-814"><a href="#cb10-814" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> [<span class="st">'Motorized'</span><span class="op">,</span> <span class="st">'Non-Motorized'</span>]<span class="op">;</span></span>
+<span id="cb10-815"><a href="#cb10-815" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb10-816"><a href="#cb10-816" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dt">nameModeATShare</span><span class="op">:</span></span>
+<span id="cb10-817"><a href="#cb10-817" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> [<span class="st">'Auto'</span><span class="op">,</span> <span class="st">'Transit'</span>]<span class="op">;</span></span>
+<span id="cb10-818"><a href="#cb10-818" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb10-819"><a href="#cb10-819" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dt">nameModeDAShare</span><span class="op">:</span></span>
+<span id="cb10-820"><a href="#cb10-820" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> [<span class="st">'Drive Alone'</span><span class="op">,</span> <span class="st">'Shared Ride'</span>]<span class="op">;</span></span>
+<span id="cb10-821"><a href="#cb10-821" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb10-822"><a href="#cb10-822" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dt">nameMode23Share</span><span class="op">:</span></span>
+<span id="cb10-823"><a href="#cb10-823" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> [<span class="st">'Shared Ride 2 Occupants'</span><span class="op">,</span> <span class="st">'Shared Ride 3+ Occupants'</span>]<span class="op">;</span></span>
+<span id="cb10-824"><a href="#cb10-824" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb10-825"><a href="#cb10-825" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dt">nameModeTransit</span><span class="op">:</span></span>
+<span id="cb10-826"><a href="#cb10-826" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> [<span class="st">'Local Bus'</span><span class="op">,</span> <span class="st">'Core Bus'</span><span class="op">,</span> <span class="st">'Express Bus'</span><span class="op">,</span> <span class="st">'BRT'</span><span class="op">,</span> <span class="st">'LRT'</span><span class="op">,</span> <span class="st">'CRT'</span>]<span class="op">;</span></span>
+<span id="cb10-827"><a href="#cb10-827" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb10-828"><a href="#cb10-828" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> <span class="dt">nameModeAccess</span><span class="op">:</span></span>
+<span id="cb10-829"><a href="#cb10-829" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> [<span class="st">'Walk'</span><span class="op">,</span> <span class="st">'Drive'</span>]<span class="op">;</span></span>
+<span id="cb10-830"><a href="#cb10-830" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb10-831"><a href="#cb10-831" aria-hidden="true" tabindex="-1"></a>        <span class="cf">default</span><span class="op">:</span></span>
+<span id="cb10-832"><a href="#cb10-832" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> []<span class="op">;</span>  <span class="co">// or set some sensible default</span></span>
+<span id="cb10-833"><a href="#cb10-833" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-834"><a href="#cb10-834" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="840" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 839;"><span id="cb11-840"><a href="#cb11-840" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb11-841"><a href="#cb11-841" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;br/&gt;</span></span>
+<span id="cb11-842"><a href="#cb11-842" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;table&gt;</span></span>
+<span id="cb11-843"><a href="#cb11-843" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;thead&gt;</span></span>
+<span id="cb11-844"><a href="#cb11-844" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tr&gt;</span></span>
+<span id="cb11-845"><a href="#cb11-845" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>[plotSelect<span class="op">,</span> <span class="st">"Model"</span><span class="op">,</span> <span class="st">"Observed"</span><span class="op">,</span> <span class="st">"Difference"</span>]<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> </span>
+<span id="cb11-846"><a href="#cb11-846" aria-hidden="true" tabindex="-1"></a>        <span class="fu">html</span><span class="vs">`&lt;th style='text-align: </span><span class="sc">${</span>i <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"left"</span> <span class="op">:</span> <span class="st">"right"</span><span class="sc">}</span><span class="vs">; padding: 5px; </span><span class="sc">${</span>i <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"width: 185px;"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">'&gt;</span><span class="sc">${</span>d<span class="sc">}</span><span class="vs">&lt;/th&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb11-847"><a href="#cb11-847" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tr&gt;</span></span>
+<span id="cb11-848"><a href="#cb11-848" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/thead&gt;</span></span>
+<span id="cb11-849"><a href="#cb11-849" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;tbody&gt;</span></span>
+<span id="cb11-850"><a href="#cb11-850" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>table_filtered_data<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb11-851"><a href="#cb11-851" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;tr style='border-bottom: 1px solid lightgrey;'&gt;</span></span>
+<span id="cb11-852"><a href="#cb11-852" aria-hidden="true" tabindex="-1"></a><span class="vs">        </span><span class="sc">${</span>[<span class="st">"Mode"</span><span class="op">,</span> <span class="st">"Model"</span><span class="op">,</span> <span class="st">"Observed"</span><span class="op">,</span> <span class="st">"Difference"</span>]<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> </span>
+<span id="cb11-853"><a href="#cb11-853" aria-hidden="true" tabindex="-1"></a>            <span class="fu">html</span><span class="vs">`&lt;td style='text-align: </span><span class="sc">${</span>i <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"left"</span> <span class="op">:</span> <span class="st">"right"</span><span class="sc">}</span><span class="vs">; padding: 5px; </span><span class="sc">${</span>i <span class="op">===</span> <span class="dv">0</span> <span class="op">?</span> <span class="st">"width: 185px;"</span> <span class="op">:</span> <span class="st">""</span><span class="sc">}</span><span class="vs">'&gt;</span><span class="sc">${</span>row[d]<span class="sc">}</span><span class="vs">&lt;/td&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb11-854"><a href="#cb11-854" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/tr&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb11-855"><a href="#cb11-855" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;/tbody&gt;</span></span>
+<span id="cb11-856"><a href="#cb11-856" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/table&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="865" data-source-offset="-49"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 864;"><span id="cb12-865"><a href="#cb12-865" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="fu">Legend</span>(chart<span class="op">.</span><span class="at">scales</span><span class="op">.</span><span class="at">color</span><span class="op">,</span> {<span class="dt">title</span><span class="op">:</span> <span class="st">"Data Source"</span>})</span>
+<span id="cb12-866"><a href="#cb12-866" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-867"><a href="#cb12-867" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> <span class="fu">GroupedBarChart</span>(filtered_data<span class="op">,</span> {</span>
+<span id="cb12-868"><a href="#cb12-868" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Mode</span><span class="op">,</span></span>
+<span id="cb12-869"><a href="#cb12-869" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">Percent</span><span class="op">,</span></span>
+<span id="cb12-870"><a href="#cb12-870" aria-hidden="true" tabindex="-1"></a>    <span class="dt">z</span><span class="op">:</span> d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">DataSource</span><span class="op">,</span></span>
+<span id="cb12-871"><a href="#cb12-871" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xDomain</span><span class="op">:</span> xDomain<span class="op">,</span></span>
+<span id="cb12-872"><a href="#cb12-872" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yLabel</span><span class="op">:</span> <span class="st">"Percent"</span><span class="op">,</span></span>
+<span id="cb12-873"><a href="#cb12-873" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yDomain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">1</span>]<span class="op">,</span></span>
+<span id="cb12-874"><a href="#cb12-874" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zDomain</span><span class="op">:</span> [<span class="st">'Model'</span><span class="op">,</span><span class="st">'Observed'</span>]<span class="op">,</span></span>
+<span id="cb12-875"><a href="#cb12-875" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb12-876"><a href="#cb12-876" aria-hidden="true" tabindex="-1"></a>    <span class="dt">height</span><span class="op">:</span> <span class="dv">250</span><span class="op">,</span></span>
+<span id="cb12-877"><a href="#cb12-877" aria-hidden="true" tabindex="-1"></a>    <span class="dt">colors</span><span class="op">:</span> [<span class="st">"#376092"</span><span class="op">,</span> <span class="st">"#77933c"</span>]</span>
+<span id="cb12-878"><a href="#cb12-878" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-9-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-9-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb13" data-startfrom="886" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 885;"><span id="cb13-886"><a href="#cb13-886" aria-hidden="true" tabindex="-1"></a>bEmtptyCell<span class="op">=</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-mode-share" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="ojs-cell-10" data-nodetype="declaration">
+
+</div>
+<figcaption class="figure-caption">Figure&nbsp;2: Model vs Observed Mode Shares by Mode Group, Time Period, and Trip Purpose</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell">
+<details class="hidden">
+<summary>Code</summary>
+<div class="sourceCode cell-code hidden" id="cb14" data-startfrom="890" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 889;"><span id="cb14-890"><a href="#cb14-890" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;br/&gt;&lt;br/&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-11" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<p>The Motorized / Non-motorized grouping of model shares are within 0.3% of the observed data for the daily time period and all trip purposes with non-motorized shares being slightly higher than observed and motorized shares being slightly lower. The model shares for additional combinations of time period and purpose are all within 0.5%.</p>
+<p>The Transit Mode group of model shares are also close to observed with all modes for all time periods and trip purposes. At the Daily time period for all purposes, LRT has slightly higher share at 1.2% compared to observed than other modes, such as CRT that is 0.8% lower than observed and Local Bus that is 0.7% higher than observed. All the model shares for Transit Mode combinations of time period and trip purpose and are within 5% of observed. Transit Access Mode model shares are all within 5% of observed shares.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"html`<br/>`\nviewof bPlotSelect = Inputs.select(new Map([['Trips by Hierarchical Mode', 'Trips by Hierarchical Mode'], ['Boardings by Hierarchical Mode', 'Boardings by Hierarchical Mode'], ['Transfer Ratio by Hierarchical Mode','Transfer Ratio'], ['Boardings by Mode Surveyed','Boardings by Mode Surveyed']]), {value: nameGroup, label: \"Category\"})\nviewof metric = Inputs.radio(new Map([[\"Difference\", \"Difference\"], [\"% Difference\", \"% Difference\"]]), {value: \"Difference\", label: \"View:\"})\n\ndataBLC = transpose(boardChart)\nfiltered_bDataC = dataBLC.filter(function(dataBLC) {\n    return bPlotSelect == dataBLC.Title &&\n           \"Value\" == dataBLC.View;\n})\ndataBTT = transpose(boardTable)\nfiltered_bDataT = dataBTT.filter(function(dataBTT) {\n    return bPlotSelect == dataBTT.Title;\n})\n\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"html`\n<br/>\n<table>\n    <thead>\n    <tr>\n        ${[\"Mode\", \"Model\", \"Observed\", \"Difference\", \"% Difference\"].map((d, i) => {\n            const widths = ['90px', '60px', '70px', '75px', '90px']; // Define the widths\n            return html`<th style='text-align: ${i === 0 ? \"left\" : \"right\"}; padding: 5px; width: ${widths[i]};'>${d}</th>`;\n        })}\n    </tr>\n    </thead>\n    <tbody>\n        ${filtered_bDataT.map(row => {\n            const isBold = row['Mode'] === 'Total';\n            return html`<tr style='border-bottom: 1px solid lightgrey;'>\n                ${[\"Mode\", \"Model\", \"Observed\", \"Difference\", \"% Difference\"].map((d, i) => {\n                    const widths = ['90px', '60px', '70px', '75px', '90px']; // Define the widths\n                    return html`<td style='text-align: ${i === 0 ? \"left\" : \"right\"}; padding: 5px; width: ${widths[i]}; font-weight: ${isBold ? 'bold' : 'normal'};'>${row[d]}</td>`;\n                })}\n            </tr>`;\n        })}\n    </tbody>\n</table>`\n"},{"methodName":"interpret","cellName":"ojs-cell-3","inline":false,"source":"key2 = Legend(bChart.scales.color, {title: \"Data Source\"})\n\nbChart = GroupedBarChart(filtered_bDataC, {\n    x: d => d.Mode,\n    y: d => d.ViewValue,\n    z: d => d.DataSource,\n    xDomain: ['Local Bus', 'Core Bus', 'Express Bus', 'BRT', 'LRT', 'CRT'],\n    yLabel: \"Value\",\n    zDomain: ['Model','Observed'],\n    width: 500,\n    height: 225,\n    colors: [\"#376092\", \"#77933c\"]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-4","inline":false,"source":"filtered_bData2 = dataBLC.filter(function(dataBLC) {\n    return bPlotSelect == dataBLC.Title  &&\n           metric == dataBLC.View;\n})\n\n//https://observablehq.com/@d3/diverging-bar-chart\nimport {DivergingBarChart} from \"@d3/diverging-bar-chart\"\n\nhtml`<br/>`\nchart3 = DivergingBarChart(filtered_bData2, {\n    x: d => d.ViewValue,\n    y: d => d.Mode,\n    xFormat: metric === \"Difference\" ? \"+,d\" : \"+%\",\n    xLabel: \"Model vs Observed Differences\",\n    height: 200,\n    colors: d3.schemeRdBu[3]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-5","inline":false,"source":"tbEmptyCell = 1\n"},{"methodName":"interpret","cellName":"ojs-cell-6","inline":false,"source":"html`<br/>`\n"},{"methodName":"interpret","cellName":"ojs-cell-7","inline":false,"source":"html`<br/>`\nviewof plotSelect    = Inputs.select(new Map([[nameModeMnMShare,nameModeMnMShare],\n                                              [nameModeATShare ,nameModeATShare ],\n                                              [nameModeDAShare ,nameModeDAShare ],\n                                              [nameMode23Share ,nameMode23Share ],\n                                              [nameModeTransit ,nameModeTransit ],\n                                              [nameModeAccess  ,nameModeAccess  ]\n                                             ]), {value: nameGroup, label: \"Mode Group:\"})\nviewof periodSelect  = Inputs.select(new Map([['Daily', 'DY'], ['Peak', 'PK'], ['Off-Peak', 'OK']]), {value: namePeriod, label: \"Time Period:\"});\nviewof purposeSelect = Inputs.select(new Map([['All Purposes', 'All'], ['Home-Based Work', 'HBW'], ['Home-Based College', 'HBC'], ['Home-Based Other', 'HBO'], ['Non-Home Based', 'NHB']]), {value: 'TripPurpose', label: \"Trip Purpose:\"});\n\ndataLT = transpose(dataLong)\ndataTT = transpose(dataTable)\n\nfiltered_data = dataLT.filter(function(dataL) {\n    return plotSelect == dataL.Group &&\n           periodSelect == dataL.Period &&\n           purposeSelect == dataL.TripPurpose;\n})\ntable_filtered_data = dataTT.filter(function(dataTT) {\n    return plotSelect == dataTT.Group &&\n           periodSelect == dataTT.Period &&\n           purposeSelect == dataTT.TripPurpose;\n})\n\nimport {GroupedBarChart} from \"@d3/grouped-bar-chart\"\nimport {Legend, Swatches} from \"@d3/color-legend\"\nimport {howto, altplot} from \"@d3/example-components\"\n\nxDomain = {\n    switch(plotSelect) {  // assuming all data points have the same Mode\n        case nameModeMnMShare:\n            return ['Motorized', 'Non-Motorized'];\n            break;\n        case nameModeATShare:\n            return ['Auto', 'Transit'];\n            break;\n        case nameModeDAShare:\n            return ['Drive Alone', 'Shared Ride'];\n            break;\n        case nameMode23Share:\n            return ['Shared Ride 2 Occupants', 'Shared Ride 3+ Occupants'];\n            break;\n        case nameModeTransit:\n            return ['Local Bus', 'Core Bus', 'Express Bus', 'BRT', 'LRT', 'CRT'];\n            break;\n        case nameModeAccess:\n            return ['Walk', 'Drive'];\n            break;\n        default:\n            return [];  // or set some sensible default\n    }\n}\n"},{"methodName":"interpret","cellName":"ojs-cell-8","inline":false,"source":"html`\n<br/>\n<table>\n    <thead>\n    <tr>\n        ${[plotSelect, \"Model\", \"Observed\", \"Difference\"].map((d, i) => \n        html`<th style='text-align: ${i === 0 ? \"left\" : \"right\"}; padding: 5px; ${i === 0 ? \"width: 185px;\" : \"\"}'>${d}</th>`)}\n    </tr>\n    </thead>\n    <tbody>\n    ${table_filtered_data.map(row => html`\n        <tr style='border-bottom: 1px solid lightgrey;'>\n        ${[\"Mode\", \"Model\", \"Observed\", \"Difference\"].map((d, i) => \n            html`<td style='text-align: ${i === 0 ? \"left\" : \"right\"}; padding: 5px; ${i === 0 ? \"width: 185px;\" : \"\"}'>${row[d]}</td>`)}\n        </tr>`)}\n    </tbody>\n</table>`\n"},{"methodName":"interpret","cellName":"ojs-cell-9","inline":false,"source":"//https://observablehq.com/@d3/grouped-bar-chart\nkey = Legend(chart.scales.color, {title: \"Data Source\"})\n\nchart = GroupedBarChart(filtered_data, {\n    x: d => d.Mode,\n    y: d => d.Percent,\n    z: d => d.DataSource,\n    xDomain: xDomain,\n    yLabel: \"Percent\",\n    yDomain: [0,1],\n    zDomain: ['Model','Observed'],\n    width: 400,\n    height: 250,\n    colors: [\"#376092\", \"#77933c\"]\n})\n"},{"methodName":"interpret","cellName":"ojs-cell-10","inline":false,"source":"bEmtptyCell=1\n"},{"methodName":"interpret","cellName":"ojs-cell-11","inline":false,"source":"html`<br/><br/>`\n"},{"methodName":"interpretQuiet","source":"shinyInput('bPlotSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('metric')"},{"methodName":"interpretQuiet","source":"shinyInput('plotSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('periodSelect')"},{"methodName":"interpretQuiet","source":"shinyInput('purposeSelect')"}]}
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../v9x/v910/validation";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left"><a href="https://wfrc.org"><img src="https://wfrc.org/wp-content/uploads/2021/11/logo.jpg" class="img-fluid" alt="WFRC" width="150"></a> <a href="https://mountainland.org/"><img src="https://mountainland.org/static/media/logo/svg/MAG_Logo_Horz_NoTag.svg" class="img-fluid" alt="MAG" width="65"></a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">Built using <a href="https://quarto.org">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

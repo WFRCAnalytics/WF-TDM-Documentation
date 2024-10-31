@@ -327,7 +327,7 @@ df_data['Difference'] = df_data['v902'] - df_data['v901-patch2']
 
 ```{python}
 #|echo: false
-df_station_names = pd.read_csv("D:/GitHub/Resources/TDM/Node-Station-Names/nodestationnames.csv",usecols=['N','NODENAME'])
+df_station_names = pd.read_csv("D:/GitHub/Resources/1-TDM/Node-Station-Names/nodestationnames.csv",usecols=['N','NODENAME'])
 
 # Append a new row
 df_station_names.loc[len(df_station_names)] = [10060, 'Point of the Mountain']

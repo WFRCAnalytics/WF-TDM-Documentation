@@ -1,0 +1,65 @@
+---
+title: Python Updates
+warning: false
+message: false
+echo: false
+---
+
+## Python Environment
+
+A complete Python environment is included within the model to better support the execution of Python scripts used by the model. The environment is self-contained, meaning it contains all necessary Python packages and dependencies, eliminating the need for external installations or configuration. The environment is named `py-tdm-env` and is located in the `2_ModelScripts/_Python` directory.
+
+A list of the main Python libraries included in the environment is given below. This is not an exhaustive list.
+
+ - **dbfread**
+ - **filelock**
+ - **folium**
+ - **geopandas**
+ - **ipykernel**
+ - **ipywidgets**
+ - **json**
+ - **jupyter_server**
+ - **matplotlib**
+ - **numpy**
+ - **openpyxl**
+ - **pandas**
+ - **shapely**
+ - **yaml**
+
+A full list of the Python libraries includes can be found in `2_ModelScripts/_Python/py-tdm-env/Lib/site-packages`.
+
+The Python environment also includes packages for a Jupyter Kernel to help run Jupyter Notebooks within the model. For more direction on setting up the `py-tdm-env` to be used in Jupyter Notebooks, follow the instructions [here](https://github.com/WFRCAnalytics/Resources/blob/master/2-Python/environment/setup-py-tdm-env.pdf). 
+
+## "ip_UpdateNetwork_WalkBuffers.py"
+
+In previous model versions, Python was called in the `0_Update_TAZID_Distance.s`, `1_NetProcessor.s`, and `6_UpdateWalkBuffer.s` scripts to perform geoprocessing tasks using the **arcpy** library. In version 9.1.0, the geoprocessing tasks were combined into one script `ip_UpdateNetwork_WalkBuffers.py` and the **arcpy** library was replaced with the **geopandas** library. 
+
+The `ip_UpdateNetwork_WalkBuffers.py` script creates files used to update the following fields on the highway network:
+
+ - **DISTANCE**
+ - **DIRECTION** (further details on the updates to the **DIRECTION** field can be found in [Segment Direction](https://wfrc.org/wftdm-docs/v9x/v910/whats-new/4-other-updates.html#segment-direction))
+ - **TAZID** (links & nodes)
+ - **HOT_ZONEID** (links & nodes)
+
+## "ip_FolderSetup.py"
+
+Scenario folders are now created with Python in the `ip_FolderSetup.py` script instead of with a DOS batch file in the `0_FolderSetup.s` script. 
+
+## "py-vizTool" Folder
+
+A new folder called `py-vizTool` was added to the `2_ModelScripts/_Python` directory. This folder houses the following four scripts that support the vizTool. 
+
+ - `vt_CompileJson.py`: This script converts model outputs (.csv extension) to vizTool inputs (.json extension). It is called at the end of various scripts throughout the model. Section 3 outlines which scripts.
+ - `_json_scripts.py`: This script contains the functions for the `vt_CompileJson.py` script.
+ - `vt_CreateGeoJsons.py`: This script converts model input shapefiles to geojson format. It also contains logic that creates a project corridors geojson and transit stops geojson.
+ - `vt_CreateScnJson.py`: This script converts scenario attributes to a json file used to configure the vizTool data.
+
+In addition, the `py-vizTool` folder contains a `configs` folder that contains multiple configuration json files that describe how to configure the vizTool inputs.
+
+## Other Python Updates
+
+A new folder labeled `_source - py script development` exist within the `2_ModelScripts/_Python` directory for the purpose of double checking the development of Python scripts within a Jupyter Notebook environment.
+
+
+
+

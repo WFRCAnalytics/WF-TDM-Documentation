@@ -1,0 +1,29 @@
+---
+title: Model Updates to Support vizTool
+warning: false
+message: false
+echo: false
+---
+
+## vizTool Source Code and Setup
+
+
+## Expanded Socioeconomic File
+
+
+## Mode Choice Reports and Script Updates
+
+
+## Highway Assignment Reports and Script Updates
+
+
+## Log Files
+
+
+## Opening the vizTool
+
+
+
+
+
+

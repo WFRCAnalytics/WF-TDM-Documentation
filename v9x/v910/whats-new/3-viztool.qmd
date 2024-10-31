@@ -1,0 +1,80 @@
+---
+title: Model Updates to Support vizTool
+warning: false
+message: false
+echo: false
+---
+
+## vizTool Source Code and Setup
+
+The vizTool is a tool designed to visualize travel demand model The vizTool source code is located in the `2_ModelScripts/_CopyToFolders/vizTool` folder. At the beginning of a model run, the `vizTool` folder is copied to the `Scenarios/.vizTool` directory (if it does not already exist in that location) via the `2_vizToolSetup.s` script. As the model runs, outputs are converted to vizTool inputs and placed in the `Scenarios/.vizTool` directory. This ensures that the `.vizTool` folder remains a standalone application allowing users to open it via localhost or host it on their own server. 
+
+A parameter called **Run_vizTool** was added to the `0GeneralParameters.block` file that when set to 0 will avoid running all Python scripts used to prepare data for the vizTool as well as prevent the tool from opening at the end of the model run. By default, this parameter is set to 1 to support the vizTool implementation.
+
+Further information on the vizTool can be found at the following links:
+
+ - [vizTool User Guide](https://github.com/WFRCAnalytics/vizTool/wiki/vizTool-User-Guide)
+ - [vizTool Data Dictionary](https://github.com/WFRCAnalytics/vizTool/wiki/vizTool-Data-Dictionary)
+ - [vizTool Development Details](https://github.com/WFRCAnalytics/vizTool/wiki/vizTool-Development)
+ - [vizTool Code Documentation](https://github.com/WFRCAnalytics/vizTool/wiki/vizTool-App-Code-Documentation)
+ - [vizTool source code GitHub repository](https://github.com/WFRCAnalytics/vizTool)
+
+## Expanded Socioeconomic File
+
+An expanded socioeconomic file, `expanded_SE_File_{RID}.csv`, that includes total workers and number of household vehicles was added as a new model output. The `2_HHDisaggregation.s` and `3_AutoOwnerhsip.s` scripts in the `2_ModelScripts/1_HHDisag_AutoOwn` folder were adjusted accordingly.
+
+## Mode Choice Reports and Script Updates
+
+The following scripts within `2_ModelScripts/4_ModeChoice` were either updated or created to support the vizTool:
+
+**12_EstimateHBSchModeShare.s and 13_vizTool_TripsByMode.s**
+
+ - Script `11-13_MC_HBW_HBO_NHB_HBC.s` was renamed to `11_MC_HBW_HBO_NHB_HBC.s`.
+ - `12_EstimateHBSchModeShare.s` was added to calculate two new detailed trip matrices that better summarize school trip data. 
+ - The `13_vizTool_TripsByMode.s` script was added to summarize trip data by mode at the TAZ level. Data varies by period, purpose, and direction (production/attraction).
+
+**17_BoardingsReport.s**
+
+ - This script was restructured and updated to calculate rider statistics in addition to boardings and alightings. Summaries are reported at the node, link, and segment levels by mode, hierarchical mode, and period. This new report takes the place of the previous mode choice boarding summary reports. The route and mode level summary for boardings and alightings is still output. 
+
+**18_SumToDistricts_FinalTripTables.s**
+
+ - This script was updated to create a new output summarized at the small district level. In addition, an error was fixed to include BRT records in all summaries. 
+
+
+## Highway Assignment Reports and Script Updates
+
+The following scripts within `2_ModelScripts/5_AssignHwy` were either updated or created to support the vizTool:
+
+**01_Convert_PA_to_OD and 02_Assign_AM_MD_PM_EV**
+
+ - The logic in these scripts (along with their supporting block files) were updated to output person trips instead of vehicle trips. The output matrices include more detail on school trips. The output matrices also specify direction in whether they go from the production zone to the attraction zone or vice versa to support TAZ-based metric calculations.
+
+**06_SegmentSummary.s**
+
+ - The logic in this script was rewritten to better calculate highway statistics such as Vehicle Miles Traveled (VMT), Vehicle Hours Traveled (VHT), Vehicle Hours Delay (VHD), and Volume-Capacity (VC) Ratio at a wider breadth with data at the total, passenger car, medium truck, and heavy truck classifications. Minor logic errors were also corrected.
+
+**09_TazBasedMetrics.s**
+
+ - This is a new script that summarizes final network skims and origin destination tables to calculate metrics at the TAZ level. Such metrics include Person Miles Traveled (PMT), Person Hours Traveled (PHT), Person Hours Delay (PHD), Vehicle Miles Traveled (VMT), Vehicle Hours Traveled (VHT), and Vehicle Hours Delay (VHD). These metrics are calculated with the congested network as well as the free flow.
+ - Note that the VMT, VHT, and VHD output from this script represent the metrics of those trips that are produced/attracted for a specific TAZ whereas the VMT, VHT, and VHD output from the `06_SegmentSummary.s` script represent the metrics of those trips that travel along the segments within a specific TAZ.
+
+## Log Files
+
+Version 9.1.0 adds the following log reports to the `_Log` folder to support the vizTool:
+
+ - `py_LogFile`: Files with this prefix store the logging statements associated with Python scripts that are run as part of the model.
+ - `py_Variables`: Files with this prefix store parameter type variables in a text file to be read in for Python scripts.
+ - `py_Debug`: Files with this prefix exist to show model appliers potential areas to debug within the model.
+
+## Opening the vizTool
+
+After each model run, the vizTool application opens by default via localhost on the computer’s default internet browser. In addition, the `_OpenVizTool.bat` batch script is created and placed in the specific scenario directory. The batch script provides an easy way to re-open the vizTool. 
+
+Users may also navigate to the `_start-server-static.py` script in the `Scenarios/.vizTool` directory and run that script to open the vizTool. (Note that users must have Python set up on their machine.)
+
+
+
+
+
+
