@@ -10,5 +10,5 @@ Documentation of the Wasatch Front Travel Demand Model (WF TDM) has been separat
 These reports will be available as PDF documents in the "_Notes" folder in the WF TDM’s root directory. However, it is expected that the primary means of accessing the model’s documentation will be online at the following links:
 
  - [What’s New Document](v9x/v910/whats-new/1-input-updates.qmd)
- - [Model Validation Report](v9x/v902/validation/1-tripgen.qmd)
+ - [Model Validation Report](v9x/v910/validation/1-distribute.qmd)
  - [Model Process Report](v9x/v901/model-process/emptylink) (in progress)

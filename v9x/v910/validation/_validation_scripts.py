@@ -52,13 +52,15 @@ def plot_volume_diff(segSum, varOption, segShp):
     
     if varOption=='Total':
         bin = bin1
+        titleName = 'All Vehicles'
     else:
         bin = bin2
+        titleName = varOption
     
     # Plot your geospatial data
     sdfSegSumDiff.plot(
         column='diff', 
-        cmap='RdBu', 
+        cmap='RdBu_r', 
         scheme="userdefined", 
         legend=True, 
         classification_kwds=dict(bins=bin),
@@ -83,10 +85,12 @@ def plot_volume_diff(segSum, varOption, segShp):
     # Adjust legend size
     leg = ax.get_legend()  # Get the current legend
     leg.set_bbox_to_anchor((1, 1))  # Move the legend outside the plot area if necessary
-    leg.set_title('Difference Scale', prop={'size': 8})  # Adjust the title size
+    leg.set_title('Difference Scale', prop={'size': 12})  # Adjust the title size
     for text in leg.get_texts():
-        text.set_fontsize(8)  # Adjust the size of the legend text
+        text.set_fontsize(12)  # Adjust the size of the legend text
 
+    # Set the title using the varOption variable
+    ax.set_title(f'Difference in Volume: {titleName}', loc='center', fontsize=14, pad=20)
 
     # Show the plot
     plt.rcParams["figure.figsize"]=6,12

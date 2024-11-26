@@ -31,10 +31,10 @@ file_list = [
     {"file_id": "1WcbOoQoWLE-ME-NWC6dI2UPwFrKfXxoR", "destination": "_large_files/v902/5_FinalNetSkims/Skm_PM.omx"                        },
     {"file_id": "1RPDsPT0XKNAuWDtPnSEeoXX8eaS-PdlG", "destination": "_large_files/v902/5_FinalNetSkims/Skm_EV.omx"                        },
     # v910
-    {"file_id": "1Q6uvSWA6nuuardKYWbIARRRqoBTTJJfL", "destination": "_large_files/v910/5_FinalNetSkims/Skm_AM.omx"                        },
-    {"file_id": "1eezzwRe4lBuB7nz--rCpFGXylOXo9jbn", "destination": "_large_files/v910/5_FinalNetSkims/Skm_MD.omx"                        },
-    {"file_id": "1N1L6xCrhtNIwk4uAhy-61cgrAqOw2h1u", "destination": "_large_files/v910/5_FinalNetSkims/Skm_PM.omx"                        },
-    {"file_id": "1v32KCqBw0ICG1y4bPPQh_qweC_eTuvyT", "destination": "_large_files/v910/5_FinalNetSkims/Skm_EV.omx"                        }
+    {"file_id": "17cFUf-AeT4tCQxTy6vw-f5xYddUcBz5t", "destination": "_large_files/v910/5_FinalNetSkims/Skm_AM.omx"                        },
+    {"file_id": "1pHKe2C66ptv5Ib3cVlNv0_4tJ8FjpR9K", "destination": "_large_files/v910/5_FinalNetSkims/Skm_MD.omx"                        },
+    {"file_id": "1MTI9UP1dlCqFwvXwwocpF9AhNZAIhR8C", "destination": "_large_files/v910/5_FinalNetSkims/Skm_PM.omx"                        },
+    {"file_id": "118n1O0xQLY2fK6ZZ6dwyXVx-2m_3bXgW", "destination": "_large_files/v910/5_FinalNetSkims/Skm_EV.omx"                        }
 ]
 
 def download_file_from_google_drive(file_id, destination):

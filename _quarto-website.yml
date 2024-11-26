@@ -80,16 +80,16 @@ website:
                 - text: "5 Compare Model Results"
                   href: v9x/v910/whats-new/5-modelresults.qmd
             - "---"
-            #- section: "<span style=\"color: #3E6682;\">**Model Validation Report**</span>"
-            #  contents:
-            #    - text: "1 Trip Generation"
-            #      href: v9x/v910/validation/1-tripgen.qmd
-            #    - text: "2 Distribution"
-            #      href: v9x/v910/validation/2-distribute.qmd
-            #    - text: "3 Mode Choice"
-            #      href: v9x/v910/validation/3-modechoice.qmd
-            #    - text: "4 Highway Assignment"
-            #      href: v9x/v910/validation/4-assignhwy.qmd
+            - section: "<span style=\"color: #3E6682;\">**Model Validation Report**</span>"
+              contents:
+                #- text: "1 Trip Generation"
+                #  href: v9x/v910/validation/1-tripgen.qmd
+                - text: "1 Distribution"
+                  href: v9x/v910/validation/1-distribute.qmd
+                - text: "2 Mode Choice"
+                  href: v9x/v910/validation/2-modechoice.qmd
+                - text: "3 Highway Assignment"
+                  href: v9x/v910/validation/3-assignhwy.qmd
     - id: v902-preface
       style: "docked"
       collapse-level: 1

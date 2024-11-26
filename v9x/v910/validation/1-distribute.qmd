@@ -1,0 +1,450 @@
+---
+title: Trip Distribution
+echo: false
+warning: false
+message: false
+---
+
+```{python}
+#libraries
+import pandas as pd
+import os
+import numpy as np
+from scipy import special
+import time
+import math as ms
+from math import floor
+import numpy as np
+
+#inputs
+filenameTLFObs  = 'data/3-distribute/dfTLF_Obs_wSmoothed_20221209-075253.csv'
+folderTDMTLFLoc = 'data/3-distribute'
+
+#variables
+debug = False
+```
+
+The model used the 2012 Household Travel Survey to calibrate trip lengths for internal and external person trips. Trips were calibrated based on generalized cost trip length frequencies and validated to time and distance trip length frequencies and average trip lengths. The validation results are shown in @fig-ave-trip-length and @fig-trip-length-freq. Trip lengths by time and distance met the validation targets and aligned closely with observed data. 
+
+No observed data was available for internal and external truck calibration. Truck trips were calibrated based on previous model estimation and validated relative to person work and other trip lengths. 
+
+```{python}
+observedStage = 'v9 Final Smoothing'
+
+binsize = 2
+
+# remove these, since they are not really observed curves
+removeObservedPurp = []#'MD','HV','IX_HV','IX_MD','XI_HV','XI_MD']
+removeModelPurp = ['IXXI']
+
+# a set of column renaming to be used to put all columns in consistent naming
+colRenames ={'HBOTH':'HBOth',
+             'HBSHP':'HBShp',
+             'HBSCHPR' :'HBSchPr',
+             'HBSCHSC' :'HBSchSc',
+             'HBSCH_PR':'HBSchPr',
+             'HBSCH_SC':'HBSchSc',
+             'HBSch_Pr':'HBSchPr',
+             'HBSch_Sc':'HBSchSc'}
+
+# some trip purposes are added together for information purposes
+dfTripPurpSubtotals = pd.DataFrame([
+    ['HBOth','HBO' ],
+    ['HBShp','HBO' ],
+    ['NHBW' ,'NHB' ],
+    ['NHBNW','NHB' ],
+    ['IX'   ,'IXXI'],
+    ['XI'   ,'IXXI']
+],columns=(['TRIPPURP','TRIPPURP_SUB']))
+if debug: display(dfTripPurpSubtotals)
+```
+
+```{python}
+# read in observed TLF data to be used
+dfTLF_Obs = pd.read_csv(filenameTLFObs)
+
+#filter by the STAGE for 
+dfTLF_Obs = dfTLF_Obs[dfTLF_Obs['STAGE']==observedStage].copy()
+dfTLF_Obs = dfTLF_Obs.drop(columns=('STAGE'))
+
+# remove unreport purposes
+dfTLF_Obs = dfTLF_Obs[~dfTLF_Obs['TRIPPURP'].isin(removeObservedPurp)]
+
+dfTLF_Obs.rename(columns={'FREQ':'freqObs'}, inplace=True)
+
+if debug: display(dfTLF_Obs)
+```
+
+```{python}
+# show max bin size for TLF type to use in updating TDM TLF code
+if debug: display(dfTLF_Obs[dfTLF_Obs['freqObs']>0].groupby(['TLFTYPE'],as_index=False).agg(MAXBIN=('BIN','max')))
+```
+
+```{python}
+# Check TLF Observed. freqObs should all sum to 1! Also show average trip length
+# add one to BIN to get bin midpoint
+dfTLF_Obs['BINMIDxfreqObs'] = (dfTLF_Obs['BIN'] + 1) * dfTLF_Obs['freqObs']
+dfTLF_Obs_Stats = dfTLF_Obs.groupby(['TRIPPURP','TLFTYPE'],as_index=False).agg(freqObs_SUM=('freqObs','sum'),AVG_TRIP_LEN=('BINMIDxfreqObs','sum'))
+dfTLF_Obs.drop(columns=('BINMIDxfreqObs'), inplace=True)
+if debug: display(dfTLF_Obs_Stats)
+```
+
+```{python}
+
+tlfs=['Cost','Dist','Time']
+
+dfTLFTDMTrips = pd.DataFrame()
+
+for tlf in tlfs:
+    
+    # read in csv for tlf
+    dfRead = pd.read_csv(folderTDMTLFLoc + '/TLF_' + tlf + '.csv')
+
+    # make sure id column is always same: BIN
+    dfRead.rename(columns={';BIN':'BIN',';MINUTE':'BIN','Mile':'BIN','Mil':'BIN','Min':'BIN','Bin':'BIN'}, inplace=True)
+    # rename columns
+    dfRead.rename(columns=colRenames,inplace=True)
+
+    dfRead = pd.melt(dfRead, id_vars=['BIN'], value_vars=dfRead.columns[1:].tolist(), ignore_index=False, var_name='TRIPPURP', value_name='TRIPS')
+
+    # set TLF value, rename Cost to GC
+    if tlf=='Cost':
+        dfRead['TLFTYPE'] = 'GC'
+    else:
+        dfRead['TLFTYPE'] = tlf
+
+    # reorder columns
+    dfRead = dfRead[['TLFTYPE','TRIPPURP','BIN','TRIPS']]
+
+    # concat data into single dataframe
+    dfTLFTDMTrips = pd.concat([dfTLFTDMTrips, dfRead], ignore_index=True)
+
+if debug: display(dfTLFTDMTrips)
+
+# create subtotals
+dfTLFTDMTripsForSubtotals = pd.DataFrame.merge(dfTLFTDMTrips, dfTripPurpSubtotals, on=('TRIPPURP'))
+dfTLFTDMTripsForSubtotals = dfTLFTDMTripsForSubtotals.groupby(['TLFTYPE','TRIPPURP_SUB','BIN'],as_index=False).agg(TRIPS=('TRIPS','sum'),COUNT=('TRIPS','size'))
+dfTLFTDMTripsForSubtotals = dfTLFTDMTripsForSubtotals[['TLFTYPE','TRIPPURP_SUB','BIN','TRIPS']]
+dfTLFTDMTripsForSubtotals = dfTLFTDMTripsForSubtotals.rename(columns={'TRIPPURP_SUB':'TRIPPURP'})
+if debug: display (dfTLFTDMTripsForSubtotals)
+
+# concat subtotals
+dfTLFTDMTrips = pd.concat([dfTLFTDMTrips,dfTLFTDMTripsForSubtotals], ignore_index=True)
+if debug: display(dfTLFTDMTrips)
+
+# calculated collapsed bins
+def round_to_binsize(x):
+    return int(binsize * floor(float(x)/binsize))
+dfTLFTDMTrips['BIN_COLLAPSE'] = dfTLFTDMTrips['BIN'].apply(lambda x: round_to_binsize(x))
+if debug: display(dfTLFTDMTrips)
+
+# aggregate to collapsed bins
+dfTLFTDMTrips = dfTLFTDMTrips.groupby(['TLFTYPE','TRIPPURP','BIN_COLLAPSE'], as_index=False).agg(TRIPS=('TRIPS','sum'))
+dfTLFTDMTrips = dfTLFTDMTrips.rename(columns={'BIN_COLLAPSE':'BIN'})
+if debug: display(dfTLFTDMTrips)
+
+# calculate percent distribution
+dfTLFTDMTripTotals = dfTLFTDMTrips.groupby(['TLFTYPE','TRIPPURP'], as_index=False).agg(TRIP_TOTAL=('TRIPS','sum'))
+if debug: display(dfTLFTDMTripTotals)
+
+# join to toals
+dfTLFTDMTripDist = pd.DataFrame.merge(dfTLFTDMTrips, dfTLFTDMTripTotals, on=('TLFTYPE','TRIPPURP'))
+dfTLFTDMTripDist['freqMod'] = dfTLFTDMTripDist['TRIPS'] / dfTLFTDMTripDist['TRIP_TOTAL']
+if debug: display(dfTLFTDMTripDist)
+
+dfTLF_TDM = dfTLFTDMTripDist[['TLFTYPE','TRIPPURP','BIN','freqMod']]
+if debug: display(dfTLF_TDM)
+
+# check to see if add up to 1.0
+dfCheck = dfTLF_TDM.groupby(['TLFTYPE','TRIPPURP'], as_index=False).agg(freqMod_SUM=('freqMod','sum'))
+# only display results out of range
+if debug: display('Not adding to 1 (if empty dataset, YAY!!!):')
+if debug: display(dfCheck[(dfCheck['freqMod_SUM']<0.9999999) | (dfCheck['freqMod_SUM']>1.0000001)])
+
+#dfTLF_TDM.to_csv(filename, index=False)
+
+```
+
+```{python}
+#Merge together all Modeled data and Observed data
+dfObsModelMerge = pd.DataFrame.merge(dfTLF_Obs, dfTLF_TDM, on=('BIN','TRIPPURP','TLFTYPE'),how='outer')
+dfObsModelMerge.fillna(0, inplace=True)
+
+dfObsModelMerge = dfObsModelMerge.melt(id_vars=('TRIPPURP','TLFTYPE','BIN'), value_vars=('freqObs','freqMod'), var_name='freqSource', value_name='freq')
+
+dfObsModelMerge = dfObsModelMerge[~dfObsModelMerge['TRIPPURP'].isin(removeModelPurp)]
+
+if debug: display(dfObsModelMerge)
+```
+
+## Average Trip Length Validation
+
+```{python}
+#CALCUATE TRIP LENGTH AVERAGES AS TABLE
+gcdtime = dfObsModelMerge.rename(columns={'freqSource':'DataSource','TRIPPURP':'Purpose','freq':'FREQ','TLFTYPE':'Variable'})
+gcdtime.loc[gcdtime['DataSource']=='freqMod', 'DataSource'] = 'Model'
+gcdtime.loc[gcdtime['DataSource']=='freqObs', 'DataSource'] = 'Observed'
+gcdtime['BINMIDxFREQ'] = (gcdtime['BIN'] + 1) * gcdtime['FREQ']
+if debug: display(gcdtime)
+gcdtime_Stats = (gcdtime.groupby(['DataSource','Variable','Purpose'],as_index=False).agg(FREQ_SUM=('FREQ','sum'),AVG_TRIP_LEN=('BINMIDxFREQ','sum'))) # ADDING BINMIDxFREQ to get Avg Trip Length only works if FREQ sum = 1
+if debug: display(gcdtime_Stats)
+```
+
+``` {python}
+mainPurposes = ['HBW','HBShp','HBOth','HBSchPr','HBSchSc','NHBW','NHBNW','LT','MD','HV']
+externals = ['IX','XI','IX_MD','IX_HV','XI_MD','XI_HV','IXXI','IXXI_MD','IXXI_HV']
+
+gcdtime_Stats.loc[gcdtime_Stats['Purpose'].isin(mainPurposes), 'PurpType'] = 'MainPurposes'
+
+gcdtime_Stats.loc[gcdtime_Stats['Purpose'].isin(externals), 'PurpType'] = 'Externals'
+
+# Assuming you have a dataframe called df and a column named 'Purpose'
+order = ['HBW','HBShp','HBOth','HBSchPr','HBSchSc','NHBW','NHBNW','LT','MD','HV','IX','XI','IX_MD','XI_MD','IX_HV','XI_HV']
+purpose_index = {purpose: f"{i}-{purpose}" for i, purpose in enumerate(order)}
+gcdtime_Stats['Purpose'] = gcdtime_Stats['Purpose'].map(purpose_index)
+order = ['0-HBW','1-HBShp','2-HBOth','3-HBSchPr','4-HBSchSc','5-NHBW','6-NHBNW','7-LT','8-MD','9-HV','10-IX','11-XI','12-IX_MD','13-XI_MD','14-IX_HV','15-XI_HV']
+
+# Convert the 'Purpose' column to a categorical type with the desired order
+gcdtime_Stats['Purpose'] = pd.Categorical(gcdtime_Stats['Purpose'], categories=order, ordered=True)
+gcdtime_Stats['order'] = gcdtime_Stats['Purpose'].cat.codes
+
+# Sort by 'Purpose'
+gcdtime_Stats = gcdtime_Stats.sort_values('Purpose')
+
+```
+
+```{python}
+# set external trucks observed to 0 since its not reliable
+gcdtime_Stats.loc[
+    (gcdtime_Stats['PurpType'] == 'Externals') & 
+    (gcdtime_Stats['DataSource'] == 'Observed') & 
+    (~gcdtime_Stats['Purpose'].isin(['10-IX', '11-XI'])), 
+    'AVG_TRIP_LEN'
+] = 0
+
+gcdtime_Stats.loc[(gcdtime_Stats['PurpType'] == 'MainPurposes') & (gcdtime_Stats['DataSource'] == 'Observed') & (gcdtime_Stats['Purpose'] == 'MD'), 'AVG_TRIP_LEN'] = 0
+
+gcdtime_Stats.loc[(gcdtime_Stats['PurpType'] == 'MainPurposes') & (gcdtime_Stats['DataSource'] == 'Observed') & (gcdtime_Stats['Purpose'] == 'HV'), 'AVG_TRIP_LEN'] = 0
+```
+
+```{python}
+ojs_define(dataStats = gcdtime_Stats)
+```
+
+```{ojs}
+viewof varSelect = Inputs.select(new Map([['Time', 'Time'],['Distance', 'Dist']]), {value: 'Variable', label: "Variable"})
+// viewof varSelect = Inputs.select(new Map([['Generalized Cost','GC'], ['Distance', 'Dist'], ['Time', 'Time']]), {value: 'Variable', label: "Variable"})
+
+viewof purpSelect  = Inputs.select(new Map([['Internal Trip Purposes', 'MainPurposes'], ['External Trip Purposes', 'Externals']]), {value: 'PurpType', label: "Purpose Set"});
+```
+
+```{ojs}
+dataLT = transpose(dataStats)
+filtered_data = dataLT.filter(function(dataL) {
+    return varSelect == dataL.Variable &&
+           purpSelect == dataL.PurpType;
+})
+```
+
+```{ojs}
+import {Legend, Swatches} from "@d3/color-legend"
+import {howto, altplot} from "@d3/example-components"
+```
+
+::: {.panel-tabset}
+
+### Plot
+```{ojs}
+//|label: fig-ave-trip-length
+//|fig-cap: Average Trip Length
+//|echo: False
+Plot.plot({
+  y: {
+    axis: null
+  },
+  x: {
+    tickFormat: "s", 
+    grid: true
+  },
+  color: {
+    domain: ["Model", "Observed"],
+    range: ["#376092", "#77933c"], 
+    legend: true
+  },
+  facet: {
+    data: filtered_data, 
+    y: "Purpose",
+    label: null,
+    marginLeft:95
+  },
+  style: {
+    fontSize: 16
+  },
+  marginTop: 10,
+  marginBottom: 60,
+  marginRight: 60,
+  marginLeft: 95,
+  height:750,
+  marks: [
+    Plot.barX(filtered_data, {
+      y: "DataSource",
+      x: "AVG_TRIP_LEN",
+      fill: "DataSource",
+      fx: "DataSource"
+    }),
+    Plot.ruleX([0])
+  ]
+})
+```
+
+
+### Table
+```{ojs}
+//| echo: false
+Inputs.table(filtered_data)
+```
+
+:::
+
+
+## Trip Length Frequency Validation
+
+```{python}
+ojs_define(freq = dfObsModelMerge)
+```
+
+```{python}
+# specifiy the xmax for each view of the trip length frequency plot
+xvals = pd.DataFrame([
+    ['HBW'    , 'GC'  , 70 ],
+    ['HBShp'  , 'GC'  , 40 ],
+    ['HBOth'  , 'GC'  , 60 ],
+    ['HBSchPr', 'GC'  , 15 ],
+    ['HBSchSc', 'GC'  , 25 ],
+    ['NHBW'   , 'GC'  , 40 ],
+    ['NHBNW'  , 'GC'  , 40 ],
+    ['LT'     , 'GC'  , 80 ],
+    ['MD'     , 'GC'  , 120],
+    ['HV'     , 'GC'  , 120],
+    ['IX'     , 'GC'  , 120],
+    ['XI'     , 'GC'  , 120],
+    ['HBW'    , 'Dist', 40 ],
+    ['HBShp'  , 'Dist', 20 ],
+    ['HBOth'  , 'Dist', 10 ],
+    ['HBSchPr', 'Dist', 6  ],
+    ['HBSchSc', 'Dist', 8  ],
+    ['NHBW'   , 'Dist', 25 ],
+    ['NHBNW'  , 'Dist', 25 ],
+    ['LT'     , 'Dist', 40 ],
+    ['MD'     , 'Dist', 60 ],
+    ['HV'     , 'Dist', 80 ],
+    ['IX'     , 'Dist', 80 ],
+    ['XI'     , 'Dist', 80 ],
+    ['HBW'    , 'Time', 50 ],
+    ['HBShp'  , 'Time', 25 ],
+    ['HBOth'  , 'Time', 40 ],
+    ['HBSchPr', 'Time', 10 ],
+    ['HBSchSc', 'Time', 25 ],
+    ['NHBW'   , 'Time', 50 ],
+    ['NHBNW'  , 'Time', 50 ],
+    ['LT'     , 'Time', 50 ],
+    ['MD'     , 'Time', 70 ],
+    ['HV'     , 'Time', 80 ],
+    ['IX'     , 'Time', 80 ],
+    ['XI'     , 'Time', 80 ],
+], columns=['Purpose','TLF','xValue'])
+```
+
+```{python}
+ojs_define(xvals = xvals)
+```
+
+```{ojs}
+optionsTripPurp = 
+[
+    ['Home-Based Work'                   , 'HBW'    ],
+    ['Home-Based Shopping'               , 'HBShp'  ],
+    ['Home-Based Other'                  , 'HBOth'  ],
+    ['Home-Based School - Primary'       , 'HBSchPr'],
+    ['Home-Based School - Secondary'     , 'HBSchSc'],
+    ['Non-Home-Based Work'               , 'NHBW'   ],
+    ['Non-Home-Based Non-Work'           , 'NHBNW'  ],
+    ['Light Trucks'                      , 'LT'     ],
+    ['Medium Trucks'                     , 'MD'     ],
+    ['Heavy Trucks'                      , 'HV'     ],
+    ['Internal-to-External'              , 'IX'     ],
+    ['External-to-Internal'              , 'XI'     ]
+]
+
+viewof vTripPurp = Inputs.select(new Map(optionsTripPurp), {value: 'HBW', label: "Trip Purpose:"})
+
+viewof vTlfType = Inputs.select(new Map([['Time','Time'], ['Distance','Dist']]), {value: 'Time', label: "Variable:"})
+// viewof vTlfType = Inputs.select(new Map([['Generalized Cost','GC'],['Distance','Dist'],['Time','Time']]), {value: 'Dist', label: "Variable:"})
+```
+
+```{ojs}
+freqT = transpose(freq)
+
+freqT_filtered_Obs = freqT.filter(function(freqData) {
+    return vTripPurp == freqData.TRIPPURP &&
+    vTlfType == freqData.TLFTYPE &&
+    'freqObs' == freqData.freqSource;
+})
+
+freqT_filtered_Mod = freqT.filter(function(freqData) {
+    return vTripPurp == freqData.TRIPPURP &&
+    vTlfType == freqData.TLFTYPE &&
+    'freqMod' == freqData.freqSource;
+})
+```
+
+```{ojs}
+colorScale = d3.scaleOrdinal()
+  .domain(["Model", "Observed"])
+  .range(["#376092", "#77933c"]);
+key2 = Legend(colorScale, {title: "Data Source"})
+```
+
+```{ojs}
+//|echo: False
+//|error: False
+//|message: False
+dataX = transpose(xvals)
+filtered_x = dataX.filter(function(dx) {
+    return vTripPurp == dx.Purpose &&
+           vTlfType == dx.TLF;
+})
+
+maxXValue = Math.max(...filtered_x.map(function(dx){ 
+    return dx.xValue;
+}));
+```
+
+
+```{ojs}
+//|label: fig-trip-length-freq
+//|fig-cap: Trip Length Frequency - Beginning
+//|echo: False
+//|message: False
+//|error: False
+Plot.plot({
+  grid: true,
+  aspectRatio: 0.5,
+  x: {label: 'Distance/Time/Cost', tickFormat: d => d,domain: [0, maxXValue] },
+  y: {label: 'Frequency', tickFormat: f => `${Math.round(f * 100)}%`},
+  marginRight: 60,
+  marginLeft: 60,
+  style: {
+    fontSize: 15
+  },
+  marginTop: 60,
+  marginBottom: 60,
+  marks: [
+    Plot.line(
+      freqT_filtered_Mod, {x: 'BIN', y: 'freq', stroke: "#376092", strokeWidth: 4}),
+    Plot.line(
+      freqT_filtered_Obs, {x: 'BIN', y: 'freq', stroke:  "#77933c", strokeWidth: 4}),
+    Plot.frame({strokeOpacity: 0.2}),
+    ]
+});
+```

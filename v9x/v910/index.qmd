@@ -5,7 +5,7 @@ title: Preface
 This is the documentation for the Wasatch Front Travel Demand Model Version 9.1.0. The documentation includes the following reports:
 
  - [What's New Document](whats-new/1-input-updates.qmd)
- - Model Validation Report (*coming soon*)
+ - [Model Validation Report](validation/1-distribute.qmd)
 
 For access to this version of the TDM please contact the following persons:
 
